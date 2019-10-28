@@ -28,7 +28,13 @@ A framework to support application development with Terra components.
 
 ## Peer Dependencies
 
-terra-application requires no peer dependencies to be installed to properly function.
+This component requires the following peer dependencies be installed in your app for the component to properly function.
+
+| Peer Dependency | Version |
+|-|-|
+| react | ^16.8.5 |
+| react-dom | ^16.8.5 |
+| react-intl | ^2.9.0 |
 
 ## Versioning
 

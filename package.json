@@ -3,6 +3,9 @@
   "main": "lib/application-base/ApplicationBase.js",
   "version": "1.11.0",
   "description": "A framework to support application development with Terra components",
+  "engines": {
+    "node": ">=8.9.2 <12"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-application"

@@ -9,7 +9,5 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 
-window.matchMedia = () => ({ matches: true });
-
 const htmlTag = document.getElementsByTagName('html')[0];
 htmlTag.setAttribute('dir', 'ltr');

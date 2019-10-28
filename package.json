@@ -62,7 +62,13 @@
       "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
     }
   },
-  "files": ["lib", "src", "tests/wdio/*-spec.js", "tests/wdio/**/*-spec.js"],
+  "files": [
+    "lib",
+    "src",
+    "translations",
+    "tests/wdio/*-spec.js",
+    "tests/wdio/**/*-spec.js"
+  ],
   "scripts": {
     "clean": "rm package-lock.json; rm -rf node_modules",
     "clean:install": "npm run clean && npm install",
@@ -134,6 +140,7 @@
     "raf": "^3.4.1",
     "react-dom": "^16.8.5",
     "react": "^16.8.5",
+    "react-intl": "^2.9.0",
     "regenerator-runtime": "^0.13.2",
     "stylelint-config-terra": "^3.0.0",
     "stylelint": "^10.0.1",

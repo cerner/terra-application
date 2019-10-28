@@ -4,7 +4,7 @@
   "keywords": [
     "productivity"
   ],
-  "website": "https://engineering.cerner.com/terra-application/#/site",
+  "website": "https://engineering.cerner.com/terra-application",
   "repository": "https://github.com/cerner/terra-application",
   "success_url": "/",
   "scripts": {},

@@ -14,7 +14,7 @@ services:
     depends_on:
       - standalone-chrome
     volumes:
-      - .:/opt/terra-application
+      - .:/opt/module
 
   standalone-chrome:
     image: 'selenium/standalone-chrome:3.14.0-helium'

@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationErrorBoundary Snapshots should render error view when an error is detected 1`] = `
+<StatusView
+  buttonAttrs={Array []}
+  isAlignedTop={false}
+  isGlyphHidden={false}
+  message="Error: test error"
+  variant="error"
+/>
+`;
+
+exports[`ApplicationErrorBoundary Snapshots should render error view when an error is detected 2`] = `<ErrorComponent />`;
+
+exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
+<div>
+  Test child
+</div>
+`;
+
+exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`] = `""`;

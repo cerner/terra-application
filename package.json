@@ -1,0 +1,149 @@
+{
+  "name": "terra-application",
+  "main": "lib/application-base/ApplicationBase.js",
+  "version": "1.11.0",
+  "description": "A framework to support application development with Terra components",
+  "engines": {
+    "node": ">=8.9.2 <11"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerner/terra-application"
+  },
+  "keywords": [
+    "Cerner",
+    "Terra",
+    "terra-application",
+    "Application",
+    "UI"
+  ],
+  "author": "Cerner Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cerner/terra-application/issues"
+  },
+  "browserslist": [
+    "extends browserslist-config-terra"
+  ],
+  "eslintConfig": {
+    "extends": "terra",
+    "overrides": [
+      {
+        "files": [
+          "src/terra-dev-site/**/*.jsx"
+        ],
+        "rules": {
+          "import/no-extraneous-dependencies": "off",
+          "import/no-unresolved": "off",
+          "import/extensions": "off",
+          "import/no-webpack-loader-syntax": "off",
+          "import/first": "off",
+          "import/no-duplicates": "off"
+        }
+      }
+    ],
+    "rules": {
+      "react/forbid-prop-types": "off"
+    },
+    "settings": {
+      "polyfills": [
+        "Promise",
+        "Map"
+      ]
+    }
+  },
+  "stylelint": {
+    "extends": "stylelint-config-terra",
+    "rules": {
+      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
+    }
+  },
+  "files": [
+    "lib",
+    "src",
+    "translations",
+    "tests/wdio/*-spec.js",
+    "tests/wdio/**/*-spec.js"
+  ],
+  "scripts": {
+    "clean": "rm -rf node_modules",
+    "clean:install": "npm run clean && npm install",
+    "clean:obsolete-snapshots": "npm test -- -u",
+    "compile": "babel src --out-dir lib --copy-files",
+    "compile:dev": "webpack",
+    "compile:prod": "webpack -p",
+    "heroku-postbuild": "npm install --only=dev && npm run compile:prod",
+    "jest": "jest --config jestconfig.js",
+    "jest:coverage": "jest --coverage --config jestconfig.js",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint --ext .js,.jsx .",
+    "lint:scss": "stylelint src/**/*.scss",
+    "postpublish": "git push --tag",
+    "precompile": "rm -rf lib",
+    "prepare": "npm run compile",
+    "prepublishOnly": "npm whoami && check-installed-dependencies",
+    "release:major": "npm version major -m 'Released version %s' && npm publish",
+    "release:minor": "npm version minor -m 'Released version %s' && npm publish",
+    "release:patch": "npm version patch -m 'Released version %s' && npm publish",
+    "start": "tt-serve",
+    "start-prod": "tt-serve -p",
+    "start-heroku": "tt-serve-static --port $PORT --site './build' ",
+    "start-static": "npm run compile:prod && tt-serve-static --site ./build",
+    "test": "npm run lint && npm run jest && npm run wdio",
+    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de'] "
+  },
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "prop-types": "^15.5.8",
+    "terra-base": "^5.0.0",
+    "terra-breakpoints": "^2.0.0",
+    "terra-disclosure-manager": "^4.24.0",
+    "terra-doc-template": "^2.2.0",
+    "terra-modal-manager": "^6.15.0",
+    "terra-navigation-prompt": "^1.14.0",
+    "terra-overlay": "^3.32.0",
+    "terra-scroll": "^2.18.0",
+    "terra-slide-panel-manager": "^5.14.0",
+    "terra-status-view": "^4.10.0",
+    "terra-theme-provider": "^3.15.0",
+    "uuid": "^3.0.0"
+  },
+  "peerDependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-intl": "^2.9.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.5.0",
+    "@babel/core": "^7.5.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.5.0",
+    "@babel/plugin-transform-object-assign": "^7.2.0",
+    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-eslint": "^10.0.1",
+    "babel-jest": "^24.8.0",
+    "browserslist-config-terra": "^1.2.0",
+    "check-installed-dependencies": "^1.0.0",
+    "core-js": "^3.1.3",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.2.2",
+    "enzyme": "^3.3.0",
+    "eslint-config-terra": "^3.0.0",
+    "eslint": "^6.1.0",
+    "gh-pages": "^2.0.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^24.8.0",
+    "raf": "^3.4.1",
+    "react-dom": "^16.8.5",
+    "react": "^16.8.5",
+    "react-intl": "^2.9.0",
+    "regenerator-runtime": "^0.13.2",
+    "stylelint-config-terra": "^3.0.0",
+    "stylelint": "^10.0.1",
+    "terra-toolkit": "^5.6.0",
+    "terra-dev-site": "^6.5.0",
+    "webpack-cli": "^3.3.2",
+    "webpack-dev-server": "^3.3.1",
+    "webpack": "^4.28.1"
+  }
+}

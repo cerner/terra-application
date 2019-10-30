@@ -4,12 +4,17 @@ Changelog
 Unreleased
 ----------
 
-1.12.0 - (October 30, 2019)
+1.13.0 - (October 30, 2019)
 ------------------
 ### Added
 * Added ApplicationLoadingOverlay and ApplicationErrorBoundary
 * Integrated ApplicationLoadingOverlay and ApplicationErrorBoundary into ApplicationBase
 * Added NavigationPrompt handling to ApplicationBase
+
+1.12.0 - (October 21, 2019)
+------------------
+### Changed
+* Minor dependency updates
 
 1.11.0 - (October 16, 2019)
 ------------------

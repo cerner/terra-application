@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.12.0 - (October 30, 2019)
+------------------
 ### Added
 * Added ApplicationLoadingOverlay and ApplicationErrorBoundary
 * Integrated ApplicationLoadingOverlay and ApplicationErrorBoundary into ApplicationBase

@@ -1,10 +1,10 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.11.0",
+  "version": "1.13.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
-    "node": ">=8.9.2 <12"
+    "node": ">=8.9.2 <11"
   },
   "repository": {
     "type": "git",

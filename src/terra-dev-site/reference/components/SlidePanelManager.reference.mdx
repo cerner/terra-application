@@ -2,7 +2,13 @@ import PropsTable from 'terra-application/lib/slide-panel-manager/SlidePanelMana
 
 # SlidePanelManager
 
-The SlidePanelManager exposes its children to panel presentation APIs through the [DisclosureManagerContext]().
+The SlidePanelManager exposes its children to panel presentation APIs through the [DisclosureManagerContext](/reference/terra-application/contexts/disclosure-manager-context).
+
+## Usage
+
+```jsx
+import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
+```
 
 ## Props
 
@@ -18,13 +24,13 @@ SlidePanelManager renders an [ApplicationErrorBoundary] around its disclosed com
 
 ### Loading Overlays
 
-SlidePanelManager renders an [ApplicationLoadingOverlayProvider]() around its disclosed components. Any [ApplicationLoadingOverlay]() components rendered by children will result in loading overlays being rendered by ApplicationBase.
+SlidePanelManager renders an [ApplicationLoadingOverlayProvider](/reference/terra-application/components/application-loading-overlay) around its disclosed components. Any [ApplicationLoadingOverlay](/reference/terra-application/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
 
 > If the disclosed panel contents render their own panel header, it is recommended that those components render an additional ApplicationLoadingOverlayProvider below their panel header to keep the header controls for panel dismissal exposed while the overlay is active.
 
 ### Pending Actions
 
-SlidePanelManager monitors its disclosed content for the presence of rendered [NavigationPrompts]() within its disclosed content. SlidePanelManager will ensure that the user is prompted prior to dismissing the presented panel if any [NavigationPrompts]() are rendered at the time of the dismissal request.
+SlidePanelManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/reference/terra-application/components/navigation-prompt) within its disclosed content. SlidePanelManager will ensure that the user is prompted prior to dismissing the presented panel if any [NavigationPrompts](/reference/terra-application/components/navigation-prompt) are rendered at the time of the dismissal request.
 
 ## Usage
 

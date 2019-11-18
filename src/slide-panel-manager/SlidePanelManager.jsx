@@ -67,7 +67,7 @@ class SlidePanelManager extends React.Component {
 
   renderSlidePanel(manager) {
     const {
-      children, panelBehavior, disclosureAccessory, ...customProps
+      children, panelBehavior, disclosureAccessory, navigationPromptResolutionOptions, ...customProps
     } = this.props;
 
     let isFullscreen;

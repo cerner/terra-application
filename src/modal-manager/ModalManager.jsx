@@ -61,7 +61,7 @@ class ModalManager extends React.Component {
 
   renderModal(manager) {
     const {
-      children, disclosureAccessory, ...customProps
+      children, disclosureAccessory, navigationPromptResolutionOptions, ...customProps
     } = this.props;
 
     const containerClassNames = cx([

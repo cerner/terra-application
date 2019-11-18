@@ -6,7 +6,9 @@ import ContentContainer from 'terra-content-container';
 import {
   availableDisclosureHeights, availableDisclosureWidths, withDisclosureManager, disclosureManagerShape, DisclosureManagerHeaderAdapter,
 } from '../../../disclosure-manager';
+import NavigationPrompt from '../../../navigation-prompt';
 import styles from './DisclosureComponentCommon.test.module.scss';
+import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 
 const cx = classNames.bind(styles);
 
@@ -29,7 +31,14 @@ class DisclosureComponent extends React.Component {
     this.renderFormButton = this.renderFormButton.bind(this);
     this.renderForm = this.renderForm.bind(this);
     this.getId = this.getId.bind(this);
-    this.state = { id: 'disclosureDimensions', disclosureHeight: HEIGHT_KEYS[0], disclosureWidth: WIDTH_KEYS[0] };
+    this.state = {
+      id: 'disclosureDimensions',
+      disclosureHeight: HEIGHT_KEYS[0],
+      disclosureWidth: WIDTH_KEYS[0],
+      hasPendingAction: false,
+      hasLoadingOverlay: false,
+      hasError: false,
+    };
   }
 
   getId(name) {
@@ -119,6 +128,11 @@ class DisclosureComponent extends React.Component {
 
   render() {
     const { disclosureManager, identifier, renderHeaderAdapter } = this.props;
+    const { hasPendingAction, hasLoadingOverlay, hasError } = this.state;
+
+    if (hasError) {
+      throw new Error('Test Error');
+    }
 
     return (
       <ContentContainer id={identifier} className="nested-component" fill header={<h2 className={cx('header')}>Content Component</h2>}>
@@ -151,6 +165,9 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="disclose-large" onClick={this.disclose('large')}>Disclose Large</button>
         <button type="button" className="disclose-huge" onClick={this.disclose('huge')}>Disclose Huge</button>
         <button type="button" className="disclose-fullscreen" onClick={this.disclose('fullscreen')}>Disclose Fullscreen</button>
+        <button type="button" className="pending-action-toggle" onClick={() => { this.setState((state) => ({ hasPendingAction: !state.hasPendingAction })); }}>Pending Action</button>
+        <button type="button" className="loading-overlay-toggle" onClick={() => { this.setState((state) => ({ hasLoadingOverlay: !state.hasLoadingOverlay })); }}>Loading Overlay</button>
+        <button type="button" className="error-toggle" onClick={() => { this.setState((state) => ({ hasError: !state.hasError })); }}>Error</button>
         <div className={cx('content-form')}>
           {this.renderForm()}
           {this.renderFormButton()}
@@ -160,6 +177,8 @@ class DisclosureComponent extends React.Component {
         {disclosureManager && disclosureManager.goBack ? <button type="button" className="go-back" onClick={this.goBack}>Go Back</button> : null}
         {disclosureManager && disclosureManager.maximize ? <button type="button" className="maximize" onClick={this.maximize}>Maximize</button> : null}
         {disclosureManager && disclosureManager.minimize ? <button type="button" className="minimize" onClick={this.minimize}>Minimize</button> : null}
+        {hasPendingAction && <NavigationPrompt description="Test Action" />}
+        {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       </ContentContainer>
     );
   }

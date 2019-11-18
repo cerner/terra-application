@@ -2,9 +2,9 @@
 
 ## Consumption
 
-### I am an application that consumes multiple libraries. The libraries I consume depend on a different version of `terra-application` than I provide. How can I resolve the dependency mismatch?
+### I own an application that consumes multiple libraries. The libraries I consume depend on a different version of `terra-application` than I provide. How can I resolve the dependency mismatch?
 
-As an application, you are defining the version of `terra-application` that is being used by the components that make up your application.
+As an application owner, you are responsible for defining the version of `terra-application` that is being used by the components that make up your application.
 
 It may be tempting to using webpack `alias`'s to force a specific version of `terra-application` to be used. However, this is likely to result in API conflicts between the expected and provided versions (and many runtime exceptions).
 

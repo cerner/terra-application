@@ -1,3 +1,5 @@
+const selector = '#root-component';
+
 Terra.describeViewports('SlidePanelManager', ['tiny', 'large'], () => {
   before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-default')
     .refresh());
@@ -188,8 +190,6 @@ Terra.describeViewports('SlidePanelManager- Behaviors', ['large'], () => {
 });
 
 Terra.describeViewports('SlidePanelManager - Managed Header', ['large'], () => {
-  const selector = '#root-component';
-
   describe('Disclosure - Header Close', () => {
     before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-with-header-adapter').refresh());
 
@@ -286,9 +286,64 @@ Terra.describeViewports('SlidePanelManager - Managed Header', ['large'], () => {
   });
 });
 
-Terra.describeViewports('SlidePanelManager - Disclosure Accessory', ['large'], () => {
-  const selector = '#root-component';
+Terra.describeViewports('SlidePanelManager - Application APIs', ['large'], () => {
+  describe('Disclosure - Pending Actions', () => {
+    before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-with-header-adapter')
+      .refresh());
 
+    it('prompts the user when pending actions are present', () => {
+      browser.click('#root-component .disclose-large');
+
+      browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 [class*="pending-action-toggle"]', 500);
+      browser.click('[class*="slide-group"] #DemoContainer-1 [class*="pending-action-toggle"]', 500);
+
+      browser.waitForVisible('[class*="right-buttons"] > *:first-child', 500);
+      browser.click('[class*="right-buttons"] > *:first-child', 500);
+
+      Terra.validates.element({ selector });
+
+      browser.waitForVisible('[data-terra-notification-dialog="true"] button:first-child', 500);
+      browser.click('[data-terra-notification-dialog="true"] button:first-child', 500);
+    });
+  });
+
+  describe('Disclosure - Loading Overlays', () => {
+    before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-with-header-adapter')
+      .refresh());
+
+    it('renders an application loading overlay within the panel', () => {
+      browser.click('#root-component .disclose-large');
+
+      browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 [class*="loading-overlay-toggle"]', 500);
+      browser.click('[class*="slide-group"] #DemoContainer-1 [class*="loading-overlay-toggle"]', 500);
+      browser.execute('var animationElement = document.querySelector("#terra-icon-animation"); if (animationElement) { animationElement.parentElement.removeChild(animationElement); }');
+
+      Terra.validates.element({ selector });
+
+      browser.waitForVisible('[class*="right-buttons"] > *:first-child', 500);
+      browser.click('[class*="right-buttons"] > *:first-child', 500);
+    });
+  });
+
+  describe('Disclosure - Errors', () => {
+    before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-with-header-adapter')
+      .refresh());
+
+    it('renders errors within the panel', () => {
+      browser.click('#root-component .disclose-large');
+
+      browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 [class*="error-toggle"]', 500);
+      browser.click('[class*="slide-group"] #DemoContainer-1 [class*="error-toggle"]', 500);
+
+      Terra.validates.element({ selector });
+
+      browser.waitForVisible('[class*="right-buttons"] > *:first-child', 500);
+      browser.click('[class*="right-buttons"] > *:first-child', 500);
+    });
+  });
+});
+
+Terra.describeViewports('SlidePanelManager - Disclosure Accessory', ['large'], () => {
   before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/slide-panel-manager-with-disclosure-accessory').refresh());
 
   describe('Disclosure Accessory', () => {

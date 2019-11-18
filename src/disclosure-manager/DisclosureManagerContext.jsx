@@ -1,7 +1,5 @@
-import React from 'react';
 import PropTypes from 'prop-types';
-
-const DisclosureManagerContext = React.createContext();
+import { DisclosureManagerContext } from 'terra-disclosure-manager';
 
 const contextShape = PropTypes.shape({
   /**

@@ -1,0 +1,669 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SlidePanelManager should disclose content in SlidePanel 1`] = `
+<SlidePanelManager
+  panelBehavior="overlay"
+>
+  <withDisclosureManager(DisclosureManager)
+    render={[Function]}
+    supportedDisclosureTypes={
+      Array [
+        "panel",
+      ]
+    }
+  >
+    <DisclosureManager
+      render={[Function]}
+      supportedDisclosureTypes={
+        Array [
+          "panel",
+        ]
+      }
+    >
+      <SlidePanel
+        fill={true}
+        isOpen={true}
+        mainContent={
+          <Context.Provider
+            value={
+              DisclosureManagerDelegateInstance {
+                "disclose": [Function],
+              }
+            }
+          >
+            <withDisclosureManager(Component)
+              id="test"
+            />
+          </Context.Provider>
+        }
+        panelBehavior="overlay"
+        panelContent={
+          <ContentContainer
+            fill={true}
+            header={<React.Fragment />}
+          >
+            <SlideGroup
+              isAnimated={true}
+              items={
+                Array [
+                  <Context.Provider
+                    value={
+                      Object {
+                        "register": [Function],
+                      }
+                    }
+                  >
+                    <Context.Provider
+                      value={
+                        DisclosureManagerDelegateInstance {
+                          "closeDisclosure": [Function],
+                          "disclose": [Function],
+                          "dismiss": [Function],
+                          "maximize": [Function],
+                          "registerDismissCheck": [Function],
+                          "requestFocus": [Function],
+                        }
+                      }
+                    >
+                      <DisclosureContainer>
+                        <withDisclosureManager(Component) />
+                      </DisclosureContainer>
+                    </Context.Provider>
+                  </Context.Provider>,
+                ]
+              }
+            />
+          </ContentContainer>
+        }
+        panelPosition="end"
+        panelSize="large"
+      >
+        <div
+          className="slide-panel is-open fill"
+          data-slide-panel-panel-behavior="overlay"
+          data-slide-panel-panel-position="end"
+          data-slide-panel-panel-size="large"
+        >
+          <div
+            className="main"
+            tabIndex="-1"
+          >
+            <withDisclosureManager(Component)
+              id="test"
+            >
+              <Component
+                disclosureManager={
+                  DisclosureManagerDelegateInstance {
+                    "disclose": [Function],
+                  }
+                }
+                id="test"
+              >
+                <div
+                  id="test"
+                >
+                  Hello World
+                </div>
+              </Component>
+            </withDisclosureManager(Component)>
+          </div>
+          <div
+            aria-hidden="false"
+            className="panel"
+            tabIndex="-1"
+          >
+            <ContentContainer
+              fill={true}
+              header={<React.Fragment />}
+            >
+              <div
+                className="content-container-fill"
+              >
+                <div
+                  className="header"
+                />
+                <div
+                  className="main"
+                >
+                  <Scroll
+                    className="normalizer"
+                  >
+                    <div
+                      className="scroll normalizer"
+                    >
+                      <SlideGroup
+                        isAnimated={true}
+                        items={
+                          Array [
+                            <Context.Provider
+                              value={
+                                Object {
+                                  "register": [Function],
+                                }
+                              }
+                            >
+                              <Context.Provider
+                                value={
+                                  DisclosureManagerDelegateInstance {
+                                    "closeDisclosure": [Function],
+                                    "disclose": [Function],
+                                    "dismiss": [Function],
+                                    "maximize": [Function],
+                                    "registerDismissCheck": [Function],
+                                    "requestFocus": [Function],
+                                  }
+                                }
+                              >
+                                <DisclosureContainer>
+                                  <withDisclosureManager(Component) />
+                                </DisclosureContainer>
+                              </Context.Provider>
+                            </Context.Provider>,
+                          ]
+                        }
+                      >
+                        <TransitionGroup
+                          childFactory={[Function]}
+                          className="slide-group"
+                          component="div"
+                          key="DISCLOSE_KEY"
+                        >
+                          <div
+                            className="slide-group"
+                          >
+                            <CSSTransition
+                              classNames={
+                                Object {
+                                  "enter": "enter",
+                                  "enterActive": "enter-active",
+                                  "exit": "exit",
+                                  "exitActive": "exit-active",
+                                }
+                              }
+                              enter={true}
+                              exit={true}
+                              id="shmmoop"
+                              in={true}
+                              key=".$DISCLOSE_KEY"
+                              onEntered={[Function]}
+                              onExit={[Function]}
+                              onExited={[Function]}
+                              timeout={300}
+                            >
+                              <Transition
+                                appear={false}
+                                enter={true}
+                                exit={true}
+                                id="shmmoop"
+                                in={true}
+                                mountOnEnter={false}
+                                onEnter={[Function]}
+                                onEntered={[Function]}
+                                onEntering={[Function]}
+                                onExit={[Function]}
+                                onExited={[Function]}
+                                onExiting={[Function]}
+                                timeout={300}
+                                unmountOnExit={false}
+                              >
+                                <Slide
+                                  id="shmmoop"
+                                  isHidden={false}
+                                >
+                                  <div
+                                    aria-hidden={null}
+                                    className="slide"
+                                  >
+                                    <div
+                                      className="slide-shadow"
+                                    />
+                                    <DisclosureContainer>
+                                      <ApplicationErrorBoundary>
+                                        <ApplicationLoadingOverlayProvider>
+                                          <OverlayContainer
+                                            className="container"
+                                            overlay={
+                                              <LoadingOverlay
+                                                backgroundStyle="clear"
+                                                isAnimated={true}
+                                                isOpen={false}
+                                                isRelativeToContainer={true}
+                                                rootSelector="#root"
+                                              />
+                                            }
+                                          >
+                                            <div
+                                              className="overlay-container container"
+                                            >
+                                              <LoadingOverlay
+                                                backgroundStyle="clear"
+                                                isAnimated={true}
+                                                isOpen={false}
+                                                isRelativeToContainer={true}
+                                                rootSelector="#root"
+                                              >
+                                                <Overlay
+                                                  backgroundStyle="clear"
+                                                  className="loading-overlay"
+                                                  isOpen={false}
+                                                  isRelativeToContainer={true}
+                                                  isScrollable={false}
+                                                  rootSelector="#root"
+                                                  zIndex="100"
+                                                />
+                                              </LoadingOverlay>
+                                              <div
+                                                className="container-content"
+                                                data-terra-overlay-container-content={true}
+                                              >
+                                                <Scroll>
+                                                  <div
+                                                    className="scroll"
+                                                  >
+                                                    <withPromptRegistration(NavigationPromptCheckpoint)
+                                                      onPromptChange={[Function]}
+                                                    >
+                                                      <NavigationPromptCheckpoint
+                                                        onPromptChange={[Function]}
+                                                        promptRegistration={
+                                                          Object {
+                                                            "isDefaultContextValue": true,
+                                                            "registerPrompt": [Function],
+                                                            "unregisterPrompt": [Function],
+                                                          }
+                                                        }
+                                                      >
+                                                        <withDisclosureManager(Component)>
+                                                          <Component
+                                                            disclosureManager={
+                                                              DisclosureManagerDelegateInstance {
+                                                                "closeDisclosure": [Function],
+                                                                "disclose": [Function],
+                                                                "dismiss": [Function],
+                                                                "maximize": [Function],
+                                                                "registerDismissCheck": [Function],
+                                                                "requestFocus": [Function],
+                                                              }
+                                                            }
+                                                          >
+                                                            <div>
+                                                              Hello World
+                                                            </div>
+                                                          </Component>
+                                                        </withDisclosureManager(Component)>
+                                                      </NavigationPromptCheckpoint>
+                                                    </withPromptRegistration(NavigationPromptCheckpoint)>
+                                                  </div>
+                                                </Scroll>
+                                              </div>
+                                            </div>
+                                          </OverlayContainer>
+                                        </ApplicationLoadingOverlayProvider>
+                                      </ApplicationErrorBoundary>
+                                    </DisclosureContainer>
+                                  </div>
+                                </Slide>
+                              </Transition>
+                            </CSSTransition>
+                          </div>
+                        </TransitionGroup>
+                      </SlideGroup>
+                    </div>
+                  </Scroll>
+                </div>
+              </div>
+            </ContentContainer>
+          </div>
+        </div>
+      </SlidePanel>
+    </DisclosureManager>
+  </withDisclosureManager(DisclosureManager)>
+</SlidePanelManager>
+`;
+
+exports[`SlidePanelManager should render the SlidePanelManager with custom props 1`] = `
+<SlidePanelManager
+  className="test"
+  id="my-slide-panel-manager"
+  panelBehavior="overlay"
+>
+  <withDisclosureManager(DisclosureManager)
+    render={[Function]}
+    supportedDisclosureTypes={
+      Array [
+        "panel",
+      ]
+    }
+  >
+    <DisclosureManager
+      render={[Function]}
+      supportedDisclosureTypes={
+        Array [
+          "panel",
+        ]
+      }
+    >
+      <SlidePanel
+        className="test"
+        fill={true}
+        id="my-slide-panel-manager"
+        isOpen={false}
+        mainContent={
+          <Context.Provider
+            value={
+              DisclosureManagerDelegateInstance {
+                "disclose": [Function],
+              }
+            }
+          >
+            <withDisclosureManager(Component) />
+          </Context.Provider>
+        }
+        panelBehavior="overlay"
+        panelContent={
+          <ContentContainer
+            fill={true}
+            header={<React.Fragment />}
+          >
+            <SlideGroup
+              isAnimated={true}
+              items={Array []}
+            />
+          </ContentContainer>
+        }
+        panelPosition="end"
+        panelSize="small"
+      >
+        <div
+          className="slide-panel fill test"
+          data-slide-panel-panel-behavior="overlay"
+          data-slide-panel-panel-position="end"
+          data-slide-panel-panel-size="small"
+          id="my-slide-panel-manager"
+        >
+          <div
+            className="main"
+            tabIndex="-1"
+          >
+            <withDisclosureManager(Component)>
+              <Component
+                disclosureManager={
+                  DisclosureManagerDelegateInstance {
+                    "disclose": [Function],
+                  }
+                }
+              >
+                <div>
+                  Hello World
+                </div>
+              </Component>
+            </withDisclosureManager(Component)>
+          </div>
+          <div
+            aria-hidden="true"
+            className="panel"
+            tabIndex="-1"
+          >
+            <ContentContainer
+              fill={true}
+              header={<React.Fragment />}
+            >
+              <div
+                className="content-container-fill"
+              >
+                <div
+                  className="header"
+                />
+                <div
+                  className="main"
+                >
+                  <Scroll
+                    className="normalizer"
+                  >
+                    <div
+                      className="scroll normalizer"
+                    >
+                      <SlideGroup
+                        isAnimated={true}
+                        items={Array []}
+                      />
+                    </div>
+                  </Scroll>
+                </div>
+              </div>
+            </ContentContainer>
+          </div>
+        </div>
+      </SlidePanel>
+    </DisclosureManager>
+  </withDisclosureManager(DisclosureManager)>
+</SlidePanelManager>
+`;
+
+exports[`SlidePanelManager should render the SlidePanelManager with defaults 1`] = `
+<SlidePanelManager
+  panelBehavior="overlay"
+>
+  <withDisclosureManager(DisclosureManager)
+    render={[Function]}
+    supportedDisclosureTypes={
+      Array [
+        "panel",
+      ]
+    }
+  >
+    <DisclosureManager
+      render={[Function]}
+      supportedDisclosureTypes={
+        Array [
+          "panel",
+        ]
+      }
+    >
+      <SlidePanel
+        fill={true}
+        isOpen={false}
+        mainContent={
+          <Context.Provider
+            value={
+              DisclosureManagerDelegateInstance {
+                "disclose": [Function],
+              }
+            }
+          >
+            <withDisclosureManager(Component) />
+          </Context.Provider>
+        }
+        panelBehavior="overlay"
+        panelContent={
+          <ContentContainer
+            fill={true}
+            header={<React.Fragment />}
+          >
+            <SlideGroup
+              isAnimated={true}
+              items={Array []}
+            />
+          </ContentContainer>
+        }
+        panelPosition="end"
+        panelSize="small"
+      >
+        <div
+          className="slide-panel fill"
+          data-slide-panel-panel-behavior="overlay"
+          data-slide-panel-panel-position="end"
+          data-slide-panel-panel-size="small"
+        >
+          <div
+            className="main"
+            tabIndex="-1"
+          >
+            <withDisclosureManager(Component)>
+              <Component
+                disclosureManager={
+                  DisclosureManagerDelegateInstance {
+                    "disclose": [Function],
+                  }
+                }
+              >
+                <div>
+                  Hello World
+                </div>
+              </Component>
+            </withDisclosureManager(Component)>
+          </div>
+          <div
+            aria-hidden="true"
+            className="panel"
+            tabIndex="-1"
+          >
+            <ContentContainer
+              fill={true}
+              header={<React.Fragment />}
+            >
+              <div
+                className="content-container-fill"
+              >
+                <div
+                  className="header"
+                />
+                <div
+                  className="main"
+                >
+                  <Scroll
+                    className="normalizer"
+                  >
+                    <div
+                      className="scroll normalizer"
+                    >
+                      <SlideGroup
+                        isAnimated={true}
+                        items={Array []}
+                      />
+                    </div>
+                  </Scroll>
+                </div>
+              </div>
+            </ContentContainer>
+          </div>
+        </div>
+      </SlidePanel>
+    </DisclosureManager>
+  </withDisclosureManager(DisclosureManager)>
+</SlidePanelManager>
+`;
+
+exports[`SlidePanelManager should render the SlidePanelManager with squish override 1`] = `
+<SlidePanelManager
+  panelBehavior="squish"
+>
+  <withDisclosureManager(DisclosureManager)
+    render={[Function]}
+    supportedDisclosureTypes={
+      Array [
+        "panel",
+      ]
+    }
+  >
+    <DisclosureManager
+      render={[Function]}
+      supportedDisclosureTypes={
+        Array [
+          "panel",
+        ]
+      }
+    >
+      <SlidePanel
+        fill={true}
+        isOpen={false}
+        mainContent={
+          <Context.Provider
+            value={
+              DisclosureManagerDelegateInstance {
+                "disclose": [Function],
+              }
+            }
+          >
+            <withDisclosureManager(Component) />
+          </Context.Provider>
+        }
+        panelBehavior="squish"
+        panelContent={
+          <ContentContainer
+            fill={true}
+            header={<React.Fragment />}
+          >
+            <SlideGroup
+              isAnimated={true}
+              items={Array []}
+            />
+          </ContentContainer>
+        }
+        panelPosition="end"
+        panelSize="small"
+      >
+        <div
+          className="slide-panel fill"
+          data-slide-panel-panel-behavior="squish"
+          data-slide-panel-panel-position="end"
+          data-slide-panel-panel-size="small"
+        >
+          <div
+            className="main"
+            tabIndex="-1"
+          >
+            <withDisclosureManager(Component)>
+              <Component
+                disclosureManager={
+                  DisclosureManagerDelegateInstance {
+                    "disclose": [Function],
+                  }
+                }
+              >
+                <div>
+                  Hello World
+                </div>
+              </Component>
+            </withDisclosureManager(Component)>
+          </div>
+          <div
+            aria-hidden="true"
+            className="panel"
+            tabIndex="-1"
+          >
+            <ContentContainer
+              fill={true}
+              header={<React.Fragment />}
+            >
+              <div
+                className="content-container-fill"
+              >
+                <div
+                  className="header"
+                />
+                <div
+                  className="main"
+                >
+                  <Scroll
+                    className="normalizer"
+                  >
+                    <div
+                      className="scroll normalizer"
+                    >
+                      <SlideGroup
+                        isAnimated={true}
+                        items={Array []}
+                      />
+                    </div>
+                  </Scroll>
+                </div>
+              </div>
+            </ContentContainer>
+          </div>
+        </div>
+      </SlidePanel>
+    </DisclosureManager>
+  </withDisclosureManager(DisclosureManager)>
+</SlidePanelManager>
+`;

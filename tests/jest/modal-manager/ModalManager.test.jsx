@@ -1,0 +1,60 @@
+import React from 'react';
+/* eslint-disable-next-line import/no-extraneous-dependencies */
+import { mountWithIntl } from 'terra-enzyme-intl';
+import { withDisclosureManager } from '../../../src/disclosure-manager';
+import ModalManager from '../../../src/modal-manager/ModalManager';
+
+const TestContainer = withDisclosureManager(({ id }) => (
+  <button id={id} type="button">Hello World</button>
+));
+
+describe('ModalManager', () => {
+  it('should render the ModalManager with defaults', () => {
+    const modalManager = (
+      <ModalManager>
+        <TestContainer />
+      </ModalManager>
+    );
+
+    const result = mountWithIntl(modalManager);
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should render the ModalManager with custom props', () => {
+    const modalManager = (
+      <ModalManager id="my-modal-manager" className="test">
+        <TestContainer />
+      </ModalManager>
+    );
+
+    const result = mountWithIntl(modalManager);
+    expect(result).toMatchSnapshot();
+  });
+
+  it('should disclose content in Modal', () => {
+    const modalManager = (
+      <ModalManager>
+        <TestContainer id="test" />
+      </ModalManager>
+    );
+
+    const wrapper = mountWithIntl(modalManager);
+
+    return new Promise((resolve, reject) => {
+      const childDisclosureManager = wrapper.find('#test').getElements()[1].props.disclosureManager;
+      childDisclosureManager.disclose({
+        preferredType: 'modal',
+        size: 'large',
+        content: {
+          key: 'DISCLOSE_KEY',
+          component: <TestContainer />,
+        },
+      }).then(resolve).catch(reject);
+    })
+      .then(() => {
+        wrapper.update();
+
+        expect(wrapper).toMatchSnapshot();
+      });
+  });
+});

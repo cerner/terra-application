@@ -4,6 +4,16 @@ import { DisclosureManagerContext } from 'terra-disclosure-manager';
 const contextShape = PropTypes.shape({
   /**
    * A function that will disclose content within the determined DisclosureManager.
+   * Ex:
+   *
+   *  disclose({
+   *    preferredType: 'modal',
+   *    size: 'large',
+   *    content: {
+   *      key: 'example-modal',
+   *      component: <ExampleModal />
+   *    },
+   *  })
    */
   disclose: PropTypes.func.isRequired,
 

@@ -20,19 +20,21 @@ exports[`Application should render with all props 1`] = `
       </div>
     }
   >
-    <ActiveBreakpointProvider>
-      <ApplicationErrorBoundary>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <div>
-              content
-            </div>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ApplicationErrorBoundary>
-    </ActiveBreakpointProvider>
+    <InjectIntl(Component)>
+      <ActiveBreakpointProvider>
+        <ApplicationErrorBoundary>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
+              <div>
+                content
+              </div>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ApplicationErrorBoundary>
+      </ActiveBreakpointProvider>
+    </InjectIntl(Component)>
   </Base>
 </ThemeProvider>
 `;
@@ -47,19 +49,21 @@ exports[`Application should render with minimal props 1`] = `
     locale="en"
     strictMode={false}
   >
-    <ActiveBreakpointProvider>
-      <ApplicationErrorBoundary>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <div>
-              content
-            </div>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ApplicationErrorBoundary>
-    </ActiveBreakpointProvider>
+    <InjectIntl(Component)>
+      <ActiveBreakpointProvider>
+        <ApplicationErrorBoundary>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
+              <div>
+                content
+              </div>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ApplicationErrorBoundary>
+      </ActiveBreakpointProvider>
+    </InjectIntl(Component)>
   </Base>
 </ThemeProvider>
 `;

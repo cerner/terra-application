@@ -4,10 +4,10 @@
   }
 
   .modal-manager {
-    border: var(--terra-modal-manager-border);
-    border-radius: var(--terra-modal-manager-border-radius, 5px);
-    box-shadow: var(--terra-modal-manager-box-shadow, 0 3px 7px rgba(0, 0, 0, 0.3));
-    color: var(--terra-modal-manager-foreground-color);
+    border: var(--terra-application-modal-manager-border);
+    border-radius: var(--terra-application-modal-manager-border-radius, 5px);
+    box-shadow: var(--terra-application-modal-manager-box-shadow, 0 3px 7px rgba(0, 0, 0, 0.3));
+    color: var(--terra-application-modal-manager-foreground-color);
 
     // dimensions - heights
     &.height-240 {

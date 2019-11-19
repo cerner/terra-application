@@ -1,0 +1,35 @@
+import PropsTable from 'terra-application/src/application-navigation/ApplicationNavigation?dev-site-props-table';
+
+# ApplicationNavigation
+
+The ApplicationNavigation component is a wrapper around Terra's ApplicationNavigation component that provides a tighter integration with terra-application's features.
+
+## Usage
+
+```jsx
+import ApplicationNavigation from 'terra-application/lib/application-navigation';
+```
+
+## Props
+
+<PropsTable />
+
+## Features
+
+### Exception Handling
+
+ApplicationNavigation renders an [ApplicationErrorBoundary](/reference/terra-application/components/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationNavigation will catch the exceptions and render a styled error component in place of the children. This error component will render below the ApplicationNavigation header and allow the header to remain interactable.
+
+### Loading Overlays
+
+ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/reference/terra-application/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/reference/terra-application/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationNavigation. The overlay will render below the ApplicationNavigation header and allow the header to remain interactable.
+
+### Code Splitting
+
+ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), a sensible fallback will be rendered while the component is being retrieved. The fallback will render below the ApplicationNavigation header and allow the header to remain interactable.
+
+### Pending Actions
+
+ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/reference/terra-application/components/navigation-prompt). ApplicationNavigation will ensure that the user is prompted prior to navigating between primary navigation items and prior to executing destructive session management actions.
+
+> Note: The `disablePromptsForNavigationItems` prop can be provided to disable prompting when navigating between primary navigation items.

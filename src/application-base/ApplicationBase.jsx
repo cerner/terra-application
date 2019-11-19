@@ -8,6 +8,7 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import { ApplicationIntlProvider } from '../application-intl';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -106,19 +107,21 @@ const ApplicationBase = ({
         translationsLoadingPlaceholder={translationsLoadingPlaceholder}
         locale={locale}
       >
-        <ActiveBreakpointProvider>
-          <ApplicationErrorBoundary>
-            <NavigationPromptCheckpoint
-              onPromptChange={(registeredPrompts) => {
-                registeredPromptsRef.current = registeredPrompts;
-              }}
-            >
-              <ApplicationLoadingOverlayProvider>
-                {children}
-              </ApplicationLoadingOverlayProvider>
-            </NavigationPromptCheckpoint>
-          </ApplicationErrorBoundary>
-        </ActiveBreakpointProvider>
+        <ApplicationIntlProvider>
+          <ActiveBreakpointProvider>
+            <ApplicationErrorBoundary>
+              <NavigationPromptCheckpoint
+                onPromptChange={(registeredPrompts) => {
+                  registeredPromptsRef.current = registeredPrompts;
+                }}
+              >
+                <ApplicationLoadingOverlayProvider>
+                  {children}
+                </ApplicationLoadingOverlayProvider>
+              </NavigationPromptCheckpoint>
+            </ApplicationErrorBoundary>
+          </ActiveBreakpointProvider>
+        </ApplicationIntlProvider>
       </Base>
     </ThemeProvider>
   );

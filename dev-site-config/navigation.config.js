@@ -6,17 +6,13 @@ const navConfig = {
       text: 'Home',
       pageTypes: ['home'],
     }, {
-      path: '/Guides',
+      path: '/guides',
       text: 'Guides',
       pageTypes: ['guide'],
     }, {
       path: '/reference',
       text: 'Reference',
       pageTypes: ['reference'],
-    }, {
-      path: '/demo',
-      text: 'Demo',
-      pageTypes: ['demo'],
     }, {
       path: '/tests',
       text: 'Tests',

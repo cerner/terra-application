@@ -14,10 +14,6 @@ const navConfig = {
       text: 'Reference',
       pageTypes: ['reference'],
     }, {
-      path: '/demo',
-      text: 'Demo',
-      pageTypes: ['demo'],
-    }, {
       path: '/tests',
       text: 'Tests',
       pageTypes: ['test'],

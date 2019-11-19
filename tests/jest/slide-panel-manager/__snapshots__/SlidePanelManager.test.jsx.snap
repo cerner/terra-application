@@ -260,11 +260,8 @@ exports[`SlidePanelManager should disclose content in SlidePanel 1`] = `
                                                   <div
                                                     className="scroll"
                                                   >
-                                                    <withPromptRegistration(NavigationPromptCheckpoint)
-                                                      onPromptChange={[Function]}
-                                                    >
+                                                    <withPromptRegistration(NavigationPromptCheckpoint)>
                                                       <NavigationPromptCheckpoint
-                                                        onPromptChange={[Function]}
                                                         promptRegistration={
                                                           Object {
                                                             "isDefaultContextValue": true,

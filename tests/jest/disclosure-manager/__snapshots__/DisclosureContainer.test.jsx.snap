@@ -3,9 +3,7 @@
 exports[`DisclosureContainer should render the provided children 1`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)
-      onPromptChange={[Function]}
-    >
+    <withPromptRegistration(NavigationPromptCheckpoint)>
       <div>
         Test Child
       </div>

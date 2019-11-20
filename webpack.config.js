@@ -1,3 +1,3 @@
-const defaultWebpackConfig = require('terra-dev-site/config/webpack/webpack.config');
+const terraDevSiteWebpackConfig = require('terra-dev-site/config/webpack/webpack.config');
 
-module.exports = defaultWebpackConfig;
+module.exports = terraDevSiteWebpackConfig;

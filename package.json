@@ -147,7 +147,6 @@
     "terra-collapsible-menu-view": "^6.19.0",
     "terra-dev-site": "^6.5.0",
     "terra-enzyme-intl": "^3.2.0",
-    "terra-form-select": "^5.36.0",
     "terra-toolkit": "^5.6.0",
     "webpack": "^4.28.1",
     "webpack-cli": "^3.3.2",

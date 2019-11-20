@@ -1,0 +1,35 @@
+# How To Manage Pending Actions
+
+A typical application allows its users to navigate between different components to complete different workflows. However, sometimes the user has not completed their current work before attempting to navigate elsewhere in the application. In these cases, it makes sense to prevent that navigation until the user explicitly accepts that they are leaving the current workflow and may lose unsaved changes.
+
+Components that want to communicate the presence of their unsaved state to the framework can do so by rendering a [NavigationPrompt](/components/terra-application/reference/components/navigation-prompt) component. When mounted, the NavigationPrompt will register itself with the framework.
+
+```jsx
+import React, { useState } from 'react';
+import NavigationPrompt from 'terra-application/lib/navigation-prompt';
+
+const ExampleComponent = () => {
+  const [hasPendingState, setHasPendingState] = useState(false);
+
+  return (
+    <div>
+      <p>This component toggles between having and not having pending state.</p>
+      <p>
+        <button type="button" onClick={() => { setHasPendingState(!hasPendingState); }}>
+          {hasPendingState ? 'Clear Pending State' : 'Set Pending State'}
+        </button>
+      </p>
+      {hasPendingState ? <NavigationPrompt description="ExampleComponent" /> : undefined}
+    </div>
+  );
+};
+
+export default ExampleComponent;
+```
+
+[ApplicationBase](/components/terra-application/reference/components/application-base) will check for the presence of NavigationPrompts rendered within it before it allows the window to be unloaded. Please see its reference page for more information.
+
+[ModalManager](/components/terra-application/reference/components/modal-manager) and [SlidePanelManager](/components/terra-application/reference/components/slide-panel-manager) will check for the presence of NavigationPrompts within their disclosed components and prompt the user if necessary before allowing the components to be dismissed. Please see their respective reference pages for more information.
+
+Any component that navigates between components can implement a [NavigationPromptCheckpoint](/components/terra-application/reference/components/navigation-prompt-checkpoint) itself to utilize the same prompting logic, if desired.
+

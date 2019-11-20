@@ -2,7 +2,7 @@ import NavigationPromptCheckpointProps from 'terra-navigation-prompt/lib/Navigat
 
 # NavigationPromptCheckpoint
 
-The NavigationPromptCheckpoint serves as a registration gateway for [NavigationPrompts](/reference/terra-application/components/navigation-prompt) rendered within it. Any NavigationPrompt rendered within the context of a NavigationPromptCheckpoint will register itself with the NavigationPromptCheckpoint (and any other anscestor checkpoints). The component that implements the NavigationPromptCheckpoint can use the presence of registered NavigationPrompts to influence its navigational workflows as necessary.
+The NavigationPromptCheckpoint serves as a registration gateway for [NavigationPrompts](/components/terra-application/reference/components/navigation-prompt) rendered within it. Any NavigationPrompt rendered within the context of a NavigationPromptCheckpoint will register itself with the NavigationPromptCheckpoint (and any other anscestor checkpoints). The component that implements the NavigationPromptCheckpoint can use the presence of registered NavigationPrompts to influence its navigational workflows as necessary.
 
 ## Usage
 
@@ -14,7 +14,7 @@ import { NavigationPromptCheckpoint } from 'terra-application/lib/navigation-pro
 
 <NavigationPromptCheckpointProps />
 
-## Detailed Usage
+## Details
 
 Any component that navigates between stateful child components should render NavigationPromptCheckpoints around those children. Each NavigationPrompt rendered by a child will be registered to the NavigationPromptCheckpoints above it in the component tree. The implementer of each NavigationPromptCheckpoint can use the registered data to prompt the user before navigating or prevent navigation altogether.
 

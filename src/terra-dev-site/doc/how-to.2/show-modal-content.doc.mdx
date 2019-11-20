@@ -1,0 +1,57 @@
+# How To Show Modal Content
+
+The [ModalManager](/components/terra-application/reference/components/modal-manager) should be used to manage modal content presentation. 
+
+```jsx
+import React from 'react';
+import ApplicationBase from 'terra-application/lib/application-base';
+import ModalManager from 'terra-application/lib/modal-manager';
+
+import ComponentWithModal from './ComponentWithModal';
+
+const ExampleApp = () => (
+  <ApplicationBase>
+    <ModalManager
+      navigationPromptResolutionOptions={{
+        title: 'Example Title For Prompt',
+        acceptButtonText: 'Example Accept Button Text',
+        rejectButtonText: 'Example Reject Button Text',
+      }}
+    >
+      <ComponentWithModal />
+    </ModalManager>
+  </ApplicationBase>
+);
+
+export default ExampleComponent;
+```
+
+The ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/reference/contexts/disclosure-manager-context).
+
+```jsx
+import React, { useContext } from 'react';
+import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+
+import ModalContentComponent from './ModalContentComponent';
+
+const ComponentWithModal = () => {
+  const disclosureManager = useContext(DisclosureManagerContext);
+
+  return (
+    <button 
+      onClick={() => {
+        disclosureManager.disclose({
+          preferredType: 'modal',
+          size: 'large',
+          content: {
+            key: 'component-with-modal.modal-content',
+            component: <ModalContentComponent />,
+          },
+        });
+      }}
+    >
+      Show Modal
+    </button>
+  );
+};
+```

@@ -87,11 +87,8 @@ exports[`DisclosureManager should provide the disclosure content with closeDiscl
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -222,11 +219,8 @@ exports[`DisclosureManager should provide the disclosure content with dismiss fu
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -357,11 +351,8 @@ exports[`DisclosureManager should provide the disclosure content with maximize/m
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -492,11 +483,8 @@ exports[`DisclosureManager should provide the disclosure content with nested dis
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -627,11 +615,8 @@ exports[`DisclosureManager should provide the disclosure content with requestFoc
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -763,11 +748,8 @@ exports[`DisclosureManager should provide the disclosure content with restricted
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,
@@ -898,11 +880,8 @@ exports[`DisclosureManager should provide the given children an app prop that sh
                   <div
                     className="scroll"
                   >
-                    <withPromptRegistration(NavigationPromptCheckpoint)
-                      onPromptChange={[Function]}
-                    >
+                    <withPromptRegistration(NavigationPromptCheckpoint)>
                       <NavigationPromptCheckpoint
-                        onPromptChange={[Function]}
                         promptRegistration={
                           Object {
                             "isDefaultContextValue": true,

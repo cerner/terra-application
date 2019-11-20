@@ -31,7 +31,8 @@ const propTypes = {
    * used to prompt the user when disclosure dismissal occurs when pending state
    * is present.
    *
-   * This prop will be fixed upon the initial mount of the component.
+   * This prop should be provided once upon the initial mount of the component. Any subsequent changes
+   * to this prop value may not be reflected for existing disclosed modals.
    */
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
 };

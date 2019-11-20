@@ -23,7 +23,6 @@ const propTypes = {
 const DisclosureContainer = ({ children, navigationPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const promptCheckpointRef = useRef();
-  const registeredPromptsRef = useRef();
 
   useEffect(() => {
     disclosureManager.registerDismissCheck(() => new Promise((resolve, reject) => {
@@ -41,9 +40,6 @@ const DisclosureContainer = ({ children, navigationPromptResolutionOptions }) =>
       <ApplicationLoadingOverlayProvider>
         <NavigationPromptCheckpoint
           ref={promptCheckpointRef}
-          onPromptChange={(prompts) => {
-            registeredPromptsRef.current = prompts;
-          }}
         >
           {children}
         </NavigationPromptCheckpoint>

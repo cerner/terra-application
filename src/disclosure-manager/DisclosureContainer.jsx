@@ -1,11 +1,11 @@
 import React, { useEffect, useContext, useRef } from 'react';
 import PropTypes from 'prop-types';
 
+import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
+
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
-
-import DisclosureManagerContext from './DisclosureManagerContext';
 
 const propTypes = {
   /**

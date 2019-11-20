@@ -1,3 +1,5 @@
-import { DisclosureManagerHeaderAdapterContext } from 'terra-disclosure-manager';
+import { createContext } from 'react';
+
+const DisclosureManagerHeaderAdapterContext = createContext();
 
 export default DisclosureManagerHeaderAdapterContext;

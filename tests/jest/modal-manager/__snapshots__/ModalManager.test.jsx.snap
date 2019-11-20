@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ModalManager should disclose content in Modal 1`] = `
-<ModalManager
+exports[`ApplicationModalManager should disclose content in Modal 1`] = `
+<ApplicationModalManager
   intl={
     Object {
       "defaultFormats": Object {},
@@ -29,17 +29,50 @@ exports[`ModalManager should disclose content in Modal 1`] = `
       "timeZone": null,
     }
   }
->
-  <withDisclosureManager(DisclosureManager)
-    render={[Function]}
-    supportedDisclosureTypes={
-      Array [
-        "modal",
-      ]
+  navigationPromptResolutionOptions={
+    Object {
+      "acceptButtonText": "Test Accept Text",
+      "content": <div>
+        Test Content
+      </div>,
+      "endMessage": "Test End Message",
+      "rejectButtonText": "Test Reject Text",
+      "startMessage": "Test Start Message",
+      "title": "Test Title",
     }
-    trapNestedDisclosureRequests={true}
+  }
+>
+  <ModalManager
+    intl={
+      Object {
+        "defaultFormats": Object {},
+        "defaultLocale": "en",
+        "formatDate": [Function],
+        "formatHTMLMessage": [Function],
+        "formatMessage": [Function],
+        "formatNumber": [Function],
+        "formatPlural": [Function],
+        "formatRelative": [Function],
+        "formatTime": [Function],
+        "formats": Object {},
+        "formatters": Object {
+          "getDateTimeFormat": [Function],
+          "getMessageFormat": [Function],
+          "getNumberFormat": [Function],
+          "getPluralFormat": [Function],
+          "getRelativeFormat": [Function],
+        },
+        "locale": "en",
+        "messages": null,
+        "now": [Function],
+        "onError": [Function],
+        "textComponent": "span",
+        "timeZone": null,
+      }
+    }
+    withDisclosureContainer={[Function]}
   >
-    <DisclosureManager
+    <withDisclosureManager(DisclosureManager)
       render={[Function]}
       supportedDisclosureTypes={
         Array [
@@ -47,128 +80,141 @@ exports[`ModalManager should disclose content in Modal 1`] = `
         ]
       }
       trapNestedDisclosureRequests={true}
+      withDisclosureContainer={[Function]}
     >
-      <div
-        className="container"
-        intl={
-          Object {
-            "defaultFormats": Object {},
-            "defaultLocale": "en",
-            "formatDate": [Function],
-            "formatHTMLMessage": [Function],
-            "formatMessage": [Function],
-            "formatNumber": [Function],
-            "formatPlural": [Function],
-            "formatRelative": [Function],
-            "formatTime": [Function],
-            "formats": Object {},
-            "formatters": Object {
-              "getDateTimeFormat": [Function],
-              "getMessageFormat": [Function],
-              "getNumberFormat": [Function],
-              "getPluralFormat": [Function],
-              "getRelativeFormat": [Function],
-            },
-            "locale": "en",
-            "messages": null,
-            "now": [Function],
-            "onError": [Function],
-            "textComponent": "span",
-            "timeZone": null,
-          }
+      <DisclosureManager
+        render={[Function]}
+        supportedDisclosureTypes={
+          Array [
+            "modal",
+          ]
         }
+        trapNestedDisclosureRequests={true}
+        withDisclosureContainer={[Function]}
       >
-        <withDisclosureManager(Component)
-          id="test"
-        >
-          <Component
-            disclosureManager={
-              DisclosureManagerDelegateInstance {
-                "disclose": [Function],
-              }
+        <div
+          className="container"
+          intl={
+            Object {
+              "defaultFormats": Object {},
+              "defaultLocale": "en",
+              "formatDate": [Function],
+              "formatHTMLMessage": [Function],
+              "formatMessage": [Function],
+              "formatNumber": [Function],
+              "formatPlural": [Function],
+              "formatRelative": [Function],
+              "formatTime": [Function],
+              "formats": Object {},
+              "formatters": Object {
+                "getDateTimeFormat": [Function],
+                "getMessageFormat": [Function],
+                "getNumberFormat": [Function],
+                "getPluralFormat": [Function],
+                "getRelativeFormat": [Function],
+              },
+              "locale": "en",
+              "messages": null,
+              "now": [Function],
+              "onError": [Function],
+              "textComponent": "span",
+              "timeZone": null,
             }
-            id="test"
-          >
-            <button
-              id="test"
-              type="button"
-            >
-              Hello World
-            </button>
-          </Component>
-        </withDisclosureManager(Component)>
-        <AbstractModal
-          ariaLabel=""
-          classNameModal="modal-manager height-870 width-1280"
-          classNameOverlay={null}
-          closeOnEsc={true}
-          closeOnOutsideClick={false}
-          isFullscreen={false}
-          isOpen={true}
-          onRequestClose={[Function]}
-          role="dialog"
-          rootSelector="#root"
-          zIndex="6000"
+          }
         >
-          <Portal
-            isOpened={true}
+          <withDisclosureManager(Component)
+            id="child-with-disclosure"
+          >
+            <Component
+              disclosureManager={
+                DisclosureManagerDelegateInstance {
+                  "disclose": [Function],
+                }
+              }
+              id="child-with-disclosure"
+            >
+              <button
+                id="child-with-disclosure"
+                type="button"
+              >
+                Hello World
+              </button>
+            </Component>
+          </withDisclosureManager(Component)>
+          <AbstractModal
+            ariaLabel="Modal"
+            classNameModal="modal-manager height-870 width-1280"
+            classNameOverlay={null}
+            closeOnEsc={true}
+            closeOnOutsideClick={false}
+            isFullscreen={false}
+            isOpen={true}
+            onRequestClose={[Function]}
+            role="dialog"
+            rootSelector="#root"
+            zIndex="6000"
           >
             <Portal
-              containerInfo={
-                <div>
-                  <div
-                    class="overlay layer-6000"
-                  />
-                  <div
-                    aria-label=""
-                    aria-modal="true"
-                    class="abstract-modal layer-6000 modal-manager height-870 width-1280"
-                    role="dialog"
-                    tabindex="0"
-                  >
-                    <span
-                      class="visually-hidden-text"
-                      data-terra-abstract-modal-begin="true"
-                      tabindex="-1"
-                    >
-                      Terra.AbstractModal.BeginModalDialog
-                    </span>
+              isOpened={true}
+            >
+              <Portal
+                containerInfo={
+                  <div>
                     <div
-                      class="content-container-fill"
+                      class="overlay layer-6000"
+                    />
+                    <div
+                      aria-label="Modal"
+                      aria-modal="true"
+                      class="abstract-modal layer-6000 modal-manager height-870 width-1280"
+                      role="dialog"
+                      tabindex="0"
                     >
+                      <span
+                        class="visually-hidden-text"
+                        data-terra-abstract-modal-begin="true"
+                        tabindex="-1"
+                      >
+                        Terra.AbstractModal.BeginModalDialog
+                      </span>
                       <div
-                        class="header"
-                      />
-                      <div
-                        class="main"
+                        class="content-container-fill"
                       >
                         <div
-                          class="scroll normalizer"
+                          class="header"
+                        />
+                        <div
+                          class="main"
                         >
                           <div
-                            class="slide-group"
+                            class="scroll normalizer"
                           >
                             <div
-                              class="slide"
+                              class="slide-group"
                             >
                               <div
-                                class="slide-shadow"
-                              />
-                              <div
-                                class="overlay-container container"
+                                class="slide"
                               >
                                 <div
-                                  class="container-content"
-                                  data-terra-overlay-container-content="true"
+                                  class="slide-shadow"
+                                />
+                                <div
+                                  class="overlay-container container"
                                 >
                                   <div
-                                    class="scroll"
+                                    class="container-content"
+                                    data-terra-overlay-container-content="true"
                                   >
-                                    <button
-                                      type="button"
+                                    <div
+                                      class="scroll"
                                     >
-                                      Hello World
-                                    </button>
+                                      <button
+                                        id="test-modal"
+                                        type="button"
+                                      >
+                                        Hello World
+                                      </button>
+                                    </div>
                                   </div>
                                 </div>
                               </div>
@@ -176,292 +222,322 @@ exports[`ModalManager should disclose content in Modal 1`] = `
                           </div>
                         </div>
                       </div>
+                      <span
+                        class="visually-hidden-text"
+                      >
+                        Terra.AbstractModal.EndModalDialog
+                      </span>
                     </div>
-                    <span
-                      class="visually-hidden-text"
-                    >
-                      Terra.AbstractModal.EndModalDialog
-                    </span>
                   </div>
-                </div>
-              }
-            >
-              <ForwardRef
-                aria-modal="true"
-                ariaLabel=""
-                classNameModal="modal-manager height-870 width-1280"
-                classNameOverlay={null}
-                closeOnOutsideClick={false}
-                isFullscreen={false}
-                isScrollable={false}
-                onRequestClose={[Function]}
-                role="dialog"
-                zIndex="6000"
+                }
               >
-                <ModalOverlay
-                  className={null}
-                  onClick={null}
+                <ForwardRef
+                  aria-modal="true"
+                  ariaLabel="Modal"
+                  classNameModal="modal-manager height-870 width-1280"
+                  classNameOverlay={null}
+                  closeOnOutsideClick={false}
+                  isFullscreen={false}
+                  isScrollable={false}
+                  onRequestClose={[Function]}
+                  role="dialog"
                   zIndex="6000"
                 >
-                  <div
-                    className="overlay layer-6000"
+                  <ModalOverlay
+                    className={null}
                     onClick={null}
-                  />
-                </ModalOverlay>
-                <div
-                  aria-label=""
-                  aria-modal="true"
-                  className="abstract-modal layer-6000 modal-manager height-870 width-1280"
-                  role="dialog"
-                  tabIndex="0"
-                >
-                  <FormattedMessage
-                    id="Terra.AbstractModal.BeginModalDialog"
-                    values={Object {}}
-                  >
-                    <VisuallyHiddenText
-                      data-terra-abstract-modal-begin={true}
-                      tabIndex="-1"
-                      text="Terra.AbstractModal.BeginModalDialog"
-                    >
-                      <span
-                        className="visually-hidden-text"
-                        data-terra-abstract-modal-begin={true}
-                        tabIndex="-1"
-                      >
-                        Terra.AbstractModal.BeginModalDialog
-                      </span>
-                    </VisuallyHiddenText>
-                  </FormattedMessage>
-                  <ContentContainer
-                    fill={true}
-                    header={<React.Fragment />}
+                    zIndex="6000"
                   >
                     <div
-                      className="content-container-fill"
+                      className="overlay layer-6000"
+                      onClick={null}
+                    />
+                  </ModalOverlay>
+                  <div
+                    aria-label="Modal"
+                    aria-modal="true"
+                    className="abstract-modal layer-6000 modal-manager height-870 width-1280"
+                    role="dialog"
+                    tabIndex="0"
+                  >
+                    <FormattedMessage
+                      id="Terra.AbstractModal.BeginModalDialog"
+                      values={Object {}}
+                    >
+                      <VisuallyHiddenText
+                        data-terra-abstract-modal-begin={true}
+                        tabIndex="-1"
+                        text="Terra.AbstractModal.BeginModalDialog"
+                      >
+                        <span
+                          className="visually-hidden-text"
+                          data-terra-abstract-modal-begin={true}
+                          tabIndex="-1"
+                        >
+                          Terra.AbstractModal.BeginModalDialog
+                        </span>
+                      </VisuallyHiddenText>
+                    </FormattedMessage>
+                    <ContentContainer
+                      fill={true}
+                      header={<React.Fragment />}
                     >
                       <div
-                        className="header"
-                      />
-                      <div
-                        className="main"
+                        className="content-container-fill"
                       >
-                        <Scroll
-                          className="normalizer"
+                        <div
+                          className="header"
+                        />
+                        <div
+                          className="main"
                         >
-                          <div
-                            className="scroll normalizer"
+                          <Scroll
+                            className="normalizer"
                           >
-                            <SlideGroup
-                              isAnimated={true}
-                              items={
-                                Array [
-                                  <Context.Provider
-                                    value={
-                                      Object {
-                                        "register": [Function],
-                                      }
-                                    }
-                                  >
+                            <div
+                              className="scroll normalizer"
+                            >
+                              <SlideGroup
+                                isAnimated={true}
+                                items={
+                                  Array [
                                     <Context.Provider
                                       value={
-                                        DisclosureManagerDelegateInstance {
-                                          "closeDisclosure": [Function],
-                                          "disclose": [Function],
-                                          "dismiss": [Function],
-                                          "maximize": [Function],
-                                          "registerDismissCheck": [Function],
-                                          "requestFocus": [Function],
+                                        Object {
+                                          "register": [Function],
                                         }
                                       }
                                     >
-                                      <DisclosureContainer>
-                                        <withDisclosureManager(Component) />
-                                      </DisclosureContainer>
-                                    </Context.Provider>
-                                  </Context.Provider>,
-                                ]
-                              }
-                            >
-                              <TransitionGroup
-                                childFactory={[Function]}
-                                className="slide-group"
-                                component="div"
-                                key="DISCLOSE_KEY"
+                                      <Context.Provider
+                                        value={
+                                          DisclosureManagerDelegateInstance {
+                                            "closeDisclosure": [Function],
+                                            "disclose": [Function],
+                                            "dismiss": [Function],
+                                            "maximize": [Function],
+                                            "registerDismissCheck": [Function],
+                                            "requestFocus": [Function],
+                                          }
+                                        }
+                                      >
+                                        <DisclosureContainer
+                                          navigationPromptResolutionOptions={
+                                            Object {
+                                              "acceptButtonText": "Test Accept Text",
+                                              "content": <div>
+                                                Test Content
+                                              </div>,
+                                              "endMessage": "Test End Message",
+                                              "rejectButtonText": "Test Reject Text",
+                                              "startMessage": "Test Start Message",
+                                              "title": "Test Title",
+                                            }
+                                          }
+                                        >
+                                          <withDisclosureManager(Component)
+                                            id="test-modal"
+                                          />
+                                        </DisclosureContainer>
+                                      </Context.Provider>
+                                    </Context.Provider>,
+                                  ]
+                                }
                               >
-                                <div
+                                <TransitionGroup
+                                  childFactory={[Function]}
                                   className="slide-group"
+                                  component="div"
+                                  key="DISCLOSE_KEY"
                                 >
-                                  <CSSTransition
-                                    classNames={
-                                      Object {
-                                        "enter": "enter",
-                                        "enterActive": "enter-active",
-                                        "exit": "exit",
-                                        "exitActive": "exit-active",
-                                      }
-                                    }
-                                    enter={true}
-                                    exit={true}
-                                    id="shmmoop"
-                                    in={true}
-                                    key=".$DISCLOSE_KEY"
-                                    onEntered={[Function]}
-                                    onExit={[Function]}
-                                    onExited={[Function]}
-                                    timeout={300}
+                                  <div
+                                    className="slide-group"
                                   >
-                                    <Transition
-                                      appear={false}
+                                    <CSSTransition
+                                      classNames={
+                                        Object {
+                                          "enter": "enter",
+                                          "enterActive": "enter-active",
+                                          "exit": "exit",
+                                          "exitActive": "exit-active",
+                                        }
+                                      }
                                       enter={true}
                                       exit={true}
                                       id="shmmoop"
                                       in={true}
-                                      mountOnEnter={false}
-                                      onEnter={[Function]}
+                                      key=".$DISCLOSE_KEY"
                                       onEntered={[Function]}
-                                      onEntering={[Function]}
                                       onExit={[Function]}
                                       onExited={[Function]}
-                                      onExiting={[Function]}
                                       timeout={300}
-                                      unmountOnExit={false}
                                     >
-                                      <Slide
+                                      <Transition
+                                        appear={false}
+                                        enter={true}
+                                        exit={true}
                                         id="shmmoop"
-                                        isHidden={false}
+                                        in={true}
+                                        mountOnEnter={false}
+                                        onEnter={[Function]}
+                                        onEntered={[Function]}
+                                        onEntering={[Function]}
+                                        onExit={[Function]}
+                                        onExited={[Function]}
+                                        onExiting={[Function]}
+                                        timeout={300}
+                                        unmountOnExit={false}
                                       >
-                                        <div
-                                          aria-hidden={null}
-                                          className="slide"
+                                        <Slide
+                                          id="shmmoop"
+                                          isHidden={false}
                                         >
                                           <div
-                                            className="slide-shadow"
-                                          />
-                                          <DisclosureContainer>
-                                            <ApplicationErrorBoundary>
-                                              <ApplicationLoadingOverlayProvider>
-                                                <OverlayContainer
-                                                  className="container"
-                                                  overlay={
-                                                    <LoadingOverlay
-                                                      backgroundStyle="clear"
-                                                      isAnimated={true}
-                                                      isOpen={false}
-                                                      isRelativeToContainer={true}
-                                                      rootSelector="#root"
-                                                    />
-                                                  }
-                                                >
-                                                  <div
-                                                    className="overlay-container container"
-                                                  >
-                                                    <LoadingOverlay
-                                                      backgroundStyle="clear"
-                                                      isAnimated={true}
-                                                      isOpen={false}
-                                                      isRelativeToContainer={true}
-                                                      rootSelector="#root"
-                                                    >
-                                                      <Overlay
+                                            aria-hidden={null}
+                                            className="slide"
+                                          >
+                                            <div
+                                              className="slide-shadow"
+                                            />
+                                            <DisclosureContainer
+                                              navigationPromptResolutionOptions={
+                                                Object {
+                                                  "acceptButtonText": "Test Accept Text",
+                                                  "content": <div>
+                                                    Test Content
+                                                  </div>,
+                                                  "endMessage": "Test End Message",
+                                                  "rejectButtonText": "Test Reject Text",
+                                                  "startMessage": "Test Start Message",
+                                                  "title": "Test Title",
+                                                }
+                                              }
+                                            >
+                                              <ApplicationErrorBoundary>
+                                                <ApplicationLoadingOverlayProvider>
+                                                  <OverlayContainer
+                                                    className="container"
+                                                    overlay={
+                                                      <LoadingOverlay
                                                         backgroundStyle="clear"
-                                                        className="loading-overlay"
+                                                        isAnimated={true}
                                                         isOpen={false}
                                                         isRelativeToContainer={true}
-                                                        isScrollable={false}
                                                         rootSelector="#root"
-                                                        zIndex="100"
                                                       />
-                                                    </LoadingOverlay>
+                                                    }
+                                                  >
                                                     <div
-                                                      className="container-content"
-                                                      data-terra-overlay-container-content={true}
+                                                      className="overlay-container container"
                                                     >
-                                                      <Scroll>
-                                                        <div
-                                                          className="scroll"
-                                                        >
-                                                          <withPromptRegistration(NavigationPromptCheckpoint)>
-                                                            <NavigationPromptCheckpoint
-                                                              promptRegistration={
-                                                                Object {
-                                                                  "isDefaultContextValue": true,
-                                                                  "registerPrompt": [Function],
-                                                                  "unregisterPrompt": [Function],
-                                                                }
-                                                              }
-                                                            >
-                                                              <withDisclosureManager(Component)>
-                                                                <Component
-                                                                  disclosureManager={
-                                                                    DisclosureManagerDelegateInstance {
-                                                                      "closeDisclosure": [Function],
-                                                                      "disclose": [Function],
-                                                                      "dismiss": [Function],
-                                                                      "maximize": [Function],
-                                                                      "registerDismissCheck": [Function],
-                                                                      "requestFocus": [Function],
-                                                                    }
+                                                      <LoadingOverlay
+                                                        backgroundStyle="clear"
+                                                        isAnimated={true}
+                                                        isOpen={false}
+                                                        isRelativeToContainer={true}
+                                                        rootSelector="#root"
+                                                      >
+                                                        <Overlay
+                                                          backgroundStyle="clear"
+                                                          className="loading-overlay"
+                                                          isOpen={false}
+                                                          isRelativeToContainer={true}
+                                                          isScrollable={false}
+                                                          rootSelector="#root"
+                                                          zIndex="100"
+                                                        />
+                                                      </LoadingOverlay>
+                                                      <div
+                                                        className="container-content"
+                                                        data-terra-overlay-container-content={true}
+                                                      >
+                                                        <Scroll>
+                                                          <div
+                                                            className="scroll"
+                                                          >
+                                                            <withPromptRegistration(NavigationPromptCheckpoint)>
+                                                              <NavigationPromptCheckpoint
+                                                                promptRegistration={
+                                                                  Object {
+                                                                    "isDefaultContextValue": true,
+                                                                    "registerPrompt": [Function],
+                                                                    "unregisterPrompt": [Function],
                                                                   }
+                                                                }
+                                                              >
+                                                                <withDisclosureManager(Component)
+                                                                  id="test-modal"
                                                                 >
-                                                                  <button
-                                                                    type="button"
+                                                                  <Component
+                                                                    disclosureManager={
+                                                                      DisclosureManagerDelegateInstance {
+                                                                        "closeDisclosure": [Function],
+                                                                        "disclose": [Function],
+                                                                        "dismiss": [Function],
+                                                                        "maximize": [Function],
+                                                                        "registerDismissCheck": [Function],
+                                                                        "requestFocus": [Function],
+                                                                      }
+                                                                    }
+                                                                    id="test-modal"
                                                                   >
-                                                                    Hello World
-                                                                  </button>
-                                                                </Component>
-                                                              </withDisclosureManager(Component)>
-                                                            </NavigationPromptCheckpoint>
-                                                          </withPromptRegistration(NavigationPromptCheckpoint)>
-                                                        </div>
-                                                      </Scroll>
+                                                                    <button
+                                                                      id="test-modal"
+                                                                      type="button"
+                                                                    >
+                                                                      Hello World
+                                                                    </button>
+                                                                  </Component>
+                                                                </withDisclosureManager(Component)>
+                                                              </NavigationPromptCheckpoint>
+                                                            </withPromptRegistration(NavigationPromptCheckpoint)>
+                                                          </div>
+                                                        </Scroll>
+                                                      </div>
                                                     </div>
-                                                  </div>
-                                                </OverlayContainer>
-                                              </ApplicationLoadingOverlayProvider>
-                                            </ApplicationErrorBoundary>
-                                          </DisclosureContainer>
-                                        </div>
-                                      </Slide>
-                                    </Transition>
-                                  </CSSTransition>
-                                </div>
-                              </TransitionGroup>
-                            </SlideGroup>
-                          </div>
-                        </Scroll>
+                                                  </OverlayContainer>
+                                                </ApplicationLoadingOverlayProvider>
+                                              </ApplicationErrorBoundary>
+                                            </DisclosureContainer>
+                                          </div>
+                                        </Slide>
+                                      </Transition>
+                                    </CSSTransition>
+                                  </div>
+                                </TransitionGroup>
+                              </SlideGroup>
+                            </div>
+                          </Scroll>
+                        </div>
                       </div>
-                    </div>
-                  </ContentContainer>
-                  <FormattedMessage
-                    id="Terra.AbstractModal.EndModalDialog"
-                    values={Object {}}
-                  >
-                    <VisuallyHiddenText
-                      text="Terra.AbstractModal.EndModalDialog"
+                    </ContentContainer>
+                    <FormattedMessage
+                      id="Terra.AbstractModal.EndModalDialog"
+                      values={Object {}}
                     >
-                      <span
-                        className="visually-hidden-text"
+                      <VisuallyHiddenText
+                        text="Terra.AbstractModal.EndModalDialog"
                       >
-                        Terra.AbstractModal.EndModalDialog
-                      </span>
-                    </VisuallyHiddenText>
-                  </FormattedMessage>
-                </div>
-              </ForwardRef>
+                        <span
+                          className="visually-hidden-text"
+                        >
+                          Terra.AbstractModal.EndModalDialog
+                        </span>
+                      </VisuallyHiddenText>
+                    </FormattedMessage>
+                  </div>
+                </ForwardRef>
+              </Portal>
             </Portal>
-          </Portal>
-        </AbstractModal>
-      </div>
-    </DisclosureManager>
-  </withDisclosureManager(DisclosureManager)>
-</ModalManager>
+          </AbstractModal>
+        </div>
+      </DisclosureManager>
+    </withDisclosureManager(DisclosureManager)>
+  </ModalManager>
+</ApplicationModalManager>
 `;
 
-exports[`ModalManager should render the ModalManager with custom props 1`] = `
-<ModalManager
-  className="test"
-  id="my-modal-manager"
+exports[`ApplicationModalManager should render the ApplicationModalManager 1`] = `
+<ApplicationModalManager
   intl={
     Object {
       "defaultFormats": Object {},
@@ -489,130 +565,50 @@ exports[`ModalManager should render the ModalManager with custom props 1`] = `
       "timeZone": null,
     }
   }
->
-  <withDisclosureManager(DisclosureManager)
-    render={[Function]}
-    supportedDisclosureTypes={
-      Array [
-        "modal",
-      ]
-    }
-    trapNestedDisclosureRequests={true}
-  >
-    <DisclosureManager
-      render={[Function]}
-      supportedDisclosureTypes={
-        Array [
-          "modal",
-        ]
-      }
-      trapNestedDisclosureRequests={true}
-    >
-      <div
-        className="container test"
-        id="my-modal-manager"
-        intl={
-          Object {
-            "defaultFormats": Object {},
-            "defaultLocale": "en",
-            "formatDate": [Function],
-            "formatHTMLMessage": [Function],
-            "formatMessage": [Function],
-            "formatNumber": [Function],
-            "formatPlural": [Function],
-            "formatRelative": [Function],
-            "formatTime": [Function],
-            "formats": Object {},
-            "formatters": Object {
-              "getDateTimeFormat": [Function],
-              "getMessageFormat": [Function],
-              "getNumberFormat": [Function],
-              "getPluralFormat": [Function],
-              "getRelativeFormat": [Function],
-            },
-            "locale": "en",
-            "messages": null,
-            "now": [Function],
-            "onError": [Function],
-            "textComponent": "span",
-            "timeZone": null,
-          }
-        }
-      >
-        <withDisclosureManager(Component)>
-          <Component
-            disclosureManager={
-              DisclosureManagerDelegateInstance {
-                "disclose": [Function],
-              }
-            }
-          >
-            <button
-              type="button"
-            >
-              Hello World
-            </button>
-          </Component>
-        </withDisclosureManager(Component)>
-        <AbstractModal
-          ariaLabel=""
-          classNameModal="modal-manager"
-          classNameOverlay={null}
-          closeOnEsc={true}
-          closeOnOutsideClick={false}
-          isFullscreen={false}
-          isOpen={false}
-          onRequestClose={[Function]}
-          role="dialog"
-          rootSelector="#root"
-          zIndex="6000"
-        />
-      </div>
-    </DisclosureManager>
-  </withDisclosureManager(DisclosureManager)>
-</ModalManager>
-`;
-
-exports[`ModalManager should render the ModalManager with defaults 1`] = `
-<ModalManager
-  intl={
+  navigationPromptResolutionOptions={
     Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
+      "acceptButtonText": "Test Accept Text",
+      "content": <div>
+        Test Content
+      </div>,
+      "endMessage": "Test End Message",
+      "rejectButtonText": "Test Reject Text",
+      "startMessage": "Test Start Message",
+      "title": "Test Title",
     }
   }
 >
-  <withDisclosureManager(DisclosureManager)
-    render={[Function]}
-    supportedDisclosureTypes={
-      Array [
-        "modal",
-      ]
+  <ModalManager
+    intl={
+      Object {
+        "defaultFormats": Object {},
+        "defaultLocale": "en",
+        "formatDate": [Function],
+        "formatHTMLMessage": [Function],
+        "formatMessage": [Function],
+        "formatNumber": [Function],
+        "formatPlural": [Function],
+        "formatRelative": [Function],
+        "formatTime": [Function],
+        "formats": Object {},
+        "formatters": Object {
+          "getDateTimeFormat": [Function],
+          "getMessageFormat": [Function],
+          "getNumberFormat": [Function],
+          "getPluralFormat": [Function],
+          "getRelativeFormat": [Function],
+        },
+        "locale": "en",
+        "messages": null,
+        "now": [Function],
+        "onError": [Function],
+        "textComponent": "span",
+        "timeZone": null,
+      }
     }
-    trapNestedDisclosureRequests={true}
+    withDisclosureContainer={[Function]}
   >
-    <DisclosureManager
+    <withDisclosureManager(DisclosureManager)
       render={[Function]}
       supportedDisclosureTypes={
         Array [
@@ -620,67 +616,83 @@ exports[`ModalManager should render the ModalManager with defaults 1`] = `
         ]
       }
       trapNestedDisclosureRequests={true}
+      withDisclosureContainer={[Function]}
     >
-      <div
-        className="container"
-        intl={
-          Object {
-            "defaultFormats": Object {},
-            "defaultLocale": "en",
-            "formatDate": [Function],
-            "formatHTMLMessage": [Function],
-            "formatMessage": [Function],
-            "formatNumber": [Function],
-            "formatPlural": [Function],
-            "formatRelative": [Function],
-            "formatTime": [Function],
-            "formats": Object {},
-            "formatters": Object {
-              "getDateTimeFormat": [Function],
-              "getMessageFormat": [Function],
-              "getNumberFormat": [Function],
-              "getPluralFormat": [Function],
-              "getRelativeFormat": [Function],
-            },
-            "locale": "en",
-            "messages": null,
-            "now": [Function],
-            "onError": [Function],
-            "textComponent": "span",
-            "timeZone": null,
-          }
+      <DisclosureManager
+        render={[Function]}
+        supportedDisclosureTypes={
+          Array [
+            "modal",
+          ]
         }
+        trapNestedDisclosureRequests={true}
+        withDisclosureContainer={[Function]}
       >
-        <withDisclosureManager(Component)>
-          <Component
-            disclosureManager={
-              DisclosureManagerDelegateInstance {
-                "disclose": [Function],
-              }
+        <div
+          className="container"
+          intl={
+            Object {
+              "defaultFormats": Object {},
+              "defaultLocale": "en",
+              "formatDate": [Function],
+              "formatHTMLMessage": [Function],
+              "formatMessage": [Function],
+              "formatNumber": [Function],
+              "formatPlural": [Function],
+              "formatRelative": [Function],
+              "formatTime": [Function],
+              "formats": Object {},
+              "formatters": Object {
+                "getDateTimeFormat": [Function],
+                "getMessageFormat": [Function],
+                "getNumberFormat": [Function],
+                "getPluralFormat": [Function],
+                "getRelativeFormat": [Function],
+              },
+              "locale": "en",
+              "messages": null,
+              "now": [Function],
+              "onError": [Function],
+              "textComponent": "span",
+              "timeZone": null,
             }
+          }
+        >
+          <withDisclosureManager(Component)
+            id="child-with-disclosure"
           >
-            <button
-              type="button"
+            <Component
+              disclosureManager={
+                DisclosureManagerDelegateInstance {
+                  "disclose": [Function],
+                }
+              }
+              id="child-with-disclosure"
             >
-              Hello World
-            </button>
-          </Component>
-        </withDisclosureManager(Component)>
-        <AbstractModal
-          ariaLabel=""
-          classNameModal="modal-manager"
-          classNameOverlay={null}
-          closeOnEsc={true}
-          closeOnOutsideClick={false}
-          isFullscreen={false}
-          isOpen={false}
-          onRequestClose={[Function]}
-          role="dialog"
-          rootSelector="#root"
-          zIndex="6000"
-        />
-      </div>
-    </DisclosureManager>
-  </withDisclosureManager(DisclosureManager)>
-</ModalManager>
+              <button
+                id="child-with-disclosure"
+                type="button"
+              >
+                Hello World
+              </button>
+            </Component>
+          </withDisclosureManager(Component)>
+          <AbstractModal
+            ariaLabel="Modal"
+            classNameModal="modal-manager"
+            classNameOverlay={null}
+            closeOnEsc={true}
+            closeOnOutsideClick={false}
+            isFullscreen={false}
+            isOpen={false}
+            onRequestClose={[Function]}
+            role="dialog"
+            rootSelector="#root"
+            zIndex="6000"
+          />
+        </div>
+      </DisclosureManager>
+    </withDisclosureManager(DisclosureManager)>
+  </ModalManager>
+</ApplicationModalManager>
 `;

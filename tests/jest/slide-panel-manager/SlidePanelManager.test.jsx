@@ -1,69 +1,51 @@
 import React from 'react';
+/* eslint-disable-next-line import/no-extraneous-dependencies */
+import { mountWithIntl } from 'terra-enzyme-intl';
 import { withDisclosureManager } from '../../../src/disclosure-manager';
-import SlidePanelManager from '../../../src/slide-panel-manager/SlidePanelManager';
+import SlidePanelManger from '../../../src/slide-panel-manager';
 
 const TestContainer = withDisclosureManager(({ id }) => (
-  <div id={id}>Hello World</div>
+  <button id={id} type="button">Hello World</button>
 ));
 
-describe('SlidePanelManager', () => {
-  it('should render the SlidePanelManager with defaults', () => {
-    const slidePanelManager = (
-      <SlidePanelManager>
-        <TestContainer />
-      </SlidePanelManager>
-    );
+describe('ApplicationModalManager', () => {
+  const mountModalManager = () => mountWithIntl(
+    <SlidePanelManger
+      navigationPromptResolutionOptions={{
+        title: 'Test Title',
+        startMessage: 'Test Start Message',
+        content: <div>Test Content</div>,
+        endMessage: 'Test End Message',
+        acceptButtonText: 'Test Accept Text',
+        rejectButtonText: 'Test Reject Text',
+      }}
+    >
+      <TestContainer id="child-with-disclosure" />
+    </SlidePanelManger>,
+  );
 
-    const result = mount(slidePanelManager);
-    expect(result).toMatchSnapshot();
+  it('should render the ApplicationModalManager', () => {
+    const content = mountModalManager();
+    expect(content).toMatchSnapshot();
   });
 
-  it('should render the SlidePanelManager with squish override', () => {
-    const slidePanelManager = (
-      <SlidePanelManager panelBehavior="squish">
-        <TestContainer />
-      </SlidePanelManager>
-    );
-
-    const result = mount(slidePanelManager);
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should render the SlidePanelManager with custom props', () => {
-    const slidePanelManager = (
-      <SlidePanelManager id="my-slide-panel-manager" className="test">
-        <TestContainer />
-      </SlidePanelManager>
-    );
-
-    const result = mount(slidePanelManager);
-    expect(result).toMatchSnapshot();
-  });
-
-  it('should disclose content in SlidePanel', () => {
-    const slidePanelManager = (
-      <SlidePanelManager>
-        <TestContainer id="test" />
-      </SlidePanelManager>
-    );
-
-    const wrapper = mount(slidePanelManager);
+  it('should disclose content in Modal', () => {
+    const content = mountModalManager();
 
     return new Promise((resolve, reject) => {
-      const childDisclosureManager = wrapper.find('#test').getElements()[1].props.disclosureManager;
+      const childDisclosureManager = content.find('#child-with-disclosure').getElements()[1].props.disclosureManager;
       childDisclosureManager.disclose({
-        preferredType: 'modal',
+        preferredType: 'panel',
         size: 'large',
         content: {
           key: 'DISCLOSE_KEY',
-          component: <TestContainer />,
+          component: <TestContainer id="test-panel" />,
         },
       }).then(resolve).catch(reject);
     })
       .then(() => {
-        wrapper.update();
-
-        expect(wrapper).toMatchSnapshot();
+        content.update();
+        expect(content).toMatchSnapshot();
       });
   });
 });

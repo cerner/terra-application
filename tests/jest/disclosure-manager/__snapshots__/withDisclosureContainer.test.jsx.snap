@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`withDisclosureContainer when executed, withDisclosureContainer returns a wrapped component 1`] = `
+<ApplicationErrorBoundary>
+  <ApplicationLoadingOverlayProvider>
+    <withPromptRegistration(NavigationPromptCheckpoint)>
+      <dif>
+        wrapped content
+      </dif>
+    </withPromptRegistration(NavigationPromptCheckpoint)>
+  </ApplicationLoadingOverlayProvider>
+</ApplicationErrorBoundary>
+`;

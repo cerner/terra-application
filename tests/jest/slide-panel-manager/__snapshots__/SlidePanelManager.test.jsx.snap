@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationModalManager should disclose content in Modal 1`] = `
-<ApplicationSlidePanelManager
+<SlidePanelManager
   intl={
     Object {
       "defaultFormats": Object {},
@@ -492,11 +492,11 @@ exports[`ApplicationModalManager should disclose content in Modal 1`] = `
       </DisclosureManager>
     </withDisclosureManager(DisclosureManager)>
   </SlidePanelManager>
-</ApplicationSlidePanelManager>
+</SlidePanelManager>
 `;
 
 exports[`ApplicationModalManager should render the ApplicationModalManager 1`] = `
-<ApplicationSlidePanelManager
+<SlidePanelManager
   intl={
     Object {
       "defaultFormats": Object {},
@@ -741,5 +741,5 @@ exports[`ApplicationModalManager should render the ApplicationModalManager 1`] =
       </DisclosureManager>
     </withDisclosureManager(DisclosureManager)>
   </SlidePanelManager>
-</ApplicationSlidePanelManager>
+</SlidePanelManager>
 `;

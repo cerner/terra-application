@@ -1,9 +1,9 @@
 module.exports = {
-  globalSetup: './jestGlobalSetup.js',
   collectCoverageFrom: [
     '/src/**.js',
     '/src/**.jsx',
   ],
+  globalSetup: './jestGlobalSetup.js',
   setupFiles: [
     'raf/polyfill',
     './jestsetup.js',
@@ -11,15 +11,16 @@ module.exports = {
   testMatch: [
     '**/jest/**/(*.)(spec|test).js?(x)',
   ],
+  roots: [process.cwd()],
   snapshotSerializers: [
     '<rootDir>/node_modules/enzyme-to-json/serializer',
   ],
-  moduleNameMapper: {
-    '\\.(css|scss)$': 'identity-obj-proxy',
-    'github-markdown-css': 'identity-obj-proxy',
-  },
   moduleDirectories: [
     'aggregated-translations',
     'node_modules',
   ],
+  moduleNameMapper: {
+    '\\.(css|scss|svg)$': 'identity-obj-proxy',
+    'github-markdown-css': 'identity-obj-proxy',
+  },
 };

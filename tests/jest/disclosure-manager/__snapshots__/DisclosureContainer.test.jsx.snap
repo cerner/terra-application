@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DisclosureContainer should render the provided children 1`] = `
+<ApplicationErrorBoundary>
+  <ApplicationLoadingOverlayProvider>
+    <withPromptRegistration(NavigationPromptCheckpoint)>
+      <div>
+        Test Child
+      </div>
+    </withPromptRegistration(NavigationPromptCheckpoint)>
+  </ApplicationLoadingOverlayProvider>
+</ApplicationErrorBoundary>
+`;

@@ -1,0 +1,11 @@
+# ActiveBreakpointContext
+
+The ActiveBreakpointContext defines an interface for access to the framework's determined active breakpoint based on the current window size.
+
+> Note: An ActiveBreakpointContext.Provider is rendered by ApplicationBase. Any components rendered within ApplicationBase can access an ActiveBreakpointContext value without rendering additional providers.
+
+## Context Value
+
+```jsx
+const contextShape = PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge', 'enormous']);
+```

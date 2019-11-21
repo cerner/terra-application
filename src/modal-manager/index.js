@@ -1,2 +1,3 @@
-export { default } from 'terra-modal-manager';
-export * from 'terra-modal-manager';
+import ModalManager from './ModalManager';
+
+export default ModalManager;

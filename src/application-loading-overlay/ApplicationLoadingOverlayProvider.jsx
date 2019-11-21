@@ -24,15 +24,7 @@ const propTypes = {
   scrollRefCallback: PropTypes.func,
 };
 
-const defaultProps = {
-  children: undefined,
-  scrollRefCallback: undefined,
-};
-
-const ApplicationLoadingOverlayProvider = ({
-  children,
-  scrollRefCallback,
-}) => {
+const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...customProps }) => {
   const [registeredLoadingOverlays, setRegisteredLoadingOverlays] = React.useState({});
 
   const contextValue = useMemo(() => ({
@@ -76,9 +68,15 @@ const ApplicationLoadingOverlayProvider = ({
     />
   );
 
+  let className = cx('container');
+  if (customProps.className) {
+    className = [className, customProps.className].join(' ');
+  }
+
   return (
     <OverlayContainer
-      className={cx('container')}
+      {...customProps}
+      className={className}
       overlay={overlay}
     >
       <Scroll refCallback={scrollRefCallback}>
@@ -91,6 +89,5 @@ const ApplicationLoadingOverlayProvider = ({
 };
 
 ApplicationLoadingOverlayProvider.propTypes = propTypes;
-ApplicationLoadingOverlayProvider.defaultProps = defaultProps;
 
 export default ApplicationLoadingOverlayProvider;

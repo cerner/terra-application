@@ -1,2 +1,4 @@
 export { default } from 'terra-disclosure-manager';
-export * from 'terra-disclosure-manager';
+export {
+  withDisclosureManager, disclosureManagerShape, DisclosureManagerContext, DisclosureManagerDelegate, DisclosureManagerHeaderAdapterContext, DisclosureManagerHeaderAdapter, availableDisclosureSizes, availableDisclosureHeights, availableDisclosureWidths,
+} from 'terra-disclosure-manager';

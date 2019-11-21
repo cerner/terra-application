@@ -2,7 +2,7 @@ import PropsTable from 'terra-application/lib/modal-manager/ModalManager?dev-sit
 
 # ModalManager
 
-The ModalManager exposes its children to modal presentation APIs through the [DisclosureManagerContext](/components/terra-application/reference/contexts/disclosure-manager-context).
+The ModalManager exposes its children to modal presentation APIs through the [DisclosureManagerContext](/components/terra-application/terra-application/reference/contexts/disclosure-manager-context).
 
 ## Usage
 
@@ -18,19 +18,19 @@ import ModalManager from 'terra-application/lib/modal-manager';
 
 ### Exception Handling
 
-ModalManager renders an [ApplicationErrorBoundary](/components/terra-application/reference/components/application-error-boundary) around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, ModalManager will catch the exceptions and render a styled error component in place of the children.
+ModalManager renders an [ApplicationErrorBoundary](/components/terra-application/terra-application/reference/components/application-error-boundary) around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, ModalManager will catch the exceptions and render a styled error component in place of the children.
 
 > If the disclosed modal contents render their own modal header, it is recommended that those components render an additional ApplicationErrorBoundary below their modal header to keep the header controls for modal dismissal exposed.
 
 ### Loading Overlays
 
-ModalManager renders an [ApplicationLoadingOverlayProvider](/components/terra-application/reference/components/application-loading-overlay) around its disclosed components. Any [ApplicationLoadingOverlay](/components/terra-application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
+ModalManager renders an [ApplicationLoadingOverlayProvider](/components/terra-application/terra-application/reference/components/application-loading-overlay) around its disclosed components. Any [ApplicationLoadingOverlay](/components/terra-application/terra-application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
 
 > If the disclosed modal contents render their own modal header, it is recommended that those components render an additional ApplicationLoadingOverlayProvider below their modal header to keep the header controls for modal dismissal exposed while the overlay is active.
 
 ### Pending Actions
 
-ModalManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/components/terra-application/reference/components/navigation-prompt) within its disclosed content. ModalManager will ensure that the user is prompted prior to dismissing the presented modal if any [NavigationPrompts](/components/terra-application/reference/components/navigation-prompt) are rendered at the time of the dismissal request.
+ModalManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/components/terra-application/terra-application/reference/components/navigation-prompt) within its disclosed content. ModalManager will ensure that the user is prompted prior to dismissing the presented modal if any [NavigationPrompts](/components/terra-application/terra-application/reference/components/navigation-prompt) are rendered at the time of the dismissal request.
 
 ## Details
 

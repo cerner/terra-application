@@ -1,6 +1,6 @@
 # How To Show Modal Content
 
-The [ModalManager](/components/terra-application/reference/components/modal-manager) should be used to manage modal content presentation. 
+The [ModalManager](/components/terra-application/terra-application/reference/components/modal-manager) should be used to manage modal content presentation. 
 
 ```jsx
 import React from 'react';
@@ -26,7 +26,7 @@ const ExampleApp = () => (
 export default ExampleComponent;
 ```
 
-The ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/reference/contexts/disclosure-manager-context).
+The ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/terra-application/reference/contexts/disclosure-manager-context).
 
 ```jsx
 import React, { useContext } from 'react';

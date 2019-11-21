@@ -4,6 +4,16 @@ Changelog
 Unreleased
 ----------
 
+1.14.0 - (November 21, 2019)
+------------------
+### Changed
+* Bumped minimum minor dependency versions of terra-disclosure-manager, terra-modal-manager, terra-slide-panel-manager, and terra-navigation prompt
+
+### Added
+* Added ApplicationLoadingOverlay, ApplicationErrorBoundary, and NavigationPrompt handling to ModalManager/SlidePanelManager disclosure content
+* Added more documentation to support the added features
+* Added custom prop support to ApplicationLoadingOverlayProvider
+
 1.13.0 - (October 30, 2019)
 ------------------
 ### Added

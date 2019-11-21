@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TerraModalManager from 'terra-modal-manager';
 
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
-import DisclosureContainer from '../disclosure-manager/DisclosureContainer';
+import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
 const propTypes = {
   /**

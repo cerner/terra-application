@@ -90,6 +90,32 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render the loading o
 </OverlayContainer>
 `;
 
+exports[`ApplicationLoadingOverlayProvider Snapshots should render with custom props 1`] = `
+<OverlayContainer
+  className="container testClassName"
+  overlay={
+    <LoadingOverlay
+      backgroundStyle="clear"
+      isAnimated={true}
+      isOpen={false}
+      isRelativeToContainer={true}
+      rootSelector="#root"
+    />
+  }
+>
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    />
+  </Scroll>
+</OverlayContainer>
+`;
+
 exports[`ApplicationLoadingOverlayProvider Snapshots should render with minimal props 1`] = `
 <OverlayContainer
   className="container"

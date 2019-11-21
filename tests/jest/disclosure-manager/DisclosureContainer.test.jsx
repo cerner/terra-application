@@ -1,5 +1,5 @@
 import React from 'react';
-import DisclosureContainer from '../../../src/disclosure-manager/DisclosureContainer';
+import DisclosureContainer from '../../../src/disclosure-manager/_DisclosureContainer';
 
 describe('DisclosureContainer', () => {
   // Snapshot Tests

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import TerraModalManager from 'terra-modal-manager';
 
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
-import DisclosureContainer from '../disclosure-manager/DisclosureContainer';
+import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
 const propTypes = {
   /**
@@ -19,8 +19,6 @@ const propTypes = {
    * The Object (or function that returns an Object) that specifies the messages
    * used to prompt the user when disclosure dismissal occurs when pending state
    * is present.
-   *
-   * This prop will be fixed upon the initial mount of the component.
    */
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
 };

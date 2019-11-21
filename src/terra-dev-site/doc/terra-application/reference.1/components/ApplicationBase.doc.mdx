@@ -4,7 +4,7 @@ import PropsTable from 'terra-application/src/application-base/ApplicationBase?d
 
 The ApplicationBase component is the entrypoint into the Terra application framework.
 
-> Note: ApplicationBase satisfies the base-level requirements for Terra component usage. Rendering a separate Base component from `terra-base` is not necessary.
+> Note: ApplicationBase renders the Base component (from `terra-base`) around its children. Components rendered within ApplicationBase should not render a separate Base instance.
 
 ## Usage
 

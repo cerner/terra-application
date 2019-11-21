@@ -11,6 +11,14 @@ describe('ApplicationLoadingOverlayProvider', () => {
       expect(wrapper).toMatchSnapshot();
     });
 
+    it('should render with custom props', () => {
+      const wrapper = shallow((
+        <ApplicationLoadingOverlayProvider className="testClassName" />
+      ));
+
+      expect(wrapper).toMatchSnapshot();
+    });
+
     it('should render with optional props', () => {
       const scrollRefCallback = jest.fn();
       const wrapper = shallow((

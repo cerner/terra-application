@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.14.2 - (November 22, 2019)
+------------------
 ### Fixed
 * Renamed terra-application folder to just application.
 

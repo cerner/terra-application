@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Fixed
+* terra-dev-site doc to reference lib folder.
 
 1.14.0 - (November 21, 2019)
 ------------------

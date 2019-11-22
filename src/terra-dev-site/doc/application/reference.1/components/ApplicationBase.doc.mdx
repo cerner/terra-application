@@ -28,16 +28,16 @@ ApplicationBase exposes props to define the application's theme.
 
 ### Breakpoints
 
-ApplicationBase renders an [ActiveBreakpointContext.Provider](/components/terra-application/terra-application/reference/contexts/active-breakpoint-context) around its children. Children can access the current active breakpoint value by using the [ActiveBreakpointContext](/components/terra-application/terra-application/reference/contexts/active-breakpoint-context).
+ApplicationBase renders an [ActiveBreakpointContext.Provider](/components/terra-application/application/reference/contexts/active-breakpoint-context) around its children. Children can access the current active breakpoint value by using the [ActiveBreakpointContext](/components/terra-application/application/reference/contexts/active-breakpoint-context).
 
 ### Exception Handling
 
-ApplicationBase renders an [ApplicationErrorBoundary](/components/terra-application/terra-application/reference/components/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children.
+ApplicationBase renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children.
 
 ### Loading Overlays
 
-ApplicationBase renders an [ApplicationLoadingOverlayProvider](/components/terra-application/terra-application/reference/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/components/terra-application/terra-application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
+ApplicationBase renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
 
 ### Pending Actions
 
-ApplicationBase monitors the application for the presence of rendered [NavigationPrompts](/components/terra-application/terra-application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted prior to closing the application if any [NavigationPrompts](/components/terra-application/terra-application/reference/components/navigation-prompt) are rendered at the time of the unload request.
+ApplicationBase monitors the application for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted prior to closing the application if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the unload request.

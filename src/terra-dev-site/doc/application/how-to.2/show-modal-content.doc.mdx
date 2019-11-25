@@ -1,8 +1,8 @@
 # How To Show Modal Content
 
-The [ModalManager](/components/terra-application/terra-application/reference/components/modal-manager) should be used to manage modal content presentation. 
+The [ModalManager](/components/terra-application/application/reference/components/modal-manager) should be used to manage modal content presentation.
 
-A ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/terra-application/reference/contexts/disclosure-manager-context).
+A ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context).
 
 The rendering of a ModalManager is typically an application-level concern. Before rendering a ModalManager yourself, please ensure that the application isn't already providing a ModalManager that suits your component's needs.
 
@@ -42,7 +42,7 @@ const ComponentWithModal = () => {
   const disclosureManager = useContext(DisclosureManagerContext);
 
   return (
-    <button 
+    <button
       onClick={() => {
         disclosureManager.disclose({
           preferredType: 'modal',
@@ -73,7 +73,7 @@ const ComponentWithModal = () => {
   const modalDismissRef = useRef();
 
   return (
-    <button 
+    <button
       onClick={() => {
         disclosureManager.disclose({
           preferredType: 'modal',
@@ -81,7 +81,7 @@ const ComponentWithModal = () => {
           content: {
             key: 'component-with-modal.modal-content',
             component: (
-              <ModalContentComponent 
+              <ModalContentComponent
                 onSubmit={() => {
                   if (modalDismissRef.current) {
                     modalDismissRef.current();

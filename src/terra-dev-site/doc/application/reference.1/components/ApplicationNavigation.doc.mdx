@@ -1,0 +1,37 @@
+import PropsTable from 'terra-application/lib/application-navigation/ApplicationNavigation?dev-site-props-table';
+
+# ApplicationNavigation
+
+The ApplicationNavigation component provides a responsive layout and a variety of controls for application navigation.
+
+> Note: ApplicationNavigation expects to be rendered within an [ApplicationBase](/components/terra-application/application/reference/components/application-base) component.
+
+## Usage
+
+```jsx
+import ApplicationNavigation from 'terra-application/lib/application-navigation';
+```
+
+## Props
+
+<PropsTable />
+
+## Features
+
+### Exception Handling
+
+ApplicationNavigation renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children. 
+
+This error component will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls after an error occurs.
+
+### Loading Overlays
+
+ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationNavigation.
+
+The loading overlay will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls while the loading overlay is presented.
+
+### Pending Actions
+
+ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationNavigation will ensure that the user is prompted prior to changing primary navigation items if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of item selection.
+
+> Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` prop if a custom implementation is required.

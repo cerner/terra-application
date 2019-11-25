@@ -96,6 +96,12 @@ const propTypes = {
    */
   disablePromptsForNavigationItems: PropTypes.bool,
   /**
+   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
+   * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
+   * no NavigationPrompts are resolved when logout is selected.
+   */
+  disablePromptsForLogout: PropTypes.bool,
+  /**
    * The Object (or function that returns an Object) that specifies the messages
    * used to prompt the user when navigation items are selected while NavigationPrompts
    * are rendered by the ApplicationNavigation content.
@@ -116,11 +122,12 @@ const ApplicationNavigation = ({
   userConfig,
   onSelectSettings,
   onSelectHelp,
-  onSelectLogout,
+  onSelectLogout: propOnSelectLogout,
   utilityItems,
   onSelectUtilityItem,
   onDrawerMenuStateChange,
   disablePromptsForNavigationItems,
+  disablePromptsForLogout,
   navigationPromptResolutionOptions,
 }) => {
   const navigationPromptCheckpointRef = useRef();
@@ -135,6 +142,17 @@ const ApplicationNavigation = ({
       propOnSelectNavigationItem(selectedItemKey);
     }).catch((e) => { if (e) throw e; });
   }, [disablePromptsForNavigationItems, navigationPromptResolutionOptions, propOnSelectNavigationItem]);
+
+  const onSelectLogout = useCallback(() => {
+    if (disablePromptsForLogout) {
+      propOnSelectLogout();
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions).then(() => {
+      propOnSelectLogout();
+    }).catch((e) => { if (e) throw e; });
+  }, [disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
 
   return (
     <TerraApplicationNavigation

@@ -1,25 +1,23 @@
 # How To Use Translated Strings
 
-Translated strings can be retrieved using the `intl` object provided by `injectIntl` HOC-generator provided by [react-intl](https://github.com/formatjs/react-intl/blob/master/docs/API.md#injectintl).
+Translated strings can be retrieved using the [ApplicationIntlContext](). An `ApplicationIntlContext.Provider` is configured and provided by [ApplicationBase]().
 
 ```jsx
-import React from 'react';
-import { injectIntl, intlShape } from 'react-intl';
+import React, { useContext } from 'react';
+import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 
-const ExampleComponent = injectIntl(({ intl }) => {
+const ExampleComponent = () => {
+  const applicationIntl = useContext(ApplicationIntlContext);
+
   return (
     <div>
       <p>This component renders a translated string</p>
-      <p>{intl.formatMessage({ id: 'test.string.id' })}</p>
+      <p>{applicationIntl.formatMessage({ id: 'test.string.id' })}</p>
     </div>
   );
 });
 
-ExampleComponent.propTypes = {
-  intl: intlShape,
-};
-
 export default ExampleComponent;
 ```
 
-> Note: The `intl` value is provided by [ApplicationBase](/components/terra-application/application/reference/components/application-base). The version of react-intl required by terra-application (2.9.0) is **not** the latest version.
+> Note: The version of react-intl required by terra-application (v2.x) is **not** the latest version. The 2.x version of react-intl uses React's legacy context API. While it is possible to use the legacy context directly, it is **strongly** recommended to use the [ApplicationIntlContext]() for accessing intl data. When the react-intl version is updated in the future and the legacy support is dropped, consumers of the [ApplicationIntlContext]() will continue to function without further implementation changes.

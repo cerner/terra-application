@@ -22,17 +22,26 @@ exports[`Application should render with all props 1`] = `
   >
     <InjectIntl(Component)>
       <ActiveBreakpointProvider>
-        <ApplicationErrorBoundary>
-          <withPromptRegistration(NavigationPromptCheckpoint)
-            onPromptChange={[Function]}
-          >
-            <ApplicationLoadingOverlayProvider>
-              <div>
-                content
-              </div>
-            </ApplicationLoadingOverlayProvider>
-          </withPromptRegistration(NavigationPromptCheckpoint)>
-        </ApplicationErrorBoundary>
+        <withPromptRegistration(NavigationPromptCheckpoint)
+          onPromptChange={[Function]}
+        >
+          <ApplicationLoadingOverlayProvider>
+            <ApplicationErrorBoundary>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  content
+                </div>
+              </Suspense>
+            </ApplicationErrorBoundary>
+          </ApplicationLoadingOverlayProvider>
+        </withPromptRegistration(NavigationPromptCheckpoint)>
       </ActiveBreakpointProvider>
     </InjectIntl(Component)>
   </Base>
@@ -51,17 +60,26 @@ exports[`Application should render with minimal props 1`] = `
   >
     <InjectIntl(Component)>
       <ActiveBreakpointProvider>
-        <ApplicationErrorBoundary>
-          <withPromptRegistration(NavigationPromptCheckpoint)
-            onPromptChange={[Function]}
-          >
-            <ApplicationLoadingOverlayProvider>
-              <div>
-                content
-              </div>
-            </ApplicationLoadingOverlayProvider>
-          </withPromptRegistration(NavigationPromptCheckpoint)>
-        </ApplicationErrorBoundary>
+        <withPromptRegistration(NavigationPromptCheckpoint)
+          onPromptChange={[Function]}
+        >
+          <ApplicationLoadingOverlayProvider>
+            <ApplicationErrorBoundary>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  content
+                </div>
+              </Suspense>
+            </ApplicationErrorBoundary>
+          </ApplicationLoadingOverlayProvider>
+        </withPromptRegistration(NavigationPromptCheckpoint)>
       </ActiveBreakpointProvider>
     </InjectIntl(Component)>
   </Base>

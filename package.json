@@ -50,6 +50,10 @@
         "Promise",
         "Map"
       ]
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
     }
   },
   "stylelint": {

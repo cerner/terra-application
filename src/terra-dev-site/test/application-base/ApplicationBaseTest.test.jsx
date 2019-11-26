@@ -12,7 +12,7 @@ const ApplicationContentTest = () => {
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
-  
+
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
   }

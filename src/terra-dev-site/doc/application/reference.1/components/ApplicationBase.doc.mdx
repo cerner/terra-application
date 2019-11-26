@@ -40,4 +40,4 @@ ApplicationBase renders an [ApplicationLoadingOverlayProvider](/components/terra
 
 ### Pending Actions
 
-ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted prior to closing the application if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the unload request.
+ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted using a browser-native confirmation dialog prior to any window unload event if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the unload request.

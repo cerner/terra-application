@@ -169,7 +169,7 @@ const ApplicationNavigation = ({
       onSelectUtilityItem={onSelectUtilityItem}
       onSelectSettings={onSelectSettings}
       onSelectHelp={onSelectHelp}
-      onSelectLogout={onSelectLogout}
+      onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>

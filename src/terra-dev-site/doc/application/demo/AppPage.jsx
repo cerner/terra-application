@@ -9,6 +9,7 @@ import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
+import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 
 import styles from './AppPage.module.scss';
 
@@ -61,6 +62,7 @@ const AppPage = ({ pageName }) => {
       <h3>Error Handling</h3>
       <p>Press the button below to throw an exception that will be caught and handled by the framework</p>
       <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
+      <LoadingOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
     </div>

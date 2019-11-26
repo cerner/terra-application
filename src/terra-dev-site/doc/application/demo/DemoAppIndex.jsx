@@ -9,7 +9,6 @@ window.TEST_APP_TIMEOUT = 1000;
 
 const DemoAppIndex = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
-  debugger;
   return (
     <ApplicationBase
       locale={applicationIntl.locale || 'en-US'}

@@ -47,7 +47,7 @@ const DemoAppNavigation = () => {
   return (
     <ApplicationNavigation
       titleConfig={{
-        title: 'Terra Application Demo'
+        title: 'Terra Application Demo',
       }}
       navigationItems={navigationItemsRef.current}
       activeNavigationItemKey={activeNavItem}
@@ -63,7 +63,7 @@ const DemoAppNavigation = () => {
             preferredType: 'modal',
             size: 'large',
             content: {
-              key: 'extension_1',
+              key: 'extension_1_modal',
               component: (
                 <ModalContent
                   name="Extension Modal"
@@ -80,7 +80,46 @@ const DemoAppNavigation = () => {
             disclosureDismissRef.current = dismissDisclosure;
           });
         }
-      }}    >
+      }}
+      utilityItems={[{
+        key: 'utility_1',
+        text: 'Utility Item 1',
+      }]}
+      onSelectUtilityItem={(utilityItemKey) => {
+        if (utilityItemKey === 'utility_1') {
+          disclosureManager.disclose({
+            preferredType: 'modal',
+            size: 'large',
+            content: {
+              key: 'utility_1_modal',
+              component: (
+                <ModalContent
+                  name="Utility Modal"
+                  onSubmit={() => {
+                    if (disclosureDismissRef.current) {
+                      disclosureDismissRef.current();
+                      disclosureDismissRef.current = undefined;
+                    }
+                  }}
+                />
+              ),
+            },
+          }).then(({ dismissDisclosure }) => {
+            disclosureDismissRef.current = dismissDisclosure;
+          });
+        }
+      }}
+      navigationPromptResolutionOptions={{
+        title: 'Demo Title',
+        startMessage: 'Demo Start Message',
+        content: <div>Demo Content</div>,
+        endMessage: 'Demo End Message',
+        acceptButtonText: 'Demo Accept Text',
+        rejectButtonText: 'Demo Reject Text',
+      }}
+      onSelectLogout={() => {
+      }}
+    >
       {pageContent}
     </ApplicationNavigation>
   );

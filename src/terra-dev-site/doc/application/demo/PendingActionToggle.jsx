@@ -13,7 +13,7 @@ const PendingActionToggle = () => {
   return (
     <div>
       <h3>Pending Actions</h3>
-      <p>This component uses a NavigationPrompt to register unsaved state with framework. Multiple NavigationPrompts can be rendered </p>
+      <p>This component uses a NavigationPrompt to register unsaved state with framework. Multiple NavigationPrompts can be rendered at the same time.</p>
       <p className={hasPendingAction1 ? cx('red-text') : null}>
         Pending Action 1:
         {' '}

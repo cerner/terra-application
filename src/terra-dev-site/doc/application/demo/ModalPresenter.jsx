@@ -129,7 +129,7 @@ const ModalPresenter = () => {
           });
         }}
       >
-      Launch Modal
+      Show Modal
       </button>
     </div>
   );

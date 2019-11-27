@@ -12,6 +12,11 @@ const Page1Content = React.lazy(() => import('./Page1Content'));
 const Page2Content = React.lazy(() => import('./Page2Content'));
 const Page3Content = React.lazy(() => import('./Page3Content'));
 
+const userConfig = {
+  name: 'Demo User',
+  initials: 'DU',
+};
+
 const DemoAppNavigation = () => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
@@ -49,6 +54,7 @@ const DemoAppNavigation = () => {
       titleConfig={{
         title: 'Terra Application Demo',
       }}
+      userConfig={userConfig}
       navigationItems={navigationItemsRef.current}
       activeNavigationItemKey={activeNavItem}
       onSelectNavigationItem={(key) => { setActiveNavItem(key); }}

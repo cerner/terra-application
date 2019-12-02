@@ -41,3 +41,7 @@ ApplicationBase renders an [ApplicationLoadingOverlayProvider](/components/terra
 ### Pending Actions
 
 ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted using a browser-native confirmation dialog prior to any window unload event if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the unload request.
+
+### Code Splitting
+
+ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), a sensible fallback will be rendered while the component is being retrieved. The fallback will render below the ApplicationNavigation header and allow the header to remain interactable.

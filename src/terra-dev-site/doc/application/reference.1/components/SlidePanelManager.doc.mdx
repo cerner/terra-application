@@ -18,7 +18,7 @@ import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
 
 ### Exception Handling
 
-SlidePanelManager renders an [ApplicationErrorBoundary] around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, SlidePanelManager will catch the exceptions and render a styled error component in place of the children.
+SlidePanelManager renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, SlidePanelManager will catch the exceptions and render a styled error component in place of the children.
 
 > If the disclosed panel contents render their own panel header, it is recommended that those components render an additional ApplicationErrorBoundary below their panel header to keep the header controls for panel dismissal exposed.
 

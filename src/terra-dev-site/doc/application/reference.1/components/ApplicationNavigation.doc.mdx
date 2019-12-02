@@ -35,6 +35,10 @@ The loading overlay will render below ApplicationNavigation's header, leaving th
 
 ### Pending Actions
 
-ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationNavigation will ensure that the user is prompted prior to changing primary navigation items if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of item selection.
+ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationNavigation will ensure that the user is prompted prior to executing callbacks for primary navigation item and 'Logout' utility selection if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of item selection.
 
-> Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` prop if a custom implementation is required.
+> Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` and `disablePromptsForLogout` props if a custom implementation is required.
+
+### Code Splitting
+
+ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), a sensible fallback will be rendered while the component is being retrieved. The fallback will render below the ApplicationNavigation header and allow the header to remain interactable.

@@ -1,7 +1,7 @@
 Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
   describe('breakpoint', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.url('raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
     });
 
@@ -10,7 +10,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
 
   describe('intl', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.url('raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
     });
 
@@ -19,7 +19,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
 
   describe('loading overlay', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.url('raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
       browser.click('button#overlay');
       browser.execute('var animationElement = document.querySelector("#terra-icon-animation"); if (animationElement) { animationElement.parentElement.removeChild(animationElement); }');
@@ -30,7 +30,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
 
   describe('with error', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.url('raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
       browser.click('button#error');
     });
@@ -50,7 +50,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     }
 
     before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.url('raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
     });
 

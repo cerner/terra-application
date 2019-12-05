@@ -1,7 +1,7 @@
 const selector = '#root';
 
 Terra.describeViewports('SlidePanelManager', ['large'], () => {
-  before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/navigation-prompt'));
+  before(() => browser.url('raw/tests/terra-application/slide-panel-manager/navigation-prompt'));
 
   it('opens the slide-panel', () => {
     browser.click('#root-component .disclose-large');

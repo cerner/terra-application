@@ -1,10 +1,13 @@
 # How To Use Translated Strings
 
-Translated strings can be retrieved using the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context). An `ApplicationIntlContext.Provider` is configured and provided by [ApplicationBase](/components/terra-application/application/reference/components/application-base).
+Translated strings can be retrieved using the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context). An `ApplicationIntlContext.Provider` is configured and provided by [ApplicationBase](/components/terra-application/application/reference/components/application-base). The strings will be translated based upon the `locale` prop provided to ApplicationBase.
+
+In addition to the ApplicationIntlContext, the components provided by react-intl can be used directly. However, the ApplicationIntlContext can be used by Hooks-based components to access i18n capabilities without having to use the `injectIntl` HOC-generator from react-intl.
 
 ```jsx
 import React, { useContext } from 'react';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { FormattedMessage } from 'react-intl';
 
 const ExampleComponent = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
@@ -13,11 +16,11 @@ const ExampleComponent = () => {
     <div>
       <p>This component renders a translated string</p>
       <p>{applicationIntl.formatMessage({ id: 'test.string.id' })}</p>
+      <p>The FormattedMessage component will render the same string</p>
+      <FormattedMessage id='test.string.id' />
     </div>
   );
 });
 
 export default ExampleComponent;
 ```
-
-> Note: The version of react-intl required by terra-application (v2.x) is **not** the latest version. The 2.x version of react-intl uses React's legacy context API. While it is possible to use the legacy context directly, it is **strongly** recommended to use the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context) for accessing intl data. When the react-intl version is updated in the future and the legacy support is dropped, consumers of the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context) will continue to function without further implementation changes.

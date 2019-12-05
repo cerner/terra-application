@@ -13,23 +13,31 @@ import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape } fr
 
 const propTypes = {
   /**
-   * A configuration object that defines the strings rendered within the ApplicationNavigation header.
+   * A string key representing the currently active navigation item. This value should match one of the item keys provided in the
+   * `navigationItems` array.
    */
-  titleConfig: titleConfigPropType,
+  activeNavigationItemKey: PropTypes.string,
+  /**
+   * A collection of child elements to render within the ApplicationNavigation body.
+   */
+  children: PropTypes.node,
+  /**
+   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
+   * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
+   * no NavigationPrompts are resolved when logout is selected.
+   */
+  disablePromptsForLogout: PropTypes.bool,
+  /**
+   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
+   * communicating navigation item selections with `onSelectNavigationItem`. If `disablePromptsForNavigationItems`
+   * is provided, no NavigationPrompts are resolved when navigation items are selected.
+   */
+  disablePromptsForNavigationItems: PropTypes.bool,
   /**
    * A configuration object with information specifying the creation of the Extension buttons rendered within the
    * ApplicationNavigation header.
    */
   extensionItems: extensionItemsPropType,
-  /**
-   * A function to be executed upon the selection of an extensions item.
-   * Ex: `onSelectExtensionsItem(String selectedUtilityItemKey, Object metaData)`
-   */
-  onSelectExtensionItem: PropTypes.func,
-  /**
-   * A configuration object with information pertaining to the application's user.
-   */
-  userConfig: userConfigPropType,
   /**
    * An element to render within the ApplicationNavigation menu, shifted to the drawer at the `medium` and below.
    */
@@ -40,25 +48,25 @@ const propTypes = {
    */
   navigationItems: navigationItemsPropType,
   /**
-   * A string key representing the currently active navigation item. This value should match one of the item keys provided in the
-   * `navigationItems` array.
+   * The Object (or function that returns an Object) that specifies the messages
+   * used to prompt the user when navigation items are selected while NavigationPrompts
+   * are rendered by the ApplicationNavigation content.
    */
-  activeNavigationItemKey: PropTypes.string,
+  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  /**
+   * Key/Value pairs associating a string key entry to a Number notification count. The keys must correspond to a
+   * navigationItem or extensionItem key provided through their associated props.
+   */
+  notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
   /**
    * Callback function triggered on Drawer Menu state change
-  */
+   */
   onDrawerMenuStateChange: PropTypes.func,
   /**
-   * A function to be executed upon the selection of a navigation item.
-   * Ex: `onSelectNavigationItem(String selectedNavigationItemKey, Object metaData)`
+   * A function to be executed upon the selection of an extensions item.
+   * Ex: `onSelectExtensionsItem(String selectedUtilityItemKey, Object metaData)`
    */
-  onSelectNavigationItem: PropTypes.func,
-  /**
-   * A function to be executed upon the selection of the Settings utility item.
-   * If `onSelectSettings` is not provided, the Settings utility item will not be rendered.
-   * Ex: `onSelectSettings()`
-   */
-  onSelectSettings: PropTypes.func,
+  onSelectExtensionItem: PropTypes.func,
   /**
    * A function to be executed upon the selection of the Help utility item.
    * If `onSelectHelp` is not provided, the Help utility item will not be rendered.
@@ -72,63 +80,56 @@ const propTypes = {
    */
   onSelectLogout: PropTypes.func,
   /**
-   * An array of configuration objects with information specifying the creation of additional utility menu items.
-   * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
+   * A function to be executed upon the selection of a navigation item.
+   * Ex: `onSelectNavigationItem(String selectedNavigationItemKey, Object metaData)`
    */
-  utilityItems: utilityItemsPropType,
+  onSelectNavigationItem: PropTypes.func,
+  /**
+   * A function to be executed upon the selection of the Settings utility item.
+   * If `onSelectSettings` is not provided, the Settings utility item will not be rendered.
+   * Ex: `onSelectSettings()`
+   */
+  onSelectSettings: PropTypes.func,
   /**
    * A function to be executed upon the selection of a custom utility item.
    * Ex: `onSelectUtilityItem(String selectedUtilityItemKey, Object metaData)`
    */
   onSelectUtilityItem: PropTypes.func,
   /**
-   * A collection of child elements to render within the ApplicationNavigation body.
+   * A configuration object that defines the strings rendered within the ApplicationNavigation header.
    */
-  children: PropTypes.node,
+  titleConfig: titleConfigPropType,
   /**
-   * Key/Value pairs associating a string key entry to a numerical notification count.
+   * A configuration object with information pertaining to the application's user.
    */
-  notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
+  userConfig: userConfigPropType,
   /**
-   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
-   * communicating navigation item selections with `onSelectNavigationItem`. If `disablePromptsForNavigationItems`
-   * is provided, no NavigationPrompts are resolved when navigation items are selected.
+   * An array of configuration objects with information specifying the creation of additional utility menu items.
+   * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
-  disablePromptsForNavigationItems: PropTypes.bool,
-  /**
-   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
-   * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
-   * no NavigationPrompts are resolved when logout is selected.
-   */
-  disablePromptsForLogout: PropTypes.bool,
-  /**
-   * The Object (or function that returns an Object) that specifies the messages
-   * used to prompt the user when navigation items are selected while NavigationPrompts
-   * are rendered by the ApplicationNavigation content.
-   */
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  utilityItems: utilityItemsPropType,
 };
 
 const ApplicationNavigation = ({
+  activeNavigationItemKey,
   children,
-  notifications,
-  titleConfig,
+  disablePromptsForLogout,
+  disablePromptsForNavigationItems,
   extensionItems,
-  onSelectExtensionItem,
   hero,
   navigationItems,
-  activeNavigationItemKey,
-  onSelectNavigationItem: propOnSelectNavigationItem,
-  userConfig,
-  onSelectSettings,
+  navigationPromptResolutionOptions,
+  notifications,
+  onDrawerMenuStateChange,
+  onSelectExtensionItem,
   onSelectHelp,
   onSelectLogout: propOnSelectLogout,
-  utilityItems,
+  onSelectNavigationItem: propOnSelectNavigationItem,
+  onSelectSettings,
   onSelectUtilityItem,
-  onDrawerMenuStateChange,
-  disablePromptsForNavigationItems,
-  disablePromptsForLogout,
-  navigationPromptResolutionOptions,
+  titleConfig,
+  userConfig,
+  utilityItems,
 }) => {
   const navigationPromptCheckpointRef = useRef();
 

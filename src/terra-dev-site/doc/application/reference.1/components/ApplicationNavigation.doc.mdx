@@ -37,6 +37,8 @@ The loading overlay will render below ApplicationNavigation's header, leaving th
 
 ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationNavigation will ensure that the user is prompted prior to executing callbacks for primary navigation item and 'Logout' utility selection if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of item selection.
 
+If the children within ApplicationNavigation can be changed by a mechanism other than navigation item selection, a NavigationPromptCheckpoint should be used directly to check for pending actions prior to the pending child's removal.
+
 > Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` and `disablePromptsForLogout` props if a custom implementation is required.
 
 ### Code Splitting

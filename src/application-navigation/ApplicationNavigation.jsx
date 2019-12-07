@@ -70,7 +70,7 @@ const propTypes = {
   /**
    * A function to be executed upon the selection of the Help utility item.
    * If `onSelectHelp` is not provided, the Help utility item will not be rendered.
-   * Ex: `onSelectLogout()`
+   * Ex: `onSelectHelp()`
    */
   onSelectHelp: PropTypes.func,
   /**

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationLoadingOverlayProvider Snapshots should render an ApplicationIntlContext.Provider 1`] = `
+exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlContext.Provider 1`] = `
 <InjectIntl(Component)
   intl={
     Object {

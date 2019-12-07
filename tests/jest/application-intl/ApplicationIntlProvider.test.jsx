@@ -3,7 +3,7 @@ import { mountWithIntl } from 'terra-enzyme-intl';
 import ApplicationIntlContext from '../../../src/application-intl/ApplicationIntlContext';
 import ApplicationIntlProvider from '../../../src/application-intl/ApplicationIntlProvider';
 
-describe('ApplicationLoadingOverlayProvider', () => {
+describe('ApplicationIntlProvider', () => {
   describe('Snapshots', () => {
     it('should render an ApplicationIntlContext.Provider', () => {
       const wrapper = mountWithIntl((

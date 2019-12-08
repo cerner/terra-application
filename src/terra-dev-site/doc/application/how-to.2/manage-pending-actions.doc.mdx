@@ -29,9 +29,8 @@ export default ExampleComponent;
 
 Within `terra-application`, the following components respond to the presence of NavigationPrompts:
 
-* [ApplicationBase](/components/terra-application/application/reference/components/application-base) - NavigationPrompts rendered within children will result in prompting prior to window unload events.
-* [ModalManager](/components/terra-application/application/reference/components/modal-manager)/[SlidePanelManager](/components/terra-application/application/reference/components/slide-panel-manager) - NavigationPrompts rendered within disclosed components will result in prompting prior to disclosure dismissal.
-* [ApplicationNavigation](/components/terra-application/application/reference/components/application-navigation) - NavigationPrompts rendered within children will result in prompting prior to executing callbacks for primary navigation item and 'Logout' selection.
+* [ApplicationBase](/components/terra-application/application/reference/components/application-base) - The user will be prompted to accept or reject window unload events if NavigationPrompts have been renedered within the ApplicationBase's children.
+* [ModalManager](/components/terra-application/application/reference/components/modal-manager)/[SlidePanelManager](/components/terra-application/application/reference/components/slide-panel-manager) - The user will be prompted to accept or reject disclosure dismissal if NavigationPrompts have been rendered within the disclosed component.
+* [ApplicationNavigation](/components/terra-application/application/reference/components/application-navigation) - The user will be prompted to accept or reject primary navigation and Logout selections if NavigationPrompts have been rendered within the ApplicationNavigation's children.
 
-While these are the provided integrations, any component that navigates between stateful components can implement a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoint) itself to utilize the same registration and prompting logic.
-
+While these are the provided integrations, any component that navigates between stateful components can implement a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoint) to utilize the same registration and prompting logic.

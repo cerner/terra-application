@@ -1,26 +1,31 @@
 # How To Use Translated Strings
 
-Translated strings can be retrieved using the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context). An `ApplicationIntlContext.Provider` is configured and provided by [ApplicationBase](/components/terra-application/application/reference/components/application-base). The strings will be translated based upon the `locale` prop provided to ApplicationBase.
+> Please review Terra's [Internationalization](https://engineering.cerner.com/terra-ui/getting-started/terra-ui/internationalization/internationalization-intro) documentation to ensure your application is configured to support i18n. 
 
-In addition to the ApplicationIntlContext, the components provided by react-intl can be used directly. However, the ApplicationIntlContext can be used by Hooks-based components to access i18n capabilities without having to use the `injectIntl` HOC-generator from react-intl.
+Every child of [ApplicationBase](/components/terra-application/application/reference/components/application-base) has access to the application's translated strings. Please review Terra's [recommended consumption guides](https://engineering.cerner.com/terra-ui/getting-started/terra-ui/internationalization/building-components-which-include-translations) for more information.
+
+Additionally, ApplicateBase provides react-intl's APIs through the [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context) for consumers seeking a modern Context implementation.
 
 ```jsx
 import React, { useContext } from 'react';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import { FormattedMessage } from 'react-intl';
 
 const ExampleComponent = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
 
   return (
     <div>
-      <p>This component renders a translated string</p>
-      <p>{applicationIntl.formatMessage({ id: 'test.string.id' })}</p>
-      <p>The FormattedMessage component will render the same string</p>
-      <FormattedMessage id='test.string.id' />
+      <p>This button requires multiple translated strings to render appropriately.</p>
+      <button
+        aria-label={applicationIntl.formatMessage({ id: 'example-component.button-label'})}
+      >
+        {applicationIntl.formatMessage({ id: 'example-component.button-text'})}
+      </button>
     </div>
   );
 });
 
 export default ExampleComponent;
 ```
+
+> Accessing react-intl's [legacy context value](https://reactjs.org/docs/legacy-context.html) directly is **not recommended**. This API is deprecated and not provided by react-intl v3.x. Terra's recommended usage patterns are supported by versions 2.x and 3.x of react-intl.

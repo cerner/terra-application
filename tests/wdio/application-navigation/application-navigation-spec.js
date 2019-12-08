@@ -27,7 +27,7 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       browser.click('[data-terra-popup-content="true"] button');
 
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
-      Terra.validates.element('4. primary navigation item prompt', { selector });
+      Terra.validates.element('4. logout prompt item prompt', { selector });
 
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
       Terra.validates.element('5. logout prompt reject', { selector });

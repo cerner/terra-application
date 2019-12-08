@@ -22,7 +22,7 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
+   * By default, the ApplicationNavigation component will resolve any registered NavigationPrompts prior to
    * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
    * no NavigationPrompts are resolved when logout is selected.
    */
@@ -39,7 +39,7 @@ const propTypes = {
    */
   extensionItems: extensionItemsPropType,
   /**
-   * An element to render within the ApplicationNavigation menu, shifted to the drawer at the `medium` and below.
+   * An element to render within the ApplicationNavigation utility menu, shifted to the drawer at the `medium` breakpoint and below.
    */
   hero: PropTypes.element,
   /**
@@ -59,39 +59,45 @@ const propTypes = {
    */
   notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
   /**
-   * Callback function triggered on Drawer Menu state change
+   * Callback function triggered on Drawer Menu state change.
    */
   onDrawerMenuStateChange: PropTypes.func,
   /**
    * A function to be executed upon the selection of an extensions item.
+   *
    * Ex: `onSelectExtensionsItem(String selectedUtilityItemKey, Object metaData)`
    */
   onSelectExtensionItem: PropTypes.func,
   /**
    * A function to be executed upon the selection of the Help utility item.
    * If `onSelectHelp` is not provided, the Help utility item will not be rendered.
+   *
    * Ex: `onSelectHelp()`
    */
   onSelectHelp: PropTypes.func,
   /**
    * A function to be executed upon the selection of the Logout action button.
    * If `onSelectLogout` is not provided, the Logout action button will not be rendered.
+   *
    * Ex: `onSelectLogout()`
    */
   onSelectLogout: PropTypes.func,
   /**
    * A function to be executed upon the selection of a navigation item.
+   *
    * Ex: `onSelectNavigationItem(String selectedNavigationItemKey, Object metaData)`
    */
   onSelectNavigationItem: PropTypes.func,
   /**
    * A function to be executed upon the selection of the Settings utility item.
    * If `onSelectSettings` is not provided, the Settings utility item will not be rendered.
+   *
    * Ex: `onSelectSettings()`
    */
   onSelectSettings: PropTypes.func,
   /**
    * A function to be executed upon the selection of a custom utility item.
+   *
    * Ex: `onSelectUtilityItem(String selectedUtilityItemKey, Object metaData)`
    */
   onSelectUtilityItem: PropTypes.func,

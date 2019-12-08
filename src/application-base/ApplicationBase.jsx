@@ -107,23 +107,23 @@ const ApplicationBase = ({
         translationsLoadingPlaceholder={translationsLoadingPlaceholder}
         locale={locale}
       >
-        <ApplicationIntlProvider>
-          <ActiveBreakpointProvider>
-            <NavigationPromptCheckpoint
-              onPromptChange={(registeredPrompts) => {
-                registeredPromptsRef.current = registeredPrompts;
-              }}
-            >
-              <ApplicationLoadingOverlayProvider>
-                <ApplicationErrorBoundary>
+        <ApplicationErrorBoundary>
+          <ApplicationIntlProvider>
+            <ActiveBreakpointProvider>
+              <NavigationPromptCheckpoint
+                onPromptChange={(registeredPrompts) => {
+                  registeredPromptsRef.current = registeredPrompts;
+                }}
+              >
+                <ApplicationLoadingOverlayProvider>
                   <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                     {children}
                   </Suspense>
-                </ApplicationErrorBoundary>
-              </ApplicationLoadingOverlayProvider>
-            </NavigationPromptCheckpoint>
-          </ActiveBreakpointProvider>
-        </ApplicationIntlProvider>
+                </ApplicationLoadingOverlayProvider>
+              </NavigationPromptCheckpoint>
+            </ActiveBreakpointProvider>
+          </ApplicationIntlProvider>
+        </ApplicationErrorBoundary>
       </Base>
     </ThemeProvider>
   );

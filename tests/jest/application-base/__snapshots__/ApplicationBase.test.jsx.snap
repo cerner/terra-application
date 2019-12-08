@@ -20,13 +20,13 @@ exports[`ApplicationBase should render with all props 1`] = `
       </div>
     }
   >
-    <InjectIntl(Component)>
-      <ActiveBreakpointProvider>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <ApplicationErrorBoundary>
+    <ApplicationErrorBoundary>
+      <InjectIntl(Component)>
+        <ActiveBreakpointProvider>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
               <Suspense
                 fallback={
                   <ApplicationLoadingOverlay
@@ -39,11 +39,11 @@ exports[`ApplicationBase should render with all props 1`] = `
                   content
                 </div>
               </Suspense>
-            </ApplicationErrorBoundary>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ActiveBreakpointProvider>
-    </InjectIntl(Component)>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ActiveBreakpointProvider>
+      </InjectIntl(Component)>
+    </ApplicationErrorBoundary>
   </Base>
 </ThemeProvider>
 `;
@@ -58,13 +58,13 @@ exports[`ApplicationBase should render with minimal props 1`] = `
     locale="en"
     strictMode={false}
   >
-    <InjectIntl(Component)>
-      <ActiveBreakpointProvider>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <ApplicationErrorBoundary>
+    <ApplicationErrorBoundary>
+      <InjectIntl(Component)>
+        <ActiveBreakpointProvider>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
               <Suspense
                 fallback={
                   <ApplicationLoadingOverlay
@@ -77,11 +77,11 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                   content
                 </div>
               </Suspense>
-            </ApplicationErrorBoundary>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ActiveBreakpointProvider>
-    </InjectIntl(Component)>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ActiveBreakpointProvider>
+      </InjectIntl(Component)>
+    </ApplicationErrorBoundary>
   </Base>
 </ThemeProvider>
 `;

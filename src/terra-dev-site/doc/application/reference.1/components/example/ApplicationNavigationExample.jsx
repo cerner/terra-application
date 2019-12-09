@@ -72,14 +72,6 @@ const ApplicationNavigationTest = () => {
           navigationItems={navigationItems}
           activeNavigationItemKey={activeNavItem}
           onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
-          navigationPromptResolutionOptions={{
-            title: 'Example Title',
-            startMessage: 'Example Start Message',
-            content: <div>Example Content</div>,
-            endMessage: 'Example End Message',
-            acceptButtonText: 'Example Accept Text',
-            rejectButtonText: 'Example Reject Text',
-          }}
           onSelectLogout={() => {
             setLoggedOut(true);
           }}

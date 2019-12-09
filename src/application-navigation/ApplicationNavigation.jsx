@@ -9,7 +9,8 @@ import {
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape } from '../navigation-prompt';
+import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getPendingActionPromptOptions } from '../navigation-prompt';
+import { ApplicationIntlContext } from '../application-intl';
 
 const propTypes = {
   /**
@@ -137,6 +138,8 @@ const ApplicationNavigation = ({
   userConfig,
   utilityItems,
 }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+
   const navigationPromptCheckpointRef = useRef();
 
   const onSelectNavigationItem = useCallback((selectedItemKey) => {
@@ -145,10 +148,10 @@ const ApplicationNavigation = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions).then(() => {
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getPendingActionPromptOptions(applicationIntl)).then(() => {
       propOnSelectNavigationItem(selectedItemKey);
     }).catch((e) => { if (e) throw e; });
-  }, [disablePromptsForNavigationItems, navigationPromptResolutionOptions, propOnSelectNavigationItem]);
+  }, [applicationIntl, disablePromptsForNavigationItems, navigationPromptResolutionOptions, propOnSelectNavigationItem]);
 
   const onSelectLogout = useCallback(() => {
     if (disablePromptsForLogout) {
@@ -156,10 +159,10 @@ const ApplicationNavigation = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions).then(() => {
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getPendingActionPromptOptions(applicationIntl)).then(() => {
       propOnSelectLogout();
     }).catch((e) => { if (e) throw e; });
-  }, [disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
+  }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
 
   return (
     <TerraApplicationNavigation

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 
 import ApplicationBase from 'terra-application/lib/application-base';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import ModalManager from 'terra-application/lib/modal-manager';
 
 import DemoAppNavigation from './DemoAppNavigation';
 
@@ -14,7 +15,9 @@ const DemoAppIndex = () => {
     <ApplicationBase
       locale={applicationIntl.locale || 'en-US'}
     >
-      <DemoAppNavigation />
+      <ModalManager>
+        <DemoAppNavigation />
+      </ModalManager>
     </ApplicationBase>
   );
 };

@@ -10,16 +10,7 @@ const cx = classNames.bind(styles);
 
 const ModalManagerWithHeaderAdapter = () => (
   <div role="main" className={cx('content-wrapper')}>
-    <ModalManager
-      navigationPromptResolutionOptions={{
-        title: 'Test Title',
-        startMessage: 'Test Start Message',
-        content: <div>Test Content</div>,
-        endMessage: 'Test End Message',
-        acceptButtonText: 'Test Accept Text',
-        rejectButtonText: 'Test Reject Text',
-      }}
-    >
+    <ModalManager>
       <DisclosureComponent identifier="root-component" disclosureType="modal" renderHeaderAdapter />
     </ModalManager>
   </div>

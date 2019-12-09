@@ -49,3 +49,7 @@ ApplicationBase monitors its children for the presence of rendered [NavigationPr
 ### Code Splitting
 
 ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), a sensible fallback will be rendered while the component is being retrieved. The fallback will render below the ApplicationNavigation header and allow the header to remain interactable.
+
+### Modal Presentation
+
+ApplicationBase renders a [ModalManager](/components/terra-application/application/reference/components/modal-manager) around its children. Children can access modal disclosure APIs by using the [DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context).

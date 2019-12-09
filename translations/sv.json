@@ -1,0 +1,8 @@
+{
+  "terraApplication.pendingActionPrompt.title": "Det finns osparade ändringar.",
+  "terraApplication.pendingActionPrompt.singlePromptMessage": "Det finns osparade ändringar i {promptDescription}. Om du inte sparar ändringarna så försvinner de. Hur vill du fortsätta?",
+  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "Det finns osparade ändringar i:",
+  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "Om du inte sparar ändringarna så försvinner de. Hur vill du fortsätta?",
+  "terraApplication.pendingActionPrompt.acceptButtonText": "Spara inte",
+  "terraApplication.pendingActionPrompt.rejectButtonText": "Fortsätt redigera"
+}

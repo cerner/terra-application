@@ -1,0 +1,8 @@
+{
+  "terraApplication.pendingActionPrompt.title": "Er zijn niet-opgeslagen wijzigingen.",
+  "terraApplication.pendingActionPrompt.singlePromptMessage": "Er zijn niet-opgeslagen wijzigingen in {promptDescription}. De wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u doorgaan?",
+  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "Er zijn niet-opgeslagen wijzigingen in het volgende:",
+  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "De wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u doorgaan?",
+  "terraApplication.pendingActionPrompt.acceptButtonText": "Niet opslaan",
+  "terraApplication.pendingActionPrompt.rejectButtonText": "Doorgaan met bewerken"
+}

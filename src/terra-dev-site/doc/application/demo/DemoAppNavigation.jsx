@@ -20,6 +20,7 @@ const userConfig = {
 const DemoAppNavigation = () => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
+  const [loggedOut, setLoggedOut] = useState(false);
   const disclosureDismissRef = useRef();
 
   const navigationItemsRef = useRef([{
@@ -32,6 +33,15 @@ const DemoAppNavigation = () => {
     key: 'page_3',
     text: 'Page 3',
   }]);
+
+  if (loggedOut) {
+    return (
+      <div>
+        <p>Logged Out</p>
+        <button type="button" onClick={() => { setLoggedOut(false); }}>Reset</button>
+      </div>
+    );
+  }
 
   let pageContent;
   switch (activeNavItem) {
@@ -115,15 +125,8 @@ const DemoAppNavigation = () => {
           });
         }
       }}
-      navigationPromptResolutionOptions={{
-        title: 'Demo Title',
-        startMessage: 'Demo Start Message',
-        content: <div>Demo Content</div>,
-        endMessage: 'Demo End Message',
-        acceptButtonText: 'Demo Accept Text',
-        rejectButtonText: 'Demo Reject Text',
-      }}
       onSelectLogout={() => {
+        setLoggedOut(true);
       }}
     >
       {pageContent}

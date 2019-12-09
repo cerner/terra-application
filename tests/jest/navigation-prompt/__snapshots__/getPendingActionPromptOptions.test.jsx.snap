@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for a single prompt 1`] = `
+Object {
+  "acceptButtonText": "terraApplication.pendingActionPrompt.acceptButtonText",
+  "buttonOrder": "rejectFirst",
+  "content": undefined,
+  "emphasizedAction": "reject",
+  "endMessage": undefined,
+  "rejectButtonText": "terraApplication.pendingActionPrompt.rejectButtonText",
+  "startMessage": "terraApplication.pendingActionPrompt.singlePromptMessage",
+  "title": "terraApplication.pendingActionPrompt.title",
+}
+`;
+
+exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for a single prompt 2`] = `
+Object {
+  "acceptButtonText": "terraApplication.pendingActionPrompt.acceptButtonText",
+  "buttonOrder": "rejectFirst",
+  "content": <ul>
+    <li>
+      Test Prompt
+    </li>
+    <li>
+      Another Test Prompt
+    </li>
+  </ul>,
+  "emphasizedAction": "reject",
+  "endMessage": "terraApplication.pendingActionPrompt.multiplePromptMessageOutro",
+  "rejectButtonText": "terraApplication.pendingActionPrompt.rejectButtonText",
+  "startMessage": "terraApplication.pendingActionPrompt.multiplePromptMessageIntro",
+  "title": "terraApplication.pendingActionPrompt.title",
+}
+`;

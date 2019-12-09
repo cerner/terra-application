@@ -1,51 +1,68 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
-import { withDisclosureManager } from '../../../src/disclosure-manager';
+import { mockIntl } from 'terra-enzyme-intl';
 import ModalManager from '../../../src/modal-manager';
 
-const TestContainer = withDisclosureManager(({ id }) => (
-  <button id={id} type="button">Hello World</button>
-));
+const TestChild = () => <div />;
 
-describe('ApplicationModalManager', () => {
-  const mountModalManager = () => mountWithIntl(
-    <ModalManager
-      navigationPromptResolutionOptions={{
-        title: 'Test Title',
-        startMessage: 'Test Start Message',
-        content: <div>Test Content</div>,
-        endMessage: 'Test End Message',
-        acceptButtonText: 'Test Accept Text',
-        rejectButtonText: 'Test Reject Text',
-      }}
-    >
-      <TestContainer id="child-with-disclosure" />
-    </ModalManager>,
-  );
+describe('ModalManager', () => {
+  describe('Snapshots', () => {
+    it('should render with required props', () => {
+      const wrapper = shallow((
+        <ModalManager.WrappedComponent intl={mockIntl}>
+          <TestChild />
+        </ModalManager.WrappedComponent>
+      ));
 
-  it('should render the ApplicationModalManager', () => {
-    const content = mountModalManager();
-    expect(content).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render with optional props', () => {
+      const wrapper = shallow((
+        <ModalManager.WrappedComponent
+          intl={mockIntl}
+          disclosureAccessory={<div>Test Accessory</div>}
+          navigationPromptResolutionOptions={{
+            test: 'options',
+          }}
+        >
+          <TestChild />
+        </ModalManager.WrappedComponent>
+      ));
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 
-  it('should disclose content in Modal', () => {
-    const content = mountModalManager();
+  describe('DisclosureContainer', () => {
+    it('should wrap disclosed content in a DisclosureContainer with default prompt options', () => {
+      const wrapper = shallow((
+        <ModalManager.WrappedComponent
+          intl={mockIntl}
+        >
+          <TestChild />
+        </ModalManager.WrappedComponent>
+      ));
 
-    return new Promise((resolve, reject) => {
-      const childDisclosureManager = content.find('#child-with-disclosure').getElements()[1].props.disclosureManager;
-      childDisclosureManager.disclose({
-        preferredType: 'modal',
-        size: 'large',
-        content: {
-          key: 'DISCLOSE_KEY',
-          component: <TestContainer id="test-modal" />,
-        },
-      }).then(resolve).catch(reject);
-    })
-      .then(() => {
-        content.update();
-        expect(content).toMatchSnapshot();
-      });
+      const disclosureWrapper = wrapper.props().withDisclosureContainer(<div>Test Disclosure Content</div>);
+      expect(disclosureWrapper.props.navigationPromptResolutionOptions).toBeDefined();
+      expect(disclosureWrapper.props.navigationPromptResolutionOptions([{ description: 'mock prompt' }])).toMatchSnapshot();
+    });
+
+    ('should wrap disclosed content in a DisclosureContainer with provided prompt options', () => {
+      const promptOptions = { test: 'options' };
+
+      const wrapper = shallow((
+        <ModalManager.WrappedComponent
+          intl={mockIntl}
+          navigationPromptResolutionOptions={promptOptions}
+        >
+          <TestChild />
+        </ModalManager.WrappedComponent>
+      ));
+
+      const disclosureWrapper = wrapper.props().withDisclosureContainer(<div>Test Disclosure Content</div>);
+      expect(disclosureWrapper.props.navigationPromptResolutionOptions).toEqual(promptOptions);
+    });
   });
 });

@@ -9,7 +9,7 @@ import {
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getPendingActionPromptOptions } from '../navigation-prompt';
+import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 
 const propTypes = {
@@ -148,7 +148,7 @@ const ApplicationNavigation = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getPendingActionPromptOptions(applicationIntl)).then(() => {
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       propOnSelectNavigationItem(selectedItemKey);
     }).catch((e) => { if (e) throw e; });
   }, [applicationIntl, disablePromptsForNavigationItems, navigationPromptResolutionOptions, propOnSelectNavigationItem]);
@@ -159,7 +159,7 @@ const ApplicationNavigation = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getPendingActionPromptOptions(applicationIntl)).then(() => {
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       propOnSelectLogout();
     }).catch((e) => { if (e) throw e; });
   }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);

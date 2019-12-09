@@ -1,7 +1,6 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mockIntl } from 'terra-enzyme-intl';
-import { withDisclosureManager } from '../../../src/disclosure-manager';
 import SlidePanelManger from '../../../src/slide-panel-manager';
 
 const TestChild = () => <div />;

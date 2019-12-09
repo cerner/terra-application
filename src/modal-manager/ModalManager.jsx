@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { injectIntl, intlShape } from 'react-intl';
 import TerraModalManager from 'terra-modal-manager';
 
-import { navigationPromptResolutionOptionsShape, getPendingActionPromptOptions } from '../navigation-prompt';
+import { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
 const propTypes = {
@@ -30,7 +30,7 @@ const propTypes = {
 };
 
 const ModalManager = injectIntl(({ intl, navigationPromptResolutionOptions, ...terraModalManagerProps }) => {
-  const defaultPromptOptions = useMemo(() => getPendingActionPromptOptions(intl), [intl]);
+  const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
 
   return (
     <TerraModalManager

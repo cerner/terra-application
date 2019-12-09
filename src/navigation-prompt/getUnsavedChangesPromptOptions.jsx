@@ -11,13 +11,13 @@ export default intl => (prompts) => {
 
   if (prompts.length === 1) {
     startMessage = intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.singlePromptMessage',
+      id: 'terraApplication.unsavedChangesPrompt.singlePromptMessage',
     }, {
       promptDescription: prompts[0].description,
     });
   } else {
     startMessage = intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.multiplePromptMessageIntro',
+      id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro',
     });
     content = (
       <ul>
@@ -25,13 +25,13 @@ export default intl => (prompts) => {
       </ul>
     );
     endMessage = intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.multiplePromptMessageOutro',
+      id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
     });
   }
 
   return {
     title: intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.title',
+      id: 'terraApplication.unsavedChangesPrompt.title',
     }),
     startMessage,
     content,
@@ -39,10 +39,10 @@ export default intl => (prompts) => {
     buttonOrder: 'rejectFirst',
     emphasizedAction: 'reject',
     acceptButtonText: intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.acceptButtonText',
+      id: 'terraApplication.unsavedChangesPrompt.acceptButtonText',
     }),
     rejectButtonText: intl.formatMessage({
-      id: 'terraApplication.pendingActionPrompt.rejectButtonText',
+      id: 'terraApplication.unsavedChangesPrompt.rejectButtonText',
     }),
   };
 };

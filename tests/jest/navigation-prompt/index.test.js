@@ -1,4 +1,4 @@
-import NavigationPrompt, { NavigationPromptCheckpoint, PromptRegistrationContext, getPendingActionPromptOptions } from '../../../src/navigation-prompt'; // eslint-disable-line import/named
+import NavigationPrompt, { NavigationPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/navigation-prompt'; // eslint-disable-line import/named
 
 describe('navigation-prompt/index', () => {
   it('should export NavigationPrompt', () => {
@@ -13,7 +13,7 @@ describe('navigation-prompt/index', () => {
     expect(PromptRegistrationContext).toBeDefined();
   });
 
-  it('should export getPendingActionPromptOptions', () => {
-    expect(getPendingActionPromptOptions).toBeDefined();
+  it('should export getUnsavedChangesPromptOptions', () => {
+    expect(getUnsavedChangesPromptOptions).toBeDefined();
   });
 });

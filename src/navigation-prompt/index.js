@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import getPendingActionPromptOptions from './getPendingActionPromptOptions';
+import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
 const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
   /**
@@ -38,4 +38,4 @@ const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.sh
 
 export { default } from 'terra-navigation-prompt';
 export { NavigationPromptCheckpoint, PromptRegistrationContext } from 'terra-navigation-prompt';
-export { navigationPromptResolutionOptionsShape, getPendingActionPromptOptions };
+export { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };

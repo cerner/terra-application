@@ -1,8 +1,8 @@
 {
-  "terraApplication.pendingActionPrompt.title": "Hay cambios no guardados.",
-  "terraApplication.pendingActionPrompt.singlePromptMessage": "Hay cambios no guardados en {promptDescription}. Si no se guardan los cambios, se perderán. ¿Cómo desea continuar?",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "Hay cambios no guardados en:",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "Si no se guardan los cambios, se perderán. ¿Cómo desea continuar?",
-  "terraApplication.pendingActionPrompt.acceptButtonText": "No guardar",
-  "terraApplication.pendingActionPrompt.rejectButtonText": "Continuar editando"
+  "terraApplication.unsavedChangesPrompt.title": "Hay cambios no guardados.",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Hay cambios no guardados en {promptDescription}. Si no se guardan los cambios, se perderán. ¿Cómo desea continuar?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Hay cambios no guardados en:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si no se guardan los cambios, se perderán. ¿Cómo desea continuar?",
+  "terraApplication.unsavedChangesPrompt.acceptButtonText": "No guardar",
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando"
 }

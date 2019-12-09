@@ -1,8 +1,8 @@
 {
-  "terraApplication.pendingActionPrompt.title": "Certaines modifications n'ont pas été enregistrées.",
-  "terraApplication.pendingActionPrompt.singlePromptMessage": "Certaines modifications apportées à {promptDescription} n'ont pas été enregistrées. Si vous n'enregistrez pas vos modifications, elles seront perdues. Comment voulez-vous procéder?",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "Certaines modifications apportées aux éléments suivants n'ont pas été enregistrées:",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas vos modifications, elles seront perdues. Comment voulez-vous procéder?",
-  "terraApplication.pendingActionPrompt.acceptButtonText": "Ne pas enregistrer",
-  "terraApplication.pendingActionPrompt.rejectButtonText": "Poursuivre la modification"
+  "terraApplication.unsavedChangesPrompt.title": "Certaines modifications n'ont pas été enregistrées.",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Certaines modifications apportées à {promptDescription} n'ont pas été enregistrées. Si vous n'enregistrez pas vos modifications, elles seront perdues. Comment voulez-vous procéder?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Certaines modifications apportées aux éléments suivants n'ont pas été enregistrées:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas vos modifications, elles seront perdues. Comment voulez-vous procéder?",
+  "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Poursuivre la modification"
 }

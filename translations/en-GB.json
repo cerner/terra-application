@@ -1,8 +1,8 @@
 {
-  "terraApplication.pendingActionPrompt.title": "There are unsaved changes.",
-  "terraApplication.pendingActionPrompt.singlePromptMessage": "There are unsaved changes made to {promptDescription}. Changes will be lost if you don't save them. How do you want to proceed?",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "There are unsaved changes made to the following:",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
-  "terraApplication.pendingActionPrompt.acceptButtonText": "Don't Save",
-  "terraApplication.pendingActionPrompt.rejectButtonText": "Continue Editing"
+  "terraApplication.unsavedChangesPrompt.title": "There are unsaved changes.",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "There are unsaved changes made to {promptDescription}. Changes will be lost if you don't save them. How do you want to proceed?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "There are unsaved changes made to the following:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
+  "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing"
 }

@@ -2,14 +2,14 @@
 
 exports[`ModalManager DisclosureContainer should wrap disclosed content in a DisclosureContainer with default prompt options 1`] = `
 Object {
-  "acceptButtonText": "terraApplication.pendingActionPrompt.acceptButtonText",
+  "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
   "content": undefined,
   "emphasizedAction": "reject",
   "endMessage": undefined,
-  "rejectButtonText": "terraApplication.pendingActionPrompt.rejectButtonText",
-  "startMessage": "terraApplication.pendingActionPrompt.singlePromptMessage",
-  "title": "terraApplication.pendingActionPrompt.title",
+  "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",
+  "startMessage": "terraApplication.unsavedChangesPrompt.singlePromptMessage",
+  "title": "terraApplication.unsavedChangesPrompt.title",
 }
 `;
 

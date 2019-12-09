@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for a single prompt 1`] = `
+Object {
+  "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
+  "buttonOrder": "rejectFirst",
+  "content": undefined,
+  "emphasizedAction": "reject",
+  "endMessage": undefined,
+  "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",
+  "startMessage": "terraApplication.unsavedChangesPrompt.singlePromptMessage",
+  "title": "terraApplication.unsavedChangesPrompt.title",
+}
+`;
+
+exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for a single prompt 2`] = `
+Object {
+  "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
+  "buttonOrder": "rejectFirst",
+  "content": <ul>
+    <li>
+      Test Prompt
+    </li>
+    <li>
+      Another Test Prompt
+    </li>
+  </ul>,
+  "emphasizedAction": "reject",
+  "endMessage": "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro",
+  "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",
+  "startMessage": "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro",
+  "title": "terraApplication.unsavedChangesPrompt.title",
+}
+`;

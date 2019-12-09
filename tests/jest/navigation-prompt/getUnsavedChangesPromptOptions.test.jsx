@@ -1,10 +1,10 @@
 import { mockIntl } from 'terra-enzyme-intl';
 
-import getPendingActionPromptOptions from '../../../src/navigation-prompt/getPendingActionPromptOptions';
+import getUnsavedChangesPromptOptions from '../../../src/navigation-prompt/getUnsavedChangesPromptOptions';
 
 describe('getPendingActionPromptOptions', () => {
   it('generates a function that provides appropriate messaging for a single prompt', () => {
-    const generatedFunction = getPendingActionPromptOptions(mockIntl);
+    const generatedFunction = getUnsavedChangesPromptOptions(mockIntl);
 
     expect(generatedFunction).toBeDefined();
 
@@ -14,7 +14,7 @@ describe('getPendingActionPromptOptions', () => {
   });
 
   it('generates a function that provides appropriate messaging for a single prompt', () => {
-    const generatedFunction = getPendingActionPromptOptions(mockIntl);
+    const generatedFunction = getUnsavedChangesPromptOptions(mockIntl);
 
     expect(generatedFunction).toBeDefined();
 

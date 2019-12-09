@@ -1,8 +1,8 @@
 {
-  "terraApplication.pendingActionPrompt.title": "Es liegen nicht gespeicherte Änderungen vor.",
-  "terraApplication.pendingActionPrompt.singlePromptMessage": "Die Änderungen des Elements {promptDescription} wurden nicht gespeichert. Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageIntro": "Die Änderungen des folgenden Elements wurden nicht gespeichert:",
-  "terraApplication.pendingActionPrompt.multiplePromptMessageOutro": "Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
-  "terraApplication.pendingActionPrompt.acceptButtonText": "Nicht speichern",
-  "terraApplication.pendingActionPrompt.rejectButtonText": "Mit der Bearbeitung fortfahren"
+  "terraApplication.unsavedChangesPrompt.title": "Es liegen nicht gespeicherte Änderungen vor.",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Die Änderungen des Elements {promptDescription} wurden nicht gespeichert. Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Die Änderungen des folgenden Elements wurden nicht gespeichert:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
+  "terraApplication.unsavedChangesPrompt.acceptButtonText": "Nicht speichern",
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Mit der Bearbeitung fortfahren"
 }

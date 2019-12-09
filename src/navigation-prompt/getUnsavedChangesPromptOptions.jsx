@@ -19,11 +19,16 @@ export default intl => (prompts) => {
     startMessage = intl.formatMessage({
       id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro',
     });
+
+    // We do not currently have access to the prompts internal identifiers.
+    /* eslint-disable react/no-array-index-key */
     content = (
       <ul>
-        {[...new Set(prompts.map(prompt => prompt.description))].map(description => (<li key={description}>{description}</li>))}
+        {prompts.map((prompt, index) => <li key={index}>{prompt.description}</li>)}
       </ul>
     );
+    /* eslint-enable react/no-array-index-key */
+
     endMessage = intl.formatMessage({
       id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
     });

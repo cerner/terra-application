@@ -1,9 +1,8 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import TerraModalManager from 'terra-modal-manager';
 
-import { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
 const propTypes = {
@@ -22,27 +21,18 @@ const propTypes = {
    * is present. If not provided, the default messaging will be used.
    */
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
-  /**
-   * @private
-   * The Object containing intl APIs from react-intl.
-   */
-  intl: intlShape,
 };
 
-const ModalManager = injectIntl(({ intl, navigationPromptResolutionOptions, ...terraModalManagerProps }) => {
-  const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
-
-  return (
-    <TerraModalManager
-      {...terraModalManagerProps}
-      withDisclosureContainer={disclosureContent => (
-        <DisclosureContainer navigationPromptResolutionOptions={navigationPromptResolutionOptions || defaultPromptOptions}>
-          {disclosureContent}
-        </DisclosureContainer>
-      )}
-    />
-  );
-});
+const ModalManager = ({ navigationPromptResolutionOptions, ...terraModalManagerProps }) => (
+  <TerraModalManager
+    {...terraModalManagerProps}
+    withDisclosureContainer={disclosureContent => (
+      <DisclosureContainer navigationPromptResolutionOptions={navigationPromptResolutionOptions}>
+        {disclosureContent}
+      </DisclosureContainer>
+    )}
+  />
+);
 
 ModalManager.propTypes = propTypes;
 

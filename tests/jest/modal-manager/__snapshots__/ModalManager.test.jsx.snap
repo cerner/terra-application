@@ -1,18 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ModalManager DisclosureContainer should wrap disclosed content in a DisclosureContainer with default prompt options 1`] = `
-Object {
-  "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
-  "buttonOrder": "rejectFirst",
-  "content": undefined,
-  "emphasizedAction": "reject",
-  "endMessage": undefined,
-  "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",
-  "startMessage": "terraApplication.unsavedChangesPrompt.singlePromptMessage",
-  "title": "terraApplication.unsavedChangesPrompt.title",
-}
-`;
-
 exports[`ModalManager Snapshots should render with optional props 1`] = `
 <ModalManager
   disclosureAccessory={

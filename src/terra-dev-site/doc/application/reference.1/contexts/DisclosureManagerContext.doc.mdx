@@ -4,7 +4,8 @@ import ContextDefinition from 'terra-disclosure-manager/lib/DisclosureManagerCon
 
 The DisclosureManagerContext defines an communication interface between the ModalManager/SlidePanelManager and application content.
 
-> Note: A DisclosureManagerContext.Provider is rendered by the ModalManager and SlidePanelManager. Any components rendered within those managers (or disclosed by them) can access a DisclosureManagerContext value without rendering additional providers.
+> Note: A DisclosureManagerContext.Provider is rendered by the ModalManager and SlidePanelManager. Any components rendered within
+> those managers (or disclosed by them) can access a DisclosureManagerContext value without rendering additional providers.
 
 ## Usage
 
@@ -20,7 +21,9 @@ import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manag
 
 ### DisclosureManagerHeaderAdapter
 
-Implementations of the DisclosureManager must render a header containing controls for the various disclosure management actions (close, back, maximize/minimize, etc.). The DisclosureManagerHeaderAdapter can be rendered by the disclosed content to inject their own component-specific contents into that header.
+Implementations of the DisclosureManager must render a header containing controls for the various disclosure management actions
+(close, back, maximize/minimize, etc.). The DisclosureManagerHeaderAdapter can be rendered by the disclosed content to inject
+their own component-specific contents into that header.
 
 `DisclosureManagerHeaderAdapter` Props:
 
@@ -55,9 +58,17 @@ const MyDisclosureComponent = () => {
 
 ### Children
 
-The DisclosureManagerDelegate provided to the child components contains a `disclose` function. This `disclose` function validates the disclosure type with which it is provided against the set of supported disclosure types given to the DisclosureManager as a prop. If the provided type is not supported, and if the DisclosureManager detects another DisclosureManager higher in the component hierarchy, the DisclosureManager will call the disclose function provided by that parent DisclosureManager instance.
+The DisclosureManagerDelegate provided to the child components contains a `disclose` function. This `disclose` function
+validates the disclosure type with which it is provided against the set of supported disclosure types given to the DisclosureManager
+as a prop. If the provided type is not supported, and if the DisclosureManager detects another DisclosureManager higher in the
+component hierarchy, the DisclosureManager will call the disclose function provided by that parent DisclosureManager instance.
 
-If the type is supported, the DisclosureManager will check the currently disclosed component's state to ensure it can be replaced. If the disclosure is denied, then `disclose` returns a rejected Promise. If the disclosure is allowed, then a resolved Promise is returned. This Promise will be resolved with an Object containing functions and Promises that can be used to manipulate the disclosure, if necessary. Included are `dismissDisclosure`, a function that will dismiss the disclosed content, and `afterDismiss`, a deferred Promise that will be resolved when the disclosed content is dismissed by any means. Alternatively, if the additional logic isn't needed, the returned Promise can be completely ignored.
+If the type is supported, the DisclosureManager will check the currently disclosed component's state to ensure it can be replaced.
+If the disclosure is denied, then `disclose` returns a rejected Promise. If the disclosure is allowed, then a resolved Promise is returned.
+This Promise will be resolved with an Object containing functions and Promises that can be used to manipulate the disclosure, if necessary.
+Included are `dismissDisclosure`, a function that will dismiss the disclosed content, and `afterDismiss`, a deferred Promise that will be
+resolved when the disclosed content is dismissed by any means. Alternatively, if the additional logic isn't needed, the returned Promise
+can be completely ignored.
 
 Example:
 ```jsx
@@ -124,11 +135,16 @@ Each of these functions returns a Promise that can be used for chaining, if nece
 
 #### A Note on `registerDismissCheck`
 
-By default, the DisclosureManager monitors its disclosed content for the presence of [NavigationPrompts](/components/terra-application/application/terra-application/reference/components/navigation-prompt). The user will be prompted if they attempt to close the dismiss the disclosure while NavigationPrompts are present.
+By default, the DisclosureManager monitors its disclosed content for the presence of [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt).
+The user will be prompted if they attempt to close the dismiss the disclosure while NavigationPrompts are present.
 
-If the modal content calls `registerDismissCheck` to add its own pre-dismissal logic, the default NavigationPrompt handling will be **disabled**. Any component that uses `registerDismissCheck` should check for the presence of NavigationPrompts (using a [NavigationPromptCheckpoint](/components/terra-application/application/terra-application/reference/components/navigation-prompt-checkpoing)) in addition to whatever custom logic is required.
+If the modal content calls `registerDismissCheck` to add its own pre-dismissal logic, the default NavigationPrompt handling will be **disabled**.
+Any component that uses `registerDismissCheck` should check for the presence of NavigationPrompts (using a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoing))
+in addition to whatever custom logic is required.
 
-Given this complexity, usage of the `registerDismissCheck` API is not recommended.
+Given this complexity, usage of the `registerDismissCheck` API is **not recommended**.
 
-The function provided to `registerDismissCheck` must return a resolved or rejected Promise. If the Promise is resolved, the component is guaranteed to be dismissed. If cleanup logic needs to execute before the component is dismissed, it is a good idea to execute before returning the resolved Promise. If a rejected Promise is returned, the component will not be dismissed.
-
+The function provided to `registerDismissCheck` must return a resolved or rejected Promise.
+If the Promise is resolved, the component is guaranteed to be dismissed.
+If cleanup logic needs to execute before the component is dismissed, it is a good idea to execute before returning the resolved Promise.
+If a rejected Promise is returned, the component will not be dismissed.

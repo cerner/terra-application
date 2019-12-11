@@ -26,7 +26,7 @@ Consumers of ApplicationBase should review Terra's [translation aggregation](htt
 
 ### Theming
 
-ApplicationBase exposes props to define the application's theme. 
+ApplicationBase exposes props to define the application's theme.
 
 Consumers of ApplicationBase should review Terra's [theme aggregation](https://github.com/cerner/terra-toolkit/blob/master/scripts/aggregate-themes/README.md) instructions to ensure the all theme properties are loaded appropriately.
 
@@ -42,7 +42,7 @@ ApplicationBase renders an [ApplicationErrorBoundary](/components/terra-applicat
 
 ApplicationBase renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
 
-### Pending Actions
+### Unsaved Changes
 
 ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt). ApplicationBase will ensure that the user is prompted using a browser-native confirmation dialog prior to any window unload event if any [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the unload request.
 

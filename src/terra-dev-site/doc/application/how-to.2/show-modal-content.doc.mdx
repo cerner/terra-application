@@ -2,9 +2,16 @@
 
 The [ModalManager](/components/terra-application/application/reference/components/modal-manager) should be used to manage modal content presentation.
 
-A ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with single ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the [DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context).
+A ModalManager should be rendered around content that requires modal disclosure capabilities. Multiple components can be wrapped with a single
+ModalManager; every wrapped component (and their descendents) will communicate with the same ModalManager instance through the
+[DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context).
 
-The rendering of a ModalManager is typically an application-level concern. [ApplicationBase](/components/terra-application/application/reference/components/application-base) renders a ModalManager around its children by default. However, additional ModalManagers may be rendered to re-establish the contexts available to disclosed contents. Before rendering a ModalManager yourself, please ensure that the application isn't already providing a ModalManager that suits your component's needs.
+Components rendered within the ModalManager's modal will be able to access the same Contexts as the ModalManager itself.
+Additional Context providers rendered within the ModalManager's children will not be available to the modal components.
+
+The rendering of a ModalManager is typically an application-level concern. However, additional ModalManagers may be rendered to re-establish
+the contexts available to disclosed contents. Before rendering a ModalManager yourself, please ensure that the application isn't already providing
+a ModalManager that suits your component's needs.
 
 ```jsx
 import React from 'react';
@@ -15,14 +22,17 @@ import ComponentWithModal from './ComponentWithModal';
 
 const ExampleApp = () => (
   <ApplicationBase>
-    <ComponentWithModal />
+    <ModalManager>
+      <ComponentWithModal />
+    </ModalManager>
   </ApplicationBase>
 );
 
 export default ExampleComponent;
 ```
 
-Components rendered within a ModalManager should access the value provided by the DisclosureManagerContext. That value contains APIs used to communicate with the ModalManager and disclose additional content.
+Components rendered within a ModalManager should access the value provided by the DisclosureManagerContext. That value contains APIs used
+to communicate with the ModalManager and disclose additional content.
 
 ```jsx
 import React, { useContext } from 'react';

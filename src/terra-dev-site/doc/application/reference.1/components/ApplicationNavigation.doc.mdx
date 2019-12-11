@@ -24,7 +24,10 @@ ApplicationNavigation requires values from the following Contexts:
 ### `extensionItems`
 #### Is Required: `false`
 
-The `extensionItems` prop allows consumers to render icons with an assocaited selection callback within the ApplicationNavigation's extensions region. The expectations for `extensionItems` is that they are to provide click actions and disclosures for the application level context. The `extensionItems` will rollup in various counts depending on the current breakpoint. If `extensionItems` are passed as props the associated `onSelectExtensionItem` function callback should be passed as well.
+The `extensionItems` prop allows consumers to render icons with an assocaited selection callback within the ApplicationNavigation's extensions region.
+The expectations for `extensionItems` is that they are to provide click actions and disclosures for the application level context. The `extensionItems` will
+rollup in various counts depending on the current breakpoint. If `extensionItems` are passed as props the associated `onSelectExtensionItem` function callback
+should be passed as well.
 
 The value provided for `extensionItems` should be an array of objects with the following API:
 
@@ -52,14 +55,19 @@ const extensionItems = [{
 ### `onSelectExtensionItem`
 #### Is Required: `false`
 
-The `onSelectExtensionItem` prop allows consumers to retrieve the information related to the extension that was clicked. The function callback will return the information in the format of `onSelectExtensionItem(key, metaData)`.
+The `onSelectExtensionItem` prop allows consumers to retrieve the information related to the extension that was clicked.
+The function callback will return the information in the format of `onSelectExtensionItem(key, metaData)`.
 
 ### `navigationItems`
 #### Is Required: `false`
 
-The `navigationItems` prop allows consumers to render high-level, primary navigation controls directly within the ApplicationNavigation. The expectation of `navigationItems` is that items will not be added/removed, as this would be detrimental to the user experience. Once selected, a navigational item is no longer actionable and cannot be reselected. Navigation items at the application level should have equivalent context levels. Navigation from one tab to another should not be influenced by content, as each navigational item should be a sandboxed concept.
+The `navigationItems` prop allows consumers to render high-level, primary navigation controls directly within the ApplicationNavigation.
+The expectation of `navigationItems` is that items will not be added/removed, as this would be detrimental to the user experience.
+ Once selected, a navigational item is no longer actionable and cannot be reselected. Navigation items at the application level should
+ have equivalent context levels. Navigation from one tab to another should not be influenced by content, as each navigational item should be a sandboxed concept.
 
-The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint. If `navigationItems` are passed as props the associated `onSelectNavigationItem` function callback should be passed as well.
+The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
+If `navigationItems` are passed as props the associated `onSelectNavigationItem` function callback should be passed as well.
 
 The value provided for `navigationItems` should be an array of objects with the following API:
 
@@ -84,17 +92,21 @@ const navigationItems = [{
 ### `onSelectNavigationItem`
 #### Is Required: `false`
 
-The `onSelectNavigationItem` prop allows consumers to retrieve the information related to the navigation item that was clicked. The function callback will return the information in the format of `onSelectNavigationItem(key, metaData)`.
+The `onSelectNavigationItem` prop allows consumers to retrieve the information related to the navigation item that was clicked.
+The function callback will return the information in the format of `onSelectNavigationItem(key, metaData)`.
 
 ### `activeNavigationItemKey`
 #### Is Required: `false`
 
-The `activeNavigationItemKey` prop allows consumers to set the currently selected navigation item. Accordingly, the `activeNavigationItemKey` value must have an associated entry within the `navigationItems` specification.
+The `activeNavigationItemKey` prop allows consumers to set the currently selected navigation item.
+Accordingly, the `activeNavigationItemKey` value must have an associated entry within the `navigationItems` specification.
 
 ### `utilityItems`
 #### Is Required: `false`
 
-The `utilityItems` prop allows consuming applications to present an application-level custom utility items directly from the ApplicationNavigation. The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint. If `utilityItems` are passed as props the associated `onSelectUtilityItem` function callback should be passed as well.
+The `utilityItems` prop allows consuming applications to present an application-level custom utility items directly from the ApplicationNavigation.
+The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint. If `utilityItems` are
+passed as props the associated `onSelectUtilityItem` function callback should be passed as well.
 
 The value provided for `utilityItems` should be an array of objects with the following API:
 
@@ -122,27 +134,32 @@ const utilityItems = [{
 ### `onSelectUtilityItem`
 #### Is Required: `false`
 
-The `onSelectUtilityItem` prop allows consumers to retrieve the information related to the navigation item that was clicked. The function callback will return the information in the format of `onSelectUtilityItem(key, metaData)`.
+The `onSelectUtilityItem` prop allows consumers to retrieve the information related to the navigation item that was clicked.
+The function callback will return the information in the format of `onSelectUtilityItem(key, metaData)`.
 
 ### `onSelectSettings`
 #### Is Required: `false`
 
-The `onSelectSettings` prop allows consumers have first class support for a settings utility item. If the `onSelectSettings` prop is not set a settings utility item will not be displayed.
+The `onSelectSettings` prop allows consumers have first class support for a settings utility item.
+If the `onSelectSettings` prop is not set a settings utility item will not be displayed.
 
 ### `onSelectHelp`
 #### Is Required: `false`
 
-The `onSelectHelp` prop allows consumers have first class support for a help utility item. If the `onSelectHelp` prop is not set a settings utility item will not be displayed.
+The `onSelectHelp` prop allows consumers have first class support for a help utility item.
+If the `onSelectHelp` prop is not set a settings utility item will not be displayed.
 
 ### `onSelectLogout`
 #### Is Required: `false`
 
-The `onSelectLogout` prop allows consumers have first class support for a logout utility button. If the `onSelectLogout` prop is not set a settings utility item will not be displayed.
+The `onSelectLogout` prop allows consumers have first class support for a logout utility button.
+If the `onSelectLogout` prop is not set a settings utility item will not be displayed.
 
 ### `titleConfig`
 #### Is Required: `false`
 
-The `titleConfig` prop allows consuming applications to add their own branding to the ApplicationNavigation. The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
+The `titleConfig` prop allows consuming applications to add their own branding to the ApplicationNavigation.
+The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
 
 |Key Name|Type|Is Required|Description|
 |---|---|---|---|
@@ -163,7 +180,8 @@ const myTitleConfig = {
 ### `userConfig`
 #### Is Required: `false`
 
-The `userConfig` prop allows consumers to set a user associated to the current application context. The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
+The `userConfig` prop allows consumers to set a user associated to the current application context.
+The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
 
 |Key Name|Type|Is Required|Description|
 |---|---|---|---|
@@ -184,12 +202,15 @@ const myUserConfig = {
 ### `hero`
 #### Is Required: `false`
 
-The `hero` prop allows consumers to add a hero element within the utility popup and/or navigation drawer. The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
+The `hero` prop allows consumers to add a hero element within the utility popup and/or navigation drawer.
+The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
 
 ### `notifications`
 #### Is Required: `false`
 
-The `notifications` prop allows consumers to display notification counts associated to navigationItems and extensionsItems. The props is made up of key/value pairs; the key is the associated entry within the `navigationItems` or `extensionItems` specification, and a numerical value. Depending on locations within the navigational structure and breakpoint the number of digits displayed may be limited.
+The `notifications` prop allows consumers to display notification counts associated to navigationItems and extensionsItems.
+The props is made up of key/value pairs; the key is the associated entry within the `navigationItems` or `extensionItems` specification,
+and a numerical value. Depending on locations within the navigational structure and breakpoint the number of digits displayed may be limited.
 
 ```jsx
 const myNotifications = {
@@ -226,24 +247,33 @@ The ApplicationNavigation has two rendering modes: `standard` and `compact`.
 
 ### Exception Handling
 
-ApplicationNavigation renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children. 
+ApplicationNavigation renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its children.
+If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children.
 
 This error component will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls after an error occurs.
 
 ### Loading Overlays
 
-ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationNavigation.
+ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children.
+Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will cause a loading overlay
+to be presented over ApplicationNavigation's children.
 
 The loading overlay will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls while the loading overlay is presented.
 
-### Pending Actions
+### Unsaved Changes
 
-ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) by rendering a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoint) around its children. ApplicationNavigation will ensure that the user is prompted when a primary navigation or 'Logout' utility selection is made if any NavigationPrompts have been rendered by children at the time of the selection.
+ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt)
+by rendering a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoint) around its children.
+ApplicationNavigation will ensure that the user is prompted when a primary navigation or 'Logout' utility selection is made if any NavigationPrompts have
+been rendered by children at the time of the selection.
 
-If the children within ApplicationNavigation can be changed by a mechanism other than navigation item selection, a NavigationPromptCheckpoint should be used directly to check for pending actions prior to the pending child's removal.
+If the children within ApplicationNavigation can be changed by a mechanism other than navigation item selection, a NavigationPromptCheckpoint should be used directly to
+check for unsaved changes prior to the pending child's removal.
 
 > Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` and `disablePromptsForLogout` props if a custom implementation is required.
 
 ### Code Splitting
 
-ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), an ApplicationLoadingOverlay will be rendered while the component is being retrieved. The overlay will render below the ApplicationNavigation header and allow the header to remain interactable.
+ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their
+descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), an ApplicationLoadingOverlay will be rendered while the component
+is being retrieved. The overlay will render below the ApplicationNavigation header and allow the header to remain interactable.

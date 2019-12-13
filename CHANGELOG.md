@@ -12,6 +12,9 @@ Unreleased
 ### Changed
 * Using getUnsavedChangesPromptOptions to generate default navigation prompt options within ModalManager/SlidePanelManager if prompt options are not otherwise provided.
 
+### Fixed
+* Fix jest test by updating jest snapshot.
+
 1.14.2 - (November 22, 2019)
 ------------------
 ### Fixed

@@ -18,7 +18,7 @@ const propTypes = {
   /**
    * The Object (or function that returns an Object) that specifies the messages
    * used to prompt the user when disclosure dismissal occurs when pending state
-   * is present.
+   * is present. If not provided, the default messaging will be used.
    */
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
 };

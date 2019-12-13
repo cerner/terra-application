@@ -1,16 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { injectIntl } from 'react-intl';
+import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
 import ApplicationBase from 'terra-application/lib/application-base';
 import NavigationPrompt from 'terra-application/lib/navigation-prompt';
 
-const ApplicationContentExample = injectIntl(({ intl }) => {
+const ApplicationContentExample = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [throwError, setThrowError] = useState(false);
   const [blockUnload, setBlockUnload] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
+  const applicationIntl = useContext(ApplicationIntlContext);
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
@@ -28,7 +29,7 @@ const ApplicationContentExample = injectIntl(({ intl }) => {
     <p>
       Active Locale:
       {' '}
-      {intl.locale}
+      {applicationIntl.locale}
     </p>
   );
 
@@ -77,12 +78,16 @@ const ApplicationContentExample = injectIntl(({ intl }) => {
       {navigationPromptExample}
     </div>
   );
-});
+};
 
-const ApplicationBaseExample = injectIntl(({ intl }) => (
-  <ApplicationBase locale={intl.locale}>
-    <ApplicationContentExample />
-  </ApplicationBase>
-));
+const ApplicationBaseExample = () => {
+  const applicationIntl = useContext(ApplicationIntlContext);
+
+  return (
+    <ApplicationBase locale={applicationIntl.locale}>
+      <ApplicationContentExample />
+    </ApplicationBase>
+  );
+};
 
 export default ApplicationBaseExample;

@@ -20,7 +20,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('it rejects the closure and keeps the panel open', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
     Terra.validates.element('3. root panel-on close-rejected prompt', { selector });
@@ -54,7 +54,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('rejects the closure and keeps the panel open', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .disclose-tiny');
     Terra.validates.element('6. nested panel-on back-rejected prompt', { selector });
@@ -67,7 +67,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('accepts the go back and displays the previous panel', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
   });
 
@@ -77,7 +77,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('successfully closes the panel', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     expect(browser.isExisting('[class*="slide-group"] #DemoContainer-1 .disclose-tiny')).to.be.false;
     Terra.validates.element('9. panel-closed', { selector });
   });

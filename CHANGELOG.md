@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Fixed
+* Fix jest test by updating jest snapshot.
 
 1.14.2 - (November 22, 2019)
 ------------------

@@ -437,6 +437,7 @@ exports[`ApplicationModalManager should disclose content in Modal 1`] = `
                                                         rootSelector="#root"
                                                       >
                                                         <Overlay
+                                                          aria-live="polite"
                                                           backgroundStyle="clear"
                                                           className="loading-overlay"
                                                           isOpen={false}

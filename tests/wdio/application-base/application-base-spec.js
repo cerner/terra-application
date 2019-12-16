@@ -42,6 +42,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     function hasAlert() {
       try {
         // alertText will throw an exception if no alert is presented.
+        browser.pause(1000);
         browser.alertText();
         return true;
       } catch (e) {
@@ -56,7 +57,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
 
     it('presents prompt on unload', () => {
       browser.click('button#prompt');
-      browser.refresh();
+      browser.execute('location.reload(true);');
 
       expect(hasAlert()).to.equal(true);
     });
@@ -64,7 +65,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     it('does not present prompt on unload if no navigation prompts present', () => {
       browser.alertDismiss();
       browser.click('button#prompt');
-      browser.refresh();
+      browser.execute('location.reload(true);');
 
       expect(hasAlert()).to.equal(false);
     });

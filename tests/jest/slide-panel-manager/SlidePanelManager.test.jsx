@@ -1,51 +1,50 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
-import { withDisclosureManager } from '../../../src/disclosure-manager';
 import SlidePanelManger from '../../../src/slide-panel-manager';
 
-const TestContainer = withDisclosureManager(({ id }) => (
-  <button id={id} type="button">Hello World</button>
-));
+const TestChild = () => <div />;
 
-describe('ApplicationModalManager', () => {
-  const mountModalManager = () => mountWithIntl(
-    <SlidePanelManger
-      navigationPromptResolutionOptions={{
-        title: 'Test Title',
-        startMessage: 'Test Start Message',
-        content: <div>Test Content</div>,
-        endMessage: 'Test End Message',
-        acceptButtonText: 'Test Accept Text',
-        rejectButtonText: 'Test Reject Text',
-      }}
-    >
-      <TestContainer id="child-with-disclosure" />
-    </SlidePanelManger>,
-  );
+describe('SlidePanelManger', () => {
+  describe('Snapshots', () => {
+    it('should render with required props', () => {
+      const wrapper = shallow((
+        <SlidePanelManger>
+          <TestChild />
+        </SlidePanelManger>
+      ));
 
-  it('should render the ApplicationModalManager', () => {
-    const content = mountModalManager();
-    expect(content).toMatchSnapshot();
+      expect(wrapper).toMatchSnapshot();
+    });
+
+    it('should render with optional props', () => {
+      const wrapper = shallow((
+        <SlidePanelManger
+          disclosureAccessory={<div>Test Accessory</div>}
+          navigationPromptResolutionOptions={{
+            test: 'options',
+          }}
+        >
+          <TestChild />
+        </SlidePanelManger>
+      ));
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 
-  it('should disclose content in Modal', () => {
-    const content = mountModalManager();
+  describe('DisclosureContainer', () => {
+    it('should wrap disclosed content in a DisclosureContainer with default prompt options', () => {
+      const promptOptions = { test: 'options' };
 
-    return new Promise((resolve, reject) => {
-      const childDisclosureManager = content.find('#child-with-disclosure').getElements()[1].props.disclosureManager;
-      childDisclosureManager.disclose({
-        preferredType: 'panel',
-        size: 'large',
-        content: {
-          key: 'DISCLOSE_KEY',
-          component: <TestContainer id="test-panel" />,
-        },
-      }).then(resolve).catch(reject);
-    })
-      .then(() => {
-        content.update();
-        expect(content).toMatchSnapshot();
-      });
+      const wrapper = shallow((
+        <SlidePanelManger
+          navigationPromptResolutionOptions={promptOptions}
+        >
+          <TestChild />
+        </SlidePanelManger>
+      ));
+
+      const disclosureWrapper = wrapper.props().withDisclosureContainer(<div>Test Disclosure Content</div>);
+      expect(disclosureWrapper.props.navigationPromptResolutionOptions).toBeDefined();
+    });
   });
 });

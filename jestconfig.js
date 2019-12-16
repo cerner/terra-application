@@ -1,7 +1,18 @@
 module.exports = {
+  collectCoverage: true,
+  coverageDirectory: 'tests/jest/reports/coverage',
   collectCoverageFrom: [
-    '/src/**.js',
-    '/src/**.jsx',
+    'src/**/*.js',
+    'src/**/*.jsx',
+  ],
+  coveragePathIgnorePatterns: [
+    'src/terra-dev-site',
+  ],
+  coverageReporters: [
+    'html',
+    'lcov',
+    'cobertura',
+    'text-summary',
   ],
   globalSetup: './jestGlobalSetup.js',
   setupFiles: [

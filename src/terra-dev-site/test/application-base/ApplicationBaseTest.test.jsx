@@ -1,16 +1,17 @@
 import React, { useState, useContext } from 'react';
-import { injectIntl } from 'react-intl';
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
+import { ApplicationIntlContext } from '../../../application-intl';
 
-const ApplicationContentTest = injectIntl(({ intl }) => {
+const ApplicationContentTest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [throwError, setThrowError] = useState(false);
   const [blockUnload, setBlockUnload] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
+  const applicationIntl = useContext(ApplicationIntlContext);
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
@@ -28,7 +29,7 @@ const ApplicationContentTest = injectIntl(({ intl }) => {
     <p>
       Active Locale:
       {' '}
-      {intl.locale}
+      {applicationIntl.locale}
     </p>
   );
 
@@ -79,7 +80,7 @@ const ApplicationContentTest = injectIntl(({ intl }) => {
       {navigationPromptTest}
     </div>
   );
-});
+};
 
 const ApplicationBaseTest = () => (
   <ApplicationBase locale="en-US">

@@ -3,6 +3,17 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Adding ApplicationNavigation component with framework integration.
+* Adding ApplicationIntlContext and integrating throughout.
+* Adding Demo page for user demonstration and guidance.
+* Adding getUnsavedChangesPromptOptions utility function that generates NavigationPromptCheckpoint prompt configurations.
+
+### Changed
+* Using getUnsavedChangesPromptOptions to generate default navigation prompt options within ModalManager/SlidePanelManager if prompt options are not otherwise provided.
+
+### Fixed
+* Fix jest test by updating jest snapshot.
 
 1.14.2 - (November 22, 2019)
 ------------------

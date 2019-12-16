@@ -2,7 +2,7 @@ import React from 'react';
 
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
 
-describe('Application', () => {
+describe('ApplicationBase', () => {
   it('should render with minimal props', () => {
     const wrapper = shallow((
       <ApplicationBase locale="en">

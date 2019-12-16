@@ -50,6 +50,10 @@
         "Promise",
         "Map"
       ]
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "allowImportExportEverywhere": true
     }
   },
   "stylelint": {
@@ -90,11 +94,12 @@
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de'] "
+    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']"
   },
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
+    "terra-application-navigation": "1.11.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
     "terra-disclosure-manager": "^4.27.0",

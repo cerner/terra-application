@@ -20,7 +20,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('it rejects the closure and keeps the modal open', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
     Terra.validates.element('3. root modal-on close-rejected prompt', { selector });
@@ -54,7 +54,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('rejects the closure and keeps the modal open', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .disclose-tiny');
     Terra.validates.element('6. nested modal-on back-rejected prompt', { selector });
@@ -67,7 +67,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('accepts the go back and displays the previous modal', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
   });
 
@@ -77,7 +77,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('successfully closes the modal', () => {
-    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
+    browser.click('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     expect(browser.isExisting('[class*="slide-group"] #DemoContainer-1 .disclose-tiny')).to.be.false;
     Terra.validates.element('9. modal-closed', { selector });
   });

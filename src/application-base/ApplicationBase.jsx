@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Base from 'terra-base';
@@ -6,8 +6,9 @@ import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
-import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import { ApplicationIntlProvider } from '../application-intl';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -106,19 +107,23 @@ const ApplicationBase = ({
         translationsLoadingPlaceholder={translationsLoadingPlaceholder}
         locale={locale}
       >
-        <ActiveBreakpointProvider>
-          <ApplicationErrorBoundary>
-            <NavigationPromptCheckpoint
-              onPromptChange={(registeredPrompts) => {
-                registeredPromptsRef.current = registeredPrompts;
-              }}
-            >
-              <ApplicationLoadingOverlayProvider>
-                {children}
-              </ApplicationLoadingOverlayProvider>
-            </NavigationPromptCheckpoint>
-          </ApplicationErrorBoundary>
-        </ActiveBreakpointProvider>
+        <ApplicationErrorBoundary>
+          <ApplicationIntlProvider>
+            <ActiveBreakpointProvider>
+              <NavigationPromptCheckpoint
+                onPromptChange={(registeredPrompts) => {
+                  registeredPromptsRef.current = registeredPrompts;
+                }}
+              >
+                <ApplicationLoadingOverlayProvider>
+                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                    {children}
+                  </Suspense>
+                </ApplicationLoadingOverlayProvider>
+              </NavigationPromptCheckpoint>
+            </ActiveBreakpointProvider>
+          </ApplicationIntlProvider>
+        </ApplicationErrorBoundary>
       </Base>
     </ThemeProvider>
   );

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Application should render with all props 1`] = `
+exports[`ApplicationBase should render with all props 1`] = `
 <ThemeProvider
   className="application-theme-provider"
   isGlobalTheme={true}
@@ -20,24 +20,35 @@ exports[`Application should render with all props 1`] = `
       </div>
     }
   >
-    <ActiveBreakpointProvider>
-      <ApplicationErrorBoundary>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <div>
-              content
-            </div>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ApplicationErrorBoundary>
-    </ActiveBreakpointProvider>
+    <ApplicationErrorBoundary>
+      <InjectIntl(Component)>
+        <ActiveBreakpointProvider>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  content
+                </div>
+              </Suspense>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ActiveBreakpointProvider>
+      </InjectIntl(Component)>
+    </ApplicationErrorBoundary>
   </Base>
 </ThemeProvider>
 `;
 
-exports[`Application should render with minimal props 1`] = `
+exports[`ApplicationBase should render with minimal props 1`] = `
 <ThemeProvider
   className="application-theme-provider fill"
   isGlobalTheme={false}
@@ -47,19 +58,30 @@ exports[`Application should render with minimal props 1`] = `
     locale="en"
     strictMode={false}
   >
-    <ActiveBreakpointProvider>
-      <ApplicationErrorBoundary>
-        <withPromptRegistration(NavigationPromptCheckpoint)
-          onPromptChange={[Function]}
-        >
-          <ApplicationLoadingOverlayProvider>
-            <div>
-              content
-            </div>
-          </ApplicationLoadingOverlayProvider>
-        </withPromptRegistration(NavigationPromptCheckpoint)>
-      </ApplicationErrorBoundary>
-    </ActiveBreakpointProvider>
+    <ApplicationErrorBoundary>
+      <InjectIntl(Component)>
+        <ActiveBreakpointProvider>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  content
+                </div>
+              </Suspense>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ActiveBreakpointProvider>
+      </InjectIntl(Component)>
+    </ApplicationErrorBoundary>
   </Base>
 </ThemeProvider>
 `;

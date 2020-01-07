@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.15.0 - (January 7, 2020)
+------------------
 ### Added
 * Adding ApplicationNavigation component with framework integration.
 * Adding ApplicationIntlContext and integrating throughout.

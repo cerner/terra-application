@@ -99,7 +99,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
-    "terra-application-navigation": "1.11.0",
+    "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
     "terra-disclosure-manager": "^4.27.0",

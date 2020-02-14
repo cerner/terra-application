@@ -10,6 +10,7 @@ import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
+import Expand from '../../../../filter/Expand';
 
 import styles from './AppPage.module.scss';
 
@@ -65,6 +66,7 @@ const AppPage = ({ pageName }) => {
       <LoadingOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
+      <Expand />
     </div>
   );
 };

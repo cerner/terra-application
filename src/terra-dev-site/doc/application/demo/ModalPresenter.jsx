@@ -12,6 +12,7 @@ import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-
 
 import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';
+import Expand from '../../../../filter/Expand';
 
 const cx = classNames.bind(styles);
 
@@ -85,6 +86,7 @@ const ModalContent = ({ name, onSubmit }) => {
           <p>Press the button below to throw an exception that will be caught and handled by the framework.</p>
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <PendingActionToggle />
+          <Expand />
         </div>
       </Scroll>
     </>

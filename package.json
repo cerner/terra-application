@@ -100,8 +100,10 @@
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
     "terra-application-navigation": "1.11.0",
+    "terra-action-footer": "^2.33.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
+    "terra-button": "^3.31.0",
     "terra-disclosure-manager": "^4.27.0",
     "terra-content-container": "^3.14.0",
     "terra-doc-template": "^2.2.0",
@@ -110,6 +112,7 @@
     "terra-overlay": "^3.32.0",
     "terra-scroll": "^2.18.0",
     "terra-slide-panel-manager": "^5.19.0",
+    "terra-spacer": "^3.29.0",
     "terra-status-view": "^4.10.0",
     "terra-theme-provider": "^3.15.0",
     "uuid": "^3.0.0"

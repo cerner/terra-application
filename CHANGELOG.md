@@ -4,6 +4,11 @@ Changelog
 Unreleased
 ----------
 
+1.17.0 - (February 18, 2020)
+------------------
+### Changed
+* Open up the version for terra-application-navigation
+
 1.16.0 - (January 28, 2020)
 ------------------
 ### Changed

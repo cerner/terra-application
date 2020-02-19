@@ -4,7 +4,7 @@
 const DEFAULT_LOCALE = 'en';
 
 /**
- * Returns a boolean indicating of the locale is included in the supported list.
+ * Returns a boolean indicating if the locale is supported.
  * @param {string} locale - The locale.
  * @returns {bool} - A boolean indicating the locale is supported.
  */
@@ -18,7 +18,7 @@ const isSupported = (locale) => {
 
 /**
  * Filters the user's preferred languages from the browser and returns the first language found that is included in the supported locale list.
- * @returns {string|null} - A supported locale. Null if one cannot be found.
+ * @returns {string|null} - A supported locale. Null if not found.
  */
 const filterLanguages = () => {
   if (navigator.languages && navigator.languages.length > 0) {

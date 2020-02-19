@@ -12,9 +12,7 @@ const DemoAppIndex = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
 
   return (
-    <ApplicationBase
-      locale={applicationIntl.locale || 'en-US'}
-    >
+    <ApplicationBase locale={applicationIntl.locale}>
       <ModalManager>
         <DemoAppNavigation />
       </ModalManager>

@@ -14,6 +14,7 @@ import getBrowserLocale from '../browser-locale';
 import styles from './ApplicationBase.module.scss';
 
 const cx = classNames.bind(styles);
+
 const browserLocale = getBrowserLocale();
 
 const propTypes = {

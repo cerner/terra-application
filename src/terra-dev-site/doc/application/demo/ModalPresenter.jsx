@@ -13,6 +13,9 @@ import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-
 import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';
 import Expand from '../../../../filter/Expand';
+import Expand2 from '../../../../filter/Expand2';
+import Expand3 from '../../../../filter/Expand3';
+import NativeSelect from '../../../../filter/NativeSelect';
 
 const cx = classNames.bind(styles);
 
@@ -87,6 +90,9 @@ const ModalContent = ({ name, onSubmit }) => {
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <PendingActionToggle />
           <Expand />
+          <Expand2 />
+          <Expand3 />
+          <NativeSelect />
         </div>
       </Scroll>
     </>

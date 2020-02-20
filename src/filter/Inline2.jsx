@@ -1,7 +1,7 @@
 import React, {
   useState,
 } from 'react';
-import DualListbox from './DualListbox';
+import SingleListbox from './SingleListbox';
 import { Utils } from 'terra-list';
 import ContentContainer from 'terra-content-container';
 import ActionFooter from 'terra-action-footer';
@@ -17,13 +17,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
 
   const onClick = (event, metaData) => {
-    setSelectedKeys(Utils.updatedMultiSelectedKeys(selectedKeys, metaData.key));
-  };
-  const onSelectAll = (event) => {
-    setSelectedKeys(data.map(item => item.key));
-  };
-  const onRemoveAll = (event) => {
-    setSelectedKeys([]);
+    setSelectedKeys([metaData.key]);
   };
   const onSubmit = (event) => {
     onChange(event, selectedKeys);
@@ -31,26 +25,18 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
   };
 
   const availableItems = [];
-  const selectedItems = [];
   data.forEach(option => {
-    if (selectedKeys.indexOf(option.key) >= 0) {
-      selectedItems.push({
-        key: option.key,
-        node: option.text,
-        metaData: { key: option.key },
-      });
-    } else {
-      availableItems.push({
-        key: option.key,
-        node: option.text,
-        metaData: { key: option.key },
-      });
-    }
+    availableItems.push({
+      key: option.key,
+      node: option.text,
+      metaData: { key: option.key },
+      isSelected: selectedKeys.indexOf(option.key) >= 0,
+    });
   });
 
   return (
     <>
-      <DisclosureManagerHeaderAdapter title={'Multi Filter'} />
+      <DisclosureManagerHeaderAdapter title={'Single Filter'} />
       <ContentContainer
         fill
         footer={(
@@ -63,20 +49,11 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
           />
         )}
       >
-        <DualListbox
-          columnOneData={{
-            // isLoading: true,
+        <SingleListbox
+          columnData={{
             onSearch: () => {},
-            onSelectAll: onSelectAll,
             onSelectItem: onClick,
-            selectAllTitle: '>>',
             items: availableItems,
-          }}
-          columnTwoData={{
-            onSelectAll: onRemoveAll,
-            onSelectItem: onClick,
-            selectAllTitle: '<<',
-            items: selectedItems,
           }}
         />
       </ContentContainer>

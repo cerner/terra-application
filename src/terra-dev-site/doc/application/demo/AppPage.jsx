@@ -11,6 +11,9 @@ import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import Expand from '../../../../filter/Expand';
+import Expand2 from '../../../../filter/Expand2';
+import Expand3 from '../../../../filter/Expand3';
+import NativeSelect from '../../../../filter/NativeSelect';
 
 import styles from './AppPage.module.scss';
 
@@ -67,6 +70,9 @@ const AppPage = ({ pageName }) => {
       <ModalPresenter />
       <PendingActionToggle />
       <Expand />
+      <Expand2 />
+      <Expand3 />
+      <NativeSelect />
     </div>
   );
 };

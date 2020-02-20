@@ -1,0 +1,35 @@
+:local {
+  .outer {
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+
+  .select {
+    border: none;
+    background-color:#fff;
+    color:#1c1f21;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.143rem;
+    line-height: 1.75;
+    padding-bottom: 0;
+    padding-left: 0.42857rem;
+    padding-right: 0;
+    padding-top: 0;
+    position: relative;
+
+    &:focus {
+      background-image: none;
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: 0 0;
+      border-color: #4cb2e9;
+      box-shadow:0 0 0 2px rgba(76, 178, 233, 0.25);
+      outline: none;
+      transition-duration: 0.5s;
+      transition-property: background-size;
+      transition-timing-function: ease;
+    }
+  }
+}

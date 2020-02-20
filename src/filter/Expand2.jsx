@@ -1,7 +1,7 @@
 import React, {
   useState,
 } from 'react';
-import Inline from './Inline';
+import Inline2 from './Inline2';
 import selectData from './mock-select.js';
 import {
   withDisclosureManager,
@@ -32,10 +32,10 @@ const Expand = ({ disclosureManager }) => {
       onClick={() => {
         disclosureManager.disclose({
           preferredType: 'modal',
-          dimensions: { height: '420', width: '640' },
+          dimensions: { height: '420', width: '320' },
           content: {
-            key: 'magic-muffin-filter',
-            component: <Inline onChange={onClose} data={selectData} selected={selectedKeys} />,
+            key: 'magic-muffin-filter2',
+            component: <Inline2 onChange={onClose} data={selectData} selected={selectedKeys} />,
           },
         });
       }}

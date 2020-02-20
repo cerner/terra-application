@@ -23,6 +23,7 @@ const propTypes = {
     key: PropTypes.string,
     metaData: PropTypes.object,
     node: PropTypes.node,
+    isSelected: PropTypes.bool,
   })),
 };
 
@@ -50,6 +51,7 @@ const FilterBox = ({
         isSelectable
         metaData={item.metaData}
         onSelect={onSelectItem}
+        isSelected={item.isSelected}
       >
         {item.node}
       </Item>

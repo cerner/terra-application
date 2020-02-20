@@ -1,13 +1,13 @@
 import React, {
   useState,
 } from 'react';
-import Inline from './Inline';
+import Inline3 from './Inline3';
 import selectData from './mock-select.js';
 import {
   withDisclosureManager,
 } from '../disclosure-manager';
 
-const Expand = ({ disclosureManager }) => {
+const Expand3 = ({ disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState([]);
 
   const style2 = {
@@ -32,10 +32,10 @@ const Expand = ({ disclosureManager }) => {
       onClick={() => {
         disclosureManager.disclose({
           preferredType: 'modal',
-          dimensions: { height: '420', width: '640' },
+          dimensions: { height: '420', width: '320' },
           content: {
-            key: 'magic-muffin-filter',
-            component: <Inline onChange={onClose} data={selectData} selected={selectedKeys} />,
+            key: 'magic-muffin-filter3',
+            component: <Inline3 onChange={onClose} data={selectData} selected={selectedKeys} />,
           },
         });
       }}
@@ -45,4 +45,4 @@ const Expand = ({ disclosureManager }) => {
   );
 };
 
-export default withDisclosureManager(Expand);
+export default withDisclosureManager(Expand3);

@@ -52,7 +52,6 @@ const FilterBox = ({
         metaData={item.metaData}
         onSelect={onSelectItem}
         isSelected={item.isSelected}
-        className={cx('item')}
       >
         {item.node}
       </Item>
@@ -81,6 +80,7 @@ const FilterBox = ({
               role="listbox"
               paddingStyle="compact"
               dividerStyle="bottom-only"
+              className={cx('list')}
             >
               {listItems}
             </List>

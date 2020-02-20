@@ -42,9 +42,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
         footer={(
           <ActionFooter
             end={(
-              <Spacer isInlineBlock marginRight="medium">
-                <Button onClick={onSubmit} text="Submit" variant={Button.Opts.Variants.EMPHASIS} />
-              </Spacer>
+              <Button onClick={onSubmit} text="Submit" variant={Button.Opts.Variants.EMPHASIS} />
             )}
           />
         )}

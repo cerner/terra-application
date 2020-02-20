@@ -69,7 +69,7 @@ const FilterBox = ({
             <div>{title}</div>
             <SearchField onSearch={onSearch} className={cx('input')} />
           </div>
-          ) : undefined
+          ) : <div>{title}</div>
         }
         footer={onSelectAll ? <button className={cx('footer')} onClick={onSelectAll}>{selectAllTitle}</button> : undefined}
       >

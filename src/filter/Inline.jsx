@@ -66,6 +66,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
         <DualListbox
           columnOneData={{
             // isLoading: true,
+            title: 'Available',
             onSearch: () => {},
             onSelectAll: onSelectAll,
             onSelectItem: onClick,
@@ -73,6 +74,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
             items: availableItems,
           }}
           columnTwoData={{
+            title: 'Selected',
             onSelectAll: onRemoveAll,
             onSelectItem: onClick,
             selectAllTitle: '<<',

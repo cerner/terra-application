@@ -88,6 +88,7 @@ describe('browser-locale/index', () => {
       Object.defineProperty(navigator, 'languages', { get() { return undefined; }, configurable: true });
       Object.defineProperty(navigator, 'language', { get() { return undefined; }, configurable: true });
       Object.defineProperty(navigator, 'userLanguage', { get() { return undefined; }, configurable: true });
+      Object.defineProperty(navigator, 'browserLanguage', { get() { return undefined; }, configurable: true });
     });
 
     afterEach(() => {
@@ -96,6 +97,7 @@ describe('browser-locale/index', () => {
       Object.defineProperty(navigator, 'languages', { get() { return undefined; }, configurable: true });
       Object.defineProperty(navigator, 'language', { get() { return undefined; }, configurable: true });
       Object.defineProperty(navigator, 'userLanguage', { get() { return undefined; }, configurable: true });
+      Object.defineProperty(navigator, 'browserLanguage', { get() { return undefined; }, configurable: true });
     });
 
     it('should return the first supported locale based on the users languages preference', () => {
@@ -118,6 +120,14 @@ describe('browser-locale/index', () => {
       global.TERRA_AGGREGATED_LOCALES = ['en', 'en-US', 'fr'];
 
       Object.defineProperty(navigator, 'userLanguage', { get() { return 'fr'; }, configurable: true });
+
+      expect(getBrowserLocale()).toBe('fr');
+    });
+
+    it('should return the browser language if it is supported and navigator language, languages, and userLanguage is undefined or unsupported', () => {
+      global.TERRA_AGGREGATED_LOCALES = ['en', 'en-US', 'fr'];
+
+      Object.defineProperty(navigator, 'browserLanguage', { get() { return 'fr'; }, configurable: true });
 
       expect(getBrowserLocale()).toBe('fr');
     });

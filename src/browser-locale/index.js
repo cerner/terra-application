@@ -53,6 +53,10 @@ const getBrowserLocale = () => {
     return navigator.userLanguage;
   }
 
+  if (isSupported(navigator.browserLanguage)) {
+    return navigator.browserLanguage;
+  }
+
   return DEFAULT_LOCALE;
 };
 

@@ -4,6 +4,12 @@ Changelog
 Unreleased
 ----------
 
+### Changed
+* Updated locale to be an optional prop for application base
+
+### Added
+* Added a fallback strategy for obtaining the preferred language from the browser if no locale is provided in application base
+
 1.17.0 - (February 18, 2020)
 ------------------
 ### Changed

@@ -52,6 +52,7 @@ const FilterBox = ({
         metaData={item.metaData}
         onSelect={onSelectItem}
         isSelected={item.isSelected}
+        className={cx('item')}
       >
         {item.node}
       </Item>
@@ -72,14 +73,20 @@ const FilterBox = ({
         }
         footer={onSelectAll ? <button className={cx('footer')} onClick={onSelectAll}>{selectAllTitle}</button> : undefined}
       >
-        {
-          isLoading ? 
-          <LoadingOverlay isOpen isAnimated isRelativeToContainer /> :
-          <List role="listbox">
-            {listItems}
-          </List>
-          // <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} /> // use for loading words
-        }
+        <div className={cx('inner-scroll')}>
+          {
+            isLoading ? 
+            <LoadingOverlay isOpen isAnimated isRelativeToContainer /> :
+            <List
+              role="listbox"
+              paddingStyle="compact"
+              dividerStyle="bottom-only"
+            >
+              {listItems}
+            </List>
+            // <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} /> // use for loading words
+          }
+        </div>
       </ContentContainer>
     </div>
   );

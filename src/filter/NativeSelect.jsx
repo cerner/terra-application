@@ -15,6 +15,7 @@ const NativeSelect = () => {
         <option value="mercedes">Mercedes</option>
         <option value="audi">Audi</option>
       </select>
+      <div className={cx('arrow-icon')} />
     </div>
   );
 };

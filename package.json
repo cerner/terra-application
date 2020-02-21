@@ -107,6 +107,7 @@
     "terra-disclosure-manager": "^4.27.0",
     "terra-content-container": "^3.14.0",
     "terra-doc-template": "^2.2.0",
+    "terra-mixins": "^1.35.0",
     "terra-modal-manager": "^6.20.0",
     "terra-navigation-prompt": "^1.18.0",
     "terra-overlay": "^3.32.0",

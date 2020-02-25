@@ -15,6 +15,7 @@ import {
 
 const Inline = ({ onChange, data, selected, disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
+  const [searchText, setSearchText] = useState('');
 
   const onClick = (event, metaData) => {
     setSelectedKeys(Utils.updatedMultiSelectedKeys(selectedKeys, metaData.key));
@@ -29,10 +30,14 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
     onChange(event, selectedKeys);
     disclosureManager.dismiss();
   };
+  const onSearch = (text) => {
+    setSearchText(text);
+  };
 
   const availableItems = [];
   const selectedItems = [];
-  data.forEach(option => {
+
+  data.forEach((option, index) => {
     if (selectedKeys.indexOf(option.key) >= 0) {
       selectedItems.push({
         key: option.key,
@@ -40,11 +45,13 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
         metaData: { key: option.key },
       });
     } else {
-      availableItems.push({
-        key: option.key,
-        node: option.text,
-        metaData: { key: option.key },
-      });
+      if (!searchText.length || (searchText.length && index === 0)) {
+        availableItems.push({
+          key: option.key,
+          node: option.text,
+          metaData: { key: option.key },
+        });
+      }
     }
   });
 
@@ -65,7 +72,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
           columnOneData={{
             // isLoading: true,
             title: 'Available',
-            onSearch: () => {},
+            onSearch,
             onSelectAll: onSelectAll,
             onSelectItem: onClick,
             selectAllTitle: '>>',

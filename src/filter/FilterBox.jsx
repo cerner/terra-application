@@ -66,7 +66,7 @@ const FilterBox = ({
           onSearch ? (
           <div className={cx('header')}>
             <div>{title}</div>
-            <SearchField onSearch={onSearch} className={cx('input')} />
+            <SearchField onSearch={onSearch} onInvalidSearch={onSearch} className={cx('input')} />
           </div>
           ) : <div>{title}</div>
         }

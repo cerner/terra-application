@@ -70,9 +70,13 @@ const AppPage = ({ pageName }) => {
       <LoadingOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
+      <p>Multi-select Filtered Dialog</p>
       <Expand />
+      <p>Single-select Filtered Dialog</p>
       <Expand2 />
+      <p>Multi-select Non-filtered Dialog</p>
       <Expand3 />
+      <p>Single-select Non-filtered Inline</p>
       <SingleListbox
         columnData={{
           onSearch: () => {},
@@ -81,9 +85,15 @@ const AppPage = ({ pageName }) => {
             key: 'opt',
             node: 'option 1',
             metaData: { key: 'opt' },
+          },
+          {
+            key: 'opt2',
+            node: 'option 2',
+            metaData: { key: 'opt2' },
           }],
         }}
       />
+      <p>Single Select Native</p>
       <NativeSelect />
     </div>
   );

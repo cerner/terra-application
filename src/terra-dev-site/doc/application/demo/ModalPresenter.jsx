@@ -15,6 +15,7 @@ import styles from './ModalPresenter.module.scss';
 import Expand from '../../../../filter/Expand';
 import Expand2 from '../../../../filter/Expand2';
 import Expand3 from '../../../../filter/Expand3';
+import SingleListbox from '../../../../filter/SingleListbox';
 import NativeSelect from '../../../../filter/NativeSelect';
 
 const cx = classNames.bind(styles);
@@ -89,9 +90,30 @@ const ModalContent = ({ name, onSubmit }) => {
           <p>Press the button below to throw an exception that will be caught and handled by the framework.</p>
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <PendingActionToggle />
+          <p>Multi-select Filtered Dialog</p>
           <Expand />
+          <p>Single-select Filtered Dialog</p>
           <Expand2 />
+          <p>Multi-select Non-filtered Dialog</p>
           <Expand3 />
+          <p>Single-select Non-filtered Inline</p>
+          <SingleListbox
+            columnData={{
+              onSearch: () => {},
+              onSelectItem: () => {},
+              items: [{
+                key: 'opt',
+                node: 'option 1',
+                metaData: { key: 'opt' },
+              },
+              {
+                key: 'opt2',
+                node: 'option 2',
+                metaData: { key: 'opt2' },
+              }],
+            }}
+          />
+          <p>Single Select Native</p>
           <NativeSelect />
         </div>
       </Scroll>

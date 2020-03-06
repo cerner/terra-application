@@ -1,4 +1,6 @@
-import React from 'react';
+import React, {
+  useState,
+} from 'react';
 import PropTypes from 'prop-types';
 import List, { Item } from 'terra-list';
 import ContentContainer from 'terra-content-container';
@@ -6,6 +8,7 @@ import SearchField from 'terra-search-field'
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import LoadingOverlay from 'terra-overlay/lib/LoadingOverlay';
 import classNames from 'classnames/bind';
+import FancyList from './FancyList';
 import styles from './FilterBox.module.scss';
 
 const cx = classNames.bind(styles);
@@ -44,19 +47,44 @@ const FilterBox = ({
   items,
   ...customProps
 }) => {
-  const listItems = items.map(item => {
-    return (
-      <Item
-        key={item.key}
-        isSelectable
-        metaData={item.metaData}
-        onSelect={onSelectItem}
-        isSelected={item.isSelected}
-      >
-        {item.node}
-      </Item>
-    );
-  })
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  // const listItems = items.map(item => {
+  //   return (
+  //     <Item
+  //       key={item.key}
+  //       isSelectable
+  //       metaData={item.metaData}
+  //       onSelect={onSelectItem}
+  //       isSelected={item.isSelected}
+  //     >
+  //       {item.node}
+  //     </Item>
+  //   );
+  // })
+
+  const onFirstItem = () => {
+    setCurrentIndex(0);
+  };
+
+  const onLastItem = () => {
+    setCurrentIndex(items.length - 1);
+  };
+
+  const onNextItem = () => {
+    const newIndex = currentIndex + 1;
+    const lastIndex = items.length - 1
+    setCurrentIndex(newIndex > lastIndex ? lastIndex : newIndex);
+  };
+
+  const onPreviousItem = () => {
+    const newIndex = currentIndex - 1;
+    setCurrentIndex(newIndex < 0 ? 0 : newIndex);
+  };
+
+  // const handleSelection = () => {
+
+  // };
 
   return (
     <div className={cx('filter')}>
@@ -76,14 +104,18 @@ const FilterBox = ({
           {
             isLoading ? 
             <LoadingOverlay isOpen isAnimated isRelativeToContainer /> :
-            <List
-              role="listbox"
-              paddingStyle="compact"
-              dividerStyle="bottom-only"
-              className={cx('list')}
-            >
-              {listItems}
-            </List>
+            <FancyList
+              id={id}
+              description={description}
+              title={title}
+              onSelectItem={onSelectItem}
+              onPrevious={onPreviousItem}
+              onNext={onNextItem}
+              onFirst={onFirstItem}
+              onLast={onLastItem}
+              currentFocusKey={items[currentIndex] ? items[currentIndex].key : null}
+              items={items}
+            />
             // <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} /> // use for loading words
           }
         </div>

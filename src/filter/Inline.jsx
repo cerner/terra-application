@@ -17,14 +17,35 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
   const [searchText, setSearchText] = useState('');
 
-  const onClick = (event, metaData) => {
-    setSelectedKeys(Utils.updatedMultiSelectedKeys(selectedKeys, metaData.key));
+  const [activeAvailableKeys, setActiveAvailableKeys] = useState([]);
+  const [activeSelectedKeys, setActiveSelectedKeys]  = useState([]);
+
+  const onClickAvailable = (event, metaData) => {
+    setActiveAvailableKeys(Utils.updatedMultiSelectedKeys(activeAvailableKeys, metaData.key));
   };
+  const onClickSelected = (event, metaData) => {
+    setActiveSelectedKeys(Utils.updatedMultiSelectedKeys(activeSelectedKeys, metaData.key));
+  };
+
   const onSelectAll = (event) => {
-    setSelectedKeys(data.map(item => item.key));
+    let keys = selectedKeys;
+    activeAvailableKeys.forEach(key => {
+      // if (selectedKeys.indexOf(key) > 0) {
+        keys = Utils.updatedMultiSelectedKeys(keys, key)
+      // }
+    });
+    setSelectedKeys(keys);
+    setActiveAvailableKeys([]);
   };
   const onRemoveAll = (event) => {
-    setSelectedKeys([]);
+    let keys = selectedKeys;
+    activeSelectedKeys.forEach(key => {
+      // if (selectedKeys.indexOf(key) > 0) {
+        keys = Utils.updatedMultiSelectedKeys(keys, key)
+      // }
+    });
+    setSelectedKeys(keys);
+    setActiveSelectedKeys([]);
   };
   const onSubmit = (event) => {
     onChange(event, selectedKeys);
@@ -43,6 +64,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
         key: option.key,
         node: option.text,
         metaData: { key: option.key },
+        isSelected: activeSelectedKeys.indexOf(option.key) >= 0,
       });
     } else {
       if (!searchText.length || (searchText.length && index === 0)) {
@@ -50,6 +72,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
           key: option.key,
           node: option.text,
           metaData: { key: option.key },
+          isSelected: activeAvailableKeys.indexOf(option.key) >= 0,
         });
       }
     }
@@ -74,14 +97,14 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
             title: 'Available',
             onSearch,
             onSelectAll: onSelectAll,
-            onSelectItem: onClick,
+            onSelectItem: onClickAvailable,
             selectAllTitle: '>>',
             items: availableItems,
           }}
           columnTwoData={{
             title: 'Selected',
             onSelectAll: onRemoveAll,
-            onSelectItem: onClick,
+            onSelectItem: onClickSelected,
             selectAllTitle: '<<',
             items: selectedItems,
           }}

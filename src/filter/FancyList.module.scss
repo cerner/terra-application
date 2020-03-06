@@ -1,0 +1,34 @@
+:local {
+  .fancy {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    width: 100%;
+
+    &:focus {
+      outline: 2px dashed black;
+      outline-offset: -2px;
+    }
+  }
+
+  .item {
+    line-height: 1.42857;
+    padding-bottom: 0.7143rem;
+    padding-left: 0.7143rem;
+    padding-right: 0.7143rem;
+    padding-top: 0.7143rem;
+  }
+
+  .selected {
+    background-color: pink;
+  }
+
+  .focused {
+    background-color: lightblue;
+  }
+
+  .selected.focused {
+    background-color: lightseagreen;
+  }
+}

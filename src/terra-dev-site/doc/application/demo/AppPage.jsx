@@ -13,6 +13,7 @@ import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import Expand from '../../../../filter/Expand';
 import Expand2 from '../../../../filter/Expand2';
 import Expand3 from '../../../../filter/Expand3';
+import SingleListbox from '../../../../filter/SingleListbox';
 import NativeSelect from '../../../../filter/NativeSelect';
 
 import styles from './AppPage.module.scss';
@@ -72,6 +73,17 @@ const AppPage = ({ pageName }) => {
       <Expand />
       <Expand2 />
       <Expand3 />
+      <SingleListbox
+        columnData={{
+          onSearch: () => {},
+          onSelectItem: () => {},
+          items: [{
+            key: 'opt',
+            node: 'option 1',
+            metaData: { key: 'opt' },
+          }],
+        }}
+      />
       <NativeSelect />
     </div>
   );

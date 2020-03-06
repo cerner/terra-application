@@ -22,6 +22,7 @@ const propTypes = {
   onSelectAll: PropTypes.func,
   onSelectItem: PropTypes.func,
   selectAllTitle: PropTypes.string,
+  useRemove: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
     metaData: PropTypes.object,
@@ -44,6 +45,7 @@ const FilterBox = ({
   onSelectAll,
   onSelectItem,
   selectAllTitle,
+  useRemove,
   items,
   ...customProps
 }) => {
@@ -82,10 +84,6 @@ const FilterBox = ({
     setCurrentIndex(newIndex < 0 ? 0 : newIndex);
   };
 
-  // const handleSelection = () => {
-
-  // };
-
   return (
     <div className={cx('filter')}>
       <ContentContainer
@@ -98,7 +96,15 @@ const FilterBox = ({
           </div>
           ) : <div>{title}</div>
         }
-        footer={onSelectAll ? <button className={cx('footer')} onClick={onSelectAll}>{selectAllTitle}</button> : undefined}
+        footer={onSelectAll ? (
+          <button
+            className={cx('footer')}
+            onClick={onSelectAll}
+            aria-keyshortcuts={useRemove ? 'Alt+ArrowLeft Delete' : 'Alt+ArrowRight Enter' }
+          >
+            {selectAllTitle}
+          </button>
+         ) : undefined}
       >
         <div className={cx('inner-scroll')}>
           {
@@ -113,6 +119,8 @@ const FilterBox = ({
               onNext={onNextItem}
               onFirst={onFirstItem}
               onLast={onLastItem}
+              onSendAll={!useRemove ? onSelectAll : undefined}
+              onRemoveAll={useRemove ? onSelectAll : undefined}
               currentFocusKey={items[currentIndex] ? items[currentIndex].key : null}
               items={items}
             />

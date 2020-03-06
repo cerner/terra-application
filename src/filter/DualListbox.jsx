@@ -44,7 +44,6 @@ const propTypes = {
   }),
 };
 
-
 const Inline = ({
   description,
   isVerticalDisplay,
@@ -52,18 +51,18 @@ const Inline = ({
   columnTwoData,
   ...customProps
 }) => {
-  const createColumn = (columnData) => {
+  const createColumn = (columnData, useRemove) => {
     if (!columnData) {
       return undefined;
     }
-    return <FilterBox {...columnData} />
+    return <FilterBox {...columnData}  useRemove={useRemove} />
   };
 
   return (
     <div className={cx('outer')}>
-      {createColumn(columnOneData)}
+      {createColumn(columnOneData, false)}
       <div className={cx('middle')} />
-      {createColumn(columnTwoData)}
+      {createColumn(columnTwoData, true)}
       <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} />
     </div>
   );

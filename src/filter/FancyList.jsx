@@ -19,6 +19,8 @@ const propTypes = {
   onNext: PropTypes.func,
   onFirst: PropTypes.func,
   onLast: PropTypes.func,
+  onSendAll: PropTypes.func,
+  onRemoveAll: PropTypes.func,
   currentFocusKey: PropTypes.string,
   items: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
@@ -43,6 +45,8 @@ const FilterBox = ({
   onNext,
   onFirst,
   onLast,
+  onSendAll,
+  onRemoveAll,
   items,
   ...customProps
 }) => {
@@ -80,6 +84,14 @@ const FilterBox = ({
       stopIt(event);
       const item = items.find(item => item.key === currentFocusKey);
       onSelectItem(event, item ? item.metaData : null);
+    }
+    if (event.nativeEvent.keyCode === KeyCode.KEY_RETURN) {
+      stopIt(event);
+      onSendAll(event);
+    }
+    if (event.nativeEvent.keyCode === KeyCode.KEY_BACK_SPACE) {
+      stopIt(event);
+      onRemoveAll(event);
     }
   };
 

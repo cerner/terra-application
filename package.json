@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.16.0",
+  "version": "1.17.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <11"
@@ -99,7 +99,7 @@
   "dependencies": {
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
-    "terra-application-navigation": "1.11.0",
+    "terra-application-navigation": "^1.11.0",
     "terra-action-footer": "^2.33.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",

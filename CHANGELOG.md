@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Select/Filter prototypes
 
 1.17.0 - (February 18, 2020)
 ------------------

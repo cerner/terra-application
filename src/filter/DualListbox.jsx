@@ -1,5 +1,5 @@
 import React, {
-  useState,
+// useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
@@ -55,11 +55,11 @@ const Inline = ({
     if (!columnData) {
       return undefined;
     }
-    return <FilterBox {...columnData}  useRemove={useRemove} />
+    return <FilterBox {...columnData} useRemove={useRemove} />;
   };
 
   return (
-    <div className={cx('outer')}>
+    <div {...customProps} className={cx('outer')}>
       {createColumn(columnOneData, false)}
       <div className={cx('middle')} />
       {createColumn(columnTwoData, true)}

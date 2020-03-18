@@ -1,10 +1,10 @@
 import React, {
-  useState,
+// useState,
 } from 'react';
 
 import PropTypes from 'prop-types';
 import * as KeyCode from 'keycode-js';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
+// import VisuallyHiddenText from 'terra-visually-hidden-text';
 import classNames from 'classnames/bind';
 import styles from './FancyList.module.scss';
 
@@ -31,7 +31,6 @@ const propTypes = {
 };
 
 const defaultProps = {
-  isLoading: false,
   items: [],
 };
 
@@ -50,16 +49,15 @@ const FilterBox = ({
   items,
   ...customProps
 }) => {
-  const [currentKey, setCurrentKey] = useState(null);
-
-  const handleOnItemClick = event => {
-    stopIt(event);
-    onSelectItem(event, metaData);
-  };
-
+  // const [currentKey, setCurrentKey] = useState(null);
   const stopIt = event => {
     event.preventDefault();
     event.stopPropagation();
+  };
+
+  const handleOnItemClick = (event, metaData) => {
+    stopIt(event);
+    onSelectItem(event, metaData);
   };
 
   const handleKeyDown = event => {
@@ -71,7 +69,6 @@ const FilterBox = ({
       stopIt(event);
       onLast(event);
     }
-    
     if (event.nativeEvent.keyCode === KeyCode.KEY_DOWN) {
       stopIt(event);
       onNext(event);
@@ -82,8 +79,8 @@ const FilterBox = ({
     }
     if (event.nativeEvent.keyCode === KeyCode.KEY_RETURN || event.nativeEvent.keyCode === KeyCode.KEY_SPACE) {
       stopIt(event);
-      const item = items.find(item => item.key === currentFocusKey);
-      onSelectItem(event, item ? item.metaData : null);
+      const currentItem = items.find(item => item.key === currentFocusKey);
+      onSelectItem(event, currentItem ? currentItem.metaData : null);
     }
     if (event.nativeEvent.keyCode === KeyCode.KEY_RETURN) {
       stopIt(event);
@@ -102,11 +99,12 @@ const FilterBox = ({
       { focused: item.key === currentFocusKey },
     ]);
 
+    /* eslint-disable jsx-a11y/click-events-have-key-events */
     return (
       <li
         {...customProps}
         className={itemClassNames}
-        onClick={handleOnItemClick}
+        onClick={event => handleOnItemClick(event, item.metaData)}
         aria-selected={item.isSelected}
         role="option"
         key={item.key}
@@ -116,6 +114,7 @@ const FilterBox = ({
         {item.node}
       </li>
     );
+    /* eslint-enable jsx-a11y/click-events-have-key-events */
   });
 
   return (

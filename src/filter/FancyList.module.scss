@@ -1,13 +1,13 @@
 :local {
   .fancy {
+    height: 100%;
     list-style: none;
     margin: 0;
     padding: 0;
-    height: 100%;
     width: 100%;
 
     &:focus {
-      outline: 2px dashed black;
+      outline: 2px dashed #000;
       outline-offset: -2px;
     }
   }
@@ -21,14 +21,14 @@
   }
 
   .selected {
-    background-color: pink;
+    background-color: #ffc0cb;
   }
 
   .focused {
-    background-color: lightblue;
+    background-color: #add8e6;
   }
 
   .selected.focused {
-    background-color: lightseagreen;
+    background-color: #20b2aa;
   }
 }

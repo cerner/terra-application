@@ -3,14 +3,19 @@ import React, {
 } from 'react';
 import classNames from 'classnames/bind';
 import Inline from './Inline';
-import selectData from './mock-select.js';
+import selectData from './mock-select';
 import {
   withDisclosureManager,
+  disclosureManagerShape,
 } from '../disclosure-manager';
 
 import styles from './Expand.module.scss';
 
 const cx = classNames.bind(styles);
+
+const propTypes = {
+  disclosureManager: disclosureManagerShape,
+};
 
 const Expand = ({ disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState([]);
@@ -26,8 +31,9 @@ const Expand = ({ disclosureManager }) => {
     <button
       aria-haspopup
       tabIndex="0"
-      role="select"
+      // role="select"
       className={cx('frame')}
+      type="button"
       onClick={() => {
         disclosureManager.disclose({
           preferredType: 'modal',
@@ -48,5 +54,7 @@ const Expand = ({ disclosureManager }) => {
     </button>
   );
 };
+
+Expand.propTypes = propTypes;
 
 export default withDisclosureManager(Expand);

@@ -3,17 +3,17 @@
 :local {
   .outer {
     align-items: center;
-    display: flex;
     border: 1px solid #ccc;
     border-radius: 3px;
+    display: flex;
     position: relative;
     width: 100%;
   }
 
   .select {
     appearance: none;
-    border: none;
-    background-color:#fff;
+    background-color: #fff;
+    border: 0;
     color: #1c1f21;
     cursor: pointer;
     display: flex;
@@ -34,7 +34,7 @@
       background-repeat: no-repeat;
       background-size: 0 0;
       border-color: #4cb2e9;
-      box-shadow:0 0 0 2px rgba(76, 178, 233, 0.25);
+      box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
       outline: none;
       transition-duration: 0.5s;
       transition-property: background-size;

@@ -1,19 +1,31 @@
 import React, {
   useState,
 } from 'react';
-import SingleListbox from './SingleListbox';
-import { Utils } from 'terra-list';
+import PropTypes from 'prop-types';
 import ContentContainer from 'terra-content-container';
 import ActionFooter from 'terra-action-footer';
-import Spacer from 'terra-spacer';
+// import Spacer from 'terra-spacer';
 import Button from 'terra-button';
+import SingleListbox from './SingleListbox';
 import {
   DisclosureManagerHeaderAdapter,
   withDisclosureManager,
-} from  '../disclosure-manager';
+  disclosureManagerShape,
+} from '../disclosure-manager';
 
+const propTypes = {
+  data: PropTypes.array,
+  disclosureManager: disclosureManagerShape,
+  onChange: PropTypes.func,
+  selected: PropTypes.string,
+};
 
-const Inline = ({ onChange, data, selected, disclosureManager }) => {
+const Inline2 = ({
+  onChange,
+  data,
+  selected,
+  disclosureManager,
+}) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
   const [searchText, setSearchText] = useState('');
 
@@ -43,7 +55,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
 
   return (
     <>
-      <DisclosureManagerHeaderAdapter title={'Single Filter'} />
+      <DisclosureManagerHeaderAdapter title="Single Filter" />
       <ContentContainer
         fill
         footer={(
@@ -66,4 +78,6 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
   );
 };
 
-export default withDisclosureManager(Inline);
+Inline2.propTypes = propTypes;
+
+export default withDisclosureManager(Inline2);

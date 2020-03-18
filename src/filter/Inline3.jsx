@@ -1,19 +1,32 @@
 import React, {
   useState,
 } from 'react';
-import MultiSelect from './MultiSelect';
+import PropTypes from 'prop-types';
 import { Utils } from 'terra-list';
 import ContentContainer from 'terra-content-container';
 import ActionFooter from 'terra-action-footer';
-import Spacer from 'terra-spacer';
+// import Spacer from 'terra-spacer';
 import Button from 'terra-button';
+import MultiSelect from './MultiSelect';
 import {
   DisclosureManagerHeaderAdapter,
   withDisclosureManager,
-} from  '../disclosure-manager';
+  disclosureManagerShape,
+} from '../disclosure-manager';
 
+const propTypes = {
+  data: PropTypes.array,
+  disclosureManager: disclosureManagerShape,
+  onChange: PropTypes.func,
+  selected: PropTypes.string,
+};
 
-const Inline3 = ({ onChange, data, selected, disclosureManager }) => {
+const Inline3 = ({
+  onChange,
+  data,
+  selected,
+  disclosureManager,
+}) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
 
   const onClick = (event, metaData) => {
@@ -36,7 +49,7 @@ const Inline3 = ({ onChange, data, selected, disclosureManager }) => {
 
   return (
     <>
-      <DisclosureManagerHeaderAdapter title={'Multi Select'} />
+      <DisclosureManagerHeaderAdapter title="Multi Select" />
       <ContentContainer
         fill
         footer={(
@@ -57,5 +70,7 @@ const Inline3 = ({ onChange, data, selected, disclosureManager }) => {
     </>
   );
 };
+
+Inline3.propTypes = propTypes;
 
 export default withDisclosureManager(Inline3);

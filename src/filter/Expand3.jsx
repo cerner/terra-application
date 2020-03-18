@@ -3,22 +3,22 @@ import React, {
 } from 'react';
 import classNames from 'classnames/bind';
 import Inline3 from './Inline3';
-import selectData from './mock-select.js';
+import selectData from './mock-select';
 import {
   withDisclosureManager,
+  disclosureManagerShape,
 } from '../disclosure-manager';
 
 import styles from './Expand.module.scss';
 
 const cx = classNames.bind(styles);
+
+const propTypes = {
+  disclosureManager: disclosureManagerShape,
+};
+
 const Expand3 = ({ disclosureManager }) => {
   const [selectedKeys, setSelectedKeys] = useState([]);
-
-  const style2 = {
-    backgroundColor: 'pink',
-    height: '30px',
-    width: '100%',
-  };
 
   const onClose = (event, keys) => {
     // const keys = metaArray.map((metaData) => {
@@ -29,9 +29,9 @@ const Expand3 = ({ disclosureManager }) => {
 
   return (
     <button
+      type="button"
       aria-haspopup
       tabIndex="0"
-      role="select"
       className={cx('frame')}
       onClick={() => {
         disclosureManager.disclose({
@@ -53,5 +53,7 @@ const Expand3 = ({ disclosureManager }) => {
     </button>
   );
 };
+
+Expand3.propTypes = propTypes;
 
 export default withDisclosureManager(Expand3);

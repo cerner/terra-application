@@ -1,24 +1,37 @@
 import React, {
   useState,
 } from 'react';
-import DualListbox from './DualListbox';
+import PropTypes from 'prop-types';
 import { Utils } from 'terra-list';
 import ContentContainer from 'terra-content-container';
 import ActionFooter from 'terra-action-footer';
-import Spacer from 'terra-spacer';
+// import Spacer from 'terra-spacer';
 import Button from 'terra-button';
+import DualListbox from './DualListbox';
 import {
   DisclosureManagerHeaderAdapter,
   withDisclosureManager,
-} from  '../disclosure-manager';
+  disclosureManagerShape,
+} from '../disclosure-manager';
 
+const propTypes = {
+  data: PropTypes.array,
+  disclosureManager: disclosureManagerShape,
+  onChange: PropTypes.func,
+  selected: PropTypes.string,
+};
 
-const Inline = ({ onChange, data, selected, disclosureManager }) => {
+const Inline = ({
+  onChange,
+  data,
+  selected,
+  disclosureManager,
+}) => {
   const [selectedKeys, setSelectedKeys] = useState(selected || []);
   const [searchText, setSearchText] = useState('');
 
   const [activeAvailableKeys, setActiveAvailableKeys] = useState([]);
-  const [activeSelectedKeys, setActiveSelectedKeys]  = useState([]);
+  const [activeSelectedKeys, setActiveSelectedKeys] = useState([]);
 
   const onClickAvailable = (event, metaData) => {
     setActiveAvailableKeys(Utils.updatedMultiSelectedKeys(activeAvailableKeys, metaData.key));
@@ -27,21 +40,21 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
     setActiveSelectedKeys(Utils.updatedMultiSelectedKeys(activeSelectedKeys, metaData.key));
   };
 
-  const onSelectAll = (event) => {
+  const onSelectAll = () => {
     let keys = selectedKeys;
     activeAvailableKeys.forEach(key => {
       // if (selectedKeys.indexOf(key) > 0) {
-        keys = Utils.updatedMultiSelectedKeys(keys, key)
+      keys = Utils.updatedMultiSelectedKeys(keys, key);
       // }
     });
     setSelectedKeys(keys);
     setActiveAvailableKeys([]);
   };
-  const onRemoveAll = (event) => {
+  const onRemoveAll = () => {
     let keys = selectedKeys;
     activeSelectedKeys.forEach(key => {
       // if (selectedKeys.indexOf(key) > 0) {
-        keys = Utils.updatedMultiSelectedKeys(keys, key)
+      keys = Utils.updatedMultiSelectedKeys(keys, key);
       // }
     });
     setSelectedKeys(keys);
@@ -66,21 +79,19 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
         metaData: { key: option.key },
         isSelected: activeSelectedKeys.indexOf(option.key) >= 0,
       });
-    } else {
-      if (!searchText.length || (searchText.length && index === 0)) {
-        availableItems.push({
-          key: option.key,
-          node: option.text,
-          metaData: { key: option.key },
-          isSelected: activeAvailableKeys.indexOf(option.key) >= 0,
-        });
-      }
+    } else if (!searchText.length || (searchText.length && index === 0)) {
+      availableItems.push({
+        key: option.key,
+        node: option.text,
+        metaData: { key: option.key },
+        isSelected: activeAvailableKeys.indexOf(option.key) >= 0,
+      });
     }
   });
 
   return (
     <>
-      <DisclosureManagerHeaderAdapter title={'Multi Filter'} />
+      <DisclosureManagerHeaderAdapter title="Multi Filter" />
       <ContentContainer
         fill
         footer={(
@@ -96,7 +107,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
             // isLoading: true,
             title: 'Available',
             onSearch,
-            onSelectAll: onSelectAll,
+            onSelectAll,
             onSelectItem: onClickAvailable,
             selectAllTitle: '>>',
             items: availableItems,
@@ -113,5 +124,7 @@ const Inline = ({ onChange, data, selected, disclosureManager }) => {
     </>
   );
 };
+
+Inline.propTypes = propTypes;
 
 export default withDisclosureManager(Inline);

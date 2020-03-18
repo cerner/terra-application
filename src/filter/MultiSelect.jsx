@@ -1,5 +1,5 @@
 import React, {
-  useState,
+//  useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
@@ -24,19 +24,16 @@ const propTypes = {
   }),
 };
 
-
 const MultiSelect = ({
   description,
   columnData,
   ...customProps
-}) => {
-  return (
-    <div {...customProps} className={cx('outer')}>
-      <FilterBox {...columnData} />
-      <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} />
-    </div>
-  );
-};
+}) => (
+  <div {...customProps} className={cx('outer')}>
+    <FilterBox {...columnData} />
+    <VisuallyHiddenText aria-atomic="true" aria-live="polite" text={description} />
+  </div>
+);
 
 MultiSelect.propTypes = propTypes;
 

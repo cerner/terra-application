@@ -78,6 +78,7 @@ const AppPage = ({ pageName }) => {
       <Expand3 />
       <p>Single-select Non-filtered Inline</p>
       <SingleListbox
+        {...{ style: { height: '300px', width: '200px' } }}
         columnData={{
           id: 'box-face-1',
           onSearch: () => {},

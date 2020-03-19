@@ -53,7 +53,7 @@ const FilterBox = ({
   const adjustScrollHeight = (nextIndex) => {
     const scrollParent = document.getElementById(id);
     if (!scrollParent || (scrollParent.scrollHeight <= scrollParent.getBoundingClientRect().height)) {
-      return
+      return;
     }
     if (!(nextIndex >= 0 && nextIndex + 1 <= items.length)) {
       return;
@@ -64,7 +64,7 @@ const FilterBox = ({
       const nextTop = child.offsetTop;
       const nextHeight = child.getBoundingClientRect().height;
 
-      const scrollTop = scrollParent.scrollTop;
+      const { scrollTop } = scrollParent;
       const scrollHeight = scrollParent.getBoundingClientRect().height;
 
       const isAbove = nextTop < scrollTop;
@@ -76,7 +76,7 @@ const FilterBox = ({
       }
       if (isBelow) {
         scrollParent.scrollTop = (nextTop + nextHeight) - scrollHeight;
-        return;
+        // return;
       }
     }
   };

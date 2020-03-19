@@ -98,7 +98,9 @@ const ModalContent = ({ name, onSubmit }) => {
           <Expand3 />
           <p>Single-select Non-filtered Inline</p>
           <SingleListbox
+            {...{ style: { height: '300px', width: '200px' } }}
             columnData={{
+              id: 'box-inline-modal-1',
               onSearch: () => {},
               onSelectItem: () => {},
               items: [{

@@ -18,7 +18,7 @@ const propTypes = {
   data: PropTypes.array,
   disclosureManager: disclosureManagerShape,
   onChange: PropTypes.func,
-  selected: PropTypes.string,
+  selected: PropTypes.array,
 };
 
 const Inline = ({
@@ -105,6 +105,7 @@ const Inline = ({
         <DualListbox
           columnOneData={{
             // isLoading: true,
+            id: 'box-1',
             title: 'Available',
             onSearch,
             onSelectAll,
@@ -113,6 +114,7 @@ const Inline = ({
             items: availableItems,
           }}
           columnTwoData={{
+            id: 'box-2',
             title: 'Selected',
             onSelectAll: onRemoveAll,
             onSelectItem: onClickSelected,

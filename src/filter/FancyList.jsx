@@ -119,6 +119,7 @@ const FilterBox = ({
 
   return (
     <ul
+      id={id}
       role="listbox"
       className={cx('fancy')}
       tabIndex="0"

@@ -21,7 +21,7 @@ const propTypes = {
   onSelectAll: PropTypes.func,
   onSelectItem: PropTypes.func,
   selectAllTitle: PropTypes.string,
-  useRemove: PropTypes.string,
+  useRemove: PropTypes.bool,
   items: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
     metaData: PropTypes.object,
@@ -33,6 +33,7 @@ const propTypes = {
 const defaultProps = {
   isLoading: false,
   items: [],
+  useRemove: false,
 };
 
 const FilterBox = ({
@@ -49,23 +50,61 @@ const FilterBox = ({
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const adjustScrollHeight = (nextIndex) => {
+    const scrollParent = document.getElementById(id);
+    if (!scrollParent || (scrollParent.scrollHeight <= scrollParent.getBoundingClientRect().height)) {
+      return
+    }
+    if (!(nextIndex >= 0 && nextIndex + 1 <= items.length)) {
+      return;
+    }
+
+    const child = scrollParent.children[nextIndex];
+    if (child) {
+      const nextTop = child.offsetTop;
+      const nextHeight = child.getBoundingClientRect().height;
+
+      const scrollTop = scrollParent.scrollTop;
+      const scrollHeight = scrollParent.getBoundingClientRect().height;
+
+      const isAbove = nextTop < scrollTop;
+      const isBelow = (nextTop > scrollTop + scrollHeight) || (nextTop + nextHeight > scrollTop + scrollHeight);
+
+      if (isAbove) {
+        scrollParent.scrollTop = nextTop;
+        return;
+      }
+      if (isBelow) {
+        scrollParent.scrollTop = (nextTop + nextHeight) - scrollHeight;
+        return;
+      }
+    }
+  };
+
+  const updateCurrentIndex = (index) => {
+    setCurrentIndex(index);
+    adjustScrollHeight(index);
+  };
+
   const onFirstItem = () => {
-    setCurrentIndex(0);
+    updateCurrentIndex(0);
   };
 
   const onLastItem = () => {
-    setCurrentIndex(items.length - 1);
+    updateCurrentIndex(items.length - 1);
   };
 
   const onNextItem = () => {
     const newIndex = currentIndex + 1;
     const lastIndex = items.length - 1;
-    setCurrentIndex(newIndex > lastIndex ? lastIndex : newIndex);
+    const validIndex = newIndex > lastIndex ? lastIndex : newIndex;
+    updateCurrentIndex(validIndex);
   };
 
   const onPreviousItem = () => {
     const newIndex = currentIndex - 1;
-    setCurrentIndex(newIndex < 0 ? 0 : newIndex);
+    const validIndex = newIndex < 0 ? 0 : newIndex;
+    updateCurrentIndex(validIndex);
   };
 
   return (

@@ -18,7 +18,7 @@ const propTypes = {
   data: PropTypes.array,
   disclosureManager: disclosureManagerShape,
   onChange: PropTypes.func,
-  selected: PropTypes.string,
+  selected: PropTypes.array,
 };
 
 const Inline3 = ({
@@ -62,6 +62,7 @@ const Inline3 = ({
       >
         <MultiSelect
           columnData={{
+            id: 'box-1',
             onSelectItem: onClick,
             items: availableItems,
           }}

@@ -79,6 +79,7 @@ const AppPage = ({ pageName }) => {
       <p>Single-select Non-filtered Inline</p>
       <SingleListbox
         columnData={{
+          id: 'box-face-1',
           onSearch: () => {},
           onSelectItem: () => {},
           items: [{

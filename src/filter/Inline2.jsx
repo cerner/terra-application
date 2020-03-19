@@ -17,7 +17,7 @@ const propTypes = {
   data: PropTypes.array,
   disclosureManager: disclosureManagerShape,
   onChange: PropTypes.func,
-  selected: PropTypes.string,
+  selected: PropTypes.array,
 };
 
 const Inline2 = ({
@@ -68,6 +68,7 @@ const Inline2 = ({
       >
         <SingleListbox
           columnData={{
+            id: 'box-1',
             onSearch,
             onSelectItem: onClick,
             items: availableItems,

@@ -1,4 +1,4 @@
-import getBrowserLocale, { isSupported, filterLanguages } from '../../../../src/browser-locale/private/getBrowserLocale';
+import getBrowserLocale, { isSupported, filterLanguages } from '../../../../src/application-base/private/getBrowserLocale';
 
 describe('browser-locale/index', () => {
   describe('exports', () => {

@@ -9,7 +9,7 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
-import getBrowserLocale from '../browser-locale/private/getBrowserLocale';
+import getBrowserLocale from './private/getBrowserLocale';
 
 import styles from './ApplicationBase.module.scss';
 

@@ -24,7 +24,7 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * The locale name to be used to load translated messages.
-   * If not provided the preferred language from the browser will be attempted to be used.
+   * If the `locale` prop is not provided, the preferred language from the browser will be used.
    */
   locale: PropTypes.string,
   /**

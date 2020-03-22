@@ -70,7 +70,7 @@
     "tests/wdio/**/*-spec.js"
   ],
   "scripts": {
-    "clean": "rm -rf node_modules",
+    "clean": "rm package-lock.json; rm -rf node_modules",
     "clean:install": "npm run clean && npm install",
     "clean:obsolete-snapshots": "npm test -- -u",
     "compile": "babel src --out-dir lib --copy-files",

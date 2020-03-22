@@ -42,13 +42,13 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('does not display a navigation prompt when attempting to go back to the nested modal', () => {
-    browser.click('[class*="Modal"] [class*="ActionHeader"] [class*="back-button"]');
+    browser.click('[class*="Modal"] [class*="ActionHeader"] [data-terra-action-header="back-button"]');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .disclose-tiny');
   });
 
   it('displays a navigation prompt when attempting to go back to the root modal', () => {
-    browser.click('[class*="Modal"] [class*="ActionHeader"] [class*="back-button"]');
+    browser.click('[class*="Modal"] [class*="ActionHeader"] [data-terra-action-header="back-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     Terra.validates.element('5. nested modal-on back-navigation-prompt', { selector });
   });

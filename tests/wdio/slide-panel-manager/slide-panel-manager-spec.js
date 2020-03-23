@@ -14,7 +14,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('displays navigation prompt when attempting to close the panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .close-button');
+    browser.click('[class*="SlidePanel"]  [data-terra-action-header="close-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     Terra.validates.element('2. root panel-on close-navigation prompt', { selector });
   });
@@ -61,7 +61,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('displays navigation prompt when attempting to close the panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .close-button');
+    browser.click('[class*="SlidePanel"]  [data-terra-action-header="close-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     Terra.validates.element('7. nest panel-on close-navigation prompt', { selector });
   });

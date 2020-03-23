@@ -46,6 +46,10 @@ terra-application is considered to be stable and will follow [SemVer](https://se
 
 Consult the component CHANGELOGs, related issues, and PRs for more information.
 
+## Private Directories
+
+Javascript in `private` directories is not part of Terra's public API and should not be consumed directly.
+
 ## Contributing
 
 Please read through our [contributing guidelines](CONTRIBUTING.md). Included are directions for issue reporting and pull requests.

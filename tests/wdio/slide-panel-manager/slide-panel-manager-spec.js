@@ -14,7 +14,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('displays navigation prompt when attempting to close the panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .header-close-button');
+    browser.click('[class*="SlidePanel"]  [data-terra-action-header="close-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     Terra.validates.element('2. root panel-on close-navigation prompt', { selector });
   });
@@ -42,13 +42,13 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('does not display a navigation prompt when attempting to go back to the nested panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .header-back-button');
+    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] [data-terra-action-header="back-button"]');
     expect(browser.isExisting('[class*="notification-dialog"]')).to.be.false;
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .disclose-tiny');
   });
 
   it('displays a navigation prompt when attempting to go back to the root panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .header-back-button');
+    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] [data-terra-action-header="back-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(2)');
     Terra.validates.element('5. nested panel-on back-navigation-prompt', { selector });
   });
@@ -61,7 +61,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('displays navigation prompt when attempting to close the panel', () => {
-    browser.click('[class*="SlidePanel"] [class*="ActionHeader"] .header-close-button');
+    browser.click('[class*="SlidePanel"]  [data-terra-action-header="close-button"]');
     browser.waitForVisible('[class*="notification-dialog"] [class*="actions"] button:nth-child(1)');
     Terra.validates.element('7. nest panel-on close-navigation prompt', { selector });
   });

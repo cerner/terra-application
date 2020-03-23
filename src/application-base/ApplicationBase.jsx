@@ -9,10 +9,13 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
+import getBrowserLocale from './private/getBrowserLocale';
 
 import styles from './ApplicationBase.module.scss';
 
 const cx = classNames.bind(styles);
+
+const browserLocale = getBrowserLocale();
 
 const propTypes = {
   /**
@@ -21,8 +24,9 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * The locale name to be used to load translated messages.
+   * If the `locale` prop is not provided, the preferred language from the browser will be used.
    */
-  locale: PropTypes.string.isRequired,
+  locale: PropTypes.string,
   /**
    * Custom translations for the current locale.
    */
@@ -105,7 +109,7 @@ const ApplicationBase = ({
       <Base
         customMessages={customTranslatedMessages}
         translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-        locale={locale}
+        locale={locale || browserLocale}
       >
         <ApplicationErrorBoundary>
           <ApplicationIntlProvider>

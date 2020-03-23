@@ -27,4 +27,13 @@ describe('ApplicationBase', () => {
     ));
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should render with the preferred browser local', () => {
+    const wrapper = shallow((
+      <ApplicationBase>
+        <div>content</div>
+      </ApplicationBase>
+    ));
+    expect(wrapper).toMatchSnapshot();
+  });
 });

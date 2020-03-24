@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+1.18.0 - (March 24, 2020)
+------------------
 ### Changed
 * Updated locale to be an optional prop for application base
 

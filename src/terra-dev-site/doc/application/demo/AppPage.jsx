@@ -15,6 +15,7 @@ import Expand2 from '../../../../filter/Expand2';
 import Expand3 from '../../../../filter/Expand3';
 import SingleListbox from '../../../../filter/SingleListbox';
 import NativeSelect from '../../../../filter/NativeSelect';
+import ControlledNativeSelect from './ControlledNativeSelect';
 
 import styles from './AppPage.module.scss';
 
@@ -95,14 +96,37 @@ const AppPage = ({ pageName }) => {
           }],
         }}
       />
-      <p>Single Select Native, Constraining 300px Container</p>
+      <p>Native Select (uncontrolled), Constraining 300px Container</p>
       <div
         style={{
           width: '300px',
           position: 'relative',
         }}
       >
-        <NativeSelect />
+        <NativeSelect
+          options={[
+            { value: 'volvo', display: 'Volvo'},
+            { value: 'saab', display: 'Saab'},
+            { value: 'mercedes', display: 'Mercedes'},
+            { value: 'audi', display: 'Audi'},
+          ]}
+        />
+      </div>
+      <p>Native Select (controlled), Constraining 300px Container</p>
+      <div
+        style={{
+          width: '300px',
+          position: 'relative',
+        }}
+      >
+        <ControlledNativeSelect
+          options={[
+            { value: 'volvo', display: 'Volvo'},
+            { value: 'saab', display: 'Saab'},
+            { value: 'mercedes', display: 'Mercedes'},
+            { value: 'audi', display: 'Audi'},
+          ]}
+        />
       </div>
     </div>
   );

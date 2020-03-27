@@ -10,6 +10,18 @@
     height: 1.71429rem;
     position: relative;
     width: 100%;
+
+    &[data-focus-styles-enabled='keyboard'] {
+      // background-image: none;
+      // background-position: 0 100%;
+      // background-repeat: no-repeat;
+      // background-size: 0 0;
+      border-color: #4cb2e9;
+      box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
+      // transition-duration: 0.5s;
+      // transition-property: background-size;
+      // transition-timing-function: ease;
+    }
   }
 
   .display {
@@ -66,16 +78,16 @@
     }
 
     &:focus {
-      background-image: none;
-      background-position: 0 100%;
-      background-repeat: no-repeat;
-      background-size: 0 0;
-      border-color: #4cb2e9;
-      box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
+      // background-image: none;
+      // background-position: 0 100%;
+      // background-repeat: no-repeat;
+      // background-size: 0 0;
+      // border-color: #4cb2e9;
+      // box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
       outline: none;
-      transition-duration: 0.5s;
-      transition-property: background-size;
-      transition-timing-function: ease;
+      // transition-duration: 0.5s;
+      // transition-property: background-size;
+      // transition-timing-function: ease;
     }
   }
 

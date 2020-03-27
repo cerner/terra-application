@@ -95,8 +95,15 @@ const AppPage = ({ pageName }) => {
           }],
         }}
       />
-      <p>Single Select Native</p>
-      <NativeSelect />
+      <p>Single Select Native, Constraining 300px Container</p>
+      <div
+        style={{
+          width: '300px',
+          position: 'relative',
+        }}
+      >
+        <NativeSelect />
+      </div>
     </div>
   );
 };

@@ -3,30 +3,67 @@
 :local {
   .outer {
     align-items: center;
+    background-color: #fff;
     border: 1px solid #ccc;
     border-radius: 3px;
     display: flex;
+    height: 1.71429rem;
     position: relative;
     width: 100%;
   }
 
-  .select {
-    appearance: none;
+  .display {
+    align-items: center;
+    flex: 1 1 auto;
+    position: relative;
+  }
+
+  .frame {
+    align-items: center;
     background-color: #fff;
-    border: 0;
     color: #1c1f21;
-    cursor: pointer;
     display: flex;
     flex: 1 1 auto;
     font-size: 1.143rem;
-    line-height: 1.75;
-    outline: none;
+    height: 100%;
+    line-height: 0;
+    left: 0;
+    background-size: 0 0;
+    max-width: 100%;
+    min-width: 0;
     padding-bottom: 0;
     padding-left: 0.42857rem;
-    padding-right: 1.825rem;
+    padding-right: 0;
     padding-top: 0;
-    position: relative;
+    position: absolute;
+    top: 0;
     width: 100%;
+    z-index: 0;
+  }
+
+  .select {
+    appearance: none;
+    border: 0;
+    box-sizing: content-box;
+    // color: #1c1f21;
+    cursor: pointer;
+    display: block;
+    flex: 1 1 auto;
+    font-size: 1.143rem;
+    left: 0;
+    line-height: 0;
+    height: 100%;
+    outline: none;
+    opacity: 0;
+    padding: 0;
+    // position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 1;
+
+    &::-ms-expand {
+      display: none;
+    }
 
     &:focus {
       background-image: none;
@@ -43,6 +80,7 @@
   }
 
   .arrow-icon {
+    align-self: center;
     background: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
     background-position: center;
     background-repeat: no-repeat;
@@ -52,7 +90,7 @@
     flex: 0 0 auto; // IE 10
     height: 0.715rem;
     padding-right: 1.825rem;
-    position: absolute;
+    position: relative;
     right: 0;
     width: 1rem;
   }

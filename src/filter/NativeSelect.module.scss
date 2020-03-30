@@ -3,24 +3,40 @@
 :local {
   .outer {
     align-items: center;
-    background-color: #fff;
+    background-color: rgba(255, 255, 255, 0.8);
+    background-image: linear-gradient(#599ffd, #599ffd);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 0.142857rem;
     border: 1px solid #ccc;
     border-radius: 3px;
     display: flex;
-    height: 1.71429rem;
+    height: 2.142857rem;
     position: relative;
+    transition-duration: 0s;
+    transition-property: background-size;
+    transition-timing-function: ease;
+
     width: 100%;
 
-    &[data-focus-styles-enabled='keyboard'] {
-      // background-image: none;
-      // background-position: 0 100%;
-      // background-repeat: no-repeat;
-      // background-size: 0 0;
+    // &[data-focus-styles-enabled='keyboard'] {
+    //   border-color: #4cb2e9;
+    //   box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
+    // }
+
+    &[data-focus-styles-enabled='keyboard'],
+    &[data-focus-styles-enabled='mouse'], {
+      background-size: 100% 0.142857rem;
       border-color: #4cb2e9;
-      box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
-      // transition-duration: 0.5s;
-      // transition-property: background-size;
-      // transition-timing-function: ease;
+      transition-duration: 0.5s;
+    }
+
+    &:hover {
+      border-color: #4cb2e9;
+
+      > .frame {
+        color: #1c1f21;
+      }
     }
   }
 
@@ -32,15 +48,13 @@
 
   .frame {
     align-items: center;
-    background-color: #fff;
-    color: #1c1f21;
+    color: rgba(17, 22, 25, 0.75);
     display: flex;
     flex: 1 1 auto;
     font-size: 1.143rem;
     height: 100%;
-    line-height: 0;
     left: 0;
-    background-size: 0 0;
+    line-height: 0;
     max-width: 100%;
     min-width: 0;
     padding-bottom: 0;
@@ -57,18 +71,16 @@
     appearance: none;
     border: 0;
     box-sizing: content-box;
-    // color: #1c1f21;
     cursor: pointer;
     display: block;
     flex: 1 1 auto;
     font-size: 1.143rem;
+    height: 100%;
     left: 0;
     line-height: 0;
-    height: 100%;
-    outline: none;
     opacity: 0;
+    outline: none;
     padding: 0;
-    // position: absolute;
     top: 0;
     width: 100%;
     z-index: 1;
@@ -78,22 +90,13 @@
     }
 
     &:focus {
-      // background-image: none;
-      // background-position: 0 100%;
-      // background-repeat: no-repeat;
-      // background-size: 0 0;
-      // border-color: #4cb2e9;
-      // box-shadow: 0 0 0 2px rgba(76, 178, 233, 0.25);
       outline: none;
-      // transition-duration: 0.5s;
-      // transition-property: background-size;
-      // transition-timing-function: ease;
     }
   }
 
   .arrow-icon {
     align-self: center;
-    background: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
+    background: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#4983d1" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

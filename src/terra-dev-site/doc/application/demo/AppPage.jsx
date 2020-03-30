@@ -51,6 +51,8 @@ const AppPage = ({ pageName }) => {
     throw new Error(`${pageName} threw an error to test the application's error handling`);
   }
 
+  /* eslint-disable react/forbid-dom-props */
+
   return (
     <div className={cx('page-content')}>
       <h1>{pageName}</h1>
@@ -105,10 +107,10 @@ const AppPage = ({ pageName }) => {
       >
         <NativeSelect
           options={[
-            { value: 'volvo', display: 'Volvo'},
-            { value: 'saab', display: 'Saab'},
-            { value: 'mercedes', display: 'Mercedes'},
-            { value: 'audi', display: 'Audi'},
+            { value: 'volvo', display: 'Volvo' },
+            { value: 'saab', display: 'Saab' },
+            { value: 'mercedes', display: 'Mercedes' },
+            { value: 'audi', display: 'Audi' },
           ]}
         />
       </div>
@@ -121,10 +123,10 @@ const AppPage = ({ pageName }) => {
       >
         <ControlledNativeSelect
           options={[
-            { value: 'volvo', display: 'Volvo'},
-            { value: 'saab', display: 'Saab'},
-            { value: 'mercedes', display: 'Mercedes'},
-            { value: 'audi', display: 'Audi'},
+            { value: 'volvo', display: 'Volvo' },
+            { value: 'saab', display: 'Saab' },
+            { value: 'mercedes', display: 'Mercedes' },
+            { value: 'audi', display: 'Audi' },
           ]}
         />
       </div>

@@ -12,12 +12,12 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       Terra.validates.element('1. primary navigation item prompt', { selector });
 
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(1)');
-      Terra.validates.element('2. primary navigation item prompt reject', { selector });
+      Terra.validates.element('2. primary navigation item prompt reject', { selector: 'main main' });
 
       browser.click('div[aria-label="Page 2"]');
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
-      Terra.validates.element('3. primary navigation item prompt accept', { selector });
+      Terra.validates.element('3. primary navigation item prompt accept', { selector: 'main main' });
     });
 
     it('prompts user when selecting logout', () => {

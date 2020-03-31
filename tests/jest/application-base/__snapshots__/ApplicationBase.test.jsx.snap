@@ -85,3 +85,41 @@ exports[`ApplicationBase should render with minimal props 1`] = `
   </Base>
 </ThemeProvider>
 `;
+
+exports[`ApplicationBase should render with the preferred browser local 1`] = `
+<ThemeProvider
+  className="application-theme-provider fill"
+  isGlobalTheme={false}
+>
+  <Base
+    customMessages={Object {}}
+    locale="en"
+    strictMode={false}
+  >
+    <ApplicationErrorBoundary>
+      <InjectIntl(Component)>
+        <ActiveBreakpointProvider>
+          <withPromptRegistration(NavigationPromptCheckpoint)
+            onPromptChange={[Function]}
+          >
+            <ApplicationLoadingOverlayProvider>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  content
+                </div>
+              </Suspense>
+            </ApplicationLoadingOverlayProvider>
+          </withPromptRegistration(NavigationPromptCheckpoint)>
+        </ActiveBreakpointProvider>
+      </InjectIntl(Component)>
+    </ApplicationErrorBoundary>
+  </Base>
+</ThemeProvider>
+`;

@@ -83,7 +83,7 @@ const ApplicationContentTest = () => {
 };
 
 const ApplicationBaseTest = () => (
-  <ApplicationBase locale="en-US">
+  <ApplicationBase>
     <ApplicationContentTest />
   </ApplicationBase>
 );

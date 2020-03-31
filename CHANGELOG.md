@@ -6,6 +6,14 @@ Unreleased
 ### Added
 * Select/Filter prototypes
 
+1.18.0 - (March 24, 2020)
+------------------
+### Changed
+* Updated locale to be an optional prop for application base
+
+### Added
+* Added a fallback strategy for obtaining the preferred language from the browser if no locale is provided in application base
+
 1.17.0 - (February 18, 2020)
 ------------------
 ### Changed

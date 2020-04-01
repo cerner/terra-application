@@ -16,7 +16,6 @@
     transition-duration: 0s;
     transition-property: background-size;
     transition-timing-function: ease;
-
     width: 100%;
 
     // &[data-focus-styles-enabled='keyboard'] {
@@ -34,11 +33,34 @@
     &:hover {
       border-color: #4cb2e9;
 
-      > .frame {
+      .frame {
         color: #1c1f21;
       }
     }
+
+    &.incomplete {
+      background-color: #ffffcc;
+    }
+
+    &.invalid {
+      border: 2px solid #ff0000;
+    }
+
+    &.disabled {
+      background-image: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-color: #ccc;
+
+      .frame {
+        color: #ccc;
+      }
+      .arrow-icon {
+        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#ccc" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
+      }
+    }
   }
+
+
 
   .display {
     align-items: center;
@@ -99,11 +121,15 @@
     &:focus {
       outline: none;
     }
+
+    &:disabled {
+      cursor: default;
+    }
   }
 
   .arrow-icon {
     align-self: center;
-    background: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#4983d1" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
+    background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#4983d1" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;

@@ -8,34 +8,98 @@ import styles from './NativeSelect.module.scss';
 
 const cx = classNames.bind(styles);
 
-const createOptions = options => options.map(option => <option value={option.value}>{option.display}</option>);
+const createPlaceholder = text => <option value="" disabled hidden>{text}</option>;
+
+const createOptions = options => options.map(current => {
+  if (current.childOptions) {
+    return (
+      <optgroup label={current.display}>
+        {createOptions(current.childOptions)}
+      </optgroup>
+    );
+  }
+  return <option value={current.value}>{current.display}</option>;
+});
 
 const getDisplay = (findValue, options) => {
-  const foundOption = options.find(option => option.value === findValue);
-  return foundOption ? foundOption.display : undefined;
+  if (!options || !options.length) {
+    return undefined;
+  }
+
+  for (let i = 0; i < options.length; i += 1) {
+    const current  = options[i];
+    if (current.value) {
+      if (current.value === findValue) {
+        return current.display;
+      }
+    } else if (current.childOptions) {
+      const foundValue = getDisplay(findValue, current.childOptions);
+      if (foundValue) {
+        return foundValue;
+      }
+    }
+  }
+  return undefined;
 };
+
+const getFirstValue = options => {
+  if (!options || !options.length) {
+    return undefined;
+  }
+  for (let i = 0; i < options.length; i += 1) {
+    const current  = options[i];
+    if (current.value) {
+      return current.value;
+    }
+    const firstValue = getFirstValue(current.childOptions);
+    if (firstValue) {
+      return firstValue;
+    }
+  }
+  return undefined;
+};
+
+const optionPropType = PropTypes.shape({
+  display: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+});
+
+const optGroupPropType = PropTypes.shape({
+  display: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  childOptions: PropTypes.arrayOf(optionPropType).isRequired,
+});
 
 const propTypes = {
   defaultValue: PropTypes.string,
+  disabled: PropTypes.bool,
+  invalid: PropTypes.bool,
+  isIncomplete: PropTypes.bool,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.shape({
-    display: PropTypes.string.required,
-    value: PropTypes.string.required,
-  })),
+  options: PropTypes.arrayOf(PropTypes.oneOf([optGroupPropType , optGroupPropType])),
+  required: PropTypes.bool,
   value: PropTypes.string,
 };
 
 const defaultProps = {
+  disabled: false,
+  invalid: false,
   options: [],
+  required: false,
 };
 
 const NativeSelect = ({
+  disabled,
   defaultValue,
+  invalid,
+  isIncomplete,
   onChange,
   options,
+  required,
   value,
 }) => {
-  const [currentValue, setCurrentValue] = useState(defaultValue || (options.length ? options[0].value : undefined));
+  const [currentValue, setCurrentValue] = useState(defaultValue || getFirstValue(options));
   const refSelect = useRef();
 
   const handleOnMouseDown = () => {
@@ -56,21 +120,27 @@ const NativeSelect = ({
     setCurrentValue(event.currentTarget.value);
   };
 
-  const controlValue = value || currentValue;
+  const selectAttrs = {
+    disabled,
+    invalid,
+    required,
+    value: value || currentValue,
+  };
+
   return (
     <div
-      className={cx('outer')}
+      className={cx('outer', { disabled }, { invalid }, { incomplete: required && isIncomplete })}
       ref={refSelect}
       data-focus-styles-enabled="none"
     >
       <div aria-hidden className={cx('frame')}>
         <div className={cx('display')}>
-          {getDisplay(controlValue, options)}
+          {getDisplay(selectAttrs.value, options)}
         </div>
         <div className={cx('arrow-icon')} />
       </div>
       <select
-        value={controlValue}
+        {...selectAttrs}
         className={cx('select')}
         onChange={handleOnChange}
         onMouseDown={handleOnMouseDown}

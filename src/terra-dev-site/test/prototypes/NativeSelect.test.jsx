@@ -19,7 +19,6 @@ const NativeSelectTest = () => (
         { value: 'audi', display: 'Audi' },
       ]}
     />
-    <br />
     <p>Long Option Text Example</p>
     <NativeSelect
       options={[

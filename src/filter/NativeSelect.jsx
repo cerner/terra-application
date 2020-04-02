@@ -8,7 +8,15 @@ import styles from './NativeSelect.module.scss';
 
 const cx = classNames.bind(styles);
 
-const createPlaceholder = text => <option value="" disabled hidden>{text}</option>;
+const createPlaceholder = placeholder => {
+  if (!placeholder) {
+    return undefined;
+  }
+  const display = placeholder.display ? placeholder.display : '- Select -';
+  const value = placeholder.value ? placeholder.value : '-invalid-value-';
+  const attrs = placeholder.allowClear ? {} : { disabled: true, hidden: true };
+  return <option value={value} {...attrs}>{display}</option>;
+};
 
 const createOptions = options => options.map(current => {
   if (current.childOptions) {
@@ -21,13 +29,18 @@ const createOptions = options => options.map(current => {
   return <option value={current.value}>{current.display}</option>;
 });
 
-const getDisplay = (findValue, options) => {
+const getDisplay = (findValue, options, placeholder) => {
+  if (placeholder) {
+    if ((placeholder.value && findValue === placeholder.value) || (!placeholder.value && findValue === '-invalid-value-')) {
+      return placeholder.display || '- Select -';
+    }
+  }
   if (!options || !options.length) {
     return undefined;
   }
 
   for (let i = 0; i < options.length; i += 1) {
-    const current  = options[i];
+    const current = options[i];
     if (current.value) {
       if (current.value === findValue) {
         return current.display;
@@ -42,12 +55,15 @@ const getDisplay = (findValue, options) => {
   return undefined;
 };
 
-const getFirstValue = options => {
+const getFirstValue = (options, placeholder) => {
+  if (placeholder) {
+    return placeholder.value || '-invalid-value-';
+  }
   if (!options || !options.length) {
     return undefined;
   }
   for (let i = 0; i < options.length; i += 1) {
-    const current  = options[i];
+    const current = options[i];
     if (current.value) {
       return current.value;
     }
@@ -57,6 +73,16 @@ const getFirstValue = options => {
     }
   }
   return undefined;
+};
+
+const isCurrentPlaceholder = (value, placeholder) => {
+  if (!placeholder) {
+    return false;
+  }
+  if (placeholder.value) {
+    return value === placeholder.value;
+  }
+  return value === '-invalid-value-'; // default value of placeholder
 };
 
 const optionPropType = PropTypes.shape({
@@ -77,7 +103,12 @@ const propTypes = {
   invalid: PropTypes.bool,
   isIncomplete: PropTypes.bool,
   onChange: PropTypes.func,
-  options: PropTypes.arrayOf(PropTypes.oneOf([optGroupPropType , optGroupPropType])),
+  options: PropTypes.arrayOf(PropTypes.oneOf([optGroupPropType, optGroupPropType])),
+  placeholder: PropTypes.shape({
+    allowClear: PropTypes.bool,
+    display: PropTypes.string, // Optional with default
+    value: PropTypes.string, // Optional with default
+  }),
   required: PropTypes.bool,
   value: PropTypes.string,
 };
@@ -85,6 +116,7 @@ const propTypes = {
 const defaultProps = {
   disabled: false,
   invalid: false,
+  isIncomplete: false,
   options: [],
   required: false,
 };
@@ -96,10 +128,11 @@ const NativeSelect = ({
   isIncomplete,
   onChange,
   options,
+  placeholder,
   required,
   value,
 }) => {
-  const [currentValue, setCurrentValue] = useState(defaultValue || getFirstValue(options));
+  const [currentValue, setCurrentValue] = useState(defaultValue || getFirstValue(options, placeholder));
   const refSelect = useRef();
 
   const handleOnMouseDown = () => {
@@ -129,13 +162,19 @@ const NativeSelect = ({
 
   return (
     <div
-      className={cx('outer', { disabled }, { invalid }, { incomplete: required && isIncomplete })}
+      className={cx(
+        'outer',
+        { disabled },
+        { invalid },
+        { incomplete: required && isIncomplete },
+        { placeholder: isCurrentPlaceholder(selectAttrs.value, placeholder) },
+      )}
       ref={refSelect}
       data-focus-styles-enabled="none"
     >
       <div aria-hidden className={cx('frame')}>
         <div className={cx('display')}>
-          {getDisplay(selectAttrs.value, options)}
+          {getDisplay(selectAttrs.value, options, placeholder)}
         </div>
         <div className={cx('arrow-icon')} />
       </div>
@@ -147,6 +186,7 @@ const NativeSelect = ({
         onFocus={handleOnFocus}
         onBlur={handleOnBlur}
       >
+        {createPlaceholder(placeholder)}
         {createOptions(options)}
       </select>
     </div>

@@ -30,17 +30,25 @@ const NativeSelectTest = () => (
       ]}
     />
     <p>Placeholder</p>
-    <select value="">
-      <option value="" disabled hidden>--Pick A Food--</option>
-      <option value="lobster">Lobster</option>
-      <option value="beef">Beef</option>
-    </select>
+    <NativeSelect
+      options={[
+        { value: 'volvo', display: 'Volvo' },
+        { value: 'saab', display: 'Saab' },
+        { value: 'mercedes', display: 'Mercedes is a brand of vehicle. You should pick this car. This car drives. It has no seat belts, and no air bags.' },
+        { value: 'audi', display: 'Audi' },
+      ]}
+      placeholder={{}}
+    />
     <p>Allow Clear</p>
-    <select value="">
-      <option value="">--Pick A Food--</option>
-      <option value="lobster">Lobster</option>
-      <option value="beef">Beef</option>
-    </select>
+    <NativeSelect
+      options={[
+        { value: 'volvo', display: 'Volvo' },
+        { value: 'saab', display: 'Saab' },
+        { value: 'mercedes', display: 'Mercedes is a brand of vehicle. You should pick this car. This car drives. It has no seat belts, and no air bags.' },
+        { value: 'audi', display: 'Audi' },
+      ]}
+      placeholder={{ allowClear: true }}
+    />
     <p>Invalid</p>
     <NativeSelect
       invalid
@@ -64,14 +72,20 @@ const NativeSelectTest = () => (
     <p>OptGroup</p>
     <NativeSelect
       options={[
-        { display: 'Swedish Cars', childOptions: [
-          { value: 'volvo', display: 'Volvo' },
-          { value: 'saab', display: 'Saab' },
-        ]},
-        { display: 'German Cars', childOptions: [
-          { value: 'mercedes', display: 'Mercedes' },
-          { value: 'audi', display: 'Audi' },
-        ]},
+        {
+          display: 'Swedish Cars',
+          childOptions: [
+            { value: 'volvo', display: 'Volvo' },
+            { value: 'saab', display: 'Saab' },
+          ],
+        },
+        {
+          display: 'German Cars',
+          childOptions: [
+            { value: 'mercedes', display: 'Mercedes' },
+            { value: 'audi', display: 'Audi' },
+          ],
+        },
       ]}
     />
     <p>Required/Incomplete?</p>
@@ -84,6 +98,7 @@ const NativeSelectTest = () => (
         { value: 'mercedes', display: 'Mercedes' },
         { value: 'audi', display: 'Audi' },
       ]}
+      placeholder={{}}
     />
   </div>
 );

@@ -13,7 +13,7 @@ describe('getPendingActionPromptOptions', () => {
     expect(functionOutput).toMatchSnapshot();
   });
 
-  it('generates a function that provides appropriate messaging for a single prompt', () => {
+  it('generates a function that provides appropriate messaging for multiple prompts', () => {
     const generatedFunction = getUnsavedChangesPromptOptions(mockIntl);
 
     expect(generatedFunction).toBeDefined();

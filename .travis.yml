@@ -59,7 +59,7 @@ jobs:
 stages:
   - build
   - lint and jest
-  - wdio
+  # - wdio
   - name: deploy
     if: type != pull_request
   - clean up cache

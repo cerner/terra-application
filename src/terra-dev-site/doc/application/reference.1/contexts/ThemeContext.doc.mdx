@@ -1,0 +1,16 @@
+# ThemeContext
+
+The ThemeContext defines an interface for access to the framework's determined active breakpoint based on the current window size.
+
+> Note: An ThemeContextProvider is rendered by [ApplicationBase](/components/terra-application/application/reference/components/application-base).
+> Any components rendered within ApplicationBase can access a ThemeContext without rendering additional providers.
+
+## Usage
+
+## Context Value
+
+The ThemeContext provides an object with the following values:
+
+|Key Name|Type|Is Required|DefaultValue|Description|
+|---|---|---|---|---|
+|`className`|String|optional|undefined|The current application theme className. The default theme is indicated as undefined|

@@ -6,7 +6,7 @@ import classNames from 'classnames/bind';
 import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
-// import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
+import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
@@ -69,7 +69,7 @@ const propTypes = {
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, themeIsGlobal, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
 }) => {
   const registeredPromptsRef = useRef();
 
@@ -106,7 +106,7 @@ const ApplicationBase = ({
       <ThemeProvider
         themeName={themeName}
       >
-        {/* <ThemeContextProvider theme={theme}> */}
+        <ThemeContextProvider theme={theme}>
           <Base
             customMessages={customTranslatedMessages}
             translationsLoadingPlaceholder={translationsLoadingPlaceholder}
@@ -130,7 +130,7 @@ const ApplicationBase = ({
               </ApplicationIntlProvider>
             </ApplicationErrorBoundary>
           </Base>
-        {/* </ThemeContextProvider> */}
+        </ThemeContextProvider>
       </ThemeProvider>
     </div>
   );

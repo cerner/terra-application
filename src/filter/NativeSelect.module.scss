@@ -28,14 +28,14 @@
     &[data-focus-styles-enabled='mouse'], {
       background-size: 100% 0.142857rem;
       border-color: #4cb2e9;
-      transition-duration: 0.5s;
+      transition-duration: 0.33s;
     }
 
     &:hover {
       border-color: #4cb2e9;
 
       .frame {
-        color: #1c1f21;
+        color: #111619;
       }
     }
 
@@ -44,25 +44,26 @@
     }
 
     &.invalid {
-      background-image: linear-gradient(#f00, #f00);
-      border: 2px solid #f00;
+      background-color: rgba(255, 255, 255, 0.8);
+      background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8));
+      border-color: #e50000;
 
       .arrow-icon {
-        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#f00" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
+        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#e50000" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
       }
     }
 
     &.disabled {
-      background-color: rgba(255, 255, 255, 0.9);
+      background-color: rgba(17, 22, 25, 0.05);
       background-image: none;
-      border-color: #ccc;
+      border-color: rgba(89, 159, 253, 0.3);
 
       .frame {
-        color: #ccc;
+        color: rgba(17, 22, 25, 0.3);
       }
 
       .arrow-icon {
-        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#ccc" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
+        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="rgba(17, 22, 25, .5)" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
       }
     }
 
@@ -101,7 +102,7 @@
     max-width: 100%;
     min-width: 0;
     padding-bottom: 0;
-    padding-left: 0.42857rem;
+    padding-left: 0.5rem;
     padding-right: 0;
     padding-top: 0;
     position: absolute;
@@ -141,19 +142,20 @@
     }
   }
 
-  .arrow-icon {
+  .arrow {
     align-self: center;
+    display: inline-flex; // IE 10
+    flex: 0 0 auto; // IE 10
+    padding: 0 0.786rem;
+  }
+
+  .arrow-icon {
     background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="#4983d1" class="is-bidi"><path d="M48 12L24 36 0 12h48z"/></svg>');
     background-position: center;
     background-repeat: no-repeat;
     background-size: contain;
-    color: #ccc;
-    display: inline-flex; // IE 10
-    flex: 0 0 auto; // IE 10
-    height: 0.715rem;
-    padding-right: 1.825rem;
+    height: 0.714rem;
     position: relative;
-    right: 0;
-    width: 1rem;
+    width: 0.714rem;
   }
 }

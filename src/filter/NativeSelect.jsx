@@ -176,7 +176,9 @@ const NativeSelect = ({
         <div className={cx('display')}>
           {getDisplay(selectAttrs.value, options, placeholder)}
         </div>
-        <div className={cx('arrow-icon')} />
+        <div className={cx('arrow')}>
+          <div className={cx('arrow-icon')} />
+        </div>
       </div>
       <select
         {...selectAttrs}

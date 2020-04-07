@@ -10,6 +10,7 @@ import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '..
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
 import getBrowserLocale from './private/getBrowserLocale';
+import useFullStackTestOverrides from './private/useFullStackTestOverrides';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -100,6 +101,9 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
+  /* Allows us to test deployed applications in different locales. */
+  const { localeOverride } = useFullStackTestOverrides();
+
   return (
     <ThemeProvider
       className={cx('application-theme-provider', { fill: !fitToParentIsDisabled })}
@@ -109,7 +113,7 @@ const ApplicationBase = ({
       <Base
         customMessages={customTranslatedMessages}
         translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-        locale={locale || browserLocale}
+        locale={localeOverride || locale || browserLocale}
       >
         <ApplicationErrorBoundary>
           <ApplicationIntlProvider>

@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.19.0 - (April 7, 2020)
+------------------
 ### Added
 * Added theme context to allow components to access the current theme.
 

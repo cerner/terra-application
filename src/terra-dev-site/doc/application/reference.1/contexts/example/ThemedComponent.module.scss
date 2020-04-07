@@ -1,7 +1,6 @@
 //Themes
 @import './ThemedComponent.clinical-lowlight-theme.module';
 @import './ThemedComponent.orion-fusion-theme.module';
-@import './ThemedComponent.test-theme.module';
 
 :local {
   .themed {
@@ -12,7 +11,7 @@
   }
 
   .themed-block {
-    background-color: var(--terra-theme-context-themed-component-block-background-color, #0079be);
+    background-color: var(--terra-application-themed-component-block-background-color, #0079be);
     height: 24px;
   }
 }

@@ -32,7 +32,7 @@ const NativeSelectTest = () => (
         options={[
           { value: 'volvo', display: 'Volvo' },
           { value: 'saab', display: 'Saab' },
-          { value: 'mercedes', display: 'Mercedes is a brand of vehicle. You should pick this car. This car drives. It has no seat belts, and no air bags.' },
+          { value: 'mercedes', display: 'Mercedes' },
           { value: 'audi', display: 'Audi' },
         ]}
         placeholder={{}}
@@ -42,7 +42,7 @@ const NativeSelectTest = () => (
         options={[
           { value: 'volvo', display: 'Volvo' },
           { value: 'saab', display: 'Saab' },
-          { value: 'mercedes', display: 'Mercedes is a brand of vehicle. You should pick this car. This car drives. It has no seat belts, and no air bags.' },
+          { value: 'mercedes', display: 'Mercedes' },
           { value: 'audi', display: 'Audi' },
         ]}
         placeholder={{ allowClear: true }}

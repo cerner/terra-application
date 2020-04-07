@@ -1,9 +1,12 @@
-import React, { useRef, useEffect, Suspense } from 'react';
+import React, {
+  useRef, useEffect, Suspense, useMemo,
+} from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
+import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
@@ -52,10 +55,6 @@ const propTypes = {
    */
   themeName: PropTypes.string,
   /**
-   * If provided, the theme styles are applied to the entire document.
-   */
-  themeIsGlobal: PropTypes.bool,
-  /**
    * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
    * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
    * overflow potentially overflow its parent.
@@ -70,7 +69,7 @@ const propTypes = {
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, themeIsGlobal, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
 }) => {
   const registeredPromptsRef = useRef();
 
@@ -100,36 +99,40 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
+  const theme = useMemo(() => ({ className: themeName }), [themeName]);
+
   return (
-    <ThemeProvider
-      className={cx('application-theme-provider', { fill: !fitToParentIsDisabled })}
-      themeName={themeName}
-      isGlobalTheme={themeIsGlobal}
-    >
-      <Base
-        customMessages={customTranslatedMessages}
-        translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-        locale={locale || browserLocale}
+    <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
+      <ThemeProvider
+        themeName={themeName}
       >
-        <ApplicationErrorBoundary>
-          <ApplicationIntlProvider>
-            <ActiveBreakpointProvider>
-              <NavigationPromptCheckpoint
-                onPromptChange={(registeredPrompts) => {
-                  registeredPromptsRef.current = registeredPrompts;
-                }}
-              >
-                <ApplicationLoadingOverlayProvider>
-                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                    {children}
-                  </Suspense>
-                </ApplicationLoadingOverlayProvider>
-              </NavigationPromptCheckpoint>
-            </ActiveBreakpointProvider>
-          </ApplicationIntlProvider>
-        </ApplicationErrorBoundary>
-      </Base>
-    </ThemeProvider>
+        <ThemeContextProvider theme={theme}>
+          <Base
+            customMessages={customTranslatedMessages}
+            translationsLoadingPlaceholder={translationsLoadingPlaceholder}
+            locale={locale || browserLocale}
+          >
+            <ApplicationErrorBoundary>
+              <ApplicationIntlProvider>
+                <ActiveBreakpointProvider>
+                  <NavigationPromptCheckpoint
+                    onPromptChange={(registeredPrompts) => {
+                      registeredPromptsRef.current = registeredPrompts;
+                    }}
+                  >
+                    <ApplicationLoadingOverlayProvider>
+                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                        {children}
+                      </Suspense>
+                    </ApplicationLoadingOverlayProvider>
+                  </NavigationPromptCheckpoint>
+                </ActiveBreakpointProvider>
+              </ApplicationIntlProvider>
+            </ApplicationErrorBoundary>
+          </Base>
+        </ThemeContextProvider>
+      </ThemeProvider>
+    </div>
   );
 };
 

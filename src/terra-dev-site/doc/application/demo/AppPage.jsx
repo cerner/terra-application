@@ -6,6 +6,7 @@ import classNames from 'classnames/bind';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { ThemeContext } from 'terra-application/lib/theme';
 
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
@@ -26,6 +27,7 @@ const AppPage = ({ pageName }) => {
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
+  const theme = React.useContext(ThemeContext);
 
   const [hasError, setHasError] = useState(false);
 
@@ -54,7 +56,7 @@ const AppPage = ({ pageName }) => {
   /* eslint-disable react/forbid-dom-props */
 
   return (
-    <div className={cx('page-content')}>
+    <div className={cx('page-content', theme.className)}>
       <h1>{pageName}</h1>
       <h3>Configuration Properties</h3>
       <p>
@@ -73,6 +75,9 @@ const AppPage = ({ pageName }) => {
       <LoadingOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
+      <h3>Themeing</h3>
+      <p>The div below uses the theme context to apply styling.</p>
+      <div className={cx('themed-block')} />
       <p>Multi-select Filtered Dialog</p>
       <Expand />
       <p>Single-select Filtered Dialog</p>

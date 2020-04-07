@@ -15,9 +15,8 @@ const useFullStackTestOverrides = () => {
     }
 
     const { detail } = event;
-    const { locale } = detail;
-    if (typeof locale !== 'undefined') {
-      setLocaleOverride(locale);
+    if (typeof detail.locale !== 'undefined') {
+      setLocaleOverride(detail.locale);
     }
   };
 

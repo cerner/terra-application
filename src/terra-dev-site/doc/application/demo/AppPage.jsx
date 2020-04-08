@@ -15,7 +15,7 @@ import Expand from '../../../../filter/Expand';
 import Expand2 from '../../../../filter/Expand2';
 import Expand3 from '../../../../filter/Expand3';
 import SingleListbox from '../../../../filter/SingleListbox';
-import NativeSelect from '../../../../filter/NativeSelect';
+import NativeSelect from '../../../../native-select/NativeSelect';
 import ControlledNativeSelect from './ControlledNativeSelect';
 
 import styles from './AppPage.module.scss';

@@ -2,7 +2,7 @@ import React, {
   useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import NativeSelect from '../../../../filter/NativeSelect';
+import NativeSelect from '../../../../native-select/NativeSelect';
 
 const propTypes = {
   options: PropTypes.arrayOf(PropTypes.shape({

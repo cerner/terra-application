@@ -16,7 +16,7 @@ import Expand from '../../../../filter/Expand';
 import Expand2 from '../../../../filter/Expand2';
 import Expand3 from '../../../../filter/Expand3';
 import SingleListbox from '../../../../filter/SingleListbox';
-import NativeSelect from '../../../../filter/NativeSelect';
+import NativeSelect from '../../../../native-select/NativeSelect';
 
 const cx = classNames.bind(styles);
 

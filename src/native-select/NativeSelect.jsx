@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { injectIntl, intlShape } from 'react-intl';
 import styles from './NativeSelect.module.scss';
 
 const cx = classNames.bind(styles);
@@ -100,6 +101,12 @@ const optGroupPropType = PropTypes.shape({
 const propTypes = {
   defaultValue: PropTypes.string,
   disabled: PropTypes.bool,
+  id: PropTypes.string.isRequired,
+  /**
+   * @private
+   * The intl object to be injected for translations.
+   */
+  intl: intlShape.isRequired,
   invalid: PropTypes.bool,
   isIncomplete: PropTypes.bool,
   onChange: PropTypes.func,
@@ -124,6 +131,7 @@ const defaultProps = {
 const NativeSelect = ({
   disabled,
   defaultValue,
+  id,
   invalid,
   isIncomplete,
   onChange,
@@ -154,6 +162,7 @@ const NativeSelect = ({
   };
 
   const selectAttrs = {
+    id,
     disabled,
     invalid,
     required,
@@ -198,4 +207,4 @@ const NativeSelect = ({
 NativeSelect.propTypes = propTypes;
 NativeSelect.defaultProps = defaultProps;
 
-export default NativeSelect;
+export default injectIntl(NativeSelect);

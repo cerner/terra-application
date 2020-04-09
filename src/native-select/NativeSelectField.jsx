@@ -1,9 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import Field from 'terra-form-field';
-import Select from './Select';
-import Variants from './shared/_variants';
+import NativeSelect from './NativeSelect';
+
+const optionPropType = PropTypes.shape({
+  display: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  value: PropTypes.string.isRequired,
+});
+
+const optGroupPropType = PropTypes.shape({
+  display: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  childOptions: PropTypes.arrayOf(optionPropType).isRequired,
+});
 
 const propTypes = {
   /**
@@ -35,11 +45,6 @@ const propTypes = {
    */
   hideRequired: PropTypes.bool,
   /**
-   * @private
-   * The intl object containing translations. This is retrieved from the context automatically by injectIntl.
-   */
-  intl: intlShape.isRequired,
-  /**
    * Whether the field displays as Incomplete. Use when no value has been provided. _(usage note: `required` must also be set)_.
    */
   isIncomplete: PropTypes.bool,
@@ -61,13 +66,23 @@ const propTypes = {
   // eslint-disable-next-line react/forbid-prop-types
   labelAttrs: PropTypes.object,
   /**
+   * Set the max-width of a field using `length` or `%`.  Best practice recommendation to never exceed
+   * a rendered value of 1020px. _(Note: Providing custom inline styles will take precedence.)_
+   */
+  maxWidth: PropTypes.string,
+  /**
    * Callback function triggered when the select value changes. function(value)
    */
   onChange: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.oneOf([optGroupPropType, optGroupPropType])),
   /**
-   * Placeholder text.
+   * Placeholder data.
    */
-  placeholder: PropTypes.string,
+  placeholder: PropTypes.shape({
+    allowClear: PropTypes.bool,
+    display: PropTypes.string, // Optional with default
+    value: PropTypes.string, // Optional with default
+  }),
   /**
    * Whether the field is required.
    */
@@ -93,36 +108,29 @@ const propTypes = {
 
 const defaultProps = {
   allowClear: false,
-  defaultValue: undefined,
   disabled: false,
-  error: undefined,
-  help: undefined,
   hideRequired: false,
   isIncomplete: false,
   isInline: false,
   isInvalid: false,
   isLabelHidden: false,
-  labelAttrs: {},
-  onChange: undefined,
   required: false,
-  selectAttrs: {},
   showOptional: false,
 };
 
-const SelectField = ({
-  allowClear,
+const NativeSelectField = ({
   defaultValue,
   disabled,
   error,
   help,
   hideRequired,
-  intl,
   isIncomplete,
   isInline,
   isInvalid,
   isLabelHidden,
   label,
   labelAttrs,
+  maxWidth,
   onChange,
   options,
   placeholder,
@@ -168,33 +176,26 @@ const SelectField = ({
       htmlFor={selectId}
       maxWidth={maxWidth}
     >
-      {/* <Select
+      <NativeSelect
         {...selectAttrs}
-        ariaLabel={label}
-        allowClear={allowClear}
-        aria-describedby={ariaDescriptionIds}
-        disabled={selectAttrs.disabled || disabled}
         id={selectId}
+        aria-describedby={ariaDescriptionIds}
+        ariaLabel={label}
+        disabled={disabled}
         isIncomplete={isIncomplete}
         isInvalid={isInvalid}
-        isTouchAccessible={isTouchAccessible}
         defaultValue={defaultValue}
-        maxSelectionCount={maxSelectionCount !== undefined && maxSelectionCount < 2 ? undefined : maxSelectionCount}
-        onChange={onChange}
-        placeholder={placeholder}
         required={required}
+        onChange={onChange}
+        options={options}
         value={value}
-        variant={variant}
-      >
-        {children}
-      </Select> */}
+        placeholder={placeholder}
+      />
     </Field>
   );
 };
 
-SelectField.propTypes = propTypes;
-SelectField.defaultProps = defaultProps;
-SelectField.Option = Select.Option;
-SelectField.OptGroup = Select.OptGroup;
+NativeSelectField.propTypes = propTypes;
+NativeSelectField.defaultProps = defaultProps;
 
-export default injectIntl(SelectField);
+export default NativeSelectField;

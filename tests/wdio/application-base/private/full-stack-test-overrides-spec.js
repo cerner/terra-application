@@ -1,6 +1,6 @@
 /* TODO Import this helper from terra-toolkit - https://github.com/cerner/terra-toolkit/issues/397 */
 const dispatchCustomEvent = (name, metaData) => {
-  /*If IE support is removed, convert below to use event constructors. */
+  /* If IE support is removed, convert below to use event constructors. */
   browser.execute((eventName, eventMetaData) => {
     const event = document.createEvent('Event');
     event.initEvent(eventName, true, true);

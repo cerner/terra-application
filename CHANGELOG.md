@@ -6,6 +6,14 @@ Unreleased
 ### Added
 * Added event listener to ApplicationBase to support full stack test overrides.
 
+1.19.0 - (April 7, 2020)
+------------------
+### Added
+* Added theme context to allow components to access the current theme.
+
+### Removed
+* As a part of updating theme provider the `themeIsGlobal` prop has been removed. While this traditionally would be considered non-passive, this prop was broken, removing it is considered a bug fix.
+
 1.18.0 - (March 24, 2020)
 ------------------
 ### Changed

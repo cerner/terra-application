@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Added event listener to ApplicationBase to support full stack test overrides.
 
 1.18.0 - (March 24, 2020)
 ------------------

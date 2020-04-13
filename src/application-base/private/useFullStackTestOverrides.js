@@ -10,13 +10,13 @@ const useFullStackTestOverrides = () => {
   const [localeOverride, setLocaleOverride] = useState();
 
   const handleFullStackTestOverrides = (event) => {
-    if (!event || !event.detail) {
+    if (!event || !event.metaData) {
       return;
     }
 
-    const { detail } = event;
-    if (typeof detail.locale !== 'undefined') {
-      setLocaleOverride(detail.locale);
+    const { metaData } = event;
+    if (typeof metaData.locale !== 'undefined') {
+      setLocaleOverride(metaData.locale);
     }
   };
 

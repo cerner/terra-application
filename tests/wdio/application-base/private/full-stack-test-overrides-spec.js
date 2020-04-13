@@ -10,11 +10,9 @@ const dispatchCustomEvent = (name, metaData) => {
 };
 
 Terra.describeViewports('FullStackTestOverrides', ['small'], () => {
-  before(() => browser.url('/raw/tests/terra-application/application-base/full-stack-test-overrides-test'));
-
+  before(() => browser.url('/raw/tests/terra-application/application-base/private/full-stack-test-overrides-test'));
   it('updates the locale of ApplicationBase via custom event', () => {
     dispatchCustomEvent('[full-stack]override', { locale: 'pt' });
-    browser.waitForVisible('#full-stack-test-example')
-    Terra.validates.screenshot('#full-stack-test-example')
+    Terra.validates.element({ selector: '#root' });
   });
 });

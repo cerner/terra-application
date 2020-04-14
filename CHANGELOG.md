@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Added event listener to ApplicationBase via custom React hook to support test overrides.
 
 1.19.0 - (April 7, 2020)
 ------------------

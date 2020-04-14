@@ -1,87 +1,153 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationBase should render with all props 1`] = `
-<ThemeProvider
-  className="application-theme-provider"
-  isGlobalTheme={true}
-  themeName="test-theme"
+<div
+  className="application-base"
 >
-  <Base
-    customMessages={
-      Object {
-        "custom": "messages",
-      }
-    }
-    locale="en"
-    strictMode={false}
-    translationsLoadingPlaceholder={
-      <div>
-        placeholder
-      </div>
-    }
+  <ThemeProvider
+    themeName="test-theme"
   >
-    <ApplicationErrorBoundary>
-      <InjectIntl(Component)>
-        <ActiveBreakpointProvider>
-          <withPromptRegistration(NavigationPromptCheckpoint)
-            onPromptChange={[Function]}
-          >
-            <ApplicationLoadingOverlayProvider>
-              <Suspense
-                fallback={
-                  <ApplicationLoadingOverlay
-                    backgroundStyle="clear"
-                    isOpen={true}
-                  />
-                }
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": "test-theme",
+        }
+      }
+    >
+      <Base
+        customMessages={
+          Object {
+            "custom": "messages",
+          }
+        }
+        locale="en"
+        strictMode={false}
+        translationsLoadingPlaceholder={
+          <div>
+            placeholder
+          </div>
+        }
+      >
+        <ApplicationErrorBoundary>
+          <InjectIntl(Component)>
+            <ActiveBreakpointProvider>
+              <withPromptRegistration(NavigationPromptCheckpoint)
+                onPromptChange={[Function]}
               >
-                <div>
-                  content
-                </div>
-              </Suspense>
-            </ApplicationLoadingOverlayProvider>
-          </withPromptRegistration(NavigationPromptCheckpoint)>
-        </ActiveBreakpointProvider>
-      </InjectIntl(Component)>
-    </ApplicationErrorBoundary>
-  </Base>
-</ThemeProvider>
+                <ApplicationLoadingOverlayProvider>
+                  <Suspense
+                    fallback={
+                      <ApplicationLoadingOverlay
+                        backgroundStyle="clear"
+                        isOpen={true}
+                      />
+                    }
+                  >
+                    <div>
+                      content
+                    </div>
+                  </Suspense>
+                </ApplicationLoadingOverlayProvider>
+              </withPromptRegistration(NavigationPromptCheckpoint)>
+            </ActiveBreakpointProvider>
+          </InjectIntl(Component)>
+        </ApplicationErrorBoundary>
+      </Base>
+    </ThemeContextProvider>
+  </ThemeProvider>
+</div>
 `;
 
 exports[`ApplicationBase should render with minimal props 1`] = `
-<ThemeProvider
-  className="application-theme-provider fill"
-  isGlobalTheme={false}
+<div
+  className="application-base fill"
 >
-  <Base
-    customMessages={Object {}}
-    locale="en"
-    strictMode={false}
-  >
-    <ApplicationErrorBoundary>
-      <InjectIntl(Component)>
-        <ActiveBreakpointProvider>
-          <withPromptRegistration(NavigationPromptCheckpoint)
-            onPromptChange={[Function]}
-          >
-            <ApplicationLoadingOverlayProvider>
-              <Suspense
-                fallback={
-                  <ApplicationLoadingOverlay
-                    backgroundStyle="clear"
-                    isOpen={true}
-                  />
-                }
+  <ThemeProvider>
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": undefined,
+        }
+      }
+    >
+      <Base
+        customMessages={Object {}}
+        locale="en"
+        strictMode={false}
+      >
+        <ApplicationErrorBoundary>
+          <InjectIntl(Component)>
+            <ActiveBreakpointProvider>
+              <withPromptRegistration(NavigationPromptCheckpoint)
+                onPromptChange={[Function]}
               >
-                <div>
-                  content
-                </div>
-              </Suspense>
-            </ApplicationLoadingOverlayProvider>
-          </withPromptRegistration(NavigationPromptCheckpoint)>
-        </ActiveBreakpointProvider>
-      </InjectIntl(Component)>
-    </ApplicationErrorBoundary>
-  </Base>
-</ThemeProvider>
+                <ApplicationLoadingOverlayProvider>
+                  <Suspense
+                    fallback={
+                      <ApplicationLoadingOverlay
+                        backgroundStyle="clear"
+                        isOpen={true}
+                      />
+                    }
+                  >
+                    <div>
+                      content
+                    </div>
+                  </Suspense>
+                </ApplicationLoadingOverlayProvider>
+              </withPromptRegistration(NavigationPromptCheckpoint)>
+            </ActiveBreakpointProvider>
+          </InjectIntl(Component)>
+        </ApplicationErrorBoundary>
+      </Base>
+    </ThemeContextProvider>
+  </ThemeProvider>
+</div>
+`;
+
+exports[`ApplicationBase should render with the preferred browser local 1`] = `
+<div
+  className="application-base fill"
+>
+  <ThemeProvider>
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": undefined,
+        }
+      }
+    >
+      <Base
+        customMessages={Object {}}
+        locale="en"
+        strictMode={false}
+      >
+        <ApplicationErrorBoundary>
+          <InjectIntl(Component)>
+            <ActiveBreakpointProvider>
+              <withPromptRegistration(NavigationPromptCheckpoint)
+                onPromptChange={[Function]}
+              >
+                <ApplicationLoadingOverlayProvider>
+                  <Suspense
+                    fallback={
+                      <ApplicationLoadingOverlay
+                        backgroundStyle="clear"
+                        isOpen={true}
+                      />
+                    }
+                  >
+                    <div>
+                      content
+                    </div>
+                  </Suspense>
+                </ApplicationLoadingOverlayProvider>
+              </withPromptRegistration(NavigationPromptCheckpoint)>
+            </ActiveBreakpointProvider>
+          </InjectIntl(Component)>
+        </ApplicationErrorBoundary>
+      </Base>
+    </ThemeContextProvider>
+  </ThemeProvider>
+</div>
 `;

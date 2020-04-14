@@ -4,6 +4,32 @@ Changelog
 Unreleased
 ----------
 
+1.19.0 - (April 7, 2020)
+------------------
+### Added
+* Added theme context to allow components to access the current theme.
+
+### Removed
+* As a part of updating theme provider the `themeIsGlobal` prop has been removed. While this traditionally would be considered non-passive, this prop was broken, removing it is considered a bug fix.
+
+1.18.0 - (March 24, 2020)
+------------------
+### Changed
+* Updated locale to be an optional prop for application base
+
+### Added
+* Added a fallback strategy for obtaining the preferred language from the browser if no locale is provided in application base
+
+1.17.0 - (February 18, 2020)
+------------------
+### Changed
+* Open up the version for terra-application-navigation
+
+1.16.0 - (January 28, 2020)
+------------------
+### Changed
+* Update copyright to include 2020
+
 1.15.0 - (January 7, 2020)
 ------------------
 ### Added

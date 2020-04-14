@@ -1,1 +1,1 @@
-FROM cerner/terra-node
+FROM cerner/terra-node-ci:1

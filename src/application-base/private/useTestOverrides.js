@@ -9,18 +9,18 @@ const APPLICATION_BASE_OVERRIDE_EVENT = 'applicationBase.testOverride';
 const useTestOverrides = () => {
   const [localeOverride, setLocaleOverride] = useState();
 
-  const handleTestOverrides = (event) => {
-    if (!event || !event.metaData) {
-      return;
-    }
-
-    const { metaData } = event;
-    if (typeof metaData.locale !== 'undefined') {
-      setLocaleOverride(metaData.locale);
-    }
-  };
-
   useEffect(() => {
+    const handleTestOverrides = (event) => {
+      if (!event || !event.metaData) {
+        return;
+      }
+
+      const { metaData } = event;
+      if (typeof metaData.locale !== 'undefined') {
+        setLocaleOverride(metaData.locale);
+      }
+    };
+
     window.addEventListener(APPLICATION_BASE_OVERRIDE_EVENT, handleTestOverrides);
     return () => {
       window.removeEventListener(APPLICATION_BASE_OVERRIDE_EVENT, handleTestOverrides);

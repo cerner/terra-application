@@ -1,15 +1,15 @@
 import { useState, useEffect } from 'react';
 
-const FULL_STACK_OVERRIDE_EVENT = '[full-stack]override';
+const APPLICATION_BASE_OVERRIDE_EVENT = 'applicationBase.testOverride';
 
 /**
  * Custom React hook that overrides locale via events. Leveraged by full stack testing to control deployed applications.
  * @returns {Object} Contains the locale to override with.
  */
-const useFullStackTestOverrides = () => {
+const useTestOverrides = () => {
   const [localeOverride, setLocaleOverride] = useState();
 
-  const handleFullStackTestOverrides = (event) => {
+  const handleTestOverrides = (event) => {
     if (!event || !event.metaData) {
       return;
     }
@@ -21,13 +21,13 @@ const useFullStackTestOverrides = () => {
   };
 
   useEffect(() => {
-    window.addEventListener(FULL_STACK_OVERRIDE_EVENT, handleFullStackTestOverrides);
+    window.addEventListener(APPLICATION_BASE_OVERRIDE_EVENT, handleTestOverrides);
     return () => {
-      window.removeEventListener(FULL_STACK_OVERRIDE_EVENT, handleFullStackTestOverrides);
+      window.removeEventListener(APPLICATION_BASE_OVERRIDE_EVENT, handleTestOverrides);
     };
   }, []); // Empty array ensures we setup and teardown event listener once.
 
   return { localeOverride };
 };
 
-export default useFullStackTestOverrides;
+export default useTestOverrides;

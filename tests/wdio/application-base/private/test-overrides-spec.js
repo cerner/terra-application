@@ -9,10 +9,10 @@ const dispatchCustomEvent = (name, metaData) => {
   }, name, metaData);
 };
 
-Terra.describeViewports('FullStackTestOverrides', ['small'], () => {
-  before(() => browser.url('/raw/tests/terra-application/application-base/private/full-stack-test-overrides-test'));
-  it('updates the locale of ApplicationBase via custom event', () => {
-    dispatchCustomEvent('[full-stack]override', { locale: 'pt' });
+Terra.describeViewports('TestOverrides', ['small'], () => {
+  before(() => browser.url('/raw/tests/terra-application/application-base/private/test-overrides-test'));
+  it('updates the locale of ApplicationBase from `en` to `pt` via custom event', () => {
+    dispatchCustomEvent('applicationBase.testOverride', { locale: 'pt' });
     Terra.validates.element({ selector: '#root' });
   });
 });

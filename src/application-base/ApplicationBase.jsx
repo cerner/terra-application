@@ -100,6 +100,7 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
+  const { localeOverride } = useFullStackTestOverrides(); // Allows us to test deployed applications in different locales.
   const theme = useMemo(() => ({ className: themeName }), [themeName]);
 
   return (
@@ -111,7 +112,7 @@ const ApplicationBase = ({
           <Base
             customMessages={customTranslatedMessages}
             translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={locale || browserLocale}
+            locale={localeOverride || locale || browserLocale}
           >
             <ApplicationErrorBoundary>
               <ApplicationIntlProvider>

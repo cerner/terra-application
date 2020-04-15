@@ -33,6 +33,8 @@ const propTypes = {
     BANNER_TYPES.INFO,
     BANNER_TYPES.SUCCESS,
     BANNER_TYPES.CUSTOM,
+    BANNER_TYPES.GAP_CHECKING, // REQUIRED?
+    BANNER_TYPES.OUTSIDE_RECORDS,
   ]).isRequired,
 };
 
@@ -58,11 +60,14 @@ const Banner = (props) => {
     }
 
     bannerRegistration.registerBanner(uuid.current, props);
+    if (bannerRegistration.registerBanner) {
+      bannerRegistration.registerBanner(uuid.current, props);
+    }
 
     return () => {
       bannerRegistration.unregisterBanner(uuid.current, props.type);
     };
-  }, [props]);
+  }, [bannerRegistration, props]);
 
   return null;
 };

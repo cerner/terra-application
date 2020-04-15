@@ -32,16 +32,27 @@ const BANNER_TYPES = {
   INFO: 'info',
   SUCCESS: 'success',
   CUSTOM: 'custom',
+  GAP_CHECKING: 'gapChecking', // REQUIRED?
+  OUTSIDE_RECORDS: 'outsideRecords',
 };
 
-const bannerPriority = [
-  bannerTypes.ALERT,
-  bannerTypes.ERROR,
-  bannerTypes.WARNING,
-  bannerTypes.GAP_CHECKING,
-  bannerTypes.OUTSIDE_RECORDS,
-  bannerTypes.INFO,
-  bannerTypes.SUCCESS,
+const disclosedBannerPriority = [
+  BANNER_TYPES.ALERT,
+  BANNER_TYPES.ERROR,
+  BANNER_TYPES.WARNING,
+  BANNER_TYPES.OUTSIDE_RECORDS,
+  BANNER_TYPES.INFO,
+  BANNER_TYPES.SUCCESS,
+];
+
+const defaultBannerPriority = [
+  BANNER_TYPES.ALERT,
+  BANNER_TYPES.ERROR,
+  BANNER_TYPES.WARNING,
+  BANNER_TYPES.OUTSIDE_RECORDS,
+  BANNER_TYPES.INFO,
+  BANNER_TYPES.SUCCESS,
+  BANNER_TYPES.GAP_CHECKING, // REQUIRED?
 ];
 
 const organizeBannersByPriority = (intl, banners) => {
@@ -49,26 +60,26 @@ const organizeBannersByPriority = (intl, banners) => {
     return [];
   }
 
-  const bannersList = bannerPriority.reduce((coll, type) => {
+  const bannersList = defaultBannerPriority.reduce((coll, type) => {
     if (banners[type]) {
       let propOverrides;
 
-      if (type === bannerTypes.GAP_CHECKING) {
+      if (type === BANNER_TYPES.GAP_CHECKING) {
         propOverrides = {
           title: intl.formatMessage({
             id: 'workflowFramework.banner.gapChecking.title',
           }),
           type: 'custom',
-          customColorClass: cx(['gap-checking-banner']),
+          customColorClass: cx('gap-checking-banner'),
           customIcon: <IconGapChecking />,
         };
-      } else if (type === bannerTypes.OUTSIDE_RECORDS) {
+      } else if (type === BANNER_TYPES.OUTSIDE_RECORDS) {
         propOverrides = {
           title: intl.formatMessage({
             id: 'workflowFramework.banner.outsideRecords.title',
           }),
           type: 'custom',
-          customColorClass: cx(['outside-records-banner']),
+          customColorClass: cx('outside-records-banner'),
           customIcon: (<IconDiamondSymbol />),
         };
       }

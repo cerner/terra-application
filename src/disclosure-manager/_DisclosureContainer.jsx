@@ -9,6 +9,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
+import BannerCheckpoint from '../banner/_BannerCheckpoint';
 
 const propTypes = {
   /**
@@ -51,7 +52,9 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
         <NavigationPromptCheckpoint
           ref={promptCheckpointRef}
         >
-          {children}
+          <BannerCheckpoint>
+            {children}
+          </BannerCheckpoint>
         </NavigationPromptCheckpoint>
       </ApplicationLoadingOverlayProvider>
     </ApplicationErrorBoundary>

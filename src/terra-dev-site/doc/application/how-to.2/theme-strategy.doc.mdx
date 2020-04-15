@@ -1,4 +1,7 @@
 import ExampleComponent from './example/ExampleComponent?dev-site-example';
+import ExampleComponentSCSS from './example/ExampleComponent.module.scss?dev-site-codeblock'
+import ClinicalLowLightSCSS from './example/clinical-lowlight-theme/ExampleComponent.module.scss?dev-site-codeblock';
+import OrionFusionThemeSCSS from './example/orion-fusion-theme/ExampleComponent.module.scss?dev-site-codeblock';
 
 # Theming Guide
 
@@ -6,7 +9,7 @@ Welcome to the Terra theming strategy guide. This guide will walk through the re
 
 ## Summary
 
-Terra supports a default, clinical-lowlight-theme, and orion-fusion-theme. This guide is for theming custom components. Custom components are any non Terra-UI component created by teams that need to be integrated into an application using a supported Terra theme. Teams should not create new themes or theme Terra components.
+Terra provides a default, clinical-lowlight-theme, and orion-fusion-theme. This guide is for theming custom components. Custom components are any non Terra-UI component created by teams that need to be integrated into an application using a supported Terra theme. Teams should not create new themes or theme Terra components.
 
 ## Getting Started
 
@@ -27,11 +30,11 @@ import { ThemeContext } from 'terra-application/lib/theme';
 
 const ExampleComponent = () => {
   // Access the active theme context value.
-  const theme = useContext(ThemeContext);
+  const theme = React.useContext(ThemeContext);
 };
 ```
 
-The active theme name is stored in a `className` key in the context value. To apply the theme, bind the theme className to the component using [classnames](https://github.com/JedWatson/classnames#alternate-bind-version-for-css-modules). Some additional documentation for CSS Modules and classNames can be found on the [conventions page](https://engineering.cerner.com/terra-ui/contributing/terra-ui/conventions). Please note that an empty or undefined className indicates the default theme is active or a theme provider is missing. The `className` key maps directly to the anticipated theme name. Using the correct theme className is required.
+The active theme's class name is stored in a `className` key in the context value. To apply the theme, bind the className to the component using [classnames/bind](https://github.com/JedWatson/classnames#alternate-bind-version-for-css-modules). Some additional documentation for CSS Modules and classNames can be found on the [conventions page](https://engineering.cerner.com/terra-ui/contributing/terra-ui/conventions). Please note that generally an empty or undefined className indicates the default theme is active. The `className` key maps directly to the anticipated theme css class name. Using the correct theme className is required.
 
 ```jsx
 import React from 'react';
@@ -56,7 +59,7 @@ const ExampleComponent = () => {
 
 Once the theme className has been bound, the component can be appropriately themed. Start by defining the variables for the CSS properties that are expected to change between themes. SCSS variables are defined using [custom properties](https://developer.mozilla.org/en-US/docs/Web/CSS/--*). These values should utilize the SCSS [var()](https://developer.mozilla.org/en-US/docs/Web/CSS/var) functionality. The var() function works by applying a variable if the value has been set. If no value has been set the default value is used.
 
-`example-component/ExampleComponent.module.scss`
+### ExampleComponent.module.scss
 
 ```scss
 // The values in this file represent the default theme. The default theme is applied using the default values in the var() function.
@@ -71,49 +74,19 @@ Once the theme className has been bound, the component can be appropriately them
 
 To add themes, create new files for each theme and include them in the original SCSS file. Theme are regular SCSS files that define variables to be applied when the theme becomes active. Themes must be locally scoped and must use a supported theme class name. It is recommended to define all available theme variables for each theme. If the component, example component in this case, defines three themable variables, all three variables should be assigned a value in each of the created theme files. This ensures a more robust theme.
 
-`example-component/orion-fusion-theme/ExampleComponent.module.scss`
+### orion-fusion-theme/ExampleComponent.module.scss
 
-```scss
-:local {
-  .orion-fusion-theme {
-    --terra-application-example-component-background-color: #f6f8fa;
-    --terra-application-example-component-color: rgb(36, 41, 46);
-    --terra-application-example-component-font-size: 2rem;
-  }
-}
-```
+<OrionFusionThemeSCSS />
 
-`example-component/clinical-lowlight-theme/ExampleComponent.module.scss`
+### clinical-lowlight-theme/ExampleComponent.module.scss
 
-```scss
-:local {
-  .clinical-lowlight-theme {
-    --terra-application-example-component-background-color: rgb(34, 42, 46);
-    --terra-application-example-component-color: rgb(178, 181, 182);
-    --terra-application-example-component-font-size: 1rem;
-  }
-}
-```
+<ClinicalLowLightSCSS />
 
 Include the new theme files in the original SCSS file.
 
-`example-component/ExampleComponent.module.scss`
+<ExampleComponentSCSS />
 
-```scss
-// Import each theme.
-@import './clinical-lowlight-theme/ExampleComponent.module';
-@import './orion-fusion-theme/ExampleComponent.module';
-
-:local {
-  .example-component {
-    background-color: var(--terra-application-example-component-background-color, #fff);
-    color: var(--terra-application-example-component-color, inherit);
-    font-size: var(--terra-application-example-component-font-size, 1rem);
-  }
-}
-```
-
-The recommended file structure ends up looking like this:
+The recommended file structure looks like this:
 
 ```
 .
@@ -128,7 +101,7 @@ The recommended file structure ends up looking like this:
 
 ## Webpack
 
-To enable themes, teams must define a `terra-theme.config.js` configuration file. This file is read by the [terra-toolkit postcss loader](https://github.com/cerner/terra-toolkit/tree/master/config/webpack/postcss) to aggregate themes. This file must be defined for theme CSS assets to be included in the webpack bundle. The loader runs automatically for webpack configurations using [terra-toolkit's webpack config](https://github.com/cerner/terra-toolkit/blob/master/config/webpack/webpack.config.js).
+To enable themes, teams must define a `terra-theme.config.js` configuration file. This file is read by the [terra-toolkit postcss loader](https://github.com/cerner/terra-toolkit-boneyard/tree/master/config/webpack/postcss) to apply default themes. The loader runs automatically for webpack configurations using [terra-toolkit's webpack config](https://github.com/cerner/terra-toolkit-boneyard/blob/master/config/webpack/webpack.config.js).
 
 ```js
 const themeConfig = {
@@ -143,7 +116,21 @@ module.exports = themeConfig;
 
 Toggle the theme from the dropdown at the top of the page to see changes. The full example code can be seen [here](https://github.com/cerner/terra-application/tree/master/src/terra-dev-site/doc/application/how-to.2/example).
 
-<ExampleComponent />
+<ExampleComponent isExpanded />
+
+## Testing
+
+Applications can opt into running WDIO tests against multiple themes.
+
+Themes testing can be enabled via the CLI using `--themes`.
+
+```json
+{
+  "test:wdio": "npm run pack; tt-wdio --config ./wdio.conf.js --locales ['en','es'] --themes ['orion-fusion-theme']; rm -rf ./build"
+}
+```
+
+See the [WDIO documentation](https://github.com/cerner/terra-toolkit-boneyard/tree/master/scripts/wdio#terra-toolkit-wdio-helpers) additional information and configuration options.
 
 ## FAQ
 
@@ -161,8 +148,8 @@ It is highly recommended that teams use the terra-toolkit webpack configuration 
 
 ### Can I Use Multiple Themes Providers At Once?
 
-Technically yes, officially no. Most themes depend on the base font-size set on the html element. Only one font-size can be applied to the base html element. Nested theme providers will not apply a correct font-size. This will impact any rem based CSS (padding, margins, line-heights, etc...).
+Technically yes, officially no. Multiple themes will apply all CSS styles for all themes to the root element. This will result in style collisions, specifically the base font-size themes depend on. An incorrect font-size will impact all rem based CSS (padding, margins, line-heights, etc...). The theme context supports a single theme in context at a time.
 
 ### Can I Create An Entirely New Theme?
 
-No, the internal implementation of Terra components is considered private and changes frequently. Terra provides all supported themes.
+No, the internal implementation of Terra components is considered private and changes frequently. All Terra component theme variables must be maintained by the Terra team.

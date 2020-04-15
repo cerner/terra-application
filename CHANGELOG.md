@@ -6,6 +6,11 @@ Unreleased
 ### Added
 * Added theme strategy guide
 
+1.20.0 - (April 14, 2020)
+------------------
+### Added
+* Added event listener to ApplicationBase via custom React hook to support test overrides.
+
 1.19.0 - (April 7, 2020)
 ------------------
 ### Added

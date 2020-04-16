@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.18.0",
+  "version": "1.20.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <11"
@@ -82,7 +82,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint --ext .js,.jsx .",
     "lint:scss": "stylelint src/**/*.scss",
-    "postpublish": "git push --tag",
+    "postpublish": "git push --follow-tags",
     "precompile": "rm -rf lib",
     "prepare": "npm run compile",
     "prepublishOnly": "npm whoami && check-installed-dependencies",
@@ -102,8 +102,8 @@
     "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
-    "terra-disclosure-manager": "^4.27.0",
     "terra-content-container": "^3.14.0",
+    "terra-disclosure-manager": "^4.27.0",
     "terra-doc-template": "^2.2.0",
     "terra-modal-manager": "^6.20.0",
     "terra-navigation-prompt": "^1.18.0",
@@ -111,7 +111,8 @@
     "terra-scroll": "^2.18.0",
     "terra-slide-panel-manager": "^5.19.0",
     "terra-status-view": "^4.10.0",
-    "terra-theme-provider": "^3.15.0",
+    "terra-theme-context": "^1.0.0",
+    "terra-theme-provider": "^4.0.0",
     "uuid": "^3.0.0"
   },
   "peerDependencies": {

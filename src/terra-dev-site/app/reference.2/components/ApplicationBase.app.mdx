@@ -28,7 +28,9 @@ Consumers of ApplicationBase should review Terra's [translation aggregation](htt
 
 ApplicationBase exposes props to define the application's theme.
 
-Consumers of ApplicationBase should review Terra's [theme aggregation](https://github.com/cerner/terra-toolkit/blob/master/scripts/aggregate-themes/README.md) instructions to ensure the all theme properties are loaded appropriately.
+ApplicationBase renders a theme context provider around its children. Children can access the current theme by using the [ThemeContext](/components/terra-application/application/reference/contexts/theme-context).
+
+<!-- Consumers of ApplicationBase should review Terra's [theme aggregation](https://github.com/cerner/terra-toolkit/blob/master/scripts/aggregate-themes/README.md) instructions to ensure the all theme properties are loaded appropriately. -->
 
 ### Breakpoints
 

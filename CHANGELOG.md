@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Update translated navigation prompt messages
 
 1.20.0 - (April 14, 2020)
 ------------------

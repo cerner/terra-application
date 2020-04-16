@@ -1,8 +1,8 @@
 {
-  "terraApplication.unsavedChangesPrompt.title": "Há alterações não salvas.",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Há alterações não salvas no {promptDescription}. As alterações serão descartadas se não forem salvas. Como deseja proceder?",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Os seguintes itens contém alterações não salvas:",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "As alterações serão descartadas se não forem salvas. Como deseja proceder?",
+  "terraApplication.unsavedChangesPrompt.title": "Alterações sem salvar",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Alterações não salvas feitas em {promptDescription}. Se você não as salvar, essas alterações serão perdidas. Deseja continuar?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Alterações não salvas feitas em:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Se você não as salvar, essas alterações serão perdidas. Deseja continuar?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Não salvar",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando"
 }

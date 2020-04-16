@@ -4,26 +4,49 @@ import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
 import NavigationPrompt from '../../../navigation-prompt';
 
+const PendingAction = ({ index, onClick, navDisabled }) => (
+  <p>
+  Toggle pending action
+    {`${index}: `}
+    <button
+      id={`pending-action-toggle-${index}`}
+      type="button"
+      onClick={onClick}
+    >
+      {navDisabled ? 'Disable' : 'Enable'}
+    </button>
+  </p>
+);
+
+PendingAction.propTypes = {
+  index: PropTypes.string,
+  onClick: PropTypes.func,
+  navDisabled: PropTypes.bool,
+};
+
 const PageContent = ({ title }) => {
-  const [hasPendingAction, setHasPendingAction] = useState(false);
+  const [hasPendingAction1, setHasPendingAction1] = useState(false);
+  const [hasPendingAction2, setHasPendingAction2] = useState(false);
 
   return (
     <div>
       <p>{title}</p>
-      <p>
-        Toggle pending action:
-        {' '}
-        <button
-          id="pending-action-toggle"
-          type="button"
-          onClick={() => {
-            setHasPendingAction(!hasPendingAction);
-          }}
-        >
-          {hasPendingAction ? 'Disable' : 'Enable'}
-        </button>
-      </p>
-      {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
+      <PendingAction
+        index="1"
+        navDisabled={hasPendingAction1}
+        onClick={() => {
+          setHasPendingAction1(!hasPendingAction1);
+        }}
+      />
+      <PendingAction
+        index="2"
+        navDisabled={hasPendingAction2}
+        onClick={() => {
+          setHasPendingAction2(!hasPendingAction2);
+        }}
+      />
+      {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
+      {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
     </div>
   );
 };

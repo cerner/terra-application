@@ -1,0 +1,22 @@
+# terra-application
+
+A React-based application platform for the Cerner.
+
+## Rationale
+
+There are many questions that must be answered at the outset of an application's development.
+
+- How will this application consume existing components developed for other applications? How will interoperability be defined? How will all the dependencies be managed?
+- How will this application have a user experience that is consistent with that of other applications? How will that consistency be maintained over time?
+
+The terra-application framework seeks to answer these questions and simplify the process of maintaining web applications on the Orion platform.
+
+### Component Composition
+
+The framework provides a large number of features using React's Context APIs. An application built with the framework is guaranteed to provide those framework features to the components it renders, and reusable components can be developed with the assumption that the framework will provide them. Any components requiring the same major version of terra-application will be interoperable.
+
+The terra-application package brings all the required logic into a single location, resulting in simplified dependency management across the suite of developed components.
+
+### UX Consistency
+
+The framework utilizes the full suite of Terra's components to ensure visual consistency and accessibility for applications. The framework also provides simplified APIs for common design patterns like loading overlays, modals, and error view presentation to further promote consistency.

@@ -3,4 +3,4 @@ export {
   withDisclosureManager, disclosureManagerShape, DisclosureManagerContext, DisclosureManagerDelegate, DisclosureManagerHeaderAdapterContext, DisclosureManagerHeaderAdapter, availableDisclosureSizes, availableDisclosureHeights, availableDisclosureWidths,
 } from 'terra-disclosure-manager';
 
-export { closeMostRecentDisclosure } from './_disclosureCallbackStack';
+export { closeMostRecentDisclosure } from './_disclosureCallbacks';

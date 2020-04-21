@@ -10,15 +10,17 @@ const removeCallback = (callback) => {
 
 const closeMostRecentDisclosure = () => {
   if (!disclosureCallbacks.length) {
-    return false;
+    return Promise.resolve();
   }
 
-  disclosureCallbacks[disclosureCallbacks.length - 1]();
-  return true;
+  return disclosureCallbacks[disclosureCallbacks.length - 1]();
 };
+
+const getActiveDisclosureCount = () => (disclosureCallbacks.length);
 
 export {
   addCallback,
   removeCallback,
   closeMostRecentDisclosure,
+  getActiveDisclosureCount,
 };

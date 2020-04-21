@@ -12,4 +12,15 @@ Terra.describeViewports('ApplicationErrorBoundary', ['large'], () => {
 
     Terra.it.validatesElement('with error', { selector: '#root' });
   });
+  describe('Default error message', () => {
+    before(() => {
+      browser.url('/raw/tests/terra-application/application-error-boundary/error-boundary-test');
+    });
+
+    it('shows the status view when error occurs', () => {
+      browser.click('#defaultMessage');
+    });
+
+    Terra.it.validatesElement({ selector: '#root' });
+  });
 });

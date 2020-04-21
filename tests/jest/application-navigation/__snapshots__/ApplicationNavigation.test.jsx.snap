@@ -7,7 +7,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
 >
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
-      <ApplicationErrorBoundary>
+      <InjectIntl(ApplicationErrorBoundary)>
         <Suspense
           fallback={
             <ApplicationLoadingOverlay
@@ -16,7 +16,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
             />
           }
         />
-      </ApplicationErrorBoundary>
+      </InjectIntl(ApplicationErrorBoundary)>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
@@ -88,7 +88,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
 >
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
-      <ApplicationErrorBoundary>
+      <InjectIntl(ApplicationErrorBoundary)>
         <Suspense
           fallback={
             <ApplicationLoadingOverlay
@@ -101,7 +101,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
             test child content
           </div>
         </Suspense>
-      </ApplicationErrorBoundary>
+      </InjectIntl(ApplicationErrorBoundary)>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>

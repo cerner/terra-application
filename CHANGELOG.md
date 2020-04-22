@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Added theme strategy guide
+
 ### Changed
 * Update translated navigation prompt messages
 

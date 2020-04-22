@@ -1,21 +1,15 @@
 # How To Change the Application Theme
 
-The theme used by the application is set using the `themeName` prop on ApplicationBase.
+The application theme is set using the `themeName` prop in ApplicationBase. The `themeName` is used as the class name for applying styles.
 
-> Note: Please review the [theme aggregation documentation](https://github.com/cerner/terra-toolkit/tree/master/scripts/aggregate-themes#theme-aggregation) to ensure the proper configuration is in place for themeable applications.
+A `terra-theme.config.js` file must be available to enable themes. Check out the [theme strategy guide](http://engineering.cerner.com/terra-application/components/terra-application/application/how-to/theme-strategy) for more information about using and applying themes.
 
-```diff
+```jsx
   import React from 'react';
-+ import CernerClinicalTheme from 'cerner-clinical-theme/scoped-theme';
-
   import ApplicationBase from 'terra-application/lib/application-base';
 
   const ExampleApp = () => (
-    <ApplicationBase
-      locale="en-us"
-+     themeIsGlobal
-+     themeName={CernerClinicalTheme.themeName}
-    >
+    <ApplicationBase themeName="example-theme-name">
       {...}
     </ApplicationBase>
   );

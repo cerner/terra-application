@@ -94,7 +94,7 @@
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio": "WDIO_EXTERNAL_HOST=10.188.202.200 tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']"
+    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']"
   },
   "dependencies": {
     "classnames": "^2.2.5",

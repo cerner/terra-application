@@ -4,7 +4,12 @@ import classNames from 'classnames/bind';
 import CollapsibleMenuView from 'terra-collapsible-menu-view';
 import ContentContainer from 'terra-content-container';
 import {
-  availableDisclosureHeights, availableDisclosureWidths, withDisclosureManager, disclosureManagerShape, DisclosureManagerHeaderAdapter,
+  availableDisclosureHeights,
+  availableDisclosureWidths,
+  withDisclosureManager,
+  disclosureManagerShape,
+  DisclosureManagerHeaderAdapter,
+  closeMostRecentDisclosure,
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import styles from './DisclosureComponentCommon.test.module.scss';
@@ -177,6 +182,7 @@ class DisclosureComponent extends React.Component {
         {disclosureManager && disclosureManager.goBack ? <button type="button" className="go-back" onClick={this.goBack}>Go Back</button> : null}
         {disclosureManager && disclosureManager.maximize ? <button type="button" className="maximize" onClick={this.maximize}>Maximize</button> : null}
         {disclosureManager && disclosureManager.minimize ? <button type="button" className="minimize" onClick={this.minimize}>Minimize</button> : null}
+        <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>Global Close</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       </ContentContainer>

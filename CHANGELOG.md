@@ -6,6 +6,11 @@ Unreleased
 ### Changed
 * Updated errorBoundary to have a default error message when there is none provided.
 
+1.21.0 - (April 22, 2020)
+------------------
+### Added
+* Added theme strategy guide
+
 1.20.0 - (April 14, 2020)
 ------------------
 ### Added

@@ -19,6 +19,10 @@ const navConfig = {
       capabilities: {
         devTools: true,
       },
+    }, {
+      path: '/guides',
+      text: 'Guides',
+      pageTypes: ['guide'],
     }],
   },
 };

@@ -135,11 +135,11 @@ Each of these functions returns a Promise that can be used for chaining, if nece
 
 #### A Note on `registerDismissCheck`
 
-By default, the DisclosureManager monitors its disclosed content for the presence of [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt).
+By default, the DisclosureManager monitors its disclosed content for the presence of [NavigationPrompts](/application/terra-application/application/application/navigation-prompt).
 The user will be prompted if they attempt to close the dismiss the disclosure while NavigationPrompts are present.
 
 If the modal content calls `registerDismissCheck` to add its own pre-dismissal logic, the default NavigationPrompt handling will be **disabled**.
-Any component that uses `registerDismissCheck` should check for the presence of NavigationPrompts (using a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoing))
+Any component that uses `registerDismissCheck` should check for the presence of NavigationPrompts (using a [NavigationPromptCheckpoint](/application/terra-application/application/application/navigation-prompt-checkpoing))
 in addition to whatever custom logic is required.
 
 Given this complexity, usage of the `registerDismissCheck` API is **not recommended**.

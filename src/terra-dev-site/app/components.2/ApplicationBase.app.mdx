@@ -1,0 +1,57 @@
+import PropsTable from 'terra-application/lib/application-base/ApplicationBase?dev-site-props-table';
+
+# ApplicationBase
+
+The ApplicationBase component is the entrypoint into the Terra application framework. Applications must render ApplicationBase around the their content to provide the content with ApplicationBase's features.
+
+> ApplicationBase renders the Base component (from `terra-base`) around its children. Components rendered within ApplicationBase should not render a separate Base instance.
+
+## Usage
+
+```jsx
+import ApplicationBase from 'terra-application/lib/application-base';
+```
+
+## Props
+
+<PropsTable />
+
+## Features
+
+### I18n
+
+ApplicationBase exposes a prop to define the application's locale and dynamically retrieve the translated strings for that locale. Children of ApplicationBase can access translated strings by using [react-intl's](https://github.com/formatjs/react-intl) provided components or by using the [ApplicationIntlContext](/application/terra-application/application/contexts/application-intl-context).
+
+Consumers of ApplicationBase should review Terra's [translation aggregation](https://engineering.cerner.com/terra-ui/getting-started/terra-ui/internationalization/aggregate-translations) instructions to ensure ApplicationBase can retrieve the application's translations successfully.
+
+### Theming
+
+ApplicationBase exposes props to define the application's theme.
+
+ApplicationBase renders a theme context provider around its children. Children can access the current theme by using the [ThemeContext](/application/terra-application/application/contexts/theme-context).
+
+<!-- Consumers of ApplicationBase should review Terra's [theme aggregation](https://github.com/cerner/terra-toolkit-boneyard/blob/master/scripts/aggregate-themes/README.md) instructions to ensure the all theme properties are loaded appropriately. -->
+
+### Breakpoints
+
+ApplicationBase renders an [ActiveBreakpointContext.Provider](/application/terra-application/application/contexts/active-breakpoint-context) around its children. Children can access the current active breakpoint value by using the [ActiveBreakpointContext](/application/terra-application/application/contexts/active-breakpoint-context).
+
+### Exception Handling
+
+ApplicationBase renders an [ApplicationErrorBoundary](/application/terra-application/application/application/application-error-boundary) around its children. If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children.
+
+### Loading Overlays
+
+ApplicationBase renders an [ApplicationLoadingOverlayProvider](/application/terra-application/application/application/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/application/terra-application/application/application/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
+
+### Unsaved Changes
+
+ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt). ApplicationBase will ensure that the user is prompted using a browser-native confirmation dialog prior to any window unload event if any [NavigationPrompts](/application/terra-application/application/application/navigation-prompt) are rendered at the time of the unload request.
+
+### Code Splitting
+
+ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their descendants are lazy loaded using [React.lazy](https://reactjs.org/docs/code-splitting.html#reactlazy), a sensible fallback will be rendered while the component is being retrieved. The fallback will render below the ApplicationNavigation header and allow the header to remain interactable.
+
+### Modal Presentation
+
+ApplicationBase renders a [ModalManager](/application/terra-application/application/application/modal-manager) around its children. Children can access modal disclosure APIs by using the [DisclosureManagerContext](/application/terra-application/application/contexts/disclosure-manager-context).

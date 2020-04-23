@@ -1,6 +1,6 @@
 {
   "terraApplication.unsavedChangesPrompt.title": "Nicht gespeicherte Änderungen",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Die Änderungen der folgenden Elemente wurden nicht gespeichert: {promptDescription}. Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Die Änderungen der folgenden Elemente wurden nicht gespeichert: {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Die Änderungen der folgenden Elemente wurden nicht gespeichert:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Wenn Sie Ihre Änderungen nicht speichern, gehen diese verloren. Wie möchten Sie fortfahren?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Nicht speichern",

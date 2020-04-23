@@ -1,6 +1,6 @@
 {
   "terraApplication.unsavedChangesPrompt.title": "Osparade ändringar",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Ändringar gjorda i {promptDescription} har inte sparats. Om du inte sparar ändringarna går de förlorade. Hur vill du fortsätta?",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Ändringar gjorda i {promptDescription} har inte sparats.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Ändringar har gjorts i följande utan att sparas:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Om du inte sparar ändringarna går de förlorade. Hur vill du fortsätta?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Spara inte",

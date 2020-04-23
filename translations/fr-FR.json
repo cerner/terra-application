@@ -1,6 +1,6 @@
 {
   "terraApplication.unsavedChangesPrompt.title": "Modifications non enregistrées",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Des modifications apportées à {promptDescription} n'ont pas été enregistrées. Si vous n'enregistrez pas les modifications, elles seront perdues. Comment voulez-vous procéder ?",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Des modifications apportées à {promptDescription} n'ont pas été enregistrées.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Des modifications apportées aux éléments suivants n'ont pas été enregistrées :",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas les modifications, elles seront perdues. Comment voulez-vous procéder ?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",

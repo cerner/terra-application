@@ -1,6 +1,6 @@
 {
   "terraApplication.unsavedChangesPrompt.title": "Cambios no guardados",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Se hicieron cambios en {promptDescription}, que se perderán si no se guardan. ¿Qué desea hacer?",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Se hicieron cambios no guardados en {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Los cambios no guardados se hicieron en:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Los cambios se perderán si no los guarda. ¿Qué desea hacer?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "No guardar",

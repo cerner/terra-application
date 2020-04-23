@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormattedMessage } from 'react-intl';
 
 /**
  * Generates an Object containing properties used to define messages for NavigationPromptCheckpoint-based user prompting.
@@ -8,17 +7,13 @@ import { FormattedMessage } from 'react-intl';
 export default intl => (prompts) => {
   let startMessage;
   let content;
-  let endMessage;
 
   if (prompts.length === 1) {
-    content = (
-      <FormattedMessage
-        id="terraApplication.unsavedChangesPrompt.singlePromptMessage"
-        values={{
-          promptDescription: <b>{prompts[0].description}</b>,
-        }}
-      />
-    );
+    startMessage = intl.formatMessage({
+      id: 'terraApplication.unsavedChangesPrompt.singlePromptMessage',
+    }, {
+      promptDescription: prompts[0].description,
+    });
   } else {
     startMessage = intl.formatMessage({
       id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro',
@@ -32,11 +27,11 @@ export default intl => (prompts) => {
       </ul>
     );
     /* eslint-enable react/no-array-index-key */
-
-    endMessage = intl.formatMessage({
-      id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
-    });
   }
+
+  const endMessage = intl.formatMessage({
+    id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
+  });
 
   return {
     title: intl.formatMessage({

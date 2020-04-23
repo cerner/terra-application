@@ -1,6 +1,6 @@
 {
   "terraApplication.unsavedChangesPrompt.title": "Niet-opgeslagen wijzigingen",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Er zijn niet-opgeslagen wijigingen in {promptDescription}. Deze wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u verder gaan?",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Er zijn niet-opgeslagen wijigingen in {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Er zijn niet-opgeslagen wijzigingen in het volgende:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Deze wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u verder gaan?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Niet opslaan",

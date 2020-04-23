@@ -15,20 +15,19 @@ A React-based application framework from Cerner.
 
 As we have developed web applications at Cerner we have found that there are many questions that must be answered at the outset of an application's development and that many of those question have a common answer that can be provided by an application framework.
 
+- How will this application provide accessible, consistent navigation?
+- When javascript errors in an highly composable application, happen how do we prevent the entire page from breaking?
+- How do we offer a consistent overlay experience?
+- How do we ensure modals are accessible and prevent multiple on the page at once? How do we can composable components flex between being presented as page content and modal content?
+- How can we prevent single page navigation while unsaved changes are present?
+- How does content get presented in a slide panel?
+- How do we enable responsive behavior in applications without sacrificing performance?
+- How do components provide a localized experience?
+- How do we theme highly composed applications?
 - How will this application consume existing components developed for other applications? How will interoperability be defined? How will dependencies be managed?
 - How will this application have a user experience that is consistent with that of other applications? How will that consistency be maintained over time?
 
-The terra-application framework seeks to answer these questions and simplify the process of maintaining web applications on the Terra framework.
-
-### Component Composition
-
-The framework provides a large number of features using React's Context APIs. An application built with the framework is guaranteed to have access to these framework features and reusable components can be developed with the assumption that the framework will provide them. Any components requiring the same major version of terra-application will be interoperable.
-
-The terra-application package brings all the required framework logic into a single location, resulting in a simplified dependency that is easy to manage across the suite of developed components.
-
-### UX Consistency
-
-The framework utilizes the full suite of Terra's components to ensure visual consistency and accessibility for applications. The framework also provides simplified APIs for common design patterns like loading overlays, modals, and error view presentation to further promote consistency.
+The terra-application framework seeks to answer these questions and simplify the process of maintaining web applications.
 
 ## Overview
 
@@ -95,3 +94,13 @@ Terra applications must work for many locales, The Application Intl Context prov
 Applications commonly switch between light and dark modes. Terra provides theme APIs to allow themeing of custom components within a terra application.
 
 [Theme Context API](/application/terra-application/contexts/theme-context)
+
+### Component Composition
+
+The framework provides a large number of features using React's Context APIs. An application built with the framework is guaranteed to have access to these framework features and reusable components can be developed with the assumption that the framework will provide them. Any components requiring the same major version of terra-application will be interoperable.
+
+The terra-application package brings all the required framework logic into a single location, resulting in a simplified dependency that is easy to manage across the suite of developed components.
+
+### UX Consistency
+
+The framework utilizes the full suite of Terra's components to ensure visual consistency and accessibility for applications. The framework also provides simplified APIs for common design patterns like loading overlays, modals, and error view presentation to further promote consistency.

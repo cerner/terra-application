@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.21.0 - (April 22, 2020)
+------------------
 ### Added
 * Added theme strategy guide
 

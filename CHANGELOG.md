@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)
 ------------------

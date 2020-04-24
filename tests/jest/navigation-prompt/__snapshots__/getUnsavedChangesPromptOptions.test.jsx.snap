@@ -4,20 +4,11 @@ exports[`getPendingActionPromptOptions generates a function that provides approp
 Object {
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
-  "content": <FormattedMessage
-    id="terraApplication.unsavedChangesPrompt.singlePromptMessage"
-    values={
-      Object {
-        "promptDescription": <b>
-          Test Prompt
-        </b>,
-      }
-    }
-  />,
+  "content": undefined,
   "emphasizedAction": "reject",
-  "endMessage": undefined,
+  "endMessage": "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro",
   "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",
-  "startMessage": undefined,
+  "startMessage": "terraApplication.unsavedChangesPrompt.singlePromptMessage",
   "title": "terraApplication.unsavedChangesPrompt.title",
 }
 `;

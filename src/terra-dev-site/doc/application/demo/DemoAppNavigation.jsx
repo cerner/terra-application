@@ -7,6 +7,7 @@ import ApplicationNavigation from 'terra-application/lib/application-navigation'
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 
 import { ModalContent } from './ModalPresenter';
+import PageLayoutDemo from './PageLayoutDemo';
 
 const Page1Content = React.lazy(() => import('./Page1Content'));
 const Page2Content = React.lazy(() => import('./Page2Content'));
@@ -19,11 +20,14 @@ const userConfig = {
 
 const DemoAppNavigation = () => {
   const disclosureManager = useContext(DisclosureManagerContext);
-  const [activeNavItem, setActiveNavItem] = useState('page_1');
+  const [activeNavItem, setActiveNavItem] = useState('page_0');
   const [loggedOut, setLoggedOut] = useState(false);
   const disclosureDismissRef = useRef();
 
   const navigationItemsRef = useRef([{
+    key: 'page_0',
+    text: 'Page 0',
+  }, {
     key: 'page_1',
     text: 'Page 1',
   }, {
@@ -45,6 +49,9 @@ const DemoAppNavigation = () => {
 
   let pageContent;
   switch (activeNavItem) {
+    case 'page_0':
+      pageContent = <PageLayoutDemo />;
+      break;
     case 'page_1':
       pageContent = <Page1Content />;
       break;

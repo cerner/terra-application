@@ -5,7 +5,7 @@ import PropsTable from 'terra-application/lib/slide-panel-manager/SlidePanelMana
 # SlidePanelManager
 
 The SlidePanelManager exposes its children to panel presentation APIs through the
-[DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context).
+[DisclosureManagerContext](/application/terra-application/application/contexts/disclosure-manager-context).
 
 ## Usage
 
@@ -21,7 +21,7 @@ import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
 
 ### Exception Handling
 
-SlidePanelManager renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary)
+SlidePanelManager renders an [ApplicationErrorBoundary](/application/terra-application/application/application/application-error-boundary)
 around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, SlidePanelManager will
 catch the exceptions and render a styled error component in place of the children.
 
@@ -31,8 +31,8 @@ catch the exceptions and render a styled error component in place of the childre
 
 ### Loading Overlays
 
-SlidePanelManager renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay)
-around its disclosed components. Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay)
+SlidePanelManager renders an [ApplicationLoadingOverlayProvider](/application/terra-application/application/application/application-loading-overlay)
+around its disclosed components. Any [ApplicationLoadingOverlay](/application/terra-application/application/application/application-loading-overlay)
 components rendered by children will cause a loading overlay to be rendered over the panel's contents.
 
 > If the disclosed panel contents do not utilize the DisclosureManagerHeaderAdapter and render their own panel header instead,
@@ -41,15 +41,15 @@ components rendered by children will cause a loading overlay to be rendered over
 
 ### Unsaved Changes
 
-SlidePanelManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt)
+SlidePanelManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt)
 within its disclosed content. SlidePanelManager will ensure that the user is prompted prior to dismissing the presented panel if any
-[NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt) are rendered at the time of the dismissal request.
+[NavigationPrompts](/application/terra-application/application/application/navigation-prompt) are rendered at the time of the dismissal request.
 
 ## Details
 
 ### Implementation Requirements
 
-The SlidePanelManager utilizes the [DisclosureManagerContext](/components/terra-application/application/reference/contexts/disclosure-manager-context) to manage disclosure requests.
+The SlidePanelManager utilizes the [DisclosureManagerContext](/application/terra-application/application/contexts/disclosure-manager-context) to manage disclosure requests.
 
 The SlidePanelManager responds to `"panel"` disclosure type requests. Components that wish to disclose content using the SlidePanelManager
 should provide a preferred type of `"panel"`.

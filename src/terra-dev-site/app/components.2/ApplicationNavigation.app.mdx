@@ -1,5 +1,5 @@
 import PropsTable from 'terra-application/lib/application-navigation/ApplicationNavigation?dev-site-props-table';
-import ApplicationNavigationExample from 'terra-application/lib/terra-dev-site/doc/application/reference.1/components/example/ApplicationNavigationExample?dev-site-example';
+import ApplicationNavigationExample from './example/ApplicationNavigationExample?dev-site-example';
 
 # ApplicationNavigation
 
@@ -15,7 +15,7 @@ import ApplicationNavigation from 'terra-application/lib/application-navigation'
 
 ApplicationNavigation requires values from the following Contexts:
 
-* [ApplicationIntlContext](/components/terra-application/application/reference/contexts/application-intl-context)
+* [ApplicationIntlContext](/application/terra-application/application/contexts/application-intl-context)
 
 ## Props
 
@@ -247,23 +247,23 @@ The ApplicationNavigation has two rendering modes: `standard` and `compact`.
 
 ### Exception Handling
 
-ApplicationNavigation renders an [ApplicationErrorBoundary](/components/terra-application/application/reference/components/application-error-boundary) around its children.
+ApplicationNavigation renders an [ApplicationErrorBoundary](/application/terra-application/application/application/application-error-boundary) around its children.
 If the children throw exceptions during React lifecycle functions, ApplicationBase will catch the exceptions and render a styled error component in place of the children.
 
 This error component will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls after an error occurs.
 
 ### Loading Overlays
 
-ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/components/terra-application/application/reference/components/application-loading-overlay) around its children.
-Any [ApplicationLoadingOverlay](/components/terra-application/application/reference/components/application-loading-overlay) components rendered by children will cause a loading overlay
+ApplicationNavigation renders an [ApplicationLoadingOverlayProvider](/application/terra-application/application/application/application-loading-overlay) around its children.
+Any [ApplicationLoadingOverlay](/application/terra-application/application/application/application-loading-overlay) components rendered by children will cause a loading overlay
 to be presented over ApplicationNavigation's children.
 
 The loading overlay will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls while the loading overlay is presented.
 
 ### Unsaved Changes
 
-ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/components/terra-application/application/reference/components/navigation-prompt)
-by rendering a [NavigationPromptCheckpoint](/components/terra-application/application/reference/components/navigation-prompt-checkpoint) around its children.
+ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt)
+by rendering a [NavigationPromptCheckpoint](/application/terra-application/application/application/navigation-prompt-checkpoint) around its children.
 ApplicationNavigation will ensure that the user is prompted when a primary navigation or 'Logout' utility selection is made if any NavigationPrompts have
 been rendered by children at the time of the selection.
 

@@ -1,6 +1,6 @@
 //Themes
-@import './ThemedComponent.clinical-lowlight-theme.module';
-@import './ThemedComponent.orion-fusion-theme.module';
+@import './clinical-lowlight-theme/ThemedComponent.module';
+@import './orion-fusion-theme/ThemedComponent.module';
 
 :local {
   .themed {

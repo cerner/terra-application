@@ -1,6 +1,10 @@
 import React from 'react';
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 import ApplicationPageContext from '../../../../application-page/ApplicationPageContext';
+import ModalPresenter from './ModalPresenter';
+import PendingActionToggle from './PendingActionToggle';
+import LoadingOverlayPresenter from './LoadingOverlayPresenter';
+import ErrorThrower from './ErrorThrower';
 
 const Page = ({ index }) => {
   const [initializedDate] = React.useState(new Date().toLocaleString());
@@ -27,10 +31,15 @@ const Page = ({ index }) => {
               });
             }}
           >
-          Show Page
+            Show Page
             {' '}
             {index + 1}
           </button>
+          <br />
+          <ErrorThrower />
+          <ModalPresenter />
+          <PendingActionToggle />
+          <LoadingOverlayPresenter />
         </div>
       )}
     </ApplicationPageContext.Consumer>

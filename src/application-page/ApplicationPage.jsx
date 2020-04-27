@@ -4,12 +4,21 @@ import ActionHeader from 'terra-action-header';
 import uuidv4 from 'uuid/v4';
 
 import ApplicationPageContext from './ApplicationPageContext';
+import { ApplicationIntlContext } from '../application-intl';
+import ApplicationErrorBoundary from '../application-error-boundary';
+import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 
 const ApplicationPage = ({ rootPageTitle, children }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
   const [pageStack, setPageStack] = React.useState([]);
 
   function popStack() {
-    setPageStack((state) => state.slice(0, -1));
+    const presentedPage = pageStack[pageStack.length - 1];
+
+    presentedPage.navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      setPageStack((state) => state.slice(0, -1));
+    });
   }
 
   const pages = [{
@@ -31,19 +40,28 @@ const ApplicationPage = ({ rootPageTitle, children }) => {
             title,
             key: key || uuidv4(),
             content,
+            navigationPromptCheckpointRef: React.createRef(),
           }]);
         },
       }}
       >
         {pages.map((page, index) => (
-          <div
-            key={page.key}
-            style={{
-              height: '100%', overflow: 'auto', position: 'relative', display: index === pages.length - 1 ? 'block' : 'none',
-            }}
+          <NavigationPromptCheckpoint
+            ref={page.navigationPromptCheckpointRef}
           >
-            {page.content}
-          </div>
+            <div
+              key={page.key}
+              style={{
+                height: '100%', overflow: 'auto', position: 'relative', display: index === pages.length - 1 ? 'block' : 'none',
+              }}
+            >
+              <ApplicationErrorBoundary>
+                <ApplicationLoadingOverlayProvider>
+                  {page.content}
+                </ApplicationLoadingOverlayProvider>
+              </ApplicationErrorBoundary>
+            </div>
+          </NavigationPromptCheckpoint>
         ))}
       </ApplicationPageContext.Provider>
     </ContentContainer>

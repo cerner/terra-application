@@ -104,6 +104,7 @@ const PageLayoutDemo = () => {
             <Page prefix="Item 1" index={0} />
           </ApplicationPage>
         )}
+        cleanupRenderIfPossible
       />
       <SideNavContent
         sideNavKey="item-2"
@@ -112,6 +113,7 @@ const PageLayoutDemo = () => {
             <Page prefix="Item 2" index={0} />
           </ApplicationPage>
         )}
+        cleanupRenderIfPossible
       />
       <SideNavContent
         sideNavKey="item-3"

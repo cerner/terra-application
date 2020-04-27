@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import styles from './SideNavContainer.module.scss';
 
 const cx = classNames.bind(styles);
@@ -29,22 +30,31 @@ const SideNavContainer = ({ sideNav, activeItemKey, children }) => (
 SideNavContainer.propTypes = propTypes;
 
 const SideNavContent = ({
-  isActive, sideNavKey, children, render,
+  isActive, sideNavKey, children, render, cleanupRenderIfPossible,
 }) => {
   const [hasActivated, setHasActivated] = React.useState();
+  const registeredPromptsRef = React.useRef(0);
 
   React.useLayoutEffect(() => {
     if (isActive) {
       setHasActivated(true);
+    } else if (render && registeredPromptsRef.current === 0 && cleanupRenderIfPossible) {
+      setHasActivated(false);
     }
-  }, [isActive]);
+  }, [isActive, render, cleanupRenderIfPossible]);
 
   if (!hasActivated && render) {
     return null;
   }
 
   if (render) {
-    return render({ sideNavKey, isActive });
+    return (
+      <NavigationPromptCheckpoint
+        onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}
+      >
+        {render({ sideNavKey, isActive })}
+      </NavigationPromptCheckpoint>
+    );
   }
 
   return children;

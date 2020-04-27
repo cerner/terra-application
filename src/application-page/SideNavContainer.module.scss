@@ -1,0 +1,24 @@
+:local {
+  .side-nav-container {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: 100%;
+    justify-content: stretch;
+    overflow: none;
+  }
+
+  .side-nav-sidebar {
+    border-right: 1px solid grey;
+    flex: 0 0 auto;
+    height: 100%;
+    width: 200px;
+  }
+
+  .side-nav-body {
+    flex: 1 1 auto;
+    height: 100%;
+  }
+}
+

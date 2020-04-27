@@ -9,7 +9,7 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 
-const ApplicationPage = ({ rootPageTitle, children }) => {
+const ApplicationPage = ({ rootPageTitle, rootPageBackAction, children }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const [pageStack, setPageStack] = React.useState([]);
 
@@ -46,22 +46,22 @@ const ApplicationPage = ({ rootPageTitle, children }) => {
       }}
       >
         {pages.map((page, index) => (
-          <NavigationPromptCheckpoint
-            ref={page.navigationPromptCheckpointRef}
+          <div
+            key={page.key}
+            style={{
+              height: '100%', overflow: 'auto', position: 'relative', display: index === pages.length - 1 ? 'block' : 'none',
+            }}
           >
-            <div
-              key={page.key}
-              style={{
-                height: '100%', overflow: 'auto', position: 'relative', display: index === pages.length - 1 ? 'block' : 'none',
-              }}
+            <NavigationPromptCheckpoint
+              ref={page.navigationPromptCheckpointRef}
             >
               <ApplicationErrorBoundary>
                 <ApplicationLoadingOverlayProvider>
                   {page.content}
                 </ApplicationLoadingOverlayProvider>
               </ApplicationErrorBoundary>
-            </div>
-          </NavigationPromptCheckpoint>
+            </NavigationPromptCheckpoint>
+          </div>
         ))}
       </ApplicationPageContext.Provider>
     </ContentContainer>

@@ -11,6 +11,7 @@ import { ThemeContext } from 'terra-application/lib/theme';
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
+import ErrorThrower from './ErrorThrower';
 
 import styles from './AppPage.module.scss';
 
@@ -22,8 +23,6 @@ const AppPage = ({ pageName }) => {
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
   const theme = React.useContext(ThemeContext);
-
-  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     if (isInitialized) {
@@ -43,10 +42,6 @@ const AppPage = ({ pageName }) => {
     return <ApplicationLoadingOverlay isOpen backgroundStyle="clear" />;
   }
 
-  if (hasError) {
-    throw new Error(`${pageName} threw an error to test the application's error handling`);
-  }
-
   return (
     <div className={cx('page-content', theme.className)}>
       <h1>{pageName}</h1>
@@ -61,9 +56,7 @@ const AppPage = ({ pageName }) => {
         {' '}
         <span>{applicationIntl.locale}</span>
       </p>
-      <h3>Error Handling</h3>
-      <p>Press the button below to throw an exception that will be caught and handled by the framework</p>
-      <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
+      <ErrorThrower />
       <LoadingOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />

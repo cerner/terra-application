@@ -15,7 +15,7 @@ import styles from './ModalPresenter.module.scss';
 
 const cx = classNames.bind(styles);
 
-const ModalContent = ({ name, onSubmit }) => {
+const ModalContent = ({ name, onSubmit, content }) => {
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
   const disclosureManager = useContext(DisclosureManagerContext);
@@ -53,6 +53,7 @@ const ModalContent = ({ name, onSubmit }) => {
     <>
       <DisclosureManagerHeaderAdapter title={name} />
       <Scroll>
+        {content || (
         <div className={cx('modal-content')}>
           <h2>{name}</h2>
           <h3>Modal Dismissal</h3>
@@ -68,16 +69,16 @@ const ModalContent = ({ name, onSubmit }) => {
               onSubmit();
             }}
           >
-          Done
+                  Done
           </button>
           <h3>Configuration Properties</h3>
           <p>
-            Active Breakpoint:
+                    Active Breakpoint:
             {' '}
             <span>{activeBreakpoint}</span>
           </p>
           <p>
-            Intl Locale:
+                    Intl Locale:
             {' '}
             <span>{applicationIntl.locale}</span>
           </p>
@@ -86,6 +87,7 @@ const ModalContent = ({ name, onSubmit }) => {
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <PendingActionToggle />
         </div>
+        )}
       </Scroll>
     </>
   );
@@ -96,7 +98,7 @@ ModalContent.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-const ModalPresenter = () => {
+const ModalPresenter = ({ modalContent }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const disclosureRef = useRef();
 
@@ -121,6 +123,7 @@ const ModalPresenter = () => {
                       disclosureRef.current = undefined;
                     }
                   }}
+                  content={modalContent}
                 />
               ),
             },

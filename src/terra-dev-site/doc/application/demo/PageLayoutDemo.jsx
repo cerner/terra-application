@@ -42,7 +42,13 @@ const Page = ({ index, prefix }) => {
           </button>
           <br />
           <ErrorThrower />
-          <ModalPresenter />
+          <ModalPresenter
+            modalContent={(
+              <ApplicationPage rootPageTitle="Modal - Page 0">
+                <Page prefix="Modal" index={0} />
+              </ApplicationPage>
+            )}
+          />
           <PendingActionToggle />
           <LoadingOverlayPresenter />
         </div>
@@ -99,12 +105,12 @@ const PageLayoutDemo = () => {
     >
       <SideNavContent
         sideNavKey="item-1"
+        cleanupRenderIfPossible
         render={() => (
           <ApplicationPage rootPageTitle="Item 1 - Page 0">
             <Page prefix="Item 1" index={0} />
           </ApplicationPage>
         )}
-        cleanupRenderIfPossible
       />
       <SideNavContent
         sideNavKey="item-2"
@@ -113,7 +119,6 @@ const PageLayoutDemo = () => {
             <Page prefix="Item 2" index={0} />
           </ApplicationPage>
         )}
-        cleanupRenderIfPossible
       />
       <SideNavContent
         sideNavKey="item-3"

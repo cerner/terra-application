@@ -5,6 +5,7 @@ Unreleased
 ----------
 ### Changed
 * Updated errorBoundary to have a default error message when there is none provided.
+* Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)
 ------------------

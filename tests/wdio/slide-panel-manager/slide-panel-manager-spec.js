@@ -92,13 +92,13 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     Terra.validates.element('10. nested panel-reopened', { selector });
   });
 
-  it('dismisses the nested modal using the global close', () => {
+  it('dismisses the nested panel using the global close', () => {
     browser.click('[class*="slide-group"] #DemoContainer-2 .global-close-disclosure');
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('11. nested panel-global dismiss', { selector });
   });
 
-  it('dismisses the nested modal using the global close', () => {
+  it('dismisses the nested panel using the global close', () => {
     browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('12. root panel-global dismiss', { selector });
   });

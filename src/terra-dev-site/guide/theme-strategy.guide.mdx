@@ -17,7 +17,7 @@ This guide will walk through theming an example component. The example component
 
 ## Theme Context
 
-An application's theme is provided through [React context](https://reactjs.org/docs/context.html) by a theme provider. [Application Base](http://engineering.cerner.com/terra-application/components/terra-application/application/reference/components/application-base) initializes a theme provider automatically. The theme value is accessed using the [theme context](http://engineering.cerner.com/terra-application/components/terra-application/application/reference/contexts/theme-context) from terra-application.
+An application's theme is provided through [React context](https://reactjs.org/docs/context.html) by a theme provider. [Application Base](/application/terra-application/application/application-base) initializes a theme provider automatically. The theme value is accessed using the [theme context](/application/terra-application/contexts/theme-context) from terra-application.
 
 ```jsx
 import { ThemeContext } from 'terra-application/lib/theme';
@@ -34,7 +34,7 @@ const ExampleComponent = () => {
 };
 ```
 
-The active theme's class name is stored in a `className` key in the context value. To apply the theme, bind the className to the component using [classnames/bind](https://github.com/JedWatson/classnames#alternate-bind-version-for-css-modules). Some additional documentation for CSS Modules and classNames can be found on the [conventions page](https://engineering.cerner.com/terra-ui/contributing/terra-ui/conventions). Please note that generally an empty or undefined className indicates the default theme is active. The `className` key maps directly to the anticipated theme css class name. Using the correct theme className is required.
+The active theme's class name is stored in a `className` key in the context value. To apply the theme, bind the className to the component using [classnames/bind](https://github.com/JedWatson/classnames#alternate-bind-version-for-css-modules). Some additional documentation for CSS Modules and classNames can be found on the [conventions page](https://engineering.cerner.com/terra-ui/about/terra-ui/contributing/conventions). Please note that generally an empty or undefined className indicates the default theme is active. The `className` key maps directly to the anticipated theme css class name. Using the correct theme className is required.
 
 ```jsx
 import React from 'react';

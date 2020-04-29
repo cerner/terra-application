@@ -38,7 +38,7 @@ const PageLayout = ({ rootPageTitle, rootPageBackAction, children }) => {
   return (
     <ContentContainer
       fill
-      header={<PageLayoutHeader onBack={pages.length > 1 ? popStack : undefined} title={activePage.title} />}
+      header={<PageLayoutHeader onBack={pages.length > 1 ? popStack : rootPageBackAction} title={activePage.title} />}
     >
       <ApplicationPageContext.Provider value={{
         showPage: ({ title, key, content }) => {

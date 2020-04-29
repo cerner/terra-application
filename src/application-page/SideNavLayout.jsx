@@ -1,38 +1,64 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { ActiveBreakpointContext } from '../breakpoints';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
+
+import PageLayout from './PageLayout';
 import styles from './SideNavLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
+const flatLayoutBreakpoints = ['medium', 'large', 'huge', 'enormous'];
+
 const propTypes = {};
 
-const SideNavLayout = ({ sidebar, activeItemKey, children }) => (
-  <div className={cx('side-nav-container')}>
-    <div className={cx('side-nav-sidebar')}>
-      {sidebar}
+const SideNavLayout = ({
+  sidebar, activeItemKey, itemKeys, children, onChangeActiveItem,
+}) => {
+  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+
+  React.useEffect(() => {
+    if (activeItemKey) {
+      return;
+    }
+
+    if (flatLayoutBreakpoints.indexOf(activeBreakpoint) >= 0) {
+      onChangeActiveItem(itemKeys[0]);
+    }
+  }, [activeItemKey, activeBreakpoint, itemKeys, onChangeActiveItem]);
+
+  return (
+    <div
+      className={cx('side-nav-container', {
+        'side-nav-is-open': !activeItemKey,
+      })}
+    >
+      <div className={cx('side-nav-sidebar')}>
+        {sidebar}
+      </div>
+      <div className={cx('side-nav-body')}>
+        {React.Children.map(children, (child) => (
+          <div
+            key={child.props.sideNavKey}
+            style={{
+              height: '100%', overflow: 'auto', position: 'relative', display: child.props.sideNavKey === activeItemKey ? 'block' : 'none',
+            }}
+          >
+            {React.cloneElement(child, { isActive: child.props.sideNavKey === activeItemKey, onChangeActiveItem })}
+          </div>
+        ))}
+      </div>
     </div>
-    <div className={cx('side-nav-body')}>
-      {React.Children.map(children, (child) => (
-        <div
-          key={child.props.sideNavKey}
-          style={{
-            height: '100%', overflow: 'auto', position: 'relative', display: child.props.sideNavKey === activeItemKey ? 'block' : 'none',
-          }}
-        >
-          {React.cloneElement(child, { isActive: child.props.sideNavKey === activeItemKey })}
-        </div>
-      ))}
-    </div>
-  </div>
-);
+  );
+};
 
 SideNavLayout.propTypes = propTypes;
 
 const SideNavPage = ({
-  isActive, sideNavKey, children, render, cleanupRenderIfPossible,
+  isActive, sideNavKey, children, render, cleanupRenderIfPossible, rootPageTitle, onChangeActiveItem,
 }) => {
   const [hasActivated, setHasActivated] = React.useState();
+  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const registeredPromptsRef = React.useRef(0);
 
   React.useLayoutEffect(() => {
@@ -47,17 +73,21 @@ const SideNavPage = ({
     return null;
   }
 
+  let pageContent;
+
   if (render) {
-    return (
-      <NavigationPromptCheckpoint
-        onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}
-      >
-        {render({ sideNavKey, isActive })}
-      </NavigationPromptCheckpoint>
-    );
+    pageContent = render({ sideNavKey, isActive });
+  } else {
+    pageContent = children;
   }
 
-  return children;
+  return (
+    <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
+      <PageLayout rootPageTitle={rootPageTitle} rootPageBackAction={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
+        {pageContent}
+      </PageLayout>
+    </NavigationPromptCheckpoint>
+  );
 };
 
 export default SideNavLayout;

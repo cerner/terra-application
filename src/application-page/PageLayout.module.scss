@@ -1,0 +1,17 @@
+@import '../breakpoints/media-queries';
+
+:local {
+  .page-container {
+    height: 100%;
+    overflow: auto;
+    position: relative;
+
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+  }
+
+  .page-container.hidden {
+    display: none;
+  }
+}

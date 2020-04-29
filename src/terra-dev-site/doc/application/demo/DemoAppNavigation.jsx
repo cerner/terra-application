@@ -7,7 +7,7 @@ import ApplicationNavigation from 'terra-application/lib/application-navigation'
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 
 import { ModalContent } from './ModalPresenter';
-import PageLayoutDemo from './PageLayoutDemo';
+import PageLayoutDemo from './page-layout/PageLayoutDemo';
 
 const Page1Content = React.lazy(() => import('./Page1Content'));
 const Page2Content = React.lazy(() => import('./Page2Content'));

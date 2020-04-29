@@ -1,16 +1,16 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
-import styles from './SideNavContainer.module.scss';
+import styles from './SideNavLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {};
 
-const SideNavContainer = ({ sideNav, activeItemKey, children }) => (
+const SideNavLayout = ({ sidebar, activeItemKey, children }) => (
   <div className={cx('side-nav-container')}>
     <div className={cx('side-nav-sidebar')}>
-      {sideNav}
+      {sidebar}
     </div>
     <div className={cx('side-nav-body')}>
       {React.Children.map(children, (child) => (
@@ -27,9 +27,9 @@ const SideNavContainer = ({ sideNav, activeItemKey, children }) => (
   </div>
 );
 
-SideNavContainer.propTypes = propTypes;
+SideNavLayout.propTypes = propTypes;
 
-const SideNavContent = ({
+const SideNavPage = ({
   isActive, sideNavKey, children, render, cleanupRenderIfPossible,
 }) => {
   const [hasActivated, setHasActivated] = React.useState();
@@ -60,5 +60,5 @@ const SideNavContent = ({
   return children;
 };
 
-export default SideNavContainer;
-export { SideNavContent };
+export default SideNavLayout;
+export { SideNavPage };

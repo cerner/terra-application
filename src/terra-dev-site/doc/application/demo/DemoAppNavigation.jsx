@@ -9,6 +9,7 @@ import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manag
 import { ModalContent } from './ModalPresenter';
 import PageLayoutDemo from './page-layout/PageLayoutDemo';
 import SideNavLayoutDemo from './page-layout/SideNavLayoutDemo';
+import WorkspaceLayoutDemo from './page-layout/WorkspaceLayoutDemo';
 
 const Page1Content = React.lazy(() => import('./Page1Content'));
 const Page2Content = React.lazy(() => import('./Page2Content'));
@@ -31,6 +32,9 @@ const DemoAppNavigation = () => {
   }, {
     key: 'page_00',
     text: 'Side Nav Layout',
+  }, {
+    key: 'page_000',
+    text: 'Workspace Layout',
   }]);
 
   if (loggedOut) {
@@ -49,6 +53,9 @@ const DemoAppNavigation = () => {
       break;
     case 'page_00':
       pageContent = <SideNavLayoutDemo />;
+      break;
+    case 'page_000':
+      pageContent = <WorkspaceLayoutDemo />;
       break;
     case 'page_1':
       pageContent = <Page1Content />;

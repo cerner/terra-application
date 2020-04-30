@@ -4,6 +4,21 @@ Changelog
 Unreleased
 ----------
 
+1.22.0 - (April 28, 2020)
+------------------
+### Changed
+* Update terra-toolkit dev dependency to 6.0.0
+
+1.21.0 - (April 22, 2020)
+------------------
+### Added
+* Added theme strategy guide
+
+1.20.0 - (April 14, 2020)
+------------------
+### Added
+* Added event listener to ApplicationBase via custom React hook to support test overrides.
+
 1.19.0 - (April 7, 2020)
 ------------------
 ### Added

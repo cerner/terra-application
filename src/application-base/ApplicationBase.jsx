@@ -13,7 +13,7 @@ import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '..
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
 import getBrowserLocale from './private/getBrowserLocale';
-import useFullStackTestOverrides from './private/useFullStackTestOverrides';
+import useTestOverrides from './private/useTestOverrides';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -100,6 +100,7 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
+  const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
   const theme = useMemo(() => ({ className: themeName }), [themeName]);
 
   return (
@@ -111,7 +112,7 @@ const ApplicationBase = ({
           <Base
             customMessages={customTranslatedMessages}
             translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={locale || browserLocale}
+            locale={localeOverride || locale || browserLocale}
           >
             <ApplicationErrorBoundary>
               <ApplicationIntlProvider>

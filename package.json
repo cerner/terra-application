@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.19.0",
+  "version": "1.22.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <11"
@@ -82,7 +82,7 @@
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint --ext .js,.jsx .",
     "lint:scss": "stylelint src/**/*.scss",
-    "postpublish": "git push --tag",
+    "postpublish": "git push --follow-tags",
     "precompile": "rm -rf lib",
     "prepare": "npm run compile",
     "prepublishOnly": "npm whoami && check-installed-dependencies",
@@ -153,7 +153,7 @@
     "terra-collapsible-menu-view": "^6.29.0",
     "terra-dev-site": "^6.15.0",
     "terra-enzyme-intl": "^3.3.0",
-    "terra-toolkit": "^5.18.0",
+    "terra-toolkit": "^6.0.0",
     "webpack": "^4.42.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"

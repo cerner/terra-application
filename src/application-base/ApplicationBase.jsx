@@ -17,9 +17,15 @@ import useTestOverrides from './private/useTestOverrides';
 
 import styles from './ApplicationBase.module.scss';
 
+/* global TERRA_THEME_CONFIG */
+
 const cx = classNames.bind(styles);
 
 const browserLocale = getBrowserLocale();
+
+// We only need to retrieve the root theme and root theme name once for the life of the application.
+const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : undefined;
+const rootThemeName = themeConfig?.theme ? themeConfig.theme : 'terra-default-theme';
 
 const propTypes = {
   /**
@@ -101,7 +107,12 @@ const ApplicationBase = ({
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
-  const theme = useMemo(() => ({ className: themeName }), [themeName]);
+
+  const theme = useMemo(() => ({
+    // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
+    name: themeName || rootThemeName,
+    className: themeName,
+  }), [themeName]);
 
   return (
     <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>

@@ -115,7 +115,7 @@ const ApplicationBase = ({
   }), [themeName]);
 
   return (
-    <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
+    <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <ThemeProvider
         themeName={themeName}
       >

@@ -104,7 +104,7 @@ const ApplicationBase = ({
   const theme = useMemo(() => ({ className: themeName }), [themeName]);
 
   return (
-    <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
+    <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <ThemeProvider
         themeName={themeName}
       >

@@ -68,7 +68,7 @@ const AppPage = ({ pageName }) => {
       <ModalPresenter />
       <PendingActionToggle />
       <h3>Themeing</h3>
-      <p>The div below uses the theme context to apply styling.</p>
+      <p>{`The div below uses the theme context to apply styling for theme: ${theme.name}.`}</p>
       <div className={cx('themed-block')} />
     </div>
   );

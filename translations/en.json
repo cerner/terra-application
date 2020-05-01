@@ -1,5 +1,5 @@
 {
-  "terraApplication.unsavedChangesPrompt.title": "Unsaved changes",
+  "terraApplication.unsavedChangesPrompt.title": "Unsaved Changes",
   "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Unsaved changes were made to {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Unsaved changes were made to the following:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",

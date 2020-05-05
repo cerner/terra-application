@@ -72,7 +72,7 @@ class ApplicationErrorBoundary extends React.Component {
      * next update occurs.
      */
     this.errorRef.current = error;
-    if (error) {
+    if (error && window.newrelic) {
       window.newrelic.noticeError(error);
     }
     this.setState({ error: undefined });

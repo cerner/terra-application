@@ -1,5 +1,7 @@
 Changelog
 =========
+### Added
+* Updated error boundary to list errors in new relic.
 
 Unreleased
 ----------

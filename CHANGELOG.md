@@ -2,6 +2,9 @@ Changelog
 =========
 Unreleased
 ----------
+
+1.23.0 - (May 5, 2020)
+------------------
 ### Added
 * Added data attribute `data-terra-application-base` to application base. This will be used as the base selector for wdio full stack integration tests.
 * Updated error boundary to list errors in new relic.

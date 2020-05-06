@@ -143,7 +143,9 @@ class DisclosureComponent extends React.Component {
 
   render() {
     const { disclosureManager, identifier, renderHeaderAdapter } = this.props;
-    const { hasPendingAction, hasLoadingOverlay, hasError, disclosureCount } = this.state;
+    const {
+      hasPendingAction, hasLoadingOverlay, hasError, disclosureCount,
+    } = this.state;
 
     if (hasError) {
       throw new Error('Test Error');

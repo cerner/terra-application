@@ -1,12 +1,10 @@
 Changelog
 =========
-### Added
-* Updated error boundary to list errors in new relic.
-
 Unreleased
 ----------
 ### Added
 * Added data attribute `data-terra-application-base` to application base. This will be used as the base selector for wdio full stack integration tests.
+* Updated error boundary to list errors in new relic.
 
 1.22.0 - (April 28, 2020)
 ------------------

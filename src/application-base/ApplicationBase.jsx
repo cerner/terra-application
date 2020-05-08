@@ -73,10 +73,14 @@ const propTypes = {
    * before continuing with the unload event, even if NavigationPrompts are present.
    */
   unloadPromptIsDisabled: PropTypes.bool,
+  /**
+   * A Callback for errrors caught by the Error Boundary.
+   */
+  onError: PropTypes.func,
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, onError,
 }) => {
   const registeredPromptsRef = useRef();
 
@@ -125,7 +129,7 @@ const ApplicationBase = ({
             translationsLoadingPlaceholder={translationsLoadingPlaceholder}
             locale={localeOverride || locale || browserLocale}
           >
-            <ApplicationErrorBoundary>
+            <ApplicationErrorBoundary onError={onError}>
               <ApplicationIntlProvider>
                 <ActiveBreakpointProvider>
                   <NavigationPromptCheckpoint

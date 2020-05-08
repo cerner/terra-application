@@ -8,6 +8,10 @@ const propTypes = {
    * by these components during their render lifecycle will be caught by the ApplicationErrorBoundary.
    */
   children: PropTypes.node,
+  /**
+   * Callback for caught errrors.
+   */
+  onError: PropTypes.func,
 };
 
 /**
@@ -72,8 +76,8 @@ class ApplicationErrorBoundary extends React.Component {
      * next update occurs.
      */
     this.errorRef.current = error;
-    if (error && window.newrelic) {
-      window.newrelic.noticeError(error);
+    if (error && this.props.onError) {
+      this.props.onError(error);
     }
     this.setState({ error: undefined });
   }

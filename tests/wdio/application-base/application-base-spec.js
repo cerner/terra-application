@@ -70,4 +70,14 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
       expect(hasAlert()).to.equal(false);
     });
   });
+
+  describe('with error and onError callback called', () => {
+    before(() => {
+      browser.url('/raw/tests/terra-application/application-base/application-base-on-error-callback');
+      browser.refresh();
+      browser.click('button#error');
+    });
+
+    Terra.it.validatesElement('with onError callback', { selector: '#root' });
+  });
 });

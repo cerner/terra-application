@@ -12,4 +12,13 @@ Terra.describeViewports('ApplicationErrorBoundary', ['large'], () => {
 
     Terra.it.validatesElement('with error', { selector: '#root' });
   });
+
+  describe('with error and onError callback called', () => {
+    before(() => {
+      browser.url('/raw/tests/terra-application/application-error-boundary/error-boundary-on-error-callback');
+      browser.click('button#error');
+    });
+
+    Terra.it.validatesElement('with onError callback', { selector: '#root' });
+  });
 });

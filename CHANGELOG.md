@@ -4,7 +4,7 @@ Changelog
 Unreleased
 ----------
 ### Added
-* Updated error boundary to list errors in new relic.
+* Added onError callback for errors caught in error boundary.
 
 1.23.0 - (May 5, 2020)
 ------------------

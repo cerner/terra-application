@@ -12,6 +12,7 @@ exports[`ApplicationBase should render with all props 1`] = `
       theme={
         Object {
           "className": "test-theme",
+          "name": "test-theme",
         }
       }
     >
@@ -69,6 +70,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
       theme={
         Object {
           "className": undefined,
+          "name": "terra-default-theme",
         }
       }
     >
@@ -117,6 +119,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
       theme={
         Object {
           "className": undefined,
+          "name": "terra-default-theme",
         }
       }
     >

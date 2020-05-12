@@ -4,6 +4,11 @@ Changelog
 Unreleased
 ----------
 
+1.24.0 - (May 12, 2020)
+------------------
+### Added
+* Track callback functions to close currently disclosed content. Each disclosure will be registered to the same stack. This will allow disclosures to be be closed by external events like the Android back button.
+
 1.23.0 - (May 5, 2020)
 ------------------
 ### Added

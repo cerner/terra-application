@@ -9,6 +9,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
+import { addCallback, removeCallback } from './_disclosureCallbacks';
 
 const propTypes = {
   /**
@@ -33,6 +34,15 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   const promptCheckpointRef = useRef();
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
+
+  useEffect(() => {
+    const callback = disclosureManager.goBack || disclosureManager.closeDisclosure;
+    addCallback(callback);
+
+    return () => {
+      removeCallback(callback);
+    };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     disclosureManager.registerDismissCheck(() => new Promise((resolve, reject) => {

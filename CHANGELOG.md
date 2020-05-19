@@ -3,6 +3,14 @@ Changelog
 
 Unreleased
 ----------
+
+1.23.0 - (May 5, 2020)
+------------------
+### Added
+* Added data attribute `data-terra-application-base` to application base. This will be used as the base selector for wdio full stack integration tests.
+
+1.22.0 - (April 28, 2020)
+------------------
 ### Changed
 * Update terra-toolkit dev dependency to 6.0.0
 

@@ -40,6 +40,14 @@
           "import/first": "off",
           "import/no-duplicates": "off"
         }
+      },
+      {
+        "files": [
+          "src/**/*.js"
+        ],
+        "rules": {
+          "no-underscore-dangle": "off"
+        }
       }
     ],
     "rules": {
@@ -98,6 +106,9 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "keycode-js": "^2.0.3",
+    "wicg-inert": "^3.0.2",
+    "mutationobserver-shim": "0.3.3",
     "prop-types": "^15.5.8",
     "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",
@@ -114,6 +125,7 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
+    "terra-visually-hidden-text": "2.26.0",
     "uuid": "^3.0.0"
   },
   "peerDependencies": {

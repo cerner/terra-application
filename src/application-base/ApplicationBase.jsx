@@ -12,14 +12,23 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
+import LayerManager from '../layers/LayerManager';
+import LayerManagerProvider from '../layers/LayerManagerProvider';
+
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
+import initializeGlobalEvents from './initializeGlobalEvents';
+
 import styles from './ApplicationBase.module.scss';
+
+window.LayerManager = new LayerManager();
 
 const cx = classNames.bind(styles);
 
 const browserLocale = getBrowserLocale();
+
+initializeGlobalEvents();
 
 const propTypes = {
   /**
@@ -105,35 +114,38 @@ const ApplicationBase = ({
 
   return (
     <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider
-        themeName={themeName}
-      >
-        <ThemeContextProvider theme={theme}>
-          <Base
-            customMessages={customTranslatedMessages}
-            translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={localeOverride || locale || browserLocale}
-          >
-            <ApplicationErrorBoundary>
-              <ApplicationIntlProvider>
-                <ActiveBreakpointProvider>
-                  <NavigationPromptCheckpoint
-                    onPromptChange={(registeredPrompts) => {
-                      registeredPromptsRef.current = registeredPrompts;
-                    }}
-                  >
-                    <ApplicationLoadingOverlayProvider>
-                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                        {children}
-                      </Suspense>
-                    </ApplicationLoadingOverlayProvider>
-                  </NavigationPromptCheckpoint>
-                </ActiveBreakpointProvider>
-              </ApplicationIntlProvider>
-            </ApplicationErrorBoundary>
-          </Base>
-        </ThemeContextProvider>
-      </ThemeProvider>
+      <LayerManagerProvider>
+
+        <ThemeProvider
+          themeName={themeName}
+        >
+          <ThemeContextProvider theme={theme}>
+            <Base
+              customMessages={customTranslatedMessages}
+              translationsLoadingPlaceholder={translationsLoadingPlaceholder}
+              locale={localeOverride || locale || browserLocale}
+            >
+              <ApplicationErrorBoundary>
+                <ApplicationIntlProvider>
+                  <ActiveBreakpointProvider>
+                    <NavigationPromptCheckpoint
+                      onPromptChange={(registeredPrompts) => {
+                        registeredPromptsRef.current = registeredPrompts;
+                      }}
+                    >
+                      <ApplicationLoadingOverlayProvider>
+                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                          {children}
+                        </Suspense>
+                      </ApplicationLoadingOverlayProvider>
+                    </NavigationPromptCheckpoint>
+                  </ActiveBreakpointProvider>
+                </ApplicationIntlProvider>
+              </ApplicationErrorBoundary>
+            </Base>
+          </ThemeContextProvider>
+        </ThemeProvider>
+      </LayerManagerProvider>
     </div>
   );
 };

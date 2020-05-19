@@ -7,9 +7,11 @@ import ModalPresenter from '../../ModalPresenter';
 import PendingActionToggle from '../../PendingActionToggle';
 import LoadingOverlayPresenter from '../../LoadingOverlayPresenter';
 import ErrorThrower from '../../ErrorThrower';
+import ApplicationModalPresenter from './ApplicationModalPresenter';
 
 const ExamplePage = ({ index, prefix }) => {
   const [initializedDate] = React.useState(new Date().toLocaleString());
+  const [showModal, setShowModal] = React.useState(false);
 
   return (
     <ApplicationPageContext.Consumer>
@@ -49,6 +51,7 @@ const ExamplePage = ({ index, prefix }) => {
           />
           <PendingActionToggle />
           <LoadingOverlayPresenter />
+          <ApplicationModalPresenter />
         </div>
       )}
     </ApplicationPageContext.Consumer>

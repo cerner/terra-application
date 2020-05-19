@@ -1,4 +1,5 @@
 import React from 'react';
+import { ContentLayoutAsList } from 'terra-notification-dialog';
 
 /**
  * Generates an Object containing properties used to define messages for NavigationPromptCheckpoint-based user prompting.
@@ -20,12 +21,13 @@ export default intl => (prompts) => {
     });
 
     // We do not currently have access to the prompts internal identifiers.
-    /* eslint-disable react/no-array-index-key */
-    content = (
-      <ul>
-        {prompts.map((prompt, index) => <li key={index}>{prompt.description}</li>)}
-      </ul>
-    );
+    // /* eslint-disable react/no-array-index-key */
+    // content = (
+    //   <ul>
+    //     {prompts.map((prompt, index) => <li key={index}>{prompt.description}</li>)}
+    //   </ul>
+    // );
+    content = <ContentLayoutAsList items={prompts.map(prompt =>  prompt.description)} />
     /* eslint-enable react/no-array-index-key */
   }
 

@@ -1,14 +1,358 @@
-# Workflow Proposal
+# Portaled Workflow Proposal
 
-## Rules
+## Reminders
 
-* Need inert for accessibility
+* Need inert for accessibility, focus trap has problems
+* Replay focus on launch point for portaled contents
 
-## Concepts
+## Portal Components
 
-1. ApplicationPage (Page Layout)
-2. PageNavigation (Secondary Navigation)
-3. ContentModal (Modal Manager)
-4. Hookshot
-5. Select
-6. Hookshot
+1. Application Modal (Modal Manager)
+2. Popup (Hookshot, Select(?), Date Picker)
+3. Notification Dialog
+4. Blocking Overlay
+5. Framework Dialog
+
+## Z-Index Ranges
+
+  0 ----------> 1000 ------------------> 2000 -------------------> 3000 --------------> 4000
+(Root)   (Application Modal)     (Notification Dialog)     (Blocking Overlay)    (Framework Dialog)
+
+## Types of Portaled Elements
+
+1. Fixed
+  * Element presents at a fixed z-index. Framework logic is in place to prevent duplicate presentation (layered elements).
+  * Components include: Blocking Overlay, Notification Dialog, Framework Dialog
+2. Relative
+  * Element presents at a dynamic z-index relative to and higher than a parent portal, resulting in a layered display
+  * Components include: Application Modal, Popup
+
+## Component Deep Dives
+
+### Application Modal
+
+Type: Relative (min 1000)
+
+Intended Usage:
+
+The Application Modal component allows a component to present modal content within the same component context.
+The Application Modal is considered an extension of the content that renders it, not a wholly separate entity
+managed by the framework. The removal of the presenting component will result in the dismissal of the presented ApplicationModal.
+Modal presentation should be reproducible and originate from user interaction, not automatically from async actions.
+
+Features:
+
+* Always closes on escape key press
+* Never closes on outside click
+* Always includes ActionHeader with modalTitle and close button (executing onRequestClose callback)
+* Always includes ActionFooter with 'Close' button (executing onRequestClose callback)
+* Provides z-index context for nested portal content
+* ApplicationModals presented within a ApplicationModal will result in stacked modal presentation
+* Subsequent ApplicationModals presented at the same index will be automatically closed
+* NavigationPrompt integration with close actions
+* Content within modal is functionally equivalent to root level content and can render the same components without issue
+
+API:
+
+```jsx
+<ApplicationModal
+  modalTitle={'Example Title'}  // doubles as aria-label (?)
+  role="dialog"                 // might be able to default this
+  size={'TBD'}                  // Size API from disclosure API, or something new?
+  isOpen={modalIsOpen}
+  onRequestClose={() => {
+    setModalIsOpen(false);
+  }}
+>
+  <div>Modal Content</div>
+</ApplicationModal>
+```
+
+Outstanding Questions:
+
+* How do we handle the display of notification banners within these content-driven modals?
+* How do we get global modal banners (like the Demographics banner) injected into this content-driven modal?
+  * We could have a separate context that components can provide with a banner, any ApplicationModals open within that context present the content.
+  * Need to investigate more with what Matt's talked about with a more generic "Concept" context.
+* Would we need additional props for additional header/footer actions?
+  * I'm assuming this is yes, but left them out for the time being.
+  * Footer actions get interesting when combined with the default Close button.
+
+Benefits:
+
+* One modal to rule them all
+* Greatly simplified modal experience for our consumers
+* Strict enforcement of UX/accessibility standards for modals
+* Context chain is persisted
+
+Drawbacks:
+
+* Divergent from existing ModalManager design
+
+### Popup
+
+Type: Relative (min 0)
+
+Intended Usage:
+
+The Popup component's intended usage is very similar to that of the ApplicationModal. The Popup should be used
+to present transient, positioned content.
+
+Features:
+
+* Always close on escape
+* Always close on outside click
+* Positions z-index relative to parent portals
+* Does not provide z-index context for nested portal content. Popup is a portal endstate.
+* Subsequent Popups presented at the same index will be automatically closed
+
+### Notification Dialog
+
+Type: Fixed (2000)
+
+Intended Usage:
+
+The Notification Dialog shows a modal view with a restricted presentation API.
+
+Users call an imperative API to add data to a queue. Notification Dialogs are presented with data from that queue until the queue is
+empty. This prevents multiple dialogs from being presented at any given time.
+
+Features:
+
+* Never close on escape
+* Never close on outside click
+* Does not provide z-index context for nested portal content. Notification Dialog is a portal endstate.
+* Always includes header/footer with fixed actions.
+
+API:
+
+```jsx
+// custom hook to assign id's/cleanup dialogs automatically when presenter components unmount
+// Class components could call global methods directly, but they'd have more work to do to clean up
+const useNotifications = () => {
+  const idRef = useRef(uuidv4());
+
+  useEffect(() => () => {
+    // Cleanup on unmount if they're still hanging around
+    TerraApplication.notifications.removeDialog(idRef.current);
+  })
+
+  const notificationsAPI = useMemo(() => ({
+    showDialog: (options) => {
+      return TerraApplication.notifications.showDialog({ ...options, id: idRef.current });
+    }
+  }), [])
+
+  return notificationsAPI;
+}
+
+const ExampleComponent = () => {
+  const notifications = useNotifications();
+
+  const submitRequest = () => { /* do the thing */ };
+
+  const onFormSubmit = async () => {
+    const userSelection = await notifications.showDialog({
+      variant: 'warning',
+      startMessage: 'Are you sure you want to do that?',
+      buttonOrder: 'acceptFirst',                         // We can probably default this globally somehow
+      acceptActionText: 'Yes',                            // Likely have defaults for this text as well. Ideally the consumer would only 
+      rejectActionText: 'No',
+    });
+    
+    if (userSelection === 'accept') {
+      submitRequest();
+    }
+  }
+
+  return (
+    <button onClick={onFormSubmit}>Submit</button>
+  );
+}
+```
+
+Outstanding Questions:
+
+* Would the queue order need to be managed/manipulated based on notification type (error > warning)?
+* What types of custom content do we need to support? Popups/selects?
+* Do we truly need to support custom variants or can we lock this down?
+
+Benefits:
+
+* More control over presentation and display of application notifications
+* Rigid styling to enforce UX/accessibility patterns
+
+Drawbacks:
+
+* Context chain is not persisted, unlike today. Depending on the custom content requirements, this might not be a big deal.
+* Imperative API isn't typical React
+
+### Blocking Overlay
+
+Type: Fixed (3000)
+
+Intended Usage:
+
+The Blocking Overlay is an overlay component used to block user input into the application. The Blocking Overlay covers the entirety of the application,
+including all portaled content (besides the Framework Dialog).
+
+Blocking Overlay presentation should be originate from user interaction, not present automatically from async actions. Usage should generally be discouraged
+in favor of scratchpad/non-junk service usage.
+
+Features:
+
+* Never close on escape
+* Never close on outside click (what outside click)
+* Does not provide z-index context for nested portal content. Blocking Overlay is a portal endstate.
+* Includes timeout logic to allow user to dismiss overlay after period of time
+
+API:
+
+```jsx
+
+const cancelablePromise = (promise) => {
+  let isCanceled = false;
+
+  const wrappedPromise = new Promise((resolve, reject) => {
+    promise.then((val) => {
+      if (isCanceled) {
+        reject({ isCanceled: true }); 
+        return;
+      }
+
+      resolve(val);
+    });
+
+    promise.catch(error) => {
+      if (isCanceled) {
+        reject({ isCanceled: true }); 
+        return;
+      }
+
+      reject(error);
+    }
+  });
+
+  return {
+    promise: wrappedPromise,
+    cancel: () => { isCanceled = true; }
+  }
+}
+
+const ExampleComponent = () => {
+  const [isSaving, setIsSaving] = useState(false);
+  const saveRequestRef = useRef();
+
+  function cleanupLongRequest() {
+    setIsSaving(false);
+    if (saveRequestRef.current) {
+      saveRequestRef.current.cancel();
+      saveRequestRef.current = undefined;
+    }
+    // Work on fixing services
+  }
+
+  function startSaving() {
+    setIsSaving(true);
+
+    saveRequestRef.current = cancelablePromise(saveRequest());
+    
+    saveRequestRef.current.promise.then(() => {
+      setIsSaving(false);
+      saveRequestRef.current = undefined;
+    }).catch((error) => {
+      setIsSaving(false);
+      saveRequestRef.current = undefined;
+
+      if (error?.isCancelled) { return; }
+
+      console.error('Yo something broke');
+    })
+  }
+
+  return (
+    <div>
+      <BlockingOverlay
+        isOpen={isSaving}
+        timeoutMessage="This sure is taking a while. Cancel?"
+        timeoutButtonText="Cancel"
+        onTimeout={() => {
+          cleanupLongRequest();
+        }}
+      />
+      <button onClick={startSaving}>Save</button>
+    </div>
+  )
+}
+
+// OR
+
+const useBlockingOverlay = () => {
+  const api = useMemo(() => ({
+    show: (promise, options) => {
+      const wrappedPromise = cancelablePromise(promise);
+
+      TerraApplication.blockingOverlay.show(options, wrappedPromise.cancel);
+
+      return {
+        promise: wrappedPromise.promise.then((val) => {
+          TerraApplication.blockingOverlay.hide();
+          return val;
+        }).reject((error) => {
+          TerraApplication.blockingOverlay.hide();
+          return error;
+        }),
+        cancel: wrappedPromise.cancel,
+      };
+    },
+  }), []);
+
+  return api;
+}
+
+const ExampleComponent = () => {
+  const [isSaving, setIsSaving] = useState(false);
+  const blockingOverlay = useBlockingOverlay();
+
+  function startSaving() {
+    setIsSaving(true);
+
+    blockingOverlay.show(saveRequest(), {
+      timeoutMessage="This sure is taking a while. Cancel?"
+      timeoutButtonText="Cancel"
+    }).promise.then(() => {
+      setIsSaving(false);
+      // refresh or something
+    }).catch((error) => {
+      setIsSaving(false);
+      saveRequestRef.current = undefined;
+
+      if (error?.isCancelled) { return; }
+
+      console.error('Yo something broke');
+    });
+  }
+
+  return (
+    <div>
+      <button onClick={startSaving}>Save</button>
+    </div>
+  )
+}
+```
+
+### Framework Dialog
+
+Type: Fixed (4000)
+
+Intended Usage: 
+
+The Framework Dialog is functionally and visually very similar to the Notification Dialog. The biggest difference between the two
+are consumer access. Only terra-application/orion-application may present a Framework Dialog, and even then in very specific circumstances.
+Primary use case I can think of right now is the pending lock dialog that we wish to present. 
+
+The Framework Dialog would have the highest z-index and present over all other portaled contents, including the Blocking Overlay.
+
+API:
+
+Similar to Notification Dialog, just entirely local to a framework component.

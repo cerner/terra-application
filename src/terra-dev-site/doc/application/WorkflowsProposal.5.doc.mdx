@@ -7,7 +7,7 @@
 
 ## Portal Components
 
-1. Application Modal (Modal Manager)
+1. Modal (Modal Manager)
 2. Popup (Hookshot, Select(?), Date Picker)
 3. Notification Dialog
 4. Blocking Overlay
@@ -16,7 +16,7 @@
 ## Z-Index Ranges
 
   0 ----------> 1000 ------------------> 2000 -------------------> 3000 --------------> 4000
-(Root)   (Application Modal)     (Notification Dialog)     (Blocking Overlay)    (Framework Dialog)
+(Root)         (Modal)           (Notification Dialog)      (Blocking Overlay)    (Framework Dialog)
 
 ## Types of Portaled Elements
 
@@ -25,19 +25,19 @@
   * Components include: Blocking Overlay, Notification Dialog, Framework Dialog
 2. Relative
   * Element presents at a dynamic z-index relative to and higher than a parent portal, resulting in a layered display
-  * Components include: Application Modal, Popup
+  * Components include: Modal, Popup
 
 ## Component Deep Dives
 
-### Application Modal
+### Modal
 
 Type: Relative (min 1000)
 
 Intended Usage:
 
-The Application Modal component allows a component to present modal content within the same component context.
-The Application Modal is considered an extension of the content that renders it, not a wholly separate entity
-managed by the framework. The removal of the presenting component will result in the dismissal of the presented ApplicationModal.
+The Modal component allows a component to present modal content within the same component context.
+The Modal is considered an extension of the content that renders it, not a wholly separate entity.
+managed by the framework. The removal of the presenting component will result in the dismissal of the presented Modal.
 Modal presentation should be reproducible and originate from user interaction, not automatically from async actions.
 
 Features:
@@ -47,15 +47,15 @@ Features:
 * Always includes ActionHeader with modalTitle and close button (executing onRequestClose callback)
 * Always includes ActionFooter with 'Close' button (executing onRequestClose callback)
 * Provides z-index context for nested portal content
-* ApplicationModals presented within a ApplicationModal will result in stacked modal presentation
-* Subsequent ApplicationModals presented at the same index will be automatically closed
+* Modals presented within a Modal will result in stacked modal presentation
+* Subsequent Modals presented at the same index will be automatically closed
 * NavigationPrompt integration with close actions
 * Content within modal is functionally equivalent to root level content and can render the same components without issue
 
 API:
 
 ```jsx
-<ApplicationModal
+<Modal
   modalTitle={'Example Title'}  // doubles as aria-label (?)
   role="dialog"                 // might be able to default this
   size={'TBD'}                  // Size API from disclosure API, or something new?
@@ -65,14 +65,14 @@ API:
   }}
 >
   <div>Modal Content</div>
-</ApplicationModal>
+</Modal>
 ```
 
 Outstanding Questions:
 
 * How do we handle the display of notification banners within these content-driven modals?
 * How do we get global modal banners (like the Demographics banner) injected into this content-driven modal?
-  * We could have a separate context that components can provide with a banner, any ApplicationModals open within that context present the content.
+  * We could have a separate context that components can provide with a banner, any Modals open within that context present the content.
   * Need to investigate more with what Matt's talked about with a more generic "Concept" context.
 * Would we need additional props for additional header/footer actions?
   * I'm assuming this is yes, but left them out for the time being.
@@ -95,7 +95,7 @@ Type: Relative (min 0)
 
 Intended Usage:
 
-The Popup component's intended usage is very similar to that of the ApplicationModal. The Popup should be used
+The Popup component's intended usage is very similar to that of the Modal. The Popup should be used
 to present transient, positioned content.
 
 Features:
@@ -288,24 +288,46 @@ const ExampleComponent = () => {
 // OR
 
 const useBlockingOverlay = () => {
+  const idRef = useRef(uuidv4());
+  const cleanupRef = useRef();
+
   const api = useMemo(() => ({
     show: (promise, options) => {
       const wrappedPromise = cancelablePromise(promise);
 
-      TerraApplication.blockingOverlay.show(options, wrappedPromise.cancel);
+      TerraApplication.blockingOverlay.show(idRef.current, options, wrappedPromise.cancel);
+
+      cleanupRef.current = () => {
+        wrappedPromise.cancel();
+        TerraApplication.blockingOverlay.hide(idRef.current);
+      };
 
       return {
         promise: wrappedPromise.promise.then((val) => {
-          TerraApplication.blockingOverlay.hide();
+          TerraApplication.blockingOverlay.hide(idRef.current);
+          cleanupRef.current = undefined;
+
           return val;
         }).reject((error) => {
-          TerraApplication.blockingOverlay.hide();
+          TerraApplication.blockingOverlay.hide(idRef.current);
+          cleanupRef.current = undefined;
+
           return error;
         }),
-        cancel: wrappedPromise.cancel,
+        cancel: () => {
+          wrappedPromise.cancel();
+          TerraApplication.blockingOverlay.hide(idRef.current);
+          cleanupRef.current = undefined;
+        },
       };
     },
   }), []);
+
+  useLayoutEffect(() => () => {
+    if (cleanupRef.current) {
+      cleanupRef.current();
+    }
+  }, []);
 
   return api;
 }
@@ -337,7 +359,7 @@ const ExampleComponent = () => {
     <div>
       <button onClick={startSaving}>Save</button>
     </div>
-  )
+  );
 }
 ```
 

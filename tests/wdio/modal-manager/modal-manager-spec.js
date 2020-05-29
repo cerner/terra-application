@@ -81,4 +81,25 @@ Terra.describeViewports('ModalManager', ['large'], () => {
     expect(browser.isExisting('[class*="slide-group"] #DemoContainer-1 .disclose-tiny')).to.be.false;
     Terra.validates.element('9. modal-closed', { selector });
   });
+
+  it('opens the modal with a nested modal', () => {
+    browser.click('#root-component .disclose-large');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+
+    browser.click('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .global-close-disclosure');
+
+    Terra.validates.element('10. nested modal-reopened', { selector });
+  });
+
+  it('dismisses the nested modal using the global close', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-2 .global-close-disclosure');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+    Terra.validates.element('11. nested modal-global dismiss', { selector });
+  });
+
+  it('dismisses the nested modal using the global close', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+    Terra.validates.element('12. root modal-global dismiss', { selector });
+  });
 });

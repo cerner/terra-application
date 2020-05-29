@@ -3,6 +3,7 @@
 exports[`ApplicationBase should render with all props 1`] = `
 <div
   className="application-base"
+  data-terra-application-base={true}
 >
   <ThemeProvider
     themeName="test-theme"
@@ -11,6 +12,7 @@ exports[`ApplicationBase should render with all props 1`] = `
       theme={
         Object {
           "className": "test-theme",
+          "name": "test-theme",
         }
       }
     >
@@ -61,12 +63,14 @@ exports[`ApplicationBase should render with all props 1`] = `
 exports[`ApplicationBase should render with minimal props 1`] = `
 <div
   className="application-base fill"
+  data-terra-application-base={true}
 >
   <ThemeProvider>
     <ThemeContextProvider
       theme={
         Object {
           "className": undefined,
+          "name": "terra-default-theme",
         }
       }
     >
@@ -108,12 +112,14 @@ exports[`ApplicationBase should render with minimal props 1`] = `
 exports[`ApplicationBase should render with the preferred browser local 1`] = `
 <div
   className="application-base fill"
+  data-terra-application-base={true}
 >
   <ThemeProvider>
     <ThemeContextProvider
       theme={
         Object {
           "className": undefined,
+          "name": "terra-default-theme",
         }
       }
     >

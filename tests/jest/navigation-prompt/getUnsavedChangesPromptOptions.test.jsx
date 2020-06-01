@@ -2,7 +2,7 @@ import { mockIntl } from 'terra-enzyme-intl';
 
 import getUnsavedChangesPromptOptions from '../../../src/navigation-prompt/getUnsavedChangesPromptOptions';
 
-describe('getPendingActionPromptOptions', () => {
+describe('getUnsavedChangesPromptOptions', () => {
   it('generates a function that provides appropriate messaging for a single prompt', () => {
     const generatedFunction = getUnsavedChangesPromptOptions(mockIntl);
 

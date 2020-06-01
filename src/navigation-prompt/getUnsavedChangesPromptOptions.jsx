@@ -21,7 +21,7 @@ export default intl => (prompts) => {
     });
 
     // We do not currently have access to the prompts internal identifiers.
-    content = <ContentLayoutAsList items={prompts.map(prompt =>  prompt.description)} />
+    content = <ContentLayoutAsList items={prompts.map(prompt => prompt.description)} />;
   }
 
   const endMessage = intl.formatMessage({
@@ -29,6 +29,9 @@ export default intl => (prompts) => {
   });
 
   return {
+    dialogTitle: intl.formatMessage({
+      id: 'terraApplication.unsavedChangesPrompt.title',
+    }),
     title: intl.formatMessage({
       id: 'terraApplication.unsavedChangesPrompt.title',
     }),

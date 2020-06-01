@@ -5,5 +5,5 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "De wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u doorgaan?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Niet opslaan",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Doorgaan met bewerken",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Uw verzoek kan momenteel niet uitgevoerd worden. Probeer het later opnieuw en neem contact op met uw ondersteuningsteam als het probleem aanhoudt."
+  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
 }

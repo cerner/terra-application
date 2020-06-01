@@ -129,7 +129,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       buttonAttrs={Array []}
       isAlignedTop={false}
       isGlyphHidden={false}
-      message="Error: test error"
+      message="terraApplication.errorBoundary.defaultErrorMessage"
       variant="error"
     >
       <div
@@ -173,7 +173,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <p
             className="message"
           >
-            Error: test error
+            terraApplication.errorBoundary.defaultErrorMessage
           </p>
         </div>
         <div
@@ -248,7 +248,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       buttonAttrs={Array []}
       isAlignedTop={false}
       isGlyphHidden={false}
-      message="Error: test error"
+      message="terraApplication.errorBoundary.defaultErrorMessage"
       variant="error"
     >
       <div
@@ -292,7 +292,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <p
             className="message"
           >
-            Error: test error
+            terraApplication.errorBoundary.defaultErrorMessage
           </p>
         </div>
         <div

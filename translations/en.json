@@ -5,5 +5,5 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
-  "terraApplication.errorBoundary.defaultErrorMessage": "We are currently unable to complete your request. Try again later, and contact your support team if this problem continues."
+  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
 }

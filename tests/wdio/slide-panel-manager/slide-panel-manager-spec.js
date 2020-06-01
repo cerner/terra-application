@@ -81,4 +81,25 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     expect(browser.isExisting('[class*="slide-group"] #DemoContainer-1 .disclose-tiny')).to.be.false;
     Terra.validates.element('9. panel-closed', { selector });
   });
+
+  it('opens the slide panel with a nested panel', () => {
+    browser.click('#root-component .disclose-large');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+
+    browser.click('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-2 .global-close-disclosure');
+
+    Terra.validates.element('10. nested panel-reopened', { selector });
+  });
+
+  it('dismisses the nested panel using the global close', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-2 .global-close-disclosure');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+    Terra.validates.element('11. nested panel-global dismiss', { selector });
+  });
+
+  it('dismisses the nested panel using the global close', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
+    Terra.validates.element('12. root panel-global dismiss', { selector });
+  });
 });

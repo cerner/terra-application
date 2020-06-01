@@ -4,6 +4,31 @@ Changelog
 Unreleased
 ----------
 
+1.24.0 - (May 12, 2020)
+------------------
+### Added
+* Track callback functions to close currently disclosed content. Each disclosure will be registered to the same stack. This will allow disclosures to be be closed by external events like the Android back button.
+
+1.23.0 - (May 5, 2020)
+------------------
+### Added
+* Added data attribute `data-terra-application-base` to application base. This will be used as the base selector for wdio full stack integration tests.
+
+1.22.0 - (April 28, 2020)
+------------------
+### Changed
+* Update terra-toolkit dev dependency to 6.0.0
+
+1.21.0 - (April 22, 2020)
+------------------
+### Added
+* Added theme strategy guide
+
+1.20.0 - (April 14, 2020)
+------------------
+### Added
+* Added event listener to ApplicationBase via custom React hook to support test overrides.
+
 1.19.0 - (April 7, 2020)
 ------------------
 ### Added

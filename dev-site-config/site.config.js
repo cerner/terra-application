@@ -1,4 +1,7 @@
+const navConfig = require('./navigation.config');
+
 const siteConfig = {
+  navConfig,
   includeTestEvidence: false,
   appConfig: {
 

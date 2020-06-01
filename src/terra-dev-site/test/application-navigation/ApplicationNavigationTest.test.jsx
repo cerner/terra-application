@@ -8,7 +8,7 @@ const PageContent = ({ title }) => {
   const [hasPendingAction, setHasPendingAction] = useState(false);
 
   return (
-    <div>
+    <div data-nav-test-content>
       <p>{title}</p>
       <p>
         Toggle pending action:

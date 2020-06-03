@@ -83,7 +83,7 @@ const SideNavPage = ({
 
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
-      <PageLayout rootPageTitle={rootPageTitle} rootPageBackAction={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
+      <PageLayout pageTitle={rootPageTitle} onBack={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
         {pageContent}
       </PageLayout>
     </NavigationPromptCheckpoint>

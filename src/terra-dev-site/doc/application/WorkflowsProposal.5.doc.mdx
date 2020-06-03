@@ -68,6 +68,22 @@ API:
 </Modal>
 ```
 
+```jsx
+<ContentPortal
+  type="modal"
+  title={'Example Title'}       // doubles as aria-label (?)
+  role="dialog"                 // might be able to default this
+  size={'TBD'}                  // Size API from disclosure API, or something new?
+  isOpen={modalIsOpen}
+  onRequestClose={() => {
+    setModalIsOpen(false);
+  }}
+>
+  <div>Modal Content</div>
+</ContentPortal>
+```
+
+
 Outstanding Questions:
 
 * How do we handle the display of notification banners within these content-driven modals?

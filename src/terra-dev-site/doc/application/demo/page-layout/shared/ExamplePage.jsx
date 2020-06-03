@@ -12,6 +12,7 @@ import ApplicationModalPresenter from './ApplicationModalPresenter';
 const ExamplePage = ({ index, prefix }) => {
   const [initializedDate] = React.useState(new Date().toLocaleString());
   const [showModal, setShowModal] = React.useState(false);
+  const [showNextPage, setShowNextPage] = React.useState(false);
 
   return (
     <ApplicationPageContext.Consumer>
@@ -30,10 +31,7 @@ const ExamplePage = ({ index, prefix }) => {
           <button
             type="button"
             onClick={() => {
-              pageContext.showPage({
-                title: `${prefix} - Page ${index + 1}`,
-                content: <ExamplePage prefix={prefix} index={index + 1} />,
-              });
+              setShowNextPage(true);
             }}
           >
             Show Page
@@ -52,6 +50,14 @@ const ExamplePage = ({ index, prefix }) => {
           <PendingActionToggle />
           <LoadingOverlayPresenter />
           <ApplicationModalPresenter />
+          {showNextPage && (
+            <PageLayout
+              pageTitle={`${prefix} - Page ${index + 1}`}
+              onBack={() => { setShowNextPage(false); }}
+            >
+              <ExamplePage prefix={prefix} index={index + 1} />
+            </PageLayout>
+          )}
         </div>
       )}
     </ApplicationPageContext.Consumer>

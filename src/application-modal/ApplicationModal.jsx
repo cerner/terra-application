@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ActionHeader from 'terra-action-header';
 import ContentContainer from 'terra-content-container';
-import AbstractModal from '../abstract-modal/AbstractModal';
+import AbstractModal from 'terra-abstract-modal';
 import styles from './ApplicationModal.module.scss';
 
 const disclosureType = 'modal';
@@ -62,7 +62,7 @@ const ApplicationModal = ({
           title="Application Modal"
           onClose={onRequestClose}
         />
-          )}
+      )}
     >
       {children}
     </ContentContainer>

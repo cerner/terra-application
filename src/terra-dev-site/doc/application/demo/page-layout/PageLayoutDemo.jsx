@@ -6,7 +6,7 @@ import ExamplePage from './shared/ExamplePage';
 
 const PageLayoutDemo = () => (
   <PageLayout
-    rootPageTitle="Item 1 - Page 0"
+    pageTitle="Item 1 - Page 0"
   >
     <ExamplePage prefix="Item 1" index={0} />
   </PageLayout>

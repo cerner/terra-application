@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
 import uuidv4 from 'uuid/v4';
@@ -15,62 +16,132 @@ import styles from './PageLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
-const PageLayout = ({ rootPageTitle, rootPageBackAction, children }) => {
+class PageLayoutNodeManager {
+  constructor(containerRef) {
+    this._containerRef = containerRef;
+    this._nodeMap = {};
+  }
+
+  getNode(pageKey, ancestorPageKey) {
+    const existingNode = this._nodeMap[pageKey];
+
+    if (existingNode) {
+      return existingNode.element;
+    }
+
+    if (this._nodeMap[ancestorPageKey]?.child) {
+      // duplicate page request
+      return undefined;
+    }
+
+    const newPortalElement = document.createElement('div');
+    newPortalElement.style.zIndex = 1;
+    newPortalElement.style.position = 'absolute';
+    newPortalElement.style.top = 0;
+    newPortalElement.style.bottom = 0;
+    newPortalElement.style.left = 0;
+    newPortalElement.style.right = 0;
+    newPortalElement.style.backgroundColor = 'white';
+
+    this._nodeMap[pageKey] = {
+      ancestor: ancestorPageKey,
+      element: newPortalElement,
+      child: undefined,
+    };
+
+    if (this._nodeMap[ancestorPageKey]) {
+      this._nodeMap[ancestorPageKey].child = pageKey;
+    }
+
+    this._containerRef.current.appendChild(newPortalElement);
+
+    return newPortalElement;
+  }
+
+  releaseNode(pageKey) {
+    const page = this._nodeMap[pageKey];
+
+    if (this._containerRef.current.contains(page.element)) {
+      this._containerRef.current.removeChild(page.element);
+    }
+
+    if (this._nodeMap[page.ancestor]) {
+      this._nodeMap[page.ancestor].child = undefined;
+    }
+
+    this._nodeMap[pageKey] = undefined;
+  }
+}
+
+const PageLayout = ({
+  pageTitle, onBack, onFail, children,
+}) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const [pageStack, setPageStack] = React.useState([]);
+  const pageContext = React.useContext(ApplicationPageContext);
 
-  function popStack() {
-    const presentedPage = pageStack[pageStack.length - 1];
+  const pageLayoutContainerRef = React.useRef();
+  const navigationPromptCheckpointRef = React.useRef();
+  const pageIdRef = React.useRef(uuidv4());
 
-    presentedPage.navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      setPageStack((state) => state.slice(0, -1));
+  const [isInitialized, setIsInitialized] = React.useState();
+
+  function goBack() {
+    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      onBack();
     });
   }
 
-  const pages = [{
-    title: rootPageTitle,
-    content: children,
-    key: 'ApplicationPage.rootPage',
-  }].concat(pageStack);
+  const contextValue = React.useMemo(() => ({
+    ancestorPage: pageIdRef.current,
+    nodeManager: pageContext?.nodeManager || new PageLayoutNodeManager(pageLayoutContainerRef),
+  }), [pageContext]);
 
-  const activePage = pages[pages.length - 1];
+  function renderPageContent() {
+    const portalNode = contextValue.nodeManager.getNode(pageIdRef.current);
 
-  return (
-    <ContentContainer
-      fill
-      header={<PageLayoutHeader onBack={pages.length > 1 ? popStack : rootPageBackAction} title={activePage.title} />}
-    >
-      <ApplicationPageContext.Provider value={{
-        showPage: ({ title, key, content }) => {
-          setPageStack((stack) => [...stack, {
-            title,
-            key: key || uuidv4(),
-            content,
-            navigationPromptCheckpointRef: React.createRef(),
-          }]);
-        },
-      }}
-      >
-        {pages.map((page, index) => (
-          <div
-            key={page.key}
-            className={cx('page-container', {
-              hidden: index !== pages.length - 1,
-            })}
-          >
+    return (
+      ReactDOM.createPortal((
+        <ContentContainer
+          fill
+          header={<PageLayoutHeader onBack={onBack && goBack} title={pageTitle} />}
+        >
+          <ApplicationPageContext.Provider value={contextValue}>
             <NavigationPromptCheckpoint
-              ref={page.navigationPromptCheckpointRef}
+              ref={navigationPromptCheckpointRef}
             >
               <ApplicationErrorBoundary>
                 <ApplicationLoadingOverlayProvider>
-                  {page.content}
+                  {children}
                 </ApplicationLoadingOverlayProvider>
               </ApplicationErrorBoundary>
             </NavigationPromptCheckpoint>
-          </div>
-        ))}
-      </ApplicationPageContext.Provider>
-    </ContentContainer>
+          </ApplicationPageContext.Provider>
+        </ContentContainer>
+      ), portalNode)
+    );
+  }
+
+  React.useLayoutEffect(() => {
+    setIsInitialized(true);
+  }, []);
+
+  React.useLayoutEffect(() => () => {
+    contextValue.nodeManager.releaseNode(pageIdRef.current);
+  }, [contextValue]);
+
+  if (pageContext) {
+    return renderPageContent();
+  }
+
+  return (
+    <div
+      ref={pageLayoutContainerRef}
+      style={{
+        height: '100%', width: '100%', position: 'relative', overflow: 'hidden', backgroundColor: 'white',
+      }}
+    >
+      {isInitialized && renderPageContent()}
+    </div>
   );
 };
 

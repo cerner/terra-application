@@ -4,6 +4,7 @@ import { ActiveBreakpointContext } from '../breakpoints';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 
 import PageLayout from './PageLayout';
+import PageLayoutContainer from './PageLayoutContainer';
 import styles from './SideNavLayout.module.scss';
 
 const cx = classNames.bind(styles);
@@ -83,9 +84,11 @@ const SideNavPage = ({
 
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
-      <PageLayout pageTitle={rootPageTitle} onBack={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
-        {pageContent}
-      </PageLayout>
+      <PageLayoutContainer>
+        <PageLayout pageTitle={rootPageTitle} onBack={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
+          {pageContent}
+        </PageLayout>
+      </PageLayoutContainer>
     </NavigationPromptCheckpoint>
   );
 };

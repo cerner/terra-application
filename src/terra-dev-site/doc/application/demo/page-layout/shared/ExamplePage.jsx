@@ -8,6 +8,7 @@ import PendingActionToggle from '../../PendingActionToggle';
 import LoadingOverlayPresenter from '../../LoadingOverlayPresenter';
 import ErrorThrower from '../../ErrorThrower';
 import ApplicationModalPresenter from './ApplicationModalPresenter';
+import PageLayoutContainer from '../../../../../../application-page/PageLayoutContainer';
 
 const ExamplePage = ({ index, prefix }) => {
   const [initializedDate] = React.useState(new Date().toLocaleString());
@@ -42,9 +43,11 @@ const ExamplePage = ({ index, prefix }) => {
           <ErrorThrower />
           <ModalPresenter
             modalContent={(
-              <PageLayout rootPageTitle="Modal - Page 0">
-                <ExamplePage prefix="Modal" index={0} />
-              </PageLayout>
+              <PageLayoutContainer>
+                <PageLayout pageTitle="Modal - Page 0">
+                  <ExamplePage prefix="Modal" index={0} />
+                </PageLayout>
+              </PageLayoutContainer>
             )}
           />
           <PendingActionToggle />

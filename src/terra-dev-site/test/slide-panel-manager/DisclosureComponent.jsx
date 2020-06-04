@@ -15,6 +15,9 @@ import {
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+import BannerExample from '../banner/Banner.test';
+// import Banner, { BANNER_TYPES } from '../../../banner';
+
 import styles from './DisclosureComponent.module.scss';
 
 const cx = classNames.bind(styles);
@@ -175,6 +178,8 @@ class DisclosureComponent extends React.Component {
           {' '}
           {identifier}
         </p>
+        <BannerExample isInitiallyClosed />
+        {/* {Object.values(BANNER_TYPES).map(type => <Banner key={type} type={type} />)} */}
         <button type="button" className="disclose" onClick={this.disclose()}>Disclose</button>
         <button type="button" className="disclose-tiny" onClick={this.disclose('tiny')}>Disclose Tiny</button>
         <button type="button" className="disclose-small" onClick={this.disclose('small')}>Disclose Small</button>

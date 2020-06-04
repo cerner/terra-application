@@ -4,9 +4,11 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
+      <BannerCheckpoint>
+        <div>
+          Test Child
+        </div>
+      </BannerCheckpoint>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>
@@ -16,9 +18,11 @@ exports[`DisclosureContainer should render the provided children 2`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
+      <BannerCheckpoint>
+        <div>
+          Test Child
+        </div>
+      </BannerCheckpoint>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>

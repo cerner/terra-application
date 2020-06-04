@@ -2,14 +2,31 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
-import BannerRegistrationContext from './_BannerRegistrationContext';
-import { BANNER_TYPES } from './_Utils';
+import BannerRegistrationContext from './private/BannerRegistrationContext';
+import { BANNER_TYPES } from './private/utils';
 
 const propTypes = {
   /**
    * An action element to be added to the action section of the banner.
    */
   action: PropTypes.element,
+  /**
+   * The pieces to populate a banner when type=`custom`.
+   */
+  custom: PropTypes.shape({
+    /**
+     * The title for the banner which will be bolded.
+     */
+    bannerTitle: PropTypes.string,
+    /**
+     * The class name used to set the icon in the banner.
+     */
+    iconClassName: PropTypes.string,
+    /**
+     * Sets an author-defined class, to control the status bar color to be used.
+     */
+    customColorClass: PropTypes.string,
+  }),
   /**
    * Nodes providing the message content for the banner. Can contain text and HTML.
    */
@@ -20,21 +37,18 @@ const propTypes = {
    */
   onDismiss: PropTypes.func,
   /**
-   * The title for the banner which will be bolded. Providing a title will override the default title.
-   */
-  title: PropTypes.string,
-  /**
-   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `info`, `success` or `custom`.
+   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `info`, `success`, `unsatisfied`, `unverified` or `custom`.
    */
   type: PropTypes.oneOf([
     BANNER_TYPES.ALERT,
     BANNER_TYPES.ERROR,
     BANNER_TYPES.WARNING,
+    BANNER_TYPES.UNSATISFIED,
+    BANNER_TYPES.UNVERIFIED,
+    BANNER_TYPES.ADVISORY,
     BANNER_TYPES.INFO,
     BANNER_TYPES.SUCCESS,
     BANNER_TYPES.CUSTOM,
-    BANNER_TYPES.GAP_CHECKING, // REQUIRED?
-    BANNER_TYPES.OUTSIDE_RECORDS,
   ]).isRequired,
 };
 
@@ -57,15 +71,17 @@ const Banner = (props) => {
       /* eslint-disable no-console */
       console.warn('A Banner was not rendered within the context of a BannerCheckpoint. If this is unexpected, validate that the expected version of the terra-application package is installed.');
       /* eslint-enable no-console */
+      return () => {};
     }
 
-    bannerRegistration.registerBanner(uuid.current, props);
-    if (bannerRegistration.registerBanner) {
+    if (bannerRegistration && bannerRegistration.registerBanner) {
       bannerRegistration.registerBanner(uuid.current, props);
     }
 
     return () => {
-      bannerRegistration.unregisterBanner(uuid.current, props.type);
+      if (bannerRegistration && bannerRegistration.unregisterBanner) {
+        bannerRegistration.unregisterBanner(uuid.current, props.type);
+      }
     };
   }, [bannerRegistration, props]);
 

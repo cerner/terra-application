@@ -1,5 +1,6 @@
 import Banner from './Banner';
-import { BANNER_TYPES } from './_Utils';
+import BannerCheckpoint from './BannerCheckpoint';
+import { BANNER_TYPES } from './private/utils';
 
 export default Banner;
-export { BANNER_TYPES };
+export { BANNER_TYPES, BannerCheckpoint };

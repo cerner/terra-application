@@ -1,0 +1,31 @@
+import PropsTable from 'terra-application/lib/banner/BannerCheckpoint?dev-site-props-table';
+import ApplicationNavigationExample from './example/ApplicationNavigationExample?dev-site-example';
+
+# BannerCheckpoint 
+The BannerCheckpoint serves as a registration gateway for [Banners](/application/terra-application/application/application/banner)
+rendered within it. Any Banner rendered within the context of a BannerCheckpoint will register itself with the BannerCheckpoint. When registered, the BannerCheckpoint will ensure the banners are prioritized and displayed in a list above all other content.
+
+Banners are prioritized by type and in the following order:
+- Alert
+- Error
+- Warning
+- Unsatisfied
+- Unverified
+- Advisory
+- Info
+- Success
+- Custom
+
+## Usage
+
+```jsx
+import { BannerCheckpoint } from 'terra-application/lib/banner';
+```
+
+## Props
+
+<PropsTable />
+
+## Example
+
+<ApplicationNavigationExample />

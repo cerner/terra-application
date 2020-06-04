@@ -9,7 +9,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
-import BannerCheckpoint from '../banner/_BannerCheckpoint';
+import BannerCheckpoint from '../banner/BannerCheckpoint';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
 const propTypes = {

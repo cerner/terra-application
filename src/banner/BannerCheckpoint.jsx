@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { injectIntl, intlShape } from 'react-intl';
 import Alert from 'terra-alert';
+import ContentContainer from 'terra-content-container';
 
-import BannerRegistrationContext from './_BannerRegistrationContext';
-import { organizeBannersByPriority } from './_Utils';
+import BannerRegistrationContext from './private/BannerRegistrationContext';
+import { organizeBannersByPriority } from './private/utils';
 
 const propTypes = {
   /**
@@ -13,17 +13,13 @@ const propTypes = {
    * display above the children.
    */
   children: PropTypes.node,
-  /**
-   * intl object programmatically imported through injectIntl from react-intl.
-   * */
-  intl: intlShape.isRequired,
 };
 
 /**
  * The Banner Checkpoint manages prioritizing and displaying all Workflow Banners
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
-const BannerCheckpoint = ({ children, intl, ...customProps }) => {
+const BannerCheckpoint = ({ children }) => {
   const registeredBanners = React.useRef({});
   const [banners, setBanners] = React.useState([]);
 
@@ -42,7 +38,7 @@ const BannerCheckpoint = ({ children, intl, ...customProps }) => {
 
     registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
 
-    setBanners(organizeBannersByPriority(intl, registeredBanners.current));
+    setBanners(organizeBannersByPriority(registeredBanners.current));
   };
 
   const unregisterBanner = (bannerId, bannerType) => {
@@ -58,7 +54,7 @@ const BannerCheckpoint = ({ children, intl, ...customProps }) => {
 
     delete registeredBanners.current[bannerType][bannerId];
 
-    setBanners(organizeBannersByPriority(intl, registeredBanners.current));
+    setBanners(organizeBannersByPriority(registeredBanners.current));
   };
 
   const BannerList = () => {
@@ -67,15 +63,14 @@ const BannerCheckpoint = ({ children, intl, ...customProps }) => {
     }
 
     return (
-      <div className={customProps.className || ''}>
+      <>
         {banners.map((bannerProps) => {
           const {
             action,
-            title,
+            bannerTitle,
             description,
             key,
             type,
-            originalType,
             onDismiss,
             ...otherBannerProps
           } = bannerProps;
@@ -83,17 +78,17 @@ const BannerCheckpoint = ({ children, intl, ...customProps }) => {
           return (
             <Alert
               {...otherBannerProps}
-              type={type}
-              title={title}
               action={action}
-              onDismiss={onDismiss}
               key={key}
+              onDismiss={onDismiss}
+              title={bannerTitle}
+              type={type}
             >
               {description}
             </Alert>
           );
         })}
-      </div>
+      </>
     );
   };
 
@@ -104,12 +99,16 @@ const BannerCheckpoint = ({ children, intl, ...customProps }) => {
 
   return (
     <BannerRegistrationContext.Provider value={bannerProviderValue.current}>
-      <BannerList />
-      {children}
+      <ContentContainer
+        header={<BannerList />}
+        fill
+      >
+        {children}
+      </ContentContainer>
     </BannerRegistrationContext.Provider>
   );
 };
 
 BannerCheckpoint.propTypes = propTypes;
 
-export default injectIntl(BannerCheckpoint);
+export default BannerCheckpoint;

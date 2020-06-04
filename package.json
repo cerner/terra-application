@@ -106,6 +106,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "eventemitter3": "^4.0.4",
     "keycode-js": "^2.0.3",
     "wicg-inert": "^3.0.2",
     "mutationobserver-shim": "0.3.3",

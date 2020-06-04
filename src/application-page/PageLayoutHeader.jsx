@@ -7,13 +7,14 @@ const cx = classNames.bind(styles);
 
 const propTypes = {};
 
-const PageLayoutHeader = ({ onBack, title }) => (
+const PageLayoutHeader = ({
+  actions, onSelectAction, onBack, title,
+}) => (
   <div className={cx('page-layout-header')}>
     {onBack ? (
       <div className={cx('back-button-container')}>
         <Button
           className={cx(['header-button', 'back-button'])}
-          data-terra-action-header="back-button"
           isIconOnly
           icon={<span className={cx('back')} />}
           text="Back"
@@ -25,6 +26,20 @@ const PageLayoutHeader = ({ onBack, title }) => (
     <div className={cx('title-container')}>
       {title}
     </div>
+    <div className={cx('actions-container')}>
+      {actions && actions.map((action) => (
+        <Button
+          key={action.key}
+          className={cx(['header-button'])}
+          isIconOnly
+          icon={action.icon}
+          text={action.text}
+          variant={ButtonVariants.UTILITY}
+          onClick={(event) => { event.preventDefault(); onSelectAction(action); }}
+        />
+      ))}
+    </div>
+
   </div>
 );
 

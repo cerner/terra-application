@@ -5,6 +5,7 @@ Unreleased
 ----------
 ### Changed
 * Updated eslint-config-terra to @cerner/eslint-config-terra v^4.0.0
+* Removed unecessary disabled rules
 
 1.24.0 - (May 12, 2020)
 ------------------

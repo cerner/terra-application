@@ -85,9 +85,7 @@ const SideNavPage = ({
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
       <PageLayoutContainer>
-        <PageLayout pageTitle={rootPageTitle} onBack={flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined}>
-          {pageContent}
-        </PageLayout>
+        {React.cloneElement(pageContent, { onDismissPage: flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined })}
       </PageLayoutContainer>
     </NavigationPromptCheckpoint>
   );

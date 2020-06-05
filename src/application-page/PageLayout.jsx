@@ -50,6 +50,16 @@ const PageLayout = ({
 
   const portalNode = contextValue.nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
 
+  React.useLayoutEffect(() => {
+    if (!portalNode && onFail) {
+      onFail();
+    }
+  }, [portalNode, onFail]);
+
+  if (!portalNode) {
+    return null;
+  }
+
   function onSelectAction(action) {
     if (action.onSelect) {
       action.onSelect();

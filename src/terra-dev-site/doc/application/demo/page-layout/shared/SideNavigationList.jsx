@@ -7,6 +7,8 @@ import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
+  const hasChevron = activeBreakpoint === 'tiny' || activeBreakpoint === 'small';
+
   return (
     <ContentContainer
       header={<PageLayoutHeader title="Side Nav" />}
@@ -15,6 +17,7 @@ const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
       <List dividerStyle="standard" role="listbox" aria-label="SingleSelectList-label">
         <ListItem
           key="item-1"
+          hasChevron={hasChevron}
           isSelectable
           isSelected={selectedItemKey === 'item-1'}
           onSelect={() => {
@@ -25,6 +28,7 @@ const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
         </ListItem>
         <ListItem
           key="item-2"
+          hasChevron={hasChevron}
           isSelectable
           isSelected={selectedItemKey === 'item-2'}
           onSelect={() => {
@@ -35,6 +39,7 @@ const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
         </ListItem>
         <ListItem
           key="item-3"
+          hasChevron={hasChevron}
           isSelectable
           isSelected={selectedItemKey === 'item-3'}
           onSelect={() => {

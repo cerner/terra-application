@@ -78,6 +78,10 @@ class PageLayoutNodeManager {
 
     const page = this._nodeMap[pageKey];
 
+    if (!page) {
+      return;
+    }
+
     if (this._containerRef.current.contains(page.element)) {
       this._containerRef.current.removeChild(page.element);
     }

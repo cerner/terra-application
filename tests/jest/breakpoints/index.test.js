@@ -1,9 +1,9 @@
 import breakpoints, {
-  activeBreakpointForSize, // eslint-disable-line import/named
-  breakpointIsActiveForSize, // eslint-disable-line import/named
-  ActiveBreakpointContext, // eslint-disable-line import/named
-  ActiveBreakpointProvider, // eslint-disable-line import/named
-  withActiveBreakpoint, // eslint-disable-line import/named
+  activeBreakpointForSize,
+  breakpointIsActiveForSize,
+  ActiveBreakpointContext,
+  ActiveBreakpointProvider,
+  withActiveBreakpoint,
 } from '../../../src/breakpoints';
 
 describe('breakpoints/index', () => {

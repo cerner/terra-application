@@ -11,7 +11,8 @@ import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 
 import PendingActionToggle from './PendingActionToggle';
-import styles from './ModalPresenter.module.scss';
+import BannerToggle from './BannerToggle';
+import styles from './Presenter.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -85,6 +86,7 @@ const ModalContent = ({ name, onSubmit }) => {
           <p>Press the button below to throw an exception that will be caught and handled by the framework.</p>
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <PendingActionToggle />
+          <BannerToggle />
         </div>
       </Scroll>
     </>

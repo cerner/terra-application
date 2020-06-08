@@ -15,8 +15,7 @@ import {
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
-import BannerExample from '../banner/Banner.test';
-// import Banner, { BANNER_TYPES } from '../../../banner';
+import BannerExample from '../banner/BannerExample';
 
 import styles from './DisclosureComponent.module.scss';
 
@@ -178,8 +177,6 @@ class DisclosureComponent extends React.Component {
           {' '}
           {identifier}
         </p>
-        <BannerExample isInitiallyClosed />
-        {/* {Object.values(BANNER_TYPES).map(type => <Banner key={type} type={type} />)} */}
         <button type="button" className="disclose" onClick={this.disclose()}>Disclose</button>
         <button type="button" className="disclose-tiny" onClick={this.disclose('tiny')}>Disclose Tiny</button>
         <button type="button" className="disclose-small" onClick={this.disclose('small')}>Disclose Small</button>
@@ -202,6 +199,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+        <BannerExample isInitiallyClosed />
       </ContentContainer>
     );
   }

@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TerraSlidePanelManager from 'terra-slide-panel-manager';
 
+import { BannerCheckpoint } from '../banner';
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
@@ -27,7 +28,7 @@ const propTypes = {
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
 };
 
-const SlidePanelManager = ({ navigationPromptResolutionOptions, ...terraSlidePanelManagerProps }) => (
+const SlidePanelManager = ({ navigationPromptResolutionOptions, children, ...terraSlidePanelManagerProps }) => (
   <TerraSlidePanelManager
     {...terraSlidePanelManagerProps}
     withDisclosureContainer={disclosureContent => (
@@ -35,7 +36,11 @@ const SlidePanelManager = ({ navigationPromptResolutionOptions, ...terraSlidePan
         {disclosureContent}
       </DisclosureContainer>
     )}
-  />
+  >
+    <BannerCheckpoint>
+      {children}
+    </BannerCheckpoint>
+  </TerraSlidePanelManager>
 );
 
 SlidePanelManager.propTypes = propTypes;

@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
+import Banner from '../../../banner';
 import NavigationPrompt from '../../../navigation-prompt';
 
 const PageContent = ({ title }) => {
   const [hasPendingAction, setHasPendingAction] = useState(false);
+  const [showBanner, setShowBanner] = useState(false);
 
   return (
     <div data-nav-test-content>
@@ -24,6 +26,12 @@ const PageContent = ({ title }) => {
         </button>
       </p>
       {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
+      <p>
+        Show Banner:
+        {' '}
+        <button id="banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
+      </p>
+      {showBanner ? <Banner type="success" onDismiss={() => { setShowBanner(false); }} /> : undefined}
     </div>
   );
 };

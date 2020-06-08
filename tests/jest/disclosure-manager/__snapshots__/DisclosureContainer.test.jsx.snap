@@ -13,17 +13,3 @@ exports[`DisclosureContainer should render the provided children 1`] = `
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>
 `;
-
-exports[`DisclosureContainer should render the provided children 2`] = `
-<ApplicationErrorBoundary>
-  <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <BannerCheckpoint>
-        <div>
-          Test Child
-        </div>
-      </BannerCheckpoint>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
-  </ApplicationLoadingOverlayProvider>
-</ApplicationErrorBoundary>
-`;

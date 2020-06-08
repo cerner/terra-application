@@ -8,14 +8,16 @@ exports[`ApplicationNavigation should render default element 1`] = `
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
       <ApplicationErrorBoundary>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        />
+        <BannerCheckpoint>
+          <Suspense
+            fallback={
+              <ApplicationLoadingOverlay
+                backgroundStyle="clear"
+                isOpen={true}
+              />
+            }
+          />
+        </BannerCheckpoint>
       </ApplicationErrorBoundary>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
@@ -89,18 +91,20 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
       <ApplicationErrorBoundary>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        >
-          <div>
-            test child content
-          </div>
-        </Suspense>
+        <BannerCheckpoint>
+          <Suspense
+            fallback={
+              <ApplicationLoadingOverlay
+                backgroundStyle="clear"
+                isOpen={true}
+              />
+            }
+          >
+            <div>
+              test child content
+            </div>
+          </Suspense>
+        </BannerCheckpoint>
       </ApplicationErrorBoundary>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>

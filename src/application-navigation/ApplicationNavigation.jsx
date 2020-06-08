@@ -11,6 +11,7 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+import { BannerCheckpoint } from '../banner';
 
 const propTypes = {
   /**
@@ -187,9 +188,11 @@ const ApplicationNavigation = ({
           ref={navigationPromptCheckpointRef}
         >
           <ApplicationErrorBoundary>
-            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-              {children}
-            </Suspense>
+            <BannerCheckpoint>
+              <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                {children}
+              </Suspense>
+            </BannerCheckpoint>
           </ApplicationErrorBoundary>
         </NavigationPromptCheckpoint>
       </ApplicationLoadingOverlayProvider>

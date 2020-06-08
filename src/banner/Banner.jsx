@@ -5,6 +5,7 @@ import uuidv4 from 'uuid/v4';
 import BannerRegistrationContext from './private/BannerRegistrationContext';
 import { BANNER_TYPES } from './private/utils';
 
+/* eslint-disable react/no-unused-prop-types */
 const propTypes = {
   /**
    * An action element to be added to the action section of the banner.
@@ -21,11 +22,11 @@ const propTypes = {
     /**
      * The class name used to set the icon in the banner.
      */
-    iconClassName: PropTypes.string,
+    icon: PropTypes.element,
     /**
      * Sets an author-defined class, to control the status bar color to be used.
      */
-    customColorClass: PropTypes.string,
+    colorClass: PropTypes.string,
   }),
   /**
    * Nodes providing the message content for the banner. Can contain text and HTML.
@@ -51,6 +52,7 @@ const propTypes = {
     BANNER_TYPES.CUSTOM,
   ]).isRequired,
 };
+/* eslint-enable react/no-unused-prop-types */
 
 const Banner = (props) => {
   /**

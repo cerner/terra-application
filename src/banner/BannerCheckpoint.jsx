@@ -67,7 +67,7 @@ const BannerCheckpoint = ({ children }) => {
         {banners.map((bannerProps) => {
           const {
             action,
-            bannerTitle,
+            custom,
             description,
             key,
             type,
@@ -81,7 +81,9 @@ const BannerCheckpoint = ({ children }) => {
               action={action}
               key={key}
               onDismiss={onDismiss}
-              title={bannerTitle}
+              title={custom?.bannerTitle}
+              customColorClass={custom?.colorClass}
+              customIcon={custom?.icon}
               type={type}
             >
               {description}

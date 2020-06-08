@@ -1,3 +1,5 @@
+/* global TERRA_THEME_CONFIG */
+
 import React, {
   useRef, useEffect, Suspense, useMemo,
 } from 'react';
@@ -9,15 +11,14 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
-import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
+import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { BannerCheckpoint } from '../banner';
+import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
 import styles from './ApplicationBase.module.scss';
-
-/* global TERRA_THEME_CONFIG */
 
 const cx = classNames.bind(styles);
 
@@ -134,9 +135,11 @@ const ApplicationBase = ({
                     }}
                   >
                     <ApplicationLoadingOverlayProvider>
-                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                        {children}
-                      </Suspense>
+                      <BannerCheckpoint>
+                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                          {children}
+                        </Suspense>
+                      </BannerCheckpoint>
                     </ApplicationLoadingOverlayProvider>
                   </NavigationPromptCheckpoint>
                 </ActiveBreakpointProvider>

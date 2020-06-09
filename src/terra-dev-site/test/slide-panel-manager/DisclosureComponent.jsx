@@ -199,7 +199,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
-        <BannerExample isInitiallyClosed />
+        <BannerExample isInitiallyClosed id={identifier} />
       </ContentContainer>
     );
   }

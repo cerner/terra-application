@@ -61,4 +61,12 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       Terra.validates.element('2. no prompt for logout', { selector });
     });
   });
+
+  it('with banner', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
+    browser.refresh();
+    browser.click('button#banner');
+
+    Terra.validates.element('with banner', { selector: '#root' });
+  });
 });

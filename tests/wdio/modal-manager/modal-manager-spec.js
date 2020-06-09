@@ -102,4 +102,27 @@ Terra.describeViewports('ModalManager', ['large'], () => {
     browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('12. root modal-global dismiss', { selector });
   });
+
+  it('renders banners in root content', () => {
+    browser.click('#root-component #toggle-success-banner-root-component');
+    Terra.validates.element('13. component banner', { selector });
+  });
+
+  it('opens medium modal', () => {
+    browser.click('#root-component .disclose-medium');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-medium');
+  });
+
+  it('renders banners in modal', () => {
+    browser.click('#toggle-warning-banner-DemoContainer-1');
+    browser.waitForExist('#warning-banner-DemoContainer-1');
+    browser.click('#toggle-info-banner-DemoContainer-1');
+    browser.waitForExist('#info-banner-DemoContainer-1');
+    browser.click('#toggle-error-banner-DemoContainer-1');
+    browser.waitForExist('#error-banner-DemoContainer-1');
+  });
+
+  it('validates banners in modal banner checkpoint', () => {
+    Terra.validates.element('14. modal banners', { selector });
+  });
 });

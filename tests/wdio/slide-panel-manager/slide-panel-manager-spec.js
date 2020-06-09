@@ -102,4 +102,27 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('12. root panel-global dismiss', { selector });
   });
+
+  it('renders banners in root content', () => {
+    browser.click('#root-component #toggle-success-banner-root-component');
+    Terra.validates.element('13. component banner', { selector });
+  });
+
+  it('opens small slide panel', () => {
+    browser.click('#root-component .disclose-small');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-small');
+  });
+
+  it('renders banners in slide panel', () => {
+    browser.click('#toggle-success-banner-DemoContainer-1');
+    browser.waitForExist('#success-banner-DemoContainer-1');
+    browser.click('#toggle-advisory-banner-DemoContainer-1');
+    browser.waitForExist('#advisory-banner-DemoContainer-1');
+    browser.click('#toggle-unverified-banner-DemoContainer-1');
+    browser.waitForExist('#unverified-banner-DemoContainer-1');
+  });
+
+  it('validates banners in slide panel banner checkpoint', () => {
+    Terra.validates.element('14. slide panel banners', { selector });
+  });
 });

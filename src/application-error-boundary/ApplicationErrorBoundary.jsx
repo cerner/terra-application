@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
+import logger from '../logger';
 
 const propTypes = {
   /**
@@ -42,6 +43,7 @@ class ApplicationErrorBoundary extends React.Component {
      * When an exception occurs while rendering children, getDerivedStateFromError gets executed. The error
      * is returned here and stored within the ApplicationErrorBoundary's state, triggering an update.
      */
+    logger.error(error);
     return { error };
   }
 

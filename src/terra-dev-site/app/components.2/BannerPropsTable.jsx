@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Banner from '../../../banner/Banner';
 
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
@@ -35,28 +34,13 @@ const propTypes = {
    */
   onDismiss: PropTypes.func,
   /**
-   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `info`, `success`, `unsatisfied`, `unverified` or `custom`.
+   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `unsatisfied`, `unverified`, `advisory`, `info`, `success`, or `custom`.
    */
-  type: PropTypes.oneOf([
-    BANNER_TYPES.ALERT,
-    BANNER_TYPES.ERROR,
-    BANNER_TYPES.WARNING,
-    BANNER_TYPES.UNSATISFIED,
-    BANNER_TYPES.UNVERIFIED,
-    BANNER_TYPES.ADVISORY,
-    BANNER_TYPES.INFO,
-    BANNER_TYPES.SUCCESS,
-    BANNER_TYPES.CUSTOM,
-  ]).isRequired,
+  type: PropTypes.oneOf(['alert', 'error', 'warning', 'unsatisfied', 'unverified', 'advisory', 'info', 'success', 'custom']).isRequired,
 };
+/* eslint-enable react/no-unused-prop-types */
 
-const PropTypesExample = ({
-  action,
-  custom,
-  description,
-  onDismiss,
-  type,
-}) => <div />;
+const PropTypesExample = () => <div />;
 
 PropTypesExample.propTypes = propTypes;
 

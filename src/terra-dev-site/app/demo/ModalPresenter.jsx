@@ -12,7 +12,7 @@ import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-
 
 import PendingActionToggle from './PendingActionToggle';
 import BannerToggle from './BannerToggle';
-import styles from './Presenter.module.scss';
+import styles from './ModalPresenter.module.scss';
 
 const cx = classNames.bind(styles);
 

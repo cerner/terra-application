@@ -6,7 +6,8 @@ import { IntlProvider } from 'react-intl';
 
 import BannerRegistrationContext from '../../../src/banner/private/BannerRegistrationContext';
 import Banner, { BannerCheckpoint } from '../../../src/banner';
-import { messages } from '../../../aggregated-translations/en';
+// eslint-disable-next-line import/no-unresolved, import/extensions
+import { messages } from '../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
 jest.mock('terra-base');
 global.console.warn = jest.fn();

@@ -33,19 +33,19 @@ const Example = () => {
           onDismiss={() => setShowCustomBanner(false)}
         />
       )}
-      {showAlertBanner && (
+      {showUnsatisfiedBanner && (
         <Banner
           type="unsatisfied"
           onDismiss={() => setShowUnsatisfiedBanner(false)}
         />
       )}
-      {showErrorBanner && (
+      {showAlertBanner && (
         <Banner
           type="alert"
           onDismiss={() => setShowAlertBanner(false)}
         />
       )}
-      {showUnsatisfiedBanner && (
+      {showErrorBanner && (
         <Banner
           type="error"
           description="Please try again."
@@ -61,7 +61,7 @@ const Example = () => {
       {showUnverifiedBanner && (
         <Banner
           type="unverified"
-          onDismiss={() => showUnverifiedBanner(false)}
+          onDismiss={() => setShowUnverifiedBanner(false)}
         />
       )}
       {showInfoBanner && (

@@ -55,15 +55,16 @@ const propTypes = {
 /* eslint-enable react/no-unused-prop-types */
 
 const Banner = (props) => {
-  /**
-   * A unique identifier is generated for each Banner during construction. This will be used to
-   * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
-   * define unique identifiers themselves.
-   */
-  const uuid = React.useRef(uuidv4());
   const bannerRegistration = React.useContext(BannerRegistrationContext);
 
   React.useEffect(() => {
+    /**
+     * A unique identifier is generated for each Banner during construction. This will be used to
+     * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
+     * define unique identifiers themselves.
+     */
+    const uuid = uuidv4();
+
     /**
      * If the bannerRegistration value is the ProviderRegistrationContext's default value,
      * then there is not a matching BannerCheckpoint above it in the hierarchy.
@@ -77,12 +78,12 @@ const Banner = (props) => {
     }
 
     if (bannerRegistration && bannerRegistration.registerBanner) {
-      bannerRegistration.registerBanner(uuid.current, props);
+      bannerRegistration.registerBanner(uuid, props);
     }
 
     return () => {
       if (bannerRegistration && bannerRegistration.unregisterBanner) {
-        bannerRegistration.unregisterBanner(uuid.current, props.type);
+        bannerRegistration.unregisterBanner(uuid, props.type);
       }
     };
   }, [bannerRegistration, props]);

@@ -65,7 +65,7 @@ const propTypes = {
   /**
    * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
    * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
-   * overflow potentially overflow its parent.
+   *  potentially overflow its parent.
    */
   fitToParentIsDisabled: PropTypes.bool,
   /**
@@ -135,7 +135,7 @@ const ApplicationBase = ({
                     }}
                   >
                     <ApplicationLoadingOverlayProvider>
-                      <BannerCheckpoint>
+                      <BannerCheckpoint fitToParentIsDisabled={fitToParentIsDisabled}>
                         <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                           {children}
                         </Suspense>

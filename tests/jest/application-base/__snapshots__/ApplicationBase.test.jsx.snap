@@ -37,7 +37,9 @@ exports[`ApplicationBase should render with all props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <BannerCheckpoint>
+                  <BannerCheckpoint
+                    fitToParentIsDisabled={true}
+                  >
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -88,7 +90,9 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <BannerCheckpoint>
+                  <BannerCheckpoint
+                    fitToParentIsDisabled={false}
+                  >
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -139,7 +143,9 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <BannerCheckpoint>
+                  <BannerCheckpoint
+                    fitToParentIsDisabled={false}
+                  >
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay

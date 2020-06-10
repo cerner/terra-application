@@ -13,13 +13,19 @@ const propTypes = {
    * display above the children.
    */
   children: PropTypes.node,
+  /**
+   * By default, the children rendered by BannerCheckpoint are fit to the Checkpoint's parent using 100% height.
+   * If `fitToParentIsDisabled` is provided, the Checkpoint will render at its intrinsic content height and
+   * potentially overflow its parent.
+   */
+  fitToParentIsDisabled: PropTypes.bool,
 };
 
 /**
  * The Banner Checkpoint manages prioritizing and displaying all Workflow Banners
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
-const BannerCheckpoint = ({ children }) => {
+const BannerCheckpoint = ({ fitToParentIsDisabled, children }) => {
   const registeredBanners = React.useRef({});
   const [banners, setBanners] = React.useState([]);
 
@@ -103,7 +109,7 @@ const BannerCheckpoint = ({ children }) => {
     <BannerRegistrationContext.Provider value={bannerProviderValue.current}>
       <ContentContainer
         header={<BannerList />}
-        fill
+        fill={!fitToParentIsDisabled}
       >
         {children}
       </ContentContainer>
@@ -112,5 +118,8 @@ const BannerCheckpoint = ({ children }) => {
 };
 
 BannerCheckpoint.propTypes = propTypes;
+BannerCheckpoint.defaultProps = {
+  fitToParentIsDisabled: false,
+};
 
 export default BannerCheckpoint;

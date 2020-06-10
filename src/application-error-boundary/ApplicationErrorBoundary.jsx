@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
-import logger from '../logger';
+import logger from '../utils/logger';
 
 const propTypes = {
   /**

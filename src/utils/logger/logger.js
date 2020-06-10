@@ -10,9 +10,9 @@ const Logger = {
 /* eslint-enable no-console */
 
 const initializeLogger = ({ onInfo, onWarn, onError }) => {
-  Logger.info = onInfo;
-  Logger.warn = onWarn;
-  Logger.error = onError;
+  Logger.info = onInfo || Logger.info;
+  Logger.warn = onWarn || Logger.warn;
+  Logger.error = onError || Logger.error;
 };
 
 export default Logger;

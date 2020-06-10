@@ -1,0 +1,36 @@
+# Logger
+
+`terra-application` provides an override-able logger to handle error, info, and warning messages.
+
+## Usage
+
+The logger works like the `console` for the `warn`, `error`, and `info` methods. By default the logger will send the messages to the corresponding console methods and no-op in production for the info and warning messages.
+
+```js
+import logger from 'terra-application/logger';
+
+logger.error('error');
+logger.warn('warning');
+logger.info('info');
+```
+
+## Overriding
+
+it may be desirable to override the implementation of Once per application.
+
+```js
+import { initializeLogger } from 'terra-application/lib/logger';
+
+initializeLogger({
+  onInfo: (...args) => console.log('[Info] ', ...args),
+  onWarn: (...args) => console.log('[Warn] ', ...args),
+  onError: (...args) => console.log('[Error] ', ...args),
+});
+```
+
+## API
+
+### Logger
+
+### initializeLogger
+

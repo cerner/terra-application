@@ -82,10 +82,12 @@ const SideNavPage = ({
     pageContent = children;
   }
 
+  const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
+
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
       <PageLayoutContainer>
-        {React.cloneElement(pageContent, { onDismissPage: flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0 ? () => { onChangeActiveItem(undefined); } : undefined })}
+        {React.cloneElement(pageContent, { onDismissPage: isCompact ? () => { onChangeActiveItem(undefined); } : undefined })}
       </PageLayoutContainer>
     </NavigationPromptCheckpoint>
   );

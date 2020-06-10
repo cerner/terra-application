@@ -1,0 +1,48 @@
+:local {
+  .card {
+    background-color: white;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+
+  .card-header {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+
+    overflow: hidden;
+    padding: 0 10px;
+    width: 100%;
+
+    .title-container {
+      flex: 1 1 auto;
+      padding: 10px 0;
+    }  
+
+    .action-container {
+      flex: 0 0 auto;
+    }
+  }
+
+  .list-item {
+    padding: 10px;
+  }
+
+  .order-action-item {
+    display: flex;
+    align-items: center;
+    
+    .text {
+      flex: 1 1 auto;
+    }
+
+    .action {
+      flex: 0 0 auto;
+    }
+  }
+}

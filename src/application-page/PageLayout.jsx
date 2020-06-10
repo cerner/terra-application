@@ -18,7 +18,7 @@ import styles from './PageLayout.module.scss';
 const cx = classNames.bind(styles);
 
 const PageLayout = ({
-  pageTitle, pageActions, onBack, onFail, children,
+  pageTitle, pageActions, onBack, onFail, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pageContext = React.useContext(ApplicationPageContext);
@@ -28,6 +28,11 @@ const PageLayout = ({
   const pageEventEmitter = React.useRef(new EventEmitter());
 
   function goBack() {
+    if (disableNavigationPromptsOnBack) {
+      onBack();
+      return;
+    }
+
     navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       onBack();
     });

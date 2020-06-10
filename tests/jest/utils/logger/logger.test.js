@@ -82,7 +82,7 @@ describe('initializeLogger', () => {
       onWarn: warn,
     });
     expect(Logger.warn).toEqual(warn);
-    Logger.error = oldWarn;
+    Logger.warn = oldWarn;
   });
 
   it('updates info', () => {
@@ -92,6 +92,6 @@ describe('initializeLogger', () => {
       onInfo: info,
     });
     expect(Logger.info).toEqual(info);
-    Logger.error = oldInfo;
+    Logger.info = oldInfo;
   });
 });

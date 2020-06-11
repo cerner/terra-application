@@ -20,13 +20,13 @@ const propTypes = {
      */
     bannerTitle: PropTypes.string,
     /**
-     * The class name used to set the icon in the banner.
-     */
-    icon: PropTypes.element,
-    /**
      * Sets an author-defined class, to control the status bar color to be used.
      */
     colorClass: PropTypes.string,
+    /**
+     * The class name used to set the icon in the banner.
+     */
+    icon: PropTypes.element,
   }),
   /**
    * Nodes providing the message content for the banner. Can contain text and HTML.
@@ -55,35 +55,33 @@ const propTypes = {
 /* eslint-enable react/no-unused-prop-types */
 
 const Banner = (props) => {
+  /**
+   * A unique identifier is generated for each Banner during construction. This will be used to
+   * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
+   * define unique identifiers themselves.
+   */
+  const uuid = React.useRef(uuidv4());
   const bannerRegistration = React.useContext(BannerRegistrationContext);
 
   React.useEffect(() => {
     /**
-     * A unique identifier is generated for each Banner during construction. This will be used to
-     * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
-     * define unique identifiers themselves.
-     */
-    const uuid = uuidv4();
-
-    /**
      * If the bannerRegistration value is the ProviderRegistrationContext's default value,
-     * then there is not a matching BannerCheckpoint above it in the hierarchy.
+     * then there is not a matching BannerProvider above it in the hierarchy.
      * This is possible but likely not intentional, so the component warns.
      */
     if (!bannerRegistration && process.env.NODE_ENV !== 'production') {
-      /* eslint-disable no-console */
-      console.warn('A Banner was not rendered within the context of a BannerCheckpoint. If this is unexpected, validate that the expected version of the terra-application package is installed.');
-      /* eslint-enable no-console */
+      // eslint-disable-next-line no-console
+      console.warn('A Banner was not rendered within the context of a BannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
       return () => {};
     }
 
     if (bannerRegistration && bannerRegistration.registerBanner) {
-      bannerRegistration.registerBanner(uuid, props);
+      bannerRegistration.registerBanner(uuid.current, props);
     }
 
     return () => {
       if (bannerRegistration && bannerRegistration.unregisterBanner) {
-        bannerRegistration.unregisterBanner(uuid, props.type);
+        bannerRegistration.unregisterBanner(uuid.current, props.type);
       }
     };
   }, [bannerRegistration, props]);

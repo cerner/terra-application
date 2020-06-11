@@ -2,12 +2,12 @@ import Logger, {
   initializeLogger,
 } from '../../../../src/utils/logger';
 
-describe('theme/index', () => {
-  it('should export ThemeContext', () => {
+describe('logger/index', () => {
+  it('should export Logger', () => {
     expect(Logger).toBeDefined();
   });
 
-  it('should export themeContextShape', () => {
+  it('should export initializeLogger', () => {
     expect(initializeLogger).toBeDefined();
   });
 });

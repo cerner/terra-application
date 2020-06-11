@@ -4,7 +4,7 @@
 
 ## Usage
 
-The logger works like the `console` for the `warn`, `error`, and `info` methods. By default the logger will send the messages to the corresponding console methods and no-op in production for the info and warning messages.
+The logger works like the `console` for the `warn`, `error`, and `info` methods. By default the logger will send the messages to the corresponding console methods. In production, info and warning messages will be suppressed.
 
 ```js
 import logger from 'terra-application/lib/utils/logger';
@@ -23,7 +23,7 @@ import { initializeLogger } from 'terra-application/lib/logger';
 
 initializeLogger({
   onInfo: (...args) => console.log('[Info] ', ...args),
-  onWarn: (...args) => console.log('[Warn] ', ...args),
+  onWarn: (...args) => console.warn('[Warn] ', ...args),
   onError: (...args) => console.log('[Error] ', ...args),
 });
 ```

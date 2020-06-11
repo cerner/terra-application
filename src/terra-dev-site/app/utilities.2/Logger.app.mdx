@@ -16,7 +16,7 @@ logger.info('info');
 
 ## Overriding
 
-It may be desirable to override the default implementation of the logger. For example logs could be sent to a server side log aggregator. The logger is a singleton and should only be overridden once per application. To override the logger implementation use the `initializeLogger` function and provide a new function for the logger. All loggers must have the method signature of `(obj1 [, obj2, ..., objN])` the same as the [console.warn](https://developer.mozilla.org/en-US/docs/Web/API/Console/warn), [console.error](https://developer.mozilla.org/en-US/docs/Web/API/Console/error), and [console.info](https://developer.mozilla.org/en-US/docs/Web/API/Console/info) methods.
+It may be desirable to override the default implementation of the logger. For example, logs could be sent to a server side log aggregator. The logger is a singleton and should only be overridden once per application. To override the logger implementation, use the `initializeLogger` function and provide a new function for the logger. All loggers must have a method signature of `(obj1 [, obj2, ..., objN])`, the same as the [console.warn](https://developer.mozilla.org/en-US/docs/Web/API/Console/warn), [console.error](https://developer.mozilla.org/en-US/docs/Web/API/Console/error), and [console.info](https://developer.mozilla.org/en-US/docs/Web/API/Console/info) methods.
 
 ```js
 import { initializeLogger } from 'terra-application/lib/logger';

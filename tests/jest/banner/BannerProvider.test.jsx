@@ -5,7 +5,7 @@ import 'terra-base';
 import { IntlProvider } from 'react-intl';
 
 import BannerRegistrationContext from '../../../src/banner/private/BannerRegistrationContext';
-import Banner, { BannerCheckpoint } from '../../../src/banner';
+import Banner, { BannerProvider } from '../../../src/banner';
 // eslint-disable-next-line import/no-unresolved, import/extensions
 import { messages } from '../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
@@ -39,21 +39,21 @@ const renderComponentWithChild = (childrenContent, checkpointProps = {}) => {
 
   const component = render(
     <IntlProvider locale="en" messages={messages}>
-      <BannerCheckpoint {...checkpointProps}>
+      <BannerProvider {...checkpointProps}>
         <BannerRegistrationContext.Consumer>
           {(context) => {
             childContext = context;
             return childrenContent;
           }}
         </BannerRegistrationContext.Consumer>
-      </BannerCheckpoint>
+      </BannerProvider>
     </IntlProvider>,
   );
 
   return { component, context: childContext };
 };
 
-describe('BannerCheckpoint', () => {
+describe('BannerProvider', () => {
   beforeEach(() => {
     jest.resetAllMocks;
     // eslint-disable-next-line no-console
@@ -182,9 +182,9 @@ describe('BannerCheckpoint', () => {
     it('registers banner with top-level Banner Checkpoint', () => {
       const childComponent = (
         <ChildContent>
-          <BannerCheckpoint>
+          <BannerProvider>
             <ChildContent buttonId="show-2nd-banner" />
-          </BannerCheckpoint>
+          </BannerProvider>
         </ChildContent>
       );
       const { component } = renderComponentWithChild(childComponent);
@@ -212,9 +212,9 @@ describe('BannerCheckpoint', () => {
     it('unregisters banner with top-level Banner Checkpoint', () => {
       const childComponent = (
         <ChildContent showBannerOnRender>
-          <BannerCheckpoint>
+          <BannerProvider>
             <ChildContent buttonId="show-2nd-banner" showBannerOnRender />
-          </BannerCheckpoint>
+          </BannerProvider>
         </ChildContent>
       );
       const { component } = renderComponentWithChild(childComponent);

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 1`] = `
+exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -51,7 +51,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-lev
 </div>
 `;
 
-exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 2`] = `
+exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -146,7 +146,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-lev
 </div>
 `;
 
-exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 3`] = `
+exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 3`] = `
 <div>
   <div
     class="content-container-fill"
@@ -285,7 +285,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint registers banner with top-lev
 </div>
 `;
 
-exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 1`] = `
+exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -424,7 +424,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-l
 </div>
 `;
 
-exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 2`] = `
+exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -519,7 +519,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-l
 </div>
 `;
 
-exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 3`] = `
+exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 3`] = `
 <div>
   <div
     class="content-container-fill"
@@ -570,7 +570,7 @@ exports[`BannerCheckpoint Nested Banner Checkpoint unregisters banner with top-l
 </div>
 `;
 
-exports[`BannerCheckpoint registerBanner registers banner when rendered after mount 1`] = `
+exports[`BannerProvider registerBanner registers banner when rendered after mount 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -598,7 +598,7 @@ exports[`BannerCheckpoint registerBanner registers banner when rendered after mo
 </div>
 `;
 
-exports[`BannerCheckpoint registerBanner registers banner when rendered after mount 2`] = `
+exports[`BannerProvider registerBanner registers banner when rendered after mount 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -670,7 +670,7 @@ exports[`BannerCheckpoint registerBanner registers banner when rendered after mo
 </div>
 `;
 
-exports[`BannerCheckpoint renders with children 1`] = `
+exports[`BannerProvider renders with children 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -689,7 +689,7 @@ exports[`BannerCheckpoint renders with children 1`] = `
 </div>
 `;
 
-exports[`BannerCheckpoint renders with children 2`] = `
+exports[`BannerProvider renders with children 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -712,7 +712,7 @@ exports[`BannerCheckpoint renders with children 2`] = `
 </div>
 `;
 
-exports[`BannerCheckpoint renders with children that has a an banner 1`] = `
+exports[`BannerProvider renders with children that has a an banner 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -784,7 +784,7 @@ exports[`BannerCheckpoint renders with children that has a an banner 1`] = `
 </div>
 `;
 
-exports[`BannerCheckpoint unregistersBanner unregisters banner when id is provided 1`] = `
+exports[`BannerProvider unregistersBanner unregisters banner when id is provided 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -856,7 +856,7 @@ exports[`BannerCheckpoint unregistersBanner unregisters banner when id is provid
 </div>
 `;
 
-exports[`BannerCheckpoint unregistersBanner unregisters banner when id is provided 2`] = `
+exports[`BannerProvider unregistersBanner unregisters banner when id is provided 2`] = `
 <div>
   <div
     class="content-container-fill"

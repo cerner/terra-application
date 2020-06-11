@@ -8,7 +8,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
       <ApplicationErrorBoundary>
-        <BannerCheckpoint
+        <BannerProvider
           fitToParentIsDisabled={false}
         >
           <Suspense
@@ -19,7 +19,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
               />
             }
           />
-        </BannerCheckpoint>
+        </BannerProvider>
       </ApplicationErrorBoundary>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
@@ -93,7 +93,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
       <ApplicationErrorBoundary>
-        <BannerCheckpoint
+        <BannerProvider
           fitToParentIsDisabled={false}
         >
           <Suspense
@@ -108,7 +108,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
               test child content
             </div>
           </Suspense>
-        </BannerCheckpoint>
+        </BannerProvider>
       </ApplicationErrorBoundary>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>

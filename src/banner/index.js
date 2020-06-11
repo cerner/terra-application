@@ -1,5 +1,5 @@
 import Banner from './Banner';
-import BannerCheckpoint from './BannerCheckpoint';
+import BannerProvider from './BannerProvider';
 
 export default Banner;
-export { BannerCheckpoint };
+export { BannerProvider };

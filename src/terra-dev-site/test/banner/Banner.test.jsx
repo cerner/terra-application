@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BannerCheckpoint } from '../../../banner';
+import { BannerProvider } from '../../../banner';
 import BannerExample from './BannerExample';
 
 const Example = ({ isInitiallyClosed }) => (
-  <BannerCheckpoint>
+  <BannerProvider>
     <BannerExample isInitiallyClosed={isInitiallyClosed} />
-  </BannerCheckpoint>
+  </BannerProvider>
 );
 
 Example.propTypes = {

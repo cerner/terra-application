@@ -10,11 +10,11 @@ exports[`SlidePanelManger Snapshots should render with optional props 1`] = `
   panelBehavior="overlay"
   withDisclosureContainer={[Function]}
 >
-  <BannerCheckpoint
+  <BannerProvider
     fitToParentIsDisabled={false}
   >
     <TestChild />
-  </BannerCheckpoint>
+  </BannerProvider>
 </SlidePanelManager>
 `;
 
@@ -23,10 +23,10 @@ exports[`SlidePanelManger Snapshots should render with required props 1`] = `
   panelBehavior="overlay"
   withDisclosureContainer={[Function]}
 >
-  <BannerCheckpoint
+  <BannerProvider
     fitToParentIsDisabled={false}
   >
     <TestChild />
-  </BannerCheckpoint>
+  </BannerProvider>
 </SlidePanelManager>
 `;

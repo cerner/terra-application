@@ -4,13 +4,13 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
     <withPromptRegistration(NavigationPromptCheckpoint)>
-      <BannerCheckpoint
+      <BannerProvider
         fitToParentIsDisabled={false}
       >
         <div>
           Test Child
         </div>
-      </BannerCheckpoint>
+      </BannerProvider>
     </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>

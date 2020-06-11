@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
+import logger from '../utils/logger';
 
 const propTypes = {
   /**
@@ -71,6 +72,7 @@ class ApplicationErrorBoundary extends React.Component {
      * the ApplicationErrorBoundary to update again to ensure that the StatusView remains presented until the
      * next update occurs.
      */
+    logger.error(error);
     this.errorRef.current = error;
     this.setState({ error: undefined });
   }

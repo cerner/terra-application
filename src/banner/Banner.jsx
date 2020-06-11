@@ -72,19 +72,18 @@ const Banner = (props) => {
     if (!bannerRegistration && process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
       console.warn('A Banner was not rendered within the context of a BannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
-      return () => {};
     }
 
     if (bannerRegistration && bannerRegistration.registerBanner) {
       bannerRegistration.registerBanner(uuid.current, props);
     }
-
-    return () => {
-      if (bannerRegistration && bannerRegistration.unregisterBanner) {
-        bannerRegistration.unregisterBanner(uuid.current, props.type);
-      }
-    };
   }, [bannerRegistration, props]);
+
+  React.useEffect(() => () => {
+    if (bannerRegistration && bannerRegistration.unregisterBanner) {
+      bannerRegistration.unregisterBanner(uuid.current, props.type);
+    }
+  }, [bannerRegistration, props.type]);
 
   return null;
 };

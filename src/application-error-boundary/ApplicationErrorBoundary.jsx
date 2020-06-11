@@ -43,7 +43,6 @@ class ApplicationErrorBoundary extends React.Component {
      * When an exception occurs while rendering children, getDerivedStateFromError gets executed. The error
      * is returned here and stored within the ApplicationErrorBoundary's state, triggering an update.
      */
-    logger.error(error);
     return { error };
   }
 
@@ -73,6 +72,7 @@ class ApplicationErrorBoundary extends React.Component {
      * the ApplicationErrorBoundary to update again to ensure that the StatusView remains presented until the
      * next update occurs.
      */
+    logger.error(error);
     this.errorRef.current = error;
     this.setState({ error: undefined });
   }

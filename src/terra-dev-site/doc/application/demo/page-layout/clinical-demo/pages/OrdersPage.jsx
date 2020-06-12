@@ -4,32 +4,38 @@ import List, { Item } from 'terra-list';
 import Button from 'terra-button';
 import PageLayout from 'terra-application/lib/application-page/PageLayout';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
-import IconRight from 'terra-icon/lib/icon/IconRight';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import IconRight from 'terra-icon/lib/icon/IconRight';
 
+import AllergiesPage from './AllergiesPage';
 import styles from './ChartSummaryPage.module.scss';
+import AddOrderModal from '../modals/AddOrderModal';
+import PrintModal from '../modals/PrintModal';
 
 const cx = classNames.bind(styles);
 
-const OrdersPage = ({ onDismissPage }) => {
+const OrdersPage = ({ onRequestDismiss }) => {
   const [showDetails, setShowDetails] = React.useState(undefined);
+  const [showAllergiesProfile, setShowAllergiesProfile] = React.useState(false);
+  const [showAddOrderModal, setShowAddOrderModal] = React.useState(false);
+  const [showPrintModal, setShowPrintModal] = React.useState(false);
 
   const pageActions = [{
     key: 'action-add-order',
     text: 'Add Order',
     icon: <IconAdd />,
-    onSelect: () => alert('Add Order'),
+    onSelect: () => { setShowAddOrderModal(true); },
   }, {
     key: 'action-print',
     text: 'Print',
     icon: <IconPrinter />,
-    onSelect: () => alert('Print Order'),
+    onSelect: () => { setShowPrintModal(true); },
   }];
 
   return (
     <PageLayout
-      pageTitle="Orders"
-      onBack={onDismissPage}
+      pageTitle="Order Profile"
+      onBack={onRequestDismiss}
       pageActions={pageActions}
     >
       <div style={{ padding: '1rem' }}>
@@ -37,6 +43,9 @@ const OrdersPage = ({ onDismissPage }) => {
           <div className={cx('card-header')}>
             <div className={cx('title-container')}>
               Active Orders
+            </div>
+            <div className={cx('action-container')}>
+              <Button variant="de-emphasis" isReversed text="Allergy Profile" icon={<IconRight />} onClick={() => { setShowAllergiesProfile(true); }} />
             </div>
           </div>
           <List dividerStyle="standard">
@@ -82,10 +91,17 @@ const OrdersPage = ({ onDismissPage }) => {
       {showDetails && (
         <PageLayout pageTitle={`${showDetails} Details`} onBack={() => { setShowDetails(undefined); }}>
           <div style={{ padding: '1rem' }}>
-            <h1>Details here</h1>
+            <h1>
+              {showDetails}
+              {' '}
+              details here...
+            </h1>
           </div>
         </PageLayout>
       )}
+      {showAllergiesProfile && <AllergiesPage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
+      {showAddOrderModal && <AddOrderModal onRequestDismiss={() => { setShowAddOrderModal(false); }} />}
+      {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
     </PageLayout>
   );
 };

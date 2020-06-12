@@ -68,6 +68,10 @@ class PageLayoutNodeManager {
 
     this.hideAncestors(ancestorPageKey);
 
+    setTimeout(() => {
+      document.body.focus();
+    }, 0);
+
     return newPortalElement;
   }
 
@@ -90,6 +94,10 @@ class PageLayoutNodeManager {
       this._nodeMap[page.ancestor].child = undefined;
       this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
     }
+
+    setTimeout(() => {
+      document.body.focus();
+    }, 0);
 
     this._nodeMap[pageKey] = undefined;
   }

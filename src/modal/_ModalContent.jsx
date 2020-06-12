@@ -5,9 +5,17 @@ import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
+import ContentContainer from 'terra-content-container';
+import IconClose from 'terra-icon/lib/icon/IconClose';
+import Button from 'terra-button';
+import ActionFooter from 'terra-action-footer';
+
+import PageLayoutHeader from '../application-page/PageLayoutHeader';
 import ModalOverlay from './_ModalOverlay';
 import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
+import ApplicationErrorBoundary from '../application-error-boundary';
+import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
 
 const cx = classNamesBind.bind(styles);
 
@@ -17,7 +25,7 @@ const propTypes = {
   /**
    * String that labels the modal for screen readers.
    */
-  ariaLabel: PropTypes.string.isRequired,
+  // ariaLabel: PropTypes.string.isRequired,
   /**
    * Content inside the modal dialog.
    */
@@ -69,11 +77,15 @@ const defaultProps = {
   role: 'dialog',
   rootSelector: '#root',
   zIndex: '6000',
+  size: 'small',
 };
 
-const ModalContent = forwardRef((props, ref) => {
+const ModalContent = (props) => {
   const {
-    ariaLabel,
+    title,
+    actions,
+    size,
+    // ariaLabel,
     children,
     classNameModal,
     classNameOverlay,
@@ -87,42 +99,37 @@ const ModalContent = forwardRef((props, ref) => {
     ...customProps
   } = props;
 
-  useEffect(() => {
-    // Store element that was last focused prior to modal opening
-    const modalTrigger = document.activeElement;
-    showModalDomUpdates(ref.current, rootSelector);
+  // useEffect(() => {
+  //   // Store element that was last focused prior to modal opening
+  //   const modalTrigger = document.activeElement;
+  //   showModalDomUpdates(ref.current, rootSelector);
 
-    return () => {
-      hideModalDomUpdates(modalTrigger, rootSelector);
-    };
-  }, [ref, rootSelector]);
+  //   return () => {
+  //     hideModalDomUpdates(modalTrigger, rootSelector);
+  //   };
+  // }, [ref, rootSelector]);
 
-  let zIndexLayer = '6000';
-  if (zIndexes.indexOf(zIndex) >= 0) {
-    zIndexLayer = zIndex;
-  }
   const theme = React.useContext(ThemeContext);
   const modalClassName = classNames(cx(
     'abstract-modal',
-    { 'is-fullscreen': isFullscreen },
-    `layer-${zIndexLayer}`,
+    {
+      'is-fullscreen': isFullscreen,
+      large: size === 'large',
+      small: size === 'small',
+    },
     theme.className,
   ),
   classNameModal);
 
-  // Delete the closePortal prop that comes from react-portal.
-  delete customProps.closePortal;
-  delete customProps.fallbackFocus;
+  // // Delete the closePortal prop that comes from react-portal.
+  // delete customProps.closePortal;
+  // delete customProps.fallbackFocus;
 
   const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   return (
     <React.Fragment>
-      <ModalOverlay
-        onClick={closeOnOutsideClick ? onRequestClose : null}
-        className={classNameOverlay}
-        zIndex={zIndexLayer}
-      />
+      <ModalOverlay />
       {
         /*
           When an aria-label is set and tabIndex is set to 0, VoiceOver will read
@@ -132,17 +139,41 @@ const ModalContent = forwardRef((props, ref) => {
       <div
         {...customProps}
         tabIndex={platformIsiOS ? '-1' : '0'}
-        aria-label={ariaLabel}
+        aria-label={title}
         className={modalClassName}
         role={role}
-        ref={ref}
+        style={{ zIndex: '2' }}
       >
         <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
           {text => (
             <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={text} />
           )}
         </FormattedMessage>
-        {children}
+        <ContentContainer
+          fill
+          header={(
+            <PageLayoutHeader
+              title={title}
+              actions={(actions || []).concat({
+                key: 'close',
+                text: 'Close',
+                icon: <IconClose />,
+                onSelect: () => {
+                  onRequestClose();
+                },
+              })}
+            />
+          )}
+          footer={(
+            <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
+          )}
+        >
+          <ApplicationLoadingOverlayProvider>
+            <ApplicationErrorBoundary>
+              {children}
+            </ApplicationErrorBoundary>
+          </ApplicationLoadingOverlayProvider>
+        </ContentContainer>
         <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
           {text => (
             <VisuallyHiddenText text={text} />
@@ -151,7 +182,7 @@ const ModalContent = forwardRef((props, ref) => {
       </div>
     </React.Fragment>
   );
-});
+};
 
 ModalContent.propTypes = propTypes;
 ModalContent.defaultProps = defaultProps;

@@ -3,44 +3,49 @@ import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import Button from 'terra-button';
 import PageLayout from 'terra-application/lib/application-page/PageLayout';
+
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
-import useDeferredInitializer from './useDeferredInitializer';
+import useDeferredInitializer from '../useDeferredInitializer';
 import AllergiesPage from './AllergiesPage';
 import OrdersPage from './OrdersPage';
+import PrintModal from '../modals/PrintModal';
 
 import styles from './ChartSummaryPage.module.scss';
-import ApplicationLoadingOverlay from '../../../../../../application-loading-overlay';
+import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
+import PagePresentingModal from '../modals/PagePresentingModal';
 
 const cx = classNames.bind(styles);
 
-const ChartSummaryPage = ({ onDismissPage }) => {
+const ChartSummaryPage = ({ onRequestDismiss }) => {
   const isInitialized = useDeferredInitializer();
 
   const [showAllergiesProfile, setShowAllergiesProfile] = React.useState(false);
   const [showOrderProfile, setShowOrderProfile] = React.useState(false);
+  const [showPrintModal, setShowPrintModal] = React.useState(false);
+  const [showPageModal, setShowPageModal] = React.useState(false);
 
   const pageActions = [{
     key: 'action-print',
     text: 'Print',
     icon: <IconPrinter />,
-    onSelect: () => alert('Chart Review Printing'),
+    onSelect: () => { setShowPrintModal(true); },
     isDisabled: !isInitialized,
   }, {
     key: 'action-tag',
     text: 'Tag',
     icon: <IconTag />,
-    onSelect: () => alert('Chart Review Tagging'),
+    onSelect: () => { setShowPageModal(true); },
     isDisabled: !isInitialized,
   }];
 
   return (
     <PageLayout
       pageTitle="Chart Review"
-      onBack={onDismissPage}
       pageActions={pageActions}
+      onBack={onRequestDismiss}
     >
       {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       <div style={{ padding: '1rem' }}>
@@ -76,9 +81,29 @@ const ChartSummaryPage = ({ onDismissPage }) => {
             <Item className={cx('list-item')}>Alegra</Item>
           </List>
         </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Problems
+            </div>
+          </div>
+          <List dividerStyle="standard">
+            <Item className={cx('list-item')}>Pain</Item>
+            <Item className={cx('list-item')}>Brain Pain</Item>
+            <Item className={cx('list-item')}>Back Pain</Item>
+            <Item className={cx('list-item')}>Leg Pain</Item>
+            <Item className={cx('list-item')}>Arm Pain</Item>
+            <Item className={cx('list-item')}>Chest Pain</Item>
+            <Item className={cx('list-item')}>Shoulder Pain</Item>
+            <Item className={cx('list-item')}>Neck Pain</Item>
+          </List>
+        </div>
       </div>
-      {showAllergiesProfile && <AllergiesPage onDismissPage={() => { setShowAllergiesProfile(false); }} />}
-      {showOrderProfile && <OrdersPage onDismissPage={() => { setShowOrderProfile(false); }} />}
+      {/* */}
+      {showAllergiesProfile && <AllergiesPage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
+      {showOrderProfile && <OrdersPage onRequestDismiss={() => { setShowOrderProfile(false); }} />}
+      {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
+      {showPageModal && <PagePresentingModal onRequestDismiss={() => { setShowPageModal(false); }} />}
     </PageLayout>
   );
 };

@@ -87,7 +87,7 @@ const SideNavPage = ({
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
       <PageLayoutContainer>
-        {React.cloneElement(pageContent, { onDismissPage: isCompact ? () => { onChangeActiveItem(undefined); } : undefined })}
+        {React.cloneElement(pageContent, { onRequestDismiss: isCompact ? () => { onChangeActiveItem(undefined); } : undefined })}
       </PageLayoutContainer>
     </NavigationPromptCheckpoint>
   );

@@ -33,13 +33,11 @@ const ModalOverlay = (props) => {
   const overlayClassName = classNames(
     cx(
       'overlay',
-      `layer-${zIndex}`,
       theme.className,
     ),
-    customProps.className,
   );
 
-  return <div {...customProps} className={overlayClassName} />;
+  return <div style={{ zIndex: '1' }} className={overlayClassName} />;
 };
 
 ModalOverlay.propTypes = propTypes;

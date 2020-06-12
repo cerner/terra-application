@@ -1,6 +1,6 @@
 // Themes
-@import './orion-fusion-theme/AbstractModal.module';
-@import './clinical-lowlight-theme/AbstractModal.module';
+// @import './orion-fusion-theme/AbstractModal.module';
+// @import './clinical-lowlight-theme/AbstractModal.module';
 
 :local {
   .overlay {
@@ -13,21 +13,5 @@
     position: absolute;
     right: 0;
     top: 0;
-
-    &.layer-6000 {
-      z-index: 6000;
-    }
-
-    &.layer-7000 {
-      z-index: 7000;
-    }
-
-    &.layer-8000 {
-      z-index: 8000;
-    }
-
-    &.layer-9000 {
-      z-index: 9000;
-    }
   }
 }

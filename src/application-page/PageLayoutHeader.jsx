@@ -35,7 +35,7 @@ const PageLayoutHeader = ({
           icon={action.icon}
           text={action.text}
           variant={ButtonVariants.UTILITY}
-          onClick={(event) => { event.preventDefault(); onSelectAction(action); }}
+          onClick={(event) => { event.preventDefault(); action.onSelect(); }}
           isDisabled={action.isDisabled}
         />
       ))}

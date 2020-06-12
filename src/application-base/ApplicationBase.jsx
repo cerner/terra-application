@@ -12,7 +12,6 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
-import LayerManager from '../layers/LayerManager';
 import LayerManagerProvider from '../layers/LayerManagerProvider';
 
 import getBrowserLocale from './private/getBrowserLocale';
@@ -22,7 +21,7 @@ import initializeGlobalEvents from './initializeGlobalEvents';
 
 import styles from './ApplicationBase.module.scss';
 
-window.LayerManager = new LayerManager();
+// window.LayerManager = new LayerManager();
 
 const cx = classNames.bind(styles);
 
@@ -115,7 +114,6 @@ const ApplicationBase = ({
   return (
     <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <LayerManagerProvider>
-
         <ThemeProvider
           themeName={themeName}
         >

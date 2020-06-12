@@ -10,6 +10,7 @@ import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import Modal from '../modal/Modal';
 
 import PageLayoutHeader from './PageLayoutHeader';
 
@@ -18,7 +19,7 @@ import styles from './PageLayout.module.scss';
 const cx = classNames.bind(styles);
 
 const PageLayout = ({
-  pageTitle, pageActions, onBack, onFail, children, disableNavigationPromptsOnBack,
+  pageTitle, pageActions, onBack, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pageContext = React.useContext(ApplicationPageContext);
@@ -26,17 +27,6 @@ const PageLayout = ({
   const navigationPromptCheckpointRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
   const pageEventEmitter = React.useRef(new EventEmitter());
-
-  function goBack() {
-    if (disableNavigationPromptsOnBack) {
-      onBack();
-      return;
-    }
-
-    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      onBack();
-    });
-  }
 
   const contextValue = React.useMemo(() => ({
     ancestorPage: pageIdRef.current,
@@ -50,19 +40,28 @@ const PageLayout = ({
   }), [pageContext]);
 
   React.useLayoutEffect(() => () => {
-    contextValue.nodeManager.releaseNode(pageIdRef.current);
+    if (contextValue.nodeManager) {
+      contextValue.nodeManager.releaseNode(pageIdRef.current);
+    }
   }, [contextValue]);
 
-  const portalNode = contextValue.nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
+  let portalNode;
+  if (contextValue.nodeManager) {
+    portalNode = contextValue.nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
+  }
 
-  React.useLayoutEffect(() => {
-    if (!portalNode && onFail) {
-      onFail();
-    }
-  }, [portalNode, onFail]);
+  // React.useLayoutEffect(() => {
+  //   if (!portalNode && onFail) {
+  //     onFail();
+  //   }
+  // }, [portalNode, onFail]);
 
   if (!portalNode) {
-    return null;
+    return (
+      <Modal title={pageTitle} actions={pageActions} onRequestClose={onBack} disableNavigationPromptsOnBack size="large">
+        {children}
+      </Modal>
+    );
   }
 
   function onSelectAction(action) {
@@ -71,6 +70,17 @@ const PageLayout = ({
     }
 
     pageEventEmitter.current.emit(action.key, action);
+  }
+
+  function goBack() {
+    if (disableNavigationPromptsOnBack) {
+      onBack();
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      onBack();
+    });
   }
 
   return (

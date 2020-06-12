@@ -6,8 +6,9 @@ import ModalManager from 'terra-application/lib/modal-manager';
 import { ThemeContext } from 'terra-application/lib/theme';
 import ApplicationNavigation from 'terra-application/lib/application-navigation';
 
-import ChartSummaryContainer from './demo/page-layout/clinical-demo/ChartSummaryContainer';
-import OrderContainer from './demo/page-layout/clinical-demo/OrderContainer';
+import PageLayoutContainer from '../../../application-page/PageLayoutContainer';
+import ChartSummaryPage from './demo/page-layout/clinical-demo/pages/ChartSummaryPage';
+import OrdersPage from './demo/page-layout/clinical-demo/pages/OrdersPage';
 
 window.TEST_APP_TIMEOUT = 3000;
 
@@ -40,13 +41,10 @@ const ClinicalDemoAppNavigation = () => {
   let pageContent;
   switch (activeNavItem) {
     case 'page_0':
-      pageContent = <ChartSummaryContainer />;
+      pageContent = <ChartSummaryPage />;
       break;
     case 'page_1':
-      pageContent = <OrderContainer />;
-      break;
-    case 'page_2':
-      pageContent = <ChartSummaryContainer />;
+      pageContent = <OrdersPage />;
       break;
     default:
       pageContent = null;
@@ -67,7 +65,9 @@ const ClinicalDemoAppNavigation = () => {
         setLoggedOut(true);
       }}
     >
-      {pageContent}
+      <PageLayoutContainer>
+        {pageContent}
+      </PageLayoutContainer>
     </ApplicationNavigation>
   );
 };

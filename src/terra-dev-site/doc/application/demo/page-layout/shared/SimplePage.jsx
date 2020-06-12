@@ -4,11 +4,11 @@ import PageLayout from 'terra-application/lib/application-page/PageLayout';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 
 const SimplePage = ({
-  onDismissPage, simplePageState,
+  onRequestDismiss, simplePageState,
 }) => (
   <PageLayout
     pageTitle="Simple Page"
-    onBack={onDismissPage}
+    onBack={onRequestDismiss}
     pageActions={[{
       key: 'simple-page-print',
       icon: <IconPrinter />,

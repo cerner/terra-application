@@ -4,27 +4,29 @@ import List, { Item } from 'terra-list';
 import PageLayout from 'terra-application/lib/application-page/PageLayout';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 
-import useDeferredInitializer from './useDeferredInitializer';
+import useDeferredInitializer from '../useDeferredInitializer';
 import styles from './ChartSummaryPage.module.scss';
-import ApplicationLoadingOverlay from '../../../../../../application-loading-overlay';
+import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
+import AddAllergyModal from '../modals/AddAllergyModal';
 
 const cx = classNames.bind(styles);
 
-const AllergiesPage = ({ onDismissPage }) => {
+const AllergiesPage = ({ onRequestDismiss }) => {
   const isInitialized = useDeferredInitializer();
+  const [showAddAllergyModal, setShowAddAllergyModal] = React.useState(false);
 
   const pageActions = [{
     key: 'action-add-allergy',
     text: 'Print',
     icon: <IconAdd />,
-    onSelect: () => alert('Add Allergy'),
+    onSelect: () => { setShowAddAllergyModal(true); },
     isDisabled: !isInitialized,
   }];
 
   return (
     <PageLayout
-      pageTitle="Allergies"
-      onBack={onDismissPage}
+      pageTitle="Allergy Profile"
+      onBack={onRequestDismiss}
       pageActions={pageActions}
     >
       {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
@@ -55,6 +57,7 @@ const AllergiesPage = ({ onDismissPage }) => {
             <Item className={cx('list-item')}>Seasonal</Item>
           </List>
         </div>
+        {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />}
       </div>
     </PageLayout>
   );

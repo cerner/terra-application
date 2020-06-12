@@ -722,7 +722,6 @@ exports[`BannerProvider renders with children that has a an banner 1`] = `
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
         role="alert"
       >
         <div

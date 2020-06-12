@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
+import Alert from 'terra-alert';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
 import { BANNER_TYPES } from './private/utils';
@@ -33,6 +34,10 @@ const propTypes = {
    */
   description: PropTypes.node,
   /**
+   * The ID associated to the banner.
+   */
+  id: PropTypes.string,
+  /**
    * Callback function triggered when Dismiss button is clicked. The presence of this prop will cause
    * the Dismiss button to be included on the banner.
    */
@@ -54,7 +59,9 @@ const propTypes = {
 };
 /* eslint-enable react/no-unused-prop-types */
 
-const Banner = (props) => {
+const Banner = ({
+  action, custom, description, id, onDismiss, type,
+}) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
    * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
@@ -75,15 +82,24 @@ const Banner = (props) => {
     }
 
     if (bannerRegistration && bannerRegistration.registerBanner) {
-      bannerRegistration.registerBanner(uuid.current, props);
+      bannerRegistration.registerBanner(uuid.current, {
+        action,
+        customColorClass: custom?.colorClass,
+        customIcon: custom?.icon,
+        id,
+        key: uuid.current,
+        onDismiss,
+        type,
+        title: custom?.bannerTitle,
+      });
     }
-  }, [bannerRegistration, props]);
+  }, [bannerRegistration, action, custom, description, id, onDismiss, type]);
 
   React.useEffect(() => () => {
     if (bannerRegistration && bannerRegistration.unregisterBanner) {
-      bannerRegistration.unregisterBanner(uuid.current, props.type);
+      bannerRegistration.unregisterBanner(uuid.current, type);
     }
-  }, [bannerRegistration, props.type]);
+  }, [bannerRegistration, type]);
 
   return null;
 };

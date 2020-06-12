@@ -35,7 +35,7 @@ describe('Banner', () => {
     render(<Banner type="alert" />);
 
     expect(registerBannerMock).toHaveBeenCalledTimes(1);
-    expect(registerBannerMock).toHaveBeenCalledWith(expect.any(String), { type: 'alert' });
+    expect(registerBannerMock).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({ type: 'alert' }));
   });
 
   it('un-registers an banner from the banner-list onmount', () => {

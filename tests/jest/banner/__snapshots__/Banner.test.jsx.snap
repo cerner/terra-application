@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Banner registers an banner to the banner-list onmount 1`] = `
+<Alert
+  customColorClass="custom-default-color"
+  type="alert"
+/>
+`;

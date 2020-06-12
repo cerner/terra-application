@@ -33,13 +33,13 @@ exports[`ApplicationBase should render with all props 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <withPromptRegistration(NavigationPromptCheckpoint)
-                onPromptChange={[Function]}
+              <BannerProvider
+                fitToParentIsDisabled={true}
               >
-                <ApplicationLoadingOverlayProvider>
-                  <BannerProvider
-                    fitToParentIsDisabled={true}
-                  >
+                <withPromptRegistration(NavigationPromptCheckpoint)
+                  onPromptChange={[Function]}
+                >
+                  <ApplicationLoadingOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -52,9 +52,9 @@ exports[`ApplicationBase should render with all props 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </BannerProvider>
-                </ApplicationLoadingOverlayProvider>
-              </withPromptRegistration(NavigationPromptCheckpoint)>
+                  </ApplicationLoadingOverlayProvider>
+                </withPromptRegistration(NavigationPromptCheckpoint)>
+              </BannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>
@@ -86,13 +86,13 @@ exports[`ApplicationBase should render with minimal props 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <withPromptRegistration(NavigationPromptCheckpoint)
-                onPromptChange={[Function]}
+              <BannerProvider
+                fitToParentIsDisabled={false}
               >
-                <ApplicationLoadingOverlayProvider>
-                  <BannerProvider
-                    fitToParentIsDisabled={false}
-                  >
+                <withPromptRegistration(NavigationPromptCheckpoint)
+                  onPromptChange={[Function]}
+                >
+                  <ApplicationLoadingOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -105,9 +105,9 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </BannerProvider>
-                </ApplicationLoadingOverlayProvider>
-              </withPromptRegistration(NavigationPromptCheckpoint)>
+                  </ApplicationLoadingOverlayProvider>
+                </withPromptRegistration(NavigationPromptCheckpoint)>
+              </BannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>
@@ -139,13 +139,13 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <withPromptRegistration(NavigationPromptCheckpoint)
-                onPromptChange={[Function]}
+              <BannerProvider
+                fitToParentIsDisabled={false}
               >
-                <ApplicationLoadingOverlayProvider>
-                  <BannerProvider
-                    fitToParentIsDisabled={false}
-                  >
+                <withPromptRegistration(NavigationPromptCheckpoint)
+                  onPromptChange={[Function]}
+                >
+                  <ApplicationLoadingOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -158,9 +158,9 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </BannerProvider>
-                </ApplicationLoadingOverlayProvider>
-              </withPromptRegistration(NavigationPromptCheckpoint)>
+                  </ApplicationLoadingOverlayProvider>
+                </withPromptRegistration(NavigationPromptCheckpoint)>
+              </BannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>

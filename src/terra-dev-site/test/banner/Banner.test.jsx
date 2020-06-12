@@ -17,7 +17,7 @@ Example.propTypes = {
 };
 
 Example.defaultProps = {
-  isInitiallyClosed: false,
+  isInitiallyClosed: true,
 };
 
 export default Example;

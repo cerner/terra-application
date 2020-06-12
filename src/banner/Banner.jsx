@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
+import { Portal } from 'react-portal';
+import Alert from 'terra-alert';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
 import { BANNER_TYPES } from './private/utils';
@@ -54,14 +56,18 @@ const propTypes = {
 };
 /* eslint-enable react/no-unused-prop-types */
 
-const Banner = (props) => {
+const Banner = ({
+  action, custom, description, onDismiss, type, ...customProps
+}) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
    * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
    * define unique identifiers themselves.
    */
   const uuid = React.useRef(uuidv4());
+  const bannerContainer = React.useRef();
   const bannerRegistration = React.useContext(BannerRegistrationContext);
+  const [bannerContainerName, setBannerContainerName] = React.useState();
 
   React.useEffect(() => {
     /**
@@ -75,17 +81,38 @@ const Banner = (props) => {
     }
 
     if (bannerRegistration && bannerRegistration.registerBanner) {
-      bannerRegistration.registerBanner(uuid.current, props);
+      const containerName = bannerRegistration.registerBanner(uuid.current, type);
+      bannerContainer.current = document.getElementById(containerName);
+      setBannerContainerName(containerName);
     }
-  }, [bannerRegistration, props]);
 
-  React.useEffect(() => () => {
-    if (bannerRegistration && bannerRegistration.unregisterBanner) {
-      bannerRegistration.unregisterBanner(uuid.current, props.type);
-    }
-  }, [bannerRegistration, props.type]);
+    return () => {
+      if (bannerRegistration && bannerRegistration.unregisterBanner) {
+        bannerRegistration.unregisterBanner(uuid.current, type); // eslint-disable-line
+      }
+    };
+  }, [bannerRegistration, type]);
 
-  return null;
+  if (bannerContainerName === undefined) {
+    return null;
+  }
+
+  return (
+    <Portal node={bannerContainer.current}>
+      <Alert
+        {...customProps}
+        action={action}
+        customColorClass={custom?.colorClass}
+        customIcon={custom?.icon}
+        key={uuid.current}
+        onDismiss={onDismiss}
+        type={type}
+        title={custom?.bannerTitle}
+      >
+        {description}
+      </Alert>
+    </Portal>
+  );
 };
 
 Banner.propTypes = propTypes;

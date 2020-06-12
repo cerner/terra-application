@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Alert from 'terra-alert';
+import uuidv4 from 'uuid/v4';
 import ContentContainer from 'terra-content-container';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
@@ -26,89 +26,69 @@ const propTypes = {
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
 const BannerProvider = ({ fitToParentIsDisabled, children }) => {
+  const uuid = React.useRef(uuidv4());
   const registeredBanners = React.useRef({});
-  const [banners, setBanners] = React.useState([]);
 
-  const registerBanner = (bannerId, bannerProps) => {
-    if (process.env.NODE_ENV !== 'production' && !bannerId) {
-      // eslint-disable-next-line no-console
-      console.warn('A banner cannot be registered without an identifier.');
-      return;
-    }
+  const bannerProviderValue = React.useMemo(() => {
+    const registerBanner = (bannerId, bannerType) => {
+      if (process.env.NODE_ENV !== 'production' && !bannerId) {
+        // eslint-disable-next-line no-console
+        console.warn('A banner cannot be registered without an identifier.');
+        return undefined;
+      }
 
-    const { type } = bannerProps;
+      const bannerContainerName = `${bannerType}-banners-${uuid.current}`;
 
-    if (!registeredBanners.current[type]) {
-      registeredBanners.current[type] = {};
-    }
+      if (!registeredBanners.current[bannerType]) {
+        registeredBanners.current[bannerType] = [];
 
-    registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
+        const newBannerContainer = document.createElement('div');
+        newBannerContainer.setAttribute('id', bannerContainerName);
 
-    setBanners(organizeBannersByPriority(registeredBanners.current));
-  };
+        const bannerListContainer = document.getElementById(`banner-list-${uuid.current}`);
+        const bannerListChildren = bannerListContainer.childNodes;
 
-  const unregisterBanner = (bannerId, bannerType) => {
-    if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
-      // eslint-disable-next-line no-console
-      console.warn('A banner cannot be unregistered without an identifier or banner type.');
-      return;
-    }
+        const banners = organizeBannersByPriority(registeredBanners.current);
+        const bannerPosition = banners.indexOf(bannerType);
 
-    if (!registeredBanners.current[bannerType][bannerId]) {
-      return;
-    }
+        bannerListContainer.insertBefore(newBannerContainer, bannerListChildren[bannerPosition + 1]);
+      }
 
-    delete registeredBanners.current[bannerType][bannerId];
+      return bannerContainerName;
+    };
 
-    setBanners(organizeBannersByPriority(registeredBanners.current));
-  };
+    const unregisterBanner = (bannerId, bannerType) => {
+      if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
+        // eslint-disable-next-line no-console
+        console.warn('A banner cannot be unregistered without an identifier or banner type.');
+        return;
+      }
 
-  const BannerList = () => {
-    if (!banners.length) {
-      return null;
-    }
+      registeredBanners.current[bannerType] = registeredBanners.current[bannerType].filter(registeredBannerId => registeredBannerId !== bannerType);
 
-    return (
-      <>
-        {banners.map((bannerProps) => {
-          const {
-            action,
-            custom,
-            description,
-            key,
-            type,
-            onDismiss,
-            ...otherBannerProps
-          } = bannerProps;
+      if (!registeredBanners.current[bannerType].length) {
+        delete registeredBanners.current[bannerType];
+      }
 
-          return (
-            <Alert
-              {...otherBannerProps}
-              action={action}
-              key={key}
-              onDismiss={onDismiss}
-              title={custom?.bannerTitle}
-              customColorClass={custom?.colorClass}
-              customIcon={custom?.icon}
-              type={type}
-            >
-              {description}
-            </Alert>
-          );
-        })}
-      </>
-    );
-  };
+      const bannerList = organizeBannersByPriority(registeredBanners.current);
+      if (bannerList.indexOf(bannerType) < 0) {
+        const bannerContainer = document.getElementById(`${bannerType}-banners-${uuid.current}`);
+        bannerContainer.remove();
+      }
+    };
 
-  const bannerProviderValue = React.useRef({
-    registerBanner,
-    unregisterBanner,
-  });
+    return {
+      registerBanner,
+      bannerListId: uuid.current,
+      unregisterBanner,
+    };
+  }, []);
 
   return (
-    <BannerRegistrationContext.Provider value={bannerProviderValue.current}>
+    <BannerRegistrationContext.Provider value={bannerProviderValue}>
       <ContentContainer
-        header={<BannerList />}
+        data-terra-alert-provider={uuid.current}
+        header={<div id={`banner-list-${uuid.current}`} />}
         fill={!fitToParentIsDisabled}
       >
         {children}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
 import IconHighPriority from 'terra-icon/lib/icon/IconHighPriority';
@@ -18,6 +18,7 @@ const Example = ({ isInitiallyClosed, id }) => {
   const [showInfoBanner, setShowInfoBanner] = useState(!isInitiallyClosed);
   const [showSuccessBanner, setShowSuccessBanner] = useState(!isInitiallyClosed);
   const [showCustomBanner, setShowCustomBanner] = useState(!isInitiallyClosed);
+  const [warningDescription, setNewWarningDescription] = useState(1);
 
   return (
     <>
@@ -44,6 +45,7 @@ const Example = ({ isInitiallyClosed, id }) => {
           type="warning"
           id={`warning-banner-${id}`}
           onDismiss={() => setShowWarningBanner(false)}
+          description={warningDescription.toString()}
         />
       )}
       {showUnverifiedBanner && <Banner type="unverified" id={`unverified-banner-${id}`} />}
@@ -65,6 +67,7 @@ const Example = ({ isInitiallyClosed, id }) => {
       <button onClick={() => setShowInfoBanner(!showInfoBanner)} type="button" id={`toggle-info-banner-${id}`}>Show/Hide Info Banner</button>
       <button onClick={() => setShowSuccessBanner(!showSuccessBanner)} type="button" id={`toggle-success-banner-${id}`}>Show/Hide Success Banner</button>
       <button onClick={() => setShowCustomBanner(!showCustomBanner)} type="button" id={`toggle-custom-banner-${id}`}>Show/Hide Custom Banner</button>
+      <button onClick={() => setNewWarningDescription(warningDescription + 1)} type="button" id={`toggle-custom-banner-${id}`}>Add description Banner</button>
     </>
   );
 };

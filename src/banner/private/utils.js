@@ -29,16 +29,12 @@ const organizeBannersByPriority = (banners) => {
 
   const bannersList = defaultBannerPriority.reduce((coll, type) => {
     if (banners[type]) {
-      // eslint-disable-next-line compat/compat
-      const registeredBannersForType = Object.values(banners[type]);
-      registeredBannersForType.map(registeredBannerProps => coll.push(registeredBannerProps));
+      coll.push(type);
     }
-
     return coll;
   }, []);
 
   return bannersList;
 };
 
-export { organizeBannersByPriority };
-export { BANNER_TYPES };
+export { organizeBannersByPriority, BANNER_TYPES };

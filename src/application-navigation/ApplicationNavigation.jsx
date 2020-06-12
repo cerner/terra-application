@@ -58,7 +58,7 @@ const propTypes = {
    * Key/Value pairs associating a string key entry to a Number notification count. The keys must correspond to a
    * navigationItem or extensionItem key provided through their associated props.
    */
-  notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
+  notifications: PropTypes.object,
   /**
    * Callback function triggered on Drawer Menu state change.
    */

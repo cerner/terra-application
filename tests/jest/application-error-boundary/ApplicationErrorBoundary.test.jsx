@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallowWithIntl, mountWithIntl } from 'terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
+import Logger from '../../../src/utils/logger';
 
 describe('ApplicationErrorBoundary', () => {
   describe('Snapshots', () => {
@@ -23,6 +24,7 @@ describe('ApplicationErrorBoundary', () => {
     });
 
     it('should render error view when an error is detected', () => {
+      const spy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
       const ErrorComponent = () => <div />;
 
       const wrapper = mountWithIntl((
@@ -43,6 +45,8 @@ describe('ApplicationErrorBoundary', () => {
        */
       wrapper.instance().forceUpdate();
       expect(wrapper).toMatchSnapshot();
+      expect(spy).toHaveBeenCalledTimes(1);
+      spy.mockRestore();
     });
   });
 });

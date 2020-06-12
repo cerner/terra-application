@@ -4,6 +4,15 @@ Changelog
 Unreleased
 ----------
 
+### Added
+* Added a logger utility.
+
+1.25.0 - (June 9, 2020)
+------------------
+### Changed
+* Updated eslint-config-terra to @cerner/eslint-config-terra v^4.0.0
+* Removed unnecessary disabled rules.
+
 1.24.0 - (May 12, 2020)
 ------------------
 ### Added

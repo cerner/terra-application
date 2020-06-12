@@ -8,7 +8,6 @@ import ModalPresenter from '../../ModalPresenter';
 import PendingActionToggle from '../../PendingActionToggle';
 import LoadingOverlayPresenter from '../../LoadingOverlayPresenter';
 import ErrorThrower from '../../ErrorThrower';
-import ApplicationModalPresenter from './ApplicationModalPresenter';
 import PageLayoutContainer from '../../../../../../application-page/PageLayoutContainer';
 import SimplePage from './SimplePage';
 
@@ -92,7 +91,6 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
         />
         <PendingActionToggle />
         <LoadingOverlayPresenter />
-        <ApplicationModalPresenter />
         {showNestedPage && <ExamplePage prefix={prefix} index={index + 1} onRequestDismiss={() => { setShowNestedPage(false); }} />}
         {showSimplePage && <SimplePage onRequestDismiss={() => { setShowSimplePage(false); }} simplePageState={simplePageState} />}
       </div>

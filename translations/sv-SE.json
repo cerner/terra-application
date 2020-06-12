@@ -5,5 +5,5 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Om du inte sparar ändringarna så försvinner de. Hur vill du fortsätta?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Spara inte",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Fortsätt redigera",
-  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Ett fel uppstod: {errorDetails}"
 }

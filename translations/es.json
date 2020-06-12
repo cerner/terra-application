@@ -5,5 +5,5 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si no se guardan los cambios, se perderán. ¿Cómo desea continuar?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "No guardar",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando",
-  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "El sistema detectó un error: {errorDetails}"
 }

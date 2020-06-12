@@ -5,5 +5,5 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas vos modifications, elles seront perdues. Comment voulez-vous procéder?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuer la modification",
-  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}"
 }

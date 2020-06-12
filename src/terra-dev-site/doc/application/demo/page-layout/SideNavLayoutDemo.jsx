@@ -4,6 +4,7 @@ import SideNavLayout, { SideNavPage } from '../../../../../application-page/Side
 
 import ExamplePage from './shared/ExamplePage';
 import SideNavigationList from './shared/SideNavigationList';
+import ChartSummaryPage from './clinical-demo/pages/ChartSummaryPage';
 
 const PageLayoutDemo = () => {
   const [activeSideNavItemKey, setActiveSideNavItemKey] = React.useState();
@@ -40,6 +41,11 @@ const PageLayoutDemo = () => {
         rootPageTitle="Item 3 - Page 0"
       >
         <ExamplePage prefix="Item 3" index={0} />
+      </SideNavPage>
+      <SideNavPage
+        sideNavKey="chart-summary"
+      >
+        <ChartSummaryPage />
       </SideNavPage>
     </SideNavLayout>
   );

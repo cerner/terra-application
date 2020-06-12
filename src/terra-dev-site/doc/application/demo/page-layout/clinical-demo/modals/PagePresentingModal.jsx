@@ -13,9 +13,9 @@ const PagePresentingModal = ({ onRequestDismiss }) => {
       <div style={{ padding: '1rem' }}>
         <h2>Page Presenting Modal</h2>
         <br />
-        <Button text="Show Allergies Page" onClick={() => { setShowAllergiesPage(true); }} />
+        <Button text="Show Allergy Profile" onClick={() => { setShowAllergiesPage(true); }} />
         {showAllergiesPage && <AllergiesPage onRequestDismiss={() => { setShowAllergiesPage(false); }} />}
-        <Button text="Show Orders Page" onClick={() => { setShowOrdersPage(true); }} />
+        <Button text="Show Order Profile" onClick={() => { setShowOrdersPage(true); }} />
         {showOrdersPage && <OrdersPage onRequestDismiss={() => { setShowOrdersPage(false); }} />}
       </div>
     </Modal>

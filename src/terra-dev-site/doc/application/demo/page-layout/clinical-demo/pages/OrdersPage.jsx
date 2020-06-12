@@ -11,10 +11,14 @@ import AllergiesPage from './AllergiesPage';
 import styles from './ChartSummaryPage.module.scss';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';
+import useDeferredInitializer from '../useDeferredInitializer';
+import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
 
 const cx = classNames.bind(styles);
 
 const OrdersPage = ({ onRequestDismiss }) => {
+  const isInitialized = useDeferredInitializer();
+
   const [showDetails, setShowDetails] = React.useState(undefined);
   const [showAllergiesProfile, setShowAllergiesProfile] = React.useState(false);
   const [showAddOrderModal, setShowAddOrderModal] = React.useState(false);
@@ -25,11 +29,13 @@ const OrdersPage = ({ onRequestDismiss }) => {
     text: 'Add Order',
     icon: <IconAdd />,
     onSelect: () => { setShowAddOrderModal(true); },
+    isDisabled: !isInitialized,
   }, {
     key: 'action-print',
     text: 'Print',
     icon: <IconPrinter />,
     onSelect: () => { setShowPrintModal(true); },
+    isDisabled: !isInitialized,
   }];
 
   return (
@@ -38,6 +44,7 @@ const OrdersPage = ({ onRequestDismiss }) => {
       onBack={onRequestDismiss}
       pageActions={pageActions}
     >
+      {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       <div style={{ padding: '1rem' }}>
         <div className={cx('card')}>
           <div className={cx('card-header')}>

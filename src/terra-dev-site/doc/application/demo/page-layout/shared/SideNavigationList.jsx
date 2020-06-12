@@ -48,6 +48,17 @@ const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
         >
           <div style={{ padding: '1rem' }}>Item 3</div>
         </ListItem>
+        <ListItem
+          key="chart-summary"
+          hasChevron={hasChevron}
+          isSelectable
+          isSelected={selectedItemKey === 'chart-summary'}
+          onSelect={() => {
+            onSelectItem('chart-summary');
+          }}
+        >
+          <div style={{ padding: '1rem' }}>Chart Summary</div>
+        </ListItem>
       </List>
     </ContentContainer>
   );

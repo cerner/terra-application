@@ -129,19 +129,19 @@ const ApplicationBase = ({
             <ApplicationErrorBoundary>
               <ApplicationIntlProvider>
                 <ActiveBreakpointProvider>
-                  <NavigationPromptCheckpoint
-                    onPromptChange={(registeredPrompts) => {
-                      registeredPromptsRef.current = registeredPrompts;
-                    }}
-                  >
-                    <ApplicationLoadingOverlayProvider>
-                      <BannerProvider fitToParentIsDisabled={fitToParentIsDisabled}>
+                  <BannerProvider fitToParentIsDisabled={fitToParentIsDisabled}>
+                    <NavigationPromptCheckpoint
+                      onPromptChange={(registeredPrompts) => {
+                        registeredPromptsRef.current = registeredPrompts;
+                      }}
+                    >
+                      <ApplicationLoadingOverlayProvider>
                         <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                           {children}
                         </Suspense>
-                      </BannerProvider>
-                    </ApplicationLoadingOverlayProvider>
-                  </NavigationPromptCheckpoint>
+                      </ApplicationLoadingOverlayProvider>
+                    </NavigationPromptCheckpoint>
+                  </BannerProvider>
                 </ActiveBreakpointProvider>
               </ApplicationIntlProvider>
             </ApplicationErrorBoundary>

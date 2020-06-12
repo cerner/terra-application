@@ -29,39 +29,46 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
   const registeredBanners = React.useRef({});
   const [banners, setBanners] = React.useState([]);
 
-  const registerBanner = (bannerId, bannerProps) => {
-    if (process.env.NODE_ENV !== 'production' && !bannerId) {
-      // eslint-disable-next-line no-console
-      console.warn('A banner cannot be registered without an identifier.');
-      return;
-    }
+  const bannerProviderValue = React.useMemo(() => {
+    const registerBanner = (bannerId, bannerProps) => {
+      if (process.env.NODE_ENV !== 'production' && !bannerId) {
+        // eslint-disable-next-line no-console
+        console.warn('A banner cannot be registered without an identifier.');
+        return;
+      }
 
-    const { type } = bannerProps;
+      const { type } = bannerProps;
 
-    if (!registeredBanners.current[type]) {
-      registeredBanners.current[type] = {};
-    }
+      if (!registeredBanners.current[type]) {
+        registeredBanners.current[type] = {};
+      }
 
-    registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
+      registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
 
-    setBanners(organizeBannersByPriority(registeredBanners.current));
-  };
+      setBanners(organizeBannersByPriority(registeredBanners.current));
+    };
 
-  const unregisterBanner = (bannerId, bannerType) => {
-    if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
-      // eslint-disable-next-line no-console
-      console.warn('A banner cannot be unregistered without an identifier or banner type.');
-      return;
-    }
+    const unregisterBanner = (bannerId, bannerType) => {
+      if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
+        // eslint-disable-next-line no-console
+        console.warn('A banner cannot be unregistered without an identifier or banner type.');
+        return;
+      }
 
-    if (!registeredBanners.current[bannerType][bannerId]) {
-      return;
-    }
+      if (!registeredBanners.current[bannerType][bannerId]) {
+        return;
+      }
 
-    delete registeredBanners.current[bannerType][bannerId];
+      delete registeredBanners.current[bannerType][bannerId];
 
-    setBanners(organizeBannersByPriority(registeredBanners.current));
-  };
+      setBanners(organizeBannersByPriority(registeredBanners.current));
+    };
+
+    return {
+      registerBanner,
+      unregisterBanner,
+    };
+  }, []);
 
   const BannerList = () => {
     if (!banners.length) {
@@ -71,42 +78,16 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
     return (
       <>
         {banners.map((bannerProps) => {
-          const {
-            action,
-            custom,
-            description,
-            key,
-            type,
-            onDismiss,
-            ...otherBannerProps
-          } = bannerProps;
+          const { description, ...otherBannerProps } = bannerProps;
 
-          return (
-            <Alert
-              {...otherBannerProps}
-              action={action}
-              key={key}
-              onDismiss={onDismiss}
-              title={custom?.bannerTitle}
-              customColorClass={custom?.colorClass}
-              customIcon={custom?.icon}
-              type={type}
-            >
-              {description}
-            </Alert>
-          );
+          return (<Alert {...otherBannerProps}>{description}</Alert>);
         })}
       </>
     );
   };
 
-  const bannerProviderValue = React.useRef({
-    registerBanner,
-    unregisterBanner,
-  });
-
   return (
-    <BannerRegistrationContext.Provider value={bannerProviderValue.current}>
+    <BannerRegistrationContext.Provider value={bannerProviderValue}>
       <ContentContainer
         header={<BannerList />}
         fill={!fitToParentIsDisabled}

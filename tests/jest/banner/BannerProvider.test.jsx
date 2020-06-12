@@ -23,7 +23,7 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
     <div>
       <button
         type="button"
-        data-testid={buttonId}
+        id={buttonId}
         onClick={() => setHasBanner(!hasBanner)}
       >
         Toggle Banner

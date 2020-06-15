@@ -13,7 +13,7 @@ jest.mock('terra-base');
 global.console.warn = jest.fn();
 
 let keyValue = 0;
-const mockBannerProps = { type: 'error', 'data-testid': 'rendered-banner' };
+const mockBannerProps = { type: 'error' };
 
 // eslint-disable-next-line react/prop-types
 const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', children = null }) => {
@@ -23,7 +23,7 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
     <div>
       <button
         type="button"
-        id={buttonId}
+        data-testid={buttonId}
         onClick={() => setHasBanner(!hasBanner)}
       >
         Toggle Banner
@@ -87,18 +87,18 @@ describe('BannerProvider', () => {
 
     it('does not register banner if no id is provided', () => {
       const { component, context } = renderComponentWithChild();
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
 
       context.registerBanner(undefined, mockBannerProps);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
     });
 
     it('registers banner when id is provided', () => {
       const { component, context } = renderComponentWithChild();
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
 
       act(() => {
         context.registerBanner('mockID', mockBannerProps);
@@ -106,7 +106,7 @@ describe('BannerProvider', () => {
 
       // eslint-disable-next-line no-console
       expect(console.warn).not.toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
     });
 
     it('registers banner when rendered after mount', () => {
@@ -119,7 +119,7 @@ describe('BannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
     });
   });
@@ -138,13 +138,13 @@ describe('BannerProvider', () => {
       // eslint-disable-next-line no-console
       console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
       context.unregisterBanner(undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
     });
 
     it('does not unregister banner if banner type is not provided', () => {
@@ -153,18 +153,18 @@ describe('BannerProvider', () => {
       // eslint-disable-next-line no-console
       console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
       context.unregisterBanner('mockID', undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
     });
 
     it('unregisters banner when id is provided', () => {
       const { component } = renderComponentWithChild(<ChildContent showBannerOnRender />);
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
       expect(component.container).toMatchSnapshot();
 
@@ -173,7 +173,7 @@ describe('BannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
       expect(component.container).toMatchSnapshot();
     });
   });
@@ -196,7 +196,7 @@ describe('BannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
       // trigger nested banner checkpoint's banner
@@ -205,7 +205,7 @@ describe('BannerProvider', () => {
         fireEvent.click(secondChildButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(2);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(2);
       expect(component.container).toMatchSnapshot();
     });
 
@@ -219,7 +219,7 @@ describe('BannerProvider', () => {
       );
       const { component } = renderComponentWithChild(childComponent);
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(2);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(2);
 
       expect(component.container).toMatchSnapshot();
 
@@ -229,7 +229,7 @@ describe('BannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
       // remove nested banner checkpoint's banner
@@ -238,7 +238,7 @@ describe('BannerProvider', () => {
         fireEvent.click(secondChildButton);
       });
 
-      expect(component.queryAllByTestId('rendered-banner')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
       expect(component.container).toMatchSnapshot();
     });
   });

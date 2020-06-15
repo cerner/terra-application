@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
-import Alert from 'terra-alert';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
 import { BANNER_TYPES } from './private/utils';
@@ -33,10 +32,6 @@ const propTypes = {
    * Nodes providing the message content for the banner. Can contain text and HTML.
    */
   description: PropTypes.node,
-  /**
-   * The ID associated to the banner.
-   */
-  id: PropTypes.string,
   /**
    * Callback function triggered when Dismiss button is clicked. The presence of this prop will cause
    * the Dismiss button to be included on the banner.

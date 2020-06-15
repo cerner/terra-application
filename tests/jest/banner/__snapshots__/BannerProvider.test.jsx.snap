@@ -61,7 +61,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div
@@ -156,7 +156,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div
@@ -219,7 +219,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
             >
               <div
                 class="alert-base error narrow"
-                data-testid="rendered-banner"
+                data-terra-application-banner="error"
                 role="alert"
               >
                 <div
@@ -295,7 +295,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div
@@ -358,7 +358,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
             >
               <div
                 class="alert-base error narrow"
-                data-testid="rendered-banner"
+                data-terra-application-banner="error"
                 role="alert"
               >
                 <div
@@ -453,7 +453,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
             >
               <div
                 class="alert-base error narrow"
-                data-testid="rendered-banner"
+                data-terra-application-banner="error"
                 role="alert"
               >
                 <div
@@ -608,7 +608,7 @@ exports[`BannerProvider registerBanner registers banner when rendered after moun
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div
@@ -722,6 +722,7 @@ exports[`BannerProvider renders with children that has a an banner 1`] = `
     >
       <div
         class="alert-base error narrow"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div
@@ -793,7 +794,7 @@ exports[`BannerProvider unregistersBanner unregisters banner when id is provided
     >
       <div
         class="alert-base error narrow"
-        data-testid="rendered-banner"
+        data-terra-application-banner="error"
         role="alert"
       >
         <div

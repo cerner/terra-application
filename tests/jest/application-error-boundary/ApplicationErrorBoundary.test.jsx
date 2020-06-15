@@ -1,11 +1,12 @@
 import React from 'react';
+import { shallowWithIntl, mountWithIntl } from 'terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
 import Logger from '../../../src/utils/logger';
 
 describe('ApplicationErrorBoundary', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
-      const wrapper = shallow((
+      const wrapper = shallowWithIntl((
         <ApplicationErrorBoundary />
       ));
 
@@ -13,7 +14,7 @@ describe('ApplicationErrorBoundary', () => {
     });
 
     it('should render with children', () => {
-      const wrapper = shallow((
+      const wrapper = shallowWithIntl((
         <ApplicationErrorBoundary>
           <div>Test child</div>
         </ApplicationErrorBoundary>
@@ -26,11 +27,12 @@ describe('ApplicationErrorBoundary', () => {
       const spy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
       const ErrorComponent = () => <div />;
 
-      const wrapper = shallow((
+      const wrapper = mountWithIntl((
         <ApplicationErrorBoundary>
           <ErrorComponent />
         </ApplicationErrorBoundary>
       ));
+      expect(wrapper).toMatchSnapshot();
 
       /**
        * After simulating the error, the error view should be rendered.

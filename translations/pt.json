@@ -4,5 +4,6 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Os seguintes itens contém alterações não salvas:",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "As alterações serão descartadas se não forem salvas. Como deseja proceder?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Não salvar",
-  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando"
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando",
+  "terraApplication.errorBoundary.defaultErrorMessage": "Erro no sistema: {errorDetails}"
 }

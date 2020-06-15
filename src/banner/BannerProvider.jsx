@@ -78,11 +78,14 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
     return (
       <>
         {banners.map((bannerProps) => {
-          const { description, type, ...otherBannerProps } = bannerProps;
+          const {
+            description, type, onRequestDismiss, ...otherBannerProps
+          } = bannerProps;
 
           return (
             <Alert
               {...otherBannerProps}
+              onDismiss={onRequestDismiss}
               type={type}
               data-terra-application-banner={type}
             >

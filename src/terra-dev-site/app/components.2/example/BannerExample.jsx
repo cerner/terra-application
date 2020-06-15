@@ -23,58 +23,58 @@ const Example = () => {
       {showSuccessBanner && (
         <Banner
           type="success"
-          onDismiss={() => setShowSuccessBanner(false)}
+          onRequestDismiss={() => setShowSuccessBanner(false)}
         />
       )}
       {showCustomBanner && (
         <Banner
           type="custom"
           custom={{ bannerTitle: 'Something happened....', colorClass: cx('custom'), icon: <IconHighPriority /> }}
-          onDismiss={() => setShowCustomBanner(false)}
+          onRequestDismiss={() => setShowCustomBanner(false)}
         />
       )}
       {showUnsatisfiedBanner && (
         <Banner
           type="unsatisfied"
-          onDismiss={() => setShowUnsatisfiedBanner(false)}
+          onRequestDismiss={() => setShowUnsatisfiedBanner(false)}
         />
       )}
       {showAlertBanner && (
         <Banner
           type="alert"
-          onDismiss={() => setShowAlertBanner(false)}
+          onRequestDismiss={() => setShowAlertBanner(false)}
         />
       )}
       {showErrorBanner && (
         <Banner
           type="error"
           description="Please try again."
-          onDismiss={() => setShowErrorBanner(false)}
+          onRequestDismiss={() => setShowErrorBanner(false)}
         />
       )}
       {showWarningBanner && (
         <Banner
           type="warning"
-          onDismiss={() => setShowWarningBanner(false)}
+          onRequestDismiss={() => setShowWarningBanner(false)}
         />
       )}
       {showUnverifiedBanner && (
         <Banner
           type="unverified"
-          onDismiss={() => setShowUnverifiedBanner(false)}
+          onRequestDismiss={() => setShowUnverifiedBanner(false)}
         />
       )}
       {showInfoBanner && (
         <Banner
           type="info"
           description={<div>This banner describes whats up and its description rendered in a div.</div>}
-          onDismiss={() => setShowInfoBanner(false)}
+          onRequestDismiss={() => setShowInfoBanner(false)}
         />
       )}
       {showAdvisoryBanner && (
         <Banner
           type="advisory"
-          onDismiss={() => setShowAdvisoryBanner(false)}
+          onRequestDismiss={() => setShowAdvisoryBanner(false)}
         />
       )}
       <p>Show Banner Options: </p>

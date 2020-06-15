@@ -80,7 +80,7 @@ const ApplicationContentTest = () => {
         {' '}
         <button id="banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
       </p>
-      {showBanner ? <Banner type="success" onDismiss={() => { setShowBanner(false); }} /> : undefined}
+      {showBanner ? <Banner type="success" onRequestDismiss={() => { setShowBanner(false); }} /> : undefined}
     </>
   );
 

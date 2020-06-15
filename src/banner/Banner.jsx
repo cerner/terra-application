@@ -33,10 +33,10 @@ const propTypes = {
    */
   description: PropTypes.node,
   /**
-   * Callback function triggered when Dismiss button is clicked. The presence of this prop will cause
-   * the Dismiss button to be included on the banner.
+   * Callback function triggered when the dismiss button is clicked. The presence of this prop will cause
+   * the dismiss button to be included on the banner.
    */
-  onDismiss: PropTypes.func,
+  onRequestDismiss: PropTypes.func,
   /**
    * The type of alert to be rendered. One of `alert`, `error`, `warning`, `info`, `success`, `unsatisfied`, `unverified` or `custom`.
    */
@@ -55,7 +55,7 @@ const propTypes = {
 /* eslint-enable react/no-unused-prop-types */
 
 const Banner = ({
-  action, custom, description, id, onDismiss, type,
+  action, custom, description, onRequestDismiss, type,
 }) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
@@ -81,14 +81,13 @@ const Banner = ({
         action,
         customColorClass: custom?.colorClass,
         customIcon: custom?.icon,
-        id,
         key: uuid.current,
-        onDismiss,
+        onRequestDismiss,
         type,
         title: custom?.bannerTitle,
       });
     }
-  }, [bannerRegistration, action, custom, description, id, onDismiss, type]);
+  }, [bannerRegistration, action, custom, description, onRequestDismiss, type]);
 
   React.useEffect(() => () => {
     if (bannerRegistration && bannerRegistration.unregisterBanner) {

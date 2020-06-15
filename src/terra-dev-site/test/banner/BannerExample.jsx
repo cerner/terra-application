@@ -25,7 +25,7 @@ const Example = ({ isInitiallyClosed, id }) => {
         <Banner
           type="success"
           id={`success-banner-${id}`}
-          onDismiss={() => setShowSuccessBanner(false)}
+          onRequestDismiss={() => setShowSuccessBanner(false)}
           action={<button type="button" onClick={() => {}}>Fake Action</button>}
         />
       )}
@@ -43,7 +43,7 @@ const Example = ({ isInitiallyClosed, id }) => {
         <Banner
           type="warning"
           id={`warning-banner-${id}`}
-          onDismiss={() => setShowWarningBanner(false)}
+          onRequestDismiss={() => setShowWarningBanner(false)}
         />
       )}
       {showUnverifiedBanner && <Banner type="unverified" id={`unverified-banner-${id}`} />}

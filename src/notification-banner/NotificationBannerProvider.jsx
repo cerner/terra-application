@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'terra-alert';
+import Button from 'terra-button';
 import ContentContainer from 'terra-content-container';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
@@ -79,12 +80,18 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
       <>
         {banners.map((bannerProps) => {
           const {
-            description, type, onRequestDismiss, ...otherBannerProps
+            description, type, bannerAction, onRequestDismiss, key,
           } = bannerProps;
+
+          let actionButton = null;
+          if (bannerAction) {
+            actionButton = <Button text={bannerAction.text} variant="ghost" onClick={bannerAction.onClick} />;
+          }
 
           return (
             <Alert
-              {...otherBannerProps}
+              key={key}
+              action={actionButton}
               onDismiss={onRequestDismiss}
               type={type}
               data-terra-application-notification-banner={type}

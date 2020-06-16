@@ -31,7 +31,7 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
       {hasBanner ? <NotificationBanner {...mockBannerProps} key={keyValue} /> : null}
       {children}
     </div>
-);
+  );
 };
 
 const renderComponentWithChild = (childrenContent, ProviderProps = {}) => {

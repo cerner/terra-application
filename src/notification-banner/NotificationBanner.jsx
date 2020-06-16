@@ -8,9 +8,12 @@ import { BANNER_TYPES } from './private/utils';
 /* eslint-disable react/no-unused-prop-types */
 const propTypes = {
   /**
-   * An action element to be added to the action section of the banner.
+   * The text and corresponding callback to populate the action button of the banner.
    */
-  action: PropTypes.element,
+  bannerAction: PropTypes.shape({
+    text: PropTypes.string,
+    onClick: PropTypes.func,
+  }),
   /**
    * Nodes providing the message content for the banner. Can contain text and HTML.
    */
@@ -35,7 +38,7 @@ const propTypes = {
 /* eslint-enable react/no-unused-prop-types */
 
 const NotificationBanner = ({
-  action, description, onRequestDismiss, type,
+  bannerAction, description, onRequestDismiss, type,
 }) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
@@ -58,13 +61,14 @@ const NotificationBanner = ({
 
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
       bannerRegistration.registerNotificationBanner(uuid.current, {
-        action,
+        bannerAction,
+        description,
         key: uuid.current,
         onRequestDismiss,
         type,
       });
     }
-  }, [bannerRegistration, action, description, onRequestDismiss, type]);
+  }, [bannerRegistration, description, bannerAction, onRequestDismiss, type]);
 
   React.useEffect(() => () => {
     if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {

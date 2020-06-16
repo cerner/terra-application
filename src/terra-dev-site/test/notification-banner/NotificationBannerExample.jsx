@@ -22,7 +22,20 @@ const Example = ({ isInitiallyClosed, id }) => {
           onRequestDismiss={() => setShowWarningBanner(false)}
         />
       )}
-      {showUnverifiedBanner && <NotificationBanner type="unverified" id={`unverified-banner-${id}`} />}
+      {showUnverifiedBanner && (
+        <NotificationBanner
+          type="unverified"
+          id={`unverified-banner-${id}`}
+          description={<div>There are records that have been included that need to be verified before they are officially added. Please review and ensure they should be included.</div>}
+          bannerAction={{
+            text: 'Verify Records',
+            onClick: () => {
+              alert('records verified.') // eslint-disable-line no-alert
+              setShowUnverifiedBanner(false);
+            },
+          }}
+        />
+      )}
       {showAdvisoryBanner && <NotificationBanner type="advisory" id={`advisory-banner-${id}`} />}
       <p>Show Banner Options: </p>
       <button onClick={() => setShowAlertBanner(!showAlertBanner)} type="button" id={`toggle-alert-banner-${id}`}>Show/Hide Alert Banner</button>

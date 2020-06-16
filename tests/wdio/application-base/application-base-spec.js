@@ -70,12 +70,4 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
       expect(hasAlert()).to.equal(false);
     });
   });
-
-  it('with banner', () => {
-    browser.url('/raw/tests/terra-application/application-base/application-base-test');
-    browser.refresh();
-    browser.click('button#banner');
-
-    Terra.validates.element({ selector: '#root' });
-  });
 });

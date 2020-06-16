@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import ModalManager from '../../../modal-manager';
-import { BannerProvider } from '../../../banner';
+import { NotificationBannerProvider } from '../../../notification-banner';
 
 import DisclosureComponent from './DisclosureComponent';
 import styles from './ModalManagerCommon.test.module.scss';
@@ -11,11 +11,11 @@ const cx = classNames.bind(styles);
 
 const ModalManagerWithHeaderAdapter = () => (
   <div role="main" className={cx('content-wrapper')}>
-    <BannerProvider>
+    <NotificationBannerProvider>
       <ModalManager>
         <DisclosureComponent identifier="root-component" disclosureType="modal" renderHeaderAdapter />
       </ModalManager>
-    </BannerProvider>
+    </NotificationBannerProvider>
   </div>
 );
 

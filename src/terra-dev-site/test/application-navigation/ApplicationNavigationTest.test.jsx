@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import Banner from '../../../banner';
+import Banner from '../../../notification-banner';
 import NavigationPrompt from '../../../navigation-prompt';
 
 const PageContent = ({ title }) => {

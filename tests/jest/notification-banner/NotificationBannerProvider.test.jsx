@@ -4,8 +4,8 @@ import { render, fireEvent } from '@testing-library/react';
 import 'terra-base';
 import { IntlProvider } from 'react-intl';
 
-import BannerRegistrationContext from '../../../src/banner/private/BannerRegistrationContext';
-import Banner, { BannerProvider } from '../../../src/banner';
+import BannerRegistrationContext from '../../../src/notification-banner/private/BannerRegistrationContext';
+import NotificationBanner, { NotificationBannerProvider } from '../../../src/notification-banner';
 // eslint-disable-next-line import/no-unresolved, import/extensions
 import { messages } from '../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
@@ -26,34 +26,34 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
         data-testid={buttonId}
         onClick={() => setHasBanner(!hasBanner)}
       >
-        Toggle Banner
+        Toggle Notification Banner
       </button>
-      {hasBanner ? <Banner {...mockBannerProps} key={keyValue} /> : null}
+      {hasBanner ? <NotificationBanner {...mockBannerProps} key={keyValue} /> : null}
       {children}
     </div>
   );
 };
 
-const renderComponentWithChild = (childrenContent, checkpointProps = {}) => {
+const renderComponentWithChild = (childrenContent, ProviderProps = {}) => {
   let childContext;
 
   const component = render(
     <IntlProvider locale="en" messages={messages}>
-      <BannerProvider {...checkpointProps}>
+      <NotificationBannerProvider {...ProviderProps}>
         <BannerRegistrationContext.Consumer>
           {(context) => {
             childContext = context;
             return childrenContent;
           }}
         </BannerRegistrationContext.Consumer>
-      </BannerProvider>
+      </NotificationBannerProvider>
     </IntlProvider>,
   );
 
   return { component, context: childContext };
 };
 
-describe('BannerProvider', () => {
+describe('NotificationBannerProvider', () => {
   beforeEach(() => {
     jest.resetAllMocks;
     // eslint-disable-next-line no-console
@@ -77,19 +77,19 @@ describe('BannerProvider', () => {
     expect(component.container).toMatchSnapshot();
   });
 
-  describe('registerBanner', () => {
-    it('provides registerBanner callback in context', () => {
+  describe('registerNotificationBanner', () => {
+    it('provides registerNotificationBanner callback in context', () => {
       const { context } = renderComponentWithChild();
 
       expect(context).toBeDefined();
-      expect(context).toHaveProperty('registerBanner', expect.any(Function));
+      expect(context).toHaveProperty('registerNotificationBanner', expect.any(Function));
     });
 
     it('does not register banner if no id is provided', () => {
       const { component, context } = renderComponentWithChild();
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
 
-      context.registerBanner(undefined, mockBannerProps);
+      context.registerNotificationBanner(undefined, mockBannerProps);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
@@ -101,7 +101,7 @@ describe('BannerProvider', () => {
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
 
       act(() => {
-        context.registerBanner('mockID', mockBannerProps);
+        context.registerNotificationBanner('mockID', mockBannerProps);
       });
 
       // eslint-disable-next-line no-console
@@ -124,15 +124,15 @@ describe('BannerProvider', () => {
     });
   });
 
-  describe('unregistersBanner', () => {
-    it('provides unregisterBanner callback in context', () => {
+  describe('unregisterNotificationBanner', () => {
+    it('provides unregisterNotificationBanner callback in context', () => {
       const { context } = renderComponentWithChild();
 
       expect(context).toBeDefined();
-      expect(context).toHaveProperty('unregisterBanner', expect.any(Function));
+      expect(context).toHaveProperty('unregisterNotificationBanner', expect.any(Function));
     });
 
-    it('does not unregister banner if no id is provided', () => {
+    it('does not unregister notification banner if no id is provided', () => {
       const { component, context } = renderComponentWithChild(<ChildContent showBannerOnRender />);
 
       // eslint-disable-next-line no-console
@@ -140,14 +140,14 @@ describe('BannerProvider', () => {
 
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
-      context.unregisterBanner(undefined);
+      context.unregisterNotificationBanner(undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
     });
 
-    it('does not unregister banner if banner type is not provided', () => {
+    it('does not unregister notification banner if banner type is not provided', () => {
       const { component, context } = renderComponentWithChild(<ChildContent showBannerOnRender />);
 
       // eslint-disable-next-line no-console
@@ -155,14 +155,14 @@ describe('BannerProvider', () => {
 
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
-      context.unregisterBanner('mockID', undefined);
+      context.unregisterNotificationBanner('mockID', undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
     });
 
-    it('unregisters banner when id is provided', () => {
+    it('unregisters notification banner when id is provided', () => {
       const { component } = renderComponentWithChild(<ChildContent showBannerOnRender />);
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
 
@@ -178,19 +178,19 @@ describe('BannerProvider', () => {
     });
   });
 
-  describe(('Nested Banner Checkpoint'), () => {
-    it('registers banner with top-level Banner Checkpoint', () => {
+  describe(('Nested Notification Banner Provider'), () => {
+    it('registers notfication banner with top-level Banner Provider', () => {
       const childComponent = (
         <ChildContent>
-          <BannerProvider>
+          <NotificationBannerProvider>
             <ChildContent buttonId="show-2nd-banner" />
-          </BannerProvider>
+          </NotificationBannerProvider>
         </ChildContent>
       );
       const { component } = renderComponentWithChild(childComponent);
       expect(component.container).toMatchSnapshot();
 
-      // trigger top checkpoint's banner
+      // trigger top Provider's banner
       const childButton = component.getByTestId('show-banner');
       act(() => {
         fireEvent.click(childButton);
@@ -199,7 +199,7 @@ describe('BannerProvider', () => {
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
-      // trigger nested banner checkpoint's banner
+      // trigger nested banner Provider's banner
       const secondChildButton = component.getByTestId('show-2nd-banner');
       act(() => {
         fireEvent.click(secondChildButton);
@@ -209,12 +209,12 @@ describe('BannerProvider', () => {
       expect(component.container).toMatchSnapshot();
     });
 
-    it('unregisters banner with top-level Banner Checkpoint', () => {
+    it('unregisters banner with top-level Banner Provider', () => {
       const childComponent = (
         <ChildContent showBannerOnRender>
-          <BannerProvider>
+          <NotificationBannerProvider>
             <ChildContent buttonId="show-2nd-banner" showBannerOnRender />
-          </BannerProvider>
+          </NotificationBannerProvider>
         </ChildContent>
       );
       const { component } = renderComponentWithChild(childComponent);
@@ -223,7 +223,7 @@ describe('BannerProvider', () => {
 
       expect(component.container).toMatchSnapshot();
 
-      // remove top checkpoint's banner
+      // remove top Provider's banner
       const childButton = component.getByTestId('show-banner');
       act(() => {
         fireEvent.click(childButton);
@@ -232,7 +232,7 @@ describe('BannerProvider', () => {
       expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
-      // remove nested banner checkpoint's banner
+      // remove nested banner Provider's banner
       const secondChildButton = component.getByTestId('show-2nd-banner');
       act(() => {
         fireEvent.click(secondChildButton);

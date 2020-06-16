@@ -15,7 +15,7 @@ import {
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
-import BannerExample from '../banner/BannerExample';
+import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 
 import styles from './DisclosureComponent.module.scss';
 
@@ -199,7 +199,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
-        <BannerExample isInitiallyClosed id={identifier} />
+        <NotificationBannerExample isInitiallyClosed id={identifier} />
       </ContentContainer>
     );
   }

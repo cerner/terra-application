@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
  */
 export default React.createContext();
 
-export const bannerRegistrationContextValueShape = PropTypes.shape({
-  registerBanner: PropTypes.func.isRequired,
-  unregisterBanner: PropTypes.func.isRequired,
+export const BannerRegistrationContextValueShape = PropTypes.shape({
+  registerNotificationBanner: PropTypes.func.isRequired,
+  unregisterNotificationBanner: PropTypes.func.isRequired,
 });

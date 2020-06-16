@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationBase from '../../../application-base';
-import Banner from '../../../banner';
+import Banner from '../../../notification-banner';
 import NavigationPrompt from '../../../navigation-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 

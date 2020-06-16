@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import classNamesBind from 'classnames/bind';
 import IconHighPriority from 'terra-icon/lib/icon/IconHighPriority';
-import Banner from '../../../../banner';
+import NotificationBanner from 'terra-application/lib/notification-banner';
 
-import styles from './Banner.module.scss';
+import styles from './NotificationBanner.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
@@ -21,58 +21,58 @@ const Example = () => {
   return (
     <>
       {showSuccessBanner && (
-        <Banner
+        <NotificationBanner
           type="success"
           onRequestDismiss={() => setShowSuccessBanner(false)}
         />
       )}
       {showCustomBanner && (
-        <Banner
+        <NotificationBanner
           type="custom"
           custom={{ bannerTitle: 'Something happened....', colorClass: cx('custom'), icon: <IconHighPriority /> }}
           onRequestDismiss={() => setShowCustomBanner(false)}
         />
       )}
       {showUnsatisfiedBanner && (
-        <Banner
+        <NotificationBanner
           type="unsatisfied"
           onRequestDismiss={() => setShowUnsatisfiedBanner(false)}
         />
       )}
       {showAlertBanner && (
-        <Banner
+        <NotificationBanner
           type="alert"
           onRequestDismiss={() => setShowAlertBanner(false)}
         />
       )}
       {showErrorBanner && (
-        <Banner
+        <NotificationBanner
           type="error"
           description="Please try again."
           onRequestDismiss={() => setShowErrorBanner(false)}
         />
       )}
       {showWarningBanner && (
-        <Banner
+        <NotificationBanner
           type="warning"
           onRequestDismiss={() => setShowWarningBanner(false)}
         />
       )}
       {showUnverifiedBanner && (
-        <Banner
+        <NotificationBanner
           type="unverified"
           onRequestDismiss={() => setShowUnverifiedBanner(false)}
         />
       )}
       {showInfoBanner && (
-        <Banner
+        <NotificationBanner
           type="info"
           description={<div>This banner describes whats up and its description rendered in a div.</div>}
           onRequestDismiss={() => setShowInfoBanner(false)}
         />
       )}
       {showAdvisoryBanner && (
-        <Banner
+        <NotificationBanner
           type="advisory"
           onRequestDismiss={() => setShowAdvisoryBanner(false)}
         />

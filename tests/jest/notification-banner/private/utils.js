@@ -1,4 +1,4 @@
-import { BANNER_TYPES, organizeBannersByPriority } from '../../../../src/banner/private/utils';
+import { BANNER_TYPES, organizeBannersByPriority } from '../../../../src/notification-banner/private/utils';
 
 const alertBannerProps = { id: BANNER_TYPES.ALERT, type: 'alert' };
 const errorBannerProps = { id: BANNER_TYPES.ERROR, type: 'error' };

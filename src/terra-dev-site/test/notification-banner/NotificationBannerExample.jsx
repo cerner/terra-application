@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
 import IconHighPriority from 'terra-icon/lib/icon/IconHighPriority';
-import Banner from '../../../banner';
+import NotificationBanner from '../../../notification-banner';
 
-import styles from './Banner.module.scss';
+import styles from './NotificationBanner.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
@@ -22,7 +22,7 @@ const Example = ({ isInitiallyClosed, id }) => {
   return (
     <>
       {showSuccessBanner && (
-        <Banner
+        <NotificationBanner
           type="success"
           id={`success-banner-${id}`}
           onRequestDismiss={() => setShowSuccessBanner(false)}
@@ -30,31 +30,31 @@ const Example = ({ isInitiallyClosed, id }) => {
         />
       )}
       {showCustomBanner && (
-        <Banner
+        <NotificationBanner
           type="custom"
           id={`custom-banner-${id}`}
           custom={{ bannerTitle: 'Something happened....', colorClass: cx('custom'), icon: <IconHighPriority /> }}
         />
       )}
-      {showAlertBanner && <Banner type="alert" id={`alert-banner-${id}`} />}
-      {showErrorBanner && <Banner type="error" id={`error-banner-${id}`} description="Something happened..." />}
-      {showUnsatisfiedBanner && <Banner type="unsatisfied" id={`unsatisfied-banner-${id}`} />}
+      {showAlertBanner && <NotificationBanner type="alert" id={`alert-banner-${id}`} />}
+      {showErrorBanner && <NotificationBanner type="error" id={`error-banner-${id}`} description="Something happened..." />}
+      {showUnsatisfiedBanner && <NotificationBanner type="unsatisfied" id={`unsatisfied-banner-${id}`} />}
       {showWarningBanner && (
-        <Banner
+        <NotificationBanner
           type="warning"
           id={`warning-banner-${id}`}
           onRequestDismiss={() => setShowWarningBanner(false)}
         />
       )}
-      {showUnverifiedBanner && <Banner type="unverified" id={`unverified-banner-${id}`} />}
+      {showUnverifiedBanner && <NotificationBanner type="unverified" id={`unverified-banner-${id}`} />}
       {showInfoBanner && (
-        <Banner
+        <NotificationBanner
           type="info"
           id={`info-banner-${id}`}
           description={<div>This banner describes whats up and its description rendered in a div.</div>}
         />
       )}
-      {showAdvisoryBanner && <Banner type="advisory" id={`advisory-banner-${id}`} />}
+      {showAdvisoryBanner && <NotificationBanner type="advisory" id={`advisory-banner-${id}`} />}
       <p>Show Banner Options: </p>
       <button onClick={() => setShowAlertBanner(!showAlertBanner)} type="button" id={`toggle-alert-banner-${id}`}>Show/Hide Alert Banner</button>
       <button onClick={() => setShowErrorBanner(!showErrorBanner)} type="button" id={`toggle-error-banner-${id}`}>Show/Hide Error Banner</button>

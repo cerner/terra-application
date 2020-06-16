@@ -25,12 +25,12 @@ const propTypes = {
  * The Banner Checkpoint manages prioritizing and displaying all Workflow Banners
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
-const BannerProvider = ({ fitToParentIsDisabled, children }) => {
+const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
   const registeredBanners = React.useRef({});
   const [banners, setBanners] = React.useState([]);
 
   const bannerProviderValue = React.useMemo(() => {
-    const registerBanner = (bannerId, bannerProps) => {
+    const registerNotificationBanner = (bannerId, bannerProps) => {
       if (process.env.NODE_ENV !== 'production' && !bannerId) {
         // eslint-disable-next-line no-console
         console.warn('A banner cannot be registered without an identifier.');
@@ -48,7 +48,7 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
       setBanners(organizeBannersByPriority(registeredBanners.current));
     };
 
-    const unregisterBanner = (bannerId, bannerType) => {
+    const unregisterNotificationBanner = (bannerId, bannerType) => {
       if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
         // eslint-disable-next-line no-console
         console.warn('A banner cannot be unregistered without an identifier or banner type.');
@@ -65,12 +65,12 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
     };
 
     return {
-      registerBanner,
-      unregisterBanner,
+      registerNotificationBanner,
+      unregisterNotificationBanner,
     };
   }, []);
 
-  const BannerList = () => {
+  const NotificationBannerList = () => {
     if (!banners.length) {
       return null;
     }
@@ -100,7 +100,7 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
   return (
     <BannerRegistrationContext.Provider value={bannerProviderValue}>
       <ContentContainer
-        header={<BannerList />}
+        header={<NotificationBannerList />}
         fill={!fitToParentIsDisabled}
       >
         {children}
@@ -109,9 +109,9 @@ const BannerProvider = ({ fitToParentIsDisabled, children }) => {
   );
 };
 
-BannerProvider.propTypes = propTypes;
-BannerProvider.defaultProps = {
+NotificationBannerProvider.propTypes = propTypes;
+NotificationBannerProvider.defaultProps = {
   fitToParentIsDisabled: false,
 };
 
-export default BannerProvider;
+export default NotificationBannerProvider;

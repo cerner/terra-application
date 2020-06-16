@@ -33,7 +33,7 @@ exports[`ApplicationBase should render with all props 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <BannerProvider
+              <NotificationBannerProvider
                 fitToParentIsDisabled={true}
               >
                 <withPromptRegistration(NavigationPromptCheckpoint)
@@ -54,7 +54,7 @@ exports[`ApplicationBase should render with all props 1`] = `
                     </Suspense>
                   </ApplicationLoadingOverlayProvider>
                 </withPromptRegistration(NavigationPromptCheckpoint)>
-              </BannerProvider>
+              </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>
@@ -86,7 +86,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <BannerProvider
+              <NotificationBannerProvider
                 fitToParentIsDisabled={false}
               >
                 <withPromptRegistration(NavigationPromptCheckpoint)
@@ -107,7 +107,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                     </Suspense>
                   </ApplicationLoadingOverlayProvider>
                 </withPromptRegistration(NavigationPromptCheckpoint)>
-              </BannerProvider>
+              </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>
@@ -139,7 +139,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
         <ApplicationErrorBoundary>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
-              <BannerProvider
+              <NotificationBannerProvider
                 fitToParentIsDisabled={false}
               >
                 <withPromptRegistration(NavigationPromptCheckpoint)
@@ -160,7 +160,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                     </Suspense>
                   </ApplicationLoadingOverlayProvider>
                 </withPromptRegistration(NavigationPromptCheckpoint)>
-              </BannerProvider>
+              </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
         </ApplicationErrorBoundary>

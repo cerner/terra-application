@@ -54,7 +54,7 @@ const propTypes = {
 };
 /* eslint-enable react/no-unused-prop-types */
 
-const Banner = ({
+const NotificationBanner = ({
   action, custom, description, onRequestDismiss, type,
 }) => {
   /**
@@ -76,8 +76,8 @@ const Banner = ({
       console.warn('A Banner was not rendered within the context of a BannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
-    if (bannerRegistration && bannerRegistration.registerBanner) {
-      bannerRegistration.registerBanner(uuid.current, {
+    if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
+      bannerRegistration.registerNotificationBanner(uuid.current, {
         action,
         customColorClass: custom?.colorClass,
         customIcon: custom?.icon,
@@ -90,14 +90,14 @@ const Banner = ({
   }, [bannerRegistration, action, custom, description, onRequestDismiss, type]);
 
   React.useEffect(() => () => {
-    if (bannerRegistration && bannerRegistration.unregisterBanner) {
-      bannerRegistration.unregisterBanner(uuid.current, type);
+    if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {
+      bannerRegistration.unregisterNotificationBanner(uuid.current, type);
     }
   }, [bannerRegistration, type]);
 
   return null;
 };
 
-Banner.propTypes = propTypes;
+NotificationBanner.propTypes = propTypes;
 
-export default Banner;
+export default NotificationBanner;

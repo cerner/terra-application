@@ -6,7 +6,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-    <BannerProvider
+    <NotificationBannerProvider
       fitToParentIsDisabled={false}
     >
       <withPromptRegistration(NavigationPromptCheckpoint)>
@@ -21,7 +21,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
           />
         </ApplicationErrorBoundary>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </BannerProvider>
+    </NotificationBannerProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -91,7 +91,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-    <BannerProvider
+    <NotificationBannerProvider
       fitToParentIsDisabled={false}
     >
       <withPromptRegistration(NavigationPromptCheckpoint)>
@@ -110,7 +110,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
           </Suspense>
         </ApplicationErrorBoundary>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </BannerProvider>
+    </NotificationBannerProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

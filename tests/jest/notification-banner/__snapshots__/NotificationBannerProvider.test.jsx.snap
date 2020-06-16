@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 1`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -19,7 +19,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -38,7 +38,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -51,7 +51,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
 </div>
 `;
 
-exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 2`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -114,7 +114,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -133,7 +133,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -146,7 +146,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
 </div>
 `;
 
-exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level Banner Checkpoint 3`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 3`] = `
 <div>
   <div
     class="content-container-fill"
@@ -209,7 +209,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -272,7 +272,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -285,7 +285,7 @@ exports[`BannerProvider Nested Banner Checkpoint registers banner with top-level
 </div>
 `;
 
-exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 1`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -348,7 +348,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -411,7 +411,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -424,7 +424,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
 </div>
 `;
 
-exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 2`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -443,7 +443,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -506,7 +506,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -519,7 +519,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
 </div>
 `;
 
-exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-level Banner Checkpoint 3`] = `
+exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 3`] = `
 <div>
   <div
     class="content-container-fill"
@@ -538,7 +538,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
           <div
             class="content-container-fill"
@@ -557,7 +557,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
                     data-testid="show-2nd-banner"
                     type="button"
                   >
-                    Toggle Banner
+                    Toggle Notification Banner
                   </button>
                 </div>
               </div>
@@ -570,7 +570,7 @@ exports[`BannerProvider Nested Banner Checkpoint unregisters banner with top-lev
 </div>
 `;
 
-exports[`BannerProvider registerBanner registers banner when rendered after mount 1`] = `
+exports[`NotificationBannerProvider registerNotificationBanner registers banner when rendered after mount 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -589,7 +589,7 @@ exports[`BannerProvider registerBanner registers banner when rendered after moun
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
         </div>
       </div>
@@ -598,7 +598,7 @@ exports[`BannerProvider registerBanner registers banner when rendered after moun
 </div>
 `;
 
-exports[`BannerProvider registerBanner registers banner when rendered after mount 2`] = `
+exports[`NotificationBannerProvider registerNotificationBanner registers banner when rendered after mount 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -661,7 +661,7 @@ exports[`BannerProvider registerBanner registers banner when rendered after moun
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
         </div>
       </div>
@@ -670,7 +670,7 @@ exports[`BannerProvider registerBanner registers banner when rendered after moun
 </div>
 `;
 
-exports[`BannerProvider renders with children 1`] = `
+exports[`NotificationBannerProvider renders with children 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -689,7 +689,7 @@ exports[`BannerProvider renders with children 1`] = `
 </div>
 `;
 
-exports[`BannerProvider renders with children 2`] = `
+exports[`NotificationBannerProvider renders with children 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -712,7 +712,7 @@ exports[`BannerProvider renders with children 2`] = `
 </div>
 `;
 
-exports[`BannerProvider renders with children that has a an banner 1`] = `
+exports[`NotificationBannerProvider renders with children that has a an banner 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -775,7 +775,7 @@ exports[`BannerProvider renders with children that has a an banner 1`] = `
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
         </div>
       </div>
@@ -784,7 +784,7 @@ exports[`BannerProvider renders with children that has a an banner 1`] = `
 </div>
 `;
 
-exports[`BannerProvider unregistersBanner unregisters banner when id is provided 1`] = `
+exports[`NotificationBannerProvider unregisterNotificationBanner unregisters notification banner when id is provided 1`] = `
 <div>
   <div
     class="content-container-fill"
@@ -847,7 +847,7 @@ exports[`BannerProvider unregistersBanner unregisters banner when id is provided
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
         </div>
       </div>
@@ -856,7 +856,7 @@ exports[`BannerProvider unregistersBanner unregisters banner when id is provided
 </div>
 `;
 
-exports[`BannerProvider unregistersBanner unregisters banner when id is provided 2`] = `
+exports[`NotificationBannerProvider unregisterNotificationBanner unregisters notification banner when id is provided 2`] = `
 <div>
   <div
     class="content-container-fill"
@@ -875,7 +875,7 @@ exports[`BannerProvider unregistersBanner unregisters banner when id is provided
             data-testid="show-banner"
             type="button"
           >
-            Toggle Banner
+            Toggle Notification Banner
           </button>
         </div>
       </div>

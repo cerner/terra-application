@@ -13,7 +13,7 @@ import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationIntlProvider } from '../application-intl';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { BannerProvider } from '../banner';
+import { NotificationBannerProvider } from '../notification-banner';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
@@ -129,7 +129,7 @@ const ApplicationBase = ({
             <ApplicationErrorBoundary>
               <ApplicationIntlProvider>
                 <ActiveBreakpointProvider>
-                  <BannerProvider fitToParentIsDisabled={fitToParentIsDisabled}>
+                  <NotificationBannerProvider fitToParentIsDisabled={fitToParentIsDisabled}>
                     <NavigationPromptCheckpoint
                       onPromptChange={(registeredPrompts) => {
                         registeredPromptsRef.current = registeredPrompts;
@@ -141,7 +141,7 @@ const ApplicationBase = ({
                         </Suspense>
                       </ApplicationLoadingOverlayProvider>
                     </NavigationPromptCheckpoint>
-                  </BannerProvider>
+                  </NotificationBannerProvider>
                 </ActiveBreakpointProvider>
               </ApplicationIntlProvider>
             </ApplicationErrorBoundary>

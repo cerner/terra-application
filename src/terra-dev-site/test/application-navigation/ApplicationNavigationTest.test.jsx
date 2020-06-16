@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import Banner from '../../../notification-banner';
+import NotificationBanner from '../../../notification-banner';
 import NavigationPrompt from '../../../navigation-prompt';
 
 const PageContent = ({ title }) => {
@@ -27,11 +27,11 @@ const PageContent = ({ title }) => {
       </p>
       {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
       <p>
-        Show Banner:
+        Show Notification Banner:
         {' '}
-        <button id="banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
+        <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
       </p>
-      {showBanner ? <Banner type="success" onRequestDismiss={() => { setShowBanner(false); }} /> : undefined}
+      {showBanner ? <NotificationBanner type="warning" onRequestDismiss={() => { setShowBanner(false); }} /> : undefined}
     </div>
   );
 };

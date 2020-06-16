@@ -31,7 +31,7 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
       {hasBanner ? <NotificationBanner {...mockBannerProps} key={keyValue} /> : null}
       {children}
     </div>
-  );
+);
 };
 
 const renderComponentWithChild = (childrenContent, ProviderProps = {}) => {
@@ -87,18 +87,18 @@ describe('NotificationBannerProvider', () => {
 
     it('does not register banner if no id is provided', () => {
       const { component, context } = renderComponentWithChild();
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
 
       context.registerNotificationBanner(undefined, mockBannerProps);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
     });
 
     it('registers banner when id is provided', () => {
       const { component, context } = renderComponentWithChild();
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
 
       act(() => {
         context.registerNotificationBanner('mockID', mockBannerProps);
@@ -106,7 +106,7 @@ describe('NotificationBannerProvider', () => {
 
       // eslint-disable-next-line no-console
       expect(console.warn).not.toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 
     it('registers banner when rendered after mount', () => {
@@ -119,7 +119,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
     });
   });
@@ -138,13 +138,13 @@ describe('NotificationBannerProvider', () => {
       // eslint-disable-next-line no-console
       console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
 
       context.unregisterNotificationBanner(undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 
     it('does not unregister notification banner if banner type is not provided', () => {
@@ -153,18 +153,18 @@ describe('NotificationBannerProvider', () => {
       // eslint-disable-next-line no-console
       console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
 
       context.unregisterNotificationBanner('mockID', undefined);
 
       // eslint-disable-next-line no-console
       expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 
     it('unregisters notification banner when id is provided', () => {
       const { component } = renderComponentWithChild(<ChildContent showBannerOnRender />);
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
 
       expect(component.container).toMatchSnapshot();
 
@@ -173,7 +173,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
       expect(component.container).toMatchSnapshot();
     });
   });
@@ -196,7 +196,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
       // trigger nested banner Provider's banner
@@ -205,7 +205,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(secondChildButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(2);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(2);
       expect(component.container).toMatchSnapshot();
     });
 
@@ -219,7 +219,7 @@ describe('NotificationBannerProvider', () => {
       );
       const { component } = renderComponentWithChild(childComponent);
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(2);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(2);
 
       expect(component.container).toMatchSnapshot();
 
@@ -229,7 +229,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(childButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(1);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
       expect(component.container).toMatchSnapshot();
 
       // remove nested banner Provider's banner
@@ -238,7 +238,7 @@ describe('NotificationBannerProvider', () => {
         fireEvent.click(secondChildButton);
       });
 
-      expect(component.container.querySelectorAll('[data-terra-application-banner]')).toHaveLength(0);
+      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
       expect(component.container).toMatchSnapshot();
     });
   });

@@ -61,7 +61,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider register
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div
@@ -156,7 +156,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider register
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div
@@ -219,7 +219,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider register
             >
               <div
                 class="alert-base error narrow"
-                data-terra-application-banner="error"
+                data-terra-application-notification-banner="error"
                 role="alert"
               >
                 <div
@@ -295,7 +295,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider unregist
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div
@@ -358,7 +358,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider unregist
             >
               <div
                 class="alert-base error narrow"
-                data-terra-application-banner="error"
+                data-terra-application-notification-banner="error"
                 role="alert"
               >
                 <div
@@ -453,7 +453,7 @@ exports[`NotificationBannerProvider Nested Notification Banner Provider unregist
             >
               <div
                 class="alert-base error narrow"
-                data-terra-application-banner="error"
+                data-terra-application-notification-banner="error"
                 role="alert"
               >
                 <div
@@ -608,7 +608,7 @@ exports[`NotificationBannerProvider registerNotificationBanner registers banner 
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div
@@ -722,7 +722,7 @@ exports[`NotificationBannerProvider renders with children that has a an banner 1
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div
@@ -794,7 +794,7 @@ exports[`NotificationBannerProvider unregisterNotificationBanner unregisters not
     >
       <div
         class="alert-base error narrow"
-        data-terra-application-banner="error"
+        data-terra-application-notification-banner="error"
         role="alert"
       >
         <div

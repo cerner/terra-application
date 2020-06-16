@@ -62,11 +62,11 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
     });
   });
 
-  it('with banner', () => {
+  it('with notification banner', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
     browser.refresh();
-    browser.click('button#banner');
+    browser.click('button#notification-banner');
 
-    Terra.validates.element('with banner', { selector: '#root' });
+    Terra.validates.element('with notification banner', { selector: '#root' });
   });
 });

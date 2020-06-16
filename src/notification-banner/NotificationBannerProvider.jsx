@@ -87,7 +87,7 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
               {...otherBannerProps}
               onDismiss={onRequestDismiss}
               type={type}
-              data-terra-application-banner={type}
+              data-terra-application-notification-banner={type}
             >
               {description}
             </Alert>

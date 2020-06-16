@@ -5,8 +5,7 @@ const errorBannerProps = { id: BANNER_TYPES.ERROR, type: 'error' };
 const warningBannerProps = { id: BANNER_TYPES.WARNING, type: 'warning' };
 const unsatisfiedBannerProps = { id: BANNER_TYPES.UNSATISFIED, type: 'unsatisfied' };
 const unverifiedBannerProps = { id: BANNER_TYPES.UNVERIFIED, type: 'unverified' };
-const infoBannerProps = { id: BANNER_TYPES.INFO, type: 'info' };
-const successBannerProps = { id: BANNER_TYPES.SUCCESS, type: 'success' };
+const advisoryBannerProps = { id: BANNER_TYPES.ADVISORY, type: 'advisory' };
 
 describe('utils', () => {
   describe('organizes banner by priority', () => {
@@ -35,31 +34,29 @@ describe('utils', () => {
       const banners = {
         unsatisfied: { 'randomID-1': unsatisfiedBannerProps },
         error: { 'randomID-1324': errorBannerProps },
-        success: { 'randomID-223': successBannerProps },
         warning: { 'randomID-1234': warningBannerProps },
         alert: { 'randomID-1333': alertBannerProps },
         unverified: { 'randomID-9081': unverifiedBannerProps },
-        info: { 'randomID-981': infoBannerProps },
+        advisory: { 'randomID-981': advisoryBannerProps },
       };
 
       const organizedBanners = organizeBannersByPriority(banners);
       expect(organizedBanners).toMatchSnapshot();
 
-      expect(organizedBanners).toHaveLength(7);
+      expect(organizedBanners).toHaveLength(6);
       expect(organizedBanners[0].id).toEqual(BANNER_TYPES.ALERT);
       expect(organizedBanners[1].id).toEqual(BANNER_TYPES.ERROR);
       expect(organizedBanners[2].id).toEqual(BANNER_TYPES.WARNING);
       expect(organizedBanners[3].id).toEqual(BANNER_TYPES.UNSATISFIED);
       expect(organizedBanners[4].id).toEqual(BANNER_TYPES.UNVERIFIED);
-      expect(organizedBanners[5].id).toEqual(BANNER_TYPES.INFO);
-      expect(organizedBanners[6].id).toEqual(BANNER_TYPES.SUCCESS);
+      expect(organizedBanners[5].id).toEqual(BANNER_TYPES.ADVISORY);
     });
 
     it('allows multiple banners by of one type', () => {
       const banners = {
-        info: {
-          'randomID-981': infoBannerProps,
-          'randomID-92081': { type: 'info', id: 'second-banner-of-type-info' },
+        warning: {
+          'randomID-981': warningBannerProps,
+          'randomID-92081': { type: 'warning', id: 'second-banner-of-type-warning' },
         },
       };
 
@@ -67,8 +64,8 @@ describe('utils', () => {
       expect(organizedBanners).toMatchSnapshot();
 
       expect(organizedBanners).toHaveLength(2);
-      expect(organizedBanners[0].id).toEqual(BANNER_TYPES.INFO);
-      expect(organizedBanners[1].id).toEqual('second-banner-of-type-info');
+      expect(organizedBanners[0].id).toEqual(BANNER_TYPES.WARNING);
+      expect(organizedBanners[1].id).toEqual('second-banner-of-type-warning');
     });
   });
 });

@@ -1,11 +1,5 @@
 import React, { useState } from 'react';
-import classNamesBind from 'classnames/bind';
-import IconHighPriority from 'terra-icon/lib/icon/IconHighPriority';
 import NotificationBanner from 'terra-application/lib/notification-banner';
-
-import styles from './NotificationBanner.module.scss';
-
-const cx = classNamesBind.bind(styles);
 
 const Example = () => {
   const [showAlertBanner, setShowAlertBanner] = useState(false);
@@ -14,25 +8,9 @@ const Example = () => {
   const [showUnsatisfiedBanner, setShowUnsatisfiedBanner] = useState(false);
   const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false);
   const [showAdvisoryBanner, setShowAdvisoryBanner] = useState(false);
-  const [showInfoBanner, setShowInfoBanner] = useState(false);
-  const [showSuccessBanner, setShowSuccessBanner] = useState(false);
-  const [showCustomBanner, setShowCustomBanner] = useState(false);
 
   return (
     <>
-      {showSuccessBanner && (
-        <NotificationBanner
-          type="success"
-          onRequestDismiss={() => setShowSuccessBanner(false)}
-        />
-      )}
-      {showCustomBanner && (
-        <NotificationBanner
-          type="custom"
-          custom={{ bannerTitle: 'Something happened....', colorClass: cx('custom'), icon: <IconHighPriority /> }}
-          onRequestDismiss={() => setShowCustomBanner(false)}
-        />
-      )}
       {showUnsatisfiedBanner && (
         <NotificationBanner
           type="unsatisfied"
@@ -64,13 +42,6 @@ const Example = () => {
           onRequestDismiss={() => setShowUnverifiedBanner(false)}
         />
       )}
-      {showInfoBanner && (
-        <NotificationBanner
-          type="info"
-          description={<div>This banner describes whats up and its description rendered in a div.</div>}
-          onRequestDismiss={() => setShowInfoBanner(false)}
-        />
-      )}
       {showAdvisoryBanner && (
         <NotificationBanner
           type="advisory"
@@ -84,9 +55,6 @@ const Example = () => {
       <button onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)} type="button">Show/Hide Unsatisfied Banner</button>
       <button onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)} type="button">Show/Hide Unverified Banner</button>
       <button onClick={() => setShowAdvisoryBanner(!showAdvisoryBanner)} type="button">Show/Hide Advisory Banner</button>
-      <button onClick={() => setShowInfoBanner(!showInfoBanner)} type="button">Show/Hide Info Banner</button>
-      <button onClick={() => setShowSuccessBanner(!showSuccessBanner)} type="button">Show/Hide Success Banner</button>
-      <button onClick={() => setShowCustomBanner(!showCustomBanner)} type="button">Show/Hide Custom Banner</button>
     </>
   );
 };

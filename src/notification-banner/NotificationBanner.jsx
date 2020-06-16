@@ -12,23 +12,6 @@ const propTypes = {
    */
   action: PropTypes.element,
   /**
-   * The pieces to populate a banner when type=`custom`.
-   */
-  custom: PropTypes.shape({
-    /**
-     * The title for the banner which will be bolded.
-     */
-    bannerTitle: PropTypes.string,
-    /**
-     * Sets an author-defined class, to control the status bar color to be used.
-     */
-    colorClass: PropTypes.string,
-    /**
-     * The class name used to set the icon in the banner.
-     */
-    icon: PropTypes.element,
-  }),
-  /**
    * Nodes providing the message content for the banner. Can contain text and HTML.
    */
   description: PropTypes.node,
@@ -38,7 +21,7 @@ const propTypes = {
    */
   onRequestDismiss: PropTypes.func,
   /**
-   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `info`, `success`, `unsatisfied`, `unverified` or `custom`.
+   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `unsatisfied`, `unverified` or `advisory`.
    */
   type: PropTypes.oneOf([
     BANNER_TYPES.ALERT,
@@ -47,15 +30,12 @@ const propTypes = {
     BANNER_TYPES.UNSATISFIED,
     BANNER_TYPES.UNVERIFIED,
     BANNER_TYPES.ADVISORY,
-    BANNER_TYPES.INFO,
-    BANNER_TYPES.SUCCESS,
-    BANNER_TYPES.CUSTOM,
   ]).isRequired,
 };
 /* eslint-enable react/no-unused-prop-types */
 
 const NotificationBanner = ({
-  action, custom, description, onRequestDismiss, type,
+  action, description, onRequestDismiss, type,
 }) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
@@ -79,15 +59,12 @@ const NotificationBanner = ({
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
       bannerRegistration.registerNotificationBanner(uuid.current, {
         action,
-        customColorClass: custom?.colorClass,
-        customIcon: custom?.icon,
         key: uuid.current,
         onRequestDismiss,
         type,
-        title: custom?.bannerTitle,
       });
     }
-  }, [bannerRegistration, action, custom, description, onRequestDismiss, type]);
+  }, [bannerRegistration, action, description, onRequestDismiss, type]);
 
   React.useEffect(() => () => {
     if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {

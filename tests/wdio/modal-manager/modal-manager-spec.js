@@ -113,16 +113,16 @@ Terra.describeViewports('ModalManager', ['large'], () => {
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-medium');
   });
 
-  it('renders banners in modal', () => {
+  it('renders notification banners in modal', () => {
     browser.click('#toggle-warning-banner-DemoContainer-1');
     browser.waitForExist('#warning-banner-DemoContainer-1');
-    browser.click('#toggle-info-banner-DemoContainer-1');
-    browser.waitForExist('#info-banner-DemoContainer-1');
+    browser.click('#toggle-advisory-banner-DemoContainer-1');
+    browser.waitForExist('#advisory-banner-DemoContainer-1');
     browser.click('#toggle-error-banner-DemoContainer-1');
     browser.waitForExist('#error-banner-DemoContainer-1');
   });
 
-  it('validates banners in modal banner checkpoint', () => {
-    Terra.validates.element('14. modal banners', { selector });
+  it('validates notification banners in modal banner checkpoint', () => {
+    Terra.validates.element('14. modal notification banners', { selector });
   });
 });

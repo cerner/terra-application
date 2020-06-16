@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils organizes banner by priority allows multiple banners by of one type 1`] = `
+Array [
+  Object {
+    "id": "warning",
+    "type": "warning",
+  },
+  Object {
+    "id": "second-banner-of-type-warning",
+    "type": "warning",
+  },
+]
+`;
+
+exports[`utils organizes banner by priority organizes banner by priority 1`] = `
+Array [
+  Object {
+    "id": "alert",
+    "type": "alert",
+  },
+  Object {
+    "id": "error",
+    "type": "error",
+  },
+  Object {
+    "id": "warning",
+    "type": "warning",
+  },
+  Object {
+    "id": "unsatisfied",
+    "type": "unsatisfied",
+  },
+  Object {
+    "id": "unverified",
+    "type": "unverified",
+  },
+  Object {
+    "id": "advisory",
+    "type": "advisory",
+  },
+]
+`;

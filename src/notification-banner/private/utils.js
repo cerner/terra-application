@@ -5,9 +5,6 @@ const BANNER_TYPES = {
   UNSATISFIED: 'unsatisfied',
   UNVERIFIED: 'unverified',
   ADVISORY: 'advisory',
-  INFO: 'info',
-  SUCCESS: 'success',
-  CUSTOM: 'custom',
 };
 
 const defaultBannerPriority = [
@@ -17,9 +14,6 @@ const defaultBannerPriority = [
   BANNER_TYPES.UNSATISFIED,
   BANNER_TYPES.UNVERIFIED,
   BANNER_TYPES.ADVISORY,
-  BANNER_TYPES.INFO,
-  BANNER_TYPES.SUCCESS,
-  BANNER_TYPES.CUSTOM,
 ];
 
 const organizeBannersByPriority = (banners) => {

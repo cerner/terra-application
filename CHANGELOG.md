@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+1.26.0 - (June 16, 2020)
+------------------
 ### Added
 * Added a logger utility.
 

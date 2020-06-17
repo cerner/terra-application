@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+import ApplicationPageStatus from '../../../application-page-status';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
@@ -9,6 +10,7 @@ const ApplicationContentTest = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [throwError, setThrowError] = useState(false);
   const [blockUnload, setBlockUnload] = useState(false);
+  const [showPageStatus, setShowPageStatus] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
@@ -52,6 +54,17 @@ const ApplicationContentTest = () => {
     </>
   );
 
+  const pageStatusViewTest = (
+    <>
+      <p>
+        Show Status View:
+        {' '}
+        <button id="statusView" type="button" onClick={() => { setShowPageStatus(true); }}>Show</button>
+      </p>
+      {showPageStatus && <ApplicationPageStatus message="Testing ApplicationBase's status view" variant="no-matching-results" />}
+    </>
+  );
+
   const navigationPromptTest = (
     <>
       <p>
@@ -77,6 +90,7 @@ const ApplicationContentTest = () => {
       {intlTest}
       {errorBoundaryTest}
       {loadingOverlayTest}
+      {pageStatusViewTest}
       {navigationPromptTest}
     </div>
   );

@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+### Added
+* Added ApplicationPageStatus
+* Added ApplicationPageStatusProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
 
 1.24.0 - (May 12, 2020)
 ------------------

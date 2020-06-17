@@ -7,6 +7,7 @@ import { injectIntl } from 'react-intl';
 import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { ApplicationPageStatusProvider } from '../application-page-status';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
@@ -58,11 +59,13 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   return (
     <ApplicationErrorBoundary>
       <ApplicationLoadingOverlayProvider>
-        <NavigationPromptCheckpoint
-          ref={promptCheckpointRef}
-        >
-          {children}
-        </NavigationPromptCheckpoint>
+        <ApplicationPageStatusProvider>
+          <NavigationPromptCheckpoint
+            ref={promptCheckpointRef}
+          >
+            {children}
+          </NavigationPromptCheckpoint>
+        </ApplicationPageStatusProvider>
       </ApplicationLoadingOverlayProvider>
     </ApplicationErrorBoundary>
   );

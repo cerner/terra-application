@@ -1,0 +1,16 @@
+:local {
+  .container {
+    height: 100%;
+    outline: none;
+    position: relative;
+  }
+
+  .status-view {
+    background-color: #fff;
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    width: 100%;
+    z-index: 100;
+  }
+}

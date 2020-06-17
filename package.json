@@ -113,6 +113,7 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
+    "terra-button": "^3.39.0",
     "uuid": "^3.0.0"
   },
   "peerDependencies": {

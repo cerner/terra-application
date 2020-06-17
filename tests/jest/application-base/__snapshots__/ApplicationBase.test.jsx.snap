@@ -37,18 +37,20 @@ exports[`ApplicationBase should render with all props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <Suspense
-                    fallback={
-                      <ApplicationLoadingOverlay
-                        backgroundStyle="clear"
-                        isOpen={true}
-                      />
-                    }
-                  >
-                    <div>
-                      content
-                    </div>
-                  </Suspense>
+                  <ApplicationPageStatusProvider>
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
+                    >
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
+                  </ApplicationPageStatusProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
@@ -86,18 +88,20 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <Suspense
-                    fallback={
-                      <ApplicationLoadingOverlay
-                        backgroundStyle="clear"
-                        isOpen={true}
-                      />
-                    }
-                  >
-                    <div>
-                      content
-                    </div>
-                  </Suspense>
+                  <ApplicationPageStatusProvider>
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
+                    >
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
+                  </ApplicationPageStatusProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
@@ -135,18 +139,20 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <Suspense
-                    fallback={
-                      <ApplicationLoadingOverlay
-                        backgroundStyle="clear"
-                        isOpen={true}
-                      />
-                    }
-                  >
-                    <div>
-                      content
-                    </div>
-                  </Suspense>
+                  <ApplicationPageStatusProvider>
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
+                    >
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
+                  </ApplicationPageStatusProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>

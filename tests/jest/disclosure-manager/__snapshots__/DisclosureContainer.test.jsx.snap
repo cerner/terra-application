@@ -3,11 +3,13 @@
 exports[`DisclosureContainer should render the provided children 1`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
+    <ApplicationPageStatusProvider>
+      <withPromptRegistration(NavigationPromptCheckpoint)>
+        <div>
+          Test Child
+        </div>
+      </withPromptRegistration(NavigationPromptCheckpoint)>
+    </ApplicationPageStatusProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>
 `;
@@ -15,11 +17,13 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 exports[`DisclosureContainer should render the provided children 2`] = `
 <ApplicationErrorBoundary>
   <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
+    <ApplicationPageStatusProvider>
+      <withPromptRegistration(NavigationPromptCheckpoint)>
+        <div>
+          Test Child
+        </div>
+      </withPromptRegistration(NavigationPromptCheckpoint)>
+    </ApplicationPageStatusProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationErrorBoundary>
 `;

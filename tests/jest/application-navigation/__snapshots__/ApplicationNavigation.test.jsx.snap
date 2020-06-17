@@ -6,18 +6,20 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <ApplicationErrorBoundary>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        />
-      </ApplicationErrorBoundary>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
+    <ApplicationPageStatusProvider>
+      <withPromptRegistration(NavigationPromptCheckpoint)>
+        <ApplicationErrorBoundary>
+          <Suspense
+            fallback={
+              <ApplicationLoadingOverlay
+                backgroundStyle="clear"
+                isOpen={true}
+              />
+            }
+          />
+        </ApplicationErrorBoundary>
+      </withPromptRegistration(NavigationPromptCheckpoint)>
+    </ApplicationPageStatusProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -87,22 +89,24 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <ApplicationErrorBoundary>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        >
-          <div>
-            test child content
-          </div>
-        </Suspense>
-      </ApplicationErrorBoundary>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
+    <ApplicationPageStatusProvider>
+      <withPromptRegistration(NavigationPromptCheckpoint)>
+        <ApplicationErrorBoundary>
+          <Suspense
+            fallback={
+              <ApplicationLoadingOverlay
+                backgroundStyle="clear"
+                isOpen={true}
+              />
+            }
+          >
+            <div>
+              test child content
+            </div>
+          </Suspense>
+        </ApplicationErrorBoundary>
+      </withPromptRegistration(NavigationPromptCheckpoint)>
+    </ApplicationPageStatusProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

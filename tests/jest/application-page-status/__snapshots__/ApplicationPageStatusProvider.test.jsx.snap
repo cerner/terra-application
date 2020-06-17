@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationPageStatusProvider Snapshots should render a single status view with the configuration from the last rendered ApplicationPageStatus when more than one are specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Third message"
+    variant="no-data"
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render the status view based on the current state 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={
+      Array [
+        Object {
+          "key": 1,
+          "size": "medium",
+          "text": "Action 1",
+        },
+        Object {
+          "key": 2,
+          "size": "medium",
+          "text": "Action 2",
+        },
+      ]
+    }
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Status View with all props specified"
+    title="Jest Test"
+    variant="no-data"
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render the status view when only buttonAttrs is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={
+      Array [
+        Object {
+          "key": 1,
+          "size": "medium",
+          "text": "Action 1",
+        },
+      ]
+    }
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render the status view when only message is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Status View with only message specified"
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render the status view when only title is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    title="Jest Test"
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render the status view when only variant is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    variant="error"
+  />
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render with custom props 1`] = `
+<div
+  className="container testClassName"
+>
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    />
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render with minimal props 1`] = `
+<div
+  className="container"
+>
+  <Scroll>
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    />
+  </Scroll>
+</div>
+`;
+
+exports[`ApplicationPageStatusProvider Snapshots should render with optional props 1`] = `
+<div
+  className="container"
+>
+  <Scroll
+    refCallback={[MockFunction]}
+  >
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    >
+      <div>
+        Test child
+      </div>
+    </ContextProvider>
+  </Scroll>
+</div>
+`;

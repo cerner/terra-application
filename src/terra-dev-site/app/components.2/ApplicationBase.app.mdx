@@ -44,6 +44,10 @@ ApplicationBase renders an [ApplicationErrorBoundary](/application/terra-applica
 
 ApplicationBase renders an [ApplicationLoadingOverlayProvider](/application/terra-application/application/application/application-loading-overlay) around its children. Any [ApplicationLoadingOverlay](/application/terra-application/application/application/application-loading-overlay) components rendered by children will result in loading overlays being rendered by ApplicationBase.
 
+### Status Views
+
+ApplicationBase renders an [ApplicationPageStatusProvider](/application/terra-application/components/application-page-status-provider) around its children. Any [ApplicationPageStatus](/application/terra-application/components/application-page-status) components rendered by children will result in a status view being rendered by ApplicationBase.
+
 ### Unsaved Changes
 
 ApplicationBase monitors its children for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt). ApplicationBase will ensure that the user is prompted using a browser-native confirmation dialog prior to any window unload event if any [NavigationPrompts](/application/terra-application/application/application/navigation-prompt) are rendered at the time of the unload request.

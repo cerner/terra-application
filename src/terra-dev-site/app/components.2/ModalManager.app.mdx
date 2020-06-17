@@ -37,6 +37,16 @@ components rendered by children will cause a loading overlay to be rendered over
 > it is recommended that those components render an additional ApplicationLoadingOverlayProvider below their modal header to keep
 > the header controls for modal dismissal exposed while the overlay is active.
 
+### Status Views
+
+ModalManager renders an [ApplicationPageStatusProvider](/application/terra-application/components/application-page-status-provider)
+around its disclosed components. Any [ApplicationPageStatus](/application/terra-application/components/application-page-status)
+components rendered by children will cause a status view to be rendered over the modal's contents.
+
+> If the disclosed modal contents do not utilize the DisclosureManagerHeaderAdapter and render their own modal header instead,
+> it is recommended that those components render an additional ApplicationPageStatusProvider below their modal header to keep
+> the header controls for modal dismissal exposed while the status view is active.
+
 ### Unsaved Changes
 
 ModalManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt)

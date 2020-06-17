@@ -1,0 +1,23 @@
+import ApplicationPageStatusProviderProps from 'terra-application/lib/application-page-status/ApplicationPageStatusProvider?dev-site-props-table';
+
+# ApplicationPageStatusProvider
+
+The ApplicationPageStatusProvider defines a container within which a Status View may be presented.
+
+[ApplicationPageStatus](/application/terra-application/components/application-page-status) components rendered by children of the ApplicationPageStatusProvider will cause the
+ApplicationPageStatusProvider to render a status view on top of those children. A single status view will be rendered, even if multiple ApplicationPageStatus components
+are rendered at the same time, with the last rendered ApplicationPageStatus getting the preference.
+
+> Note: The ApplicationPageStatusProvider has a default height of `100%`. This allows the status view to be appropriately
+> positioned over the rest of the provider's content. If a different height is desired, a custom class can be provieded to
+> the ApplicationPageStatusProvider to override the default value.
+
+## Usage
+
+```jsx
+import { ApplicationPageStatusProvider } from 'terra-application/lib/application-page-status';
+```
+
+## Props
+
+<ApplicationPageStatusProviderProps />

@@ -6,20 +6,18 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
-        <ApplicationErrorBoundary>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
-              />
-            }
-          />
-        </ApplicationErrorBoundary>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    <withPromptRegistration(NavigationPromptCheckpoint)>
+      <InjectIntl(ApplicationErrorBoundary)>
+        <Suspense
+          fallback={
+            <ApplicationLoadingOverlay
+              backgroundStyle="clear"
+              isOpen={true}
+            />
+          }
+        />
+      </InjectIntl(ApplicationErrorBoundary)>
+    </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -89,24 +87,22 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
-        <ApplicationErrorBoundary>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
-              />
-            }
-          >
-            <div>
-              test child content
-            </div>
-          </Suspense>
-        </ApplicationErrorBoundary>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    <withPromptRegistration(NavigationPromptCheckpoint)>
+      <InjectIntl(ApplicationErrorBoundary)>
+        <Suspense
+          fallback={
+            <ApplicationLoadingOverlay
+              backgroundStyle="clear"
+              isOpen={true}
+            />
+          }
+        >
+          <div>
+            test child content
+          </div>
+        </Suspense>
+      </InjectIntl(ApplicationErrorBoundary)>
+    </withPromptRegistration(NavigationPromptCheckpoint)>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

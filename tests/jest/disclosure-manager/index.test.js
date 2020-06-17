@@ -1,8 +1,8 @@
 import DisclosureManager, {
-  withDisclosureManager, // eslint-disable-line import/named
-  disclosureManagerShape, // eslint-disable-line import/named
-  DisclosureManagerContext, // eslint-disable-line import/named
-  DisclosureManagerDelegate, // eslint-disable-line import/named
+  withDisclosureManager,
+  disclosureManagerShape,
+  DisclosureManagerContext,
+  DisclosureManagerDelegate,
   getActiveDisclosureCount,
   closeMostRecentDisclosure,
 } from '../../../src/disclosure-manager';

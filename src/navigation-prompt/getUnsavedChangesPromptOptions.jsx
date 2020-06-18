@@ -7,7 +7,6 @@ import React from 'react';
 export default intl => (prompts) => {
   let startMessage;
   let content;
-  let endMessage;
 
   if (prompts.length === 1) {
     startMessage = intl.formatMessage({
@@ -28,11 +27,11 @@ export default intl => (prompts) => {
       </ul>
     );
     /* eslint-enable react/no-array-index-key */
-
-    endMessage = intl.formatMessage({
-      id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
-    });
   }
+
+  const endMessage = intl.formatMessage({
+    id: 'terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro',
+  });
 
   return {
     title: intl.formatMessage({

@@ -4,6 +4,9 @@ Changelog
 Unreleased
 ----------
 
+### Fixed
+* Fixed ErrorBoundary intl prop-type checking
+
 1.26.0 - (June 16, 2020)
 ------------------
 ### Added

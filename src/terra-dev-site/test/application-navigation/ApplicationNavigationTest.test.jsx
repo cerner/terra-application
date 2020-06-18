@@ -6,7 +6,7 @@ import NavigationPrompt from '../../../navigation-prompt';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
   <p>
-  Toggle pending action
+    Toggle pending action
     {`${index}: `}
     <button
       id={`pending-action-toggle-${index}`}

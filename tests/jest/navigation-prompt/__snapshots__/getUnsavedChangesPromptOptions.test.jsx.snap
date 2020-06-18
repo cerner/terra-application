@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for a single prompt 1`] = `
+exports[`getUnsavedChangesPromptOptions generates a function that provides appropriate messaging for a single prompt 1`] = `
 Object {
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
@@ -13,7 +13,7 @@ Object {
 }
 `;
 
-exports[`getPendingActionPromptOptions generates a function that provides appropriate messaging for multiple prompts 1`] = `
+exports[`getUnsavedChangesPromptOptions generates a function that provides appropriate messaging for multiple prompts 1`] = `
 Object {
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",

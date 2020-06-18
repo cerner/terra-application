@@ -7,6 +7,9 @@ Unreleased
 * Changed the file extension for the breakpoints doc.
 * Update translated navigation prompt messages
 
+### Fixed
+* Fixed ErrorBoundary intl prop-type checking
+
 1.26.0 - (June 16, 2020)
 ------------------
 ### Added

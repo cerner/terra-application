@@ -30,7 +30,7 @@ exports[`ApplicationBase should render with all props 1`] = `
           </div>
         }
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <withPromptRegistration(NavigationPromptCheckpoint)
@@ -53,7 +53,7 @@ exports[`ApplicationBase should render with all props 1`] = `
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>
@@ -79,7 +79,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
         locale="en"
         strictMode={false}
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <withPromptRegistration(NavigationPromptCheckpoint)
@@ -102,7 +102,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>
@@ -128,7 +128,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
         locale="en"
         strictMode={false}
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <withPromptRegistration(NavigationPromptCheckpoint)
@@ -151,7 +151,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>

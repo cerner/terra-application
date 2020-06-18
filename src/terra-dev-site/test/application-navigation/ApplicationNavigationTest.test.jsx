@@ -29,7 +29,7 @@ const PageContent = ({ title }) => {
   const [hasPendingAction2, setHasPendingAction2] = useState(false);
 
   return (
-    <div>
+    <div data-nav-test-content>
       <p>{title}</p>
       <PendingAction
         index="1"

@@ -68,7 +68,7 @@ const ModalContent = ({ name, onSubmit }) => {
               onSubmit();
             }}
           >
-          Done
+            Done
           </button>
           <h3>Configuration Properties</h3>
           <p>
@@ -129,7 +129,7 @@ const ModalPresenter = () => {
           });
         }}
       >
-      Show Modal
+        Show Modal
       </button>
     </div>
   );

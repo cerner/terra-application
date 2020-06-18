@@ -4,6 +4,22 @@ Changelog
 Unreleased
 ----------
 
+1.26.0 - (June 16, 2020)
+------------------
+### Added
+* Added a logger utility.
+
+1.25.0 - (June 9, 2020)
+------------------
+### Changed
+* Updated eslint-config-terra to @cerner/eslint-config-terra v^4.0.0
+* Removed unnecessary disabled rules.
+
+1.24.0 - (May 12, 2020)
+------------------
+### Added
+* Track callback functions to close currently disclosed content. Each disclosure will be registered to the same stack. This will allow disclosures to be be closed by external events like the Android back button.
+
 1.23.0 - (May 5, 2020)
 ------------------
 ### Added
@@ -12,6 +28,7 @@ Unreleased
 1.22.0 - (April 28, 2020)
 ------------------
 ### Changed
+* Updated errorBoundary to have a default error message when there is none provided.
 * Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)

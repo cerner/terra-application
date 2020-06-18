@@ -12,11 +12,12 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       Terra.validates.element('1. primary navigation item prompt', { selector });
 
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(1)');
-      Terra.validates.element('2. primary navigation item prompt reject', { selector: 'main main' });
+      Terra.validates.element('2. primary navigation item prompt reject', { selector: '[data-nav-test-content="true"]' });
 
       browser.click('div[aria-label="Page 2"]');
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
+<<<<<<< HEAD
       Terra.validates.element('3. primary navigation item prompt accept', { selector: 'main main' });
 
       browser.click('#pending-action-toggle-1');
@@ -25,6 +26,9 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       Terra.validates.element('4. primary navigation item prompt with multiple prompts', { selector: 'main main' });
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
+=======
+      Terra.validates.element('3. primary navigation item prompt accept', { selector: '[data-nav-test-content="true"]' });
+>>>>>>> master
     });
 
     it('prompts user when selecting logout', () => {

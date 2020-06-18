@@ -3,14 +3,9 @@ import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
 const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
   /**
-   * DEPRECATED - The title string for the NotificationDialog.
-   *   Use `dialogTitle` instead.
-   */
-  title: PropTypes.string,
-  /**
    * The title string for the NotificationDialog.
    */
-  dialogTitle: PropTypes.string,
+  title: PropTypes.string,
   /**
    * The startMessage string for the NotificationDialog.
    */

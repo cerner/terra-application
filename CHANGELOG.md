@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Update translated navigation prompt messages
 
 1.26.0 - (June 16, 2020)
 ------------------
@@ -35,9 +37,6 @@ Unreleased
 ------------------
 ### Added
 * Added theme strategy guide
-
-### Changed
-* Update translated navigation prompt messages
 
 1.20.0 - (April 14, 2020)
 ------------------

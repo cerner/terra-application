@@ -4,6 +4,7 @@ Changelog
 Unreleased
 ----------
 ### Changed
+* Changed the file extension for the breakpoints doc.
 * Update translated navigation prompt messages
 
 1.26.0 - (June 16, 2020)

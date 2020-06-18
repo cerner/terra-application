@@ -15,7 +15,7 @@ const propTypes = {
    * @private
    * Intl object for translations.
    */
-  intl: PropTypes.shape(intlShape),
+  intl: intlShape,
 };
 
 /**

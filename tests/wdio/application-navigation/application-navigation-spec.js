@@ -5,7 +5,7 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
     before(() => browser.url('/raw/tests/terra-application/application-navigation/application-navigation-test'));
 
     it('prompts user when selecting primary navigation items', () => {
-      browser.click('#pending-action-toggle');
+      browser.click('#pending-action-toggle-1');
       browser.click('div[aria-label="Page 2"]');
 
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
@@ -18,19 +18,26 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
       Terra.validates.element('3. primary navigation item prompt accept', { selector: '[data-nav-test-content="true"]' });
+
+      browser.click('#pending-action-toggle-1');
+      browser.click('#pending-action-toggle-2');
+      browser.click('div[aria-label="Page 1"]');
+      browser.waitForVisible('[data-terra-notification-dialog="true"]');
+      Terra.validates.element('4. primary navigation item prompt with multiple prompts', { selector: 'main main' });
+      browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
     });
 
     it('prompts user when selecting logout', () => {
-      browser.click('#pending-action-toggle');
+      browser.click('#pending-action-toggle-1');
       browser.click('[data-application-header-utility="true"]');
       browser.waitForVisible('[data-terra-popup-content="true"]');
       browser.click('[data-terra-popup-content="true"] button');
 
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
-      Terra.validates.element('4. logout prompt item prompt', { selector });
+      Terra.validates.element('5. logout prompt item prompt', { selector });
 
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(1)');
-      Terra.validates.element('5. logout prompt reject', { selector });
+      Terra.validates.element('6. logout prompt reject', { selector });
 
       browser.click('[data-application-header-utility="true"]');
       browser.waitForVisible('[data-terra-popup-content="true"]');
@@ -38,7 +45,7 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
 
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
-      Terra.validates.element('6. logout prompt accept', { selector });
+      Terra.validates.element('7. logout prompt accept', { selector });
     });
   });
 

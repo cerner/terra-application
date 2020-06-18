@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Update translated navigation prompt messages
 
 ### Fixed
 * Fixed ErrorBoundary intl prop-type checking

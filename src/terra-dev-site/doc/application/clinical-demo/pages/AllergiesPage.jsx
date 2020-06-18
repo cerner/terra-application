@@ -6,8 +6,9 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 
 import useDeferredInitializer from '../useDeferredInitializer';
 import styles from './ChartSummaryPage.module.scss';
-import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
+import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import AddAllergyModal from '../modals/AddAllergyModal';
+import PendingActionToggle from '../../demo/PendingActionToggle';
 
 const cx = classNames.bind(styles);
 
@@ -56,6 +57,16 @@ const AllergiesPage = ({ onRequestDismiss }) => {
             <Item className={cx('list-item')}>Catdog</Item>
             <Item className={cx('list-item')}>Seasonal</Item>
           </List>
+        </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Pending Actions
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <PendingActionToggle />
+          </div>
         </div>
         {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />}
       </div>

@@ -14,8 +14,9 @@ import OrdersPage from './OrdersPage';
 import PrintModal from '../modals/PrintModal';
 
 import styles from './ChartSummaryPage.module.scss';
-import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
+import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import PagePresentingModal from '../modals/PagePresentingModal';
+import PendingActionToggle from '../../demo/PendingActionToggle';
 
 const cx = classNames.bind(styles);
 
@@ -97,6 +98,16 @@ const ChartSummaryPage = ({ onRequestDismiss }) => {
             <Item className={cx('list-item')}>Shoulder Pain</Item>
             <Item className={cx('list-item')}>Neck Pain</Item>
           </List>
+        </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Pending Actions
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <PendingActionToggle />
+          </div>
         </div>
       </div>
       {/* */}

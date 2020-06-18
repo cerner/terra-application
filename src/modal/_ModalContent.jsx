@@ -16,6 +16,7 @@ import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
+import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
 
 const cx = classNamesBind.bind(styles);
 
@@ -108,7 +109,7 @@ const ModalContent = (props) => {
   //     hideModalDomUpdates(modalTrigger, rootSelector);
   //   };
   // }, [ref, rootSelector]);
-
+  const applicationConcept = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
   const modalClassName = classNames(cx(
     'abstract-modal',
@@ -152,17 +153,20 @@ const ModalContent = (props) => {
         <ContentContainer
           fill
           header={(
-            <PageLayoutHeader
-              title={title}
-              actions={(actions || []).concat({
-                key: 'close',
-                text: 'Close',
-                icon: <IconClose />,
-                onSelect: () => {
-                  onRequestClose();
-                },
-              })}
-            />
+            <>
+              <PageLayoutHeader
+                title={title}
+                actions={(actions || []).concat({
+                  key: 'close',
+                  text: 'Close',
+                  icon: <IconClose />,
+                  onSelect: () => {
+                    onRequestClose();
+                  },
+                })}
+              />
+              {applicationConcept && applicationConcept.renderModalConceptView()}
+            </>
           )}
           footer={(
             <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />

@@ -1,14 +1,18 @@
 import React, { useContext, useState, useRef } from 'react';
+import ContentContainer from 'terra-content-container';
 
 import ApplicationBase from 'terra-application/lib/application-base';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import ModalManager from 'terra-application/lib/modal-manager';
 import { ThemeContext } from 'terra-application/lib/theme';
 import ApplicationNavigation from 'terra-application/lib/application-navigation';
+import DemographicsBanner from 'terra-demographics-banner';
+
+import ApplicationConceptContext from 'terra-application/lib/application-concept/ApplicationConceptContext';
 
 import PageLayoutContainer from '../../../application-page/PageLayoutContainer';
-import ChartSummaryPage from './demo/page-layout/clinical-demo/pages/ChartSummaryPage';
-import OrdersPage from './demo/page-layout/clinical-demo/pages/OrdersPage';
+import ChartSummaryPage from './clinical-demo/pages/ChartSummaryPage';
+import OrdersPage from './clinical-demo/pages/OrdersPage';
+import DocumentsLayout from './clinical-demo/layouts/DocumentsLayout';
 
 window.TEST_APP_TIMEOUT = 3000;
 
@@ -27,6 +31,9 @@ const ClinicalDemoAppNavigation = () => {
   }, {
     key: 'page_1',
     text: 'Order',
+  }, {
+    key: 'page_2',
+    text: 'Document',
   }]);
 
   if (loggedOut) {
@@ -41,13 +48,21 @@ const ClinicalDemoAppNavigation = () => {
   let pageContent;
   switch (activeNavItem) {
     case 'page_0':
-      pageContent = <ChartSummaryPage />;
+      pageContent = (
+        <PageLayoutContainer>
+          <ChartSummaryPage />
+        </PageLayoutContainer>
+      );
       break;
     case 'page_1':
-      pageContent = <OrdersPage />;
+      pageContent = (
+        <PageLayoutContainer>
+          <OrdersPage />
+        </PageLayoutContainer>
+      );
       break;
     default:
-      pageContent = null;
+      pageContent = <DocumentsLayout />;
       break;
   }
 
@@ -65,9 +80,16 @@ const ClinicalDemoAppNavigation = () => {
         setLoggedOut(true);
       }}
     >
-      <PageLayoutContainer>
-        {pageContent}
-      </PageLayoutContainer>
+      <ApplicationConceptContext.Consumer>
+        {(applicationConcept) => (
+          <ContentContainer
+            header={applicationConcept.renderPageConceptView()}
+            fill
+          >
+            {pageContent}
+          </ContentContainer>
+        )}
+      </ApplicationConceptContext.Consumer>
     </ApplicationNavigation>
   );
 };
@@ -77,9 +99,33 @@ const ClinicalDemoAppIndex = () => {
   const theme = React.useContext(ThemeContext);
   return (
     <ApplicationBase locale={applicationIntl.locale} themeName={theme.className}>
-      <ModalManager>
+      <ApplicationConceptContext.Provider
+        value={{
+          renderPageConceptView: () => (
+            <div style={{ borderTop: '1px solid #002238' }}>
+              <DemographicsBanner
+                age="25 Years"
+                dateOfBirth="May 9, 1993"
+                gender="Male"
+                personName="Johnathon Doe"
+                preferredFirstName="John"
+              />
+            </div>
+          ),
+          renderModalConceptView: () => (
+            <DemographicsBanner
+              age="25 Years"
+              dateOfBirth="May 9, 1993"
+              gender="Male"
+              personName="Johnathon (Modal) Doe"
+              preferredFirstName="John"
+              deceasedDate="June 16, 2020"
+            />
+          ),
+        }}
+      >
         <ClinicalDemoAppNavigation />
-      </ModalManager>
+      </ApplicationConceptContext.Provider>
     </ApplicationBase>
   );
 };

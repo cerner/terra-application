@@ -68,22 +68,6 @@ API:
 </Modal>
 ```
 
-```jsx
-<ContentPortal
-  type="modal"
-  title={'Example Title'}       // doubles as aria-label (?)
-  role="dialog"                 // might be able to default this
-  size={'TBD'}                  // Size API from disclosure API, or something new?
-  isOpen={modalIsOpen}
-  onRequestClose={() => {
-    setModalIsOpen(false);
-  }}
->
-  <div>Modal Content</div>
-</ContentPortal>
-```
-
-
 Outstanding Questions:
 
 * How do we handle the display of notification banners within these content-driven modals?
@@ -394,3 +378,35 @@ The Framework Dialog would have the highest z-index and present over all other p
 API:
 
 Similar to Notification Dialog, just entirely local to a framework component.
+
+
+# TODO
+
+* Application Concept
+  * Define API for specifying page/modal banners
+  * Determine ideal placement locations
+* Page Layout
+  * Consume Application Concept API
+  * Accessibility investigation
+  * Actions API
+  * Better Back button?
+  * NotificationBanner integration
+* Side Nav Layout
+  * Determine data persistance expectations
+* Modals
+  * Consume Application Concept API
+  * Determine stacking patterns
+  * Inert implementation
+  * Better sizing API
+  * Header/Footer Actions API
+  * NotificationBanner Integration
+* Popups
+  * Implementation with LayerPortal and everything that comes with it
+* Notification Dialog
+  * Implementation with LayerPortal and everything that comes with it
+  * Investigate imperative API implementation
+* Blocking Overlay
+  * Implementation with LayerPortal and everything that comes with it
+  * Investigate multi-phase presentation
+* Framework Dialog
+  * Implementation with LayerPortal and everything that comes with it

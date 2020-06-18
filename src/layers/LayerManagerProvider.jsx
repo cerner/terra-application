@@ -7,27 +7,8 @@ class LayerNodeManager {
   constructor(containerRef) {
     this._containerRef = containerRef || { current: document.body };
     this._nodeMap = {};
+    this._nodeArray = [];
   }
-
-  // hideAncestors(key) {
-  //   if (!this._containerRef.current) {
-  //     return;
-  //   }
-
-  //   const nodeData = this._nodeMap[key];
-
-  //   if (!nodeData) {
-  //     return;
-  //   }
-
-  //   if (this._containerRef.current.contains(nodeData.element)) {
-  //     this._containerRef.current.removeChild(nodeData.element);
-  //   }
-
-  //   if (nodeData.ancestor) {
-  //     this.hideAncestors(nodeData.ancestor);
-  //   }
-  // }
 
   getNode(layerKey) {
     const existingNode = this._nodeMap[layerKey];
@@ -37,7 +18,7 @@ class LayerNodeManager {
     }
 
     const newPortalElement = document.createElement('div');
-    newPortalElement['data-terra-layer-id'] = layerKey;
+    newPortalElement.setAttribute('data-terra-layer-id', layerKey);
     newPortalElement.style.position = 'absolute';
     newPortalElement.style.top = '0';
     newPortalElement.style.bott0m = '0';
@@ -47,9 +28,20 @@ class LayerNodeManager {
     newPortalElement.style.width = '100%';
     newPortalElement.style.zIndex = '1';
 
+    this._nodeArray.push(newPortalElement);
+
     this._nodeMap[layerKey] = {
       element: newPortalElement,
     };
+
+    this._nodeArray.slice(0, -1).forEach((element) => {
+      element.style.display = 'none';
+      element.setAttribute('inert', undefined);
+    });
+
+    if (this._nodeArray.length === 1) {
+      document.body.querySelector('#root').setAttribute('inert', undefined);
+    }
 
     this._containerRef.current.appendChild(newPortalElement);
 
@@ -68,6 +60,15 @@ class LayerNodeManager {
     }
 
     this._nodeMap[layerKey] = undefined;
+
+    this._nodeArray.splice(this._nodeArray.findIndex((element) => element.getAttribute('data-terra-layer-id') === layerKey), 1);
+
+    if (this._nodeArray[this._nodeArray.length - 1]) {
+      this._nodeArray[this._nodeArray.length - 1].style.display = 'block';
+      this._nodeArray[this._nodeArray.length - 1].removeAttribute('inert');
+    } else {
+      document.body.querySelector('#root').removeAttribute('inert');
+    }
   }
 }
 

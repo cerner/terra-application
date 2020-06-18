@@ -12,7 +12,8 @@ import styles from './ChartSummaryPage.module.scss';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';
 import useDeferredInitializer from '../useDeferredInitializer';
-import ApplicationLoadingOverlay from '../../../../../../../application-loading-overlay';
+import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
+import PendingActionToggle from '../../demo/PendingActionToggle';
 
 const cx = classNames.bind(styles);
 
@@ -93,6 +94,16 @@ const OrdersPage = ({ onRequestDismiss }) => {
             <Item className={cx('list-item')}>Aspirin</Item>
             <Item className={cx('list-item')}>Multivitamin</Item>
           </List>
+        </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Pending Actions
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <PendingActionToggle />
+          </div>
         </div>
       </div>
       {showDetails && (

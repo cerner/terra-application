@@ -7,13 +7,14 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
-import AllergiesPage from './AllergiesPage';
-import styles from './ChartSummaryPage.module.scss';
+import AllergyProfilePage from './AllergyProfilePage';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';
 import useDeferredInitializer from '../useDeferredInitializer';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import PendingActionToggle from '../../demo/PendingActionToggle';
+
+import styles from './ChartReviewPage.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -117,7 +118,7 @@ const OrdersPage = ({ onRequestDismiss }) => {
           </div>
         </PageLayout>
       )}
-      {showAllergiesProfile && <AllergiesPage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
+      {showAllergiesProfile && <AllergyProfilePage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
       {showAddOrderModal && <AddOrderModal onRequestDismiss={() => { setShowAddOrderModal(false); }} />}
       {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
     </PageLayout>

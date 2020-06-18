@@ -9,14 +9,15 @@ import IconTag from 'terra-icon/lib/icon/IconTag';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
 import useDeferredInitializer from '../useDeferredInitializer';
-import AllergiesPage from './AllergiesPage';
-import OrdersPage from './OrdersPage';
+import AllergyProfilePage from './AllergyProfilePage';
+import OrderProfilePage from './OrderProfilePage';
 import PrintModal from '../modals/PrintModal';
 
-import styles from './ChartSummaryPage.module.scss';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import PagePresentingModal from '../modals/PagePresentingModal';
 import PendingActionToggle from '../../demo/PendingActionToggle';
+
+import styles from './ChartReviewPage.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -111,8 +112,8 @@ const ChartSummaryPage = ({ onRequestDismiss }) => {
         </div>
       </div>
       {/* */}
-      {showAllergiesProfile && <AllergiesPage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
-      {showOrderProfile && <OrdersPage onRequestDismiss={() => { setShowOrderProfile(false); }} />}
+      {showAllergiesProfile && <AllergyProfilePage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
+      {showOrderProfile && <OrderProfilePage onRequestDismiss={() => { setShowOrderProfile(false); }} />}
       {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
       {showPageModal && <PagePresentingModal onRequestDismiss={() => { setShowPageModal(false); }} />}
     </PageLayout>

@@ -7,9 +7,9 @@ import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import PageLayoutHeader from 'terra-application/lib/application-page/PageLayoutHeader';
 import SideNavLayout, { SideNavPage } from '../../../../../application-page/SideNavLayout';
 
-import ChartSummaryPage from '../pages/ChartSummaryPage';
-import OrdersPage from '../pages/OrdersPage';
-import AllergiesPage from '../pages/AllergiesPage';
+import ChartReviewPage from '../pages/ChartReviewPage';
+import OrderProfilePage from '../pages/OrderProfilePage';
+import AllergyProfilePage from '../pages/AllergyProfilePage';
 
 const DocumentsNavigationPanel = ({ selectedItemKey, onSelectItem }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -79,19 +79,19 @@ const DocumentsLayout = () => {
         sideNavKey="summary"
         cleanupRenderIfPossible
         render={() => (
-          <ChartSummaryPage />
+          <ChartReviewPage />
         )}
       />
       <SideNavPage
         sideNavKey="orders"
         render={() => (
-          <OrdersPage />
+          <OrderProfilePage />
         )}
       />
       <SideNavPage
         sideNavKey="allergies"
       >
-        <AllergiesPage />
+        <AllergyProfilePage />
       </SideNavPage>
     </SideNavLayout>
   );

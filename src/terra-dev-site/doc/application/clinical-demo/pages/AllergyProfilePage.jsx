@@ -5,10 +5,11 @@ import PageLayout from 'terra-application/lib/application-page/PageLayout';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 
 import useDeferredInitializer from '../useDeferredInitializer';
-import styles from './ChartSummaryPage.module.scss';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import AddAllergyModal from '../modals/AddAllergyModal';
 import PendingActionToggle from '../../demo/PendingActionToggle';
+
+import styles from './ChartReviewPage.module.scss';
 
 const cx = classNames.bind(styles);
 

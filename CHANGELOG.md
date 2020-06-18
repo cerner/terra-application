@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Updated reference links.
 
 1.26.0 - (June 16, 2020)
 ------------------

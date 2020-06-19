@@ -5,6 +5,7 @@ Unreleased
 ----------
 ### Changed
 * Updated reference links.
+* Changed the file extension for the breakpoints doc.
 * Update translated navigation prompt messages
 
 ### Fixed

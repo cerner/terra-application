@@ -7,6 +7,14 @@ Unreleased
 * Added ApplicationPageStatus
 * Added ApplicationPageStatusProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
 
+### Changed
+* Updated reference links.
+* Changed the file extension for the breakpoints doc.
+* Update translated navigation prompt messages
+
+### Fixed
+* Fixed ErrorBoundary intl prop-type checking
+
 1.26.0 - (June 16, 2020)
 ------------------
 ### Added

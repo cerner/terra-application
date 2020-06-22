@@ -1,6 +1,6 @@
 # How To Use Active Breakpoint
 
-The active breakpoint value can be determined by using the [ActiveBreakpointContext](/application/terra-application/application/contexts/active-breakpoint-context). Components that use the ActiveBreakpointContext will be updated whenever the active breakpoint value changes.
+The active breakpoint value can be determined by using the [ActiveBreakpointContext](/application/terra-application/contexts/active-breakpoint-context). Components that use the ActiveBreakpointContext will be updated whenever the active breakpoint value changes.
 
 ```jsx
 import React, { useContext } from 'react';
@@ -20,4 +20,4 @@ const ExampleComponent = () => {
 export default ExampleComponent;
 ```
 
-> Note: An ActiveBreakpointContext value is provided by [ApplicationBase](/application/terra-application/application/application/application-base). The rendering of additional ActiveBreakpointContext providers should be unnecessary is most cases.
+> Note: An ActiveBreakpointContext value is provided by [ApplicationBase](/application/terra-application/components/application-base). The rendering of additional ActiveBreakpointContext providers should be unnecessary is most cases.

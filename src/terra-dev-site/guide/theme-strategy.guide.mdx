@@ -17,7 +17,7 @@ This guide will walk through theming an example component. The example component
 
 ## Theme Context
 
-An application's theme is provided through [React context](https://reactjs.org/docs/context.html) by a theme provider. [Application Base](/application/terra-application/application/application-base) initializes a theme provider automatically. The theme value is accessed using the [theme context](/application/terra-application/contexts/theme-context) from terra-application.
+An application's theme is provided through [React context](https://reactjs.org/docs/context.html) by a theme provider. [Application Base](/application/terra-application/components/application-base) initializes a theme provider automatically. The theme value is accessed using the [theme context](/application/terra-application/contexts/theme-context) from terra-application.
 
 ```jsx
 import { ThemeContext } from 'terra-application/lib/theme';
@@ -114,7 +114,7 @@ module.exports = themeConfig;
 
 ## Example
 
-Toggle the theme from the dropdown at the top of the page to see changes. The full example code can be seen [here](https://github.com/cerner/terra-application/tree/master/src/terra-dev-site/doc/application/how-to.2/example).
+Toggle the theme from the dropdown at the top of the page to see changes.
 
 <ExampleComponent isExpanded />
 

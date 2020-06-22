@@ -3,7 +3,7 @@ import PropsTable from 'terra-application/lib/modal-manager/ModalManager?dev-sit
 # ModalManager
 
 The ModalManager exposes its children to modal presentation APIs through the
-[DisclosureManagerContext](/application/terra-application/application/contexts/disclosure-manager-context).
+[DisclosureManagerContext](/application/terra-application/contexts/disclosure-manager-context).
 
 ## Usage
 
@@ -19,7 +19,7 @@ import ModalManager from 'terra-application/lib/modal-manager';
 
 ### Exception Handling
 
-ModalManager renders an [ApplicationErrorBoundary](/application/terra-application/application/application/application-error-boundary)
+ModalManager renders an [ApplicationErrorBoundary](/application/terra-application/components/application-error-boundary)
 around its disclosed components. If the disclosed components throw exceptions during React lifecycle functions, ModalManager will
 catch the exceptions and render a styled error component in place of the children.
 
@@ -29,8 +29,8 @@ catch the exceptions and render a styled error component in place of the childre
 
 ### Loading Overlays
 
-ModalManager renders an [ApplicationLoadingOverlayProvider](/application/terra-application/application/application/application-loading-overlay)
-around its disclosed components. Any [ApplicationLoadingOverlay](/application/terra-application/application/application/application-loading-overlay)
+ModalManager renders an [ApplicationLoadingOverlayProvider](/application/terra-application/components/application-loading-overlay-provider)
+around its disclosed components. Any [ApplicationLoadingOverlay](/application/terra-application/components/application-loading-overlay)
 components rendered by children will cause a loading overlay to be rendered over the modal's contents.
 
 > If the disclosed modal contents do not utilize the DisclosureManagerHeaderAdapter and render their own modal header instead,
@@ -49,15 +49,15 @@ components rendered by children will cause a status view to be rendered over the
 
 ### Unsaved Changes
 
-ModalManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/application/terra-application/application/application/navigation-prompt)
+ModalManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/application/terra-application/components/navigation-prompt)
 within its disclosed content. ModalManager will ensure that the user is prompted prior to dismissing the presented modal if any
-[NavigationPrompts](/application/terra-application/application/application/navigation-prompt) are rendered at the time of the dismissal request.
+[NavigationPrompts](/application/terra-application/components/navigation-prompt) are rendered at the time of the dismissal request.
 
 ## Details
 
 ### Implementation Requirements
 
-The ModalManager utilizes the [DisclosureManagerContext](/application/terra-application/application/contexts/disclosure-manager-context) to manage disclosure requests.
+The ModalManager utilizes the [DisclosureManagerContext](/application/terra-application/contexts/disclosure-manager-context) to manage disclosure requests.
 
 The ModalManager responds to `"modal"` disclosure type requests. Components that wish to disclose content using the ModalManager
 should provide a preferred type of `"modal"`.

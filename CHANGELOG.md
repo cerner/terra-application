@@ -3,6 +3,9 @@ Changelog
 
 Unreleased
 ----------
+
+1.27.0 - (June 23, 2020)
+------------------
 ### Changed
 * Updated reference links.
 * Changed the file extension for the breakpoints doc.

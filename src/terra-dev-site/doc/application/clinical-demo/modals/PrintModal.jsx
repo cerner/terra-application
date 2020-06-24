@@ -5,19 +5,19 @@ import ApplicationModal from 'terra-application/lib/application-modal/Applicatio
 import AddOrderModal from './AddOrderModal';
 import AddAllergyModal from './AddAllergyModal';
 
-const PrintModal = ({ onRequestDismiss }) => {
+const PrintModal = ({ onRequestClose }) => {
   const [showAddOrderModal, setShowAddOrderModal] = React.useState(false);
   const [showAddAllergyModal, setShowAddAllergyModal] = React.useState(false);
 
   return (
-    <ApplicationModal title="Print Modal" onRequestClose={onRequestDismiss}>
+    <ApplicationModal title="Print Modal" onRequestClose={onRequestClose}>
       <div style={{ padding: '1rem' }}>
         <h2>Print Modal</h2>
         {/* <br />
         <Button text="Show Add Order Modal" onClick={() => { setShowAddOrderModal(true); }} />
-        {showAddOrderModal && <AddOrderModal onRequestDismiss={() => { setShowAddOrderModal(false); }} />}
+        {showAddOrderModal && <AddOrderModal onRequestClose={() => { setShowAddOrderModal(false); }} />}
         <Button text="Show Add Allergy Modal" onClick={() => { setShowAddAllergyModal(true); }} />
-        {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />} */}
+        {showAddAllergyModal && <AddAllergyModal onRequestClose={() => { setShowAddAllergyModal(false); }} />} */}
       </div>
     </ApplicationModal>
   );

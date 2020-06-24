@@ -11,7 +11,7 @@ import ErrorThrower from '../../ErrorThrower';
 import ApplicationPageContainer from '../../../../../../application-page/ApplicationPageContainer';
 import SimplePage from './SimplePage';
 
-const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
+const ExamplePage = ({ index, prefix, onRequestClose }) => {
   const [initializedDate] = React.useState(new Date().toLocaleString());
   const [showModal, setShowModal] = React.useState(false);
   const [showNestedPage, setShowNestedPage] = React.useState(false);
@@ -46,9 +46,9 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
 
   return (
     <ApplicationPage
-      pageTitle={`${prefix} - Page ${index}`}
-      onBack={onRequestDismiss}
-      pageActions={pageActions}
+      title={`${prefix} - Page ${index}`}
+      onRequestClose={onRequestClose}
+      actions={pageActions}
     >
       <div style={{ padding: '1.5rem' }}>
         <h1>
@@ -91,8 +91,8 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
         />
         <PendingActionToggle />
         <LoadingOverlayPresenter />
-        {showNestedPage && <ExamplePage prefix={prefix} index={index + 1} onRequestDismiss={() => { setShowNestedPage(false); }} />}
-        {showSimplePage && <SimplePage onRequestDismiss={() => { setShowSimplePage(false); }} simplePageState={simplePageState} />}
+        {showNestedPage && <ExamplePage prefix={prefix} index={index + 1} onRequestClose={() => { setShowNestedPage(false); }} />}
+        {showSimplePage && <SimplePage onRequestClose={() => { setShowSimplePage(false); }} simplePageState={simplePageState} />}
       </div>
     </ApplicationPage>
   );

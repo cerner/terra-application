@@ -10,7 +10,7 @@ import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import Modal from '../modal/Modal';
+import ApplicationModal from '../application-modal/ApplicationModal';
 
 import PageHeader from './_PageHeader';
 
@@ -19,7 +19,7 @@ import styles from './ApplicationPage.module.scss';
 const cx = classNames.bind(styles);
 
 const ApplicationPage = ({
-  pageTitle, pageActions, onBack, children, disableNavigationPromptsOnBack,
+  title, actions, onRequestClose, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pageContext = React.useContext(ApplicationPageContext);
@@ -58,9 +58,9 @@ const ApplicationPage = ({
 
   if (!portalNode) {
     return (
-      <Modal title={pageTitle} actions={pageActions} onRequestClose={onBack} disableNavigationPromptsOnBack size="large">
+      <ApplicationModal title={title} actions={actions} onRequestClose={onRequestClose} disableNavigationPromptsOnBack size="large">
         {children}
-      </Modal>
+      </ApplicationModal>
     );
   }
 
@@ -74,12 +74,12 @@ const ApplicationPage = ({
 
   function goBack() {
     if (disableNavigationPromptsOnBack) {
-      onBack();
+      onRequestClose();
       return;
     }
 
     navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      onBack();
+      onRequestClose();
     });
   }
 
@@ -87,7 +87,7 @@ const ApplicationPage = ({
     ReactDOM.createPortal((
       <ContentContainer
         fill
-        header={<PageHeader onBack={onBack && goBack} title={pageTitle} actions={pageActions} onSelectAction={onSelectAction} />}
+        header={<PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} onSelectAction={onSelectAction} />}
       >
         <ApplicationPageContext.Provider value={contextValue}>
           <NavigationPromptCheckpoint

@@ -19,7 +19,7 @@ import styles from './ChartReviewPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-const OrdersPage = ({ onRequestDismiss }) => {
+const OrdersPage = ({ onRequestClose }) => {
   const isInitialized = useDeferredInitializer();
 
   const [showPopup, setShowPopup] = React.useState(false);
@@ -46,9 +46,9 @@ const OrdersPage = ({ onRequestDismiss }) => {
 
   return (
     <ApplicationPage
-      pageTitle="Order Profile"
-      onBack={onRequestDismiss}
-      pageActions={pageActions}
+      title="Order Profile"
+      actions={pageActions}
+      onRequestClose={onRequestClose}
     >
       {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       <div style={{ padding: '1rem' }}>
@@ -131,7 +131,7 @@ const OrdersPage = ({ onRequestDismiss }) => {
         </div>
       </div>
       {showDetails && (
-        <ApplicationPage pageTitle={`${showDetails} Details`} onBack={() => { setShowDetails(undefined); }}>
+        <ApplicationPage title={`${showDetails} Details`} onRequestClose={() => { setShowDetails(undefined); }}>
           <div style={{ padding: '1rem' }}>
             <h1>
               {showDetails}
@@ -141,9 +141,9 @@ const OrdersPage = ({ onRequestDismiss }) => {
           </div>
         </ApplicationPage>
       )}
-      {showAllergiesProfile && <AllergyProfilePage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
-      {showAddOrderModal && <AddOrderModal onRequestDismiss={() => { setShowAddOrderModal(false); }} />}
-      {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
+      {showAllergiesProfile && <AllergyProfilePage onRequestClose={() => { setShowAllergiesProfile(false); }} />}
+      {showAddOrderModal && <AddOrderModal onRequestClose={() => { setShowAddOrderModal(false); }} />}
+      {showPrintModal && <PrintModal onRequestClose={() => { setShowPrintModal(false); }} />}
     </ApplicationPage>
   );
 };

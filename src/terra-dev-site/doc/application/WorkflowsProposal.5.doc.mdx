@@ -384,7 +384,8 @@ Similar to Notification Dialog, just entirely local to a framework component.
 
 * Application Concept
   * Define API for specifying page/modal concept banners
-  * Determine ideal placement locations
+  * (X) Determine ideal placement locations
+    * The concept will be rendered by the Application Variants (Navigation/Embedded)
 * Page Layout
   * Accessibility investigation
   * Actions API
@@ -395,8 +396,9 @@ Similar to Notification Dialog, just entirely local to a framework component.
   * Determine default side nav design
 * Modals
   * Consume Application Concept API
-  * Determine stacking patterns
+  * Determine stacking patterns (stack or hide previous)
   * Inert implementation
+    * If we hide the previous modals, inert isn't necessary beyond base level content
   * Better sizing API
   * Header/Footer Actions API
   * NotificationBanner Integration

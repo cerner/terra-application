@@ -4,17 +4,17 @@ import ApplicationPage from 'terra-application/lib/application-page/ApplicationP
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 
 const SimplePage = ({
-  onRequestDismiss, simplePageState,
+  onRequestClose, simplePageState,
 }) => (
   <ApplicationPage
-    pageTitle="Simple Page"
-    onBack={onRequestDismiss}
-    pageActions={[{
+    title="Simple Page"
+    actions={[{
       key: 'simple-page-print',
       icon: <IconPrinter />,
       text: 'Print',
       onSelect: () => { alert('Simple Page Print'); },
     }]}
+    onRequestClose={onRequestClose}
   >
     <div style={{ padding: '1.5rem' }}>
       <p>I am a simple page with props driven by the previous page.</p>

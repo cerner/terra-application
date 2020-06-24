@@ -128,7 +128,7 @@ const SideNavPage = ({
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
       <ApplicationPageContainer>
-        {React.cloneElement(pageContent, { onRequestDismiss: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
+        {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
       </ApplicationPageContainer>
     </NavigationPromptCheckpoint>
   );

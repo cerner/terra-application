@@ -13,7 +13,7 @@ import styles from './ChartReviewPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-const AllergiesPage = ({ onRequestDismiss }) => {
+const AllergiesPage = ({ onRequestClose }) => {
   const isInitialized = useDeferredInitializer();
   const [showAddAllergyModal, setShowAddAllergyModal] = React.useState(false);
 
@@ -27,9 +27,9 @@ const AllergiesPage = ({ onRequestDismiss }) => {
 
   return (
     <ApplicationPage
-      pageTitle="Allergy Profile"
-      onBack={onRequestDismiss}
-      pageActions={pageActions}
+      title="Allergy Profile"
+      actions={pageActions}
+      onRequestClose={onRequestClose}
     >
       {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       <div style={{ padding: '1rem' }}>
@@ -69,7 +69,7 @@ const AllergiesPage = ({ onRequestDismiss }) => {
             <PendingActionToggle />
           </div>
         </div>
-        {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />}
+        {showAddAllergyModal && <AddAllergyModal onRequestClose={() => { setShowAddAllergyModal(false); }} />}
       </div>
     </ApplicationPage>
   );

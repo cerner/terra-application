@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SideNavLayout, { SideNavPage } from '../../../../../application-page/SideNavLayout';
+import SideNavigationPageContainer, { SideNavPage } from '../../../../../application-page/SideNavigationPageContainer';
 
 import ExamplePage from './shared/ExamplePage';
 import SideNavigationList from './shared/SideNavigationList';
@@ -10,7 +10,7 @@ const PageLayoutDemo = () => {
   const [activeSideNavItemKey, setActiveSideNavItemKey] = React.useState();
 
   return (
-    <SideNavLayout
+    <SideNavigationPageContainer
       sidebar={(
         <SideNavigationList
           selectedItemKey={activeSideNavItemKey}
@@ -44,7 +44,7 @@ const PageLayoutDemo = () => {
       >
         <ChartReviewPage />
       </SideNavPage>
-    </SideNavLayout>
+    </SideNavigationPageContainer>
   );
 };
 

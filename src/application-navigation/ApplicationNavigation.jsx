@@ -6,7 +6,9 @@ import TerraApplicationNavigation from 'terra-application-navigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from 'terra-application-navigation/lib/utils/propTypes';
+import ContentContainer from 'terra-content-container';
 
+import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
@@ -182,17 +184,26 @@ const ApplicationNavigation = ({
       onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
-      <ApplicationLoadingOverlayProvider>
-        <NavigationPromptCheckpoint
-          ref={navigationPromptCheckpointRef}
-        >
-          <ApplicationErrorBoundary>
-            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-              {children}
-            </Suspense>
-          </ApplicationErrorBoundary>
-        </NavigationPromptCheckpoint>
-      </ApplicationLoadingOverlayProvider>
+      <ApplicationConceptContext.Consumer>
+        {(applicationConcept) => (
+          <ContentContainer
+            header={applicationConcept && applicationConcept.renderPageConceptView()}
+            fill
+          >
+            <ApplicationLoadingOverlayProvider>
+              <NavigationPromptCheckpoint
+                ref={navigationPromptCheckpointRef}
+              >
+                <ApplicationErrorBoundary>
+                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                    {children}
+                  </Suspense>
+                </ApplicationErrorBoundary>
+              </NavigationPromptCheckpoint>
+            </ApplicationLoadingOverlayProvider>
+          </ContentContainer>
+        )}
+      </ApplicationConceptContext.Consumer>
     </TerraApplicationNavigation>
   );
 };

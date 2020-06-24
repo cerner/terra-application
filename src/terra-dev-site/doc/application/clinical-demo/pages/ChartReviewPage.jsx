@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import Button from 'terra-button';
-import PageLayout from 'terra-application/lib/application-page/PageLayout';
+import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconTag from 'terra-icon/lib/icon/IconTag';
@@ -44,7 +44,7 @@ const ChartSummaryPage = ({ onRequestDismiss }) => {
   }];
 
   return (
-    <PageLayout
+    <ApplicationPage
       pageTitle="Chart Review"
       pageActions={pageActions}
       onBack={onRequestDismiss}
@@ -116,7 +116,7 @@ const ChartSummaryPage = ({ onRequestDismiss }) => {
       {showOrderProfile && <OrderProfilePage onRequestDismiss={() => { setShowOrderProfile(false); }} />}
       {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
       {showPageModal && <PagePresentingModal onRequestDismiss={() => { setShowPageModal(false); }} />}
-    </PageLayout>
+    </ApplicationPage>
   );
 };
 

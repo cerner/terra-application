@@ -1,12 +1,10 @@
 import React, { useState, useRef } from 'react';
-import ContentContainer from 'terra-content-container';
 
 import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import ApplicationConceptContext from 'terra-application/lib/application-concept/ApplicationConceptContext';
 
-import ReviewLayout from '../layouts/ReviewLayout';
-import OrderLayout from '../layouts/OrderLayout';
-import DocumentLayout from '../layouts/DocumentLayout';
+import ReviewPageContainer from '../page-containers/ReviewPageContainer';
+import OrderPageContainer from '../page-containers/OrderPageContainer';
+import DocumentPageContainer from '../page-containers/DocumentPageContainer';
 
 const userConfig = {
   name: 'Demo User',
@@ -40,13 +38,13 @@ const ClinicalDemoNavigation = () => {
   let pageContent;
   switch (activeNavItem) {
     case 'page_0':
-      pageContent = <ReviewLayout />;
+      pageContent = <ReviewPageContainer />;
       break;
     case 'page_1':
-      pageContent = <OrderLayout />;
+      pageContent = <OrderPageContainer />;
       break;
     default:
-      pageContent = <DocumentLayout />;
+      pageContent = <DocumentPageContainer />;
       break;
   }
 
@@ -64,16 +62,7 @@ const ClinicalDemoNavigation = () => {
         setLoggedOut(true);
       }}
     >
-      <ApplicationConceptContext.Consumer>
-        {(applicationConcept) => (
-          <ContentContainer
-            header={applicationConcept.renderPageConceptView()}
-            fill
-          >
-            {pageContent}
-          </ContentContainer>
-        )}
-      </ApplicationConceptContext.Consumer>
+      {pageContent}
     </ApplicationNavigation>
   );
 };

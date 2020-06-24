@@ -1,16 +1,16 @@
 import React from 'react';
 
-import SideNavLayout, { SideNavPage } from '../../../../../application-page/SideNavLayout';
+import SideNavigationPageContainer, { SideNavPage } from '../../../../../application-page/SideNavigationPageContainer';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 
-const DocumentLayout = () => {
+const DocumentPageContainer = () => {
   const [activePageKey, setActivePageKey] = React.useState();
 
   return (
-    <SideNavLayout
+    <SideNavigationPageContainer
       activePageKey={activePageKey}
       onRequestActivatePage={(key) => { setActivePageKey(key); }}
     >
@@ -35,8 +35,8 @@ const DocumentLayout = () => {
       >
         <AllergyProfilePage />
       </SideNavPage>
-    </SideNavLayout>
+    </SideNavigationPageContainer>
   );
 };
 
-export default DocumentLayout;
+export default DocumentPageContainer;

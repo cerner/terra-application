@@ -1,7 +1,7 @@
 import React from 'react';
 import ContentContainer from 'terra-content-container';
 import List, { Item as ListItem } from 'terra-list';
-import PageLayoutHeader from 'terra-application/lib/application-page/PageLayoutHeader';
+import PageHeader from 'terra-application/lib/application-page/_PageHeader';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 
 const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
@@ -11,7 +11,7 @@ const SideNavigationList = ({ selectedItemKey, onSelectItem }) => {
 
   return (
     <ContentContainer
-      header={<PageLayoutHeader title="Side Nav" />}
+      header={<PageHeader title="Side Nav" />}
       fill
     >
       <List dividerStyle="standard" role="listbox" aria-label="SingleSelectList-label">

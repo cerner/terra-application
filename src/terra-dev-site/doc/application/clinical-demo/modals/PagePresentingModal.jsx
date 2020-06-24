@@ -1,5 +1,5 @@
 import React from 'react';
-import Modal from 'terra-application/lib/modal/Modal';
+import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
 import Button from 'terra-button';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 import OrderProfilePage from '../pages/OrderProfilePage';
@@ -9,7 +9,7 @@ const PagePresentingModal = ({ onRequestDismiss }) => {
   const [showOrdersPage, setShowOrdersPage] = React.useState(false);
 
   return (
-    <Modal title="Page Presenting Modal" onRequestClose={onRequestDismiss}>
+    <ApplicationModal title="Page Presenting Modal" onRequestClose={onRequestDismiss}>
       <div style={{ padding: '1rem' }}>
         <h2>Page Presenting Modal</h2>
         <br />
@@ -18,7 +18,7 @@ const PagePresentingModal = ({ onRequestDismiss }) => {
         <Button text="Show Order Profile" onClick={() => { setShowOrdersPage(true); }} />
         {showOrdersPage && <OrderProfilePage onRequestDismiss={() => { setShowOrdersPage(false); }} />}
       </div>
-    </Modal>
+    </ApplicationModal>
   );
 };
 

@@ -1,3 +1,3 @@
-import ClinicalDemoApp from './clinical-demo/app/ClinicalDemoApp';
+import ClinicalDemoApp from './clinical-demo/apps/ClinicalDemoApp';
 
 export default ClinicalDemoApp;

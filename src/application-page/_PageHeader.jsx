@@ -1,13 +1,13 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import Button, { ButtonVariants } from 'terra-button';
-import styles from './PageLayoutHeader.module.scss';
+import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {};
 
-const PageLayoutHeader = ({
+const PageHeader = ({
   actions, onSelectAction, onBack, title,
 }) => (
   <div className={cx('page-layout-header')}>
@@ -44,6 +44,6 @@ const PageLayoutHeader = ({
   </div>
 );
 
-PageLayoutHeader.propTypes = propTypes;
+PageHeader.propTypes = propTypes;
 
-export default PageLayoutHeader;
+export default PageHeader;

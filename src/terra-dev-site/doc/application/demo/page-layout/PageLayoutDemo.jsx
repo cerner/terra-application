@@ -1,13 +1,13 @@
 import React from 'react';
 
-import PageLayoutContainer from '../../../../../application-page/PageLayoutContainer';
+import ApplicationPageContainer from '../../../../../application-page/ApplicationPageContainer';
 
 import ExamplePage from './shared/ExamplePage';
 
 const PageLayoutDemo = () => (
-  <PageLayoutContainer>
+  <ApplicationPageContainer>
     <ExamplePage prefix="Item 1" index={0} />
-  </PageLayoutContainer>
+  </ApplicationPageContainer>
 );
 
 export default PageLayoutDemo;

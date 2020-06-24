@@ -2,11 +2,12 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import Button from 'terra-button';
-import PageLayout from 'terra-application/lib/application-page/PageLayout';
+import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
+import Popup from 'terra-popup';
 import AllergyProfilePage from './AllergyProfilePage';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';
@@ -20,6 +21,9 @@ const cx = classNames.bind(styles);
 
 const OrdersPage = ({ onRequestDismiss }) => {
   const isInitialized = useDeferredInitializer();
+
+  const [showPopup, setShowPopup] = React.useState(false);
+  const popupButtonRef = React.useRef();
 
   const [showDetails, setShowDetails] = React.useState(undefined);
   const [showAllergiesProfile, setShowAllergiesProfile] = React.useState(false);
@@ -41,7 +45,7 @@ const OrdersPage = ({ onRequestDismiss }) => {
   }];
 
   return (
-    <PageLayout
+    <ApplicationPage
       pageTitle="Order Profile"
       onBack={onRequestDismiss}
       pageActions={pageActions}
@@ -106,9 +110,28 @@ const OrdersPage = ({ onRequestDismiss }) => {
             <PendingActionToggle />
           </div>
         </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Popupu
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <Button refCallback={(ref) => { popupButtonRef.current = ref; }} text="Show Popup" onClick={() => { setShowPopup(true); }} />
+            {showPopup && (
+            <Popup
+              isOpen
+              targetRef={() => popupButtonRef.current}
+              onRequestClose={() => { setShowPopup(false); }}
+            >
+              <div>Hi mom</div>
+            </Popup>
+            )}
+          </div>
+        </div>
       </div>
       {showDetails && (
-        <PageLayout pageTitle={`${showDetails} Details`} onBack={() => { setShowDetails(undefined); }}>
+        <ApplicationPage pageTitle={`${showDetails} Details`} onBack={() => { setShowDetails(undefined); }}>
           <div style={{ padding: '1rem' }}>
             <h1>
               {showDetails}
@@ -116,12 +139,12 @@ const OrdersPage = ({ onRequestDismiss }) => {
               details here...
             </h1>
           </div>
-        </PageLayout>
+        </ApplicationPage>
       )}
       {showAllergiesProfile && <AllergyProfilePage onRequestDismiss={() => { setShowAllergiesProfile(false); }} />}
       {showAddOrderModal && <AddOrderModal onRequestDismiss={() => { setShowAddOrderModal(false); }} />}
       {showPrintModal && <PrintModal onRequestDismiss={() => { setShowPrintModal(false); }} />}
-    </PageLayout>
+    </ApplicationPage>
   );
 };
 

@@ -1,12 +1,12 @@
 import React from 'react';
 
-import PageLayout from 'terra-application/lib/application-page/PageLayout';
+import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 
 const SimplePage = ({
   onRequestDismiss, simplePageState,
 }) => (
-  <PageLayout
+  <ApplicationPage
     pageTitle="Simple Page"
     onBack={onRequestDismiss}
     pageActions={[{
@@ -23,7 +23,7 @@ const SimplePage = ({
         {simplePageState}
       </div>
     </div>
-  </PageLayout>
+  </ApplicationPage>
 );
 
 export default SimplePage;

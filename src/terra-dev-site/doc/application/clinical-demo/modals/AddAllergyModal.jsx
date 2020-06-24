@@ -1,12 +1,12 @@
 import React from 'react';
-import Modal from 'terra-application/lib/modal/Modal';
+import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
 
 const AddAllergyModal = ({ onRequestDismiss }) => (
-  <Modal title="Add Allergy Modal" onRequestClose={onRequestDismiss}>
+  <ApplicationModal title="Add Allergy Modal" onRequestClose={onRequestDismiss}>
     <div style={{ padding: '1rem' }}>
       <h2>Add Allergy Modal</h2>
     </div>
-  </Modal>
+  </ApplicationModal>
 );
 
 export default AddAllergyModal;

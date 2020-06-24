@@ -24,7 +24,7 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const Modal = ({
+const ApplicationModal = ({
   title,
   size,
   actions,
@@ -58,6 +58,6 @@ const Modal = ({
   );
 };
 
-Modal.propTypes = propTypes;
+ApplicationModal.propTypes = propTypes;
 
-export default Modal;
+export default ApplicationModal;

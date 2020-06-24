@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PageLayout from 'terra-application/lib/application-page/PageLayout';
+import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 
@@ -8,7 +8,7 @@ import ModalPresenter from '../../ModalPresenter';
 import PendingActionToggle from '../../PendingActionToggle';
 import LoadingOverlayPresenter from '../../LoadingOverlayPresenter';
 import ErrorThrower from '../../ErrorThrower';
-import PageLayoutContainer from '../../../../../../application-page/PageLayoutContainer';
+import ApplicationPageContainer from '../../../../../../application-page/ApplicationPageContainer';
 import SimplePage from './SimplePage';
 
 const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
@@ -45,7 +45,7 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
   }];
 
   return (
-    <PageLayout
+    <ApplicationPage
       pageTitle={`${prefix} - Page ${index}`}
       onBack={onRequestDismiss}
       pageActions={pageActions}
@@ -84,9 +84,9 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
         <ErrorThrower />
         <ModalPresenter
           modalContent={(
-            <PageLayoutContainer>
+            <ApplicationPageContainer>
               <ExamplePage prefix="Modal" index={0} />
-            </PageLayoutContainer>
+            </ApplicationPageContainer>
           )}
         />
         <PendingActionToggle />
@@ -94,7 +94,7 @@ const ExamplePage = ({ index, prefix, onRequestDismiss }) => {
         {showNestedPage && <ExamplePage prefix={prefix} index={index + 1} onRequestDismiss={() => { setShowNestedPage(false); }} />}
         {showSimplePage && <SimplePage onRequestDismiss={() => { setShowSimplePage(false); }} simplePageState={simplePageState} />}
       </div>
-    </PageLayout>
+    </ApplicationPage>
   );
 };
 

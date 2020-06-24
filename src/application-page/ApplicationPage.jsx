@@ -12,13 +12,13 @@ import { ApplicationLoadingOverlayProvider } from '../application-loading-overla
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import Modal from '../modal/Modal';
 
-import PageLayoutHeader from './PageLayoutHeader';
+import PageHeader from './_PageHeader';
 
-import styles from './PageLayout.module.scss';
+import styles from './ApplicationPage.module.scss';
 
 const cx = classNames.bind(styles);
 
-const PageLayout = ({
+const ApplicationPage = ({
   pageTitle, pageActions, onBack, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -87,7 +87,7 @@ const PageLayout = ({
     ReactDOM.createPortal((
       <ContentContainer
         fill
-        header={<PageLayoutHeader onBack={onBack && goBack} title={pageTitle} actions={pageActions} onSelectAction={onSelectAction} />}
+        header={<PageHeader onBack={onBack && goBack} title={pageTitle} actions={pageActions} onSelectAction={onSelectAction} />}
       >
         <ApplicationPageContext.Provider value={contextValue}>
           <NavigationPromptCheckpoint
@@ -105,4 +105,4 @@ const PageLayout = ({
   );
 };
 
-export default PageLayout;
+export default ApplicationPage;

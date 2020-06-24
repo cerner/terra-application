@@ -6,10 +6,10 @@ import List, { Item as ListItem } from 'terra-list';
 import { ActiveBreakpointContext } from '../breakpoints';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 
-import PageLayoutContainer from './PageLayoutContainer';
-import PageLayoutHeader from './PageLayoutHeader';
+import ApplicationPageContainer from './ApplicationPageContainer';
+import PageLayoutHeader from './_PageHeader';
 
-import styles from './SideNavLayout.module.scss';
+import styles from './SideNavigationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -46,7 +46,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
   );
 };
 
-const SideNavLayout = ({
+const SideNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -94,7 +94,7 @@ const SideNavLayout = ({
   );
 };
 
-SideNavLayout.propTypes = propTypes;
+SideNavigationPageContainer.propTypes = propTypes;
 
 const SideNavPage = ({
   isActive, children, render, cleanupRenderIfPossible, onRequestActivatePage,
@@ -127,12 +127,12 @@ const SideNavPage = ({
 
   return (
     <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
-      <PageLayoutContainer>
+      <ApplicationPageContainer>
         {React.cloneElement(pageContent, { onRequestDismiss: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
-      </PageLayoutContainer>
+      </ApplicationPageContainer>
     </NavigationPromptCheckpoint>
   );
 };
 
-export default SideNavLayout;
+export default SideNavigationPageContainer;
 export { SideNavPage };

@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
-import PageLayout from 'terra-application/lib/application-page/PageLayout';
+import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 
 import useDeferredInitializer from '../useDeferredInitializer';
@@ -26,7 +26,7 @@ const AllergiesPage = ({ onRequestDismiss }) => {
   }];
 
   return (
-    <PageLayout
+    <ApplicationPage
       pageTitle="Allergy Profile"
       onBack={onRequestDismiss}
       pageActions={pageActions}
@@ -71,7 +71,7 @@ const AllergiesPage = ({ onRequestDismiss }) => {
         </div>
         {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />}
       </div>
-    </PageLayout>
+    </ApplicationPage>
   );
 };
 

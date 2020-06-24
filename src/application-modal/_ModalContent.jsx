@@ -10,7 +10,7 @@ import IconClose from 'terra-icon/lib/icon/IconClose';
 import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 
-import PageLayoutHeader from '../application-page/PageLayoutHeader';
+import PageHeader from '../application-page/_PageHeader';
 import ModalOverlay from './_ModalOverlay';
 import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
@@ -154,7 +154,7 @@ const ModalContent = (props) => {
           fill
           header={(
             <>
-              <PageLayoutHeader
+              <PageHeader
                 title={title}
                 actions={(actions || []).concat({
                   key: 'close',

@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'terra-button';
-import Modal from 'terra-application/lib/modal/Modal';
+import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
 
 import AddOrderModal from './AddOrderModal';
 import AddAllergyModal from './AddAllergyModal';
@@ -10,7 +10,7 @@ const PrintModal = ({ onRequestDismiss }) => {
   const [showAddAllergyModal, setShowAddAllergyModal] = React.useState(false);
 
   return (
-    <Modal title="Print Modal" onRequestClose={onRequestDismiss}>
+    <ApplicationModal title="Print Modal" onRequestClose={onRequestDismiss}>
       <div style={{ padding: '1rem' }}>
         <h2>Print Modal</h2>
         {/* <br />
@@ -19,7 +19,7 @@ const PrintModal = ({ onRequestDismiss }) => {
         <Button text="Show Add Allergy Modal" onClick={() => { setShowAddAllergyModal(true); }} />
         {showAddAllergyModal && <AddAllergyModal onRequestDismiss={() => { setShowAddAllergyModal(false); }} />} */}
       </div>
-    </Modal>
+    </ApplicationModal>
   );
 };
 

@@ -3,7 +3,7 @@ import classNames from 'classnames/bind';
 
 import ApplicationPageContext from './ApplicationPageContext';
 
-import styles from './PageLayoutContainer.module.scss';
+import styles from './ApplicationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -103,7 +103,7 @@ class PageLayoutNodeManager {
   }
 }
 
-const PageLayoutContainer = ({
+const ApplicationPageContainer = ({
   children,
 }) => {
   const pageLayoutContainerRef = React.useRef();
@@ -130,4 +130,4 @@ const PageLayoutContainer = ({
   );
 };
 
-export default PageLayoutContainer;
+export default ApplicationPageContainer;

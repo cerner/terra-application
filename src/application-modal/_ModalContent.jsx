@@ -9,6 +9,7 @@ import ContentContainer from 'terra-content-container';
 import IconClose from 'terra-icon/lib/icon/IconClose';
 import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
+import Scroll from 'terra-scroll';
 
 import PageHeader from '../application-page/_PageHeader';
 import ModalOverlay from './_ModalOverlay';
@@ -97,6 +98,7 @@ const ModalContent = (props) => {
     isScrollable,
     rootSelector,
     zIndex,
+    modalClassName,
     ...customProps
   } = props;
 
@@ -111,16 +113,17 @@ const ModalContent = (props) => {
   // }, [ref, rootSelector]);
   const applicationConcept = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
-  const modalClassName = classNames(cx(
-    'abstract-modal',
-    {
-      'is-fullscreen': isFullscreen,
-      large: size === 'large',
-      small: size === 'small',
-    },
-    theme.className,
-  ),
-  classNameModal);
+  const modalClassNames = classNames(
+    modalClassName,
+    cx('abstract-modal',
+      {
+        'is-fullscreen': isFullscreen,
+        large: size === 'large',
+        small: size === 'small',
+      },
+      theme.className),
+    classNameModal,
+  );
 
   // // Delete the closePortal prop that comes from react-portal.
   // delete customProps.closePortal;
@@ -141,7 +144,7 @@ const ModalContent = (props) => {
         {...customProps}
         tabIndex={platformIsiOS ? '-1' : '0'}
         aria-label={title}
-        className={modalClassName}
+        className={modalClassNames}
         role={role}
         style={{ zIndex: '2' }}
       >
@@ -154,6 +157,7 @@ const ModalContent = (props) => {
           fill
           header={(
             <>
+              {applicationConcept && applicationConcept.renderModalConceptView()}
               <PageHeader
                 title={title}
                 actions={(actions || []).concat({
@@ -165,7 +169,6 @@ const ModalContent = (props) => {
                   },
                 })}
               />
-              {applicationConcept && applicationConcept.renderModalConceptView()}
             </>
           )}
           footer={(
@@ -174,7 +177,9 @@ const ModalContent = (props) => {
         >
           <ApplicationLoadingOverlayProvider>
             <ApplicationErrorBoundary>
-              {children}
+              <Scroll>
+                {children}
+              </Scroll>
             </ApplicationErrorBoundary>
           </ApplicationLoadingOverlayProvider>
         </ContentContainer>

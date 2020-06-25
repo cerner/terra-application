@@ -30,6 +30,7 @@ const ApplicationModal = ({
   actions,
   onRequestClose,
   children,
+  modalClassName,
 }) => {
   const navigationPromptCheckpointRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -40,6 +41,7 @@ const ApplicationModal = ({
           ref={navigationPromptCheckpointRef}
         >
           <ModalContent
+            modalClassName={modalClassName}
             title={title}
             actions={actions}
             size={size}

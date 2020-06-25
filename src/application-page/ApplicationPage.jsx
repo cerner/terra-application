@@ -61,7 +61,13 @@ const ApplicationPage = ({
 
   if (!portalNode) {
     return (
-      <ApplicationModal title={title} actions={actions} onRequestClose={onRequestClose} disableNavigationPromptsOnBack size="large">
+      <ApplicationModal
+        title={title}
+        actions={actions}
+        onRequestClose={onRequestClose}
+        size="large"
+        modalClassName={cx('modal-page-container')}
+      >
         {children}
       </ApplicationModal>
     );
@@ -102,7 +108,7 @@ const ApplicationPage = ({
                   ref={mainElementRef}
                   tabIndex="-1"
                   role="main"
-                  className={cx('main-container')}
+                  className={cx('main-container', 'page-background')}
                   aria-labelledby="application-page-title"
                 >
                   <VisuallyHiddenText

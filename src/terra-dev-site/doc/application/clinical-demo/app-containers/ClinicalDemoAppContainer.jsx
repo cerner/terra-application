@@ -14,7 +14,7 @@ const userConfig = {
   initials: 'DU',
 };
 
-const ClinicalDemoNavigation = () => {
+const ClinicalDemoAppContainer = () => {
   const [activeNavItem, setActiveNavItem] = useState('page_0');
   const [showPatientSearchModal, setShowPatientSearchModal] = useState(false);
 
@@ -93,4 +93,4 @@ const ClinicalDemoNavigation = () => {
   );
 };
 
-export default ClinicalDemoNavigation;
+export default ClinicalDemoAppContainer;

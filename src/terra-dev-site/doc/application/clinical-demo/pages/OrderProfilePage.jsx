@@ -5,8 +5,8 @@ import Button from 'terra-button';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconRight from 'terra-icon/lib/icon/IconRight';
-
 import Popup from 'terra-popup';
+
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 import AllergyProfilePage from './AllergyProfilePage';
 import AddOrderModal from '../modals/AddOrderModal';
@@ -16,6 +16,7 @@ import ApplicationLoadingOverlay from '../../../../../application-loading-overla
 import PendingActionToggle from '../../demo/PendingActionToggle';
 
 import styles from './ChartReviewPage.module.scss';
+import ApplicationBlockingOverlay from '../../../../../application-blocking-overlay/ApplicationBlockingOverlay';
 
 const cx = classNames.bind(styles);
 
@@ -23,12 +24,28 @@ const OrdersPage = ({ onRequestClose }) => {
   const isInitialized = useDeferredInitializer();
 
   const [showPopup, setShowPopup] = React.useState(false);
+  const [saveOrders, setSaveOrders] = React.useState(false);
+
   const popupButtonRef = React.useRef();
 
   const [showDetails, setShowDetails] = React.useState(undefined);
   const [showAllergiesProfile, setShowAllergiesProfile] = React.useState(false);
   const [showAddOrderModal, setShowAddOrderModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
+
+  React.useEffect(() => {
+    if (!saveOrders) {
+      return undefined;
+    }
+
+    const timeout = setTimeout(() => {
+      setSaveOrders(false);
+    }, 5000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [saveOrders]);
 
   const pageActions = [{
     key: 'action-add-order',
@@ -129,7 +146,29 @@ const OrdersPage = ({ onRequestClose }) => {
             )}
           </div>
         </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Save
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <p>Saving orders will block user input for five seconds.</p>
+            <Button
+              text="Save Orders"
+              onClick={() => {
+                setSaveOrders(true);
+              }}
+            />
+          </div>
+        </div>
       </div>
+      {saveOrders && (
+        <>
+          <ApplicationBlockingOverlay />
+          <ApplicationLoadingOverlay isOpen backgroundStyle="light" />
+        </>
+      )}
       {showDetails && (
         <ApplicationPage title={`${showDetails} Details`} onRequestClose={() => { setShowDetails(undefined); }}>
           <div style={{ padding: '1rem' }}>

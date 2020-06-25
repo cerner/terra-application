@@ -5,7 +5,7 @@ import ApplicationContainer from 'terra-application/lib/application-container/Ap
 import PatientConceptProvider from '../PatientConceptProvider';
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 
-const EmbeddedReviewApp = () => (
+const EmbeddedReviewAppContainer = () => (
   <PatientConceptProvider>
     <ApplicationContainer>
       <ReviewPageContainer />
@@ -13,4 +13,4 @@ const EmbeddedReviewApp = () => (
   </PatientConceptProvider>
 );
 
-export default EmbeddedReviewApp;
+export default EmbeddedReviewAppContainer;

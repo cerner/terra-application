@@ -30,7 +30,7 @@ exports[`ApplicationBase should render with all props 1`] = `
           </div>
         }
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <NotificationBannerProvider
@@ -57,7 +57,7 @@ exports[`ApplicationBase should render with all props 1`] = `
               </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>
@@ -83,7 +83,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
         locale="en"
         strictMode={false}
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <NotificationBannerProvider
@@ -110,7 +110,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
               </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>
@@ -136,7 +136,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
         locale="en"
         strictMode={false}
       >
-        <ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
           <InjectIntl(Component)>
             <ActiveBreakpointProvider>
               <NotificationBannerProvider
@@ -163,7 +163,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
               </NotificationBannerProvider>
             </ActiveBreakpointProvider>
           </InjectIntl(Component)>
-        </ApplicationErrorBoundary>
+        </InjectIntl(ApplicationErrorBoundary)>
       </Base>
     </ThemeContextProvider>
   </ThemeProvider>

@@ -4,11 +4,26 @@ Changelog
 Unreleased
 ----------
 
+1.27.0 - (June 23, 2020)
+------------------
+### Changed
+* Updated reference links.
+* Changed the file extension for the breakpoints doc.
+* Update translated navigation prompt messages
+
+### Fixed
+* Fixed ErrorBoundary intl prop-type checking
+
+1.26.0 - (June 16, 2020)
+------------------
+### Added
+* Added a logger utility.
+
 1.25.0 - (June 9, 2020)
 ------------------
 ### Changed
 * Updated eslint-config-terra to @cerner/eslint-config-terra v^4.0.0
-* Removed unecessary disabled rules
+* Removed unnecessary disabled rules.
 
 1.24.0 - (May 12, 2020)
 ------------------
@@ -23,6 +38,7 @@ Unreleased
 1.22.0 - (April 28, 2020)
 ------------------
 ### Changed
+* Updated errorBoundary to have a default error message when there is none provided.
 * Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)

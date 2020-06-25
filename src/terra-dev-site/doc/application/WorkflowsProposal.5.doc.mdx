@@ -383,34 +383,42 @@ Similar to Notification Dialog, just entirely local to a framework component.
 # TODO
 
 * Application Concept
-  * Define API for specifying page/modal concept banners
+  * (X) Prototype implementation
   * (X) Determine ideal placement locations
     * The concept will be rendered by the Application Variants (Navigation/Embedded)
+  * Define API for specifying page/modal concept banners (are they the same? are they different?)
 * ApplicationPage
-  * Accessibility investigation
-  * Actions API
+  * (X) Prototype implementation
+  * (X) Investigate scroll position replay
+  * (X) Move 'main' to Page
+  * Investigate accessibility impact
+  * Determine actions API
   * Better Back button?
   * NotificationBanner integration
-  * Move 'main' to Page
-  * Scrollable region + ref callback + position replay
 * ApplicationPageContainer
+  * (X) Prototype implementation
   * Workspace region (resizable)
 * SideNavigationPageContainer
+  * (X) Prototype implementation
   * Determine side nav API/data persistance expectations
   * Determine default side nav design
 * ApplicationModal
+  * (X) Prototype implementation
   * Consume Application Concept API
   * Determine stacking patterns (stack or hide previous)
   * Inert implementation
     * If we hide the previous modals, inert isn't necessary beyond base level content
-  * Better sizing API
-  * Header/Footer Actions API
-  * NotificationBanner Integration
+  * Determine sizing API
+  * Determine header/footer actions API
+    * This should match the ApplicationPage's action API if we want to integrate
+  * Investigate NotificationBanner integration
 * Notification Dialog
+  * Prototype implementation
   * Investigate imperative API implementation
   * Investigate dialog queue 
 * Blocking Overlay
+  * (X) Prototype implementation
   * Investigate multi-phase presentation
   * Investigate duplicate calls
 * Framework Dialog
-  * Implementation with LayerPortal and everything that comes with it
+  * Prototype implementation

@@ -26,39 +26,13 @@ PendingAction.propTypes = {
 };
 
 const PageContent = ({ title }) => {
-<<<<<<< HEAD
-  const [hasPendingAction, setHasPendingAction] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
-=======
   const [hasPendingAction1, setHasPendingAction1] = useState(false);
   const [hasPendingAction2, setHasPendingAction2] = useState(false);
->>>>>>> master
+  const [showBanner, setShowBanner] = useState(false);
 
   return (
     <div data-nav-test-content>
       <p>{title}</p>
-<<<<<<< HEAD
-      <p>
-        Toggle pending action:
-        {' '}
-        <button
-          id="pending-action-toggle"
-          type="button"
-          onClick={() => {
-            setHasPendingAction(!hasPendingAction);
-          }}
-        >
-          {hasPendingAction ? 'Disable' : 'Enable'}
-        </button>
-      </p>
-      {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
-      <p>
-        Show Notification Banner:
-        {' '}
-        <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
-      </p>
-      {showBanner ? <NotificationBanner type="warning" onRequestDismiss={() => { setShowBanner(false); }} /> : undefined}
-=======
       <PendingAction
         index="1"
         navDisabled={hasPendingAction1}
@@ -75,7 +49,12 @@ const PageContent = ({ title }) => {
       />
       {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
       {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
->>>>>>> master
+      <p>
+        Show Notification Banner:
+        {' '}
+        <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
+      </p>
+      {showBanner ? <NotificationBanner type="warning" onRequestDismiss={() => { setShowBanner(false); }} /> : undefined}
     </div>
   );
 };

@@ -4,10 +4,10 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Overlay from 'terra-overlay';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import FocusTrap from 'focus-trap-react';
 import Popup from 'terra-popup';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
+import { ActiveBreakpointContext } from '../../breakpoints';
 
 import Header from './header/_Header';
 import CompactHeader from './header/_CompactHeader';

@@ -2,12 +2,12 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import Button from 'terra-button';
-import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
 import Popup from 'terra-popup';
+import ApplicationPage from '../../../../../application-page/ApplicationPage';
 import AllergyProfilePage from './AllergyProfilePage';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';

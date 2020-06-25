@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
+import ApplicationModal from '../../../../../application-modal/ApplicationModal';
 
 const AddAllergyModal = ({ onRequestClose }) => (
   <ApplicationModal title="Add Allergy Modal" onRequestClose={onRequestClose}>

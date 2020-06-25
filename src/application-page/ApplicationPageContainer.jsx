@@ -25,6 +25,8 @@ class PageLayoutNodeManager {
     }
 
     if (this._containerRef.current.contains(nodeData.element)) {
+      debugger;
+      nodeData.lastScrollPosition = nodeData.element.querySelector('#application-page-main').scrollTop;
       this._containerRef.current.removeChild(nodeData.element);
     }
 
@@ -93,6 +95,8 @@ class PageLayoutNodeManager {
     if (this._nodeMap[page.ancestor]) {
       this._nodeMap[page.ancestor].child = undefined;
       this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
+      debugger;
+      this._nodeMap[page.ancestor].element.querySelector('#application-page-main').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
     }
 
     setTimeout(() => {

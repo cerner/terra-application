@@ -17,7 +17,7 @@ const EmbeddedReviewApp = () => {
   const theme = React.useContext(ThemeContext);
 
   return (
-    <ApplicationBase locale={applicationIntl.locale} themeName={theme.className}>
+    <ApplicationBase locale={applicationIntl?.locale || 'en'} themeName={theme?.className}>
       <EmbeddedReviewAppContainer />
     </ApplicationBase>
   );

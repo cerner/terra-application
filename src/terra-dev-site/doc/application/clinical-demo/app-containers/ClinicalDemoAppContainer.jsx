@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
+import ApplicationNavigation from '../../../../../application-navigation';
 
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';

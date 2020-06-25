@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
+import ApplicationModal from '../../../../../application-modal/ApplicationModal';
 
 const AddOrderModal = ({ onRequestClose }) => (
   <ApplicationModal title="Add Order Modal" onRequestClose={onRequestClose}>

@@ -27,6 +27,7 @@ const ApplicationPage = ({
   const pageContext = React.useContext(ApplicationPageContext);
 
   const navigationPromptCheckpointRef = React.useRef();
+  const mainElementRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
   const pageEventEmitter = React.useRef(new EventEmitter());
 
@@ -97,7 +98,8 @@ const ApplicationPage = ({
             <ApplicationErrorBoundary>
               <ApplicationLoadingOverlayProvider>
                 <main
-                  // ref={mainContainerRef}
+                  id="application-page-main"
+                  ref={mainElementRef}
                   tabIndex="-1"
                   role="main"
                   className={cx('main-container')}

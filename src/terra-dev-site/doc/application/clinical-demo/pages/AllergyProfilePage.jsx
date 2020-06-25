@@ -1,8 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
-import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import ApplicationPage from '../../../../../application-page/ApplicationPage';
 
 import useDeferredInitializer from '../useDeferredInitializer';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';

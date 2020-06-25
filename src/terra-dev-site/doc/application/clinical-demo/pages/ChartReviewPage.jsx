@@ -2,11 +2,11 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import Button from 'terra-button';
-import ApplicationPage from 'terra-application/lib/application-page/ApplicationPage';
 
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import IconRight from 'terra-icon/lib/icon/IconRight';
+import ApplicationPage from '../../../../../application-page/ApplicationPage';
 
 import useDeferredInitializer from '../useDeferredInitializer';
 import AllergyProfilePage from './AllergyProfilePage';

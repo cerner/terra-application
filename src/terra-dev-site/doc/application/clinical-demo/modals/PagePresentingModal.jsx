@@ -1,6 +1,6 @@
 import React from 'react';
-import ApplicationModal from 'terra-application/lib/application-modal/ApplicationModal';
 import Button from 'terra-button';
+import ApplicationModal from '../../../../../application-modal/ApplicationModal';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 

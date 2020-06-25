@@ -19,6 +19,9 @@ Unreleased
 ### Added
 * Added a logger utility.
 
+### Changes
+* Updated errorBoundary to have a default error message when there is none provided.
+
 1.25.0 - (June 9, 2020)
 ------------------
 ### Changed
@@ -38,7 +41,6 @@ Unreleased
 1.22.0 - (April 28, 2020)
 ------------------
 ### Changed
-* Updated errorBoundary to have a default error message when there is none provided.
 * Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)

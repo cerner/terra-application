@@ -79,11 +79,9 @@ const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...cus
       className={className}
       overlay={overlay}
     >
-      <Scroll refCallback={scrollRefCallback}>
-        <ApplicationLoadingOverlayContext.Provider value={contextValue}>
-          {children}
-        </ApplicationLoadingOverlayContext.Provider>
-      </Scroll>
+      <ApplicationLoadingOverlayContext.Provider value={contextValue}>
+        {children}
+      </ApplicationLoadingOverlayContext.Provider>
     </OverlayContainer>
   );
 };

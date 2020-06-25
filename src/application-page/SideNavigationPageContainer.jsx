@@ -4,12 +4,13 @@ import ContentContainer from 'terra-content-container';
 import List, { Item as ListItem } from 'terra-list';
 
 import { ActiveBreakpointContext } from '../breakpoints';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 
 import ApplicationPageContainer from './ApplicationPageContainer';
 import PageLayoutHeader from './_PageHeader';
 
 import styles from './SideNavigationPageContainer.module.scss';
+import { ApplicationIntlContext } from '../application-intl';
 
 const cx = classNames.bind(styles);
 
@@ -50,6 +51,9 @@ const SideNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+
+  const navigationPromptCheckpointRef = React.useRef();
 
   React.useEffect(() => {
     if (activePageKey) {
@@ -63,6 +67,16 @@ const SideNavigationPageContainer = ({
     }
   }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
 
+  function activatePage(pageKey) {
+    if (pageKey === activePageKey) {
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      onRequestActivatePage(pageKey);
+    });
+  }
+
   return (
     <div
       className={cx('side-nav-container', {
@@ -73,22 +87,24 @@ const SideNavigationPageContainer = ({
         {sidebar || (
           <DefaultSideNavPanel
             activePageKey={activePageKey}
-            onRequestActivatePage={onRequestActivatePage}
+            onRequestActivatePage={activatePage}
             items={React.Children.map(children, (child) => ({ key: child.key, text: child.props.description }))}
           />
         )}
       </div>
       <div className={cx('side-nav-body')}>
-        {React.Children.map(children, (child) => (
-          <div
-            key={child.key}
-            style={{
-              height: '100%', overflow: 'auto', position: 'relative', display: child.key === activePageKey ? 'block' : 'none',
-            }}
-          >
-            {React.cloneElement(child, { isActive: child.key === activePageKey, onRequestActivatePage })}
-          </div>
-        ))}
+        <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+          {React.Children.map(children, (child) => (
+            <div
+              key={child.key}
+              style={{
+                height: '100%', overflow: 'auto', position: 'relative', display: child.key === activePageKey ? 'block' : 'none',
+              }}
+            >
+              {React.cloneElement(child, { isActive: child.key === activePageKey, onRequestActivatePage: activatePage })}
+            </div>
+          ))}
+        </NavigationPromptCheckpoint>
       </div>
     </div>
   );
@@ -96,29 +112,29 @@ const SideNavigationPageContainer = ({
 
 SideNavigationPageContainer.propTypes = propTypes;
 
-const SideNavPage = ({
+const NavigationPage = ({
   isActive, children, render, cleanupRenderIfPossible, onRequestActivatePage,
 }) => {
-  const [hasActivated, setHasActivated] = React.useState();
+  // const [hasActivated, setHasActivated] = React.useState();
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  const registeredPromptsRef = React.useRef(0);
+  // const registeredPromptsRef = React.useRef(0);
 
-  React.useLayoutEffect(() => {
-    if (isActive) {
-      setHasActivated(true);
-    } else if (render && registeredPromptsRef.current === 0 && cleanupRenderIfPossible) {
-      setHasActivated(false);
-    }
-  }, [isActive, render, cleanupRenderIfPossible]);
+  // React.useLayoutEffect(() => {
+  //   if (isActive) {
+  //     setHasActivated(true);
+  //   } else if (render && registeredPromptsRef.current === 0 && cleanupRenderIfPossible) {
+  //     setHasActivated(false);
+  //   }
+  // }, [isActive, render, cleanupRenderIfPossible]);
 
-  if (!hasActivated && render) {
+  if (!isActive) {
     return null;
   }
 
   let pageContent;
 
   if (render) {
-    pageContent = render({ isActive });
+    pageContent = render();
   } else {
     pageContent = children;
   }
@@ -126,13 +142,13 @@ const SideNavPage = ({
   const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
 
   return (
-    <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
-      <ApplicationPageContainer>
-        {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
-      </ApplicationPageContainer>
-    </NavigationPromptCheckpoint>
+  // <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
+    <ApplicationPageContainer>
+      {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
+    </ApplicationPageContainer>
+  // </NavigationPromptCheckpoint>
   );
 };
 
 export default SideNavigationPageContainer;
-export { SideNavPage };
+export { NavigationPage };

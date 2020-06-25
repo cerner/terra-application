@@ -111,7 +111,6 @@
     "wicg-inert": "^3.0.2",
     "mutationobserver-shim": "0.3.3",
     "prop-types": "^15.5.8",
-    "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
     "terra-button": "^3.37.0",

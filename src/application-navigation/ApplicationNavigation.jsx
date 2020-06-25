@@ -1,16 +1,13 @@
 import React, {
-  useRef, useCallback, Suspense,
+  useRef, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
-import TerraApplicationNavigation from 'terra-application-navigation';
+
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from 'terra-application-navigation/lib/utils/propTypes';
-import ContentContainer from 'terra-content-container';
-
-import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
-import ApplicationErrorBoundary from '../application-error-boundary';
-import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+} from './terra-application-navigation/utils/propTypes';
+import TerraApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import ApplicationContainer from '../application-container/ApplicationContainer';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 
@@ -184,26 +181,13 @@ const ApplicationNavigation = ({
       onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
-      <ApplicationConceptContext.Consumer>
-        {(applicationConcept) => (
-          <ContentContainer
-            header={applicationConcept && applicationConcept.renderPageConceptView()}
-            fill
-          >
-            <ApplicationLoadingOverlayProvider>
-              <NavigationPromptCheckpoint
-                ref={navigationPromptCheckpointRef}
-              >
-                <ApplicationErrorBoundary>
-                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                    {children}
-                  </Suspense>
-                </ApplicationErrorBoundary>
-              </NavigationPromptCheckpoint>
-            </ApplicationLoadingOverlayProvider>
-          </ContentContainer>
-        )}
-      </ApplicationConceptContext.Consumer>
+      <NavigationPromptCheckpoint
+        ref={navigationPromptCheckpointRef}
+      >
+        <ApplicationContainer>
+          {children}
+        </ApplicationContainer>
+      </NavigationPromptCheckpoint>
     </TerraApplicationNavigation>
   );
 };

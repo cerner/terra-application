@@ -5,6 +5,7 @@ import ContentContainer from 'terra-content-container';
 import uuidv4 from 'uuid/v4';
 import EventEmitter from 'eventemitter3';
 
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 import ApplicationPageContext from './ApplicationPageContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
@@ -15,6 +16,7 @@ import ApplicationModal from '../application-modal/ApplicationModal';
 import PageHeader from './_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
+import HeaderContainer from '../header-container/_HeaderContainer';
 
 const cx = classNames.bind(styles);
 
@@ -85,8 +87,7 @@ const ApplicationPage = ({
 
   return (
     ReactDOM.createPortal((
-      <ContentContainer
-        fill
+      <HeaderContainer
         header={<PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} onSelectAction={onSelectAction} />}
       >
         <ApplicationPageContext.Provider value={contextValue}>
@@ -95,12 +96,25 @@ const ApplicationPage = ({
           >
             <ApplicationErrorBoundary>
               <ApplicationLoadingOverlayProvider>
-                {children}
+                <main
+                  // ref={mainContainerRef}
+                  tabIndex="-1"
+                  role="main"
+                  className={cx('main-container')}
+                  aria-labelledby="application-page-title"
+                >
+                  <VisuallyHiddenText
+                    id="application-page-title"
+                    aria-hidden
+                    text={title}
+                  />
+                  {children}
+                </main>
               </ApplicationLoadingOverlayProvider>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
         </ApplicationPageContext.Provider>
-      </ContentContainer>
+      </HeaderContainer>
     ), portalNode)
   );
 };

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import SideNavigationPageContainer, { SideNavPage } from '../../../../../application-page/SideNavigationPageContainer';
+import ApplicationPage from '../../../../../application-page/ApplicationPage';
+import SideNavigationPageContainer, { NavigationPage } from '../../../../../application-page/SideNavigationPageContainer';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
@@ -14,7 +15,7 @@ const DocumentPageContainer = () => {
       activePageKey={activePageKey}
       onRequestActivatePage={(key) => { setActivePageKey(key); }}
     >
-      <SideNavPage
+      <NavigationPage
         key="summary"
         description="Chart Review"
         cleanupRenderIfPossible
@@ -22,19 +23,30 @@ const DocumentPageContainer = () => {
           <ChartReviewPage />
         )}
       />
-      <SideNavPage
+      <NavigationPage
         key="orders"
         description="Order Profile"
         render={() => (
           <OrderProfilePage />
         )}
       />
-      <SideNavPage
+      <NavigationPage
         key="allergies"
         description="Allergy Profile"
       >
         <AllergyProfilePage />
-      </SideNavPage>
+      </NavigationPage>
+      <NavigationPage
+        key="inline-page"
+        description="Inline Page"
+        render={() => (
+          <ApplicationPage title="Inline Page">
+            <div style={{ padding: '1rem' }}>
+              Page content here...
+            </div>
+          </ApplicationPage>
+        )}
+      />
     </SideNavigationPageContainer>
   );
 };

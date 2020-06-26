@@ -71,38 +71,32 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
     };
   }, []);
 
-  const NotificationBannerList = () => {
-    if (!banners.length) {
-      return null;
-    }
+  const NotificationBannerList = () => (
+    <div aria-live="polite">
+      {banners.map((bannerProps) => {
+        const {
+          description, type, bannerAction, onRequestDismiss, key,
+        } = bannerProps;
 
-    return (
-      <div aria-live="polite">
-        {banners.map((bannerProps) => {
-          const {
-            description, type, bannerAction, onRequestDismiss, key,
-          } = bannerProps;
+        let actionButton = null;
+        if (bannerAction) {
+          actionButton = <Button text={bannerAction.text} variant="ghost" onClick={bannerAction.onClick} />;
+        }
 
-          let actionButton = null;
-          if (bannerAction) {
-            actionButton = <Button text={bannerAction.text} variant="ghost" onClick={bannerAction.onClick} />;
-          }
-
-          return (
-            <Alert
-              key={key}
-              action={actionButton}
-              onDismiss={onRequestDismiss}
-              type={type}
-              data-terra-application-notification-banner={type}
-            >
-              {description}
-            </Alert>
-          );
-        })}
-      </div>
-    );
-  };
+        return (
+          <Alert
+            key={key}
+            action={actionButton}
+            onDismiss={onRequestDismiss}
+            type={type}
+            data-terra-application-notification-banner={type}
+          >
+            {description}
+          </Alert>
+        );
+      })}
+    </div>
+  );
 
   return (
     <BannerRegistrationContext.Provider value={bannerProviderValue}>

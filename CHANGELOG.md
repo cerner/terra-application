@@ -7,6 +7,8 @@ Unreleased
 * Added ApplicationStatusOverlay
 * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
 
+1.27.0 - (June 23, 2020)
+------------------
 ### Changed
 * Updated reference links.
 * Changed the file extension for the breakpoints doc.
@@ -19,6 +21,9 @@ Unreleased
 ------------------
 ### Added
 * Added a logger utility.
+
+### Changes
+* Updated errorBoundary to have a default error message when there is none provided.
 
 1.25.0 - (June 9, 2020)
 ------------------
@@ -39,7 +44,6 @@ Unreleased
 1.22.0 - (April 28, 2020)
 ------------------
 ### Changed
-* Updated errorBoundary to have a default error message when there is none provided.
 * Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)

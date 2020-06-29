@@ -1,9 +1,9 @@
-import ApplicationPageStatusContext from '../../../src/application-page-status/ApplicationPageStatusContext';
+import ApplicationStatusOverlayContext from '../../../src/application-status-overlay/ApplicationStatusOverlayContext';
 
-describe('ApplicationPageStatusContext', () => {
+describe('ApplicationStatusOverlayContext', () => {
   it('export the created context', () => {
-    expect(ApplicationPageStatusContext).toBeDefined();
-    expect(ApplicationPageStatusContext.Provider).toBeDefined();
-    expect(ApplicationPageStatusContext.Consumer).toBeDefined();
+    expect(ApplicationStatusOverlayContext).toBeDefined();
+    expect(ApplicationStatusOverlayContext.Provider).toBeDefined();
+    expect(ApplicationStatusOverlayContext.Consumer).toBeDefined();
   });
 });

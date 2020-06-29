@@ -3,13 +3,13 @@
 exports[`DisclosureContainer should render the provided children 1`] = `
 <InjectIntl(ApplicationErrorBoundary)>
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
+    <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <div>
           Test Child
         </div>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    </ApplicationStatusOverlayProvider>
   </ApplicationLoadingOverlayProvider>
 </InjectIntl(ApplicationErrorBoundary)>
 `;
@@ -17,13 +17,13 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 exports[`DisclosureContainer should render the provided children 2`] = `
 <InjectIntl(ApplicationErrorBoundary)>
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
+    <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <div>
           Test Child
         </div>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    </ApplicationStatusOverlayProvider>
   </ApplicationLoadingOverlayProvider>
 </InjectIntl(ApplicationErrorBoundary)>
 `;

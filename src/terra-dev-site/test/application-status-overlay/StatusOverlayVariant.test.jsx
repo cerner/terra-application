@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import ApplicationPageStatus from '../../../../lib/application-page-status/ApplicationPageStatus';
-import ApplicationPageStatusProvider from '../../../../lib/application-page-status/ApplicationPageStatusProvider';
+import ApplicationStatusOverlay from '../../../../lib/application-status-overlay/ApplicationStatusOverlay';
+import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
-const ApplicationPageStatusVariant = () => {
+const ApplicationStatusOverlayVariant = () => {
   const [variantType, setVariantType] = useState();
-  const [showPageStatus, setShowPageStatus] = useState(false);
+  const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   return (
     <>
@@ -12,7 +12,7 @@ const ApplicationPageStatusVariant = () => {
         id="reset-button"
         type="button"
         onClick={() => {
-          setShowPageStatus(false);
+          setShowStatusOverlay(false);
         }}
       >
         Reset
@@ -21,7 +21,7 @@ const ApplicationPageStatusVariant = () => {
         id="no-data-button"
         type="button"
         onClick={() => {
-          setShowPageStatus(true);
+          setShowStatusOverlay(true);
           setVariantType('no-data');
         }}
       >
@@ -31,7 +31,7 @@ const ApplicationPageStatusVariant = () => {
         id="error-button"
         type="button"
         onClick={() => {
-          setShowPageStatus(true);
+          setShowStatusOverlay(true);
           setVariantType('error');
         }}
       >
@@ -41,7 +41,7 @@ const ApplicationPageStatusVariant = () => {
         id="no-matching-results-button"
         type="button"
         onClick={() => {
-          setShowPageStatus(true);
+          setShowStatusOverlay(true);
           setVariantType('no-matching-results');
         }}
       >
@@ -51,17 +51,17 @@ const ApplicationPageStatusVariant = () => {
         id="not-authorized-button"
         type="button"
         onClick={() => {
-          setShowPageStatus(true);
+          setShowStatusOverlay(true);
           setVariantType('not-authorized');
         }}
       >
         Show Not Authorized Status View
       </button>
-      <ApplicationPageStatusProvider>
-        {showPageStatus && <ApplicationPageStatus variant={variantType} />}
-      </ApplicationPageStatusProvider>
+      <ApplicationStatusOverlayProvider>
+        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType} />}
+      </ApplicationStatusOverlayProvider>
     </>
   );
 };
 
-export default ApplicationPageStatusVariant;
+export default ApplicationStatusOverlayVariant;

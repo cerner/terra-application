@@ -1,7 +1,7 @@
 import { createContext } from 'react';
 import PropTypes from 'prop-types';
 
-const ApplicationPageStatusContext = createContext();
+const ApplicationStatusOverlayContext = createContext();
 
 const contextShape = PropTypes.shape({
   /**
@@ -19,5 +19,5 @@ const contextShape = PropTypes.shape({
   hide: PropTypes.func,
 });
 
-export default ApplicationPageStatusContext;
+export default ApplicationStatusOverlayContext;
 export { contextShape };

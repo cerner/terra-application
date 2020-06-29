@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationPageStatus should honor buttonAttrs prop 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor buttonAttrs prop 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={
     Array [
       Object {
@@ -19,8 +19,8 @@ exports[`ApplicationPageStatus should honor buttonAttrs prop 1`] = `
 />
 `;
 
-exports[`ApplicationPageStatus should honor buttonAttrs prop 2`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor buttonAttrs prop 2`] = `
+<ApplicationStatusOverlay
   buttonAttrs={
     Array [
       Object {
@@ -33,72 +33,72 @@ exports[`ApplicationPageStatus should honor buttonAttrs prop 2`] = `
 />
 `;
 
-exports[`ApplicationPageStatus should honor message prop 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor message prop 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   message="First message"
 />
 `;
 
-exports[`ApplicationPageStatus should honor message prop 2`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor message prop 2`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   message="Second message"
 />
 `;
 
-exports[`ApplicationPageStatus should honor title prop 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor title prop 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   title="First title"
 />
 `;
 
-exports[`ApplicationPageStatus should honor title prop 2`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor title prop 2`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   title="Second title"
 />
 `;
 
-exports[`ApplicationPageStatus should honor variant prop 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor variant prop 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   variant="no-data"
 />
 `;
 
-exports[`ApplicationPageStatus should honor variant prop 2`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor variant prop 2`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   variant="no-matching-results"
 />
 `;
 
-exports[`ApplicationPageStatus should honor variant prop 3`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor variant prop 3`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   variant="not-authorized"
 />
 `;
 
-exports[`ApplicationPageStatus should honor variant prop 4`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should honor variant prop 4`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   variant="error"
 />
 `;
 
-exports[`ApplicationPageStatus should redisplay status view with new props 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should redisplay status view with new props 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
   message="Error status view"
   variant="error"
 />
 `;
 
-exports[`ApplicationPageStatus should render status view with the specified data 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should render status view with the specified data 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={
     Array [
       Object {
@@ -119,8 +119,8 @@ exports[`ApplicationPageStatus should render status view with the specified data
 />
 `;
 
-exports[`ApplicationPageStatus should render status view without any data 1`] = `
-<ApplicationPageStatus
+exports[`ApplicationStatusOverlay should render status view without any data 1`] = `
+<ApplicationStatusOverlay
   buttonAttrs={Array []}
 />
 `;

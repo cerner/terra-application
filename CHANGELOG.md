@@ -4,8 +4,8 @@ Changelog
 Unreleased
 ----------
 ### Added
-* Added ApplicationPageStatus
-* Added ApplicationPageStatusProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
+* Added ApplicationStatusOverlay
+* Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
 
 ### Changed
 * Updated reference links.

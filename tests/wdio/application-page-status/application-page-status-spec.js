@@ -1,7 +1,7 @@
-Terra.describeViewports('ApplicationPageStatus', ['large'], () => {
+Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
   describe('Status View', () => {
     it('renders with all props', () => {
-      browser.url('/raw/tests/terra-application/application-page-status/page-status-all-props');
+      browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-all-props');
     });
 
     Terra.it.validatesElement('all props', { selector: '#root' });
@@ -9,7 +9,7 @@ Terra.describeViewports('ApplicationPageStatus', ['large'], () => {
 
   describe('Status Variant variant', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-page-status/page-status-variant');
+      browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-variant');
     });
 
     Terra.it.validatesElement('initial', { selector: '#root' });

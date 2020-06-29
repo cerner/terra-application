@@ -34,13 +34,13 @@ const propTypes = {
 };
 
 /* eslint-disable no-unused-vars */
-const ApplicationPageStatusProps = ({
+const ApplicationStatusOverlayProps = ({
   buttonAttrs,
   message,
   title,
   variant,
 }) => <div />;
 
-ApplicationPageStatusProps.propTypes = propTypes;
+ApplicationStatusOverlayProps.propTypes = propTypes;
 
-export default ApplicationPageStatusProps;
+export default ApplicationStatusOverlayProps;

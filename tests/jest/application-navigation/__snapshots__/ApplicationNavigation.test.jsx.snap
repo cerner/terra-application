@@ -6,7 +6,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
+    <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <InjectIntl(ApplicationErrorBoundary)>
           <Suspense
@@ -19,7 +19,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
           />
         </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    </ApplicationStatusOverlayProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -89,7 +89,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-    <ApplicationPageStatusProvider>
+    <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <InjectIntl(ApplicationErrorBoundary)>
           <Suspense
@@ -106,7 +106,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
           </Suspense>
         </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationPageStatusProvider>
+    </ApplicationStatusOverlayProvider>
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

@@ -1,11 +1,11 @@
 import React from 'react';
-import ApplicationPageStatusProvider from '../../../src/application-page-status/ApplicationPageStatusProvider';
+import ApplicationStatusOverlayProvider from '../../../src/application-status-overlay/ApplicationStatusOverlayProvider';
 
-describe('ApplicationPageStatusProvider', () => {
+describe('ApplicationStatusOverlayProvider', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
       const wrapper = shallow((
-        <ApplicationPageStatusProvider />
+        <ApplicationStatusOverlayProvider />
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -13,7 +13,7 @@ describe('ApplicationPageStatusProvider', () => {
 
     it('should render with custom props', () => {
       const wrapper = shallow((
-        <ApplicationPageStatusProvider className="testClassName" />
+        <ApplicationStatusOverlayProvider className="testClassName" />
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -22,11 +22,11 @@ describe('ApplicationPageStatusProvider', () => {
     it('should render with optional props', () => {
       const scrollRefCallback = jest.fn();
       const wrapper = shallow((
-        <ApplicationPageStatusProvider
+        <ApplicationStatusOverlayProvider
           scrollRefCallback={scrollRefCallback}
         >
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -58,9 +58,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -85,9 +85,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -104,9 +104,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -123,9 +123,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -142,9 +142,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();
@@ -152,7 +152,7 @@ describe('ApplicationPageStatusProvider', () => {
       React.useState = reactUseState;
     });
 
-    it('should render a single status view with the configuration from the last rendered ApplicationPageStatus when more than one are specified', () => {
+    it('should render a single status view with the configuration from the last rendered ApplicationStatusOverlay when more than one are specified', () => {
       const reactUseState = React.useState;
       const mockSetState = jest.fn();
 
@@ -163,9 +163,9 @@ describe('ApplicationPageStatusProvider', () => {
       }, mockSetState]);
 
       const wrapper = shallow((
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <div>Test child</div>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       ));
 
       expect(wrapper).toMatchSnapshot();

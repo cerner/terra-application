@@ -9,7 +9,7 @@ import {
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationPageStatusProvider } from '../application-page-status';
+import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 
@@ -184,7 +184,7 @@ const ApplicationNavigation = ({
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>
-        <ApplicationPageStatusProvider>
+        <ApplicationStatusOverlayProvider>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
           >
@@ -194,7 +194,7 @@ const ApplicationNavigation = ({
               </Suspense>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
-        </ApplicationPageStatusProvider>
+        </ApplicationStatusOverlayProvider>
       </ApplicationLoadingOverlayProvider>
     </TerraApplicationNavigation>
   );

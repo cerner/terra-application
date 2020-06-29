@@ -1,15 +1,15 @@
-import ApplicationPageStatus, { ApplicationPageStatusProvider, ApplicationPageStatusContext } from '../../../src/application-page-status';
+import ApplicationStatusOverlay, { ApplicationStatusOverlayProvider, ApplicationStatusOverlayContext } from '../../../src/application-status-overlay';
 
-describe('application-page-status/index', () => {
-  it('should export ApplicationPageStatus', () => {
-    expect(ApplicationPageStatus).toBeDefined();
+describe('application-status-overlay/index', () => {
+  it('should export ApplicationStatusOverlay', () => {
+    expect(ApplicationStatusOverlay).toBeDefined();
   });
 
-  it('should export ApplicationPageStatusProvider', () => {
-    expect(ApplicationPageStatusProvider).toBeDefined();
+  it('should export ApplicationStatusOverlayProvider', () => {
+    expect(ApplicationStatusOverlayProvider).toBeDefined();
   });
 
-  it('should export ApplicationPageStatusContext', () => {
-    expect(ApplicationPageStatusContext).toBeDefined();
+  it('should export ApplicationStatusOverlayContext', () => {
+    expect(ApplicationStatusOverlayContext).toBeDefined();
   });
 });

@@ -7,7 +7,7 @@ import classNames from 'classnames/bind';
 import Scroll from 'terra-scroll';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
-import ApplicationPageStatus from 'terra-application/lib/application-page-status';
+import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 
@@ -23,7 +23,7 @@ const ModalContent = ({ name, onSubmit }) => {
 
   const [hasError, setHasError] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
-  const [showPageStatus, setShowPageStatus] = useState(false);
+  const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   const timeoutRef = useRef();
 
@@ -92,22 +92,22 @@ const ModalContent = ({ name, onSubmit }) => {
           <p>Press the button below to throw an exception that will be caught and handled by the framework.</p>
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
           <h3>Status View</h3>
-          <p>This component uses the ApplicationPageStatus to present a status view over itself and within the modal. The status view in this demo is shown for 2 seconds.</p>
+          <p>This component uses the ApplicationStatusOverlay to present a status view over itself and within the modal. The status view in this demo is shown for 2 seconds.</p>
           <p>
             <button
-              disabled={showPageStatus}
+              disabled={showStatusOverlay}
               type="button"
               onClick={() => {
-                setShowPageStatus(true);
+                setShowStatusOverlay(true);
                 timeoutRef.current = setTimeout(() => {
-                  setShowPageStatus(false);
+                  setShowStatusOverlay(false);
                 }, 2000);
               }}
             >
               Show Status View
             </button>
           </p>
-          {showPageStatus && <ApplicationPageStatus message="This is a demo status view" title="Demo Status View" variant="no-data" />}
+          {showStatusOverlay && <ApplicationStatusOverlay message="This is a demo status view" title="Demo Status View" variant="no-data" />}
           <PendingActionToggle />
         </div>
       </Scroll>

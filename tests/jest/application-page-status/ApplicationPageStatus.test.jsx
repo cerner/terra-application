@@ -1,14 +1,14 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
 
-import ApplicationPageStatus from '../../../src/application-page-status/ApplicationPageStatus';
-import ApplicationPageStatusContext from '../../../src/application-page-status/ApplicationPageStatusContext';
+import ApplicationStatusOverlay from '../../../src/application-status-overlay/ApplicationStatusOverlay';
+import ApplicationStatusOverlayContext from '../../../src/application-status-overlay/ApplicationStatusOverlayContext';
 
 jest.mock('uuid/v4');
 
-describe('ApplicationPageStatus', () => {
+describe('ApplicationStatusOverlay', () => {
   let reactUseContext;
-  let pageStatusContextValue;
+  let statusOverlayContextValue;
 
   beforeAll(() => {
     uuidv4.mockReturnValue('test-id');
@@ -19,8 +19,8 @@ describe('ApplicationPageStatus', () => {
      */
     reactUseContext = React.useContext;
     React.useContext = (contextValue) => {
-      if (contextValue === ApplicationPageStatusContext) {
-        return pageStatusContextValue;
+      if (contextValue === ApplicationStatusOverlayContext) {
+        return statusOverlayContextValue;
       }
       return reactUseContext(contextValue);
     };
@@ -31,7 +31,7 @@ describe('ApplicationPageStatus', () => {
   });
 
   beforeEach(() => {
-    pageStatusContextValue = {
+    statusOverlayContextValue = {
       show: jest.fn(),
       hide: jest.fn(),
     };
@@ -39,20 +39,20 @@ describe('ApplicationPageStatus', () => {
 
   it('should render status view without any data', () => {
     const wrapper = mount(
-      <ApplicationPageStatus />,
+      <ApplicationStatusOverlay />,
     );
 
     expect(wrapper).toMatchSnapshot();
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.show.mock.calls[0][0]).toBe('test-id');
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(0);
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
   });
 
   it('should render status view with the specified data', () => {
@@ -69,7 +69,7 @@ describe('ApplicationPageStatus', () => {
     ];
 
     const wrapper = mount(
-      <ApplicationPageStatus
+      <ApplicationStatusOverlay
         buttonAttrs={StatusViewButtons}
         message="Status View with all props specified"
         title="Jest Test"
@@ -79,34 +79,34 @@ describe('ApplicationPageStatus', () => {
 
     expect(wrapper).toMatchSnapshot();
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.show.mock.calls[0][0]).toBe('test-id');
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(0);
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
   });
 
   it('should redisplay status view with new props', () => {
     const wrapper = mount(
-      <ApplicationPageStatus message="Error status view" variant="error" />,
+      <ApplicationStatusOverlay message="Error status view" variant="error" />,
     );
 
     expect(wrapper).toMatchSnapshot();
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.show.mock.calls[0][0]).toBe('test-id');
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(0);
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.setProps({ message: 'No data status view', variant: 'no-data' });
 
-    expect(pageStatusContextValue.show.mock.calls.length).toBe(2);
-    expect(pageStatusContextValue.show.mock.calls[1][0]).toBe('test-id');
-    expect(pageStatusContextValue.hide.mock.calls.length).toBe(1);
-    expect(pageStatusContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
+    expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
   });
 
   it('should honor buttonAttrs prop', () => {
@@ -131,7 +131,7 @@ describe('ApplicationPageStatus', () => {
     ];
 
     const wrapper = mount(
-      <ApplicationPageStatus buttonAttrs={StatusViewButtons1} />,
+      <ApplicationStatusOverlay buttonAttrs={StatusViewButtons1} />,
     );
     expect(wrapper).toMatchSnapshot();
 
@@ -141,7 +141,7 @@ describe('ApplicationPageStatus', () => {
 
   it('should honor message prop', () => {
     const wrapper = mount(
-      <ApplicationPageStatus message="First message" />,
+      <ApplicationStatusOverlay message="First message" />,
     );
     expect(wrapper).toMatchSnapshot();
 
@@ -151,7 +151,7 @@ describe('ApplicationPageStatus', () => {
 
   it('should honor title prop', () => {
     const wrapper = mount(
-      <ApplicationPageStatus title="First title" />,
+      <ApplicationStatusOverlay title="First title" />,
     );
     expect(wrapper).toMatchSnapshot();
 
@@ -161,7 +161,7 @@ describe('ApplicationPageStatus', () => {
 
   it('should honor variant prop', () => {
     const wrapper = mount(
-      <ApplicationPageStatus variant="no-data" />,
+      <ApplicationStatusOverlay variant="no-data" />,
     );
     expect(wrapper).toMatchSnapshot();
 

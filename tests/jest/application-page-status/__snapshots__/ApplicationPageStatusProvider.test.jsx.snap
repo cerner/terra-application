@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ApplicationPageStatusProvider Snapshots should render a single status view with the configuration from the last rendered ApplicationPageStatus when more than one are specified 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render a single status view with the configuration from the last rendered ApplicationStatusOverlay when more than one are specified 1`] = `
 <div
   className="container"
 >
@@ -29,7 +29,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render a single status v
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render the status view based on the current state 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view based on the current state 1`] = `
 <div
   className="container"
 >
@@ -72,7 +72,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render the status view b
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render the status view when only buttonAttrs is specified 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only buttonAttrs is specified 1`] = `
 <div
   className="container"
 >
@@ -107,7 +107,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render the status view w
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render the status view when only message is specified 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only message is specified 1`] = `
 <div
   className="container"
 >
@@ -135,7 +135,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render the status view w
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render the status view when only title is specified 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only title is specified 1`] = `
 <div
   className="container"
 >
@@ -163,7 +163,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render the status view w
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render the status view when only variant is specified 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only variant is specified 1`] = `
 <div
   className="container"
 >
@@ -191,7 +191,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render the status view w
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render with custom props 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render with custom props 1`] = `
 <div
   className="container testClassName"
 >
@@ -208,7 +208,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render with custom props
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render with minimal props 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal props 1`] = `
 <div
   className="container"
 >
@@ -225,7 +225,7 @@ exports[`ApplicationPageStatusProvider Snapshots should render with minimal prop
 </div>
 `;
 
-exports[`ApplicationPageStatusProvider Snapshots should render with optional props 1`] = `
+exports[`ApplicationStatusOverlayProvider Snapshots should render with optional props 1`] = `
 <div
   className="container"
 >

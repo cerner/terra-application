@@ -37,7 +37,7 @@ exports[`ApplicationBase should render with all props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <ApplicationPageStatusProvider>
+                  <ApplicationStatusOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -50,7 +50,7 @@ exports[`ApplicationBase should render with all props 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </ApplicationPageStatusProvider>
+                  </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
@@ -88,7 +88,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <ApplicationPageStatusProvider>
+                  <ApplicationStatusOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -101,7 +101,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </ApplicationPageStatusProvider>
+                  </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>
@@ -139,7 +139,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                 onPromptChange={[Function]}
               >
                 <ApplicationLoadingOverlayProvider>
-                  <ApplicationPageStatusProvider>
+                  <ApplicationStatusOverlayProvider>
                     <Suspense
                       fallback={
                         <ApplicationLoadingOverlay
@@ -152,7 +152,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
                         content
                       </div>
                     </Suspense>
-                  </ApplicationPageStatusProvider>
+                  </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
             </ActiveBreakpointProvider>

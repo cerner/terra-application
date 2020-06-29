@@ -2,7 +2,7 @@ import { useRef, useContext, useLayoutEffect } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 import uuidv4 from 'uuid/v4';
-import ApplicationPageStatusContext from './ApplicationPageStatusContext';
+import ApplicationStatusOverlayContext from './ApplicationStatusOverlayContext';
 
 const propTypes = {
   /**
@@ -37,7 +37,7 @@ const defaultProps = {
   variant: undefined,
 };
 
-const ApplicationPageStatus = (props) => {
+const ApplicationStatusOverlay = (props) => {
   const {
     buttonAttrs,
     message,
@@ -45,12 +45,12 @@ const ApplicationPageStatus = (props) => {
     variant,
   } = props;
   const id = useRef(uuidv4());
-  const applicationPageStatus = useContext(ApplicationPageStatusContext);
+  const applicationStatusOverlay = useContext(ApplicationStatusOverlayContext);
 
   useLayoutEffect(() => {
     const statusViewId = id.current;
 
-    applicationPageStatus.show(statusViewId, {
+    applicationStatusOverlay.show(statusViewId, {
       buttonAttrs,
       message,
       title,
@@ -58,14 +58,14 @@ const ApplicationPageStatus = (props) => {
     });
 
     return () => {
-      applicationPageStatus.hide(statusViewId);
+      applicationStatusOverlay.hide(statusViewId);
     };
-  }, [buttonAttrs, message, title, variant, id, applicationPageStatus]);
+  }, [buttonAttrs, message, title, variant, id, applicationStatusOverlay]);
 
   return null;
 };
 
-ApplicationPageStatus.propTypes = propTypes;
-ApplicationPageStatus.defaultProps = defaultProps;
+ApplicationStatusOverlay.propTypes = propTypes;
+ApplicationStatusOverlay.defaultProps = defaultProps;
 
-export default ApplicationPageStatus;
+export default ApplicationStatusOverlay;

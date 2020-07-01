@@ -12,6 +12,8 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationModal from '../application-modal/ApplicationModal';
+import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
+import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
 
 import PageHeader from './_PageHeader';
 
@@ -30,6 +32,8 @@ const ApplicationPage = ({
   const mainElementRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
   const pageEventEmitter = React.useRef(new EventEmitter());
+
+  const { bannerProviderValue, banners } = useNotificationBanners();
 
   const contextValue = React.useMemo(() => ({
     ancestorPage: pageIdRef.current,
@@ -95,31 +99,38 @@ const ApplicationPage = ({
   return (
     ReactDOM.createPortal((
       <HeaderContainer
-        header={<PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} onSelectAction={onSelectAction} />}
+        header={(
+          <>
+            <PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} onSelectAction={onSelectAction} />
+            {banners}
+          </>
+        )}
       >
         <ApplicationPageContext.Provider value={contextValue}>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
           >
-            <ApplicationErrorBoundary>
-              <ApplicationLoadingOverlayProvider>
-                <main
-                  id="application-page-main"
-                  ref={mainElementRef}
-                  tabIndex="-1"
-                  role="main"
-                  className={cx('main-container', 'page-background')}
-                  aria-labelledby="application-page-title"
-                >
-                  <VisuallyHiddenText
-                    id="application-page-title"
-                    aria-hidden
-                    text={title}
-                  />
-                  {children}
-                </main>
-              </ApplicationLoadingOverlayProvider>
-            </ApplicationErrorBoundary>
+            <BannerRegistrationContext.Provider value={bannerProviderValue}>
+              <ApplicationErrorBoundary>
+                <ApplicationLoadingOverlayProvider>
+                  <main
+                    id="application-page-main"
+                    ref={mainElementRef}
+                    tabIndex="-1"
+                    role="main"
+                    className={cx('main-container', 'page-background')}
+                    aria-labelledby="application-page-title"
+                  >
+                    <VisuallyHiddenText
+                      id="application-page-title"
+                      aria-hidden
+                      text={title}
+                    />
+                    {children}
+                  </main>
+                </ApplicationLoadingOverlayProvider>
+              </ApplicationErrorBoundary>
+            </BannerRegistrationContext.Provider>
           </NavigationPromptCheckpoint>
         </ApplicationPageContext.Provider>
       </HeaderContainer>

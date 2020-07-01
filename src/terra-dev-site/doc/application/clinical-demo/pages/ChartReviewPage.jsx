@@ -8,7 +8,9 @@ import IconTag from 'terra-icon/lib/icon/IconTag';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 
-import useDeferredInitializer from '../useDeferredInitializer';
+import useDeferredInitializer from '../shared/useDeferredInitializer';
+import BannerPresenter from '../shared/BannerPresenter';
+
 import AllergyProfilePage from './AllergyProfilePage';
 import OrderProfilePage from './OrderProfilePage';
 import PrintModal from '../modals/PrintModal';
@@ -110,8 +112,17 @@ const ChartSummaryPage = ({ onRequestClose }) => {
             <PendingActionToggle />
           </div>
         </div>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Notifications
+            </div>
+          </div>
+          <div style={{ padding: '1rem' }}>
+            <BannerPresenter />
+          </div>
+        </div>
       </div>
-      {/* */}
       {showAllergiesProfile && <AllergyProfilePage onRequestClose={() => { setShowAllergiesProfile(false); }} />}
       {showOrderProfile && <OrderProfilePage onRequestClose={() => { setShowOrderProfile(false); }} />}
       {showPrintModal && <PrintModal onRequestClose={() => { setShowPrintModal(false); }} />}

@@ -6,7 +6,7 @@ import ApplicationNavigation from '../../../../../application-navigation';
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';
 import DocumentPageContainer from '../page-containers/DocumentPageContainer';
-import PatientConceptProvider from '../PatientConceptProvider';
+import PatientConceptProvider from '../shared/PatientConceptProvider';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
 
 const userConfig = {

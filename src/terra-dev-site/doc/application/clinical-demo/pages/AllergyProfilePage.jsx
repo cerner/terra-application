@@ -4,7 +4,7 @@ import List, { Item } from 'terra-list';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 
-import useDeferredInitializer from '../useDeferredInitializer';
+import useDeferredInitializer from '../shared/useDeferredInitializer';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import AddAllergyModal from '../modals/AddAllergyModal';
 import PendingActionToggle from '../../demo/PendingActionToggle';

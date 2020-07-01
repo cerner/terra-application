@@ -11,7 +11,8 @@ import ApplicationPage from '../../../../../application-page/ApplicationPage';
 import AllergyProfilePage from './AllergyProfilePage';
 import AddOrderModal from '../modals/AddOrderModal';
 import PrintModal from '../modals/PrintModal';
-import useDeferredInitializer from '../useDeferredInitializer';
+import useDeferredInitializer from '../shared/useDeferredInitializer';
+import BannerPresenter from '../shared/BannerPresenter';
 import ApplicationLoadingOverlay from '../../../../../application-loading-overlay';
 import PendingActionToggle from '../../demo/PendingActionToggle';
 
@@ -67,7 +68,10 @@ const OrdersPage = ({ onRequestClose }) => {
       actions={pageActions}
       onRequestClose={onRequestClose}
     >
-      {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+      {(!isInitialized || saveOrders)
+        && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+      {saveOrders
+        && <ApplicationBlockingOverlay />}
       <div style={{ padding: '1rem' }}>
         <div className={cx('card')}>
           <div className={cx('card-header')}>
@@ -162,27 +166,35 @@ const OrdersPage = ({ onRequestClose }) => {
             />
           </div>
         </div>
-      </div>
-      {saveOrders && (
-        <>
-          <ApplicationBlockingOverlay />
-          <ApplicationLoadingOverlay isOpen backgroundStyle="light" />
-        </>
-      )}
-      {showDetails && (
-        <ApplicationPage title={`${showDetails} Details`} onRequestClose={() => { setShowDetails(undefined); }}>
-          <div style={{ padding: '1rem' }}>
-            <h1>
-              {showDetails}
-              {' '}
-              details here...
-            </h1>
+        <div className={cx('card')}>
+          <div className={cx('card-header')}>
+            <div className={cx('title-container')}>
+              Notifications
+            </div>
           </div>
-        </ApplicationPage>
-      )}
-      {showAllergiesProfile && <AllergyProfilePage onRequestClose={() => { setShowAllergiesProfile(false); }} />}
-      {showAddOrderModal && <AddOrderModal onRequestClose={() => { setShowAddOrderModal(false); }} />}
-      {showPrintModal && <PrintModal onRequestClose={() => { setShowPrintModal(false); }} />}
+          <div style={{ padding: '1rem' }}>
+            <BannerPresenter />
+          </div>
+        </div>
+      </div>
+      {showDetails
+        && (
+          <ApplicationPage title={`${showDetails} Details`} onRequestClose={() => { setShowDetails(undefined); }}>
+            <div style={{ padding: '1rem' }}>
+              <h1>
+                {showDetails}
+                {' '}
+                details here...
+              </h1>
+            </div>
+          </ApplicationPage>
+        )}
+      {showAllergiesProfile
+        && <AllergyProfilePage onRequestClose={() => { setShowAllergiesProfile(false); }} />}
+      {showAddOrderModal
+        && <AddOrderModal onRequestClose={() => { setShowAddOrderModal(false); }} />}
+      {showPrintModal
+        && <PrintModal onRequestClose={() => { setShowPrintModal(false); }} />}
     </ApplicationPage>
   );
 };

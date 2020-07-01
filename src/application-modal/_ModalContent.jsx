@@ -18,6 +18,8 @@ import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
 import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
+import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
+import BannerRegisrationContext from '../application-notification/private/BannerRegistrationContext';
 
 const cx = classNamesBind.bind(styles);
 
@@ -113,6 +115,9 @@ const ModalContent = (props) => {
   // }, [ref, rootSelector]);
   const applicationConcept = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
+
+  const { bannerProviderValue, banners } = useNotificationBanners();
+
   const modalClassNames = classNames(
     modalClassName,
     cx('abstract-modal',
@@ -169,19 +174,22 @@ const ModalContent = (props) => {
                   },
                 })}
               />
+              {banners}
             </>
           )}
           footer={(
             <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
           )}
         >
-          <ApplicationLoadingOverlayProvider>
-            <ApplicationErrorBoundary>
-              <Scroll>
-                {children}
-              </Scroll>
-            </ApplicationErrorBoundary>
-          </ApplicationLoadingOverlayProvider>
+          <BannerRegisrationContext.Provider value={bannerProviderValue}>
+            <ApplicationLoadingOverlayProvider>
+              <ApplicationErrorBoundary>
+                <Scroll>
+                  {children}
+                </Scroll>
+              </ApplicationErrorBoundary>
+            </ApplicationLoadingOverlayProvider>
+          </BannerRegisrationContext.Provider>
         </ContentContainer>
         <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
           {text => (

@@ -2,7 +2,7 @@ import React from 'react';
 import DemographicsBanner from 'terra-demographics-banner';
 import Avatar from 'terra-avatar';
 
-import ApplicationConceptContext from '../../../../application-concept/ApplicationConceptContext';
+import ApplicationConceptContext from '../../../../../application-concept/ApplicationConceptContext';
 
 const PatientConceptProvider = ({ children }) => (
   <ApplicationConceptContext.Provider

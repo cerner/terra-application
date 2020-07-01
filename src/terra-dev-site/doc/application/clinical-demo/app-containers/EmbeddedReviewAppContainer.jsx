@@ -2,7 +2,7 @@ import React from 'react';
 
 import ApplicationContainer from 'terra-application/lib/application-container/ApplicationContainer';
 
-import PatientConceptProvider from '../PatientConceptProvider';
+import PatientConceptProvider from '../shared/PatientConceptProvider';
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 
 const EmbeddedReviewAppContainer = () => (

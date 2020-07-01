@@ -45,25 +45,26 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   }), []);
 
   const registeredStatusOverlayKeys = Object.keys(registeredStatusOverlay);
-  const registeredButtonAttrs = registeredStatusOverlayKeys.map(key => (registeredStatusOverlay[key] && registeredStatusOverlay[key].buttonAttrs));
-  const registeredMessage = registeredStatusOverlayKeys.map(key => (registeredStatusOverlay[key] && registeredStatusOverlay[key].message));
-  const registeredTitle = registeredStatusOverlayKeys.map(key => (registeredStatusOverlay[key] && registeredStatusOverlay[key].title));
-  const registeredVariant = registeredStatusOverlayKeys.map(key => (registeredStatusOverlay[key] && registeredStatusOverlay[key].variant));
+  // In the event when multiple ApplicationStatusOverlay's are provided, the last rendered wins
+  const lastRegisteredStatusOverlayKey = (registeredStatusOverlayKeys.length > 0) && registeredStatusOverlayKeys[registeredStatusOverlayKeys.length - 1];
+
+  const registeredButtonAttrs = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].buttonAttrs;
+  const registeredMessage = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].message;
+  const registeredTitle = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].title;
+  const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].variant;
 
   let className = cx('container');
   if (customProps.className) {
     className = [className, customProps.className].join(' ');
   }
 
-  // In the event when multiple ApplicationStatusOverlay's are provided, the last rendered wins
-  const lastIndex = registeredStatusOverlayKeys.length - 1;
-  const statusView = (lastIndex >= 0) && (
+  const statusView = (registeredStatusOverlayKeys.length > 0) && (
     <StatusView
-      buttonAttrs={registeredButtonAttrs[lastIndex]}
+      buttonAttrs={registeredButtonAttrs}
       className={cx('status-view')}
-      message={registeredMessage[lastIndex]}
-      title={registeredTitle[lastIndex]}
-      variant={registeredVariant[lastIndex]}
+      message={registeredMessage}
+      title={registeredTitle}
+      variant={registeredVariant}
     />
   );
 

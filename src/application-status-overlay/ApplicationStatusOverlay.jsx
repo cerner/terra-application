@@ -48,19 +48,17 @@ const ApplicationStatusOverlay = (props) => {
   const applicationStatusOverlay = useContext(ApplicationStatusOverlayContext);
 
   useLayoutEffect(() => {
-    const statusViewId = id.current;
-
-    applicationStatusOverlay.show(statusViewId, {
+    applicationStatusOverlay.show(id.current, {
       buttonAttrs,
       message,
       title,
       variant,
     });
-
-    return () => {
-      applicationStatusOverlay.hide(statusViewId);
-    };
   }, [buttonAttrs, message, title, variant, id, applicationStatusOverlay]);
+
+  useLayoutEffect(() => () => {
+    applicationStatusOverlay.hide(id.current);
+  }, [applicationStatusOverlay]);
 
   return null;
 };

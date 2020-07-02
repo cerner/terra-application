@@ -134,7 +134,7 @@ const OrdersPage = ({ onRequestClose }) => {
         <div className={cx('card')}>
           <div className={cx('card-header')}>
             <div className={cx('title-container')}>
-              Popupu
+              Popup
             </div>
           </div>
           <div style={{ padding: '1rem' }}>

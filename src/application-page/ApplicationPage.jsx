@@ -1,9 +1,7 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
-import ContentContainer from 'terra-content-container';
 import uuidv4 from 'uuid/v4';
-import EventEmitter from 'eventemitter3';
 
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import ApplicationPageContext from './ApplicationPageContext';
@@ -16,6 +14,7 @@ import { useNotificationBanners } from '../application-notification/Notification
 import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
 
 import PageHeader from './_PageHeader';
+// import { BreadcrumbsPageHeader as PageHeader } from './_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
 import HeaderContainer from '../header-container/_HeaderContainer';
@@ -31,37 +30,44 @@ const ApplicationPage = ({
   const navigationPromptCheckpointRef = React.useRef();
   const mainElementRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
-  const pageEventEmitter = React.useRef(new EventEmitter());
 
   const { bannerProviderValue, banners } = useNotificationBanners();
 
-  const contextValue = React.useMemo(() => ({
-    ancestorPage: pageIdRef.current,
-    nodeManager: pageContext?.nodeManager,
-    registerActionHandler: (actionKey, handler) => {
-      pageEventEmitter.current.on(actionKey, handler);
-    },
-    removeActionHandler: (actionKey, handler) => {
-      pageEventEmitter.current.off(actionKey, handler);
-    },
-  }), [pageContext]);
-
-  React.useLayoutEffect(() => () => {
-    if (contextValue.nodeManager) {
-      contextValue.nodeManager.releaseNode(pageIdRef.current);
+  function onSelectAction(action) {
+    if (action.onSelect) {
+      action.onSelect();
     }
-  }, [contextValue]);
-
-  let portalNode;
-  if (contextValue.nodeManager) {
-    portalNode = contextValue.nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
   }
 
-  // React.useLayoutEffect(() => {
-  //   if (!portalNode && onFail) {
-  //     onFail();
-  //   }
-  // }, [portalNode, onFail]);
+  const goBack = useCallback(() => {
+    if (disableNavigationPromptsOnBack) {
+      onRequestClose();
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      onRequestClose();
+    });
+  }, [disableNavigationPromptsOnBack, applicationIntl, onRequestClose]);
+
+  const nodeManager = pageContext?.nodeManager;
+  const contextValue = React.useMemo(() => ({
+    ancestorPage: pageIdRef.current,
+    ancestorTitle: title,
+    backLinks: pageContext?.backLinks ? [...pageContext.backLinks, { title: pageContext.ancestorTitle, onRequestClose: goBack }] : [],
+    nodeManager: pageContext?.nodeManager,
+  }), [title, pageContext, goBack]);
+
+  React.useLayoutEffect(() => () => {
+    if (nodeManager) {
+      nodeManager.releaseNode(pageIdRef.current);
+    }
+  }, [nodeManager]);
+
+  let portalNode;
+  if (nodeManager) {
+    portalNode = nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
+  }
 
   if (!portalNode) {
     return (
@@ -77,31 +83,12 @@ const ApplicationPage = ({
     );
   }
 
-  function onSelectAction(action) {
-    if (action.onSelect) {
-      action.onSelect();
-    }
-
-    pageEventEmitter.current.emit(action.key, action);
-  }
-
-  function goBack() {
-    if (disableNavigationPromptsOnBack) {
-      onRequestClose();
-      return;
-    }
-
-    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      onRequestClose();
-    });
-  }
-
   return (
     ReactDOM.createPortal((
       <HeaderContainer
         header={(
           <>
-            <PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} onSelectAction={onSelectAction} />
+            <PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} backLinks={contextValue.backLinks} onSelectAction={onSelectAction} />
             {banners}
           </>
         )}

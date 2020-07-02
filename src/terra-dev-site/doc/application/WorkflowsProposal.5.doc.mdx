@@ -379,6 +379,19 @@ API:
 
 Similar to Notification Dialog, just entirely local to a framework component.
 
+# Composition Layers
+
+ApplicationBase
+  - Ideally no DOM added here, just context/API
+ApplicationContainer
+  - AppConcept banner/content
+  - More than one (default, navigation, embedded (?))
+PageContainer
+  - Defines presentation region for Pages
+  - More than one (default, side nav)
+Page
+  - Fundamental concept for composable application design
+
 
 # TODO
 
@@ -391,10 +404,12 @@ Similar to Notification Dialog, just entirely local to a framework component.
   * (X) Prototype implementation
   * (X) Investigate scroll position replay
   * (X) Move 'main' to Page
+  * (X) Investigate NotificationBanner integration
+  * (X) Breadcrumbs prototype
   * Investigate accessibility impact
   * Determine actions API
   * Better Back button?
-  * NotificationBanner integration
+  * Hide header for embedded workflows?
 * ApplicationPageContainer
   * (X) Prototype implementation
   * Workspace region (resizable)
@@ -404,21 +419,24 @@ Similar to Notification Dialog, just entirely local to a framework component.
   * Determine default side nav design
 * ApplicationModal
   * (X) Prototype implementation
-  * Consume Application Concept API
+  * (X) Investigate NotificationBanner integration
+  * (X) Consume Application Concept API
   * Determine stacking patterns (stack or hide previous)
   * Inert implementation
     * If we hide the previous modals, inert isn't necessary beyond base level content
   * Determine sizing API
   * Determine header/footer actions API
     * This should match the ApplicationPage's action API if we want to integrate
-  * Investigate NotificationBanner integration
 * Notification Dialog
   * Prototype implementation
   * Investigate imperative API implementation
-  * Investigate dialog queue 
+  * Investigate dialog queue
+* Notification Banner
+  * (X) Prototype implementation
 * Blocking Overlay
   * (X) Prototype implementation
   * Investigate multi-phase presentation
   * Investigate duplicate calls
+  * Fix inert implementation for modal/other layer integration
 * Framework Dialog
   * Prototype implementation

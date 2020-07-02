@@ -23,13 +23,13 @@ const ApplicationContainer = ({
       <HeaderContainer
         header={applicationConcept && applicationConcept.renderPageConceptView()}
       >
-        <ApplicationLoadingOverlayProvider>
+        {/* <ApplicationLoadingOverlayProvider>
           <ApplicationErrorBoundary>
-            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-              {children}
-            </Suspense>
+            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}> */}
+        {children}
+        {/* </Suspense>
           </ApplicationErrorBoundary>
-        </ApplicationLoadingOverlayProvider>
+        </ApplicationLoadingOverlayProvider> */}
       </HeaderContainer>
     )}
   </ApplicationConceptContext.Consumer>

@@ -103,13 +103,13 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   return (
     <div {...customProps} ref={refContainer} className={className}>
       {statusView}
-      <Scroll refCallback={scrollRefCallback}>
-        <ApplicationStatusOverlayContext.Provider value={contextValue}>
-          <div data-status-overlay-container-content className={cx('container-content')}>
+      <div data-status-overlay-container-content className={cx('container-content')}>
+        <Scroll refCallback={scrollRefCallback}>
+          <ApplicationStatusOverlayContext.Provider value={contextValue}>
             {children}
-          </div>
-        </ApplicationStatusOverlayContext.Provider>
-      </Scroll>
+          </ApplicationStatusOverlayContext.Provider>
+        </Scroll>
+      </div>
     </div>
   );
 };

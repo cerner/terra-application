@@ -12,25 +12,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
     message="Third message"
     variant="no-data"
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -60,25 +60,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     title="Jest Test"
     variant="no-data"
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -100,25 +100,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isAlignedTop={false}
     isGlyphHidden={false}
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -133,25 +133,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isGlyphHidden={false}
     message="Status View with only message specified"
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -166,25 +166,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isGlyphHidden={false}
     title="Jest Test"
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -199,25 +199,25 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isGlyphHidden={false}
     variant="error"
   />
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -225,21 +225,21 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with custom pr
 <div
   className="container testClassName"
 >
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       />
-    </ContextProvider>
-  </Scroll>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -247,21 +247,21 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal p
 <div
   className="container"
 >
-  <Scroll>
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
         }
-      }
-    >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
       />
-    </ContextProvider>
-  </Scroll>
+    </Scroll>
+  </div>
 </div>
 `;
 
@@ -269,26 +269,26 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
 <div
   className="container"
 >
-  <Scroll
-    refCallback={[MockFunction]}
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
   >
-    <ContextProvider
-      value={
-        Object {
-          "hide": [Function],
-          "show": [Function],
-        }
-      }
+    <Scroll
+      refCallback={[MockFunction]}
     >
-      <div
-        className="container-content"
-        data-status-overlay-container-content={true}
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
       >
         <div>
           Test child
         </div>
-      </div>
-    </ContextProvider>
-  </Scroll>
+      </ContextProvider>
+    </Scroll>
+  </div>
 </div>
 `;

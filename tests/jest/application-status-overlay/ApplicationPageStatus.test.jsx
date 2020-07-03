@@ -105,6 +105,11 @@ describe('ApplicationStatusOverlay', () => {
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
     expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
+
+    wrapper.unmount();
+
+    expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
     expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
   });

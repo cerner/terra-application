@@ -21,8 +21,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -64,8 +69,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -99,8 +109,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -127,8 +142,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -155,8 +175,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -183,8 +208,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>
@@ -203,7 +233,12 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with custom pr
           "show": [Function],
         }
       }
-    />
+    >
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      />
+    </ContextProvider>
   </Scroll>
 </div>
 `;
@@ -220,7 +255,12 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal p
           "show": [Function],
         }
       }
-    />
+    >
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      />
+    </ContextProvider>
   </Scroll>
 </div>
 `;
@@ -240,8 +280,13 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
         }
       }
     >
-      <div>
-        Test child
+      <div
+        className="container-content"
+        data-status-overlay-container-content={true}
+      >
+        <div>
+          Test child
+        </div>
       </div>
     </ContextProvider>
   </Scroll>

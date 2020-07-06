@@ -5,6 +5,7 @@ Unreleased
 ----------
 ### Changed
 * Corrected typo in `.gitignore` file.
+* Updated Docs to point to main branch for terra-toolkit-boneyard.
 
 1.27.0 - (June 23, 2020)
 ------------------

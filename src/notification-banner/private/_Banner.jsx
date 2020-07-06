@@ -185,7 +185,6 @@ const Alert = ({
       }}
     >
       <div
-        // role="alert"
         {...customProps}
         className={alertClassNames}
       >

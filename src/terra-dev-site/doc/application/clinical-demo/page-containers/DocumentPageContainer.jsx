@@ -17,24 +17,28 @@ const DocumentPageContainer = () => {
     >
       <NavigationPage
         key="summary"
+        pageKey="summary"
         description="Chart Review"
       >
         <ChartReviewPage />
       </NavigationPage>
       <NavigationPage
         key="orders"
+        pageKey="orders"
         description="Order Profile"
       >
         <OrderProfilePage />
       </NavigationPage>
       <NavigationPage
         key="allergies"
+        pageKey="allergies"
         description="Allergy Profile"
       >
         <AllergyProfilePage />
       </NavigationPage>
       <NavigationPage
         key="inline-page"
+        pageKey="inline-page"
         description="Inline Page"
       >
         <ApplicationPage title="Inline Page">

@@ -40,7 +40,7 @@
   }
 
   .side-nav-is-open > .side-nav-body {
-    display: none;
+    // display: none;
 
     @include terra-mq-medium-up {
       display: block;

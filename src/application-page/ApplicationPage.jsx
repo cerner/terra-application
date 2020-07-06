@@ -69,7 +69,7 @@ const ApplicationPage = ({
     portalNode = nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
   }
 
-  if (!portalNode) {
+  if (!nodeManager) {
     return (
       <ApplicationModal
         title={title}

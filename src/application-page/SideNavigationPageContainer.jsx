@@ -6,6 +6,7 @@ import List, { Item as ListItem } from 'terra-list';
 
 import { ActiveBreakpointContext } from '../breakpoints';
 
+import ApplicationPage from './ApplicationPage';
 import ApplicationPageContainer from './ApplicationPageContainer';
 import PageLayoutHeader from './_PageHeader';
 
@@ -64,6 +65,10 @@ const SideNavigationPageContainer = ({
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
 
+    if (!sideNavBodyRef.current) {
+      return;
+    }
+
     if (sideNavBodyRef.current.contains(pageNodeForActivePage?.element)) {
       return;
     }
@@ -92,7 +97,7 @@ const SideNavigationPageContainer = ({
       return;
     }
 
-    const pageKeys = React.Children.map(children, (child) => (child.key));
+    const pageKeys = React.Children.map(children, (child) => (child.props.pageKey));
 
     // Cleanup nodes for removed children
     const danglingPageKeys = Object.keys(pageContainerPortalsRef.current).filter((pageKey) => !pageKeys.includes(pageKey));
@@ -113,6 +118,32 @@ const SideNavigationPageContainer = ({
     onRequestActivatePage(pageKey);
   }
 
+  // if (flatLayoutBreakpoints.indexOf(activeBreakpoint) === -1) {
+  //   const activePageComponent = activePageKey && React.Children.toArray(children).filter((child) => child.props.pageKey === activePageKey)[0];
+  //   return (
+  //     <ApplicationPageContainer>
+  //       <ApplicationPage title="Side Nav Page">
+  //         <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation" style={{ backgroundColor: '#fff' }}>
+  //           {React.Children.map(children, (child) => ({ key: child.props.pageKey, text: child.props.description })).map((item) => (
+  //             <ListItem
+  //               key={item.key}
+  //               hasChevron
+  //               isSelectable
+  //               isSelected={activePageKey === item.key}
+  //               onSelect={() => {
+  //                 activatePage(item.key);
+  //               }}
+  //             >
+  //               <div style={{ padding: '1rem' }}>{item.text}</div>
+  //             </ListItem>
+  //           ))}
+  //         </List>
+  //         {activePageComponent && React.cloneElement(activePageComponent, { onRequestClose: () => { onRequestActivatePage(undefined); } })}
+  //       </ApplicationPage>
+  //     </ApplicationPageContainer>
+  //   );
+  // }
+
   return (
     <div
       className={cx('side-nav-container', {
@@ -124,26 +155,26 @@ const SideNavigationPageContainer = ({
           <DefaultSideNavPanel
             activePageKey={activePageKey}
             onRequestActivatePage={activatePage}
-            items={React.Children.map(children, (child) => ({ key: child.key, text: child.props.description }))}
+            items={React.Children.map(children, (child) => ({ key: child.props.pageKey, text: child.props.description }))}
           />
         )}
       </div>
       <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
         {isInitialized && React.Children.map(children, (child) => {
-          let portalElement = pageContainerPortalsRef.current[child.key]?.element;
+          let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
           if (!portalElement) {
             portalElement = document.createElement('div');
             portalElement.style.position = 'relative';
             portalElement.style.height = '100%';
             portalElement.style.width = '100%';
-            portalElement.id = `side-nav-${child.key}`;
-            pageContainerPortalsRef.current[child.key] = {
+            portalElement.id = `side-nav-${child.props.pageKey}`;
+            pageContainerPortalsRef.current[child.props.pageKey] = {
               element: portalElement,
             };
           }
 
           return (
-            React.cloneElement(child, { isActive: child.key === activePageKey, onRequestActivatePage: activatePage, portalElement })
+            React.cloneElement(child, { isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement })
           );
         })}
       </div>

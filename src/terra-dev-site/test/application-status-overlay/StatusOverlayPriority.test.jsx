@@ -3,62 +3,53 @@ import ApplicationStatusOverlay from '../../../../lib/application-status-overlay
 import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
 const ApplicationStatusOverlayVariant = () => {
-  const [variantType, setVariantType] = useState();
+  const [variantType1, setVariantType1] = useState('error');
+  const [variantType2, setVariantType2] = useState('no-data');
+  const [variantType3, setVariantType3] = useState('not-authorized');
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   return (
     <>
       <button
-        id="reset-button"
-        type="button"
-        onClick={() => {
-          setShowStatusOverlay(false);
-        }}
-      >
-        Reset
-      </button>
-      <button
-        id="no-data-button"
+        id="show-status"
         type="button"
         onClick={() => {
           setShowStatusOverlay(true);
-          setVariantType('no-data');
         }}
       >
-        Show No Data Status View
+        Show Status Views
       </button>
       <button
-        id="error-button"
+        id="button1"
         type="button"
         onClick={() => {
-          setShowStatusOverlay(true);
-          setVariantType('error');
+          setVariantType1('no-data');
         }}
       >
-        Show Error Status View
+        Change Status View 1
       </button>
       <button
-        id="no-matching-results-button"
+        id="button2"
         type="button"
         onClick={() => {
-          setShowStatusOverlay(true);
-          setVariantType('no-matching-results');
+          setVariantType2('no-matching-results');
         }}
       >
-        Show No Matching Results Status View
+        Change Status View 1
       </button>
       <button
-        id="not-authorized-button"
+        id="button3"
         type="button"
         onClick={() => {
-          setShowStatusOverlay(true);
-          setVariantType('not-authorized');
+          setVariantType3('error');
         }}
       >
-        Show Not Authorized Status View
+        Change Status View 1
       </button>
-      <ApplicationStatusOverlayProvider id="test-status-view-container">
-        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType} />}
+      <ApplicationStatusOverlayProvider>
+        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType1} />}
+        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType2} />}
+        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType3} />}
       </ApplicationStatusOverlayProvider>
     </>
   );

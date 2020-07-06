@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Changed
+* Corrected typo in `.gitignore` file.
 
 1.27.0 - (June 23, 2020)
 ------------------

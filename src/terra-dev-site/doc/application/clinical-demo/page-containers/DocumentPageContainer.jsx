@@ -18,18 +18,15 @@ const DocumentPageContainer = () => {
       <NavigationPage
         key="summary"
         description="Chart Review"
-        cleanupRenderIfPossible
-        render={() => (
-          <ChartReviewPage />
-        )}
-      />
+      >
+        <ChartReviewPage />
+      </NavigationPage>
       <NavigationPage
         key="orders"
         description="Order Profile"
-        render={() => (
-          <OrderProfilePage />
-        )}
-      />
+      >
+        <OrderProfilePage />
+      </NavigationPage>
       <NavigationPage
         key="allergies"
         description="Allergy Profile"
@@ -39,14 +36,13 @@ const DocumentPageContainer = () => {
       <NavigationPage
         key="inline-page"
         description="Inline Page"
-        render={() => (
-          <ApplicationPage title="Inline Page">
-            <div style={{ padding: '1rem' }}>
+      >
+        <ApplicationPage title="Inline Page">
+          <div style={{ padding: '1rem' }}>
               Page content here...
-            </div>
-          </ApplicationPage>
-        )}
-      />
+          </div>
+        </ApplicationPage>
+      </NavigationPage>
     </SideNavigationPageContainer>
   );
 };

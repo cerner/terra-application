@@ -1,16 +1,15 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
 import List, { Item as ListItem } from 'terra-list';
 
 import { ActiveBreakpointContext } from '../breakpoints';
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 
 import ApplicationPageContainer from './ApplicationPageContainer';
 import PageLayoutHeader from './_PageHeader';
 
 import styles from './SideNavigationPageContainer.module.scss';
-import { ApplicationIntlContext } from '../application-intl';
 
 const cx = classNames.bind(styles);
 
@@ -50,10 +49,43 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 const SideNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage,
 }) => {
-  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const [isInitialized, setIsInitialized] = React.useState(false);
 
-  const navigationPromptCheckpointRef = React.useRef();
+  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+
+  const sideNavBodyRef = React.useRef();
+  const pageContainerPortalsRef = React.useRef({});
+  const lastActivePageKeyRef = React.useRef();
+
+  React.useLayoutEffect(() => {
+    setIsInitialized(true);
+  }, []);
+
+  React.useLayoutEffect(() => {
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
+
+    if (sideNavBodyRef.current.contains(pageNodeForActivePage?.element)) {
+      return;
+    }
+
+    if (lastActivePageKeyRef.current) {
+      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main').scrollTop;
+      sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
+    }
+
+    if (pageNodeForActivePage?.element) {
+      sideNavBodyRef.current.appendChild(pageNodeForActivePage.element);
+
+      const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
+      if (pageMainElement) {
+        pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
+      }
+
+      lastActivePageKeyRef.current = activePageKey;
+    } else {
+      lastActivePageKeyRef.current = undefined;
+    }
+  }, [activePageKey]);
 
   React.useEffect(() => {
     if (activePageKey) {
@@ -61,6 +93,12 @@ const SideNavigationPageContainer = ({
     }
 
     const pageKeys = React.Children.map(children, (child) => (child.key));
+
+    // Cleanup nodes for removed children
+    const danglingPageKeys = Object.keys(pageContainerPortalsRef.current).filter((pageKey) => !pageKeys.includes(pageKey));
+    danglingPageKeys.forEach((pageKey) => {
+      delete pageContainerPortalsRef.current[pageKey];
+    });
 
     if (flatLayoutBreakpoints.indexOf(activeBreakpoint) >= 0) {
       onRequestActivatePage(pageKeys[0]);
@@ -72,9 +110,7 @@ const SideNavigationPageContainer = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      onRequestActivatePage(pageKey);
-    });
+    onRequestActivatePage(pageKey);
   }
 
   return (
@@ -92,19 +128,24 @@ const SideNavigationPageContainer = ({
           />
         )}
       </div>
-      <div className={cx('side-nav-body')}>
-        <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
-          {React.Children.map(children, (child) => (
-            <div
-              key={child.key}
-              style={{
-                height: '100%', overflow: 'auto', position: 'relative', display: child.key === activePageKey ? 'block' : 'none',
-              }}
-            >
-              {React.cloneElement(child, { isActive: child.key === activePageKey, onRequestActivatePage: activatePage })}
-            </div>
-          ))}
-        </NavigationPromptCheckpoint>
+      <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
+        {isInitialized && React.Children.map(children, (child) => {
+          let portalElement = pageContainerPortalsRef.current[child.key]?.element;
+          if (!portalElement) {
+            portalElement = document.createElement('div');
+            portalElement.style.position = 'relative';
+            portalElement.style.height = '100%';
+            portalElement.style.width = '100%';
+            portalElement.id = `side-nav-${child.key}`;
+            pageContainerPortalsRef.current[child.key] = {
+              element: portalElement,
+            };
+          }
+
+          return (
+            React.cloneElement(child, { isActive: child.key === activePageKey, onRequestActivatePage: activatePage, portalElement })
+          );
+        })}
       </div>
     </div>
   );
@@ -113,23 +154,9 @@ const SideNavigationPageContainer = ({
 SideNavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, cleanupRenderIfPossible, onRequestActivatePage,
+  isActive, children, render, onRequestActivatePage, portalElement,
 }) => {
-  // const [hasActivated, setHasActivated] = React.useState();
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  // const registeredPromptsRef = React.useRef(0);
-
-  // React.useLayoutEffect(() => {
-  //   if (isActive) {
-  //     setHasActivated(true);
-  //   } else if (render && registeredPromptsRef.current === 0 && cleanupRenderIfPossible) {
-  //     setHasActivated(false);
-  //   }
-  // }, [isActive, render, cleanupRenderIfPossible]);
-
-  if (!isActive) {
-    return null;
-  }
 
   let pageContent;
 
@@ -141,13 +168,11 @@ const NavigationPage = ({
 
   const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
 
-  return (
-  // <NavigationPromptCheckpoint onPromptChange={(prompts) => { registeredPromptsRef.current = prompts ? prompts.length : 0; }}>
+  return ReactDOM.createPortal((
     <ApplicationPageContainer>
       {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
     </ApplicationPageContainer>
-  // </NavigationPromptCheckpoint>
-  );
+  ), portalElement);
 };
 
 export default SideNavigationPageContainer;

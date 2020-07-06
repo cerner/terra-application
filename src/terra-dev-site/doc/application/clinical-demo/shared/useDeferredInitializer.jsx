@@ -17,9 +17,9 @@ const useDeferredInitializer = () => {
     };
   }, [isInitialized]);
 
-  return isInitialized;
+  // return isInitialized;
 
-  // return true;
+  return true;
 };
 
 export default useDeferredInitializer;

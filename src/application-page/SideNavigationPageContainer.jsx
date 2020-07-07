@@ -87,6 +87,10 @@ const SideNavigationPageContainer = ({
       }
 
       lastActivePageKeyRef.current = activePageKey;
+
+      setTimeout(() => {
+        document.body.focus();
+      }, 0);
     } else {
       lastActivePageKeyRef.current = undefined;
     }

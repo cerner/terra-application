@@ -66,7 +66,6 @@ class PageLayoutNodeManager {
     }
 
     this._containerRef.current.appendChild(newPortalElement);
-
     this.hideAncestors(ancestorPageKey);
 
     setTimeout(() => {

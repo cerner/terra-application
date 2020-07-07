@@ -28,6 +28,7 @@ const BannerPresenter = () => {
           type="alert"
           id="chart-review-page-alert-banner"
           onRequestDismiss={() => setShowAlertBanner(false)}
+          description={<div>Please do not break</div>}
         />
       )}
       {showWarningBanner && (
@@ -35,6 +36,12 @@ const BannerPresenter = () => {
           type="warning"
           id="chart-review-page-warning-banner"
           onRequestDismiss={() => setShowWarningBanner(false)}
+          bannerAction={{
+            text: 'Custom Dismiss',
+            onClick: () => {
+              setShowWarningBanner(false);
+            },
+          }}
         />
       )}
     </>

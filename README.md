@@ -1,6 +1,6 @@
 <!-- Logo -->
 <p align="center">
-  <img height="128" width="128" src="https://github.com/cerner/terra-application/raw/master/terra.png" alt="terra logo" />
+  <img height="128" width="128" src="https://github.com/cerner/terra-application/raw/main/terra.png" alt="terra logo" />
 </p>
 
 <!-- Name -->
@@ -10,7 +10,7 @@
 
 [![NPM version](https://badgen.net/npm/v/terra-application)](https://www.npmjs.org/package/terra-application)
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
-[![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/master/LICENSE)
+[![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/main/LICENSE)
 [![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)
 [![Dependencies status](https://badgen.net/david/dep/cerner/terra-application)](https://david-dm.org/cerner/terra-application)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-application)](https://david-dm.org/cerner/terra-application?type=dev)

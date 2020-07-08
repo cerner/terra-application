@@ -7,6 +7,12 @@ Unreleased
 * Added ApplicationStatusOverlay
 * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
 
+1.28.0 - (July 7, 2020)
+------------------
+### Changed
+* Corrected typo in `.gitignore` file.
+* Updated Docs to point to main branch for terra-toolkit-boneyard.
+
 1.27.0 - (June 23, 2020)
 ------------------
 ### Changed

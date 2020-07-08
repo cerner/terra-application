@@ -49,7 +49,7 @@ logs
 node_modules
 npm-debug.log*
 pids
-reports`
+reports
 target
 **/wdio/**/__snapshots__/latest
 **/wdio/**/__snapshots__/diff

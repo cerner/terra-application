@@ -25,7 +25,7 @@ const propTypes = {
 const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...customProps }) => {
   const [registeredStatusOverlay, setRegisteredStatusOverlay] = React.useState({});
 
-  const refContainer = React.useRef();
+  const containerRef = React.useRef();
 
   const contextValue = useMemo(() => ({
     show: (key, data) => {
@@ -47,15 +47,15 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   }), []);
 
   const disableContainerChildrenFocus = () => {
-    if (refContainer.current && refContainer.current.querySelector('[data-status-overlay-container-content]')) {
-      refContainer.current.querySelector('[data-status-overlay-container-content]').setAttribute('inert', '');
+    if (containerRef.current) {
+      containerRef.current.setAttribute('inert', '');
     }
   };
 
   const enableContainerChildrenFocus = () => {
-    if (refContainer.current && refContainer.current.querySelector('[data-status-overlay-container-content]')) {
-      refContainer.current.querySelector('[data-status-overlay-container-content]').removeAttribute('inert');
-      refContainer.current.querySelector('[data-status-overlay-container-content]').removeAttribute('aria-hidden');
+    if (containerRef.current) {
+      containerRef.current.removeAttribute('inert');
+      containerRef.current.removeAttribute('aria-hidden');
     }
   };
 
@@ -101,9 +101,9 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   );
 
   return (
-    <div {...customProps} ref={refContainer} className={className}>
+    <div {...customProps} className={className}>
       {statusView}
-      <div data-status-overlay-container-content className={cx('container-content')}>
+      <div data-status-overlay-container-content ref={containerRef} className={cx('container-content')}>
         <Scroll refCallback={scrollRefCallback}>
           <ApplicationStatusOverlayContext.Provider value={contextValue}>
             {children}

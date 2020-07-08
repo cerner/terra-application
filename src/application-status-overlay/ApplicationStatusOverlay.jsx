@@ -44,20 +44,20 @@ const ApplicationStatusOverlay = (props) => {
     title,
     variant,
   } = props;
-  const id = useRef(uuidv4());
+  const idRef = useRef(uuidv4());
   const applicationStatusOverlay = useContext(ApplicationStatusOverlayContext);
 
   useLayoutEffect(() => {
-    applicationStatusOverlay.show(id.current, {
+    applicationStatusOverlay.show(idRef.current, {
       buttonAttrs,
       message,
       title,
       variant,
     });
-  }, [buttonAttrs, message, title, variant, id, applicationStatusOverlay]);
+  }, [buttonAttrs, message, title, variant, idRef, applicationStatusOverlay]);
 
   useLayoutEffect(() => () => {
-    applicationStatusOverlay.hide(id.current);
+    applicationStatusOverlay.hide(idRef.current);
   }, [applicationStatusOverlay]);
 
   return null;

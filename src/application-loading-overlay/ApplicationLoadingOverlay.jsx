@@ -20,11 +20,11 @@ const defaultProps = {
 };
 
 const ApplicationLoadingOverlay = ({ isOpen, backgroundStyle }) => {
-  const id = useRef(uuidv4());
+  const idRef = useRef(uuidv4());
   const applicationLoadingOverlay = useContext(ApplicationLoadingOverlayContext);
 
   useLayoutEffect(() => {
-    const overlayId = id.current;
+    const overlayId = idRef.current;
 
     if (isOpen) {
       applicationLoadingOverlay.show(overlayId, { backgroundStyle });
@@ -35,7 +35,7 @@ const ApplicationLoadingOverlay = ({ isOpen, backgroundStyle }) => {
     return () => {
       applicationLoadingOverlay.hide(overlayId);
     };
-  }, [isOpen, backgroundStyle, id, applicationLoadingOverlay]);
+  }, [isOpen, backgroundStyle, idRef, applicationLoadingOverlay]);
 
   return null;
 };

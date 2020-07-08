@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 
-import ApplicationNavigation from '../../../../../application-navigation';
+import NuApplicationNavigation, { NavigationPageContainer } from '../../../../../application-navigation/NuApplicationNavigation';
 
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';
@@ -15,19 +15,19 @@ const userConfig = {
 };
 
 const ClinicalDemoAppContainer = () => {
-  const [activeNavItem, setActiveNavItem] = useState('page_0');
+  const [activeNavItem, setActiveNavItem] = useState('review');
   const [showPatientSearchModal, setShowPatientSearchModal] = useState(false);
 
   const [loggedOut, setLoggedOut] = useState(false);
 
   const navigationItemsRef = useRef([{
-    key: 'page_0',
+    key: 'review',
     text: 'Review',
   }, {
-    key: 'page_1',
+    key: 'order',
     text: 'Order',
   }, {
-    key: 'page_2',
+    key: 'document',
     text: 'Document',
   }]);
 
@@ -50,7 +50,7 @@ const ClinicalDemoAppContainer = () => {
         </ApplicationModal>
       )}
       <PatientConceptProvider>
-        <ApplicationNavigation
+        <NuApplicationNavigation
           titleConfig={{
             title: '(Not) Powerchart Touch',
           }}
@@ -72,22 +72,19 @@ const ClinicalDemoAppContainer = () => {
             setLoggedOut(true);
           }}
         >
-          {(() => {
-            let pageContent;
-            switch (activeNavItem) {
-              case 'page_0':
-                pageContent = <ReviewPageContainer />;
-                break;
-              case 'page_1':
-                pageContent = <OrderPageContainer />;
-                break;
-              default:
-                pageContent = <DocumentPageContainer />;
-                break;
-            }
-            return pageContent;
-          })()}
-        </ApplicationNavigation>
+          <NavigationPageContainer
+            pageKey="review"
+            render={() => <ReviewPageContainer />}
+          />
+          <NavigationPageContainer
+            pageKey="order"
+            render={() => <OrderPageContainer />}
+          />
+          <NavigationPageContainer
+            pageKey="document"
+            render={() => <DocumentPageContainer />}
+          />
+        </NuApplicationNavigation>
       </PatientConceptProvider>
     </>
   );

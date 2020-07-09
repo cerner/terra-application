@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Scroll from 'terra-scroll';
 import StatusView from 'terra-status-view';
+import ThemeContext from 'terra-theme-context';
 import ApplicationStatusOverlayContext from './ApplicationStatusOverlayContext';
 import styles from './ApplicationStatusOverlayProvider.module.scss';
 
@@ -63,10 +64,10 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   // In the event when multiple ApplicationStatusOverlay's are provided, the last rendered wins
   const lastRegisteredStatusOverlayKey = (registeredStatusOverlayKeys.length > 0) && registeredStatusOverlayKeys[registeredStatusOverlayKeys.length - 1];
 
-  const registeredButtonAttrs = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].buttonAttrs;
-  const registeredMessage = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].message;
-  const registeredTitle = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].title;
-  const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey] && registeredStatusOverlay[lastRegisteredStatusOverlayKey].variant;
+  const registeredButtonAttrs = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.buttonAttrs;
+  const registeredMessage = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.message;
+  const registeredTitle = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.title;
+  const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.variant;
 
   useEffect(() => {
     // eslint-disable-next-line no-prototype-builtins
@@ -78,7 +79,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   });
 
   useEffect(() => {
-    if (registeredStatusOverlayKeys.length > 0) {
+    if (registeredStatusOverlayKeys.length) {
       disableContainerChildrenFocus();
     } else {
       enableContainerChildrenFocus();
@@ -90,10 +91,12 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
     className = [className, customProps.className].join(' ');
   }
 
+  const theme = React.useContext(ThemeContext);
+
   const statusView = (registeredStatusOverlayKeys.length > 0) && (
     <StatusView
       buttonAttrs={registeredButtonAttrs}
-      className={cx('status-view')}
+      className={cx('status-view', theme.className)}
       message={registeredMessage}
       title={registeredTitle}
       variant={registeredVariant}
@@ -115,5 +118,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 };
 
 ApplicationStatusOverlayProvider.propTypes = propTypes;
+ApplicationStatusOverlayProvider.contextType = ThemeContext;
 
 export default ApplicationStatusOverlayProvider;

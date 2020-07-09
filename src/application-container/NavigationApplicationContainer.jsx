@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from './terra-application-navigation/utils/propTypes';
+} from '../application-navigation/terra-application-navigation/utils/propTypes';
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
+import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 
-import ApplicationNavigation from './ApplicationNavigation';
+import ApplicationContainer from './ApplicationContainer';
 
 const propTypes = {
   /**
@@ -114,7 +115,7 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 };
 
-const NuApplicationNavigation = ({
+const NavigationApplicationContainer = ({
   children, ...props
 }) => {
   const sideNavBodyRef = React.useRef();
@@ -133,7 +134,7 @@ const NuApplicationNavigation = ({
     }
 
     if (lastActivePageKeyRef.current) {
-      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main').scrollTop;
+      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
       sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
     }
 
@@ -157,38 +158,40 @@ const NuApplicationNavigation = ({
 
   return (
     <ApplicationNavigation {...props} disablePromptsForNavigationItems>
-      <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
-        {React.Children.map(children, (child) => {
-          let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
-          if (!portalElement) {
-            portalElement = document.createElement('div');
-            portalElement.style.position = 'relative';
-            portalElement.style.height = '100%';
-            portalElement.style.width = '100%';
-            portalElement.id = `primary-nav-${child.props.pageKey}`;
-            pageContainerPortalsRef.current[child.props.pageKey] = {
-              element: portalElement,
-            };
-          }
+      <ApplicationContainer>
+        <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
+          {React.Children.map(children, (child) => {
+            let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
+            if (!portalElement) {
+              portalElement = document.createElement('div');
+              portalElement.style.position = 'relative';
+              portalElement.style.height = '100%';
+              portalElement.style.width = '100%';
+              portalElement.id = `primary-nav-${child.props.pageKey}`;
+              pageContainerPortalsRef.current[child.props.pageKey] = {
+                element: portalElement,
+              };
+            }
 
-          return (
-            React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })
-          );
-        })}
-      </div>
+            return (
+              React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })
+            );
+          })}
+        </div>
+      </ApplicationContainer>
     </ApplicationNavigation>
   );
 };
 
-NuApplicationNavigation.propTypes = propTypes;
+NavigationApplicationContainer.propTypes = propTypes;
 
 const NavigationPageContainer = ({
-  children, render, portalElement,
+  isActive, children, render, portalElement,
 }) => {
   let pageContent;
 
   if (render) {
-    pageContent = render();
+    pageContent = render({ isActive });
   } else {
     pageContent = children;
   }
@@ -196,5 +199,5 @@ const NavigationPageContainer = ({
   return ReactDOM.createPortal(pageContent, portalElement);
 };
 
-export default NuApplicationNavigation;
+export default NavigationApplicationContainer;
 export { NavigationPageContainer };

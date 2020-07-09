@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
-import SideNavigationPageContainer, { NavigationPage } from '../../../../../application-page/SideNavigationPageContainer';
+import NavigationPageContainer, { NavigationPage } from '../../../../../application-page/NavigationPageContainer';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
@@ -11,43 +11,37 @@ const DocumentPageContainer = () => {
   const [activePageKey, setActivePageKey] = React.useState();
 
   return (
-    <SideNavigationPageContainer
+    <NavigationPageContainer
       activePageKey={activePageKey}
       onRequestActivatePage={(key) => { setActivePageKey(key); }}
     >
       <NavigationPage
-        key="summary"
         pageKey="summary"
         description="Chart Review"
-      >
-        <ChartReviewPage />
-      </NavigationPage>
+        render={() => <ChartReviewPage />}
+      />
       <NavigationPage
-        key="orders"
         pageKey="orders"
         description="Order Profile"
-      >
-        <OrderProfilePage />
-      </NavigationPage>
+        render={() => <OrderProfilePage />}
+      />
       <NavigationPage
-        key="allergies"
         pageKey="allergies"
         description="Allergy Profile"
-      >
-        <AllergyProfilePage />
-      </NavigationPage>
+        render={() => <AllergyProfilePage />}
+      />
       <NavigationPage
-        key="inline-page"
         pageKey="inline-page"
         description="Inline Page"
-      >
-        <ApplicationPage title="Inline Page">
-          <div style={{ padding: '1rem' }}>
+        render={() => (
+          <ApplicationPage title="Inline Page">
+            <div style={{ padding: '1rem' }}>
               Page content here...
-          </div>
-        </ApplicationPage>
-      </NavigationPage>
-    </SideNavigationPageContainer>
+            </div>
+          </ApplicationPage>
+        )}
+      />
+    </NavigationPageContainer>
   );
 };
 

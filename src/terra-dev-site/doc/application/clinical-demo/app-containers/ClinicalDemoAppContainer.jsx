@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 
-import NuApplicationNavigation, { NavigationPageContainer } from '../../../../../application-navigation/NuApplicationNavigation';
+import NavigationApplicationContainer, { NavigationPageContainer } from '../../../../../application-container/NavigationApplicationContainer';
 
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';
@@ -50,7 +50,7 @@ const ClinicalDemoAppContainer = () => {
         </ApplicationModal>
       )}
       <PatientConceptProvider>
-        <NuApplicationNavigation
+        <NavigationApplicationContainer
           titleConfig={{
             title: '(Not) Powerchart Touch',
           }}
@@ -84,7 +84,7 @@ const ClinicalDemoAppContainer = () => {
             pageKey="document"
             render={() => <DocumentPageContainer />}
           />
-        </NuApplicationNavigation>
+        </NavigationApplicationContainer>
       </PatientConceptProvider>
     </>
   );

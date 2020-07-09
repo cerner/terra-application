@@ -6,6 +6,7 @@ import Button from 'terra-button';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import IconRight from 'terra-icon/lib/icon/IconRight';
+
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 
 import useDeferredInitializer from '../shared/useDeferredInitializer';

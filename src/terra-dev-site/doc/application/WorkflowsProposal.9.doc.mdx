@@ -385,13 +385,28 @@ ApplicationBase
   - Ideally no DOM added here, just context/API
 ApplicationContainer
   - AppConcept banner/content
-  - More than one (default, navigation, embedded (?))
+  - More than one (ApplicationContainer, NavigationApplicationContainer, EmbeddedApplicationContainer)
 PageContainer
   - Defines presentation region for Pages
-  - More than one (default, side nav)
+  - More than one (PageContainer, NavigationPageContainer)
 Page
   - Fundamental concept for composable application design
+  - Can be presented within Modal (Page API is subset of Modal API)
+Modal
+  - Superset of Page API + modal specific API (foot actions)
+  - Can be presented from any layer within ApplicationBase
 
+```jsx
+<ApplicationBase>
+  <ApplicationContainer>
+    <PageContainer>
+      <Page>
+        <Page>
+          ...
+  <Modal>
+    <Modal>
+      ...
+```
 
 # TODO
 

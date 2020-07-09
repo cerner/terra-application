@@ -1,16 +1,16 @@
 import React from 'react';
 
-import ApplicationContainer from 'terra-application/lib/application-container/ApplicationContainer';
+import EmbeddedApplicationContainer from 'terra-application/lib/application-container/EmbeddedApplicationContainer';
 
 import PatientConceptProvider from '../shared/PatientConceptProvider';
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 
 const EmbeddedReviewAppContainer = () => (
-  <PatientConceptProvider>
-    <ApplicationContainer>
+  <EmbeddedApplicationContainer>
+    <PatientConceptProvider>
       <ReviewPageContainer />
-    </ApplicationContainer>
-  </PatientConceptProvider>
+    </PatientConceptProvider>
+  </EmbeddedApplicationContainer>
 );
 
 export default EmbeddedReviewAppContainer;

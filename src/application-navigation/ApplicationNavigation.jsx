@@ -184,9 +184,7 @@ const ApplicationNavigation = ({
       <NavigationPromptCheckpoint
         ref={navigationPromptCheckpointRef}
       >
-        <ApplicationContainer>
-          {children}
-        </ApplicationContainer>
+        {children}
       </NavigationPromptCheckpoint>
     </TerraApplicationNavigation>
   );

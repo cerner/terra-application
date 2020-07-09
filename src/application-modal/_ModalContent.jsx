@@ -165,14 +165,8 @@ const ModalContent = (props) => {
               {applicationConcept && applicationConcept.renderModalConceptView()}
               <PageHeader
                 title={title}
-                actions={(actions || []).concat({
-                  key: 'close',
-                  text: 'Close',
-                  icon: <IconClose />,
-                  onSelect: () => {
-                    onRequestClose();
-                  },
-                })}
+                actions={actions}
+                onClose={onRequestClose}
               />
               {banners}
             </>

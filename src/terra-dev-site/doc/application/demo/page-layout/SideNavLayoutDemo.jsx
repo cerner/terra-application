@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SideNavigationPageContainer, { NavigationPage } from '../../../../../application-page/SideNavigationPageContainer';
+import NavigationPageContainer, { NavigationPage } from '../../../../../application-page/NavigationPageContainer';
 
 import ExamplePage from './shared/ExamplePage';
 import SideNavigationList from './shared/SideNavigationList';
@@ -10,7 +10,7 @@ const PageLayoutDemo = () => {
   const [activeSideNavItemKey, setActiveSideNavItemKey] = React.useState();
 
   return (
-    <SideNavigationPageContainer
+    <NavigationPageContainer
       sidebar={(
         <SideNavigationList
           selectedItemKey={activeSideNavItemKey}
@@ -22,29 +22,28 @@ const PageLayoutDemo = () => {
       onChangeActiveItem={(key) => { setActiveSideNavItemKey(key); }}
     >
       <NavigationPage
-        sideNavKey="item-1"
-        cleanupRenderIfPossible
+        pageKey="item-1"
         render={() => (
           <ExamplePage prefix="Item 1" index={0} />
         )}
       />
       <NavigationPage
-        sideNavKey="item-2"
+        pageKey="item-2"
         render={() => (
           <ExamplePage prefix="Item 2" index={0} />
         )}
       />
       <NavigationPage
-        sideNavKey="item-3"
+        pageKey="item-3"
       >
         <ExamplePage prefix="Item 3" index={0} />
       </NavigationPage>
       <NavigationPage
-        sideNavKey="chart-summary"
+        pageKey="chart-summary"
       >
         <ChartReviewPage />
       </NavigationPage>
-    </SideNavigationPageContainer>
+    </NavigationPageContainer>
   );
 };
 

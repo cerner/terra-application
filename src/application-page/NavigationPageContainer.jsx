@@ -6,7 +6,6 @@ import List, { Item as ListItem } from 'terra-list';
 
 import { ActiveBreakpointContext } from '../breakpoints';
 
-import ApplicationPage from './ApplicationPage';
 import ApplicationPageContainer from './ApplicationPageContainer';
 import PageLayoutHeader from './_PageHeader';
 
@@ -47,7 +46,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
   );
 };
 
-const SideNavigationPageContainer = ({
+const NavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage,
 }) => {
   const [isInitialized, setIsInitialized] = React.useState(false);
@@ -74,7 +73,7 @@ const SideNavigationPageContainer = ({
     }
 
     if (lastActivePageKeyRef.current) {
-      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main').scrollTop;
+      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
       sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
     }
 
@@ -186,7 +185,7 @@ const SideNavigationPageContainer = ({
   );
 };
 
-SideNavigationPageContainer.propTypes = propTypes;
+NavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
   isActive, children, render, onRequestActivatePage, portalElement,
@@ -210,5 +209,5 @@ const NavigationPage = ({
   ), portalElement);
 };
 
-export default SideNavigationPageContainer;
+export default NavigationPageContainer;
 export { NavigationPage };

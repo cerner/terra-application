@@ -70,17 +70,7 @@ const ApplicationPage = ({
   }
 
   if (!nodeManager) {
-    return (
-      <ApplicationModal
-        title={title}
-        actions={actions}
-        onRequestClose={onRequestClose}
-        size="large"
-        modalClassName={cx('modal-page-container')}
-      >
-        {children}
-      </ApplicationModal>
-    );
+    return null;
   }
 
   return (

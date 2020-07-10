@@ -162,13 +162,13 @@ const ModalContent = (props) => {
           fill
           header={(
             <>
-              {applicationConcept && applicationConcept.renderModalConceptView()}
               <PageHeader
                 title={title}
                 actions={actions}
                 onClose={onRequestClose}
               />
-              {banners}
+              {applicationConcept && applicationConcept.renderModalConceptView()}
+              {/* {banners} */}
             </>
           )}
           footer={(

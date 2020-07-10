@@ -35,7 +35,7 @@ class LayerNodeManager {
     };
 
     this._nodeArray.slice(0, -1).forEach((element) => {
-      element.style.display = 'none';
+      // element.style.display = 'none';
       element.setAttribute('inert', undefined);
     });
 

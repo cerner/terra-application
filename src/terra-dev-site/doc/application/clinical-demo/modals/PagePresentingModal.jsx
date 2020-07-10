@@ -1,6 +1,7 @@
 import React from 'react';
 import Button from 'terra-button';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
+import ApplicationPageContainer from '../../../../../application-page/ApplicationPageContainer';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 
@@ -9,14 +10,26 @@ const PagePresentingModal = ({ onRequestClose }) => {
   const [showOrdersPage, setShowOrdersPage] = React.useState(false);
 
   return (
-    <ApplicationModal title="Page Presenting Modal" onRequestClose={onRequestClose}>
+    <ApplicationModal title="Page Presenting Modal" size="small" onRequestClose={onRequestClose}>
       <div style={{ padding: '1rem' }}>
         <h2>Page Presenting Modal</h2>
         <br />
         <Button text="Show Allergy Profile" onClick={() => { setShowAllergiesPage(true); }} />
-        {showAllergiesPage && <AllergyProfilePage onRequestClose={() => { setShowAllergiesPage(false); }} />}
+        {showAllergiesPage && (
+          <ApplicationModal size="large" title="Allergy Modal" onRequestClose={() => { setShowAllergiesPage(false); }}>
+            <ApplicationPageContainer>
+              <AllergyProfilePage />
+            </ApplicationPageContainer>
+          </ApplicationModal>
+        )}
         <Button text="Show Order Profile" onClick={() => { setShowOrdersPage(true); }} />
-        {showOrdersPage && <OrderProfilePage onRequestClose={() => { setShowOrdersPage(false); }} />}
+        {showOrdersPage && (
+          <ApplicationModal size="large" title="Order Modal" onRequestClose={() => { setShowOrdersPage(false); }}>
+            <ApplicationPageContainer>
+              <OrderProfilePage />
+            </ApplicationPageContainer>
+          </ApplicationModal>
+        )}
       </div>
     </ApplicationModal>
   );

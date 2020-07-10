@@ -188,14 +188,26 @@ const NavigationPageContainer = ({
 NavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, onRequestActivatePage, portalElement,
+  isActive, children, render, onRequestActivatePage, portalElement, preload,
 }) => {
+  const [hasActivated, setHasActivated] = React.useState(isActive || preload);
+
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+
+  React.useEffect(() => {
+    if (isActive || preload) {
+      setHasActivated(true);
+    }
+  }, [isActive, preload]);
+
+  if (!isActive && !preload && !hasActivated) {
+    return null;
+  }
 
   let pageContent;
 
   if (render) {
-    pageContent = render();
+    pageContent = render({ isActive });
   } else {
     pageContent = children;
   }

@@ -186,8 +186,20 @@ const NavigationApplicationContainer = ({
 NavigationApplicationContainer.propTypes = propTypes;
 
 const NavigationPageContainer = ({
-  isActive, children, render, portalElement,
+  isActive, children, render, portalElement, preload,
 }) => {
+  const [hasActivated, setHasActivated] = React.useState(isActive || preload);
+
+  React.useEffect(() => {
+    if (isActive || preload) {
+      setHasActivated(true);
+    }
+  }, [isActive, preload]);
+
+  if (!isActive && !preload && !hasActivated) {
+    return null;
+  }
+
   let pageContent;
 
   if (render) {

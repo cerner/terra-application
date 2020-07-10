@@ -1,5 +1,4 @@
-import React, {
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import HeaderContainer from '../header-container/_HeaderContainer';
 

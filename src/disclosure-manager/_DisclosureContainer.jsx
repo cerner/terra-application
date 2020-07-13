@@ -54,26 +54,18 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
 
   useEffect(() => {
     disclosureManager.registerDismissCheck(() => {
-      function checkNavigationPrompts() {
-        return new Promise((resolve, reject) => {
-          if (!promptCheckpointRef.current) {
-            resolve();
-            return;
-          }
-  
-          promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
-        })
-      }
-
       if (customRegisterDismissCheckRef.current) {
-        return Promise.resolve(customRegisterDismissCheckRef.current()).then(() => {
-          return checkNavigationPrompts();
-        }, (e) => {
-          throw e;
-        });
+        return customRegisterDismissCheckRef.current();
       }
 
-      return checkNavigationPrompts();
+      return new Promise((resolve, reject) => {
+        if (!promptCheckpointRef.current) {
+          resolve();
+          return;
+        }
+
+        promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
+      });  
     });
   }, [defaultPromptOptions, disclosureManager, navigationPromptResolutionOptions]);
 

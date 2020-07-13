@@ -17,17 +17,4 @@ describe('DisclosureContainer', () => {
     const wrapper = shallow(disclosureContainer);
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('should render the provided children', () => {
-    const disclosureContainer = (
-      <DisclosureContainer.WrappedComponent
-        intl={mockIntl}
-      >
-        <div>Test Child</div>
-      </DisclosureContainer.WrappedComponent>
-    );
-
-    const wrapper = shallow(disclosureContainer);
-    expect(wrapper).toMatchSnapshot();
-  });
 });

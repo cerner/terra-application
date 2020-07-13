@@ -35,11 +35,9 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   const promptCheckpointRef = useRef();
   const customRegisterDismissCheckRef = useRef();
 
-  const overrideDisclosureManagerContext = useMemo(() => {
-    return DisclosureManagerDelegate.clone(disclosureManager, {
-      registerDismissCheck: (check) => { customRegisterDismissCheckRef.current = check },
-    });
-  }, [disclosureManager])
+  const overrideDisclosureManagerContext = useMemo(() => DisclosureManagerDelegate.clone(disclosureManager, {
+    registerDismissCheck: (check) => { customRegisterDismissCheckRef.current = check; },
+  }), [disclosureManager]);
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
 
@@ -65,7 +63,7 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
         }
 
         promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
-      });  
+      });
     });
   }, [defaultPromptOptions, disclosureManager, navigationPromptResolutionOptions]);
 

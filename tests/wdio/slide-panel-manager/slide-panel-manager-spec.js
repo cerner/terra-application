@@ -103,3 +103,22 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     Terra.validates.element('12. root panel-global dismiss', { selector });
   });
 });
+
+Terra.describeViewports('CustomDismissCheckWorkflow', ['large'], () => {
+  before(() => browser.url('/#/raw/tests/terra-application/slide-panel-manager/custom-dismiss-check'));
+
+  it('opens the slide-panel', () => {
+    browser.click('#root-component .disclose-large');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
+    Terra.validates.element('1. root panel', { selector });
+  });
+
+  it('marks panel as having a pending action', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-1 .pending-action-toggle');
+  });
+
+  it('attempts to close panel and fails due to custom dismiss check implementation', () => {
+    browser.click('[class*="SlidePanel"]  [data-terra-action-header="close-button"]');
+    Terra.validates.element('2. panel persists after close attempt', { selector });
+  });
+});

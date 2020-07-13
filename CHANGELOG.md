@@ -4,6 +4,9 @@ Changelog
 Unreleased
 ----------
 
+### Fixed
+* Allowed components disclosed by the DisclosureManager to override the default registerDismissCheck implementation
+
 1.28.0 - (July 7, 2020)
 ------------------
 ### Changed

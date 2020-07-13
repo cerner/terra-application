@@ -8,12 +8,12 @@ import styles from './ModalManagerCommon.test.module.scss';
 
 const cx = classNames.bind(styles);
 
-const NavigationPrompt = () => (
+const CustomDismissCheck = () => (
   <div role="main" className={cx('content-wrapper')}>
     <ModalManager>
-      <DisclosureComponent identifier="root-component" disclosureType="modal" renderHeaderAdapter />
+      <DisclosureComponent identifier="root-component" disclosureType="modal" renderHeaderAdapter useCustomDismissCheck />
     </ModalManager>
   </div>
 );
 
-export default NavigationPrompt;
+export default CustomDismissCheck;

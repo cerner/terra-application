@@ -36,6 +36,10 @@ const ModalContent = ({ name, onSubmit }) => {
     };
   }, [isInitialized]);
 
+  useEffect(() => {
+    disclosureManager.registerDismissCheck(() => new Promise((resolve, reject) => { if (confirm('Dismiss?')) { resolve(); } else { reject(); } }));
+  }, [disclosureManager]);
+
   if (!isInitialized) {
     return (
       <>

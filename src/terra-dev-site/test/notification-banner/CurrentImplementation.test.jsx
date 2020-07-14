@@ -4,17 +4,16 @@ import { BannerRegistrationContext, useNotificationBanners } from '../../../noti
 
 import ExampleForAccessibilityTesting from './ExampleForAccessibilityTesting';
 
-const Example = ({ id }) => {
+const Example = ({ id, children }) => {
   const { bannerProviderValue, banners } = useNotificationBanners();
 
   return (
-    <>
-      <BannerRegistrationContext.Provider value={bannerProviderValue}>
-        {banners}
-        <h1>Using Terra Alert out of the Box</h1>
-        <ExampleForAccessibilityTesting id={id} />
-      </BannerRegistrationContext.Provider>
-    </>
+    <BannerRegistrationContext.Provider value={bannerProviderValue}>
+      {banners}
+      <h1>Using Terra Alert out of the Box</h1>
+      <ExampleForAccessibilityTesting id={id} />
+      {children}
+    </BannerRegistrationContext.Provider>
   );
 };
 
@@ -24,6 +23,7 @@ Example.propTypes = {
    * are rendered on one page.
    */
   id: PropTypes.string,
+  children: PropTypes.any,
 };
 
 Example.defaultProps = {

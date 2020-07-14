@@ -1,885 +1,589 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 1`] = `
+exports[`useNotificationBanners Nested Notification Banner Provider registers notification banner with top-level Banner Provider 1`] = `
+<div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
+      >
+        Toggle Notification Banner
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners Nested Notification Banner Provider registers notification banner with top-level Banner Provider 2`] = `
 <div>
   <div
-    class="content-container-fill"
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
   >
     <div
-      class="header"
-    />
+      class="body body-std"
+    >
+      <span
+        class="icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
+          </span>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
+      >
+        Toggle Notification Banner
+      </button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners Nested Notification Banner Provider registers notification banner with top-level Banner Provider 3`] = `
+<div>
+  <div
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
+  >
     <div
-      class="main"
+      class="body body-std"
+    >
+      <span
+        class="icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
+          </span>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+    <div
+      class="alert-base error narrow"
+      data-terra-application-notification-banner="error"
+      role="alert"
     >
       <div
-        class="scroll normalizer"
+        class="body body-std"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
+        <span
+          class="icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="tui-Icon icon IconError"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 48 48"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
+            <path
+              d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+              fill="#E50000"
             />
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 2`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
-      >
-        <div
-          class="body body-std"
-        >
-          <span
-            class="icon"
-          >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
-          </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
-      >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
+            <path
+              d="M7 21.5h34v5H7v-5z"
+              fill="#FFF"
             />
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider Nested Notification Banner Provider registers notfication banner with top-level Banner Provider 3`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
-      >
+          </svg>
+        </span>
         <div
-          class="body body-std"
+          class="section"
         >
-          <span
-            class="icon"
+          <strong
+            class="title"
           >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
-          </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
+            <span>
+              Error.
+            </span>
+          </strong>
         </div>
       </div>
     </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
-            >
-              <div
-                class="alert-base error narrow"
-                data-terra-application-notification-banner="error"
-                role="alert"
-              >
-                <div
-                  class="body body-std"
-                >
-                  <span
-                    class="icon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="tui-Icon icon IconError"
-                      focusable="false"
-                      height="1em"
-                      viewBox="0 0 48 48"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                        fill="#E50000"
-                      />
-                      <path
-                        d="M7 21.5h34v5H7v-5z"
-                        fill="#FFF"
-                      />
-                    </svg>
-                  </span>
-                  <div
-                    class="section"
-                  >
-                    <strong
-                      class="title"
-                    >
-                      <span>
-                        Error.
-                      </span>
-                    </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+        Toggle Notification Banner
+      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 1`] = `
+exports[`useNotificationBanners Nested Notification Banner Provider unregisters banner with top-level Banner Provider 1`] = `
 <div>
   <div
-    class="content-container-fill"
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
   >
     <div
-      class="header"
+      class="body body-std"
     >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
+      <span
+        class="icon"
       >
-        <div
-          class="body body-std"
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <span
-            class="icon"
-          >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
           </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
-      >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
-            >
-              <div
-                class="alert-base error narrow"
-                data-terra-application-notification-banner="error"
-                role="alert"
-              >
-                <div
-                  class="body body-std"
-                >
-                  <span
-                    class="icon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="tui-Icon icon IconError"
-                      focusable="false"
-                      height="1em"
-                      viewBox="0 0 48 48"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                        fill="#E50000"
-                      />
-                      <path
-                        d="M7 21.5h34v5H7v-5z"
-                        fill="#FFF"
-                      />
-                    </svg>
-                  </span>
-                  <div
-                    class="section"
-                  >
-                    <strong
-                      class="title"
-                    >
-                      <span>
-                        Error.
-                      </span>
-                    </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        </strong>
       </div>
     </div>
   </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 2`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
     <div
-      class="header"
-    />
-    <div
-      class="main"
+      class="alert-base error narrow"
+      data-terra-application-notification-banner="error"
+      role="alert"
     >
       <div
-        class="scroll normalizer"
+        class="body body-std"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
+        <span
+          class="icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="tui-Icon icon IconError"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 48 48"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
-            >
-              <div
-                class="alert-base error narrow"
-                data-terra-application-notification-banner="error"
-                role="alert"
-              >
-                <div
-                  class="body body-std"
-                >
-                  <span
-                    class="icon"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="tui-Icon icon IconError"
-                      focusable="false"
-                      height="1em"
-                      viewBox="0 0 48 48"
-                      width="1em"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                        fill="#E50000"
-                      />
-                      <path
-                        d="M7 21.5h34v5H7v-5z"
-                        fill="#FFF"
-                      />
-                    </svg>
-                  </span>
-                  <div
-                    class="section"
-                  >
-                    <strong
-                      class="title"
-                    >
-                      <span>
-                        Error.
-                      </span>
-                    </strong>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider Nested Notification Banner Provider unregisters banner with top-level Banner Provider 3`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    />
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
-      >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-          <div
-            class="content-container-fill"
-          >
-            <div
-              class="header"
+            <path
+              d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+              fill="#E50000"
             />
-            <div
-              class="main"
-            >
-              <div
-                class="scroll normalizer"
-              >
-                <div>
-                  <button
-                    data-testid="show-2nd-banner"
-                    type="button"
-                  >
-                    Toggle Notification Banner
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider registerNotificationBanner registers banner when rendered after mount 1`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    />
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
-      >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider registerNotificationBanner registers banner when rendered after mount 2`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
-      >
+            <path
+              d="M7 21.5h34v5H7v-5z"
+              fill="#FFF"
+            />
+          </svg>
+        </span>
         <div
-          class="body body-std"
+          class="section"
         >
-          <span
-            class="icon"
+          <strong
+            class="title"
           >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
-          </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
+            <span>
+              Error.
+            </span>
+          </strong>
         </div>
       </div>
     </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-        </div>
-      </div>
+        Toggle Notification Banner
+      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`NotificationBannerProvider renders with children 1`] = `
+exports[`useNotificationBanners Nested Notification Banner Provider unregisters banner with top-level Banner Provider 2`] = `
 <div>
-  <div
-    class="content-container-fill"
-  >
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
     <div
-      class="header"
-    />
-    <div
-      class="main"
+      class="alert-base error narrow"
+      data-terra-application-notification-banner="error"
+      role="alert"
     >
       <div
-        class="scroll normalizer"
-      />
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider renders with children 2`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    />
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
+        class="body body-std"
       >
-        <div>
-          child
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-`;
-
-exports[`NotificationBannerProvider renders with children that has a an banner 1`] = `
-<div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
-    >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
-      >
+        <span
+          class="icon"
+        >
+          <svg
+            aria-hidden="true"
+            class="tui-Icon icon IconError"
+            focusable="false"
+            height="1em"
+            viewBox="0 0 48 48"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+              fill="#E50000"
+            />
+            <path
+              d="M7 21.5h34v5H7v-5z"
+              fill="#FFF"
+            />
+          </svg>
+        </span>
         <div
-          class="body body-std"
+          class="section"
         >
-          <span
-            class="icon"
+          <strong
+            class="title"
           >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
-          </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
+            <span>
+              Error.
+            </span>
+          </strong>
         </div>
       </div>
     </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-        </div>
-      </div>
+        Toggle Notification Banner
+      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`NotificationBannerProvider unregisterNotificationBanner unregisters notification banner when id is provided 1`] = `
+exports[`useNotificationBanners Nested Notification Banner Provider unregisters banner with top-level Banner Provider 3`] = `
 <div>
-  <div
-    class="content-container-fill"
-  >
-    <div
-      class="header"
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
     >
-      <div
-        class="alert-base error narrow"
-        data-terra-application-notification-banner="error"
-        role="alert"
+      Toggle Notification Banner
+    </button>
+    <div>
+      <button
+        data-testid="show-2nd-banner"
+        type="button"
       >
-        <div
-          class="body body-std"
-        >
-          <span
-            class="icon"
-          >
-            <svg
-              aria-hidden="true"
-              class="tui-Icon icon IconError"
-              focusable="false"
-              height="1em"
-              viewBox="0 0 48 48"
-              width="1em"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
-                fill="#E50000"
-              />
-              <path
-                d="M7 21.5h34v5H7v-5z"
-                fill="#FFF"
-              />
-            </svg>
-          </span>
-          <div
-            class="section"
-          >
-            <strong
-              class="title"
-            >
-              <span>
-                Error.
-              </span>
-            </strong>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="main"
-    >
-      <div
-        class="scroll normalizer"
-      >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-        </div>
-      </div>
+        Toggle Notification Banner
+      </button>
     </div>
   </div>
 </div>
 `;
 
-exports[`NotificationBannerProvider unregisterNotificationBanner unregisters notification banner when id is provided 2`] = `
+exports[`useNotificationBanners NotificationBannerProvider.registerNotificationBanner registers banner when rendered after mount 1`] = `
+<div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners NotificationBannerProvider.registerNotificationBanner registers banner when rendered after mount 2`] = `
 <div>
   <div
-    class="content-container-fill"
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
   >
     <div
-      class="header"
-    />
-    <div
-      class="main"
+      class="body body-std"
     >
-      <div
-        class="scroll normalizer"
+      <span
+        class="icon"
       >
-        <div>
-          <button
-            data-testid="show-banner"
-            type="button"
-          >
-            Toggle Notification Banner
-          </button>
-        </div>
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
+          </span>
+        </strong>
       </div>
     </div>
+  </div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificationBanner unregisters notification banner when id is provided 1`] = `
+<div>
+  <div
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
+  >
+    <div
+      class="body body-std"
+    >
+      <span
+        class="icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
+          </span>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificationBanner unregisters notification banner when id is provided 2`] = `
+<div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners renders with children 1`] = `<div />`;
+
+exports[`useNotificationBanners renders with children 2`] = `
+<div>
+  <div>
+    child
+  </div>
+</div>
+`;
+
+exports[`useNotificationBanners renders with children that has a an banner 1`] = `
+<div>
+  <div
+    class="alert-base error narrow"
+    data-terra-application-notification-banner="error"
+    role="alert"
+  >
+    <div
+      class="body body-std"
+    >
+      <span
+        class="icon"
+      >
+        <svg
+          aria-hidden="true"
+          class="tui-Icon icon IconError"
+          focusable="false"
+          height="1em"
+          viewBox="0 0 48 48"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M24 0c13.3 0 24 10.7 24 24S37.3 48 24 48 0 37.3 0 24C0 10.8 10.7 0 23.9 0h.1z"
+            fill="#E50000"
+          />
+          <path
+            d="M7 21.5h34v5H7v-5z"
+            fill="#FFF"
+          />
+        </svg>
+      </span>
+      <div
+        class="section"
+      >
+        <strong
+          class="title"
+        >
+          <span>
+            Error.
+          </span>
+        </strong>
+      </div>
+    </div>
+  </div>
+  <div>
+    <button
+      data-testid="show-banner"
+      type="button"
+    >
+      Toggle Notification Banner
+    </button>
   </div>
 </div>
 `;

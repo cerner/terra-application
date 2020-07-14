@@ -148,8 +148,6 @@ const Alert = ({
             text={buttonText}
             onClick={onDismiss}
             aria-labelledby="#alert"
-            // aria-describedBy={`Dismiss ${type} Notification Banner.`}
-            // name={`Click to dismiss the ${defaultTitle} Notification Banner.`}
           />
         )}
       </FormattedMessage>

@@ -1,34 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Alert from 'terra-alert';
 import Button from 'terra-button';
-import ContentContainer from 'terra-content-container';
-
-import Alert from './private/_Banner';
 import BannerRegistrationContext from './private/BannerRegistrationContext';
-import { organizeBannersByPriority } from './private/utils';
 
-const propTypes = {
-  /**
-   * Components to render within the context of the Banner Checkpoint. Any banners rendered within
-   * these child components will be prioritized and organized in a list by the Checkpoint and will be
-   * display above the children.
-   */
-  children: PropTypes.node,
-  /**
-   * By default, the children rendered by BannerProvider are fit to the Checkpoint's parent using 100% height.
-   * If `fitToParentIsDisabled` is provided, the Checkpoint will render at its intrinsic content height and
-   * potentially overflow its parent.
-   */
-  fitToParentIsDisabled: PropTypes.bool,
-};
+import { organizeBannersByPriority } from './private/utils';
 
 /**
  * The Banner Checkpoint manages prioritizing and displaying all Workflow Banners
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
-const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
+const useNotificationBanners = () => {
   const registeredBanners = React.useRef({});
-  const [banners, setBanners] = React.useState([]);
+  const setBannerListState = React.useRef();
 
   const bannerProviderValue = React.useMemo(() => {
     const registerNotificationBanner = (bannerId, bannerProps) => {
@@ -46,7 +30,9 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
 
       registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
 
-      setBanners(organizeBannersByPriority(registeredBanners.current));
+      if (setBannerListState.current) {
+        setBannerListState.current(organizeBannersByPriority(registeredBanners.current));
+      }
     };
 
     const unregisterNotificationBanner = (bannerId, bannerType) => {
@@ -62,7 +48,9 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
 
       delete registeredBanners.current[bannerType][bannerId];
 
-      setBanners(organizeBannersByPriority(registeredBanners.current));
+      if (setBannerListState.current) {
+        setBannerListState.current(organizeBannersByPriority(registeredBanners.current));
+      }
     };
 
     return {
@@ -71,48 +59,58 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
     };
   }, []);
 
-  const NotificationBannerList = () => (
-    <div aria-live="polite">
-      {banners.map((bannerProps) => {
-        const {
-          description, type, bannerAction, onRequestDismiss, key,
-        } = bannerProps;
-
-        let actionButton = null;
-        if (bannerAction) {
-          actionButton = <Button text={bannerAction.text} variant="ghost" onClick={bannerAction.onClick} />;
-        }
-
-        return (
-          <Alert
-            key={key}
-            action={actionButton}
-            onDismiss={onRequestDismiss}
-            type={type}
-            data-terra-application-notification-banner={type}
-          >
-            {description}
-          </Alert>
-        );
-      })}
-    </div>
-  );
-
-  return (
+  const NotificationBannerProvider = ({ children }) => (
     <BannerRegistrationContext.Provider value={bannerProviderValue}>
-      <ContentContainer
-        header={<NotificationBannerList />}
-        fill={!fitToParentIsDisabled}
-      >
-        {children}
-      </ContentContainer>
+      {children}
     </BannerRegistrationContext.Provider>
   );
+
+  NotificationBannerProvider.propTypes = {
+    children: PropTypes.node,
+  };
+
+  const NotificationBanners = () => {
+    const [banners, setBanners] = React.useState([]);
+    setBannerListState.current = setBanners;
+
+    return (
+      <div aria-live="polite">
+        {banners.map((bannerProps) => {
+          const {
+            description, type, bannerAction, onRequestDismiss, key,
+          } = bannerProps;
+
+          let actionButton = null;
+          if (bannerAction) {
+            actionButton = (
+              <Button
+                text={bannerAction.text}
+                variant="ghost"
+                onClick={bannerAction.onClick}
+              />
+            );
+          }
+
+          return (
+            <Alert
+              key={key}
+              action={actionButton}
+              onDismiss={onRequestDismiss}
+              type={type}
+              data-terra-application-notification-banner={type}
+            >
+              {description}
+            </Alert>
+          );
+        })}
+      </div>
+    );
+  };
+
+  return {
+    NotificationBannerProvider,
+    NotificationBanners,
+  };
 };
 
-NotificationBannerProvider.propTypes = propTypes;
-NotificationBannerProvider.defaultProps = {
-  fitToParentIsDisabled: false,
-};
-
-export default NotificationBannerProvider;
+export default useNotificationBanners;

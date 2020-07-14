@@ -1,19 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BannerRegistrationContext, useNotificationBanners } from '../../../notification-banner';
+import { useNotificationBanners } from '../../../notification-banner';
 
 import ExampleForAccessibilityTesting from './ExampleForAccessibilityTesting';
 
-const Example = ({ id, children }) => {
-  const { bannerProviderValue, banners } = useNotificationBanners();
+const Example = ({ id }) => {
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (
-    <BannerRegistrationContext.Provider value={bannerProviderValue}>
-      {banners}
+    <NotificationBannerProvider>
       <h1>Using Terra Alert out of the Box</h1>
+      <NotificationBanners />
       <ExampleForAccessibilityTesting id={id} />
-      {children}
-    </BannerRegistrationContext.Provider>
+    </NotificationBannerProvider>
   );
 };
 
@@ -23,7 +22,6 @@ Example.propTypes = {
    * are rendered on one page.
    */
   id: PropTypes.string,
-  children: PropTypes.any,
 };
 
 Example.defaultProps = {

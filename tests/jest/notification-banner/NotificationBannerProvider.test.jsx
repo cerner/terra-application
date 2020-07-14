@@ -5,7 +5,7 @@ import 'terra-base';
 import { IntlProvider } from 'react-intl';
 
 import BannerRegistrationContext from '../../../src/notification-banner/private/BannerRegistrationContext';
-import NotificationBanner, { NotificationBannerProvider } from '../../../src/notification-banner';
+import NotificationBanner, { useNotificationBanners } from '../../../src/notification-banner';
 // eslint-disable-next-line import/no-unresolved, import/extensions
 import { messages } from '../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
@@ -34,26 +34,32 @@ const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', ch
   );
 };
 
-const renderComponentWithChild = (childrenContent, ProviderProps = {}) => {
+const renderComponentWithChild = (childrenContent) => {
   let childContext;
 
-  const component = render(
-    <IntlProvider locale="en" messages={messages}>
-      <NotificationBannerProvider {...ProviderProps}>
-        <BannerRegistrationContext.Consumer>
-          {(context) => {
-            childContext = context;
-            return childrenContent;
-          }}
-        </BannerRegistrationContext.Consumer>
-      </NotificationBannerProvider>
-    </IntlProvider>,
-  );
+  const ExampleWithBannerProvider = () => {
+    const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+
+    return (
+      <IntlProvider locale="en" messages={messages}>
+        <NotificationBannerProvider>
+          <NotificationBanners />
+          <BannerRegistrationContext.Consumer>
+            {(context) => {
+              childContext = context;
+              return childrenContent;
+            }}
+          </BannerRegistrationContext.Consumer>
+        </NotificationBannerProvider>
+      </IntlProvider>
+    );
+  };
+  const component = render(<ExampleWithBannerProvider />);
 
   return { component, context: childContext };
 };
 
-describe('NotificationBannerProvider', () => {
+describe('useNotificationBanners', () => {
   beforeEach(() => {
     jest.resetAllMocks;
     // eslint-disable-next-line no-console
@@ -77,7 +83,7 @@ describe('NotificationBannerProvider', () => {
     expect(component.container).toMatchSnapshot();
   });
 
-  describe('registerNotificationBanner', () => {
+  describe('NotificationBannerProvider.registerNotificationBanner', () => {
     it('provides registerNotificationBanner callback in context', () => {
       const { context } = renderComponentWithChild();
 
@@ -124,7 +130,7 @@ describe('NotificationBannerProvider', () => {
     });
   });
 
-  describe('unregisterNotificationBanner', () => {
+  describe('NotificationBannerProvider.unregisterNotificationBanner', () => {
     it('provides unregisterNotificationBanner callback in context', () => {
       const { context } = renderComponentWithChild();
 
@@ -179,15 +185,19 @@ describe('NotificationBannerProvider', () => {
   });
 
   describe(('Nested Notification Banner Provider'), () => {
-    it('registers notfication banner with top-level Banner Provider', () => {
-      const childComponent = (
-        <ChildContent>
-          <NotificationBannerProvider>
-            <ChildContent buttonId="show-2nd-banner" />
-          </NotificationBannerProvider>
-        </ChildContent>
-      );
-      const { component } = renderComponentWithChild(childComponent);
+    it('registers notification banner with top-level Banner Provider', () => {
+      const ChildComponent = () => {
+        const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+        return (
+          <ChildContent>
+            <NotificationBannerProvider>
+              <NotificationBanners />
+              <ChildContent buttonId="show-2nd-banner" />
+            </NotificationBannerProvider>
+          </ChildContent>
+        );
+      };
+      const { component } = renderComponentWithChild(<ChildComponent />);
       expect(component.container).toMatchSnapshot();
 
       // trigger top Provider's banner
@@ -210,14 +220,18 @@ describe('NotificationBannerProvider', () => {
     });
 
     it('unregisters banner with top-level Banner Provider', () => {
-      const childComponent = (
-        <ChildContent showBannerOnRender>
-          <NotificationBannerProvider>
-            <ChildContent buttonId="show-2nd-banner" showBannerOnRender />
-          </NotificationBannerProvider>
-        </ChildContent>
-      );
-      const { component } = renderComponentWithChild(childComponent);
+      const ChildComponent = () => {
+        const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+        return (
+          <ChildContent showBannerOnRender>
+            <NotificationBannerProvider>
+              <NotificationBanners />
+              <ChildContent buttonId="show-2nd-banner" showBannerOnRender />
+            </NotificationBannerProvider>
+          </ChildContent>
+        );
+      };
+      const { component } = renderComponentWithChild(<ChildComponent />);
 
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(2);
 

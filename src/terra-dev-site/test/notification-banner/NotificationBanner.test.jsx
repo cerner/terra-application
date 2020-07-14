@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NotificationBannerProvider } from '../../../notification-banner';
+import { useNotificationBanners } from '../../../notification-banner';
 import NotificationBannerExample from './NotificationBannerExample';
 
-const Example = ({ isInitiallyClosed }) => (
-  <NotificationBannerProvider>
-    <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
-  </NotificationBannerProvider>
-);
+const Example = ({ isInitiallyClosed }) => {
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+
+  return (
+    <NotificationBannerProvider>
+      <NotificationBanners />
+      <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
+    </NotificationBannerProvider>
+  );
+};
 
 Example.propTypes = {
   /**

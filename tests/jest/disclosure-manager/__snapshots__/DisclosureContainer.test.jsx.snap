@@ -3,35 +3,18 @@
 exports[`DisclosureContainer should render the provided children 1`] = `
 <InjectIntl(ApplicationErrorBoundary)>
   <ApplicationLoadingOverlayProvider>
-<<<<<<< HEAD
-    <NotificationBannerProvider
-      fitToParentIsDisabled={false}
-    >
+    <NotificationBannerProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
-        <div>
-          Test Child
-        </div>
+        <ContentContainer
+          fill={true}
+          header={<NotificationBanners />}
+        >
+          <div>
+            Test Child
+          </div>
+        </ContentContainer>
       </withPromptRegistration(NavigationPromptCheckpoint)>
     </NotificationBannerProvider>
-=======
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
-  </ApplicationLoadingOverlayProvider>
-</InjectIntl(ApplicationErrorBoundary)>
-`;
-
-exports[`DisclosureContainer should render the provided children 2`] = `
-<InjectIntl(ApplicationErrorBoundary)>
-  <ApplicationLoadingOverlayProvider>
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <div>
-        Test Child
-      </div>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
->>>>>>> master
   </ApplicationLoadingOverlayProvider>
 </InjectIntl(ApplicationErrorBoundary)>
 `;

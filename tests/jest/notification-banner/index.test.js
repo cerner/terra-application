@@ -1,5 +1,5 @@
 import NotificationBanner, {
-  NotificationBannerProvider,
+  useNotificationBanners,
 } from '../../../src/notification-banner';
 
 describe('notification-banner/index', () => {
@@ -7,7 +7,7 @@ describe('notification-banner/index', () => {
     expect(NotificationBanner).toBeDefined();
   });
 
-  it('should export NotificationBannerProvider', () => {
-    expect(NotificationBannerProvider).toBeDefined();
+  it('should export useNotificationBanners', () => {
+    expect(useNotificationBanners).toBeDefined();
   });
 });

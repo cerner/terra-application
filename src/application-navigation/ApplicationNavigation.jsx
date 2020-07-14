@@ -12,7 +12,7 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import { BannerRegistrationContext, useNotificationBanners } from '../notification-banner';
+import { useNotificationBanners } from '../notification-banner';
 
 const propTypes = {
   /**
@@ -141,7 +141,7 @@ const ApplicationNavigation = ({
   utilityItems,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const { bannerProviderValue, banners } = useNotificationBanners();
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const navigationPromptCheckpointRef = useRef();
 
@@ -186,19 +186,19 @@ const ApplicationNavigation = ({
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>
-        <BannerRegistrationContext.Provider value={bannerProviderValue}>
+        <NotificationBannerProvider>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
           >
             <ApplicationErrorBoundary>
-              <ContentContainer header={banners} fill>
+              <ContentContainer header={<NotificationBanners />} fill>
                 <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                   {children}
                 </Suspense>
               </ContentContainer>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
-        </BannerRegistrationContext.Provider>
+        </NotificationBannerProvider>
       </ApplicationLoadingOverlayProvider>
     </TerraApplicationNavigation>
   );

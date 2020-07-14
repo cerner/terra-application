@@ -56,10 +56,9 @@ const NotificationBanner = ({
      */
     if (!bannerRegistration && process.env.NODE_ENV !== 'production') {
       // eslint-disable-next-line no-console
-      console.warn('A Banner was not rendered within the context of a BannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
+      console.warn('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
-    console.log('update')
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
       bannerRegistration.registerNotificationBanner(uuid.current, {
         bannerAction,

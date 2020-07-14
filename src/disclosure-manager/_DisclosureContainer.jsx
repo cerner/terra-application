@@ -10,7 +10,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
-import { BannerRegistrationContext, useNotificationBanners } from '../notification-banner';
+import { useNotificationBanners } from '../notification-banner';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
 const propTypes = {
@@ -33,7 +33,7 @@ const propTypes = {
 
 const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
-  const { bannerProviderValue, banners } = useNotificationBanners();
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
   const promptCheckpointRef = useRef();
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
@@ -61,13 +61,13 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   return (
     <ApplicationErrorBoundary>
       <ApplicationLoadingOverlayProvider>
-        <BannerRegistrationContext.Provider value={bannerProviderValue}>
+        <NotificationBannerProvider>
           <NavigationPromptCheckpoint ref={promptCheckpointRef}>
-            <ContentContainer header={banners} fill>
+            <ContentContainer header={<NotificationBanners />} fill>
               {children}
             </ContentContainer>
           </NavigationPromptCheckpoint>
-        </BannerRegistrationContext.Provider>
+        </NotificationBannerProvider>
       </ApplicationLoadingOverlayProvider>
     </ApplicationErrorBoundary>
   );

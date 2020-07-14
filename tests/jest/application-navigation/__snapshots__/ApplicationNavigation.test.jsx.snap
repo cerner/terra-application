@@ -6,37 +6,25 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-<<<<<<< HEAD
-    <NotificationBannerProvider
-      fitToParentIsDisabled={false}
-    >
+    <NotificationBannerProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
-        <ApplicationErrorBoundary>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
-              />
-            }
-          />
-        </ApplicationErrorBoundary>
+        <InjectIntl(ApplicationErrorBoundary)>
+          <ContentContainer
+            fill={true}
+            header={<NotificationBanners />}
+          >
+            <Suspense
+              fallback={
+                <ApplicationLoadingOverlay
+                  backgroundStyle="clear"
+                  isOpen={true}
+                />
+              }
+            />
+          </ContentContainer>
+        </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
     </NotificationBannerProvider>
-=======
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <InjectIntl(ApplicationErrorBoundary)>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        />
-      </InjectIntl(ApplicationErrorBoundary)>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
->>>>>>> master
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -106,45 +94,29 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-<<<<<<< HEAD
-    <NotificationBannerProvider
-      fitToParentIsDisabled={false}
-    >
+    <NotificationBannerProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
-        <ApplicationErrorBoundary>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
-              />
-            }
+        <InjectIntl(ApplicationErrorBoundary)>
+          <ContentContainer
+            fill={true}
+            header={<NotificationBanners />}
           >
-            <div>
-              test child content
-            </div>
-          </Suspense>
-        </ApplicationErrorBoundary>
+            <Suspense
+              fallback={
+                <ApplicationLoadingOverlay
+                  backgroundStyle="clear"
+                  isOpen={true}
+                />
+              }
+            >
+              <div>
+                test child content
+              </div>
+            </Suspense>
+          </ContentContainer>
+        </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
     </NotificationBannerProvider>
-=======
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <InjectIntl(ApplicationErrorBoundary)>
-        <Suspense
-          fallback={
-            <ApplicationLoadingOverlay
-              backgroundStyle="clear"
-              isOpen={true}
-            />
-          }
-        >
-          <div>
-            test child content
-          </div>
-        </Suspense>
-      </InjectIntl(ApplicationErrorBoundary)>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
->>>>>>> master
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

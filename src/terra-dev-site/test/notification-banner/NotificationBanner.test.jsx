@@ -1,20 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { BannerRegistrationContext, useNotificationBanners } from '../../../notification-banner';
+import { NotificationBannerProvider } from '../../../notification-banner';
 import NotificationBannerExample from './NotificationBannerExample';
 
-const Example = ({ isInitiallyClosed }) => {
-  const { bannerProviderValue, banners } = useNotificationBanners();
-
-  return (
-    <div>
-      <BannerRegistrationContext.Provider value={bannerProviderValue}>
-        {banners}
-        <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
-      </BannerRegistrationContext.Provider>
-    </div>
-  );
-};
+const Example = ({ isInitiallyClosed }) => (
+  <NotificationBannerProvider>
+    <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
+  </NotificationBannerProvider>
+);
 
 Example.propTypes = {
   /**

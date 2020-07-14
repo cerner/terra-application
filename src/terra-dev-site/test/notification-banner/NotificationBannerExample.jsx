@@ -29,10 +29,10 @@ const Example = ({ isInitiallyClosed, id }) => {
           description={<div>There are records that have been included that need to be verified before they are officially added. Please review and ensure they should be included.</div>}
           bannerAction={{
             text: 'Verify Records',
-            // onClick: () => {
-            //   alert('records verified.'); // eslint-disable-line no-alert
-            //   setShowUnverifiedBanner(false);
-            // },
+            onClick: () => {
+              alert('records verified.'); // eslint-disable-line no-alert
+              setShowUnverifiedBanner(false);
+            },
           }}
         />
       )}

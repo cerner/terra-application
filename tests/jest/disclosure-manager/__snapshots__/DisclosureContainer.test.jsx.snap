@@ -19,23 +19,3 @@ exports[`DisclosureContainer should render the provided children 1`] = `
   </InjectIntl(ApplicationErrorBoundary)>
 </ContextProvider>
 `;
-
-exports[`DisclosureContainer should render the provided children 2`] = `
-<ContextProvider
-  value={
-    DisclosureManagerDelegateInstance {
-      "registerDismissCheck": [Function],
-    }
-  }
->
-  <InjectIntl(ApplicationErrorBoundary)>
-    <ApplicationLoadingOverlayProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
-        <div>
-          Test Child
-        </div>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationLoadingOverlayProvider>
-  </InjectIntl(ApplicationErrorBoundary)>
-</ContextProvider>
-`;

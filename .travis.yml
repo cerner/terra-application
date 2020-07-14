@@ -156,7 +156,7 @@ jobs:
         on:
           branch: main
 stages:
-  - danger lint jest and compile
+  - lint jest and compile
   - tiny & small
   - medium & large
   - huge & enormous

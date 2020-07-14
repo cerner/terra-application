@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TerraSlidePanelManager from 'terra-slide-panel-manager';
 
-import { NotificationBannerProvider } from '../notification-banner';
+// import { NotificationBannerProvider } from '../notification-banner';
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
@@ -37,9 +37,9 @@ const SlidePanelManager = ({ navigationPromptResolutionOptions, children, ...ter
       </DisclosureContainer>
     )}
   >
-    <NotificationBannerProvider>
-      {children}
-    </NotificationBannerProvider>
+    {/* <NotificationBannerProvider> */}
+    {children}
+    {/* </NotificationBannerProvider> */}
   </TerraSlidePanelManager>
 );
 

@@ -1,32 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Button from 'terra-button';
-import ContentContainer from 'terra-content-container';
 
 import Alert from './private/_Banner';
-import BannerRegistrationContext from './private/BannerRegistrationContext';
 import { organizeBannersByPriority } from './private/utils';
-
-const propTypes = {
-  /**
-   * Components to render within the context of the Banner Checkpoint. Any banners rendered within
-   * these child components will be prioritized and organized in a list by the Checkpoint and will be
-   * display above the children.
-   */
-  children: PropTypes.node,
-  /**
-   * By default, the children rendered by BannerProvider are fit to the Checkpoint's parent using 100% height.
-   * If `fitToParentIsDisabled` is provided, the Checkpoint will render at its intrinsic content height and
-   * potentially overflow its parent.
-   */
-  fitToParentIsDisabled: PropTypes.bool,
-};
 
 /**
  * The Banner Checkpoint manages prioritizing and displaying all Workflow Banners
  * rendered within the Checkpoint Context in a list above all other content in the tree.
  */
-const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
+const useNotificationBanners = () => {
   const registeredBanners = React.useRef({});
   const [banners, setBanners] = React.useState([]);
 
@@ -98,21 +80,10 @@ const NotificationBannerProvider = ({ fitToParentIsDisabled, children }) => {
     </div>
   );
 
-  return (
-    <BannerRegistrationContext.Provider value={bannerProviderValue}>
-      <ContentContainer
-        header={<NotificationBannerList />}
-        fill={!fitToParentIsDisabled}
-      >
-        {children}
-      </ContentContainer>
-    </BannerRegistrationContext.Provider>
-  );
+  return {
+    bannerProviderValue,
+    banners: <NotificationBannerList />,
+  };
 };
 
-NotificationBannerProvider.propTypes = propTypes;
-NotificationBannerProvider.defaultProps = {
-  fitToParentIsDisabled: false,
-};
-
-export default NotificationBannerProvider;
+export default useNotificationBanners;

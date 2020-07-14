@@ -6,12 +6,13 @@ import TerraApplicationNavigation from 'terra-application-navigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from 'terra-application-navigation/lib/utils/propTypes';
+import ContentContainer from 'terra-content-container';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import { NotificationBannerProvider } from '../notification-banner';
+import { BannerRegistrationContext, useNotificationBanners } from '../notification-banner';
 
 const propTypes = {
   /**
@@ -140,6 +141,7 @@ const ApplicationNavigation = ({
   utilityItems,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
+  const { bannerProviderValue, banners } = useNotificationBanners();
 
   const navigationPromptCheckpointRef = useRef();
 
@@ -184,17 +186,19 @@ const ApplicationNavigation = ({
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>
-        <NotificationBannerProvider>
+        <BannerRegistrationContext.Provider value={bannerProviderValue}>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
           >
             <ApplicationErrorBoundary>
-              <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                {children}
-              </Suspense>
+              <ContentContainer header={banners} fill>
+                <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                  {children}
+                </Suspense>
+              </ContentContainer>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
-        </NotificationBannerProvider>
+        </BannerRegistrationContext.Provider>
       </ApplicationLoadingOverlayProvider>
     </TerraApplicationNavigation>
   );

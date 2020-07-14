@@ -59,6 +59,7 @@ const NotificationBanner = ({
       console.warn('A Banner was not rendered within the context of a BannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
+    console.log('update')
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
       bannerRegistration.registerNotificationBanner(uuid.current, {
         bannerAction,

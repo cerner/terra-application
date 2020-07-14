@@ -3,13 +3,14 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import ContentContainer from 'terra-content-container';
 
 import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
-import { NotificationBannerProvider } from '../notification-banner';
+import { BannerRegistrationContext, useNotificationBanners } from '../notification-banner';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
 const propTypes = {
@@ -32,6 +33,7 @@ const propTypes = {
 
 const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
+  const { bannerProviderValue, banners } = useNotificationBanners();
   const promptCheckpointRef = useRef();
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
@@ -59,13 +61,13 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   return (
     <ApplicationErrorBoundary>
       <ApplicationLoadingOverlayProvider>
-        <NotificationBannerProvider>
-          <NavigationPromptCheckpoint
-            ref={promptCheckpointRef}
-          >
-            {children}
+        <BannerRegistrationContext.Provider value={bannerProviderValue}>
+          <NavigationPromptCheckpoint ref={promptCheckpointRef}>
+            <ContentContainer header={banners} fill>
+              {children}
+            </ContentContainer>
           </NavigationPromptCheckpoint>
-        </NotificationBannerProvider>
+        </BannerRegistrationContext.Provider>
       </ApplicationLoadingOverlayProvider>
     </ApplicationErrorBoundary>
   );

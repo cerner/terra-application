@@ -1,14 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { NotificationBannerProvider } from '../../../notification-banner';
+import { BannerRegistrationContext, useNotificationBanners } from '../../../notification-banner';
+
 import ExampleForAccessibilityTesting from './ExampleForAccessibilityTesting';
 
-const Example = ({ id }) => (
-  <NotificationBannerProvider>
-    <h1>Using Terra Alert out of the Box</h1>
-    <ExampleForAccessibilityTesting id={id} />
-  </NotificationBannerProvider>
-);
+const Example = ({ id }) => {
+  const { bannerProviderValue, banners } = useNotificationBanners();
+
+  return (
+    <>
+      <BannerRegistrationContext.Provider value={bannerProviderValue}>
+        {banners}
+        <h1>Using Terra Alert out of the Box</h1>
+        <ExampleForAccessibilityTesting id={id} />
+      </BannerRegistrationContext.Provider>
+    </>
+  );
+};
 
 Example.propTypes = {
   /**

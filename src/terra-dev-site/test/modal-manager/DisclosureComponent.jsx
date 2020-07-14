@@ -13,9 +13,10 @@ import {
   getActiveDisclosureCount,
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
-import styles from './DisclosureComponentCommon.test.module.scss';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+
 import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
+import styles from './DisclosureComponentCommon.test.module.scss';
 
 const cx = classNames.bind(styles);
 

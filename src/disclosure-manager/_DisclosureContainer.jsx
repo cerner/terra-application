@@ -61,13 +61,13 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   return (
     <ApplicationErrorBoundary>
       <ApplicationLoadingOverlayProvider>
-        <NotificationBannerProvider>
-          <NavigationPromptCheckpoint ref={promptCheckpointRef}>
-            <ContentContainer header={<NotificationBanners />} fill>
+        <NavigationPromptCheckpoint ref={promptCheckpointRef}>
+          <ContentContainer header={<NotificationBanners />} fill>
+            <NotificationBannerProvider>
               {children}
-            </ContentContainer>
-          </NavigationPromptCheckpoint>
-        </NotificationBannerProvider>
+            </NotificationBannerProvider>
+          </ContentContainer>
+        </NavigationPromptCheckpoint>
       </ApplicationLoadingOverlayProvider>
     </ApplicationErrorBoundary>
   );

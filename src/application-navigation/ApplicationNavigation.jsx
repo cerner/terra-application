@@ -186,19 +186,19 @@ const ApplicationNavigation = ({
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>
-        <NotificationBannerProvider>
-          <NavigationPromptCheckpoint
-            ref={navigationPromptCheckpointRef}
-          >
-            <ApplicationErrorBoundary>
-              <ContentContainer header={<NotificationBanners />} fill>
+        <NavigationPromptCheckpoint
+          ref={navigationPromptCheckpointRef}
+        >
+          <ApplicationErrorBoundary>
+            <ContentContainer header={<NotificationBanners />} fill>
+              <NotificationBannerProvider>
                 <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                   {children}
                 </Suspense>
-              </ContentContainer>
-            </ApplicationErrorBoundary>
-          </NavigationPromptCheckpoint>
-        </NotificationBannerProvider>
+              </NotificationBannerProvider>
+            </ContentContainer>
+          </ApplicationErrorBoundary>
+        </NavigationPromptCheckpoint>
       </ApplicationLoadingOverlayProvider>
     </TerraApplicationNavigation>
   );

@@ -27,7 +27,7 @@ const propTypes = {
   navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
 };
 
-const SlidePanelManager = ({ navigationPromptResolutionOptions, children, ...terraSlidePanelManagerProps }) => (
+const SlidePanelManager = ({ navigationPromptResolutionOptions, ...terraSlidePanelManagerProps }) => (
   <TerraSlidePanelManager
     {...terraSlidePanelManagerProps}
     withDisclosureContainer={disclosureContent => (
@@ -35,9 +35,7 @@ const SlidePanelManager = ({ navigationPromptResolutionOptions, children, ...ter
         {disclosureContent}
       </DisclosureContainer>
     )}
-  >
-    {children}
-  </TerraSlidePanelManager>
+  />
 );
 
 SlidePanelManager.propTypes = propTypes;

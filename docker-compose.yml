@@ -21,12 +21,6 @@ services:
     volumes:
       - .:/opt/module
 
-  test-ci:
-    build: ./
-    image: "${DOCKER_IMAGE}-test:${TAG:-latest}"
-    depends_on:
-      - standalone-chrome
-
   standalone-chrome-travis:
     image: selenium/standalone-chrome:3.14.0-helium
     ports:

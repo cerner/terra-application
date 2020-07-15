@@ -100,8 +100,7 @@
     "wdio-locale": "LOCALE=de wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
-    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion",
-    "wdio-old": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']"
+    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
     "classnames": "^2.2.5",

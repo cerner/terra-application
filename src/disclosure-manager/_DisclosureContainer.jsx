@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
+import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureManagerDelegate';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
@@ -32,6 +33,11 @@ const propTypes = {
 const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const promptCheckpointRef = useRef();
+  const customRegisterDismissCheckRef = useRef();
+
+  const overrideDisclosureManagerContext = useMemo(() => DisclosureManagerDelegate.clone(disclosureManager, {
+    registerDismissCheck: (check) => { customRegisterDismissCheckRef.current = check; },
+  }), [disclosureManager]);
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);
 
@@ -45,26 +51,34 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
-    disclosureManager.registerDismissCheck(() => new Promise((resolve, reject) => {
-      if (!promptCheckpointRef.current) {
-        resolve();
-        return;
+    disclosureManager.registerDismissCheck(() => {
+      if (customRegisterDismissCheckRef.current) {
+        return customRegisterDismissCheckRef.current();
       }
 
-      promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
-    }));
+      return new Promise((resolve, reject) => {
+        if (!promptCheckpointRef.current) {
+          resolve();
+          return;
+        }
+
+        promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
+      });
+    });
   }, [defaultPromptOptions, disclosureManager, navigationPromptResolutionOptions]);
 
   return (
-    <ApplicationErrorBoundary>
-      <ApplicationLoadingOverlayProvider>
-        <NavigationPromptCheckpoint
-          ref={promptCheckpointRef}
-        >
-          {children}
-        </NavigationPromptCheckpoint>
-      </ApplicationLoadingOverlayProvider>
-    </ApplicationErrorBoundary>
+    <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
+      <ApplicationErrorBoundary>
+        <ApplicationLoadingOverlayProvider>
+          <NavigationPromptCheckpoint
+            ref={promptCheckpointRef}
+          >
+            {children}
+          </NavigationPromptCheckpoint>
+        </ApplicationLoadingOverlayProvider>
+      </ApplicationErrorBoundary>
+    </DisclosureManagerContext.Provider>
   );
 });
 

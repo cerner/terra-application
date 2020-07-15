@@ -54,6 +54,10 @@ class DisclosureComponent extends React.Component {
     setTimeout(() => {
       this.setState({ disclosureCount: getActiveDisclosureCount() });
     });
+
+    if (this.props.useCustomDismissCheck && this.props.disclosureManager.registerDismissCheck) {
+      this.props.disclosureManager.registerDismissCheck(() => Promise.reject());
+    }
   }
 
   getId(name) {
@@ -72,7 +76,9 @@ class DisclosureComponent extends React.Component {
   }
 
   disclose(size, dimensions) {
-    const { disclosureType, nestedIndex, renderHeaderAdapter } = this.props;
+    const {
+      disclosureType, nestedIndex, renderHeaderAdapter, useCustomDismissCheck,
+    } = this.props;
 
     const newIndex = nestedIndex + 1;
     return () => {
@@ -82,7 +88,15 @@ class DisclosureComponent extends React.Component {
         dimensions,
         content: {
           key: `DemoContainer-${newIndex}`,
-          component: <WrappedDisclosureComponent identifier={`DemoContainer-${newIndex}`} nestedIndex={newIndex} disclosureType={disclosureType} renderHeaderAdapter={renderHeaderAdapter} />,
+          component: (
+            <WrappedDisclosureComponent
+              identifier={`DemoContainer-${newIndex}`}
+              nestedIndex={newIndex}
+              disclosureType={disclosureType}
+              renderHeaderAdapter={renderHeaderAdapter}
+              useCustomDismissCheck={useCustomDismissCheck}
+            />
+          ),
         },
       });
     };
@@ -208,6 +222,7 @@ DisclosureComponent.propTypes = {
   disclosureType: PropTypes.string,
   nestedIndex: PropTypes.number,
   renderHeaderAdapter: PropTypes.bool,
+  useCustomDismissCheck: PropTypes.bool,
 };
 
 DisclosureComponent.defaultProps = {

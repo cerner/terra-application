@@ -4,6 +4,8 @@ Changelog
 Unreleased
 ----------
 
+1.29.1 - (July 15, 2020)
+------------------
 ### Fixed
 * Returning Promise from registerDismissCheck implementation
 

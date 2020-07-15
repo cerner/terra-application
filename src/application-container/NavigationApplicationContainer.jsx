@@ -188,15 +188,15 @@ NavigationApplicationContainer.propTypes = propTypes;
 const NavigationPageContainer = ({
   isActive, children, render, portalElement, preload,
 }) => {
-  const [hasActivated, setHasActivated] = React.useState(isActive || preload);
+  const hasActivatedRef = React.useRef(isActive || preload);
 
   React.useEffect(() => {
     if (isActive || preload) {
-      setHasActivated(true);
+      hasActivatedRef.current = true;
     }
   }, [isActive, preload]);
 
-  if (!isActive && !preload && !hasActivated) {
+  if (!isActive && !preload && !hasActivatedRef.current) {
     return null;
   }
 

@@ -455,9 +455,24 @@ Modal
   * Fix inert implementation for modal/other layer integration
 * Framework Dialog
   * Prototype implementation
+* Session Provider (orion-application)
 
 TODO 7/2
-* PageHeader actions dropdown
-* PageHeader actions launch Popup
-* Accordian Side Navigation
-* Full mounts for Primary/Side Nav pages
+* (X) PageHeader actions dropdown
+* (X) PageHeader actions launch Popup
+* Accordion Side Navigation
+* (X) Full mounts for Primary/Side Nav pages
+
+TODO 7/9
+* (X) PageContainers in modals 
+* (X) Modal header separate from page header
+* Page-in-modal accessibility (main in modal => bad news bears)
+* Performance investigation
+  * Mainstream websites average ~150MB-200MB heap size
+  * terra-ui ~10MB
+  * Demo running in dev site ~10MB
+  * Demo with 100 side nav pages ~20MB (spikes to ~45)
+  * Demo with 1000 side nav pages ~150MB (spikes to ~250) (noticeable performance degradation due to huge side nav list)
+* Accordion Side Navigation
+* Review Workspace designs
+

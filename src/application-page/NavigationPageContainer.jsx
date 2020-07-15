@@ -190,17 +190,17 @@ NavigationPageContainer.propTypes = propTypes;
 const NavigationPage = ({
   isActive, children, render, onRequestActivatePage, portalElement, preload,
 }) => {
-  const [hasActivated, setHasActivated] = React.useState(isActive || preload);
+  const hasActivatedRef = React.useRef(isActive || preload);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
   React.useEffect(() => {
     if (isActive || preload) {
-      setHasActivated(true);
+      hasActivatedRef.current = true;
     }
   }, [isActive, preload]);
 
-  if (!isActive && !preload && !hasActivated) {
+  if (!isActive && !preload && !hasActivatedRef.current) {
     return null;
   }
 

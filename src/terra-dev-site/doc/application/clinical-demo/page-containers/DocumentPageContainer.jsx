@@ -10,6 +10,12 @@ import AllergyProfilePage from '../pages/AllergyProfilePage';
 const DocumentPageContainer = () => {
   const [activePageKey, setActivePageKey] = React.useState();
 
+  const dynamicPages = [];
+
+  for (let i = 0; i < 0; i++) {
+    dynamicPages.push(i);
+  }
+
   return (
     <NavigationPageContainer
       activePageKey={activePageKey}
@@ -41,6 +47,17 @@ const DocumentPageContainer = () => {
           </ApplicationPage>
         )}
       />
+      {dynamicPages.map((index) => (
+        <NavigationPage
+          preload
+          key={`dynamic-page-${index}`}
+          pageKey={`dynamic-page-${index}`}
+          description={`Page ${index}`}
+          render={() => (
+            <ChartReviewPage key={index} />
+          )}
+        />
+      ))}
     </NavigationPageContainer>
   );
 };

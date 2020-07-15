@@ -55,7 +55,7 @@ class DisclosureComponent extends React.Component {
     });
 
     if (this.props.useCustomDismissCheck && this.props.disclosureManager.registerDismissCheck) {
-      this.props.disclosureManager.registerDismissCheck(() => Promise.reject());
+      this.props.disclosureManager.registerDismissCheck(() => Promise.reject()).then(() => { /* registerDismissCheck should return a Promise, so this should not throw an exception */ });
     }
   }
 

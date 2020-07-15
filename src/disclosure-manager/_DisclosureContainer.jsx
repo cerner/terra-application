@@ -36,7 +36,14 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
   const customRegisterDismissCheckRef = useRef();
 
   const overrideDisclosureManagerContext = useMemo(() => DisclosureManagerDelegate.clone(disclosureManager, {
-    registerDismissCheck: (check) => { customRegisterDismissCheckRef.current = check; },
+    registerDismissCheck: (check) => {
+      customRegisterDismissCheckRef.current = check;
+
+      /**
+       * Return Promise to align with DisclosureManager's default implementation.
+       */
+      return Promise.resolve();
+    },
   }), [disclosureManager]);
 
   const defaultPromptOptions = useMemo(() => getUnsavedChangesPromptOptions(intl), [intl]);

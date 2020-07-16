@@ -71,7 +71,8 @@ const ApplicationNavigationTest = () => {
   }];
 
   return (
-    <ApplicationBase locale="en">
+    // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
+    <ApplicationBase unloadPromptIsDisabled locale="en">
       {loggedOut ? <p>Logged Out</p> : (
         <ApplicationNavigation
           titleConfig={{

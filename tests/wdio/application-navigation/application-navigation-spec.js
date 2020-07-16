@@ -23,7 +23,7 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
       browser.click('#pending-action-toggle-2');
       browser.click('div[aria-label="Page 1"]');
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
-      Terra.validates.element('4. primary navigation item prompt with multiple prompts', { selector: 'main main' });
+      Terra.validates.element('4. primary navigation item prompt with multiple prompts', { selector });
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
     });
 

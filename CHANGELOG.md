@@ -6,6 +6,16 @@ Unreleased
 ### Fixed
 * Fixed firefox tests for application navigation
 
+1.29.1 - (July 15, 2020)
+------------------
+### Fixed
+* Returning Promise from registerDismissCheck implementation
+
+1.29.0 - (July 15, 2020)
+------------------
+### Fixed
+* Allowed components disclosed by the DisclosureManager to override the default registerDismissCheck implementation
+
 1.28.0 - (July 7, 2020)
 ------------------
 ### Changed

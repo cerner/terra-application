@@ -94,7 +94,8 @@
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']"
+    "wdio": "tt-wdio --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en','de']",
+    "test:wdio:local": "tt-wdio --gridUrl='grid314.test.devcernerpowerchart.com' --config node_modules/terra-toolkit/config/wdio/wdio.conf.js --locales=['en-US'] --formFactors=['large'] --browsers=['firefox']"
   },
   "dependencies": {
     "classnames": "^2.2.5",

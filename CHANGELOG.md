@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Fixed
+* Fixed firefox tests for application navigation
 
 1.28.0 - (July 7, 2020)
 ------------------

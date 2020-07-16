@@ -6,8 +6,10 @@ import List, { Item as ListItem } from 'terra-list';
 
 import { ActiveBreakpointContext } from '../breakpoints';
 
-import ApplicationPageContainer from './ApplicationPageContainer';
+import BasePageContainer from './_BasePageContainer';
 import PageLayoutHeader from './_PageHeader';
+import ResizeHandle from './workspace/ResizeHandle';
+import MockWorkspace from './workspace/MockWorkspace';
 
 import styles from './SecondaryNavigationPageContainer.module.scss';
 
@@ -50,6 +52,7 @@ const SecondaryNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
   const [isInitialized, setIsInitialized] = React.useState(false);
+  const [workspaceSize, setWorkspaceSize] = React.useState(200);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
@@ -121,32 +124,6 @@ const SecondaryNavigationPageContainer = ({
     onRequestActivatePage(pageKey);
   }
 
-  // if (flatLayoutBreakpoints.indexOf(activeBreakpoint) === -1) {
-  //   const activePageComponent = activePageKey && React.Children.toArray(children).filter((child) => child.props.pageKey === activePageKey)[0];
-  //   return (
-  //     <ApplicationPageContainer>
-  //       <ApplicationPage title="Side Nav Page">
-  //         <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation" style={{ backgroundColor: '#fff' }}>
-  //           {React.Children.map(children, (child) => ({ key: child.props.pageKey, text: child.props.description })).map((item) => (
-  //             <ListItem
-  //               key={item.key}
-  //               hasChevron
-  //               isSelectable
-  //               isSelected={activePageKey === item.key}
-  //               onSelect={() => {
-  //                 activatePage(item.key);
-  //               }}
-  //             >
-  //               <div style={{ padding: '1rem' }}>{item.text}</div>
-  //             </ListItem>
-  //           ))}
-  //         </List>
-  //         {activePageComponent && React.cloneElement(activePageComponent, { onRequestClose: () => { onRequestActivatePage(undefined); } })}
-  //       </ApplicationPage>
-  //     </ApplicationPageContainer>
-  //   );
-  // }
-
   return (
     <div
       className={cx('side-nav-container', {
@@ -183,6 +160,32 @@ const SecondaryNavigationPageContainer = ({
           );
         })}
       </div>
+      {enableWorkspace && (
+        <div className={cx('workspace')} style={{ width: `${workspaceSize}px` }}>
+          <div
+            style={{
+              height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
+            }}
+          >
+            <MockWorkspace />
+          </div>
+          <ResizeHandle
+            onResizeStop={(position) => {
+              setWorkspaceSize((currentSize) => {
+                let newSize = currentSize + -1 * position;
+
+                if (newSize < 50) {
+                  newSize = 50;
+                } else if (newSize > 500) {
+                  newSize = 500;
+                }
+
+                return newSize;
+              });
+            }}
+          />
+        </div>
+      )}
     </div>
   );
 };
@@ -190,7 +193,7 @@ const SecondaryNavigationPageContainer = ({
 SecondaryNavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, onRequestActivatePage, portalElement, preload, enableWorkspace,
+  isActive, children, render, onRequestActivatePage, portalElement, preload,
 }) => {
   const hasActivatedRef = React.useRef(isActive || preload);
 
@@ -217,9 +220,9 @@ const NavigationPage = ({
   const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
 
   return ReactDOM.createPortal((
-    <ApplicationPageContainer enableWorkspace={enableWorkspace}>
+    <BasePageContainer>
       {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
-    </ApplicationPageContainer>
+    </BasePageContainer>
   ), portalElement);
 };
 

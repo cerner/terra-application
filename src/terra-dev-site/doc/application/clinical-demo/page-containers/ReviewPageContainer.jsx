@@ -5,7 +5,7 @@ import ChartReviewPage from '../pages/ChartReviewPage';
 const propTypes = {};
 
 const ReviewPageContainer = () => (
-  <ApplicationPageContainer>
+  <ApplicationPageContainer enableWorkspace>
     <ChartReviewPage />
   </ApplicationPageContainer>
 );

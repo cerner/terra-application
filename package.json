@@ -133,7 +133,8 @@
     "terra-demographics-banner": "^3.40.0",
     "terra-action-footer": "^2.47.0",
     "terra-avatar": "^3.5.0",
-    "lodash.debounce": "^4.0.8"
+    "lodash.debounce": "^4.0.8",
+    "react-draggable": "^4.4.3"
   },
   "peerDependencies": {
     "react": "^16.8.5",

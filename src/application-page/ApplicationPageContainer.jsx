@@ -2,8 +2,10 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import ApplicationPageContext from './ApplicationPageContext';
+import ResizeHandle from './workspace/ResizeHandle';
 
 import styles from './ApplicationPageContainer.module.scss';
+import MockWorkspace from './workspace/MockWorkspace';
 
 const cx = classNames.bind(styles);
 
@@ -105,8 +107,10 @@ class PageLayoutNodeManager {
 }
 
 const ApplicationPageContainer = ({
-  children,
+  children, enableWorkspace,
 }) => {
+  const [workspaceSize, setWorkspaceSize] = React.useState(200);
+
   const pageLayoutContainerRef = React.useRef();
 
   const [isInitialized, setIsInitialized] = React.useState();
@@ -120,15 +124,44 @@ const ApplicationPageContainer = ({
   }, []);
 
   return (
-    <div
-      ref={pageLayoutContainerRef}
-      className={cx('container')}
-    >
-      <ApplicationPageContext.Provider value={contextValue}>
-        {isInitialized && children}
-      </ApplicationPageContext.Provider>
+    <div className={cx('container')}>
+      <div
+        ref={pageLayoutContainerRef}
+        className={cx('body')}
+      >
+        <ApplicationPageContext.Provider value={contextValue}>
+          {isInitialized && children}
+        </ApplicationPageContext.Provider>
+      </div>
+      {enableWorkspace && (
+      <div className={cx('workspace')} style={{ width: `${workspaceSize}px` }}>
+        <div
+          style={{
+            height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
+          }}
+        >
+          <MockWorkspace />
+        </div>
+        <ResizeHandle
+          onResizeStop={(position) => {
+            setWorkspaceSize((currentSize) => {
+              let newSize = currentSize + -1 * position;
+
+              if (newSize < 50) {
+                newSize = 50;
+              } else if (newSize > 500) {
+                newSize = 500;
+              }
+
+              return newSize;
+            });
+          }}
+        />
+      </div>
+      )}
     </div>
   );
 };
 
 export default ApplicationPageContainer;
+export { PageLayoutNodeManager };

@@ -9,7 +9,7 @@ import { ActiveBreakpointContext } from '../breakpoints';
 import ApplicationPageContainer from './ApplicationPageContainer';
 import PageLayoutHeader from './_PageHeader';
 
-import styles from './SideNavigationPageContainer.module.scss';
+import styles from './SecondaryNavigationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -46,8 +46,8 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
   );
 };
 
-const NavigationPageContainer = ({
-  sidebar, activePageKey, children, onRequestActivatePage,
+const SecondaryNavigationPageContainer = ({
+  sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
   const [isInitialized, setIsInitialized] = React.useState(false);
 
@@ -177,7 +177,9 @@ const NavigationPageContainer = ({
           }
 
           return (
-            React.cloneElement(child, { isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement })
+            React.cloneElement(child, {
+              isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement, enableWorkspace,
+            })
           );
         })}
       </div>
@@ -185,10 +187,10 @@ const NavigationPageContainer = ({
   );
 };
 
-NavigationPageContainer.propTypes = propTypes;
+SecondaryNavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, onRequestActivatePage, portalElement, preload,
+  isActive, children, render, onRequestActivatePage, portalElement, preload, enableWorkspace,
 }) => {
   const hasActivatedRef = React.useRef(isActive || preload);
 
@@ -215,11 +217,11 @@ const NavigationPage = ({
   const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
 
   return ReactDOM.createPortal((
-    <ApplicationPageContainer>
+    <ApplicationPageContainer enableWorkspace={enableWorkspace}>
       {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
     </ApplicationPageContainer>
   ), portalElement);
 };
 
-export default NavigationPageContainer;
+export default SecondaryNavigationPageContainer;
 export { NavigationPage };

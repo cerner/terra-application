@@ -3,6 +3,8 @@ Changelog
 
 Unreleased
 ----------
+### Fixed
+* Fixed firefox tests for application navigation
 
 1.29.1 - (July 15, 2020)
 ------------------

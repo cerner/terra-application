@@ -2,6 +2,7 @@ Terra.describeViewports('ApplicationErrorBoundary', ['large'], () => {
   describe('Status view management', () => {
     before(() => {
       browser.url('/raw/tests/terra-application/application-error-boundary/error-boundary-test');
+      browser.moveToObject('#root', 0, 0);
     });
 
     Terra.it.validatesElement('initial', { selector: '#root' });

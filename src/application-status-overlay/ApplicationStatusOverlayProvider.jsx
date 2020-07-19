@@ -62,7 +62,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   const registeredStatusOverlayKeys = Object.keys(registeredStatusOverlay);
   // In the event when multiple ApplicationStatusOverlay's are provided, the last rendered wins
-  const lastRegisteredStatusOverlayKey = (registeredStatusOverlayKeys.length > 0) && registeredStatusOverlayKeys[registeredStatusOverlayKeys.length - 1];
+  const lastRegisteredStatusOverlayKey = (registeredStatusOverlayKeys.length) && registeredStatusOverlayKeys[registeredStatusOverlayKeys.length - 1];
 
   const registeredButtonAttrs = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.buttonAttrs;
   const registeredMessage = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.message;

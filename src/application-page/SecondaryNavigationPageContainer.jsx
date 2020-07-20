@@ -26,7 +26,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 
   return (
     <ContentContainer
-      header={<PageLayoutHeader title="Side Nav (?)" />}
+      header={<PageLayoutHeader title="Side Nav" />}
       fill
     >
       <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">

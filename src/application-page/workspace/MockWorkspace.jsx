@@ -10,7 +10,7 @@ const MockWorkspace = () => (
     header={<PageHeader title="Workspace" />}
   >
     <div style={{ padding: '1rem' }}>
-      Workspace stuff
+      Workspace goes here
     </div>
   </HeaderContainer>
 );

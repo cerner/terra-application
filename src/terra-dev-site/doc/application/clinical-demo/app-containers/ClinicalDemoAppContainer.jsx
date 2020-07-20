@@ -42,13 +42,6 @@ const ClinicalDemoAppContainer = () => {
 
   return (
     <>
-      {showPatientSearchModal && (
-        <ApplicationModal title="Patient Search" size="large" onRequestClose={() => { setShowPatientSearchModal(false); }}>
-          <div style={{ padding: '1rem' }}>
-            Patient Search goes here...
-          </div>
-        </ApplicationModal>
-      )}
       <PatientConceptProvider>
         <NavigationApplicationContainer
           titleConfig={{
@@ -86,6 +79,13 @@ const ClinicalDemoAppContainer = () => {
           />
         </NavigationApplicationContainer>
       </PatientConceptProvider>
+      {showPatientSearchModal && (
+        <ApplicationModal title="Patient Search" size="large" onRequestClose={() => { setShowPatientSearchModal(false); }}>
+          <div style={{ padding: '1rem' }}>
+            Patient Search goes here...
+          </div>
+        </ApplicationModal>
+      )}
     </>
   );
 };

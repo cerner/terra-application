@@ -37,7 +37,7 @@ const PageHeader = ({
         {title}
       </div>
       <div className={cx('actions-container')}>
-        {actions && actions.slice(0, 2).map((action) => (
+        {actions && actions.slice(0, 4).map((action) => (
           <Button
             refCallback={action.buttonRefCallback}
             key={action.key}
@@ -50,12 +50,12 @@ const PageHeader = ({
             isDisabled={action.isDisabled}
           />
         ))}
-        {(actions && actions.slice(2).length) ? (
+        {(actions && actions.slice(4).length) ? (
           <Button
             refCallback={(ref) => {
               moreActionsButtonRef.current = ref;
 
-              actions.slice(2).forEach((action) => {
+              actions.slice(4).forEach((action) => {
                 if (action.buttonRefCallback) {
                   action.buttonRefCallback(ref);
                 }

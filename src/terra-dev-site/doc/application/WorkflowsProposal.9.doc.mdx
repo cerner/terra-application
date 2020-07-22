@@ -455,16 +455,22 @@ TODO 7/9
 * (X) PageContainers in modals 
 * (X) Modal header separate from page header
 * Page-in-modal accessibility (main in modal => bad news bears)
-* Performance investigation
+* (X) Performance investigation
   * Mainstream websites average ~150MB-200MB heap size
   * terra-ui ~10MB
   * Demo running in dev site ~10MB
   * Demo with 100 side nav pages ~20MB (spikes to ~45)
   * Demo with 1000 side nav pages ~150MB (spikes to ~250) (noticeable performance degradation due to huge side nav list)
 * Accordion Side Navigation
-* Review Workspace designs
+* (X) Review Workspace designs
   * Think about not rolling up Page header actions
 
 TODO
 * first-class toolbar for page presentation
 * F6/Shift+F6 accessibility
+  * https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-24
+  * Might make sense to toggle between page/workspace? not much info otherwise
+  * Might stomp on browser: https://www.chromium.org/user-experience/keyboard-access
+* include page header in main element
+* Page-in-modal accessibility (main in modal => bad news bears)
+* Accordion Side Navigation

@@ -9,7 +9,6 @@ import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import ApplicationModal from '../application-modal/ApplicationModal';
 import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
 import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
 
@@ -22,13 +21,12 @@ import HeaderContainer from '../header-container/_HeaderContainer';
 const cx = classNames.bind(styles);
 
 const ApplicationPage = ({
-  title, actions, onRequestClose, children, disableNavigationPromptsOnBack,
+  title, actions, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pageContext = React.useContext(ApplicationPageContext);
 
   const navigationPromptCheckpointRef = React.useRef();
-  const mainElementRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
 
   const { bannerProviderValue, banners } = useNotificationBanners();
@@ -79,6 +77,7 @@ const ApplicationPage = ({
         header={(
           <>
             <PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} backLinks={contextValue.backLinks} onSelectAction={onSelectAction} />
+            {toolbar}
             {banners}
           </>
         )}
@@ -92,7 +91,6 @@ const ApplicationPage = ({
                 <ApplicationLoadingOverlayProvider>
                   <main
                     id="application-page-main"
-                    ref={mainElementRef}
                     tabIndex="-1"
                     role="main"
                     className={cx('main-container', 'page-background')}

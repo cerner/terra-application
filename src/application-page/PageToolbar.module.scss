@@ -1,0 +1,24 @@
+:local {
+  .page-toolbar {
+    align-items: center;
+    background-color: lightgrey;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-end;
+
+    overflow: hidden;
+    padding: 10px 10px;
+    width: 100%;
+  }
+
+  .toolbar-item {
+    flex: 0 1 auto;
+
+    &:not(:first-child) {
+      margin-left: 5px;
+    }
+  }
+
+}

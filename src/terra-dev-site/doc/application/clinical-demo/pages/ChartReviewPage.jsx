@@ -29,7 +29,7 @@ const ChartReviewPage = ({ onRequestClose }) => {
     isDisabled: !isInitialized,
   }, {
     key: 'action-tag',
-    text: 'Tag',
+    text: 'Show Page In Modal',
     icon: <IconTag />,
     onSelect: () => { setShowPageModal(true); },
     isDisabled: !isInitialized,

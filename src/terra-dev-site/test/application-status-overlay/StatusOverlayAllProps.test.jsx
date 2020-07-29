@@ -17,7 +17,7 @@ const ApplicationStatusOverlayAllProps = () => {
 
   return (
     <ApplicationStatusOverlayProvider>
-      <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" title="All props test" variant="no-data" />
+      <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" variant="no-data" />
     </ApplicationStatusOverlayProvider>
   );
 };

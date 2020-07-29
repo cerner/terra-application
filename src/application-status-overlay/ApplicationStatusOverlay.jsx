@@ -12,17 +12,10 @@ const propTypes = {
    */
   // eslint-disable-next-line react/forbid-foreign-prop-types
   buttonAttrs: PropTypes.arrayOf(PropTypes.shape(Button.propTypes)),
-
   /**
    * The descriptive text, displayed under the title.
    */
   message: PropTypes.string,
-
-  /**
-   * The title displayed under the glyph. Variants contain default titles that can be overridden by this prop.
-   */
-  title: PropTypes.string,
-
   /**
    * Sets the glyph and title using a pre-baked variant. One of the following: `no-data`,
    * `no-matching-results`, `not-authorized`, or `error`
@@ -33,7 +26,6 @@ const propTypes = {
 const defaultProps = {
   buttonAttrs: [],
   message: undefined,
-  title: undefined,
   variant: undefined,
 };
 
@@ -41,7 +33,6 @@ const ApplicationStatusOverlay = (props) => {
   const {
     buttonAttrs,
     message,
-    title,
     variant,
   } = props;
   const idRef = useRef(uuidv4());
@@ -51,10 +42,9 @@ const ApplicationStatusOverlay = (props) => {
     applicationStatusOverlay.show(idRef.current, {
       buttonAttrs,
       message,
-      title,
       variant,
     });
-  }, [buttonAttrs, message, title, variant, idRef, applicationStatusOverlay]);
+  }, [buttonAttrs, message, variant, idRef, applicationStatusOverlay]);
 
   useLayoutEffect(() => () => {
     applicationStatusOverlay.hide(idRef.current);

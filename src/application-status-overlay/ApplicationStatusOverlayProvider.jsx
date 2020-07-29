@@ -66,7 +66,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   const registeredButtonAttrs = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.buttonAttrs;
   const registeredMessage = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.message;
-  const registeredTitle = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.title;
   const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.variant;
 
   useEffect(() => {
@@ -98,7 +97,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
       buttonAttrs={registeredButtonAttrs}
       className={cx('status-view', theme.className)}
       message={registeredMessage}
-      title={registeredTitle}
       variant={registeredVariant}
     />
   );

@@ -52,7 +52,6 @@ describe('ApplicationStatusOverlayProvider', () => {
         1: {
           buttonAttrs: StatusViewButtons,
           message: 'Status View with all props specified',
-          title: 'Jest Test',
           variant: 'no-data',
         },
       }, mockSetState]);
@@ -101,25 +100,6 @@ describe('ApplicationStatusOverlayProvider', () => {
 
       React.useState = () => ([{
         1: { message: 'Status View with only message specified' },
-      }, mockSetState]);
-
-      const wrapper = shallow((
-        <ApplicationStatusOverlayProvider>
-          <div>Test child</div>
-        </ApplicationStatusOverlayProvider>
-      ));
-
-      expect(wrapper).toMatchSnapshot();
-
-      React.useState = reactUseState;
-    });
-
-    it('should render the status view when only title is specified', () => {
-      const reactUseState = React.useState;
-      const mockSetState = jest.fn();
-
-      React.useState = () => ([{
-        1: { title: 'Jest Test' },
       }, mockSetState]);
 
       const wrapper = shallow((

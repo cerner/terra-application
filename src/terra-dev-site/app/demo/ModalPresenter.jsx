@@ -107,7 +107,7 @@ const ModalContent = ({ name, onSubmit }) => {
               Show Status View
             </button>
           </p>
-          {showStatusOverlay && <ApplicationStatusOverlay message="This is a demo status view" title="Demo Status View" variant="no-data" />}
+          {showStatusOverlay && <ApplicationStatusOverlay message="This is a demo status view" variant="no-data" />}
           <PendingActionToggle />
         </div>
       </Scroll>

@@ -72,7 +72,6 @@ describe('ApplicationStatusOverlay', () => {
       <ApplicationStatusOverlay
         buttonAttrs={StatusViewButtons}
         message="Status View with all props specified"
-        title="Jest Test"
         variant="no-data"
       />,
     );
@@ -151,16 +150,6 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     wrapper.setProps({ message: 'Second message' });
-    expect(wrapper).toMatchSnapshot();
-  });
-
-  it('should honor title prop', () => {
-    const wrapper = mount(
-      <ApplicationStatusOverlay title="First title" />,
-    );
-    expect(wrapper).toMatchSnapshot();
-
-    wrapper.setProps({ title: 'Second title' });
     expect(wrapper).toMatchSnapshot();
   });
 

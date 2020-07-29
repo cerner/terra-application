@@ -6,12 +6,10 @@ exports[`ApplicationStatusOverlay should honor buttonAttrs prop 1`] = `
     Array [
       Object {
         "key": 1,
-        "size": "medium",
         "text": "Action 1",
       },
       Object {
         "key": 2,
-        "size": "medium",
         "text": "Action 2",
       },
     ]
@@ -25,7 +23,6 @@ exports[`ApplicationStatusOverlay should honor buttonAttrs prop 2`] = `
     Array [
       Object {
         "key": 3,
-        "size": "medium",
         "text": "Action 3",
       },
     ]
@@ -44,20 +41,6 @@ exports[`ApplicationStatusOverlay should honor message prop 2`] = `
 <ApplicationStatusOverlay
   buttonAttrs={Array []}
   message="Second message"
-/>
-`;
-
-exports[`ApplicationStatusOverlay should honor title prop 1`] = `
-<ApplicationStatusOverlay
-  buttonAttrs={Array []}
-  title="First title"
-/>
-`;
-
-exports[`ApplicationStatusOverlay should honor title prop 2`] = `
-<ApplicationStatusOverlay
-  buttonAttrs={Array []}
-  title="Second title"
 />
 `;
 
@@ -103,18 +86,15 @@ exports[`ApplicationStatusOverlay should render status view with the specified d
     Array [
       Object {
         "key": 1,
-        "size": "medium",
         "text": "Action 1",
       },
       Object {
         "key": 2,
-        "size": "medium",
         "text": "Action 2",
       },
     ]
   }
   message="Status View with all props specified"
-  title="Jest Test"
   variant="no-data"
 />
 `;

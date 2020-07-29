@@ -43,12 +43,10 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
       Array [
         Object {
           "key": 1,
-          "size": "medium",
           "text": "Action 1",
         },
         Object {
           "key": 2,
-          "size": "medium",
           "text": "Action 2",
         },
       ]
@@ -57,7 +55,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isAlignedTop={false}
     isGlyphHidden={false}
     message="Status View with all props specified"
-    title="Jest Test"
     variant="no-data"
   />
   <div
@@ -91,7 +88,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
       Array [
         Object {
           "key": 1,
-          "size": "medium",
           "text": "Action 1",
         },
       ]
@@ -132,39 +128,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     isAlignedTop={false}
     isGlyphHidden={false}
     message="Status View with only message specified"
-  />
-  <div
-    className="container-content"
-    data-status-overlay-container-content={true}
-  >
-    <Scroll>
-      <ContextProvider
-        value={
-          Object {
-            "hide": [Function],
-            "show": [Function],
-          }
-        }
-      >
-        <div>
-          Test child
-        </div>
-      </ContextProvider>
-    </Scroll>
-  </div>
-</div>
-`;
-
-exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only title is specified 1`] = `
-<div
-  className="container"
->
-  <StatusView
-    buttonAttrs={Array []}
-    className="status-view"
-    isAlignedTop={false}
-    isGlyphHidden={false}
-    title="Jest Test"
   />
   <div
     className="container-content"

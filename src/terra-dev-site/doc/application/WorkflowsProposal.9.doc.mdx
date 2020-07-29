@@ -396,6 +396,11 @@ Modal
   - Superset of Page API + modal specific API (foot actions)
   - Can be presented from any layer within ApplicationBase
 
+ApplicationBase
+  ApplicationContainer
+    PageContainer
+      Page
+
 # TODO
 
 * Application Concept
@@ -465,12 +470,19 @@ TODO 7/9
 * (X) Review Workspace designs
   * Think about not rolling up Page header actions
 
-TODO
-* first-class toolbar for page presentation
+TODO 7/16
+* (X) first-class toolbar for page presentation
+  * does it need to be sticky?
 * F6/Shift+F6 accessibility
   * https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-24
   * Might make sense to toggle between page/workspace? not much info otherwise
-  * Might stomp on browser: https://www.chromium.org/user-experience/keyboard-access
+  * Might stomp on browser shortcuts: https://www.chromium.org/user-experience/keyboard-access
 * include page header in main element
+  * this is very hard with current layout design
+  * ouch
+  * Does main HAVE to overflow? Can we have a separate element handle the overflow (and thus maintain the current layout)
 * Page-in-modal accessibility (main in modal => bad news bears)
 * Accordion Side Navigation
+* Routing prototype
+* Investigate whether prop for optional navigable item persistance (hidden, not removed) makes sense
+  * for DOM-sensitive elements like iframes

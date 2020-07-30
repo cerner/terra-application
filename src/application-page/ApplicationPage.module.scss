@@ -2,6 +2,7 @@
 
 :local {
   .main-container {
+    display: block;      // VERY IMPORTANT FOR IE
     height: 100%;
     outline: none;
     overflow: auto;

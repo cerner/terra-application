@@ -12,7 +12,7 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import { useNotificationBanners } from '../notification-banner';
+import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 const propTypes = {
   /**

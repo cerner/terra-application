@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useNotificationBanners } from '../../../notification-banner';
+import useNotificationBanners from '../../../notification-banner/private/useNotificationBanners';
 import NotificationBannerExample from './NotificationBannerExample';
 
 const Example = ({ isInitiallyClosed }) => {

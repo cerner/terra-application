@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'terra-alert';
 import Button from 'terra-button';
-import BannerRegistrationContext from './private/BannerRegistrationContext';
+import BannerRegistrationContext from './BannerRegistrationContext';
 
-import { organizeBannersByPriority } from './private/utils';
+import { organizeBannersByPriority } from './utils';
 
 /**
  * The `useNotificationBanners` Hook manages registering and prioritizing Notification Banners
@@ -112,41 +112,45 @@ const useNotificationBanners = () => {
     }
 
     return (
-      banners.map((bannerProps) => {
-        const {
-          description, type, bannerAction, onRequestDismiss, key,
-        } = bannerProps;
+      <div aria-live="polite">
+        {banners.map((bannerProps) => {
+          const {
+            description, type, bannerAction, onRequestDismiss, key,
+          } = bannerProps;
 
-        let actionButton = null;
-        if (bannerAction) {
-          actionButton = (
-            <Button
-              text={bannerAction.text}
-              variant="ghost"
-              onClick={bannerAction.onClick}
-            />
+          let actionButton = null;
+          if (bannerAction) {
+            actionButton = (
+              <Button
+                text={bannerAction.text}
+                variant="ghost"
+                onClick={bannerAction.onClick}
+              />
+            );
+          }
+
+          return (
+            <Alert
+              key={key}
+              action={actionButton}
+              onDismiss={onRequestDismiss}
+              type={type}
+              data-terra-application-notification-banner={type}
+            >
+              {description}
+            </Alert>
           );
-        }
-
-        return (
-          <Alert
-            key={key}
-            action={actionButton}
-            onDismiss={onRequestDismiss}
-            type={type}
-            data-terra-application-notification-banner={type}
-          >
-            {description}
-          </Alert>
-        );
-      })
+        })}
+      </div>
     );
   };
 
-  return {
+  const useNotificationBannerExports = React.useRef({
     NotificationBannerProvider,
     NotificationBanners,
-  };
+  });
+
+  return useNotificationBannerExports.current;
 };
 
 export default useNotificationBanners;

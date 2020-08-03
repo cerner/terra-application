@@ -15,8 +15,8 @@ const NotificationBannerToggle = () => {
       <button type="button" onClick={() => { setHasWarningBanner(!hasWarningBanner); }} disabled={hasWarningBanner}>
         Render Warning Notification Banner
       </button>
-      {hasAlertBanner ? <NotificationBanner type="alert" onRequestDismiss={() => { setHasAlertBanner(!hasAlertBanner); }} /> : undefined}
-      {hasWarningBanner ? <NotificationBanner type="warning" onRequestDismiss={() => { setHasWarningBanner(!hasWarningBanner); }} /> : undefined}
+      {hasAlertBanner ? <NotificationBanner type="alert" onRequestClose={() => { setHasAlertBanner(!hasAlertBanner); }} /> : undefined}
+      {hasWarningBanner ? <NotificationBanner type="warning" onRequestClose={() => { setHasWarningBanner(!hasWarningBanner); }} /> : undefined}
     </div>
   );
 };

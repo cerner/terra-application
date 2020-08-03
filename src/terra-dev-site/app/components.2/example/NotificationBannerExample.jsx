@@ -14,38 +14,38 @@ const Example = () => {
       {showUnsatisfiedBanner && (
         <NotificationBanner
           type="unsatisfied"
-          onRequestDismiss={() => setShowUnsatisfiedBanner(false)}
+          onRequestClose={() => setShowUnsatisfiedBanner(false)}
         />
       )}
       {showAlertBanner && (
         <NotificationBanner
           type="alert"
-          onRequestDismiss={() => setShowAlertBanner(false)}
+          onRequestClose={() => setShowAlertBanner(false)}
         />
       )}
       {showErrorBanner && (
         <NotificationBanner
           type="error"
           description="Please try again."
-          onRequestDismiss={() => setShowErrorBanner(false)}
+          onRequestClose={() => setShowErrorBanner(false)}
         />
       )}
       {showWarningBanner && (
         <NotificationBanner
           type="warning"
-          onRequestDismiss={() => setShowWarningBanner(false)}
+          onRequestClose={() => setShowWarningBanner(false)}
         />
       )}
       {showUnverifiedBanner && (
         <NotificationBanner
           type="unverified"
-          onRequestDismiss={() => setShowUnverifiedBanner(false)}
+          onRequestClose={() => setShowUnverifiedBanner(false)}
         />
       )}
       {showAdvisoryBanner && (
         <NotificationBanner
           type="advisory"
-          onRequestDismiss={() => setShowAdvisoryBanner(false)}
+          onRequestClose={() => setShowAdvisoryBanner(false)}
         />
       )}
       <p>Show Banner Options: </p>

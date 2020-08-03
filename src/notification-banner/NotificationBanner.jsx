@@ -27,7 +27,7 @@ const propTypes = {
    * Callback function triggered when the dismiss button is clicked. The presence of this prop will cause
    * the dismiss button to be included on the banner. No parameters are passed.
    */
-  onRequestDismiss: PropTypes.func,
+  onRequestClose: PropTypes.func,
   /**
    * The type of alert to be rendered. One of `alert`, `error`, `warning`, `unsatisfied`, `unverified` or `advisory`.
    */
@@ -42,7 +42,7 @@ const propTypes = {
 };
 
 const NotificationBanner = ({
-  bannerAction, description, onRequestDismiss, type,
+  bannerAction, description, onRequestClose, type,
 }) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
@@ -68,11 +68,11 @@ const NotificationBanner = ({
         bannerAction,
         description,
         key: uuid.current,
-        onRequestDismiss,
+        onRequestClose,
         type,
       });
     }
-  }, [bannerRegistration, description, bannerAction, onRequestDismiss, type]);
+  }, [bannerRegistration, description, bannerAction, onRequestClose, type]);
 
   React.useEffect(() => () => {
     if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {

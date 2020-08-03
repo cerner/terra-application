@@ -24,7 +24,7 @@ const propTypes = {
    * Callback function triggered when the dismiss button is clicked. The presence of this prop will cause
    * the dismiss button to be included on the banner. No parameters are passed.
    */
-  onRequestDismiss: PropTypes.func,
+  onRequestClose: PropTypes.func,
   /**
    * The type of alert to be rendered. One of `alert`, `error`, `warning`, `unsatisfied`, `unverified` or `advisory`.
    */

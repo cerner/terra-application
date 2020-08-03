@@ -115,7 +115,7 @@ const useNotificationBanners = () => {
       <div aria-live="polite">
         {banners.map((bannerProps) => {
           const {
-            description, type, bannerAction, onRequestDismiss, key,
+            description, type, bannerAction, onRequestClose, key,
           } = bannerProps;
 
           let actionButton = null;
@@ -133,7 +133,7 @@ const useNotificationBanners = () => {
             <Alert
               key={key}
               action={actionButton}
-              onDismiss={onRequestDismiss}
+              onDismiss={onRequestClose}
               type={type}
               data-terra-application-notification-banner={type}
             >

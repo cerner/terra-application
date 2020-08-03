@@ -35,7 +35,7 @@ const Example = ({ id }) => {
         <NotificationBanner
           type="warning"
           id={`warning-banner-${id}`}
-          onRequestDismiss={() => setShowWarningBanner(false)}
+          onRequestClose={() => setShowWarningBanner(false)}
         />
       )}
       {showUnverifiedBanner && (

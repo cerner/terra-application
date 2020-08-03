@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
 import NotificationBanner from '../../../notification-banner';
@@ -64,6 +65,7 @@ PageContent.propTypes = {
 };
 
 const ApplicationNavigationTest = () => {
+  const applicationIntl = useContext(ApplicationIntlContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);
 
@@ -79,7 +81,8 @@ const ApplicationNavigationTest = () => {
   }];
 
   return (
-    <ApplicationBase locale="en">
+    // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
+    <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale}>
       {loggedOut ? <p>Logged Out</p> : (
         <ApplicationNavigation
           titleConfig={{

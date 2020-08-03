@@ -1,6 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DisclosureContainer should render the provided children 1`] = `
+<<<<<<< HEAD
 <InjectIntl(ApplicationErrorBoundary)>
   <ApplicationLoadingOverlayProvider>
     <NotificationBannerProvider>
@@ -17,4 +18,23 @@ exports[`DisclosureContainer should render the provided children 1`] = `
     </NotificationBannerProvider>
   </ApplicationLoadingOverlayProvider>
 </InjectIntl(ApplicationErrorBoundary)>
+=======
+<ContextProvider
+  value={
+    DisclosureManagerDelegateInstance {
+      "registerDismissCheck": [Function],
+    }
+  }
+>
+  <InjectIntl(ApplicationErrorBoundary)>
+    <ApplicationLoadingOverlayProvider>
+      <withPromptRegistration(NavigationPromptCheckpoint)>
+        <div>
+          Test Child
+        </div>
+      </withPromptRegistration(NavigationPromptCheckpoint)>
+    </ApplicationLoadingOverlayProvider>
+  </InjectIntl(ApplicationErrorBoundary)>
+</ContextProvider>
+>>>>>>> main
 `;

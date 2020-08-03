@@ -3,6 +3,24 @@ Changelog
 
 Unreleased
 ----------
+### Fixed
+* Fixed firefox tests for application navigation
+
+1.29.1 - (July 15, 2020)
+------------------
+### Fixed
+* Returning Promise from registerDismissCheck implementation
+
+1.29.0 - (July 15, 2020)
+------------------
+### Fixed
+* Allowed components disclosed by the DisclosureManager to override the default registerDismissCheck implementation
+
+1.28.0 - (July 7, 2020)
+------------------
+### Changed
+* Corrected typo in `.gitignore` file.
+* Updated Docs to point to main branch for terra-toolkit-boneyard.
 
 1.27.0 - (June 23, 2020)
 ------------------
@@ -18,6 +36,9 @@ Unreleased
 ------------------
 ### Added
 * Added a logger utility.
+
+### Changes
+* Updated errorBoundary to have a default error message when there is none provided.
 
 1.25.0 - (June 9, 2020)
 ------------------
@@ -38,7 +59,6 @@ Unreleased
 1.22.0 - (April 28, 2020)
 ------------------
 ### Changed
-* Updated errorBoundary to have a default error message when there is none provided.
 * Update terra-toolkit dev dependency to 6.0.0
 
 1.21.0 - (April 22, 2020)

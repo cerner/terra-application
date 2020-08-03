@@ -126,3 +126,22 @@ Terra.describeViewports('ModalManager', ['large'], () => {
     Terra.validates.element('14. modal notification banners', { selector });
   });
 });
+
+Terra.describeViewports('CustomDismissCheckWorkflow', ['large'], () => {
+  before(() => browser.url('/#/raw/tests/terra-application/modal-manager/custom-dismiss-check'));
+
+  it('opens the modal', () => {
+    browser.click('#root-component .disclose-large');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-tiny');
+    Terra.validates.element('1. shows modal with custom dismiss check', { selector });
+  });
+
+  it('marks modal as having a pending action', () => {
+    browser.click('[class*="slide-group"] #DemoContainer-1 .pending-action-toggle');
+  });
+
+  it('attempts to close modal and fails due to custom dismiss check implementation', () => {
+    browser.click('[class*="Modal"] [class*="ActionHeader"] .close-button');
+    Terra.validates.element('2. modal persists after close attempt', { selector });
+  });
+});

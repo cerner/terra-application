@@ -65,7 +65,7 @@ const ModalContent = ({ name, onSubmit }) => {
                * The registered dismiss check is overridden prior to calling onSubmit to allow the modal to be closed cleanly
                * without prompting the user.
                */
-              disclosureManager.registerDismissCheck();
+              disclosureManager.registerDismissCheck(() => Promise.resolve());
               onSubmit();
             }}
           >

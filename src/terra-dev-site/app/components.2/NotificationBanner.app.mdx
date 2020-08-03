@@ -3,7 +3,15 @@ import NotificationBannerExample from './example/NotificationBannerExample?dev-s
 
 # Notification Banner
 
-Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. When rendered, the Notification Banner registers itself with the NotificationBannerProvider provided by the framework.
+Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. When rendered, the Notification Banner registers itself with the framework. When registered, the framework will ensure the notification banners are prioritized and displayed in a list above all other content.
+
+Notification Banners are prioritized by type and in the following order:
+1. `alert` - displays a critical notification for current emergencies or situations of high severity that need to be addressed promptly
+2. `error` - recommended to provide feedback of a negative system status such as failures, inabilities, or limitations
+3. `warning` - recommended to show moderately urgent notifications that are cautionary in nature and forecast potential risk
+4. `unsatisfied` - recommended to show the user that an unsatisfied or incomplete action needs to be addressed
+5. `unverified` - recommended to provide feedback that information from outside systems has been included but has yet to be verified by the user
+6. `advisory` - recommended to provide the user with guidance and/or advice for completing an action
 
 ## Usage
 

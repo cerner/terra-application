@@ -10,8 +10,8 @@ import ApplicationLoadingOverlay from 'terra-application/lib/application-loading
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 
-import PendingActionToggle from './PendingActionToggle';
 import NotificationBannerToggle from './NotificationBannerToggle';
+import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';
 
 const cx = classNames.bind(styles);

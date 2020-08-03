@@ -63,7 +63,7 @@ const Example = ({ id }) => {
       <button onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)} type="button" id={`toggle-unverified-banner-${id}`}>Show/Hide Unverified Banner</button>
       <p>Click to toggle Advisory Banner.</p>
       <button onClick={() => setShowAdvisoryBanner(!showAdvisoryBanner)} type="button" id={`toggle-advisory-banner-${id}`}>Show/Hide Advisory Banner</button>
-      <p>This is a bunch of random page content to make the screen reader talk a lot longer. This is to help keep the reader going while we wait for the 60 second timeout to show the unverified banner. This contents does not add value to this example except to add a bunch of words for the voice over screen reader to read out loud. This could be cut-off when an banner is rendered unless the banner is polite and waits for the screen reader to finish so the user can understand what is happening on the page. </p>
+      <p>This is a bunch of random page content to make the screen reader talk a lot longer. This is to help keep the reader going while we wait for the 60 second timeout to show the unverified banner. This contents does not add value to this example except to add a bunch of words for the voice over screen reader to read out loud. This could be cut-off when an banner is rendered unless the banner is polite and waits for the screen reader to finish so the user can understand what is happening on the page.</p>
     </>
   );
 };

@@ -39,6 +39,16 @@ components rendered by children will cause a loading overlay to be rendered over
 > it is recommended that those components render an additional ApplicationLoadingOverlayProvider below their panel header to keep
 > the header controls for panel dismissal exposed while the overlay is active.
 
+### Status Views
+
+SlidePanelManager renders an [ApplicationStatusOverlayProvider](/application/terra-application/components/application-status-overlay-provider)
+around its disclosed components. Any [ApplicationStatusOverlay](/application/terra-application/components/application-status-overlay)
+components rendered by children will cause a status view to be rendered over the panel's contents.
+
+> If the disclosed panel contents do not utilize the DisclosureManagerHeaderAdapter and render their own panel header instead,
+> it is recommended that those components render an additional ApplicationStatusOverlayProvider below their panel header to keep
+> the header controls for panel dismissal exposed while the status view is active.
+
 ### Unsaved Changes
 
 SlidePanelManager monitors its disclosed content for the presence of rendered [NavigationPrompts](/application/terra-application/components/navigation-prompt)

@@ -10,11 +10,13 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 >
   <InjectIntl(ApplicationErrorBoundary)>
     <ApplicationLoadingOverlayProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
-        <div>
-          Test Child
-        </div>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
+      <ApplicationStatusOverlayProvider>
+        <withPromptRegistration(NavigationPromptCheckpoint)>
+          <div>
+            Test Child
+          </div>
+        </withPromptRegistration(NavigationPromptCheckpoint)>
+      </ApplicationStatusOverlayProvider>
     </ApplicationLoadingOverlayProvider>
   </InjectIntl(ApplicationErrorBoundary)>
 </ContextProvider>

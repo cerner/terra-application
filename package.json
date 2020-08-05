@@ -108,6 +108,7 @@
     "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
+    "terra-button": "^3.39.0",
     "terra-content-container": "^3.14.0",
     "terra-disclosure-manager": "^4.27.0",
     "terra-doc-template": "^2.2.0",
@@ -119,7 +120,8 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
-    "uuid": "^3.0.0"
+    "uuid": "^3.0.0",
+    "wicg-inert": "^3.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.5",

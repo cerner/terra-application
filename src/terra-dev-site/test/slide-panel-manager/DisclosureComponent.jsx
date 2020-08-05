@@ -15,6 +15,7 @@ import {
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+import ApplicationStatusOverlay from '../../../application-status-overlay';
 import styles from './DisclosureComponent.module.scss';
 
 const cx = classNames.bind(styles);
@@ -45,6 +46,7 @@ class DisclosureComponent extends React.Component {
       hasPendingAction: false,
       hasLoadingOverlay: false,
       hasError: false,
+      hasStatusOverlay: false,
       disclosureCount: null,
     };
   }
@@ -158,7 +160,7 @@ class DisclosureComponent extends React.Component {
   render() {
     const { disclosureManager, identifier, renderHeaderAdapter } = this.props;
     const {
-      hasPendingAction, hasLoadingOverlay, hasError, disclosureCount,
+      hasPendingAction, hasLoadingOverlay, hasError, hasStatusOverlay, disclosureCount,
     } = this.state;
 
     if (hasError) {
@@ -198,6 +200,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="disclose-fullscreen" onClick={this.disclose('fullscreen')}>Disclose Fullscreen</button>
         <button type="button" className="pending-action-toggle" onClick={() => { this.setState((state) => ({ hasPendingAction: !state.hasPendingAction })); }}>Pending Action</button>
         <button type="button" className="loading-overlay-toggle" onClick={() => { this.setState((state) => ({ hasLoadingOverlay: !state.hasLoadingOverlay })); }}>Loading Overlay</button>
+        <button type="button" className="status-view-toggle" onClick={() => { this.setState((state) => ({ hasStatusOverlay: !state.hasStatusOverlay })); }}>Status View</button>
         <button type="button" className="error-toggle" onClick={() => { this.setState((state) => ({ hasError: !state.hasError })); }}>Error</button>
         <div className={cx('form-wrapper')}>
           {this.renderForm()}
@@ -211,6 +214,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+        {hasStatusOverlay && <ApplicationStatusOverlay message="Test status view" variant="no-data" />}
       </ContentContainer>
     );
   }

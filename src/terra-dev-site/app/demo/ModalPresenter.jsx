@@ -7,6 +7,7 @@ import classNames from 'classnames/bind';
 import Scroll from 'terra-scroll';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 
@@ -19,8 +20,12 @@ const ModalContent = ({ name, onSubmit }) => {
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
   const disclosureManager = useContext(DisclosureManagerContext);
+
   const [hasError, setHasError] = useState(false);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [showStatusOverlay, setShowStatusOverlay] = useState(false);
+
+  const timeoutRef = useRef();
 
   useEffect(() => {
     if (isInitialized) {
@@ -30,6 +35,8 @@ const ModalContent = ({ name, onSubmit }) => {
     const timeout = setTimeout(() => {
       setIsInitialized(true);
     }, 2000);
+
+    clearTimeout(timeoutRef.current);
 
     return () => {
       clearTimeout(timeout);
@@ -84,6 +91,23 @@ const ModalContent = ({ name, onSubmit }) => {
           <h3>Error Handling</h3>
           <p>Press the button below to throw an exception that will be caught and handled by the framework.</p>
           <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
+          <h3>Status View</h3>
+          <p>This component uses the ApplicationStatusOverlay to present a status view over itself and within the modal. The status view in this demo is shown for 2 seconds.</p>
+          <p>
+            <button
+              disabled={showStatusOverlay}
+              type="button"
+              onClick={() => {
+                setShowStatusOverlay(true);
+                timeoutRef.current = setTimeout(() => {
+                  setShowStatusOverlay(false);
+                }, 2000);
+              }}
+            >
+              Show Status View
+            </button>
+          </p>
+          {showStatusOverlay && <ApplicationStatusOverlay message="This is a demo status view" variant="no-data" />}
           <PendingActionToggle />
         </div>
       </Scroll>

@@ -11,6 +11,7 @@ import { ThemeContext } from 'terra-application/lib/theme';
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
+import StatusOverlayPresenter from './StatusOverlayPresenter';
 
 import styles from './AppPage.module.scss';
 
@@ -65,6 +66,7 @@ const AppPage = ({ pageName }) => {
       <p>Press the button below to throw an exception that will be caught and handled by the framework</p>
       <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
       <LoadingOverlayPresenter />
+      <StatusOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
       <h3>Themeing</h3>

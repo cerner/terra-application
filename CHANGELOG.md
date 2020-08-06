@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated `uuid` dependency to `v8.0.0`.
+
 * Added
   * Added ApplicationStatusOverlay
   * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager

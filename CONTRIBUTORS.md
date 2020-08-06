@@ -11,6 +11,7 @@ Cerner Corporation
 - Dianna McGinn [@DMcginn]
 - Jaime Mackey [@jmsv6d]
 - Avinash Gupta [@avinashg1994]
+- Saket Bajaj [@saket2403]
 
 [@mjhenkes]: https://github.com/mjhenkes
 [@tbiethman]: https://github.com/tbiethman
@@ -23,3 +24,4 @@ Cerner Corporation
 [@DMcginn]: https://github.com/DMcginn
 [@jmsv6d]: https://github.com/jmsv6d
 [@avinashg1994]: https://github.com/avinashg1994
+[@saket2403]: https://github.com/saket2403

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 import ApplicationLoadingOverlay from '../../../src/application-loading-overlay/ApplicationLoadingOverlay';
 import ApplicationLoadingOverlayContext from '../../../src/application-loading-overlay/ApplicationLoadingOverlayContext';
 
-jest.mock('uuid/v4');
+jest.mock('uuid');
 
 describe('ApplicationLoadingOverlay', () => {
   let reactUseContext;

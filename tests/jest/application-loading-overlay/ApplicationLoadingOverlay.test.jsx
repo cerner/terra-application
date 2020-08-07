@@ -1,5 +1,5 @@
 import React from 'react';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationLoadingOverlay from '../../../src/application-loading-overlay/ApplicationLoadingOverlay';
 import ApplicationLoadingOverlayContext from '../../../src/application-loading-overlay/ApplicationLoadingOverlayContext';

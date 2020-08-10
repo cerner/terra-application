@@ -1,0 +1,359 @@
+# terra-application v2.0 Scope
+
+## Statement of Intent
+
+terra-application v2.0 will further define the architecture, design, and capabilities of Terra
+web applications.
+
+### Features
+
+* Application Navigation, Defined
+  * Primary and secondary navigation patterns have been created and provided to consumers with consumer-friendly APIs.
+  * Page-level progressive disclosure is also provided out of the box.
+  * Consumers can focus on creating their specific content, while terra-application handles everything else.
+  * Applications can be stood up and composed very quickly.
+  * First-class support for embedded applications without navigation is also included.
+* Notifications, Kinda Defined
+  * Components are provided to simplify the presentation and handling of user notifications.
+* An Improved Vocabulary
+  * A new lexicon better describes the intentions and responsibilities of different classes of components.
+  * These definitions allow us to communicate consistently and easily identify areas of reuse and composition.
+  * Narrowing the language in this way will also improve our ability to support the consumer base.
+* Consumer Quality of Life Updates
+  * Components like Modals that have historically been hard to work with have been enhanced to better meet consumer expectations.
+  * New components have been created to better support existing workflows without custom consumer work.
+* Updated Dependencies
+  * Framework dependencies were updated to provide our consumers with up to date enhancements and fixes.
+
+## Projects
+
+### Application Landing Page
+
+#### Description
+
+A visually pleasing view presented to the user upon initial application load. 
+This presentation\will precede user login/initial app load.
+
+#### New Components
+
+* TBD
+
+#### Updated Components
+
+* TBD
+
+#### Project Consumers
+
+* ApplicationContainer
+
+#### Outstanding Questions
+
+* Presentation
+  * Baked into the rails/static template vs. React-based vs. combination of both (most likely)
+  * Dynamic based on theme vs. static
+  * Deferred presentation to limit flickering/a11y problems
+* Design Input
+
+---
+
+### Application Concept Context
+
+#### Description
+
+An optional, application-level provider of UI components and data APIs for application concept data. Framework components
+will read from this context to render appropriate UI banners within the application and ensure said content is visible
+throughout modal workflows.
+
+This will further reduce the custom logic implemented by orion-clinical-application and will provide a consistent, agnostic
+API for global concept data communication. 
+
+#### New Components
+
+* ApplicationConceptProvider
+
+#### Project Dependencies
+
+* N/A
+
+#### Project Consumers
+
+* ApplicationContainer
+* Modal
+
+#### Outstanding Questions
+
+* Final API
+  * Separate interfaces for page-level/modal-level content
+  * A generic key/value store for concept data
+
+--- 
+
+### Navigation Architecture
+
+#### Description
+
+A collection of components that compose terra-application's page-level architecture. These components
+enforce accessibility conventions and provide high-level APIs for navigation patterns within Terra applications.
+
+Required composition would roughly look like:
+
+ApplicationBase
+  ApplicationContainer
+    PageContainer
+      Page
+
+ApplicationBase
+  * 1 per application endpoint
+  * API only, no UI, no DOM (ideally)
+    * i18n/theme/breakpoint/anything else useful
+ApplicationContainer
+  * 1 per application endpoint
+  * Will implement ApplicationConceptContext to render concept UI
+  * Variants for navigation and embedded applications.
+PageContainer 
+  * 1 per each primary navigation item
+  * 1 visible at any given time
+  * Presents side navigation/workspace, in addition to Page content
+Page
+  * 1 per each secondary navigation item (+more through progressive disclosure)
+  * 1 visible at any given time
+  * Page content must be display block and overflow the provided Container
+  * Lowest level of framework composition
+
+#### New Components
+
+* ApplicationContainer
+* PageContainer
+* Page
+
+#### Updated Components
+
+* ApplicationBase
+  * Stripped down to API essentials, no UI/DOM.
+  * Existing UI/DOM logic would be moved to ApplicationContainer/PageContainer/Page as appropriate
+  * Need to ensure ApplicationBase is generic enough to be used by Mpages and other existing opinionated apps.
+* ApplicationNavigation
+  * Need to migrate base-implementation to terra-application from terra-framework 
+  * Need to update API to align with side nav (opinionated children, always mounted children)
+
+#### Project Dependencies
+
+* N/A
+
+#### Outstanding Questions
+
+* Page
+  * Header Action API
+    * Icon Only/Icon + Text
+    * Counts
+    * Fixed Rollup vs. Dynamic Rollup vs. Fixed Buttons
+  * Header Title
+    * Fixed String vs. Breadcrumbs
+  * Toolbar
+    * First -lass or user supplied
+    * If first-class, same actions/title questions apply from Header
+  * Accessibility
+    * Focus styles for scroll region/header
+  * Design Input
+
+* PageContainer
+  * Accessibility
+    * F6/Shift+F6 handling for switching between side-nav/main/workspace
+    * Dynamic "Skip to..." link registration based on PageContainer contents (sidenav/workspace)
+  * Side Nav
+    * Fixed UI with variants (collapsing vs. fixed) or user supplied
+    * API for not unmounting side nav pages containing iframes or other protected elements
+  * Design Input
+
+* Application Container
+  * Accessibility
+    * Dynamic "Skip to..." link presentation based on PageContainer contents (sidenav/workspace)
+  * Design Input
+
+---
+
+### Routing/Deep-Linking Navigation Design
+
+#### Description
+
+The framework needs to stake ownership of (or provide guidelines for or against) a general routing strategy
+for deep-linking to content within an application.
+
+#### New Components
+
+* TBD
+
+#### Updated Components
+
+* TBD
+
+#### Project Dependencies
+
+* ApplicationContainer
+* PageContainer
+
+#### Outstanding Questions
+
+Issues are present with the usage of pushState for in-page routing with stateful applications. A system to
+interrupt, prevent, and confirm those navigation would need to be developed for users of browser controls. An example
+would be the dismissing a modal because the user navigated away from the content that presented it. If we leave it open,
+the user loses the original modal's presentation context. If we dismiss it, any dirty state in the modal could be lost
+inadvertently.
+
+Issues are also present with the usage of replaceState to not create additional history entries. Users expect to be
+able to navigate using browser controls if they see the URL changing.
+
+Alternatives include:
+
+* Using sessionStorage + "Share Links" to build query-param-based payloads to initialize application state
+* Using query params all the time
+* Doing the legwork to make browser navigation work
+
+---
+
+### Declarative Modal
+
+#### Description
+
+An updated Modal component that utilizes a simplified declarative API to promote ease of use for consumers.
+Includes improved a11y patterns and Page integration.
+
+Content within the Modal must have the same capabilities and constraints as Page content.
+
+#### New Components
+
+* Modal
+
+#### Updated Components
+
+* ModalManager (ideally)
+
+#### Project Dependencies
+
+* TBD
+
+#### Outstanding Questions
+
+* Page integration
+  * Determine whether to integrate custom PageContainer or rely on composition
+  * Need a way to flex 'main' element to a div inside the modal.
+* Focus Trapping
+  * Need to determine whether FocusTrap can/should be used vs. focus-forwarding elements
+  * Need to determine impact to Popup/NotificationDialog/other focus trapping elements
+* Other Portals
+  * Need to ensure Popup/NotificationDialog/DatePicker continue to function appropriately within Modal content.
+* Design Input
+  * Header UI, Actions API, Size API
+
+---
+
+### Blocking Overlay
+
+#### Description
+
+A new Overlay component used to completely prevent user interaction during sensitive workflows, typically
+while waiting for async responses.
+
+Needs to cover all presentation layers (base, modal, popup, notification dialog) except framework dialog.
+
+#### New Components
+
+* Blocking Overlay
+
+#### Updated Components
+
+* N/A
+
+#### Project Dependencies
+
+* N/A
+
+#### Outstanding Questions
+
+* Final UX Input
+  * Timeout logic to minimize flashing
+* Need to decide on declarative vs. imperative API
+
+---
+
+### Notification Handling
+
+#### Description
+
+A collection of components integrated with the overall framework to present notifications to the user.
+
+Notification styles include:
+
+* Banner
+* Dialog
+* Toast (?)
+
+#### New Components
+
+* Toast
+
+#### Updated Components
+
+* NotificationDialog
+* Alert
+
+#### Project Dependencies
+
+* Page
+
+#### Outstanding Questions
+
+* Need to determine how to manage multiple presented dialogs
+  * Imperative vs. declarative API
+
+---
+
+### Framework Dialog
+
+#### Description
+
+A specialized dialog used only by the framework to present dialogs on top of all other application content.
+
+First use case is pending session locks.
+
+#### New Components
+
+* FrameworkDialog
+
+#### Updated Components
+
+* N/A
+
+#### Project Dependencies
+
+* N/A
+
+#### Outstanding Questions
+
+* Need to figure out how to present dialogs on top of dialogs, inerting along the way
+* Design input
+
+---
+
+### react-intl Uplift
+
+#### Description
+
+Need to get up to date for react-intl.
+
+#### New Components
+
+* N/A
+
+#### Updated Components
+
+* N/A
+
+#### Project Dependencies
+
+* Lots
+
+#### Outstanding Questions
+
+* Can we get away with opening up the version to support v2/3/4
+  * Duplicate package checker would prevent dupes

@@ -12,7 +12,6 @@ import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';
 import NotificationBannerToggle from './NotificationBannerToggle';
 import PendingActionToggle from './PendingActionToggle';
-import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import StatusOverlayPresenter from './StatusOverlayPresenter';
 
 import styles from './AppPage.module.scss';

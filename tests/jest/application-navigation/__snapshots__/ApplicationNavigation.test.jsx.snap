@@ -6,42 +6,27 @@ exports[`ApplicationNavigation should render default element 1`] = `
   utilityItems={Array []}
 >
   <ApplicationLoadingOverlayProvider>
-<<<<<<< HEAD
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <InjectIntl(ApplicationErrorBoundary)>
-        <ContentContainer
-          fill={true}
-          header={<NotificationBanners />}
-        >
-          <NotificationBannerProvider>
-            <Suspense
-              fallback={
-                <ApplicationLoadingOverlay
-                  backgroundStyle="clear"
-                  isOpen={true}
-                />
-              }
-            />
-          </NotificationBannerProvider>
-        </ContentContainer>
-      </InjectIntl(ApplicationErrorBoundary)>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
-=======
     <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <InjectIntl(ApplicationErrorBoundary)>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
+          <ContentContainer
+            fill={true}
+            header={<NotificationBanners />}
+          >
+            <NotificationBannerProvider>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
               />
-            }
-          />
+            </NotificationBannerProvider>
+          </ContentContainer>
         </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
     </ApplicationStatusOverlayProvider>
->>>>>>> main
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;
@@ -111,50 +96,31 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
 >
   <ApplicationLoadingOverlayProvider>
-<<<<<<< HEAD
-    <withPromptRegistration(NavigationPromptCheckpoint)>
-      <InjectIntl(ApplicationErrorBoundary)>
-        <ContentContainer
-          fill={true}
-          header={<NotificationBanners />}
-        >
-          <NotificationBannerProvider>
-            <Suspense
-              fallback={
-                <ApplicationLoadingOverlay
-                  backgroundStyle="clear"
-                  isOpen={true}
-                />
-              }
-            >
-              <div>
-                test child content
-              </div>
-            </Suspense>
-          </NotificationBannerProvider>
-        </ContentContainer>
-      </InjectIntl(ApplicationErrorBoundary)>
-    </withPromptRegistration(NavigationPromptCheckpoint)>
-=======
     <ApplicationStatusOverlayProvider>
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <InjectIntl(ApplicationErrorBoundary)>
-          <Suspense
-            fallback={
-              <ApplicationLoadingOverlay
-                backgroundStyle="clear"
-                isOpen={true}
-              />
-            }
+          <ContentContainer
+            fill={true}
+            header={<NotificationBanners />}
           >
-            <div>
-              test child content
-            </div>
-          </Suspense>
+            <NotificationBannerProvider>
+              <Suspense
+                fallback={
+                  <ApplicationLoadingOverlay
+                    backgroundStyle="clear"
+                    isOpen={true}
+                  />
+                }
+              >
+                <div>
+                  test child content
+                </div>
+              </Suspense>
+            </NotificationBannerProvider>
+          </ContentContainer>
         </InjectIntl(ApplicationErrorBoundary)>
       </withPromptRegistration(NavigationPromptCheckpoint)>
     </ApplicationStatusOverlayProvider>
->>>>>>> main
   </ApplicationLoadingOverlayProvider>
 </ApplicationNavigation>
 `;

@@ -28,6 +28,16 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     Terra.it.validatesElement('with overlay', { selector: '#root' });
   });
 
+  describe('status view', () => {
+    before(() => {
+      browser.url('/raw/tests/terra-application/application-base/application-base-test');
+      browser.refresh();
+      browser.click('button#statusView');
+    });
+
+    Terra.it.validatesElement('with status view', { selector: '#root' });
+  });
+
   describe('with error', () => {
     before(() => {
       browser.url('/raw/tests/terra-application/application-base/application-base-test');

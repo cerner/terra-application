@@ -260,6 +260,14 @@ to be presented over ApplicationNavigation's children.
 
 The loading overlay will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls while the loading overlay is presented.
 
+### Status Views
+
+ApplicationNavigation renders an [ApplicationStatusOverlayProvider](/application/terra-application/components/application-status-overlay-provider) around its children.
+Any [ApplicationStatusOverlay](/application/terra-application/components/application-status-overlay) components rendered by children will cause a status view
+to be presented over ApplicationNavigation's children.
+
+The status view will render below ApplicationNavigation's header, leaving the user with full access to all navigation controls while the status view is presented.
+
 ### Unsaved Changes
 
 ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/application/terra-application/components/navigation-prompt)

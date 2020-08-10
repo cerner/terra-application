@@ -13,6 +13,7 @@ import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationIntlProvider } from '../application-intl';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
@@ -134,9 +135,11 @@ const ApplicationBase = ({
                     }}
                   >
                     <ApplicationLoadingOverlayProvider>
-                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                        {children}
-                      </Suspense>
+                      <ApplicationStatusOverlayProvider>
+                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                          {children}
+                        </Suspense>
+                      </ApplicationStatusOverlayProvider>
                     </ApplicationLoadingOverlayProvider>
                   </NavigationPromptCheckpoint>
                 </ActiveBreakpointProvider>

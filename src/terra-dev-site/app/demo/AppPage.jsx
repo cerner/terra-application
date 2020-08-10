@@ -12,6 +12,8 @@ import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';
 import NotificationBannerToggle from './NotificationBannerToggle';
 import PendingActionToggle from './PendingActionToggle';
+import LoadingOverlayPresenter from './LoadingOverlayPresenter';
+import StatusOverlayPresenter from './StatusOverlayPresenter';
 
 import styles from './AppPage.module.scss';
 
@@ -66,6 +68,7 @@ const AppPage = ({ pageName }) => {
       <p>Press the button below to throw an exception that will be caught and handled by the framework</p>
       <button type="button" onClick={() => { setHasError(true); }}>Throw Error</button>
       <LoadingOverlayPresenter />
+      <StatusOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
       <NotificationBannerToggle />

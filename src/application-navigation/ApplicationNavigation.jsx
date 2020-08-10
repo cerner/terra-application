@@ -10,6 +10,7 @@ import ContentContainer from 'terra-content-container';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -186,19 +187,21 @@ const ApplicationNavigation = ({
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <ApplicationLoadingOverlayProvider>
-        <NavigationPromptCheckpoint
-          ref={navigationPromptCheckpointRef}
-        >
-          <ApplicationErrorBoundary>
-            <ContentContainer header={<NotificationBanners />} fill>
-              <NotificationBannerProvider>
-                <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                  {children}
-                </Suspense>
-              </NotificationBannerProvider>
-            </ContentContainer>
-          </ApplicationErrorBoundary>
-        </NavigationPromptCheckpoint>
+        <ApplicationStatusOverlayProvider>
+          <NavigationPromptCheckpoint
+            ref={navigationPromptCheckpointRef}
+          >
+            <ApplicationErrorBoundary>
+              <ContentContainer header={<NotificationBanners />} fill>
+                <NotificationBannerProvider>
+                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                    {children}
+                  </Suspense>
+                </NotificationBannerProvider>
+              </ContentContainer>
+            </ApplicationErrorBoundary>
+          </NavigationPromptCheckpoint>
+        </ApplicationStatusOverlayProvider>
       </ApplicationLoadingOverlayProvider>
     </TerraApplicationNavigation>
   );

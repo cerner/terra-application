@@ -1,0 +1,257 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render a single status view with the configuration from the last rendered ApplicationStatusOverlay when more than one are specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Third message"
+    variant="no-data"
+  />
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view based on the current state 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={
+      Array [
+        Object {
+          "key": 1,
+          "text": "Action 1",
+        },
+        Object {
+          "key": 2,
+          "text": "Action 2",
+        },
+      ]
+    }
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Status View with all props specified"
+    variant="no-data"
+  />
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only buttonAttrs is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={
+      Array [
+        Object {
+          "key": 1,
+          "text": "Action 1",
+        },
+      ]
+    }
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+  />
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only message is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    message="Status View with only message specified"
+  />
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only variant is specified 1`] = `
+<div
+  className="container"
+>
+  <StatusView
+    buttonAttrs={Array []}
+    className="status-view"
+    isAlignedTop={false}
+    isGlyphHidden={false}
+    variant="error"
+  />
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render with custom props 1`] = `
+<div
+  className="container testClassName"
+>
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      />
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal props 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll>
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      />
+    </Scroll>
+  </div>
+</div>
+`;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render with optional props 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll
+      refCallback={[MockFunction]}
+    >
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      >
+        <div>
+          Test child
+        </div>
+      </ContextProvider>
+    </Scroll>
+  </div>
+</div>
+`;

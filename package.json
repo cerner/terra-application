@@ -121,7 +121,8 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
-    "uuid": "^3.0.0"
+    "uuid": "^3.0.0",
+    "wicg-inert": "^3.0.2"
   },
   "peerDependencies": {
     "react": "^16.8.5",
@@ -130,7 +131,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.9.0",
+    "@babel/core": "7.10.5",
+    "@babel/parser": "7.10.5",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
     "@babel/plugin-transform-async-to-generator": "^7.8.3",

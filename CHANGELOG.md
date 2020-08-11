@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.30.0 - (Aug 11, 2020)
+
 * Added
   * Added ApplicationStatusOverlay
   * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager

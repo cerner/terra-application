@@ -6,6 +6,7 @@ import List, { Item as ListItem } from 'terra-list';
 import Button, { ButtonVariants } from 'terra-button';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
+import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../breakpoints';
 
@@ -57,6 +58,7 @@ const SecondaryNavigationPageContainer = ({
 }) => {
   const [workspaceSize, setWorkspaceSize] = React.useState(200);
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
+  const [sideNavIsVisible, setSideNavIsVisible] = React.useState(true);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
@@ -73,6 +75,14 @@ const SecondaryNavigationPageContainer = ({
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
+    leftActionComponent: (
+      <Button
+        icon={<IconLeftPane />}
+        text="Toggle Side Nav"
+        onClick={() => { setSideNavIsVisible((state) => !state); }}
+        variant={ButtonVariants.UTILITY}
+      />
+    ),
   }), [enableWorkspace, workspaceIsVisible]);
 
   React.useLayoutEffect(() => {
@@ -141,7 +151,7 @@ const SecondaryNavigationPageContainer = ({
         'side-nav-is-open': !activePageKey,
       })}
     >
-      <div className={cx('side-nav-sidebar')}>
+      <div className={cx('side-nav-sidebar')} style={{ display: sideNavIsVisible ? 'block' : 'none' }}>
         {sidebar || (
           <DefaultSideNavPanel
             activePageKey={activePageKey}

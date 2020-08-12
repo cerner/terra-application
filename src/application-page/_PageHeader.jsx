@@ -4,8 +4,6 @@ import Button, { ButtonVariants } from 'terra-button';
 import Popup from 'terra-popup';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import IconClose from 'terra-icon/lib/icon/IconClose';
-import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
-import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 
 import List, { Item as ListItem } from 'terra-list';
 import ActionHeader from 'terra-action-header';
@@ -18,7 +16,7 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageHeader = ({
-  actions, onBack, title, onClose, onToggleWorkspace, onToggleNavigation,
+  actions, onBack, title, onClose,
 }) => {
   const [showPopup, setShowPopup] = React.useState(false);
   const moreActionsButtonRef = React.useRef();
@@ -26,17 +24,9 @@ const PageHeader = ({
 
   return (
     <div className={cx('page-layout-header')}>
-      {onBack || onToggleNavigation ? (
+      {onBack || pageContainerContext?.leftActionComponent ? (
         <div className={cx('back-button-container')}>
-          {onToggleNavigation ? (
-            <Button
-              className={cx(['header-button'])}
-              icon={<IconLeftPane />}
-              text="Toggle Navigation"
-              onClick={onToggleNavigation}
-              variant={ButtonVariants.UTILITY}
-            />
-          ) : null}
+          {pageContainerContext?.leftActionComponent}
           {onBack ? (
             <Button
               className={cx(['header-button', 'back-button'])}

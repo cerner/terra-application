@@ -11,7 +11,7 @@ import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
-import PageHeader from '../application-page/_PageHeader';
+import ModalHeader from './_ModalHeader';
 import ModalOverlay from './_ModalOverlay';
 import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
@@ -162,9 +162,8 @@ const ModalContent = (props) => {
           fill
           header={(
             <>
-              <PageHeader
+              <ModalHeader
                 title={title}
-                actions={actions}
                 onClose={onRequestClose}
               />
               {applicationConcept && applicationConcept.renderModalConceptView()}

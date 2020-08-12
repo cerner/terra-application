@@ -1,15 +1,21 @@
 @import '../breakpoints/media-queries';
 
 :local {
-  .main-container {
+  .overflow-content {
     display: block;      // VERY IMPORTANT FOR IE
     height: 100%;
     outline: none;
     overflow: auto;
     position: relative;
+    width: 100%;
+
+    &:focus.show-focus {
+      outline: 2px dashed black;
+      outline-offset: -5px;
+    }
   }
 
-  .main-container,
+  .overflow-content,
   .modal-page-container {
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
       radial-gradient(50% 50% at 50% 0%, rgba(90, 231, 253, 0.7), rgba(90, 231, 253, 0)),
@@ -22,5 +28,30 @@
       radial-gradient(100% 100% at 100% 50%, rgba(123, 91, 200, 0.7), rgba(123, 91, 200, 0)),
       radial-gradient(100% 100% at 100% 100%, rgba(32, 79, 185, 0.7), rgba(32, 79, 185, 0)),
       linear-gradient(rgba(154, 208, 255, 0.7), rgba(154, 208, 255, 0.7));
+  }
+
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    outline: none;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    > .header {
+      flex: 0 0 auto;
+      z-index: 0;
+    }
+
+    > .content {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 50px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
   }
 }

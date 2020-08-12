@@ -4,10 +4,13 @@ import Button, { ButtonVariants } from 'terra-button';
 import Popup from 'terra-popup';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import IconClose from 'terra-icon/lib/icon/IconClose';
+import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
+import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 
 import List, { Item as ListItem } from 'terra-list';
 import ActionHeader from 'terra-action-header';
 
+import PageContainerContext from './PageContainerContext';
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);
@@ -15,22 +18,34 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageHeader = ({
-  actions, onBack, title, onClose,
+  actions, onBack, title, onClose, onToggleWorkspace, onToggleNavigation,
 }) => {
   const [showPopup, setShowPopup] = React.useState(false);
   const moreActionsButtonRef = React.useRef();
+  const pageContainerContext = React.useContext(PageContainerContext);
 
   return (
     <div className={cx('page-layout-header')}>
-      {onBack ? (
+      {onBack || onToggleNavigation ? (
         <div className={cx('back-button-container')}>
-          <Button
-            className={cx(['header-button', 'back-button'])}
-            icon={<span className={cx('back')} />}
-            text="Back"
-            onClick={onBack}
-            variant={ButtonVariants.UTILITY}
-          />
+          {onToggleNavigation ? (
+            <Button
+              className={cx(['header-button'])}
+              icon={<IconLeftPane />}
+              text="Toggle Navigation"
+              onClick={onToggleNavigation}
+              variant={ButtonVariants.UTILITY}
+            />
+          ) : null}
+          {onBack ? (
+            <Button
+              className={cx(['header-button', 'back-button'])}
+              icon={<span className={cx('back')} />}
+              text="Back"
+              onClick={onBack}
+              variant={ButtonVariants.UTILITY}
+            />
+          ) : null}
         </div>
       ) : null}
       <div className={cx('title-container')}>
@@ -78,6 +93,7 @@ const PageHeader = ({
             variant={ButtonVariants.UTILITY}
           />
         ) : null}
+        {pageContainerContext?.rightActionComponent}
         {showPopup && (
           <Popup
             isOpen

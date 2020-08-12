@@ -3,10 +3,14 @@ import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
 import List, { Item as ListItem } from 'terra-list';
+import Button, { ButtonVariants } from 'terra-button';
+import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
+import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../breakpoints';
 
 import BasePageContainer from './_BasePageContainer';
+import PageContainerContext from './PageContainerContext';
 import PageLayoutHeader from './_PageHeader';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
@@ -51,8 +55,8 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 const SecondaryNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
-  const [isInitialized, setIsInitialized] = React.useState(false);
   const [workspaceSize, setWorkspaceSize] = React.useState(200);
+  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
@@ -60,9 +64,16 @@ const SecondaryNavigationPageContainer = ({
   const pageContainerPortalsRef = React.useRef({});
   const lastActivePageKeyRef = React.useRef();
 
-  React.useLayoutEffect(() => {
-    setIsInitialized(true);
-  }, []);
+  const pageContainerContextValue = React.useMemo(() => ({
+    rightActionComponent: enableWorkspace ? (
+      <Button
+        icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
+        text="Toggle Workspace"
+        onClick={() => { setWorkspaceIsVisible((state) => !state); }}
+        variant={ButtonVariants.UTILITY}
+      />
+    ) : undefined,
+  }), [enableWorkspace, workspaceIsVisible]);
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
@@ -140,28 +151,31 @@ const SecondaryNavigationPageContainer = ({
         )}
       </div>
       <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
-        {isInitialized && React.Children.map(children, (child) => {
-          let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
-          if (!portalElement) {
-            portalElement = document.createElement('div');
-            portalElement.style.position = 'relative';
-            portalElement.style.height = '100%';
-            portalElement.style.width = '100%';
-            portalElement.id = `side-nav-${child.props.pageKey}`;
-            pageContainerPortalsRef.current[child.props.pageKey] = {
-              element: portalElement,
-            };
-          }
+        <PageContainerContext.Provider value={pageContainerContextValue}>
+          {React.Children.map(children, (child) => {
+            let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
+            if (!portalElement) {
+              portalElement = document.createElement('div');
+              portalElement.style.position = 'relative';
+              portalElement.style.height = '100%';
+              portalElement.style.width = '100%';
+              portalElement.id = `side-nav-${child.props.pageKey}`;
+              pageContainerPortalsRef.current[child.props.pageKey] = {
+                element: portalElement,
+              };
+            }
 
-          return (
-            React.cloneElement(child, {
-              isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement, enableWorkspace,
-            })
-          );
-        })}
+            return (
+              React.cloneElement(child, {
+                isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement, enableWorkspace,
+              })
+            );
+          })}
+
+        </PageContainerContext.Provider>
       </div>
       {enableWorkspace && (
-        <div className={cx('workspace')} style={{ width: `${workspaceSize}px` }}>
+        <div className={cx('workspace')} style={{ display: workspaceIsVisible ? 'block' : 'none', width: `${workspaceSize}px` }}>
           <div
             style={{
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',

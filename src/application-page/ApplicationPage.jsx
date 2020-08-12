@@ -2,8 +2,9 @@ import React, { useCallback } from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import uuidv4 from 'uuid/v4';
-
 import VisuallyHiddenText from 'terra-visually-hidden-text';
+import { KEY_TAB } from 'keycode-js';
+
 import ApplicationPageContext from './ApplicationPageContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
@@ -13,10 +14,8 @@ import { useNotificationBanners } from '../application-notification/Notification
 import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
 
 import PageHeader from './_PageHeader';
-// import { BreadcrumbsPageHeader as PageHeader } from './_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
-import HeaderContainer from '../header-container/_HeaderContainer';
 
 const cx = classNames.bind(styles);
 
@@ -28,6 +27,8 @@ const ApplicationPage = ({
 
   const navigationPromptCheckpointRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
+
+  const [showOverflowFocus, setShowOverflowFocus] = React.useState(false);
 
   const { bannerProviderValue, banners } = useNotificationBanners();
 
@@ -73,42 +74,57 @@ const ApplicationPage = ({
 
   return (
     ReactDOM.createPortal((
-      <HeaderContainer
-        header={(
-          <>
-            <PageHeader onBack={onRequestClose && goBack} title={title} actions={actions} backLinks={contextValue.backLinks} onSelectAction={onSelectAction} />
-            {toolbar}
-            {banners}
-          </>
-        )}
+      <main
+        className={cx('page')}
+        aria-labelledby="application-page-title"
+        tabIndex="0"
+        onMouseDown={() => { setShowOverflowFocus(false); }}
+        onKeyDown={(event) => {
+          if (event.nativeEvent.keyCode === KEY_TAB) {
+            setShowOverflowFocus(true);
+          }
+        }}
       >
-        <ApplicationPageContext.Provider value={contextValue}>
-          <NavigationPromptCheckpoint
-            ref={navigationPromptCheckpointRef}
-          >
-            <BannerRegistrationContext.Provider value={bannerProviderValue}>
-              <ApplicationErrorBoundary>
-                <ApplicationLoadingOverlayProvider>
-                  <main
-                    id="application-page-main"
-                    tabIndex="-1"
-                    role="main"
-                    className={cx('main-container', 'page-background')}
-                    aria-labelledby="application-page-title"
-                  >
-                    <VisuallyHiddenText
-                      id="application-page-title"
-                      aria-hidden
-                      text={title}
-                    />
-                    {children}
-                  </main>
-                </ApplicationLoadingOverlayProvider>
-              </ApplicationErrorBoundary>
-            </BannerRegistrationContext.Provider>
-          </NavigationPromptCheckpoint>
-        </ApplicationPageContext.Provider>
-      </HeaderContainer>
+        <div className={cx('header')}>
+          <PageHeader
+            onBack={onRequestClose && goBack}
+            title={title}
+            actions={actions}
+            backLinks={contextValue.backLinks}
+            onSelectAction={onSelectAction}
+            onToggleWorkspace={() => {}}
+            onToggleNavigation={() => {}}
+          />
+          {toolbar}
+          {banners}
+        </div>
+        <div className={cx('content')}>
+          <ApplicationPageContext.Provider value={contextValue}>
+            <NavigationPromptCheckpoint
+              ref={navigationPromptCheckpointRef}
+            >
+              <BannerRegistrationContext.Provider value={bannerProviderValue}>
+                <ApplicationErrorBoundary>
+                  <ApplicationLoadingOverlayProvider>
+                    <div
+                      id="application-page-main"
+                      tabIndex="0"
+                      className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
+                    >
+                      <VisuallyHiddenText
+                        id="application-page-title"
+                        aria-hidden
+                        text={title}
+                      />
+                      {children}
+                    </div>
+                  </ApplicationLoadingOverlayProvider>
+                </ApplicationErrorBoundary>
+              </BannerRegistrationContext.Provider>
+            </NavigationPromptCheckpoint>
+          </ApplicationPageContext.Provider>
+        </div>
+      </main>
     ), portalNode)
   );
 };

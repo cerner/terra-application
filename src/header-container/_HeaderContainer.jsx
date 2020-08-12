@@ -19,11 +19,13 @@ const propTypes = {
 
 const defaultProps = {
   header: undefined,
+  containerElement: 'div',
   children: undefined,
 };
 
 const HeaderContainer = ({
   header,
+  containerElement,
   children,
   ...customProps
 }) => {
@@ -32,15 +34,15 @@ const HeaderContainer = ({
     customProps.className,
   ]);
 
+  const Container = containerElement;
+
   return (
-    <div {...customProps} className={contentLayoutClassNames}>
+    <Container {...customProps} className={contentLayoutClassNames}>
       {header && <div className={cx('header')}>{header}</div>}
       <div className={cx('main')}>
-        {/* <div className={cx('normalizer')}> */}
         {children}
-        {/* </div> */}
       </div>
-    </div>
+    </Container>
   );
 };
 

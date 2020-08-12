@@ -27,35 +27,6 @@ web applications.
 
 ## Projects
 
-### Application Landing Page
-
-#### Description
-
-A visually pleasing view presented to the user upon initial application load. 
-This presentation\will precede user login/initial app load.
-
-#### New Components
-
-* TBD
-
-#### Updated Components
-
-* TBD
-
-#### Project Consumers
-
-* ApplicationContainer
-
-#### Outstanding Questions
-
-* Presentation
-  * Baked into the rails/static template vs. React-based vs. combination of both (most likely)
-  * Dynamic based on theme vs. static
-  * Deferred presentation to limit flickering/a11y problems
-* Design Input
-
----
-
 ### Application Concept Context
 
 #### Description
@@ -102,19 +73,19 @@ ApplicationBase
     PageContainer
       Page
 
-ApplicationBase
+* ApplicationBase
   * 1 per application endpoint
   * API only, no UI, no DOM (ideally)
-    * i18n/theme/breakpoint/anything else useful
-ApplicationContainer
+  * i18n/theme/breakpoint/anything else useful
+* ApplicationContainer
   * 1 per application endpoint
   * Will implement ApplicationConceptContext to render concept UI
   * Variants for navigation and embedded applications.
-PageContainer 
+* PageContainer 
   * 1 per each primary navigation item
   * 1 visible at any given time
   * Presents side navigation/workspace, in addition to Page content
-Page
+* Page
   * 1 per each secondary navigation item (+more through progressive disclosure)
   * 1 visible at any given time
   * Page content must be display block and overflow the provided Container
@@ -150,7 +121,7 @@ Page
   * Header Title
     * Fixed String vs. Breadcrumbs
   * Toolbar
-    * First -lass or user supplied
+    * First-class or user supplied
     * If first-class, same actions/title questions apply from Header
   * Accessibility
     * Focus styles for scroll region/header
@@ -242,6 +213,7 @@ Content within the Modal must have the same capabilities and constraints as Page
   * Need to determine impact to Popup/NotificationDialog/other focus trapping elements
 * Other Portals
   * Need to ensure Popup/NotificationDialog/DatePicker continue to function appropriately within Modal content.
+* Need to handle duplicate (adjacent) modals as well as modals presented from modals.
 * Design Input
   * Header UI, Actions API, Size API
 
@@ -308,6 +280,35 @@ Notification styles include:
 
 ---
 
+### Application Splash Page
+
+#### Description
+
+A visually pleasing view presented to the user upon initial application load. 
+This presentation\will precede user login/initial app load.
+
+#### New Components
+
+* TBD
+
+#### Updated Components
+
+* TBD
+
+#### Project Consumers
+
+* ApplicationContainer
+
+#### Outstanding Questions
+
+* Presentation
+  * Baked into the rails/static template vs. React-based vs. combination of both (most likely)
+  * Dynamic based on theme vs. static
+  * Deferred presentation to limit flickering/a11y problems
+* Design Input
+
+---
+
 ### Framework Dialog
 
 #### Description
@@ -357,3 +358,15 @@ Need to get up to date for react-intl.
 
 * Can we get away with opening up the version to support v2/3/4
   * Duplicate package checker would prevent dupes
+
+---
+
+### Event Emitter
+
+---
+
+### Orion Application Prep
+
+---
+
+### Development Ecosystem

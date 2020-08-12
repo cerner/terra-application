@@ -131,11 +131,7 @@ const ApplicationBase = ({
                         registeredPromptsRef.current = registeredPrompts;
                       }}
                     >
-                      <ApplicationLoadingOverlayProvider>
-                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                          {children}
-                        </Suspense>
-                      </ApplicationLoadingOverlayProvider>
+                      {children}
                     </NavigationPromptCheckpoint>
                   </ActiveBreakpointProvider>
                 </ApplicationIntlProvider>

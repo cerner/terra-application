@@ -16,7 +16,7 @@ const cx = classNames.bind(styles);
 const ApplicationPageContainer = ({
   children, enableWorkspace,
 }) => {
-  const [workspaceSize, setWorkspaceSize] = React.useState(200);
+  const [workspaceSize, setWorkspaceSize] = React.useState(350);
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
 
   const pageContainerContextValue = React.useMemo(() => ({
@@ -46,7 +46,7 @@ const ApplicationPageContainer = ({
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
             }}
           >
-            <MockWorkspace />
+            <MockWorkspace onDismiss={() => { setWorkspaceIsVisible(false); }} />
           </div>
           <ResizeHandle
             onResizeStop={(position) => {

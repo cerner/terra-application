@@ -56,7 +56,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 const SecondaryNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
-  const [workspaceSize, setWorkspaceSize] = React.useState(200);
+  const [workspaceSize, setWorkspaceSize] = React.useState(350);
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
   const [sideNavIsVisible, setSideNavIsVisible] = React.useState(true);
 
@@ -191,7 +191,7 @@ const SecondaryNavigationPageContainer = ({
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
             }}
           >
-            <MockWorkspace />
+            <MockWorkspace onDismiss={() => { setWorkspaceIsVisible(false); }} />
           </div>
           <ResizeHandle
             onResizeStop={(position) => {

@@ -27,7 +27,7 @@ const propTypes = {};
 const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
-  const hasChevron = activeBreakpoint === 'tiny' || activeBreakpoint === 'small';
+  // const hasChevron = activeBreakpoint === 'tiny' || activeBreakpoint === 'small';
 
   return (
     <ContentContainer
@@ -38,7 +38,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
         {items.map((item) => (
           <ListItem
             key={item.key}
-            hasChevron={hasChevron}
+            // hasChevron={hasChevron}
             isSelectable
             isSelected={activePageKey === item.key}
             onSelect={() => {
@@ -57,10 +57,13 @@ const SecondaryNavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
   const [workspaceSize, setWorkspaceSize] = React.useState(350);
-  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
-  const [sideNavIsVisible, setSideNavIsVisible] = React.useState(true);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+
+  const isOverlayLayout = !flatLayoutBreakpoints.includes(activeBreakpoint);
+
+  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!isOverlayLayout);
+  const [sideNavIsVisible, setSideNavIsVisible] = React.useState(!isOverlayLayout);
 
   const sideNavBodyRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -132,12 +135,31 @@ const SecondaryNavigationPageContainer = ({
       delete pageContainerPortalsRef.current[pageKey];
     });
 
-    if (flatLayoutBreakpoints.indexOf(activeBreakpoint) >= 0) {
-      onRequestActivatePage(pageKeys[0]);
-    }
+    onRequestActivatePage(pageKeys[0]);
   }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
 
+  React.useEffect(() => {
+    if (flatLayoutBreakpoints.includes(activeBreakpoint)) {
+      return undefined;
+    }
+
+    const closeOpenOverlays = () => {
+      setSideNavIsVisible(false);
+      setWorkspaceIsVisible(false);
+    };
+
+    window.addEventListener('resize', closeOpenOverlays);
+
+    return () => {
+      window.removeEventListener('resize', closeOpenOverlays);
+    };
+  }, [activeBreakpoint]);
+
   function activatePage(pageKey) {
+    if (isOverlayLayout) {
+      setSideNavIsVisible(false);
+    }
+
     if (pageKey === activePageKey) {
       return;
     }
@@ -147,11 +169,11 @@ const SecondaryNavigationPageContainer = ({
 
   return (
     <div
-      className={cx('side-nav-container', {
-        'side-nav-is-open': !activePageKey,
-      })}
+      className={cx('side-nav-container')}
     >
-      <div className={cx('side-nav-sidebar')} style={{ display: sideNavIsVisible ? 'block' : 'none' }}>
+      <div
+        className={cx('side-nav-sidebar', { visible: sideNavIsVisible, overlay: isOverlayLayout })}
+      >
         {sidebar || (
           <DefaultSideNavPanel
             activePageKey={activePageKey}
@@ -177,7 +199,7 @@ const SecondaryNavigationPageContainer = ({
 
             return (
               React.cloneElement(child, {
-                isActive: child.props.pageKey === activePageKey, onRequestActivatePage: activatePage, portalElement, enableWorkspace,
+                isActive: child.props.pageKey === activePageKey, portalElement, enableWorkspace,
               })
             );
           })}
@@ -185,7 +207,10 @@ const SecondaryNavigationPageContainer = ({
         </PageContainerContext.Provider>
       </div>
       {enableWorkspace && (
-        <div className={cx('workspace')} style={{ display: workspaceIsVisible ? 'block' : 'none', width: `${workspaceSize}px` }}>
+        <div
+          className={cx('workspace', { visible: workspaceIsVisible, overlay: isOverlayLayout })}
+          style={isOverlayLayout ? null : { width: `${workspaceSize}px` }}
+        >
           <div
             style={{
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
@@ -193,21 +218,23 @@ const SecondaryNavigationPageContainer = ({
           >
             <MockWorkspace onDismiss={() => { setWorkspaceIsVisible(false); }} />
           </div>
-          <ResizeHandle
-            onResizeStop={(position) => {
-              setWorkspaceSize((currentSize) => {
-                let newSize = currentSize + -1 * position;
+          {!isOverlayLayout ? (
+            <ResizeHandle
+              onResizeStop={(position) => {
+                setWorkspaceSize((currentSize) => {
+                  let newSize = currentSize + -1 * position;
 
-                if (newSize < 50) {
-                  newSize = 50;
-                } else if (newSize > 500) {
-                  newSize = 500;
-                }
+                  if (newSize < 50) {
+                    newSize = 50;
+                  } else if (newSize > 500) {
+                    newSize = 500;
+                  }
 
-                return newSize;
-              });
-            }}
-          />
+                  return newSize;
+                });
+              }}
+            />
+          ) : null}
         </div>
       )}
     </div>
@@ -217,11 +244,9 @@ const SecondaryNavigationPageContainer = ({
 SecondaryNavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, onRequestActivatePage, portalElement, preload,
+  isActive, children, render, portalElement, preload,
 }) => {
   const hasActivatedRef = React.useRef(isActive || preload);
-
-  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
   React.useEffect(() => {
     if (isActive || preload) {
@@ -241,11 +266,9 @@ const NavigationPage = ({
     pageContent = children;
   }
 
-  const isCompact = flatLayoutBreakpoints.indexOf(activeBreakpoint) < 0;
-
   return ReactDOM.createPortal((
     <BasePageContainer>
-      {React.cloneElement(pageContent, { onRequestClose: isCompact ? () => { onRequestActivatePage(undefined); } : undefined })}
+      {pageContent}
     </BasePageContainer>
   ), portalElement);
 };

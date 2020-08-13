@@ -12,26 +12,35 @@
   }
 
   .side-nav-sidebar {
+    background-color: white;
     border-right: 1px solid grey;
     display: none;
     flex: 0 0 auto;
     height: 100%;
-    width: 0;
+    width: 200px;
 
-    @include terra-mq-medium-up {
+    &.visible {
       display: block;
-      width: 200px;
+    }
+
+    &.overlay {
+      position: absolute;
+      width: calc(100% - 50px);
+      left: 0;
+      top: 0;
+      bottom: 0;
+      z-index: 1;
     }
   }
 
-  .side-nav-is-open > .side-nav-sidebar {
-    display: block;
-    width: 100%;
+  // .side-nav-is-open > .side-nav-sidebar {
+  //   display: block;
+  //   width: 100%;
     
-    @include terra-mq-medium-up {
-      width: 200px;
-    }
-  }
+  //   @include terra-mq-medium-up {
+  //     width: 200px;
+  //   }
+  // }
 
   .side-nav-body {
     border-right: 1px solid rgba(0, 0, 0, 0.75);
@@ -40,19 +49,34 @@
     overflow: hidden;
   }
 
-  .side-nav-is-open > .side-nav-body {
-    // display: none;
+  // .side-nav-is-open > .side-nav-body {
+  //   // display: none;
 
-    @include terra-mq-medium-up {
-      display: block;
-    }
-  }
+  //   @include terra-mq-medium-up {
+  //     display: block;
+  //   }
+  // }
 
   .workspace {
+    background-color: white;
+    display: none;
     flex: 0 0 auto;
     height: 100%;
     position: relative;
     z-index: 1;
+
+    &.visible {
+      display: block;
+    }
+
+    &.overlay {
+      border-left: 1px solid rgba(0, 0, 0, 0.75);
+      position: absolute;
+      width: calc(100% - 50px);
+      right: 0;
+      top: 0;
+      bottom: 0;
+    }
   }
 }
 

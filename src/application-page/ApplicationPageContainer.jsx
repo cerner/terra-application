@@ -8,16 +8,24 @@ import BasePageContainer from './_BasePageContainer';
 import PageContainerContext from './PageContainerContext';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
+import { ActiveBreakpointContext } from '../breakpoints';
 
 import styles from './ApplicationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
+const flatLayoutBreakpoints = ['medium', 'large', 'huge', 'enormous'];
+
 const ApplicationPageContainer = ({
   children, enableWorkspace,
 }) => {
   const [workspaceSize, setWorkspaceSize] = React.useState(350);
-  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(true);
+
+  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+
+  const isOverlayLayout = !flatLayoutBreakpoints.includes(activeBreakpoint);
+
+  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!isOverlayLayout);
 
   const pageContainerContextValue = React.useMemo(() => ({
     rightActionComponent: enableWorkspace ? (
@@ -30,6 +38,22 @@ const ApplicationPageContainer = ({
     ) : undefined,
   }), [enableWorkspace, workspaceIsVisible]);
 
+  React.useEffect(() => {
+    if (flatLayoutBreakpoints.includes(activeBreakpoint)) {
+      return undefined;
+    }
+
+    const closeOpenOverlays = () => {
+      setWorkspaceIsVisible(false);
+    };
+
+    window.addEventListener('resize', closeOpenOverlays);
+
+    return () => {
+      window.removeEventListener('resize', closeOpenOverlays);
+    };
+  }, [activeBreakpoint]);
+
   return (
     <div className={cx('container')}>
       <div className={cx('body')}>
@@ -40,7 +64,10 @@ const ApplicationPageContainer = ({
         </PageContainerContext.Provider>
       </div>
       {enableWorkspace && (
-        <div className={cx('workspace')} style={{ display: workspaceIsVisible ? 'block' : 'none', width: `${workspaceSize}px` }}>
+        <div
+          className={cx('workspace', { visible: workspaceIsVisible, overlay: isOverlayLayout })}
+          style={isOverlayLayout ? null : { width: `${workspaceSize}px` }}
+        >
           <div
             style={{
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',

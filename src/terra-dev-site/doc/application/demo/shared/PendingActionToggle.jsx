@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import NavigationPrompt from '../../../../navigation-prompt';
+import NavigationPrompt from '../../../../../navigation-prompt';
 
 import styles from './PendingActionToggle.module.scss';
 

@@ -15,6 +15,12 @@
     }
   }
 
+  .width-normalizer {
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+  }
+
   .overflow-content,
   .modal-page-container {
     background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),

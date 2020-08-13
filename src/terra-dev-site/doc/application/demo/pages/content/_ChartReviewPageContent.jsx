@@ -6,7 +6,7 @@ import Button from 'terra-button';
 import IconRight from 'terra-icon/lib/icon/IconRight';
 
 import BannerPresenter from '../../shared/BannerPresenter';
-import PendingActionToggle from '../../../demo/PendingActionToggle';
+import PendingActionToggle from '../../shared/PendingActionToggle';
 
 import styles from '../common-page-styles.module.scss';
 

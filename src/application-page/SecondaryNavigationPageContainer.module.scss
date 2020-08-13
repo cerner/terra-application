@@ -22,7 +22,6 @@
       display: block;
       width: 200px;
     }
-
   }
 
   .side-nav-is-open > .side-nav-sidebar {
@@ -38,6 +37,7 @@
     border-right: 1px solid rgba(0, 0, 0, 0.75);
     flex: 1 1 auto;
     height: 100%;
+    overflow: hidden;
   }
 
   .side-nav-is-open > .side-nav-body {

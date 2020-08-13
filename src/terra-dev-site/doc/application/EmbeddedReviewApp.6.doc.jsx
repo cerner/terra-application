@@ -5,7 +5,7 @@ import ApplicationBase from 'terra-application/lib/application-base';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 
-import EmbeddedReviewAppContainer from './clinical-demo/app-containers/EmbeddedReviewAppContainer';
+import EmbeddedReviewAppContainer from './demo/app-containers/EmbeddedReviewAppContainer';
 
 window.TEST_APP_TIMEOUT = 3000;
 

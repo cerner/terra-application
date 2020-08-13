@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 import List, { Item } from 'terra-list';
 
-import PendingActionToggle from '../../../demo/PendingActionToggle';
+import PendingActionToggle from '../../shared/PendingActionToggle';
 import BannerPresenter from '../../shared/BannerPresenter';
 
 import styles from '../common-page-styles.module.scss';

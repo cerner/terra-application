@@ -111,12 +111,14 @@ const ApplicationPage = ({
                       tabIndex="0"
                       className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
                     >
-                      <VisuallyHiddenText
-                        id="application-page-title"
-                        aria-hidden
-                        text={title}
-                      />
-                      {children}
+                      <div className={cx('width-normalizer')}>
+                        <VisuallyHiddenText
+                          id="application-page-title"
+                          aria-hidden
+                          text={title}
+                        />
+                        {children}
+                      </div>
                     </div>
                   </ApplicationLoadingOverlayProvider>
                 </ApplicationErrorBoundary>

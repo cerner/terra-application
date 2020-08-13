@@ -4,7 +4,7 @@ import React, { useContext } from 'react';
 import { ApplicationIntlContext } from '../../../application-intl';
 import { ThemeContext } from '../../../theme';
 import ApplicationBase from '../../../application-base';
-import ClinicalDemoAppContainer from './clinical-demo/app-containers/ClinicalDemoAppContainer';
+import ClinicalDemoAppContainer from './demo/app-containers/ClinicalDemoAppContainer';
 
 window.TEST_APP_TIMEOUT = 3000;
 

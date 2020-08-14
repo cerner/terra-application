@@ -4,6 +4,10 @@
 
 * Changed
   * Updated `uuid` dependency to `v8.0.0`.
+* Fixed
+  * Fix ApplicationStatusOverlayProvider contextType warning
+
+## 1.30.0 - (Aug 11, 2020)
 
 * Added
   * Added ApplicationStatusOverlay

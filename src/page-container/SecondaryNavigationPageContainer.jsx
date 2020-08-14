@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
 import List, { Item as ListItem } from 'terra-list';
 import Button, { ButtonVariants } from 'terra-button';
+import ActionHeader from 'terra-action-header';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
@@ -12,7 +13,6 @@ import { ActiveBreakpointContext } from '../breakpoints';
 
 import BasePageContainer from './_BasePageContainer';
 import PageContainerContext from './PageContainerContext';
-import PageLayoutHeader from './_PageHeader';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
 
@@ -31,7 +31,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 
   return (
     <ContentContainer
-      header={<PageLayoutHeader title="Side Nav" />}
+      header={<ActionHeader title="Side Nav" />}
       fill
     >
       <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">

@@ -14,7 +14,7 @@ import './_contains-polyfill';
 import './_matches-polyfill';
 
 import ModalContent from './_ModalContent';
-import ApplicationPageContext from '../application-page/ApplicationPageContext';
+import PagePortalContext from '../page-container/PagePortalContext';
 
 const propTypes = {
   title: PropTypes.string,
@@ -36,7 +36,7 @@ const ApplicationModal = ({
   const applicationIntl = React.useContext(ApplicationIntlContext);
   return (
     <LayerPortal>
-      <ApplicationPageContext.Provider value={undefined}>
+      <PagePortalContext.Provider value={undefined}>
         <NavigationPromptCheckpoint
           ref={navigationPromptCheckpointRef}
         >
@@ -55,7 +55,7 @@ const ApplicationModal = ({
             {children}
           </ModalContent>
         </NavigationPromptCheckpoint>
-      </ApplicationPageContext.Provider>
+      </PagePortalContext.Provider>
     </LayerPortal>
   );
 };

@@ -8,7 +8,7 @@ import IconClose from 'terra-icon/lib/icon/IconClose';
 import List, { Item as ListItem } from 'terra-list';
 import ActionHeader from 'terra-action-header';
 
-import PageContainerContext from './PageContainerContext';
+import PageContainerContext from '../page-container/PageContainerContext';
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);

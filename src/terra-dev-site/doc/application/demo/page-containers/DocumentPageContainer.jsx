@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
-import SecondaryNavigationPageContainer, { NavigationPage } from '../../../../../application-page/SecondaryNavigationPageContainer';
+import SecondaryNavigationPageContainer, { NavigationPage } from '../../../../../page-container/SecondaryNavigationPageContainer';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';

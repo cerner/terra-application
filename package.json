@@ -130,6 +130,8 @@
     "terra-visually-hidden-text": "^2.26.0",
     "uuid": "^3.0.0",
     "terra-alert": "^4.35.0",
+    "terra-action-header": "^2.55.0",
+    "terra-icon": "^3.36.0",
     "terra-demographics-banner": "^3.40.0",
     "terra-dropdown-button": "^1.18.0",
     "terra-action-footer": "^2.47.0",

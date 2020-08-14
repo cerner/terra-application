@@ -1,11 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import ApplicationPageContext from './ApplicationPageContext';
-import ResizeHandle from './workspace/ResizeHandle';
+import PagePortalContext from './PagePortalContext';
 
 import styles from './ApplicationPageContainer.module.scss';
-import MockWorkspace from './workspace/MockWorkspace';
 
 const cx = classNames.bind(styles);
 
@@ -107,13 +105,13 @@ class PageLayoutNodeManager {
 }
 
 const BasePageContainer = ({
-  children, enableWorkspace,
+  children,
 }) => {
   const pageLayoutContainerRef = React.useRef();
 
   const [isInitialized, setIsInitialized] = React.useState();
 
-  const contextValue = React.useMemo(() => ({
+  const pagePortalContextValue = React.useMemo(() => ({
     nodeManager: new PageLayoutNodeManager(pageLayoutContainerRef),
   }), []);
 
@@ -128,9 +126,9 @@ const BasePageContainer = ({
         height: '100%', width: '100%', position: 'relative', overflow: 'auto',
       }}
     >
-      <ApplicationPageContext.Provider value={contextValue}>
+      <PagePortalContext.Provider value={pagePortalContextValue}>
         {isInitialized && children}
-      </ApplicationPageContext.Provider>
+      </PagePortalContext.Provider>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { KEY_TAB } from 'keycode-js';
 
-import ApplicationPageContext from './ApplicationPageContext';
+import PagePortalContext from '../page-container/PagePortalContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
@@ -23,7 +23,7 @@ const ApplicationPage = ({
   title, actions, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const pageContext = React.useContext(ApplicationPageContext);
+  const pagePortalContext = React.useContext(PagePortalContext);
 
   const navigationPromptCheckpointRef = React.useRef();
   const pageIdRef = React.useRef(uuidv4());
@@ -49,13 +49,13 @@ const ApplicationPage = ({
     });
   }, [disableNavigationPromptsOnBack, applicationIntl, onRequestClose]);
 
-  const nodeManager = pageContext?.nodeManager;
+  const nodeManager = pagePortalContext?.nodeManager;
   const contextValue = React.useMemo(() => ({
     ancestorPage: pageIdRef.current,
     ancestorTitle: title,
-    backLinks: pageContext?.backLinks ? [...pageContext.backLinks, { title: pageContext.ancestorTitle, onRequestClose: goBack }] : [],
-    nodeManager: pageContext?.nodeManager,
-  }), [title, pageContext, goBack]);
+    backLinks: pagePortalContext?.backLinks ? [...pagePortalContext.backLinks, { title: pagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
+    nodeManager: pagePortalContext?.nodeManager,
+  }), [title, pagePortalContext, goBack]);
 
   React.useLayoutEffect(() => () => {
     if (nodeManager) {
@@ -65,7 +65,7 @@ const ApplicationPage = ({
 
   let portalNode;
   if (nodeManager) {
-    portalNode = nodeManager.getNode(pageIdRef.current, pageContext.ancestorPage);
+    portalNode = nodeManager.getNode(pageIdRef.current, pagePortalContext.ancestorPage);
   }
 
   if (!nodeManager) {
@@ -99,7 +99,7 @@ const ApplicationPage = ({
           {banners}
         </div>
         <div className={cx('content')}>
-          <ApplicationPageContext.Provider value={contextValue}>
+          <PagePortalContext.Provider value={contextValue}>
             <NavigationPromptCheckpoint
               ref={navigationPromptCheckpointRef}
             >
@@ -124,7 +124,7 @@ const ApplicationPage = ({
                 </ApplicationErrorBoundary>
               </BannerRegistrationContext.Provider>
             </NavigationPromptCheckpoint>
-          </ApplicationPageContext.Provider>
+          </PagePortalContext.Provider>
         </div>
       </main>
     ), portalNode)

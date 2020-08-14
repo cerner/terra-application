@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'terra-button';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
-import ApplicationPageContainer from '../../../../../application-page/ApplicationPageContainer';
+import ApplicationPageContainer from '../../../../../page-container/ApplicationPageContainer';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationPageContainer from '../../../../../application-page/ApplicationPageContainer';
+import ApplicationPageContainer from '../../../../../page-container/ApplicationPageContainer';
 import OrderProfilePage from '../pages/OrderProfilePage';
 
 const propTypes = {};

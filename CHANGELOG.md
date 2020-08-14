@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+* Changed
+  * Updated `uuid` dependency to `v8.0.0`.
 * Fixed
   * Fix ApplicationStatusOverlayProvider contextType warning
 

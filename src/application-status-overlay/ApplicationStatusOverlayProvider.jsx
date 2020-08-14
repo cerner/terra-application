@@ -116,6 +116,5 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 };
 
 ApplicationStatusOverlayProvider.propTypes = propTypes;
-ApplicationStatusOverlayProvider.contextType = ThemeContext;
 
 export default ApplicationStatusOverlayProvider;

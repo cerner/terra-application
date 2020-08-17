@@ -113,7 +113,7 @@ const useNotificationBanners = () => {
     if (!Object.keys(banners).length) {
       return null;
     }
-    const prioritizedBanners = organizeBannersByPriority(banners, theme.className);
+    const prioritizedBanners = organizeBannersByPriority(banners, theme.name);
 
     return (
       <div aria-live="polite">

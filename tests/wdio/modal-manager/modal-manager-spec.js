@@ -104,7 +104,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('renders banners in root content', () => {
-    browser.click('#root-component #toggle-success-banner-root-component');
+    browser.click('#root-component #toggle-hazard-low-banner-root-component');
     Terra.validates.element('13. component banner', { selector });
   });
 
@@ -115,11 +115,11 @@ Terra.describeViewports('ModalManager', ['large'], () => {
 
   it('renders notification banners in modal', () => {
     browser.click('#toggle-hazard-medium-banner-DemoContainer-1');
-    browser.waitForExist('#hazard-medium-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-medium"]');
     browser.click('#toggle-hazard-low-banner-DemoContainer-1');
-    browser.waitForExist('#hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-low"]');
     browser.click('#toggle-error-banner-DemoContainer-1');
-    browser.waitForExist('#error-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="error"]');
   });
 
   it('validates notification banners in modal banner checkpoint', () => {

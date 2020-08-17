@@ -70,9 +70,9 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
   });
 
   it('with notification banner', () => {
-    browser.url('/raw/tests/terra-application/application-base/application-base-test');
+    browser.url('/raw/tests/terra-application/application-navigation/application-navigation-test');
     browser.refresh();
-    browser.click('button#notification-banner');
+    browser.click('#notification-banner');
 
     Terra.validates.element('with notification banner', { selector: '#root' });
   });

@@ -104,7 +104,7 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   });
 
   it('renders notification banners in root content', () => {
-    browser.click('#root-component #toggle-success-banner-root-component');
+    browser.click('#root-component #toggle-hazard-medium-banner-root-component');
     Terra.validates.element('13. component-level notification banner', { selector });
   });
 
@@ -115,11 +115,11 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
 
   it('renders notification banners in slide panel', () => {
     browser.click('#toggle-error-banner-DemoContainer-1');
-    browser.waitForExist('#error-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="error"]');
     browser.click('#toggle-hazard-low-banner-DemoContainer-1');
-    browser.waitForExist('#hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-low"]');
     browser.click('#toggle-unverified-banner-DemoContainer-1');
-    browser.waitForExist('#unverified-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="unverified"]');
   });
 
   it('validates banners in slide panel banner checkpoint', () => {

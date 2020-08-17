@@ -58,3 +58,18 @@ import NotificationBanner from 'terra-application/lib/notification-banner';
 
 <NotificationBannerExample />
 
+## Testing
+
+The Notification Banner has the following data attribute available for browser tests:
+- The data attribute, `data-terra-application-notification-banner` can be used to validate the expect banner exists
+
+```js
+describe('Notification Banner', () => {
+  it('renders a notification banner', () => {
+    browser.click('#triggerErrorNotificationBanner');
+    browser.waitForExist('[data-terra-application-notification-banner="error]');
+    Terra.validates.element('shows error banner', { selector: '#root' });
+  });
+});
+```
+

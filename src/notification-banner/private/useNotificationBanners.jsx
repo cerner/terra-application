@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNamesBind from 'classnames/bind';
 import Alert from 'terra-alert';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import { organizeBannersByPriority } from './utils';
+
+import styles from './customIcon.modules.scss';
+
+const cx = classNamesBind.bind(styles);
 
 /**
  * The `useNotificationBanners` Hook manages registering and prioritizing Notification Banners
@@ -114,7 +119,7 @@ const useNotificationBanners = () => {
       <div aria-live="polite">
         {prioritizedBanners.map((bannerProps) => {
           const {
-            bannerAction, description, key, onRequestClose, variant,
+            bannerAction, custom, description, key, onRequestClose, variant,
           } = bannerProps;
 
           let alertType;
@@ -144,12 +149,26 @@ const useNotificationBanners = () => {
             );
           }
 
+          let customIcon;
+          let customSignalWord;
+          if (alertType === 'custom' && custom !== undefined) {
+            customSignalWord = custom?.signalWord;
+
+            if (custom.customIconClass) {
+              customIcon = (
+                <svg className={cx(['custom-icon', custom.customIconClass])} />
+              );
+            }
+          }
+
           return (
             <Alert
               key={key}
               action={actionButton}
               onDismiss={onRequestClose}
               type={alertType}
+              customIcon={customIcon}
+              title={customSignalWord}
               data-terra-application-notification-banner={variant}
             >
               {description}

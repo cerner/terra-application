@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
+import classNamesBind from 'classnames/bind';
 import PropTypes from 'prop-types';
 import NotificationBanner from '../../../notification-banner';
+import styles from './CustomVariant.module.scss';
+
+const cx = classNamesBind.bind(styles);
 
 const Example = ({ isInitiallyClosed, id }) => {
   const [showHazardHighBanner, setShowHazardHighBanner] = useState(!isInitiallyClosed);
@@ -9,6 +13,7 @@ const Example = ({ isInitiallyClosed, id }) => {
   const [showErrorBanner, setShowErrorBanner] = useState(!isInitiallyClosed);
   const [showUnsatisfiedBanner, setShowUnsatisfiedBanner] = useState(!isInitiallyClosed);
   const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(!isInitiallyClosed);
+  const [showCustomBanner, setShowCustomBanner] = useState(!isInitiallyClosed);
 
   return (
     <>
@@ -35,6 +40,17 @@ const Example = ({ isInitiallyClosed, id }) => {
               setShowUnverifiedBanner(false);
             },
           }}
+        />
+      )}
+      {showCustomBanner && (
+        <NotificationBanner
+          variant="custom"
+          id={`custom-banner-${id}`}
+          custom={{
+            signalWord: 'Check this out!',
+            customIconClass: cx('custom-notification-banner-icon'),
+          }}
+          description="This is a custom banner."
         />
       )}
       <p>Show Banner Options: </p>
@@ -79,6 +95,13 @@ const Example = ({ isInitiallyClosed, id }) => {
         id={`toggle-unverified-banner-${id}`}
       >
         Show/Hide Unverified Banner
+      </button>
+      <button
+        onClick={() => setShowCustomBanner(!showCustomBanner)}
+        type="button"
+        id={`toggle-custom-banner-${id}`}
+      >
+        Show/Hide Custom Banner
       </button>
     </>
   );

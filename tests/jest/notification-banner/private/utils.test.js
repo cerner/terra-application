@@ -1,4 +1,4 @@
-import { BANNER_TYPES, organizeBannersByPriority } from '../../../../src/notification-banner/private/utils';
+import { BANNER_VARIANTS, organizeBannersByPriority } from '../../../../src/notification-banner/private/utils';
 
 const hazardHighBannerProps = { id: BANNER_VARIANTS.HAZARD_HIGH, variant: 'hazard-high' };
 const hazardMediumBannerProps = { id: BANNER_VARIANTS.HAZARD_MEDIUM, variant: 'hazard-medium' };
@@ -6,6 +6,7 @@ const hazardLowBannerProps = { id: BANNER_VARIANTS.HAZARD_LOW, variant: 'hazard-
 const errorBannerProps = { id: BANNER_VARIANTS.ERROR, variant: 'error' };
 const unsatisfiedBannerProps = { id: BANNER_VARIANTS.UNSATISFIED, variant: 'unsatisfied' };
 const unverifiedBannerProps = { id: BANNER_VARIANTS.UNVERIFIED, variant: 'unverified' };
+const customBannerProps = { id: BANNER_VARIANTS.CUSTOM, variant: 'custom' };
 
 describe('utils', () => {
   describe('organizes banner by priority', () => {
@@ -38,18 +39,20 @@ describe('utils', () => {
         'hazard-high': { 'randomID-1333': hazardHighBannerProps },
         unverified: { 'randomID-9081': unverifiedBannerProps },
         'hazard-low': { 'randomID-981': hazardLowBannerProps },
+        custom: { 'randomID-981': customBannerProps },
       };
 
       const organizedBanners = organizeBannersByPriority(banners);
       expect(organizedBanners).toMatchSnapshot();
 
-      expect(organizedBanners).toHaveLength(6);
+      expect(organizedBanners).toHaveLength(7);
       expect(organizedBanners[0].id).toEqual(BANNER_VARIANTS.HAZARD_HIGH);
       expect(organizedBanners[1].id).toEqual(BANNER_VARIANTS.HAZARD_MEDIUM);
       expect(organizedBanners[2].id).toEqual(BANNER_VARIANTS.HAZARD_LOW);
       expect(organizedBanners[3].id).toEqual(BANNER_VARIANTS.ERROR);
       expect(organizedBanners[4].id).toEqual(BANNER_VARIANTS.UNSATISFIED);
       expect(organizedBanners[5].id).toEqual(BANNER_VARIANTS.UNVERIFIED);
+      expect(organizedBanners[6].id).toEqual(BANNER_VARIANTS.CUSTOM);
     });
 
     it('organizes banner by fusion priority', () => {
@@ -60,17 +63,20 @@ describe('utils', () => {
         'hazard-high': { 'randomID-1333': hazardHighBannerProps },
         unverified: { 'randomID-9081': unverifiedBannerProps },
         'hazard-low': { 'randomID-981': hazardLowBannerProps },
+        custom: { 'randomID-981': customBannerProps },
       };
 
       const organizedBanners = organizeBannersByPriority(banners, 'orion-fusion-theme');
       expect(organizedBanners).toMatchSnapshot();
 
+      expect(organizedBanners).toHaveLength(7);
       expect(organizedBanners[0].id).toEqual(BANNER_VARIANTS.HAZARD_HIGH);
       expect(organizedBanners[1].id).toEqual(BANNER_VARIANTS.ERROR);
       expect(organizedBanners[2].id).toEqual(BANNER_VARIANTS.HAZARD_MEDIUM);
       expect(organizedBanners[3].id).toEqual(BANNER_VARIANTS.UNSATISFIED);
       expect(organizedBanners[4].id).toEqual(BANNER_VARIANTS.UNVERIFIED);
       expect(organizedBanners[5].id).toEqual(BANNER_VARIANTS.HAZARD_LOW);
+      expect(organizedBanners[6].id).toEqual(BANNER_VARIANTS.CUSTOM);
     });
 
     it('allows multiple banners by of one type', () => {

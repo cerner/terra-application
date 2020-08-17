@@ -5,6 +5,7 @@ const BANNER_VARIANTS = {
   ERROR: 'error',
   UNSATISFIED: 'unsatisfied',
   UNVERIFIED: 'unverified',
+  CUSTOM: 'custom',
 };
 
 const defaultBannerPriority = [
@@ -14,6 +15,7 @@ const defaultBannerPriority = [
   BANNER_VARIANTS.ERROR,
   BANNER_VARIANTS.UNSATISFIED,
   BANNER_VARIANTS.UNVERIFIED,
+  BANNER_VARIANTS.CUSTOM,
 ];
 
 const fusionBannerPriority = [
@@ -23,6 +25,7 @@ const fusionBannerPriority = [
   BANNER_VARIANTS.UNSATISFIED,
   BANNER_VARIANTS.UNVERIFIED,
   BANNER_VARIANTS.HAZARD_LOW,
+  BANNER_VARIANTS.CUSTOM, // ?? fusion doesn't support this...
 ];
 
 /**

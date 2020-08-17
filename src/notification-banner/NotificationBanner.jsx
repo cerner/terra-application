@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
-import { BANNER_VARIANTS } from './private/utils';
 
 const propTypes = {
   /**
@@ -34,13 +33,13 @@ const propTypes = {
    * Use one of `hazard-high`, `hazard-medium`, `hazard-low`, `error`, `unsatisfied`, or `unverified`, or `custom`.
    */
   variant: PropTypes.oneOf([
-    BANNER_VARIANTS.HAZARD_HIGH,
-    BANNER_VARIANTS.HAZARD_MEDIUM,
-    BANNER_VARIANTS.HAZARD_LOW,
-    BANNER_VARIANTS.ERROR,
-    BANNER_VARIANTS.UNSATISFIED,
-    BANNER_VARIANTS.UNVERIFIED,
-    BANNER_VARIANTS.CUSTOM,
+    'hazard-high',
+    'hazard-medium',
+    'hazard-low',
+    'error',
+    'unsatisfied',
+    'unverified',
+    'custom',
   ]).isRequired,
   /**
    * The pieces to populate a banner when `variant="custom"`.

@@ -6,9 +6,9 @@ import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
-import { organizeBannersByPriority } from './utils';
+import organizeBannersByPriority from './organizeBannersByPriority';
 
-import styles from './customIcon.modules.scss';
+import styles from './CustomIcon.module.scss';
 
 const cx = classNamesBind.bind(styles);
 

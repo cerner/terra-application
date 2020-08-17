@@ -1,12 +1,12 @@
-import { BANNER_VARIANTS, organizeBannersByPriority } from '../../../../src/notification-banner/private/utils';
+import organizeBannersByPriority from '../../../../src/notification-banner/private/organizeBannersByPriority';
 
-const hazardHighBannerProps = { id: BANNER_VARIANTS.HAZARD_HIGH, variant: 'hazard-high' };
-const hazardMediumBannerProps = { id: BANNER_VARIANTS.HAZARD_MEDIUM, variant: 'hazard-medium' };
-const hazardLowBannerProps = { id: BANNER_VARIANTS.HAZARD_LOW, variant: 'hazard-low' };
-const errorBannerProps = { id: BANNER_VARIANTS.ERROR, variant: 'error' };
-const unsatisfiedBannerProps = { id: BANNER_VARIANTS.UNSATISFIED, variant: 'unsatisfied' };
-const unverifiedBannerProps = { id: BANNER_VARIANTS.UNVERIFIED, variant: 'unverified' };
-const customBannerProps = { id: BANNER_VARIANTS.CUSTOM, variant: 'custom' };
+const hazardHighBannerProps = { id: 'hazard-high', variant: 'hazard-high' };
+const hazardMediumBannerProps = { id: 'hazard-medium', variant: 'hazard-medium' };
+const hazardLowBannerProps = { id: 'hazard-low', variant: 'hazard-low' };
+const errorBannerProps = { id: 'error', variant: 'error' };
+const unsatisfiedBannerProps = { id: 'unsatisfied', variant: 'unsatisfied' };
+const unverifiedBannerProps = { id: 'unverified', variant: 'unverified' };
+const customBannerProps = { id: 'custom', variant: 'custom' };
 
 describe('utils', () => {
   describe('organizes banner by priority', () => {
@@ -46,13 +46,13 @@ describe('utils', () => {
       expect(organizedBanners).toMatchSnapshot();
 
       expect(organizedBanners).toHaveLength(7);
-      expect(organizedBanners[0].id).toEqual(BANNER_VARIANTS.HAZARD_HIGH);
-      expect(organizedBanners[1].id).toEqual(BANNER_VARIANTS.HAZARD_MEDIUM);
-      expect(organizedBanners[2].id).toEqual(BANNER_VARIANTS.HAZARD_LOW);
-      expect(organizedBanners[3].id).toEqual(BANNER_VARIANTS.ERROR);
-      expect(organizedBanners[4].id).toEqual(BANNER_VARIANTS.UNSATISFIED);
-      expect(organizedBanners[5].id).toEqual(BANNER_VARIANTS.UNVERIFIED);
-      expect(organizedBanners[6].id).toEqual(BANNER_VARIANTS.CUSTOM);
+      expect(organizedBanners[0].id).toEqual('hazard-high');
+      expect(organizedBanners[1].id).toEqual('hazard-medium');
+      expect(organizedBanners[2].id).toEqual('hazard-low');
+      expect(organizedBanners[3].id).toEqual('error');
+      expect(organizedBanners[4].id).toEqual('unsatisfied');
+      expect(organizedBanners[5].id).toEqual('unverified');
+      expect(organizedBanners[6].id).toEqual('custom');
     });
 
     it('organizes banner by fusion priority', () => {
@@ -70,13 +70,13 @@ describe('utils', () => {
       expect(organizedBanners).toMatchSnapshot();
 
       expect(organizedBanners).toHaveLength(7);
-      expect(organizedBanners[0].id).toEqual(BANNER_VARIANTS.HAZARD_HIGH);
-      expect(organizedBanners[1].id).toEqual(BANNER_VARIANTS.ERROR);
-      expect(organizedBanners[2].id).toEqual(BANNER_VARIANTS.HAZARD_MEDIUM);
-      expect(organizedBanners[3].id).toEqual(BANNER_VARIANTS.UNSATISFIED);
-      expect(organizedBanners[4].id).toEqual(BANNER_VARIANTS.UNVERIFIED);
-      expect(organizedBanners[5].id).toEqual(BANNER_VARIANTS.HAZARD_LOW);
-      expect(organizedBanners[6].id).toEqual(BANNER_VARIANTS.CUSTOM);
+      expect(organizedBanners[0].id).toEqual('hazard-high');
+      expect(organizedBanners[1].id).toEqual('error');
+      expect(organizedBanners[2].id).toEqual('hazard-medium');
+      expect(organizedBanners[3].id).toEqual('unsatisfied');
+      expect(organizedBanners[4].id).toEqual('unverified');
+      expect(organizedBanners[5].id).toEqual('hazard-low');
+      expect(organizedBanners[6].id).toEqual('custom');
     });
 
     it('allows multiple banners by of one type', () => {
@@ -91,7 +91,7 @@ describe('utils', () => {
       expect(organizedBanners).toMatchSnapshot();
 
       expect(organizedBanners).toHaveLength(2);
-      expect(organizedBanners[0].id).toEqual(BANNER_VARIANTS.HAZARD_MEDIUM);
+      expect(organizedBanners[0].id).toEqual('hazard-medium');
       expect(organizedBanners[1].id).toEqual('second-banner-of-type-hazard-medium');
     });
   });

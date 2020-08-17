@@ -43,7 +43,7 @@ const useNotificationBanners = () => {
      * @param {Object} bannerProps - react props associated to the banner. See ../NotificationBanner's propTypes.
      */
     const registerNotificationBanner = (bannerId, bannerProps) => {
-      if (process.env.NODE_ENV !== 'production' && !bannerId) {
+      if (!bannerId) {
         throw new Error('A banner cannot be registered without an identifier.');
       }
 
@@ -68,7 +68,7 @@ const useNotificationBanners = () => {
      * @param {String} bannerVariant - the banner variant to remove banner from
      */
     const unregisterNotificationBanner = (bannerId, bannerVariant) => {
-      if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerVariant)) {
+      if (!bannerId || !bannerVariant) {
         throw new Error('A banner cannot be unregistered without an identifier or banner variant.');
       }
 

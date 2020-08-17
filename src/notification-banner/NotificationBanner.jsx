@@ -74,7 +74,7 @@ const NotificationBanner = ({
      * then there is not a matching BannerProvider above it in the hierarchy.
      * This is possible but likely not intentional, so the component warns.
      */
-    if (!bannerRegistration && process.env.NODE_ENV !== 'production') {
+    if (!bannerRegistration) {
       throw new Error('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 

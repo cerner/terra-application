@@ -75,8 +75,7 @@ const NotificationBanner = ({
      * This is possible but likely not intentional, so the component warns.
      */
     if (!bannerRegistration && process.env.NODE_ENV !== 'production') {
-      // eslint-disable-next-line no-console
-      console.warn('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
+      throw new Error('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {

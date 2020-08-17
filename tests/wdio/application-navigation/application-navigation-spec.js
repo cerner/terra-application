@@ -10,20 +10,32 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
 
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       Terra.validates.element('1. primary navigation item prompt', { selector });
+    });
 
+    it('reject prompt', () => {
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(1)');
       Terra.validates.element('2. primary navigation item prompt reject', { selector: '[data-nav-test-content="true"]' });
+    });
 
+    it('prompts user when selecting primary navigation item again', () => {
       browser.click('div[aria-label="Page 2"]');
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
+    });
+
+    it('accepts prompt', () => {
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
       Terra.validates.element('3. primary navigation item prompt accept', { selector: '[data-nav-test-content="true"]' });
+    });
 
+    it('when multiple pending actins, prompts user when selection primary navigation item', () => {
       browser.click('#pending-action-toggle-1');
       browser.click('#pending-action-toggle-2');
       browser.click('div[aria-label="Page 1"]');
       browser.waitForVisible('[data-terra-notification-dialog="true"]');
       Terra.validates.element('4. primary navigation item prompt with multiple prompts', { selector });
+    });
+
+    it('closes notification dialog', () => {
       browser.click('[data-terra-notification-dialog="true"] button:nth-child(2)');
     });
 

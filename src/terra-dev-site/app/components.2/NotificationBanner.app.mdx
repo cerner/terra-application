@@ -3,31 +3,46 @@ import NotificationBannerExample from './example/NotificationBannerExample?dev-s
 
 # Notification Banner
 
-Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. When rendered, the Notification Banner registers itself with the framework. When registered, the framework will ensure the notification banners are prioritized and displayed in a list above all other content.
+A Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. This is a non-disruptive notification that does not require immediate input or attention by the user.
 
-Notification Banners are prioritized by type and in the following order:
-1. `alert` - displays a critical notification for current emergencies or situations of high severity that need to be addressed promptly
-2. `error` - recommended to provide feedback of a negative system status such as failures, inabilities, or limitations
-3. `warning` - recommended to show moderately urgent notifications that are cautionary in nature and forecast potential risk
-4. `unsatisfied` - recommended to show the user that an unsatisfied or incomplete action needs to be addressed
-5. `unverified` - recommended to provide feedback that information from outside systems has been included but has yet to be verified by the user
-6. `advisory` - recommended to provide the user with guidance and/or advice for completing an action
+When rendered, the Notification Banner registers itself with the framework so it prioritized correctly when any other rendered notification banners before it is displayed in a list above all other content.
 
-  'hazard-high',
-  'hazard-medium',
-  'hazard-low',
-  'error',
-  'unsatisfied',
-  'unverified',
-  'custom',
+## Banner Variants
 
-1. alert/'hazard-high',
-2. 'error',
-3. warning/'hazard-medium',
-4.    'unsatisfied',
-    'hazard-low',
-    'unverified',
-    'custom',
+The Notification Banner implements the Patient Safety Notification Strategy such that notifications can be presented as `hazardous` or `non-hazardous`.
+
+- Hazardous notifications should be used to notify the user of critical and/or patient safety related messages. Hazardous Notifications Banners are rigid to provide consistent icon and signal word pairs to prevent accidental confusion of the banner's severity by the user. There are three severity levels of hazardous notifications: `hazard-high`, `hazard-medium` and `hazard-low`.
+
+- Non-hazardous notification should be used to provide informational awareness about the user or the system. Since non-hazardous Notification Banners are less severe, yet important, there could be several use-cases for displaying non-hazardous banner to the user. Currently there is one pre-defined non-hazardous banner variant of `error`.
+
+- Custom notification banners can be created, but are **not** recommended. Custom banners are classified as non-hazardous notification banners and they allow you to customize the signal word and the icon that the banner displays. By choosing to create a custom Notification Banner, you are responsible for providing an icon that is themed correctly for the terra-default-theme, orion-fusion-theme, and clinical-lowlight-theme. See Terra's [Theme Strategy Guide](/guides/terra-application/theme-strategy) for more info.
+
+## Banner Priority Order
+
+Notification Banners are prioritized by variant and in the following order:
+
+1. `hazard-high` - displays a critical notification for current emergencies or situations of high severity that need to be addressed promptly
+2. `hazard-medium` - recommended to show moderately urgent notifications that are cautionary in nature and forecast potential risk
+3. `hazard-low` - recommended to provide the user with guidance and/or advice for completing an action
+4. `error` - recommended to provide feedback of a negative system status such as failures, inabilities, or limitations
+5. `unsatisfied` - recommended to show the user that an unsatisfied or incomplete action needs to be addressed
+6. `unverified` - recommended to provide feedback that information from outside systems has been included but has yet to be verified by the user
+7. `custom` - not recommended but can be used to create a custom signal word-icon banner to display information to the user
+
+### Notification Banners in the Fusion Theme
+
+When Notification Banners are rendered within an application that has the orion-fusion-theme applied, the banners will be prioritized in the following order:
+
+1. `hazard-high`
+2. `error`
+3. `hazard-medium`
+4. `unsatisfied`
+5. `unverified`
+6. `hazard-low`
+7. `custom`
+
+The expected banner's usage when in the orion-fusion-theme are consistent with the descriptions above, the order is just changed.
+
 
 ## Usage
 

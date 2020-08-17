@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
+import classNamesBind from 'classnames/bind';
 import NotificationBanner from 'terra-application/lib/notification-banner';
+import styles from './CustomBannerVariant.module.scss';
+
+const cx = classNamesBind.bind(styles);
 
 const Example = () => {
   const [showHazardHighBanner, setShowHazardHighBanner] = useState(false);
   const [showHazardMediumBanner, setShowHazardMediumBanner] = useState(false);
+  const [showHazardLowBanner, setShowHazardLowBanner] = useState(false);
   const [showErrorBanner, setShowErrorBanner] = useState(false);
   const [showUnsatisfiedBanner, setShowUnsatisfiedBanner] = useState(false);
   const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false);
-  const [showHazardLowBanner, setShowHazardLowBanner] = useState(false);
+  const [showCustomBanner, setShowCustomBanner] = useState(false);
 
   return (
     <>
@@ -48,13 +53,59 @@ const Example = () => {
           onRequestClose={() => setShowHazardLowBanner(false)}
         />
       )}
+      {showCustomBanner && (
+        <NotificationBanner
+          variant="custom"
+          description="This is a custom banner."
+          custom={{
+            signalWord: 'Check this out!',
+            customIconClass: cx('custom-notification-banner-icon'),
+          }}
+        />
+      )}
       <p>Show Banner Options: </p>
-      <button onClick={() => setShowHazardHighBanner(!showHazardHighBanner)} type="button">Show/Hide Hazard-High Banner</button>
-      <button onClick={() => setShowHazardMediumBanner(!showHazardMediumBanner)} type="button">Show/Hide Hazard-Medium Banner</button>
-      <button onClick={() => setShowHazardLowBanner(!showHazardLowBanner)} type="button">Show/Hide Hazard-Low Banner</button>
-      <button onClick={() => setShowErrorBanner(!showErrorBanner)} type="button">Show/Hide Error Banner</button>
-      <button onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)} type="button">Show/Hide Unsatisfied Banner</button>
-      <button onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)} type="button">Show/Hide Unverified Banner</button>
+      <button
+        onClick={() => setShowHazardHighBanner(!showHazardHighBanner)}
+        type="button"
+      >
+        Show/Hide Hazard-High Banner
+      </button>
+      <button
+        onClick={() => setShowHazardMediumBanner(!showHazardMediumBanner)}
+        type="button"
+      >
+        Show/Hide Hazard-Medium Banner
+      </button>
+      <button
+        onClick={() => setShowHazardLowBanner(!showHazardLowBanner)}
+        type="button"
+      >
+        Show/Hide Hazard-Low Banner
+      </button>
+      <button
+        onClick={() => setShowErrorBanner(!showErrorBanner)}
+        type="button"
+      >
+        Show/Hide Error Banner
+      </button>
+      <button
+        onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)}
+        type="button"
+      >
+        Show/Hide Unsatisfied Banner
+      </button>
+      <button
+        onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)}
+        type="button"
+      >
+        Show/Hide Unverified Banner
+      </button>
+      <button
+        onClick={() => setShowCustomBanner(!showCustomBanner)}
+        type="button"
+      >
+        Show/Hide Custom Banner
+      </button>
     </>
   );
 };

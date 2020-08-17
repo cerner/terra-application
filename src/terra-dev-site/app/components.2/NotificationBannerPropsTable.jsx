@@ -26,9 +26,9 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * The variant of alert to be rendered. One of `hazard-high`, `hazard-medium`, `hazard-low1, `error`, `unsatisfied`, or `unverified`.
+   * The variant of alert to be rendered. One of `hazard-high`, `hazard-medium`, `hazard-low`, `error`, `unsatisfied`, `unverified` or `custom`.
    */
-  variant: PropTypes.oneOf(['hazard-high', 'hazard-medium', 'hazard-low', 'error', 'unsatisfied', 'unverified']).isRequired,
+  variant: PropTypes.oneOf(['hazard-high', 'hazard-medium', 'hazard-low', 'error', 'unsatisfied', 'unverified', 'custom']).isRequired,
 };
 /* eslint-enable react/no-unused-prop-types */
 

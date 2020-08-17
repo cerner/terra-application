@@ -114,10 +114,10 @@ Terra.describeViewports('ModalManager', ['large'], () => {
   });
 
   it('renders notification banners in modal', () => {
-    browser.click('#toggle-warning-banner-DemoContainer-1');
-    browser.waitForExist('#warning-banner-DemoContainer-1');
-    browser.click('#toggle-advisory-banner-DemoContainer-1');
-    browser.waitForExist('#advisory-banner-DemoContainer-1');
+    browser.click('#toggle-hazard-medium-banner-DemoContainer-1');
+    browser.waitForExist('#hazard-medium-banner-DemoContainer-1');
+    browser.click('#toggle-hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('#hazard-low-banner-DemoContainer-1');
     browser.click('#toggle-error-banner-DemoContainer-1');
     browser.waitForExist('#error-banner-DemoContainer-1');
   });

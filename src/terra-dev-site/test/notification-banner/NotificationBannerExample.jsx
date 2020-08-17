@@ -3,28 +3,29 @@ import PropTypes from 'prop-types';
 import NotificationBanner from '../../../notification-banner';
 
 const Example = ({ isInitiallyClosed, id }) => {
-  const [showAlertBanner, setShowAlertBanner] = useState(!isInitiallyClosed);
+  const [showHazardHighBanner, setShowHazardHighBanner] = useState(!isInitiallyClosed);
+  const [showHazardMediumBanner, setShowHazardMediumBanner] = useState(!isInitiallyClosed);
+  const [showHazardLowBanner, setShowHazardLowBanner] = useState(!isInitiallyClosed);
   const [showErrorBanner, setShowErrorBanner] = useState(!isInitiallyClosed);
-  const [showWarningBanner, setShowWarningBanner] = useState(!isInitiallyClosed);
   const [showUnsatisfiedBanner, setShowUnsatisfiedBanner] = useState(!isInitiallyClosed);
   const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(!isInitiallyClosed);
-  const [showAdvisoryBanner, setShowAdvisoryBanner] = useState(!isInitiallyClosed);
 
   return (
     <>
-      {showAlertBanner && <NotificationBanner type="alert" id={`alert-banner-${id}`} />}
-      {showErrorBanner && <NotificationBanner type="error" id={`error-banner-${id}`} description="Something happened..." />}
-      {showUnsatisfiedBanner && <NotificationBanner type="unsatisfied" id={`unsatisfied-banner-${id}`} />}
-      {showWarningBanner && (
+      {showHazardHighBanner && <NotificationBanner variant="hazard-high" id={`hazard-high-banner-${id}`} />}
+      {showHazardMediumBanner && (
         <NotificationBanner
-          type="warning"
-          id={`warning-banner-${id}`}
-          onRequestClose={() => setShowWarningBanner(false)}
+          variant="hazard-medium"
+          id={`hazard-medium-banner-${id}`}
+          onRequestClose={() => setShowHazardMediumBanner(false)}
         />
       )}
+      {showHazardLowBanner && <NotificationBanner variant="hazard-low" id={`hazard-low-banner-${id}`} />}
+      {showErrorBanner && <NotificationBanner variant="error" id={`error-banner-${id}`} description="Something happened..." />}
+      {showUnsatisfiedBanner && <NotificationBanner variant="unsatisfied" id={`unsatisfied-banner-${id}`} />}
       {showUnverifiedBanner && (
         <NotificationBanner
-          type="unverified"
+          variant="unverified"
           id={`unverified-banner-${id}`}
           description={<div>There are records that have been included that need to be verified before they are officially added. Please review and ensure they should be included.</div>}
           bannerAction={{
@@ -36,14 +37,49 @@ const Example = ({ isInitiallyClosed, id }) => {
           }}
         />
       )}
-      {showAdvisoryBanner && <NotificationBanner type="advisory" id={`advisory-banner-${id}`} />}
       <p>Show Banner Options: </p>
-      <button onClick={() => setShowAlertBanner(!showAlertBanner)} type="button" id={`toggle-alert-banner-${id}`}>Show/Hide Alert Banner</button>
-      <button onClick={() => setShowErrorBanner(!showErrorBanner)} type="button" id={`toggle-error-banner-${id}`}>Show/Hide Error Banner</button>
-      <button onClick={() => setShowWarningBanner(!showWarningBanner)} type="button" id={`toggle-warning-banner-${id}`}>Show/Hide Warning Banner</button>
-      <button onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)} type="button" id={`toggle-unsatisfied-banner-${id}`}>Show/Hide Unsatisfied Banner</button>
-      <button onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)} type="button" id={`toggle-unverified-banner-${id}`}>Show/Hide Unverified Banner</button>
-      <button onClick={() => setShowAdvisoryBanner(!showAdvisoryBanner)} type="button" id={`toggle-advisory-banner-${id}`}>Show/Hide Advisory Banner</button>
+      <button
+        onClick={() => setShowHazardHighBanner(!showHazardHighBanner)}
+        type="button"
+        id={`toggle-hazard-high-banner-${id}`}
+      >
+        Show/Hide Hazard-High Banner
+      </button>
+      <button
+        onClick={() => setShowHazardMediumBanner(!showHazardMediumBanner)}
+        type="button"
+        id={`toggle-hazard-medium-banner-${id}`}
+      >
+        Show/Hide Hazard-Medium Banner
+      </button>
+      <button
+        onClick={() => setShowHazardLowBanner(!showHazardLowBanner)}
+        type="button"
+        id={`toggle-hazard-low-banner-${id}`}
+      >
+        Show/Hide Hazard-Low Banner
+      </button>
+      <button
+        onClick={() => setShowErrorBanner(!showErrorBanner)}
+        type="button"
+        id={`toggle-error-banner-${id}`}
+      >
+        Show/Hide Error Banner
+      </button>
+      <button
+        onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)}
+        type="button"
+        id={`toggle-unsatisfied-banner-${id}`}
+      >
+        Show/Hide Unsatisfied Banner
+      </button>
+      <button
+        onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)}
+        type="button"
+        id={`toggle-unverified-banner-${id}`}
+      >
+        Show/Hide Unverified Banner
+      </button>
     </>
   );
 };

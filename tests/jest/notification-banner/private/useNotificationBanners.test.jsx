@@ -14,7 +14,7 @@ jest.mock('terra-base');
 global.console.warn = jest.fn();
 
 let keyValue = 0;
-const mockBannerProps = { type: 'error' };
+const mockBannerProps = { variant: 'error' };
 
 // eslint-disable-next-line react/prop-types
 const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', children = null }) => {
@@ -96,23 +96,20 @@ describe('useNotificationBanners', () => {
       const { component, context } = renderComponentWithChild();
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
 
-      context.registerNotificationBanner(undefined, mockBannerProps);
+      expect(() => context.registerNotificationBanner(undefined, mockBannerProps)).toThrowError('A banner cannot be registered without an identifier.');
 
-      // eslint-disable-next-line no-console
-      expect(console.warn).toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
     });
 
     it('registers banner when id is provided', () => {
+      expect.assertions(3);
       const { component, context } = renderComponentWithChild();
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
 
-      act(() => {
+      expect(() => act(() => {
         context.registerNotificationBanner('mockID', mockBannerProps);
-      });
+      })).not.toThrowError('A banner cannot be registered without an identifier.');
 
-      // eslint-disable-next-line no-console
-      expect(console.warn).not.toHaveBeenCalledWith('A banner cannot be registered without an identifier.');
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 
@@ -147,14 +144,12 @@ describe('useNotificationBanners', () => {
 
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
 
-      context.unregisterNotificationBanner(undefined);
+      expect(() => context.unregisterNotificationBanner(undefined)).toThrowError('A banner cannot be unregistered without an identifier or banner variant.');
 
-      // eslint-disable-next-line no-console
-      expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 
-    it('does not unregister notification banner if banner type is not provided', () => {
+    it('does not unregister notification banner if banner variant is not provided', () => {
       const { component, context } = renderComponentWithChild(<ChildContent showBannerOnRender />);
 
       // eslint-disable-next-line no-console
@@ -162,10 +157,9 @@ describe('useNotificationBanners', () => {
 
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
 
-      context.unregisterNotificationBanner('mockID', undefined);
+      // context.unregisterNotificationBanner('mockID', undefined);
+      expect(() => context.unregisterNotificationBanner('mockID', undefined)).toThrowError('A banner cannot be unregistered without an identifier or banner variant.');
 
-      // eslint-disable-next-line no-console
-      expect(console.warn).toHaveBeenCalledWith('A banner cannot be unregistered without an identifier or banner type.');
       expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
     });
 

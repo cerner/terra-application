@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
 import BannerRegistrationContext from './private/BannerRegistrationContext';
-import { BANNER_TYPES } from './private/utils';
+import { BANNER_VARIANTS } from './private/utils';
 
 const propTypes = {
   /**
@@ -29,30 +29,33 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * The type of alert to be rendered. One of `alert`, `error`, `warning`, `unsatisfied`, `unverified` or `advisory`.
+   * The variant of notification banner to be rendered. This renders the banner with the corresponding header and icon to the
+   * variant concept.
+   * Use one of `hazard-high`, `hazard-medium`, `hazard-low`, `error`, `unsatisfied`, or `unverified`.
    */
-  type: PropTypes.oneOf([
-    BANNER_TYPES.ALERT,
-    BANNER_TYPES.ERROR,
-    BANNER_TYPES.WARNING,
-    BANNER_TYPES.UNSATISFIED,
-    BANNER_TYPES.UNVERIFIED,
-    BANNER_TYPES.ADVISORY,
+  variant: PropTypes.oneOf([
+    BANNER_VARIANTS.HAZARD_HIGH,
+    BANNER_VARIANTS.HAZARD_MEDIUM,
+    BANNER_VARIANTS.HAZARD_LOW,
+    BANNER_VARIANTS.ERROR,
+    BANNER_VARIANTS.UNSATISFIED,
+    BANNER_VARIANTS.UNVERIFIED,
   ]).isRequired,
 };
 
 const NotificationBanner = ({
-  bannerAction, description, onRequestClose, type,
+  bannerAction, description, onRequestClose, variant,
 }) => {
   /**
    * A unique identifier is generated for each Banner during construction. This will be used to
    * uniquely register/unregister the banner with ancestor Banner Managers without requiring consumers to
    * define unique identifiers themselves.
    */
-  const uuid = React.useRef(uuidv4());
   const bannerRegistration = React.useContext(BannerRegistrationContext);
 
   React.useEffect(() => {
+    const uuid = uuidv4();
+
     /**
      * If the bannerRegistration value is the ProviderRegistrationContext's default value,
      * then there is not a matching BannerProvider above it in the hierarchy.
@@ -64,21 +67,21 @@ const NotificationBanner = ({
     }
 
     if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
-      bannerRegistration.registerNotificationBanner(uuid.current, {
+      bannerRegistration.registerNotificationBanner(uuid, {
         bannerAction,
         description,
-        key: uuid.current,
+        key: uuid,
         onRequestClose,
-        type,
+        variant,
       });
     }
-  }, [bannerRegistration, description, bannerAction, onRequestClose, type]);
 
-  React.useEffect(() => () => {
-    if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {
-      bannerRegistration.unregisterNotificationBanner(uuid.current, type);
-    }
-  }, [bannerRegistration, type]);
+    return () => {
+      if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {
+        bannerRegistration.unregisterNotificationBanner(uuid, variant);
+      }
+    };
+  }, [bannerRegistration, description, bannerAction, onRequestClose, variant]);
 
   return null;
 };

@@ -116,8 +116,8 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
   it('renders notification banners in slide panel', () => {
     browser.click('#toggle-error-banner-DemoContainer-1');
     browser.waitForExist('#error-banner-DemoContainer-1');
-    browser.click('#toggle-advisory-banner-DemoContainer-1');
-    browser.waitForExist('#advisory-banner-DemoContainer-1');
+    browser.click('#toggle-hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('#hazard-low-banner-DemoContainer-1');
     browser.click('#toggle-unverified-banner-DemoContainer-1');
     browser.waitForExist('#unverified-banner-DemoContainer-1');
   });

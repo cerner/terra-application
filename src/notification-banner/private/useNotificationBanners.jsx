@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Alert from 'terra-alert';
 import Button from 'terra-button';
-import BannerRegistrationContext from './BannerRegistrationContext';
+import ThemeContext from 'terra-theme-context';
 
+import BannerRegistrationContext from './BannerRegistrationContext';
 import { organizeBannersByPriority } from './utils';
 
 /**
@@ -34,25 +35,23 @@ const useNotificationBanners = () => {
      * it updates the NotificationBanner's state to render the new Banner.
      *
      * @param {UUID} bannerId - unique ID associated to the banner
-     * @param {Object} bannerProps - react props associated tot he banner. See ./NotificationBanner's propTypes.
+     * @param {Object} bannerProps - react props associated to the banner. See ../NotificationBanner's propTypes.
      */
     const registerNotificationBanner = (bannerId, bannerProps) => {
       if (process.env.NODE_ENV !== 'production' && !bannerId) {
-        // eslint-disable-next-line no-console
-        console.warn('A banner cannot be registered without an identifier.');
-        return;
+        throw new Error('A banner cannot be registered without an identifier.');
       }
 
-      const { type } = bannerProps;
+      const { variant } = bannerProps;
 
-      if (!registeredBanners.current[type]) {
-        registeredBanners.current[type] = {};
+      if (!registeredBanners.current[variant]) {
+        registeredBanners.current[variant] = {};
       }
 
-      registeredBanners.current[type][bannerId] = { key: bannerId, ...bannerProps };
+      registeredBanners.current[variant][bannerId] = { key: bannerId, ...bannerProps };
 
       if (updateBannerState.current) {
-        updateBannerState.current(organizeBannersByPriority(registeredBanners.current));
+        updateBannerState.current({ ...registeredBanners.current });
       }
     };
 
@@ -61,23 +60,21 @@ const useNotificationBanners = () => {
      * it updates the NotificationBanner's state to remove the Banner from the list.
      *
      * @param {UUID} bannerId - unique ID associated to the banner
-     * @param {String} bannerType - the banner variant
+     * @param {String} bannerVariant - the banner variant to remove banner from
      */
-    const unregisterNotificationBanner = (bannerId, bannerType) => {
-      if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerType)) {
-        // eslint-disable-next-line no-console
-        console.warn('A banner cannot be unregistered without an identifier or banner type.');
+    const unregisterNotificationBanner = (bannerId, bannerVariant) => {
+      if (process.env.NODE_ENV !== 'production' && (!bannerId || !bannerVariant)) {
+        throw new Error('A banner cannot be unregistered without an identifier or banner variant.');
+      }
+
+      if (!registeredBanners.current[bannerVariant][bannerId]) {
         return;
       }
 
-      if (!registeredBanners.current[bannerType][bannerId]) {
-        return;
-      }
-
-      delete registeredBanners.current[bannerType][bannerId];
+      delete registeredBanners.current[bannerVariant][bannerId];
 
       if (updateBannerState.current) {
-        updateBannerState.current(organizeBannersByPriority(registeredBanners.current));
+        updateBannerState.current({ ...registeredBanners.current });
       }
     };
 
@@ -104,19 +101,36 @@ const useNotificationBanners = () => {
    * Renders a list of prioritized notification banners.
    */
   const NotificationBanners = () => {
+    const theme = React.useContext(ThemeContext);
     const [banners, setBanners] = React.useState([]);
     updateBannerState.current = setBanners;
 
-    if (!banners.length) {
+    if (!Object.keys(banners).length) {
       return null;
     }
+    const prioritizedBanners = organizeBannersByPriority(banners, theme.className);
 
     return (
       <div aria-live="polite">
-        {banners.map((bannerProps) => {
+        {prioritizedBanners.map((bannerProps) => {
           const {
-            description, type, bannerAction, onRequestClose, key,
+            bannerAction, description, key, onRequestClose, variant,
           } = bannerProps;
+
+          let alertType;
+          switch (variant) {
+            case 'hazard-high':
+              alertType = 'alert';
+              break;
+            case 'hazard-medium':
+              alertType = 'warning';
+              break;
+            case 'hazard-low':
+              alertType = 'info';
+              break;
+            default:
+              alertType = variant;
+          }
 
           let actionButton = null;
           if (bannerAction) {
@@ -124,7 +138,7 @@ const useNotificationBanners = () => {
               <Button
                 text={bannerAction.text}
                 variant="ghost"
-                data-terra-application-notification-banner={type}
+                data-terra-application-notification-banner={variant}
                 onClick={bannerAction.onClick}
               />
             );
@@ -135,8 +149,8 @@ const useNotificationBanners = () => {
               key={key}
               action={actionButton}
               onDismiss={onRequestClose}
-              type={type}
-              data-terra-application-notification-banner={type}
+              type={alertType}
+              data-terra-application-notification-banner={variant}
             >
               {description}
             </Alert>

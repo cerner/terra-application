@@ -2,21 +2,39 @@ import React, { useState } from 'react';
 import NotificationBanner from 'terra-application/lib/notification-banner';
 
 const NotificationBannerToggle = () => {
-  const [hasAlertBanner, setHasAlertBanner] = useState(false);
-  const [hasWarningBanner, setHasWarningBanner] = useState(false);
+  const [hasHazardHighBanner, setHasHazardHighBanner] = useState(false);
+  const [hasHazardLowBanner, setHasHazardLowBanner] = useState(false);
 
   return (
     <div>
       <h3>Notification Banners</h3>
       <p>The NotificationBanner component is used to register a notification with framework to present to the user.</p>
-      <button type="button" onClick={() => { setHasAlertBanner(!hasAlertBanner); }} disabled={hasAlertBanner}>
-        Render Alert Notification Banner
+      <button
+        type="button"
+        onClick={() => { setHasHazardHighBanner(!hasHazardHighBanner); }}
+        disabled={hasHazardHighBanner}
+      >
+        Render Hazard-High Notification Banner
       </button>
-      <button type="button" onClick={() => { setHasWarningBanner(!hasWarningBanner); }} disabled={hasWarningBanner}>
-        Render Warning Notification Banner
+      <button
+        type="button"
+        onClick={() => { setHasHazardLowBanner(!hasHazardLowBanner); }}
+        disabled={hasHazardLowBanner}
+      >
+        Render Hazard-Low Notification Banner
       </button>
-      {hasAlertBanner ? <NotificationBanner type="alert" onRequestClose={() => { setHasAlertBanner(!hasAlertBanner); }} /> : undefined}
-      {hasWarningBanner ? <NotificationBanner type="warning" onRequestClose={() => { setHasWarningBanner(!hasWarningBanner); }} /> : undefined}
+      {hasHazardHighBanner && (
+        <NotificationBanner
+          variant="hazard-high"
+          onRequestClose={() => { setHasHazardHighBanner(!hasHazardHighBanner); }}
+        />
+      )}
+      {hasHazardLowBanner && (
+        <NotificationBanner
+          variant="hazard-medium"
+          onRequestClose={() => { setHasHazardLowBanner(!hasHazardLowBanner); }}
+        />
+      )}
     </div>
   );
 };

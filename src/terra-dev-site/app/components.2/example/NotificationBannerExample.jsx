@@ -2,59 +2,59 @@ import React, { useState } from 'react';
 import NotificationBanner from 'terra-application/lib/notification-banner';
 
 const Example = () => {
-  const [showAlertBanner, setShowAlertBanner] = useState(false);
+  const [showHazardHighBanner, setShowHazardHighBanner] = useState(false);
+  const [showHazardMediumBanner, setShowHazardMediumBanner] = useState(false);
   const [showErrorBanner, setShowErrorBanner] = useState(false);
-  const [showWarningBanner, setShowWarningBanner] = useState(false);
   const [showUnsatisfiedBanner, setShowUnsatisfiedBanner] = useState(false);
   const [showUnverifiedBanner, setShowUnverifiedBanner] = useState(false);
-  const [showAdvisoryBanner, setShowAdvisoryBanner] = useState(false);
+  const [showHazardLowBanner, setShowHazardLowBanner] = useState(false);
 
   return (
     <>
       {showUnsatisfiedBanner && (
         <NotificationBanner
-          type="unsatisfied"
+          variant="unsatisfied"
           onRequestClose={() => setShowUnsatisfiedBanner(false)}
         />
       )}
-      {showAlertBanner && (
+      {showHazardHighBanner && (
         <NotificationBanner
-          type="alert"
-          onRequestClose={() => setShowAlertBanner(false)}
+          variant="hazard-high"
+          onRequestClose={() => setShowHazardHighBanner(false)}
         />
       )}
       {showErrorBanner && (
         <NotificationBanner
-          type="error"
+          variant="error"
           description="Please try again."
           onRequestClose={() => setShowErrorBanner(false)}
         />
       )}
-      {showWarningBanner && (
+      {showHazardMediumBanner && (
         <NotificationBanner
-          type="warning"
-          onRequestClose={() => setShowWarningBanner(false)}
+          variant="hazard-medium"
+          onRequestClose={() => setShowHazardMediumBanner(false)}
         />
       )}
       {showUnverifiedBanner && (
         <NotificationBanner
-          type="unverified"
+          variant="unverified"
           onRequestClose={() => setShowUnverifiedBanner(false)}
         />
       )}
-      {showAdvisoryBanner && (
+      {showHazardLowBanner && (
         <NotificationBanner
-          type="advisory"
-          onRequestClose={() => setShowAdvisoryBanner(false)}
+          variant="hazard-low"
+          onRequestClose={() => setShowHazardLowBanner(false)}
         />
       )}
       <p>Show Banner Options: </p>
-      <button onClick={() => setShowAlertBanner(!showAlertBanner)} type="button">Show/Hide Alert Banner</button>
+      <button onClick={() => setShowHazardHighBanner(!showHazardHighBanner)} type="button">Show/Hide Hazard-High Banner</button>
+      <button onClick={() => setShowHazardMediumBanner(!showHazardMediumBanner)} type="button">Show/Hide Hazard-Medium Banner</button>
+      <button onClick={() => setShowHazardLowBanner(!showHazardLowBanner)} type="button">Show/Hide Hazard-Low Banner</button>
       <button onClick={() => setShowErrorBanner(!showErrorBanner)} type="button">Show/Hide Error Banner</button>
-      <button onClick={() => setShowWarningBanner(!showWarningBanner)} type="button">Show/Hide Warning Banner</button>
       <button onClick={() => setShowUnsatisfiedBanner(!showUnsatisfiedBanner)} type="button">Show/Hide Unsatisfied Banner</button>
       <button onClick={() => setShowUnverifiedBanner(!showUnverifiedBanner)} type="button">Show/Hide Unverified Banner</button>
-      <button onClick={() => setShowAdvisoryBanner(!showAdvisoryBanner)} type="button">Show/Hide Advisory Banner</button>
     </>
   );
 };

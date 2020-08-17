@@ -32,16 +32,16 @@ describe('NotificationBanner', () => {
   });
 
   it('registers a notification banner to the banner-list onmount', () => {
-    render(<NotificationBanner type="alert" />);
+    render(<NotificationBanner variant="hazard-high" />);
 
     expect(registerNotificationBannerMock).toHaveBeenCalledTimes(1);
-    expect(registerNotificationBannerMock).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({ type: 'alert' }));
+    expect(registerNotificationBannerMock).toHaveBeenCalledWith(expect.any(String), expect.objectContaining({ variant: 'hazard-high' }));
   });
 
-  it('un-registers a notification from the banner-list onmount', () => {
-    render(<NotificationBanner type="alert" />).unmount();
+  it('un-registers a notification from the banner-list unmount', () => {
+    render(<NotificationBanner variant="hazard-high" />).unmount();
 
     expect(unregisterNotificationBannerMock).toHaveBeenCalledTimes(1);
-    expect(unregisterNotificationBannerMock).toHaveBeenCalledWith(expect.any(String), 'alert');
+    expect(unregisterNotificationBannerMock).toHaveBeenCalledWith(expect.any(String), 'hazard-high');
   });
 });

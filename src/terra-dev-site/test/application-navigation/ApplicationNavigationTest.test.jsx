@@ -55,7 +55,7 @@ const PageContent = ({ title }) => {
         {' '}
         <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
       </p>
-      {showBanner ? <NotificationBanner type="warning" onRequestClose={() => { setShowBanner(false); }} /> : undefined}
+      {showBanner && <NotificationBanner variant="hazard-medium" onRequestClose={() => { setShowBanner(false); }} />}
     </div>
   );
 };

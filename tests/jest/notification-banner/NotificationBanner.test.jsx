@@ -47,6 +47,7 @@ describe('NotificationBanner', () => {
 
   it('throws error when BannerRegistrationContext has not been provided', () => {
     React.useContext = reactUseContext;
+    // eslint-disable-next-line no-console
     console.error = jest.fn().mockImplementation(error => error); // catch virtual error on console
     expect(() => render(<NotificationBanner variant="hazard-high" />))
       .toThrowError(/A NotificationBanner was not rendered within the context of a NotificationBannerProvider/);

@@ -57,6 +57,7 @@ const Example = () => {
         <NotificationBanner
           variant="custom"
           description="This is a custom banner."
+          onRequestClose={() => setShowCustomBanner(false)}
           custom={{
             signalWord: 'Check this out!',
             customIconClass: cx('custom-notification-banner-icon'),

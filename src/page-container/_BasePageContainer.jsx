@@ -1,11 +1,6 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 
 import PagePortalContext from './PagePortalContext';
-
-import styles from './ApplicationPageContainer.module.scss';
-
-const cx = classNames.bind(styles);
 
 class PageLayoutNodeManager {
   constructor(containerRef) {

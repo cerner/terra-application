@@ -5,6 +5,7 @@
 * Added
   * Added ApplicationStatusOverlay
   * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
+  * Added ApplicationEventEmitter
 * Fixed
   * Fixed firefox tests for application navigation
 * Changed

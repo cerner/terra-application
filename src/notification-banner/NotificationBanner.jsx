@@ -30,7 +30,6 @@ const propTypes = {
   /**
    * The variant of notification banner to be rendered. This renders the banner with the corresponding header and icon to the
    * variant concept.
-   * Use one of `hazard-high`, `hazard-medium`, `hazard-low`, `error`, `unsatisfied`, or `unverified`, or `custom`.
    */
   variant: PropTypes.oneOf([
     'hazard-high',

@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Changed
-  * Reverted "Updated `uuid` dependency to `v8.0.0`" due to IE10 compatability issues
+  * Reverted "Updated `uuid` dependency to `v8.0.0`" due to IE10 compatibility issues
 
 ## 1.31.0 - (Aug 18, 2020)
 

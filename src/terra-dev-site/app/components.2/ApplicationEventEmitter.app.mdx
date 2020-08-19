@@ -8,13 +8,6 @@ ApplicationEventEmitter is a singleton that is shared throughout your applicatio
 
 ```js
 import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
-
-const eventEmitter = new ApplicationEventEmitter();
-const listener = () => {console.log('Listening to event')}
-
-eventEmitter.on('event-name', listener);
-eventEmitter.emit('event-name');
-eventEmitter.removeAllListeners();
 ```
 
 ## API
@@ -24,12 +17,160 @@ eventEmitter.removeAllListeners();
 |`once`|`eventEmitter.once('event-name', listener)`|Adds a one-time listener function for the event named `event-name`. The next time `event-name` is triggered, this listener is removed and then invoked.|
 |`on`|`eventEmitter.on('event-name', listener)`|Adds the listener function to the end of the listeners array for the event named `event-name`. No checks are made to see if the listener has already been added. Multiple calls passing the same combination of `event-name` and listener will result in the listener being added, and called, multiple times.|
 |`addListener`|`eventEmitter.addListener('event-name', listener)`|Alias to `on`|
-|`off`|`eventEmitter.off('event-name', listener)`|Removes the specified listener from the listener array for the event named `event-name`|
-|`removeListener`|`eventEmitter.removeListener('event-name', listener)`|Alias to `off`|
-|`removeAllListeners`|`eventEmitter.removeAllListeners('event-name')`|Removes all listeners if not event names are specified, or those of the specified 'event-name'|
+|`off`|`eventEmitter.off('event-name', listener)`|Removes the specified listener from the listener array for the event named `event-name`. If there are multiple listens to this event, only one is removed.|
+|`removeListener`|`eventEmitter.removeListener('event-name', listener)`|Similar to `off` except this removes all listeners for event named `event-name`.|
+|`removeAllListeners`|`eventEmitter.removeAllListeners('event-name')`|Removes all listeners if not event names are specified, or those of the specified 'event-name'.|
 |`emit`|`eventEmitter.emit('event-name', arg1, arg2);`|Synchronously calls each of the listeners registered for the event named 'event-name', in the order they were registered, passing the supplied arguments to each.|
 |`eventNames`|`eventEmitter.eventNames()`|Returns an array listing the event names for which the emitter has registered listeners. The values in the array will be strings.|
-|`listenerCount`|`eventEmitter.listenerCount('event-name')`|Returns the number of listeners listening to the event named 'event-name'|
-|`listeners`|`eventEmitter.listeners('event-name')`|Returns a copy of the array of listeners for the event named 'event-name'|
+|`listenerCount`|`eventEmitter.listenerCount('event-name')`|Returns the number of listeners listening to the event named 'event-name'.|
+|`listeners`|`eventEmitter.listeners('event-name')`|Returns a copy of the array of listeners for the event named 'event-name'.|
 
-Follow the [official Node.js documentation](https://nodejs.org/docs/latest-v10.x/api/events.html) for examples or other less common APIs.
+## Examples
+
+
+### `once`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = () => {listenCount += 1;}
+
+eventEmitter.once('event-name', listener);
+eventEmitter.emit('event-name');  // listenCount == 1
+eventEmitter.emit('event-name');  // Ignored: listenCount == 1
+```
+
+### `on`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = () => {listenCount += 1;}
+
+eventEmitter.on('event-name', listener);
+eventEmitter.emit('event-name');  // listenCount == 1
+eventEmitter.emit('event-name');  // listenCount == 2
+```
+
+### `off`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = () => {listenCount += 1;}
+
+eventEmitter.on('event-name', listener);
+eventEmitter.on('event-name', listener);
+eventEmitter.off('event-name', listener);   // Removes the first listener of the event.
+eventEmitter.emit('event-name');            // listenCount == 1
+eventEmitter.off('event-name', listener);   // Removes the second listener of the event.
+eventEmitter.emit('event-name');            // Ignored: listenCount == 1
+```
+
+### `removeListener`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = () => {listenCount += 1;}
+
+eventEmitter.on('event-name', listener);
+eventEmitter.on('event-name', listener);
+eventEmitter.removeListener('event-name', listener);
+eventEmitter.emit('event-name');  // Ignored: listenCount == 0
+```
+
+### `removeAllListeners`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = () => {listenCount += 1;}
+
+eventEmitter.on('event-name1', listener);
+eventEmitter.on('event-name2', listener);
+eventEmitter.on('event-name3', listener);
+eventEmitter.removeAllListeners();
+eventEmitter.emit('event-name1');  // Ignored: listenCount == 0
+eventEmitter.emit('event-name2');  // Ignored: listenCount == 0
+eventEmitter.emit('event-name3');  // Ignored: listenCount == 0
+```
+
+### `emit`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+let listenCount = 0;
+const listener = (count) => {
+  if (count) {
+    listenCount += count;
+  } else {
+    listenCount += 1;
+  }
+
+eventEmitter.on('event-name', listener);
+eventEmitter.emit('event-name');      // listenCount == 1
+eventEmitter.emit('event-name', 50);  // listenCount == 51
+```
+
+### `eventNames`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+const eventNames = ['event-name1', 'event-name2', 'event-name3']
+
+eventEmitter.on(eventNames[0], () => {});
+eventEmitter.on(eventNames[1], () => {});
+eventEmitter.on(eventNames[2], () => {});
+
+eventEmitter.eventNames();  // ['event-name1', 'event-name2', 'event-name3']
+```
+
+### `listenerCount`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+
+eventEmitter.on('event-name1', () => {});
+eventEmitter.on('event-name2', () => {});
+eventEmitter.on('event-name2', () => {});
+
+eventEmitter.listenerCount('event-name1');  // 1
+eventEmitter.listenerCount('event-name2');  // 2
+```
+
+### `listeners`
+
+```js
+import ApplicationEventEmitter from 'terra-application/lib/application-event-emitter';
+
+const eventEmitter = new ApplicationEventEmitter();
+
+const listener1 = () => {};
+const listener2 = () => {};
+
+eventEmitter.on('event-name', listener1);
+eventEmitter.on('event-name', listener2);
+
+eventEmitter.listeners('event-name').length;  // 2
+eventEmitter.listeners('event-name')[0];      // listener1
+eventEmitter.listeners('event-name')[1];      // listener2
+```
+
+Follow the [official Node.js documentation](https://nodejs.org/docs/latest-v10.x/api/events.html) for more examples and other less common APIs.

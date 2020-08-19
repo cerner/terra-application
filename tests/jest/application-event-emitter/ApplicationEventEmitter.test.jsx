@@ -1,18 +1,16 @@
-import React from 'react';
-
 import ApplicationEventEmitter from '../../../src/application-event-emitter/ApplicationEventEmitter';
 
 describe('ApplicationEventEmitter', () => {
   let eventEmitter;
   let listenCount = 0;
 
-  function listener(addCounter) {
+  const listener = (addCounter) => {
     if (addCounter) {
-      listenCount = listenCount + addCounter;
+      listenCount += addCounter;
     } else {
-      listenCount++;
+      listenCount += 1;
     }
-  }
+  };
 
   beforeAll(() => {
     eventEmitter = new ApplicationEventEmitter();
@@ -84,10 +82,16 @@ describe('ApplicationEventEmitter', () => {
 
   it('off', () => {
     eventEmitter.on('event-name', listener);
+    eventEmitter.on('event-name', listener);
     eventEmitter.off('event-name', listener);
     eventEmitter.emit('event-name');
 
-    expect(listenCount).toEqual(0);
+    expect(listenCount).toEqual(1);
+
+    eventEmitter.off('event-name', listener);
+    eventEmitter.emit('event-name');
+
+    expect(listenCount).toEqual(1);
   });
 
   it('removeListener', () => {
@@ -130,7 +134,7 @@ describe('ApplicationEventEmitter', () => {
   });
 
   it('eventNames', () => {
-    const eventNames = ['event-name1', 'event-name2', 'event-name3']
+    const eventNames = ['event-name1', 'event-name2', 'event-name3'];
     eventEmitter.on(eventNames[0], listener);
     eventEmitter.on(eventNames[1], listener);
     eventEmitter.on(eventNames[2], listener);

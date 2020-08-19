@@ -16,7 +16,7 @@ import PageContainerContext from './PageContainerContext';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
 
-import styles from './SecondaryNavigationPageContainer.module.scss';
+import styles from './NavigationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -24,48 +24,45 @@ const flatLayoutBreakpoints = ['medium', 'large', 'huge', 'enormous'];
 
 const propTypes = {};
 
-const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) => {
-  const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) => (
+  <ContentContainer
+    header={<ActionHeader title="Side Nav" />}
+    fill
+  >
+    <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
+      {items.map((item) => (
+        <ListItem
+          key={item.key}
+          isSelectable
+          isSelected={activePageKey === item.key}
+          onSelect={() => {
+            onRequestActivatePage(item.key);
+          }}
+        >
+          <div style={{ padding: '1rem' }}>{item.text}</div>
+        </ListItem>
+      ))}
+    </List>
+  </ContentContainer>
+);
 
-  // const hasChevron = activeBreakpoint === 'tiny' || activeBreakpoint === 'small';
-
-  return (
-    <ContentContainer
-      header={<ActionHeader title="Side Nav" />}
-      fill
-    >
-      <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
-        {items.map((item) => (
-          <ListItem
-            key={item.key}
-            // hasChevron={hasChevron}
-            isSelectable
-            isSelected={activePageKey === item.key}
-            onSelect={() => {
-              onRequestActivatePage(item.key);
-            }}
-          >
-            <div style={{ padding: '1rem' }}>{item.text}</div>
-          </ListItem>
-        ))}
-      </List>
-    </ContentContainer>
-  );
-};
-
-const SecondaryNavigationPageContainer = ({
+const NavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
-  const [workspaceSize, setWorkspaceSize] = React.useState(350);
+  const hasSidebar = React.Children.count(children) > 1;
+
+  const [workspaceSize, setWorkspaceSize] = React.useState('small');
+  const [showGridlines, setShowGridlines] = React.useState(false);
 
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
-  const isOverlayLayout = !flatLayoutBreakpoints.includes(activeBreakpoint);
+  const isOverlayLayout = !flatLayoutBreakpoints.includes(activeBreakpoint) || (activeBreakpoint === 'medium' && (workspaceSize === 'large' || workspaceSize === 'medium'));
 
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!isOverlayLayout);
   const [sideNavIsVisible, setSideNavIsVisible] = React.useState(!isOverlayLayout);
 
   const sideNavBodyRef = React.useRef();
+  const sideNavPanelRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActivePageKeyRef = React.useRef();
 
@@ -78,15 +75,15 @@ const SecondaryNavigationPageContainer = ({
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
-    leftActionComponent: (
+    leftActionComponent: hasSidebar ? (
       <Button
         icon={<IconLeftPane />}
         text="Toggle Side Nav"
         onClick={() => { setSideNavIsVisible((state) => !state); }}
         variant={ButtonVariants.UTILITY}
       />
-    ),
-  }), [enableWorkspace, workspaceIsVisible]);
+    ) : null,
+  }), [enableWorkspace, workspaceIsVisible, hasSidebar]);
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
@@ -169,10 +166,11 @@ const SecondaryNavigationPageContainer = ({
 
   return (
     <div
-      className={cx('side-nav-container')}
+      className={cx('side-nav-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize}`]: enableWorkspace })}
     >
       <div
-        className={cx('side-nav-sidebar', { visible: sideNavIsVisible, overlay: isOverlayLayout })}
+        ref={sideNavPanelRef}
+        className={cx('side-nav-sidebar', { visible: sideNavIsVisible && hasSidebar, overlay: isOverlayLayout })}
       >
         {sidebar || (
           <DefaultSideNavPanel
@@ -209,29 +207,21 @@ const SecondaryNavigationPageContainer = ({
       {enableWorkspace && (
         <div
           className={cx('workspace', { visible: workspaceIsVisible, overlay: isOverlayLayout })}
-          style={isOverlayLayout ? null : { width: `${workspaceSize}px` }}
         >
           <div
             style={{
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
             }}
           >
-            <MockWorkspace onDismiss={() => { setWorkspaceIsVisible(false); }} />
+            <MockWorkspace workspaceSize={workspaceSize} onUpdateSize={(size) => { setWorkspaceSize(size); }} onDismiss={() => { setWorkspaceIsVisible(false); }} />
           </div>
           {!isOverlayLayout ? (
             <ResizeHandle
+              onResizeStart={() => { setShowGridlines(true); }}
+              onResizeMove={(resizeElement) => {
+              }}
               onResizeStop={(position) => {
-                setWorkspaceSize((currentSize) => {
-                  let newSize = currentSize + -1 * position;
-
-                  if (newSize < 50) {
-                    newSize = 50;
-                  } else if (newSize > 500) {
-                    newSize = 500;
-                  }
-
-                  return newSize;
-                });
+                setShowGridlines(false);
               }}
             />
           ) : null}
@@ -241,7 +231,7 @@ const SecondaryNavigationPageContainer = ({
   );
 };
 
-SecondaryNavigationPageContainer.propTypes = propTypes;
+NavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
   isActive, children, render, portalElement, preload,
@@ -273,5 +263,5 @@ const NavigationPage = ({
   ), portalElement);
 };
 
-export default SecondaryNavigationPageContainer;
+export default NavigationPageContainer;
 export { NavigationPage };

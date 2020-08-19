@@ -34,19 +34,31 @@ class ResizeHandle extends React.Component {
   }
 
   handleDragMove(event, data) {
+    const { onResizeMove } = this.props;
+
     const handleNode = data.node;
 
     this.resizeHandleDragPosition += data.deltaX;
 
     handleNode.style.transform = `translate3d(${this.resizeHandleDragPosition}px, 0, 0)`;
+
+    if (onResizeMove) {
+      onResizeMove(handleNode);
+    }
   }
 
   handleDragStart(event, data) {
+    const { onResizeStart } = this.props;
+
     const handleNode = data.node;
 
     this.resizeHandleDragPosition = 0;
 
     handleNode.classList.add(cx('dragging'));
+
+    if (onResizeStart) {
+      onResizeStart(this.resizeHandleDragPosition);
+    }
   }
 
   handleDragStop(event, data) {

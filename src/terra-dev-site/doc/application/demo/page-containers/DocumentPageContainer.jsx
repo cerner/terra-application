@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
-import SecondaryNavigationPageContainer, { NavigationPage } from '../../../../../page-container/SecondaryNavigationPageContainer';
+import NavigationPageContainer, { NavigationPage } from '../../../../../page-container/NavigationPageContainer';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
@@ -17,7 +17,7 @@ const DocumentPageContainer = () => {
   }
 
   return (
-    <SecondaryNavigationPageContainer
+    <NavigationPageContainer
       enableWorkspace
       activePageKey={activePageKey}
       onRequestActivatePage={(key) => { setActivePageKey(key); }}
@@ -59,7 +59,7 @@ const DocumentPageContainer = () => {
           )}
         />
       ))}
-    </SecondaryNavigationPageContainer>
+    </NavigationPageContainer>
   );
 };
 

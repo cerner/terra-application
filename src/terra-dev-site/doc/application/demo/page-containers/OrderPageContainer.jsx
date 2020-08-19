@@ -1,13 +1,13 @@
 import React from 'react';
-import ApplicationPageContainer from '../../../../../page-container/ApplicationPageContainer';
+import PageContainer from '../../../../../page-container/PageContainer';
 import OrderProfilePage from '../pages/OrderProfilePage';
 
 const propTypes = {};
 
 const OrderPageContainer = () => (
-  <ApplicationPageContainer>
+  <PageContainer>
     <OrderProfilePage />
-  </ApplicationPageContainer>
+  </PageContainer>
 );
 
 OrderPageContainer.propTypes = propTypes;

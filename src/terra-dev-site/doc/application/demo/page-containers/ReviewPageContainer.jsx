@@ -1,13 +1,13 @@
 import React from 'react';
-import ApplicationPageContainer from '../../../../../page-container/ApplicationPageContainer';
+import PageContainer from '../../../../../page-container/PageContainer';
 import ChartReviewPage from '../pages/ChartReviewPage';
 
 const propTypes = {};
 
 const ReviewPageContainer = () => (
-  <ApplicationPageContainer enableWorkspace>
+  <PageContainer enableWorkspace>
     <ChartReviewPage />
-  </ApplicationPageContainer>
+  </PageContainer>
 );
 
 ReviewPageContainer.propTypes = propTypes;

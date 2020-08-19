@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'terra-button';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
-import ApplicationPageContainer from '../../../../../page-container/ApplicationPageContainer';
+import PageContainer from '../../../../../page-container/PageContainer';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 
@@ -17,17 +17,17 @@ const PagePresentingModal = ({ onRequestClose }) => {
         <Button text="Show Allergy Profile" onClick={() => { setShowAllergiesPage(true); }} />
         {showAllergiesPage && (
           <ApplicationModal size="large" title="Allergy Modal" onRequestClose={() => { setShowAllergiesPage(false); }}>
-            <ApplicationPageContainer>
+            <PageContainer>
               <AllergyProfilePage />
-            </ApplicationPageContainer>
+            </PageContainer>
           </ApplicationModal>
         )}
         <Button text="Show Order Profile" onClick={() => { setShowOrdersPage(true); }} />
         {showOrdersPage && (
           <ApplicationModal size="large" title="Order Modal" onRequestClose={() => { setShowOrdersPage(false); }}>
-            <ApplicationPageContainer>
+            <PageContainer>
               <OrderProfilePage />
-            </ApplicationPageContainer>
+            </PageContainer>
           </ApplicationModal>
         )}
       </div>

@@ -33,29 +33,21 @@
     }
   }
 
-  // .side-nav-is-open > .side-nav-sidebar {
-  //   display: block;
-  //   width: 100%;
-    
-  //   @include terra-mq-medium-up {
-  //     width: 200px;
-  //   }
-  // }
-
   .side-nav-body {
     border-right: 1px solid rgba(0, 0, 0, 0.75);
     flex: 1 1 auto;
     height: 100%;
     overflow: hidden;
+
+    .workspace-visible.workspace-medium & {
+      flex: 1 1 0; // share growth with workspace
+    }
+
+    .workspace-visible.workspace-large & {
+      flex: 0 0 auto; // disable flex growth
+      width: 320px;   // fix body width to 320px
+    }
   }
-
-  // .side-nav-is-open > .side-nav-body {
-  //   // display: none;
-
-  //   @include terra-mq-medium-up {
-  //     display: block;
-  //   }
-  // }
 
   .workspace {
     background-color: white;
@@ -64,6 +56,19 @@
     height: 100%;
     position: relative;
     z-index: 1;
+
+    .workspace-visible.workspace-small &:not(.overlay) {
+      width: 320px; // fix small width to 320
+    }
+
+    .workspace-visible.workspace-medium &:not(.overlay) {
+      flex: 1 1 0; // share growth with body
+    }
+
+    .workspace-visible.workspace-large &:not(.overlay) {
+      flex: 1 1 auto; // grow to fill remaining space left by fixed body
+    }
+
 
     &.visible {
       display: block;

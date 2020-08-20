@@ -1,4 +1,4 @@
-import ApplicationEventEmitter from '../../../src/application-event-emitter/ApplicationEventEmitter';
+import ApplicationEventEmitter from '../../../../src/utils/application-event-emitter/ApplicationEventEmitter';
 
 describe('ApplicationEventEmitter', () => {
   let eventEmitter;

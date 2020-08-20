@@ -11,6 +11,7 @@ const PageContainer = ({
   >
     <NavigationPage
       pageKey="default-page"
+      description="Default"
       render={() => children}
     />
   </NavigationPageContainer>

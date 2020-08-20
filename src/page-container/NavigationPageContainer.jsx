@@ -15,6 +15,7 @@ import BasePageContainer from './_BasePageContainer';
 import PageContainerContext from './PageContainerContext';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
+import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';
 
 import styles from './NavigationPageContainer.module.scss';
 
@@ -29,7 +30,18 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
     header={<ActionHeader title="Side Nav" />}
     fill
   >
-    <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
+    <CollapsingNavigationMenu
+      selectedPath={activePageKey}
+      onSelect={(key) => { onRequestActivatePage(key); }}
+      menuItems={[{
+        childItems: items.map((item) => ({
+          text: item.text,
+          name: item.text,
+          path: item.key,
+        })),
+      }]}
+    />
+    {/* <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
       {items.map((item) => (
         <ListItem
           key={item.key}
@@ -42,7 +54,7 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
           <div style={{ padding: '1rem' }}>{item.text}</div>
         </ListItem>
       ))}
-    </List>
+    </List> */}
   </ContentContainer>
 );
 
@@ -172,13 +184,13 @@ const NavigationPageContainer = ({
         ref={sideNavPanelRef}
         className={cx('side-nav-sidebar', { visible: sideNavIsVisible && hasSidebar, overlay: isOverlayLayout })}
       >
-        {sidebar || (
+        {sidebar || (hasSidebar && (
           <DefaultSideNavPanel
             activePageKey={activePageKey}
             onRequestActivatePage={activatePage}
             items={React.Children.map(children, (child) => ({ key: child.props.pageKey, text: child.props.description }))}
           />
-        )}
+        ))}
       </div>
       <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
         <PageContainerContext.Provider value={pageContainerContextValue}>

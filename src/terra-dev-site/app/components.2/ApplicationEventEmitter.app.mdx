@@ -17,7 +17,7 @@ import ApplicationEventEmitter from 'terra-application/lib/application-event-emi
 |`once`|`eventEmitter.once('event-name', listener)`|Adds a one-time listener function for the event named `event-name`. The next time `event-name` is triggered, this listener is removed and then invoked.|
 |`on`|`eventEmitter.on('event-name', listener)`|Adds the listener function to the end of the listeners array for the event named `event-name`. No checks are made to see if the listener has already been added. Multiple calls passing the same combination of `event-name` and listener will result in the listener being added, and called, multiple times.|
 |`addListener`|`eventEmitter.addListener('event-name', listener)`|Alias to `on`|
-|`off`|`eventEmitter.off('event-name', listener)`|Removes the specified listener from the listener array for the event named `event-name`.|
+|`off`|`eventEmitter.off('event-name', listener)`|Removes all specified listeners from the listener array for the event named `event-name`.|
 |`removeListener`|`eventEmitter.removeListener('event-name', listener)`|Alias to `on`|
 |`removeAllListeners`|`eventEmitter.removeAllListeners('event-name')`|Removes all listeners if not event names are specified, or those of the specified 'event-name'.|
 |`emit`|`eventEmitter.emit('event-name', arg1, arg2);`|Synchronously calls each of the listeners registered for the event named 'event-name', in the order they were registered, passing the supplied arguments to each.|
@@ -67,7 +67,7 @@ const listener = () => {listenCount += 1;}
 
 eventEmitter.on('event-name', listener);
 eventEmitter.on('event-name', listener);
-eventEmitter.off('event-name', listener);
+eventEmitter.off('event-name', listener);  // Removes all listeners registered for this event.
 eventEmitter.emit('event-name');  // Ignored: listenCount == 0
 ```
 

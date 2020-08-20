@@ -82,16 +82,10 @@ describe('ApplicationEventEmitter', () => {
 
   it('off', () => {
     eventEmitter.on('event-name', listener);
-    eventEmitter.on('event-name', listener);
     eventEmitter.off('event-name', listener);
     eventEmitter.emit('event-name');
 
-    expect(listenCount).toEqual(1);
-
-    eventEmitter.off('event-name', listener);
-    eventEmitter.emit('event-name');
-
-    expect(listenCount).toEqual(1);
+    expect(listenCount).toEqual(0);
   });
 
   it('removeListener', () => {

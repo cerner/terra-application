@@ -66,8 +66,7 @@ let listenCount = 0;
 const listener = () => {listenCount += 1;}
 
 eventEmitter.on('event-name', listener);
-eventEmitter.on('event-name', listener);
-eventEmitter.off('event-name', listener);  // Removes all listeners registered for this event.
+eventEmitter.off('event-name', listener);
 eventEmitter.emit('event-name');  // Ignored: listenCount == 0
 ```
 

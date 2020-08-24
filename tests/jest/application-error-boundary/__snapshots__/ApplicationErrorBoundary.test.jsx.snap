@@ -125,62 +125,67 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       }
     }
   >
-    <StatusView
-      buttonAttrs={Array []}
-      isAlignedTop={false}
-      isGlyphHidden={false}
-      message="terraApplication.errorBoundary.defaultErrorMessage"
-      variant="error"
+    <div
+      role="alert"
+      tabIndex="-1"
     >
-      <div
-        className="outer-view"
+      <StatusView
+        buttonAttrs={Array []}
+        isAlignedTop={false}
+        isGlyphHidden={false}
+        message="terraApplication.errorBoundary.defaultErrorMessage"
+        variant="error"
       >
         <div
-          className="top-space"
-        />
-        <div
-          className="inner-view"
+          className="outer-view"
         >
           <div
-            className="glyph"
-          >
-            <svg
-              className="error"
-            />
-          </div>
-          <p
-            className="title"
-          >
-            <FormattedMessage
-              id="Terra.status-view.error"
-              values={Object {}}
-            >
-              <span>
-                Terra.status-view.error
-              </span>
-            </FormattedMessage>
-          </p>
+            className="top-space"
+          />
           <div
-            className="divider"
+            className="inner-view"
           >
-            <Divider>
-              <hr
-                aria-hidden="true"
-                className="divider"
+            <div
+              className="glyph"
+            >
+              <svg
+                className="error"
               />
-            </Divider>
+            </div>
+            <p
+              className="title"
+            >
+              <FormattedMessage
+                id="Terra.status-view.error"
+                values={Object {}}
+              >
+                <span>
+                  Terra.status-view.error
+                </span>
+              </FormattedMessage>
+            </p>
+            <div
+              className="divider"
+            >
+              <Divider>
+                <hr
+                  aria-hidden="true"
+                  className="divider"
+                />
+              </Divider>
+            </div>
+            <p
+              className="message"
+            >
+              terraApplication.errorBoundary.defaultErrorMessage
+            </p>
           </div>
-          <p
-            className="message"
-          >
-            terraApplication.errorBoundary.defaultErrorMessage
-          </p>
+          <div
+            className="bottom-space"
+          />
         </div>
-        <div
-          className="bottom-space"
-        />
-      </div>
-    </StatusView>
+      </StatusView>
+    </div>
   </ApplicationErrorBoundary>
 </InjectIntl(ApplicationErrorBoundary)>
 `;
@@ -244,62 +249,67 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       }
     }
   >
-    <StatusView
-      buttonAttrs={Array []}
-      isAlignedTop={false}
-      isGlyphHidden={false}
-      message="terraApplication.errorBoundary.defaultErrorMessage"
-      variant="error"
+    <div
+      role="alert"
+      tabIndex="-1"
     >
-      <div
-        className="outer-view"
+      <StatusView
+        buttonAttrs={Array []}
+        isAlignedTop={false}
+        isGlyphHidden={false}
+        message="terraApplication.errorBoundary.defaultErrorMessage"
+        variant="error"
       >
         <div
-          className="top-space"
-        />
-        <div
-          className="inner-view"
+          className="outer-view"
         >
           <div
-            className="glyph"
-          >
-            <svg
-              className="error"
-            />
-          </div>
-          <p
-            className="title"
-          >
-            <FormattedMessage
-              id="Terra.status-view.error"
-              values={Object {}}
-            >
-              <span>
-                Terra.status-view.error
-              </span>
-            </FormattedMessage>
-          </p>
+            className="top-space"
+          />
           <div
-            className="divider"
+            className="inner-view"
           >
-            <Divider>
-              <hr
-                aria-hidden="true"
-                className="divider"
+            <div
+              className="glyph"
+            >
+              <svg
+                className="error"
               />
-            </Divider>
+            </div>
+            <p
+              className="title"
+            >
+              <FormattedMessage
+                id="Terra.status-view.error"
+                values={Object {}}
+              >
+                <span>
+                  Terra.status-view.error
+                </span>
+              </FormattedMessage>
+            </p>
+            <div
+              className="divider"
+            >
+              <Divider>
+                <hr
+                  aria-hidden="true"
+                  className="divider"
+                />
+              </Divider>
+            </div>
+            <p
+              className="message"
+            >
+              terraApplication.errorBoundary.defaultErrorMessage
+            </p>
           </div>
-          <p
-            className="message"
-          >
-            terraApplication.errorBoundary.defaultErrorMessage
-          </p>
+          <div
+            className="bottom-space"
+          />
         </div>
-        <div
-          className="bottom-space"
-        />
-      </div>
-    </StatusView>
+      </StatusView>
+    </div>
   </ApplicationErrorBoundary>
 </InjectIntl(ApplicationErrorBoundary)>
 `;

@@ -67,8 +67,9 @@ class ApplicationErrorBoundary extends React.Component {
 
   componentDidUpdate() {
     this.resetError();
-    document.querySelector('#myId').focus();
-    console.log('lok^^^^^', document.querySelector('#myId'))
+    if (document.querySelector('#applicationErrorBoundary')) {
+      document.querySelector('#applicationErrorBoundary').focus();
+    }
   }
 
   componentDidCatch(error) {
@@ -94,7 +95,7 @@ class ApplicationErrorBoundary extends React.Component {
       const errorDetails = activeError.message.toString();
       const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
       return (
-        <div role="alert" id="myId" tabIndex="0">
+        <div role="alert" id="applicationErrorBoundary" tabIndex="-1">
           <StatusView
             variant="error"
             message={errorText}

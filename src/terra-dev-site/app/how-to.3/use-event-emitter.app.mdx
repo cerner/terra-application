@@ -3,7 +3,7 @@
 Any react component can use EventEmitter to send events for notification purposes. Listeners can be registered and removed at any given time. It is important to remove all listeners before the component or application is unmounted to prevent memory leaks. It is also a good practice to remove listeners at any point when they are no longer needed. See this [example](https://reactjs.org/docs/hooks-effect.html#explanation-why-effects-run-on-each-update) using the `useEffect` hook for removing listeners
 
 ```jsx
-import React, { useState } from 'react';
+import React from 'react';
 import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
 class EventEmitterExample extends React.Component {
@@ -27,7 +27,7 @@ class EventEmitterExample extends React.Component {
   }
 
   listener() {
-    this.setState({counter: this.state.counter + 1});
+    this.setState(prevState => ({ counter: prevState.counter + 1 }));
   }
 
   render() {
@@ -38,8 +38,8 @@ class EventEmitterExample extends React.Component {
         <p>
           Emitter:
           {' '}
-          <button type="button" onClick={() => { this.eventEmitter.emit('increment-counter'); }} >
-            {'Emit event to increment'}
+          <button type="button" onClick={() => { this.eventEmitter.emit('increment-counter'); }}>
+            Emit event to increment
           </button>
         </p>
         <p>
@@ -50,7 +50,7 @@ class EventEmitterExample extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default EventEmitterExample;
 ```

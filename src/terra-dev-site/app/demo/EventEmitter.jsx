@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
 class EventEmitterExample extends React.Component {
@@ -22,7 +22,7 @@ class EventEmitterExample extends React.Component {
   }
 
   listener() {
-    this.setState({counter: this.state.counter + 1});
+    this.setState(prevState => ({ counter: prevState.counter + 1 }));
   }
 
   render() {
@@ -33,8 +33,8 @@ class EventEmitterExample extends React.Component {
         <p>
           Emitter:
           {' '}
-          <button type="button" onClick={() => { this.eventEmitter.emit('increment-counter'); }} >
-            {'Emit event to increment'}
+          <button type="button" onClick={() => { this.eventEmitter.emit('increment-counter'); }}>
+            Emit event to increment
           </button>
         </p>
         <p>
@@ -45,6 +45,6 @@ class EventEmitterExample extends React.Component {
       </div>
     );
   }
-};
+}
 
 export default EventEmitterExample;

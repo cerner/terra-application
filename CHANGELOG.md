@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added logic to focus error boundary when triggered.
+
 ## 1.31.1 - (Aug 19, 2020)
 
 * Changed

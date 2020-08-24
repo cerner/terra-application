@@ -1,11 +1,11 @@
-import EventEmitter from 'eventemitter3';
+import EventEmitter3 from 'eventemitter3';
 
 let eventEmitterInstance = null;
 
-class ApplicationEventEmitter {
+class EventEmitter {
   constructor() {
     if (!eventEmitterInstance) {
-      eventEmitterInstance = new EventEmitter();
+      eventEmitterInstance = new EventEmitter3();
       return eventEmitterInstance;
     }
 
@@ -13,4 +13,4 @@ class ApplicationEventEmitter {
   }
 }
 
-export default ApplicationEventEmitter;
+export default EventEmitter;

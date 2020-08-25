@@ -23,7 +23,7 @@
     "url": "https://github.com/cerner/terra-application/issues"
   },
   "browserslist": [
-    "extends cerner/browserslist-config-terra"
+    "extends @cerner/browserslist-config-terra"
   ],
   "eslintConfig": {
     "extends": "@cerner/terra",

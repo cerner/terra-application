@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+## 1.31.1 - (Aug 19, 2020)
+
+* Changed
+  * Reverted "Updated `uuid` dependency to `v8.0.0`" due to IE10 compatibility issues
+
+## 1.31.0 - (Aug 18, 2020)
+
+* Changed
+  * Updated `uuid` dependency to `v8.0.0`.
+* Fixed
+  * Fix ApplicationStatusOverlayProvider contextType warning
+
+## 1.30.0 - (Aug 11, 2020)
+
 * Added
   * Added ApplicationStatusOverlay
   * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager

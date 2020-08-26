@@ -4,6 +4,8 @@
 
 * Changed
   * Updated `uuid` dependency to `v8.0.0`.
+  * Lock down terra-navigation-prompt to ensure MVB of terra-notification-dialog is consumed correctly
+
 * Fixed
   * Fix ApplicationStatusOverlayProvider contextType warning
 

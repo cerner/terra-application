@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Lock down terra-navigation-prompt to ensure MVB of terra-notification-dialog is consumed correctly
+
 ## 1.31.1 - (Aug 19, 2020)
 
 * Changed
@@ -11,7 +14,6 @@
 
 * Changed
   * Updated `uuid` dependency to `v8.0.0`.
-  * Lock down terra-navigation-prompt to ensure MVB of terra-notification-dialog is consumed correctly
 
 * Fixed
   * Fix ApplicationStatusOverlayProvider contextType warning

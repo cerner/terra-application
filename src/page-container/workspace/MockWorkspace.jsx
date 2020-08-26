@@ -15,7 +15,7 @@ const MockWorkspace = ({
 
   React.useEffect(() => {
     setMenuIsOpen(false);
-  }, [workspaceSize]);
+  }, [workspaceCustomSize]);
 
   return (
     <HeaderContainer
@@ -23,11 +23,13 @@ const MockWorkspace = ({
     >
       <div style={{ padding: '1rem' }}>
         <p>Workspace goes here.</p>
-        <p>
-          Size:
-          {' '}
-          <Button text={workspaceSize ? `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}` : `${workspaceCustomSize}px`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
-        </p>
+        {onUpdateSize && (
+          <p>
+            Size:
+            {' '}
+            <Button text={workspaceSize ? `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}` : `${workspaceCustomSize}px`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
+          </p>
+        )}
         <Menu
           isOpen={menuIsOpen}
           targetRef={() => menuButtonRef.current}

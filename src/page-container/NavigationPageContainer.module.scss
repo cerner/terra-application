@@ -59,7 +59,7 @@
     flex: 0 0 auto;
     height: 100%;
     position: relative;
-    z-index: 1;
+    z-index: 2;
 
     .workspace-visible.workspace-small &:not(.overlay) {
       width: 320px; // fix small width to 320

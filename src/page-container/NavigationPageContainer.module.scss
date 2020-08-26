@@ -30,6 +30,10 @@
       top: 0;
       bottom: 0;
       z-index: 1;
+
+      @include terra-mq-medium-up {
+        width: 200px;
+      }
     }
   }
 

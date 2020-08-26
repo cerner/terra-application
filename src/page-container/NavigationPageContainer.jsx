@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
-import List, { Item as ListItem } from 'terra-list';
 import Button, { ButtonVariants } from 'terra-button';
 import ActionHeader from 'terra-action-header';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
@@ -21,7 +20,8 @@ import styles from './NavigationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
-const flatLayoutBreakpoints = ['medium', 'large', 'huge', 'enormous'];
+const workspaceOverlayBreakpoints = ['tiny', 'small'];
+const sideNavOverlayBreakpoints = ['tiny', 'small', 'medium'];
 
 const propTypes = {};
 
@@ -41,42 +41,33 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
         })),
       }]}
     />
-    {/* <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
-      {items.map((item) => (
-        <ListItem
-          key={item.key}
-          isSelectable
-          isSelected={activePageKey === item.key}
-          onSelect={() => {
-            onRequestActivatePage(item.key);
-          }}
-        >
-          <div style={{ padding: '1rem' }}>{item.text}</div>
-        </ListItem>
-      ))}
-    </List> */}
   </ContentContainer>
 );
 
 const NavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
-  const hasSidebar = React.Children.count(children) > 1;
-
-  const [workspaceSize, setWorkspaceSize] = React.useState('small');
-  const [showGridlines, setShowGridlines] = React.useState(false);
-
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
-  const isOverlayLayout = !flatLayoutBreakpoints.includes(activeBreakpoint) || (activeBreakpoint === 'medium' && (workspaceSize === 'large' || workspaceSize === 'medium'));
-
-  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!isOverlayLayout);
-  const [sideNavIsVisible, setSideNavIsVisible] = React.useState(!isOverlayLayout);
-
+  const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
   const sideNavPanelRef = React.useRef();
+  const workspacePanelRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActivePageKeyRef = React.useRef();
+  const workspaceResizeBoundsRef = React.useRef();
+  const resizeOverlayRef = React.useRef();
+
+  const [workspaceSize, setWorkspaceSize] = React.useState('small');
+  const [workspaceCustomSize, setWorkspaceCustomSize] = React.useState();
+
+  const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
+  const hasSidebar = React.Children.count(children) > 1;
+  const hasOverlaySidebar = sideNavOverlayBreakpoints.indexOf(activeBreakpoint) !== -1;
+  const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
+
+  const hasOverlayWorkspace = workspaceOverlayBreakpoints.indexOf(activeBreakpoint) >= 0 || (activeBreakpoint === 'medium' && (workspaceSize === 'medium' || workspaceSize === 'large'));
+  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(enableWorkspace && !hasOverlayWorkspace);
 
   const pageContainerContextValue = React.useMemo(() => ({
     rightActionComponent: enableWorkspace ? (
@@ -87,15 +78,15 @@ const NavigationPageContainer = ({
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
-    leftActionComponent: hasSidebar ? (
+    leftActionComponent: hasSidebar && hasOverlaySidebar ? (
       <Button
         icon={<IconLeftPane />}
         text="Toggle Side Nav"
-        onClick={() => { setSideNavIsVisible((state) => !state); }}
+        onClick={() => { setSideNavOverlayIsVisible((state) => !state); }}
         variant={ButtonVariants.UTILITY}
       />
     ) : null,
-  }), [enableWorkspace, workspaceIsVisible, hasSidebar]);
+  }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
@@ -148,26 +139,38 @@ const NavigationPageContainer = ({
   }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
 
   React.useEffect(() => {
-    if (flatLayoutBreakpoints.includes(activeBreakpoint)) {
-      return undefined;
+    function resizeWorkspaceToFitWindow() {
+      workspaceResizeBoundsRef.current = {
+        maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
+        minWidth: 320,
+        currentWidth: workspaceCustomSize || workspacePanelRef.current.getBoundingClientRect().width,
+      };
+
+      const newWidth = workspaceResizeBoundsRef.current.currentWidth;
+
+      if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
+        setWorkspaceSize('large');
+        setWorkspaceCustomSize(workspaceResizeBoundsRef.current.maxWidth);
+      } else if (newWidth <= 100) {
+        setWorkspaceIsVisible(false);
+      } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
+        setWorkspaceSize('small');
+        setWorkspaceCustomSize(workspaceResizeBoundsRef.current.minWidth);
+      } else {
+        setWorkspaceSize(undefined);
+        setWorkspaceCustomSize(newWidth);
+      }
     }
 
-    const closeOpenOverlays = () => {
-      setSideNavIsVisible(false);
-      setWorkspaceIsVisible(false);
-    };
-
-    window.addEventListener('resize', closeOpenOverlays);
+    window.addEventListener('resize', resizeWorkspaceToFitWindow);
 
     return () => {
-      window.removeEventListener('resize', closeOpenOverlays);
+      window.removeEventListener('resize', resizeWorkspaceToFitWindow);
     };
-  }, [activeBreakpoint]);
+  });
 
   function activatePage(pageKey) {
-    if (isOverlayLayout) {
-      setSideNavIsVisible(false);
-    }
+    setSideNavOverlayIsVisible(false);
 
     if (pageKey === activePageKey) {
       return;
@@ -179,10 +182,17 @@ const NavigationPageContainer = ({
   return (
     <div
       className={cx('side-nav-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize}`]: enableWorkspace })}
+      ref={pageContainerRef}
     >
       <div
+        ref={resizeOverlayRef}
+        style={{
+          position: 'absolute', left: '0', right: '0', top: '0', bottom: '0', zIndex: '1', display: 'none',
+        }}
+      />
+      <div
         ref={sideNavPanelRef}
-        className={cx('side-nav-sidebar', { visible: sideNavIsVisible && hasSidebar, overlay: isOverlayLayout })}
+        className={cx('side-nav-sidebar', { visible: hasSidebar && sideNavIsVisible, overlay: hasOverlaySidebar })}
       >
         {sidebar || (hasSidebar && (
           <DefaultSideNavPanel
@@ -218,22 +228,47 @@ const NavigationPageContainer = ({
       </div>
       {enableWorkspace && (
         <div
-          className={cx('workspace', { visible: workspaceIsVisible, overlay: isOverlayLayout })}
+          className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
+          style={workspaceCustomSize && !workspaceSize ? { width: `${workspaceCustomSize}px` } : null}
+          ref={workspacePanelRef}
         >
           <div
             style={{
               height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
             }}
           >
-            <MockWorkspace workspaceSize={workspaceSize} onUpdateSize={(size) => { setWorkspaceSize(size); }} onDismiss={() => { setWorkspaceIsVisible(false); }} />
+            <MockWorkspace workspaceSize={workspaceSize} workspaceCustomSize={workspaceCustomSize} onUpdateSize={(size) => { setWorkspaceSize(size); setWorkspaceCustomSize(undefined); }} onDismiss={() => { setWorkspaceIsVisible(false); }} />
           </div>
-          {!isOverlayLayout ? (
+          {workspaceOverlayBreakpoints.indexOf(activeBreakpoint) === -1 && activeBreakpoint !== 'medium' ? (
             <ResizeHandle
-              onResizeStart={() => { setShowGridlines(true); }}
-              onResizeMove={(resizeElement) => {
+              onResizeStart={() => {
+                resizeOverlayRef.current.style.display = 'block';
+                resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+
+                workspaceResizeBoundsRef.current = {
+                  maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
+                  minWidth: 320,
+                  currentWidth: workspaceCustomSize || workspacePanelRef.current.getBoundingClientRect().width,
+                };
               }}
               onResizeStop={(position) => {
-                setShowGridlines(false);
+                resizeOverlayRef.current.style.display = 'none';
+                resizeOverlayRef.current.style.backgroundColor = 'initial';
+
+                const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
+
+                if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
+                  setWorkspaceSize('large');
+                  setWorkspaceCustomSize(workspaceResizeBoundsRef.current.maxWidth);
+                } else if (newWidth <= 100) {
+                  setWorkspaceIsVisible(false);
+                } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
+                  setWorkspaceSize('small');
+                  setWorkspaceCustomSize(workspaceResizeBoundsRef.current.minWidth);
+                } else {
+                  setWorkspaceSize(undefined);
+                  setWorkspaceCustomSize(newWidth);
+                }
               }}
             />
           ) : null}

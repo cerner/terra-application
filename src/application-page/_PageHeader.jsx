@@ -3,7 +3,6 @@ import classNames from 'classnames/bind';
 import Button, { ButtonVariants } from 'terra-button';
 import Popup from 'terra-popup';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
-import IconClose from 'terra-icon/lib/icon/IconClose';
 
 import List, { Item as ListItem } from 'terra-list';
 import ActionHeader from 'terra-action-header';
@@ -16,7 +15,7 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageHeader = ({
-  actions, onBack, title, onClose,
+  actions, onBack, title,
 }) => {
   const [showPopup, setShowPopup] = React.useState(false);
   const moreActionsButtonRef = React.useRef();
@@ -55,6 +54,7 @@ const PageHeader = ({
             isDisabled={action.isDisabled}
           />
         ))}
+        {pageContainerContext?.rightActionComponent}
         {(actions && actions.slice(2).length) ? (
           <Button
             refCallback={(ref) => {
@@ -74,7 +74,7 @@ const PageHeader = ({
             onClick={(event) => { event.preventDefault(); setShowPopup(true); }}
           />
         ) : undefined}
-        {onClose ? (
+        {/* {onClose ? (
           <Button
             className={cx(['header-button'])}
             icon={<IconClose />}
@@ -82,8 +82,7 @@ const PageHeader = ({
             onClick={onClose}
             variant={ButtonVariants.UTILITY}
           />
-        ) : null}
-        {pageContainerContext?.rightActionComponent}
+        ) : null} */}
         {showPopup && (
           <Popup
             isOpen

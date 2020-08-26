@@ -7,7 +7,9 @@ import HeaderContainer from '../../header-container/_HeaderContainer';
 
 const propTypes = {};
 
-const MockWorkspace = ({ onDismiss, workspaceSize, onUpdateSize }) => {
+const MockWorkspace = ({
+  onDismiss, workspaceSize, workspaceCustomSize, onUpdateSize,
+}) => {
   const [menuIsOpen, setMenuIsOpen] = React.useState(false);
   const menuButtonRef = React.useRef();
 
@@ -24,7 +26,7 @@ const MockWorkspace = ({ onDismiss, workspaceSize, onUpdateSize }) => {
         <p>
           Size:
           {' '}
-          <Button text={`${workspaceSize[0].toUpperCase() + workspaceSize.substring(1)}`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
+          <Button text={workspaceSize ? `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}` : `${workspaceCustomSize}px`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
         </p>
         <Menu
           isOpen={menuIsOpen}

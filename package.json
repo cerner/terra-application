@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.30.0",
+  "version": "1.31.1",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <11"
@@ -120,7 +120,7 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
-    "uuid": "^8.0.0",
+    "uuid": "^3.0.0",
     "wicg-inert": "^3.0.2"
   },
   "peerDependencies": {

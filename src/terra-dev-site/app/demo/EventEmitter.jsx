@@ -3,7 +3,7 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
 const EventEmitterExample = () => {
   const [counter, setCounter] = useState(0);
-  const [eventEmitter, setEventEmitter] = useState(() => new EventEmitter()); // eslint-disable-line no-unused-vars
+  const [eventEmitter] = useState(() => new EventEmitter());
 
   useEffect(() => {
     const listener = () => {

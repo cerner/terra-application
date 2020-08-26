@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added EventEmitter
+
 ## 1.31.1 - (Aug 19, 2020)
 
 * Changed
@@ -19,7 +22,6 @@
 * Added
   * Added ApplicationStatusOverlay
   * Added ApplicationStatusOverlayProvider to ApplicationBase, ApplicationNavigation, ModalManager and SlidePanelManager
-  * Added EventEmitter
 * Fixed
   * Fixed firefox tests for application navigation
 * Changed

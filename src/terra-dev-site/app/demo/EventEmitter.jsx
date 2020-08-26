@@ -1,50 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
-class EventEmitterExample extends React.Component {
-  constructor() {
-    super();
+const EventEmitterExample = () => {
+  const [counter, setCounter] = useState(0);
+  const [eventEmitter, setEventEmitter] = useState(() => new EventEmitter()); // eslint-disable-line no-unused-vars
 
-    this.state = {
-      counter: 0,
+  useEffect(() => {
+    const listener = () => {
+      setCounter(prevCounter => prevCounter + 1);
     };
 
-    this.listener = this.listener.bind(this);
-    this.eventEmitter = new EventEmitter();
-  }
+    eventEmitter.on('increment-counter', listener);
 
-  componentDidMount() {
-    this.eventEmitter.on('increment-counter', this.listener);
-  }
+    return () => {
+      eventEmitter.removeAllListeners();
+    };
+  }, [eventEmitter]);
 
-  componentWillUnmount() {
-    this.eventEmitter.removeAllListeners();
-  }
-
-  listener() {
-    this.setState(prevState => ({ counter: prevState.counter + 1 }));
-  }
-
-  render() {
-    return (
-      <div>
-        <h3>Event Emitter</h3>
-        <p>The EventEmitter is used to facilitate communications within the application. Clicking the emitter button emits an event to the Listener to increment the value by 1.</p>
-        <p>
-          Emitter:
-          {' '}
-          <button type="button" onClick={() => { this.eventEmitter.emit('increment-counter'); }}>
-            Emit event to increment
-          </button>
-        </p>
-        <p>
-          Listener:
-          {' '}
-          {this.state.counter}
-        </p>
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      <h3>Event Emitter</h3>
+      <p>The EventEmitter is used to facilitate communications within the application. Clicking the emitter button emits an event to the Listener to increment the value by 1.</p>
+      <p>
+        Emitter:
+        {' '}
+        <button type="button" onClick={() => { eventEmitter.emit('increment-counter'); }}>
+          Emit event to increment
+        </button>
+      </p>
+      <p>
+        Listener:
+        {' '}
+        {counter}
+      </p>
+    </div>
+  );
+};
 
 export default EventEmitterExample;

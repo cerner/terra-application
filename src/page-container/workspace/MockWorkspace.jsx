@@ -70,9 +70,9 @@ const MockWorkspace = ({
         {menuOptions && (
           <>
             <p>
-            Size:
+              Size:
               {' '}
-              <Button text={workspaceCustomSize ? `${workspaceCustomSize}px` : `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
+              <Button text={workspaceCustomSize !== undefined ? `${workspaceCustomSize * 100}%` : `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
             </p>
             <Menu
               isOpen={menuIsOpen}

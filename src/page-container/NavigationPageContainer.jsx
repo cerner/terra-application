@@ -46,20 +46,20 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
 const initialSizeForBreakpoint = (breakpoint) => {
   if (breakpoint === 'tiny' || breakpoint === 'small') {
     return {
-      px: undefined,
+      scale: undefined,
       type: undefined,
     };
   }
 
   if (breakpoint === 'medium') {
     return {
-      px: undefined,
+      scale: undefined,
       type: 'split',
     };
   }
 
   return {
-    px: 320,
+    scale: 0,
     type: undefined,
   };
 };
@@ -71,6 +71,7 @@ const NavigationPageContainer = ({
 
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
+  const pageBodyRef = React.useRef();
   const sideNavPanelRef = React.useRef();
   const workspacePanelRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -79,7 +80,7 @@ const NavigationPageContainer = ({
   const resizeOverlayRef = React.useRef();
 
   const userSelectedTypeRef = React.useRef();
-  const userSelectedPxRef = React.useRef(320);
+  const userSelectedScaleRef = React.useRef(0);
   const [workspaceSize, setWorkspaceSize] = React.useState(initialSizeForBreakpoint(activeBreakpoint));
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
@@ -112,21 +113,21 @@ const NavigationPageContainer = ({
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
 
-    if (!sideNavBodyRef.current) {
+    if (!pageBodyRef.current) {
       return;
     }
 
-    if (sideNavBodyRef.current.contains(pageNodeForActivePage?.element)) {
+    if (pageBodyRef.current.contains(pageNodeForActivePage?.element)) {
       return;
     }
 
     if (lastActivePageKeyRef.current) {
       pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
-      sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
+      pageBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
-      sideNavBodyRef.current.appendChild(pageNodeForActivePage.element);
+      pageBodyRef.current.appendChild(pageNodeForActivePage.element);
 
       const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
       if (pageMainElement) {
@@ -159,49 +160,6 @@ const NavigationPageContainer = ({
     onRequestActivatePage(pageKeys[0]);
   }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
 
-  React.useEffect(() => {
-    if (activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || activeBreakpoint === 'medium') {
-      return undefined;
-    }
-
-    if (!workspaceSize.px) {
-      return undefined;
-    }
-
-    function resizeWorkspaceToFitWindow() {
-      workspaceResizeBoundsRef.current = {
-        maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
-        minWidth: 320,
-        currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
-      };
-
-      const newWidth = userSelectedPxRef.current || workspaceResizeBoundsRef.current.currentWidth;
-
-      if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
-        setWorkspaceSize({
-          px: workspaceResizeBoundsRef.current.maxWidth,
-          type: undefined,
-        });
-      } else if (newWidth < workspaceResizeBoundsRef.current.minWidth) {
-        setWorkspaceSize({
-          px: workspaceResizeBoundsRef.current.minWidth,
-          type: undefined,
-        });
-      } else {
-        setWorkspaceSize({
-          px: newWidth,
-          type: undefined,
-        });
-      }
-    }
-
-    window.addEventListener('resize', resizeWorkspaceToFitWindow);
-
-    return () => {
-      window.removeEventListener('resize', resizeWorkspaceToFitWindow);
-    };
-  }, [activeBreakpoint, workspaceSize.px]);
-
   const lastActiveSizeRef = React.useRef();
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {
@@ -217,33 +175,28 @@ const NavigationPageContainer = ({
 
     if (activeBreakpoint === 'tiny' || activeBreakpoint === 'small') {
       setWorkspaceSize({
-        px: undefined,
+        scale: undefined,
         type: undefined,
       });
     } else if (activeBreakpoint === 'medium') {
-      if (workspaceSize.size === undefined || workspaceSize.size === 'small' || workspaceSize.size === 'medium') {
+      const scale = userSelectedScaleRef.current || workspaceSize.scale;
+
+      if (scale === undefined || scale <= 0.5) {
         setWorkspaceSize({
-          px: undefined,
-          type: userSelectedTypeRef.current || 'split',
+          scale: undefined,
+          type: 'split',
         });
-      } else if (workspaceSize.size === 'large') {
+      } else if (scale > 0.5) {
         setWorkspaceSize({
-          px: undefined,
-          type: userSelectedTypeRef.current || 'overlay',
+          scale: undefined,
+          type: 'overlay',
         });
       }
     } else if (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous') {
-      if (workspaceSize.type === 'split') {
-        setWorkspaceSize({
-          px: userSelectedPxRef.current,
-          type: undefined,
-        });
-      } else if (workspaceSize.type === 'overlay') {
-        setWorkspaceSize({
-          px: userSelectedPxRef.current,
-          type: undefined,
-        });
-      }
+      setWorkspaceSize({
+        scale: userSelectedScaleRef.current || 0,
+        type: undefined,
+      });
     }
   }, [workspaceSize, activeBreakpoint]);
 
@@ -281,131 +234,140 @@ const NavigationPageContainer = ({
         ))}
       </div>
       <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
-        <PageContainerContext.Provider value={pageContainerContextValue}>
-          {React.Children.map(children, (child) => {
-            let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
-            if (!portalElement) {
-              portalElement = document.createElement('div');
-              portalElement.style.position = 'relative';
-              portalElement.style.height = '100%';
-              portalElement.style.width = '100%';
-              portalElement.id = `side-nav-${child.props.pageKey}`;
-              pageContainerPortalsRef.current[child.props.pageKey] = {
-                element: portalElement,
-              };
-            }
-
-            return (
-              React.cloneElement(child, {
-                isActive: child.props.pageKey === activePageKey, portalElement, enableWorkspace,
-              })
-            );
-          })}
-
-        </PageContainerContext.Provider>
-      </div>
-      {enableWorkspace && (
         <div
-          className={cx('workspace', { visible: workspaceIsVisible, overlay: activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay' })}
-          style={workspaceSize.px ? { width: `${workspaceSize.px}px` } : null}
-          ref={workspacePanelRef}
+          ref={pageBodyRef}
+          className={cx('page-body')}
+          style={workspaceSize.scale !== undefined ? { flexGrow: `${1 - workspaceSize.scale}` } : null}
         >
-          <div
-            style={{
-              height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
-            }}
-          >
-            <MockWorkspace
-              workspaceSize={workspaceSize.size || workspaceSize.type}
-              workspaceCustomSize={workspaceSize.px}
-              onUpdateSize={(size) => {
-                userSelectedTypeRef.current = undefined;
-
-                if (size === 'small') {
-                  userSelectedPxRef.current = 320;
-                  setWorkspaceSize({
-                    px: userSelectedPxRef.current,
-                    type: undefined,
-                  });
-                } else if (size === 'medium') {
-                  userSelectedPxRef.current = Math.max(Math.floor((pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320 - 320) / 2) + 320, 320);
-
-                  setWorkspaceSize({
-                    px: userSelectedPxRef.current,
-                    type: undefined,
-                  });
-                } else if (size === 'large') {
-                  userSelectedPxRef.current = Math.max(pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320, 320);
-                  setWorkspaceSize({
-                    px: userSelectedPxRef.current,
-                    type: undefined,
-                  });
-                } else if (size === 'split') {
-                  userSelectedTypeRef.current = 'split';
-                  setWorkspaceSize({
-                    px: undefined,
-                    type: 'split',
-                  });
-                } else if (size === 'overlay') {
-                  userSelectedTypeRef.current = 'overlay';
-                  setWorkspaceSize({
-                    px: undefined,
-                    type: 'overlay',
-                  });
-                }
-              }}
-              onDismiss={() => {
-                setWorkspaceIsVisible(false);
-              }}
-            />
-          </div>
-          {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
-            <ResizeHandle
-              onResizeStart={() => {
-                resizeOverlayRef.current.style.display = 'block';
-                resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-
-                workspaceResizeBoundsRef.current = {
-                  maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
-                  minWidth: 320,
-                  currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
+          <PageContainerContext.Provider value={pageContainerContextValue}>
+            {React.Children.map(children, (child) => {
+              let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
+              if (!portalElement) {
+                portalElement = document.createElement('div');
+                portalElement.style.position = 'relative';
+                portalElement.style.height = '100%';
+                portalElement.style.width = '100%';
+                portalElement.id = `side-nav-${child.props.pageKey}`;
+                pageContainerPortalsRef.current[child.props.pageKey] = {
+                  element: portalElement,
                 };
-              }}
-              onResizeStop={(position) => {
-                resizeOverlayRef.current.style.display = 'none';
-                resizeOverlayRef.current.style.backgroundColor = 'initial';
+              }
 
-                const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
+              return (
+                React.cloneElement(child, {
+                  isActive: child.props.pageKey === activePageKey, portalElement, enableWorkspace,
+                })
+              );
+            })}
 
-                userSelectedTypeRef.current = undefined;
-
-                if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
-                  userSelectedPxRef.current = workspaceResizeBoundsRef.current.maxWidth;
-
-                  setWorkspaceSize({
-                    px: workspaceResizeBoundsRef.current.maxWidth,
-                    type: undefined,
-                  });
-                } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
-                  userSelectedPxRef.current = workspaceResizeBoundsRef.current.minWidth;
-
-                  setWorkspaceSize({
-                    px: workspaceResizeBoundsRef.current.minWidth,
-                    type: undefined,
-                  });
-                } else {
-                  userSelectedPxRef.current = newWidth;
-
-                  setWorkspaceSize({
-                    px: newWidth,
-                    type: undefined,
-                  });
-                }
-              }}
-            />
-          ) : null}
+          </PageContainerContext.Provider>
         </div>
-      )}
+        {enableWorkspace && (
+          <div
+            ref={workspacePanelRef}
+            className={cx('workspace', { visible: workspaceIsVisible, overlay: activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay' })}
+            style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
+          >
+            <div
+              style={{
+                height: '100%', overflow: 'hidden', width: '100%', position: 'relative',
+              }}
+            >
+              <MockWorkspace
+                workspaceSize={workspaceSize.type}
+                workspaceCustomSize={workspaceSize.scale}
+                onUpdateSize={(size) => {
+                  userSelectedTypeRef.current = undefined;
+
+                  if (size === 'small') {
+                    userSelectedScaleRef.current = 0;
+                    setWorkspaceSize({
+                      scale: 0,
+                      type: undefined,
+                    });
+                  } else if (size === 'medium') {
+                    userSelectedScaleRef.current = 0.5;
+
+                    setWorkspaceSize({
+                      scale: 0.5,
+                      type: undefined,
+                    });
+                  } else if (size === 'large') {
+                    userSelectedScaleRef.current = 1.0;
+
+                    setWorkspaceSize({
+                      scale: 1.0,
+                      type: undefined,
+                    });
+                  } else if (size === 'split') {
+                    userSelectedTypeRef.current = 'split';
+
+                    setWorkspaceSize({
+                      scale: undefined,
+                      type: 'split',
+                    });
+                  } else if (size === 'overlay') {
+                    userSelectedTypeRef.current = 'overlay';
+
+                    setWorkspaceSize({
+                      scale: undefined,
+                      type: 'overlay',
+                    });
+                  }
+                }}
+                onDismiss={() => {
+                  setWorkspaceIsVisible(false);
+                }}
+              />
+            </div>
+            {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
+              <ResizeHandle
+                onResizeStart={() => {
+                  resizeOverlayRef.current.style.display = 'block';
+                  resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+
+                  workspaceResizeBoundsRef.current = {
+                    range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
+                    currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
+                  };
+                }}
+                onResizeStop={(position) => {
+                  resizeOverlayRef.current.style.display = 'none';
+                  resizeOverlayRef.current.style.backgroundColor = 'initial';
+
+                  const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
+                  const scale = (newWidth - 320) / workspaceResizeBoundsRef.current.range;
+
+                  userSelectedTypeRef.current = undefined;
+
+                  if (scale >= 1) {
+                    userSelectedScaleRef.current = 1.0;
+
+                    setWorkspaceSize({
+                      scale: 1.0,
+                      type: undefined,
+                    });
+                  } else if (scale < 0) {
+                    userSelectedScaleRef.current = 0;
+
+                    setWorkspaceSize({
+                      scale: 0,
+                      type: undefined,
+                    });
+                  } else {
+                    userSelectedScaleRef.current = scale;
+
+                    setWorkspaceSize({
+                      scale,
+                      type: undefined,
+                    });
+                  }
+                }}
+              />
+            ) : null}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

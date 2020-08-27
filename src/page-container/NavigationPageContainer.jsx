@@ -237,7 +237,7 @@ const NavigationPageContainer = ({
         <div
           ref={pageBodyRef}
           className={cx('page-body')}
-          style={workspaceSize.scale !== undefined ? { flexGrow: `${1 - workspaceSize.scale}` } : null}
+          style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null}
         >
           <PageContainerContext.Provider value={pageContainerContextValue}>
             {React.Children.map(children, (child) => {

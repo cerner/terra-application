@@ -64,10 +64,12 @@ const NotificationBanner = ({
    * define unique identifiers themselves.
    */
   const bannerRegistration = React.useContext(BannerRegistrationContext);
+  const uuid = React.useRef(uuidv4());
 
+  /**
+   * Register banner props to the Banner Registration Context.
+   */
   React.useEffect(() => {
-    const uuid = uuidv4();
-
     /**
      * If the bannerRegistration value is the ProviderRegistrationContext's default value,
      * then there is not a matching BannerProvider above it in the hierarchy.
@@ -77,19 +79,22 @@ const NotificationBanner = ({
       throw new Error('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
-    bannerRegistration.registerNotificationBanner(uuid, {
+    bannerRegistration.registerNotificationBanner(uuid.current, {
       bannerAction,
       custom,
       description,
-      key: uuid,
+      key: uuid.current,
       onRequestClose,
       variant,
     });
-
-    return () => {
-      bannerRegistration.unregisterNotificationBanner(uuid, variant);
-    };
   }, [bannerRegistration, description, custom, bannerAction, onRequestClose, variant]);
+
+  /**
+   * Unregister banner from the Banner Registration Context.
+   */
+  React.useEffect(() => () => {
+    bannerRegistration.unregisterNotificationBanner(uuid.current, variant);
+  }, [bannerRegistration, variant]);
 
   return null;
 };

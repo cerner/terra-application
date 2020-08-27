@@ -47,7 +47,6 @@ const initialSizeForBreakpoint = (breakpoint) => {
   if (breakpoint === 'tiny' || breakpoint === 'small') {
     return {
       px: undefined,
-      size: undefined,
       type: undefined,
     };
   }
@@ -55,14 +54,12 @@ const initialSizeForBreakpoint = (breakpoint) => {
   if (breakpoint === 'medium') {
     return {
       px: undefined,
-      size: undefined,
       type: 'split',
     };
   }
 
   return {
-    px: undefined,
-    size: 'small',
+    px: 320,
     type: undefined,
   };
 };
@@ -81,9 +78,8 @@ const NavigationPageContainer = ({
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
 
-  const userSelectedSizeRef = React.useRef();
   const userSelectedTypeRef = React.useRef();
-  const userSelectedPxRef = React.useRef();
+  const userSelectedPxRef = React.useRef(320);
   const [workspaceSize, setWorkspaceSize] = React.useState(initialSizeForBreakpoint(activeBreakpoint));
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
@@ -184,21 +180,18 @@ const NavigationPageContainer = ({
       if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
         setWorkspaceSize({
           px: workspaceResizeBoundsRef.current.maxWidth,
-          size: undefined,
           type: undefined,
         });
-      } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
+      } else if (newWidth < workspaceResizeBoundsRef.current.minWidth) {
         setWorkspaceSize({
-          px: undefined,
-          size: 'small',
+          px: workspaceResizeBoundsRef.current.minWidth,
           type: undefined,
         });
       } else {
-        setWorkspaceSize((state) => ({
+        setWorkspaceSize({
           px: newWidth,
-          size: state.size,
           type: undefined,
-        }));
+        });
       }
     }
 
@@ -225,20 +218,17 @@ const NavigationPageContainer = ({
     if (activeBreakpoint === 'tiny' || activeBreakpoint === 'small') {
       setWorkspaceSize({
         px: undefined,
-        size: undefined,
         type: undefined,
       });
     } else if (activeBreakpoint === 'medium') {
       if (workspaceSize.size === undefined || workspaceSize.size === 'small' || workspaceSize.size === 'medium') {
         setWorkspaceSize({
           px: undefined,
-          size: undefined,
           type: userSelectedTypeRef.current || 'split',
         });
       } else if (workspaceSize.size === 'large') {
         setWorkspaceSize({
           px: undefined,
-          size: undefined,
           type: userSelectedTypeRef.current || 'overlay',
         });
       }
@@ -246,13 +236,11 @@ const NavigationPageContainer = ({
       if (workspaceSize.type === 'split') {
         setWorkspaceSize({
           px: userSelectedPxRef.current,
-          size: !userSelectedPxRef.current ? userSelectedSizeRef.current || 'small' : undefined,
           type: undefined,
         });
       } else if (workspaceSize.type === 'overlay') {
         setWorkspaceSize({
-          px: undefined,
-          size: !userSelectedPxRef.current ? userSelectedSizeRef.current || 'large' : undefined,
+          px: userSelectedPxRef.current,
           type: undefined,
         });
       }
@@ -332,41 +320,36 @@ const NavigationPageContainer = ({
               workspaceCustomSize={workspaceSize.px}
               onUpdateSize={(size) => {
                 userSelectedTypeRef.current = undefined;
-                userSelectedPxRef.current = undefined;
 
                 if (size === 'small') {
-                  userSelectedSizeRef.current = 'small';
+                  userSelectedPxRef.current = 320;
                   setWorkspaceSize({
-                    px: undefined,
-                    size: 'small',
+                    px: userSelectedPxRef.current,
                     type: undefined,
                   });
                 } else if (size === 'medium') {
-                  userSelectedSizeRef.current = 'medium';
+                  userSelectedPxRef.current = Math.max(Math.floor((pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320 - 320) / 2) + 320, 320);
+
                   setWorkspaceSize({
-                    px: undefined,
-                    size: 'medium',
+                    px: userSelectedPxRef.current,
                     type: undefined,
                   });
                 } else if (size === 'large') {
-                  userSelectedSizeRef.current = 'large';
+                  userSelectedPxRef.current = Math.max(pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320, 320);
                   setWorkspaceSize({
-                    px: undefined,
-                    size: 'large',
+                    px: userSelectedPxRef.current,
                     type: undefined,
                   });
                 } else if (size === 'split') {
                   userSelectedTypeRef.current = 'split';
                   setWorkspaceSize({
                     px: undefined,
-                    size: undefined,
                     type: 'split',
                   });
                 } else if (size === 'overlay') {
                   userSelectedTypeRef.current = 'overlay';
                   setWorkspaceSize({
                     px: undefined,
-                    size: undefined,
                     type: 'overlay',
                   });
                 }
@@ -394,7 +377,6 @@ const NavigationPageContainer = ({
 
                 const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
 
-                userSelectedSizeRef.current = undefined;
                 userSelectedTypeRef.current = undefined;
 
                 if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
@@ -402,7 +384,6 @@ const NavigationPageContainer = ({
 
                   setWorkspaceSize({
                     px: workspaceResizeBoundsRef.current.maxWidth,
-                    size: undefined,
                     type: undefined,
                   });
                 } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
@@ -410,7 +391,6 @@ const NavigationPageContainer = ({
 
                   setWorkspaceSize({
                     px: workspaceResizeBoundsRef.current.minWidth,
-                    size: undefined,
                     type: undefined,
                   });
                 } else {
@@ -418,7 +398,6 @@ const NavigationPageContainer = ({
 
                   setWorkspaceSize({
                     px: newWidth,
-                    size: undefined,
                     type: undefined,
                   });
                 }

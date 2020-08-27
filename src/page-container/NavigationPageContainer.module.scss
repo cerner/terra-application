@@ -61,18 +61,18 @@
     position: relative;
     z-index: 2;
 
-    .workspace-visible.workspace-small &:not(.overlay) {
+    .workspace-visible.workspace-small &, 
+    .workspace-visible.workspace-split & {
       width: 320px; // fix small width to 320
     }
 
-    .workspace-visible.workspace-medium &:not(.overlay) {
+    .workspace-visible.workspace-medium & {
       flex: 1 1 0; // share growth with body
     }
 
-    .workspace-visible.workspace-large &:not(.overlay) {
+    .workspace-visible.workspace-large & {
       flex: 1 1 auto; // grow to fill remaining space left by fixed body
     }
-
 
     &.visible {
       display: block;

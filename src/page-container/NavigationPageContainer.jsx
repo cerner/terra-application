@@ -20,7 +20,6 @@ import styles from './NavigationPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
-const workspaceOverlayBreakpoints = ['tiny', 'small'];
 const sideNavOverlayBreakpoints = ['tiny', 'small', 'medium'];
 
 const propTypes = {};
@@ -44,6 +43,30 @@ const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) =>
   </ContentContainer>
 );
 
+const initialSizeForBreakpoint = (breakpoint) => {
+  if (breakpoint === 'tiny' || breakpoint === 'small') {
+    return {
+      px: undefined,
+      size: undefined,
+      type: undefined,
+    };
+  }
+
+  if (breakpoint === 'medium') {
+    return {
+      px: undefined,
+      size: undefined,
+      type: 'split',
+    };
+  }
+
+  return {
+    px: undefined,
+    size: 'small',
+    type: undefined,
+  };
+};
+
 const NavigationPageContainer = ({
   sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
 }) => {
@@ -58,14 +81,17 @@ const NavigationPageContainer = ({
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
 
-  const [workspaceCustomSize, setWorkspaceCustomSize] = React.useState(320);
+  const userSelectedSizeRef = React.useRef();
+  const userSelectedTypeRef = React.useRef();
+  const userSelectedPxRef = React.useRef();
+  const [workspaceSize, setWorkspaceSize] = React.useState(initialSizeForBreakpoint(activeBreakpoint));
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
   const hasSidebar = React.Children.count(children) > 1;
   const hasOverlaySidebar = sideNavOverlayBreakpoints.indexOf(activeBreakpoint) !== -1;
   const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
 
-  const hasOverlayWorkspace = workspaceOverlayBreakpoints.indexOf(activeBreakpoint) >= 0;
+  const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(enableWorkspace && !hasOverlayWorkspace);
 
   const pageContainerContextValue = React.useMemo(() => ({
@@ -138,28 +164,41 @@ const NavigationPageContainer = ({
   }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
 
   React.useEffect(() => {
-    function resizeWorkspaceToFitWindow() {
-      if (hasOverlayWorkspace) {
-        setWorkspaceCustomSize(320);
-        return;
-      }
+    if (activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || activeBreakpoint === 'medium') {
+      return undefined;
+    }
 
+    if (!workspaceSize.px) {
+      return undefined;
+    }
+
+    function resizeWorkspaceToFitWindow() {
       workspaceResizeBoundsRef.current = {
         maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
         minWidth: 320,
-        currentWidth: workspaceCustomSize || workspacePanelRef.current.getBoundingClientRect().width,
+        currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
       };
 
-      const newWidth = workspaceResizeBoundsRef.current.currentWidth;
+      const newWidth = userSelectedPxRef.current || workspaceResizeBoundsRef.current.currentWidth;
 
       if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
-        setWorkspaceCustomSize(workspaceResizeBoundsRef.current.maxWidth);
-      } else if (newWidth <= 100) {
-        setWorkspaceIsVisible(false);
+        setWorkspaceSize({
+          px: workspaceResizeBoundsRef.current.maxWidth,
+          size: undefined,
+          type: undefined,
+        });
       } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
-        setWorkspaceCustomSize(workspaceResizeBoundsRef.current.minWidth);
+        setWorkspaceSize({
+          px: undefined,
+          size: 'small',
+          type: undefined,
+        });
       } else {
-        setWorkspaceCustomSize(newWidth);
+        setWorkspaceSize((state) => ({
+          px: newWidth,
+          size: state.size,
+          type: undefined,
+        }));
       }
     }
 
@@ -168,7 +207,57 @@ const NavigationPageContainer = ({
     return () => {
       window.removeEventListener('resize', resizeWorkspaceToFitWindow);
     };
-  });
+  }, [activeBreakpoint, workspaceSize.px]);
+
+  const lastActiveSizeRef = React.useRef();
+  React.useEffect(() => {
+    if (!lastActiveSizeRef.current) {
+      lastActiveSizeRef.current = activeBreakpoint;
+      return;
+    }
+
+    if (lastActiveSizeRef.current === activeBreakpoint) {
+      return;
+    }
+
+    lastActiveSizeRef.current = activeBreakpoint;
+
+    if (activeBreakpoint === 'tiny' || activeBreakpoint === 'small') {
+      setWorkspaceSize({
+        px: undefined,
+        size: undefined,
+        type: undefined,
+      });
+    } else if (activeBreakpoint === 'medium') {
+      if (workspaceSize.size === undefined || workspaceSize.size === 'small' || workspaceSize.size === 'medium') {
+        setWorkspaceSize({
+          px: undefined,
+          size: undefined,
+          type: userSelectedTypeRef.current || 'split',
+        });
+      } else if (workspaceSize.size === 'large') {
+        setWorkspaceSize({
+          px: undefined,
+          size: undefined,
+          type: userSelectedTypeRef.current || 'overlay',
+        });
+      }
+    } else if (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous') {
+      if (workspaceSize.type === 'split') {
+        setWorkspaceSize({
+          px: userSelectedPxRef.current,
+          size: !userSelectedPxRef.current ? userSelectedSizeRef.current || 'small' : undefined,
+          type: undefined,
+        });
+      } else if (workspaceSize.type === 'overlay') {
+        setWorkspaceSize({
+          px: undefined,
+          size: !userSelectedPxRef.current ? userSelectedSizeRef.current || 'large' : undefined,
+          type: undefined,
+        });
+      }
+    }
+  }, [workspaceSize, activeBreakpoint]);
 
   function activatePage(pageKey) {
     setSideNavOverlayIsVisible(false);
@@ -182,7 +271,7 @@ const NavigationPageContainer = ({
 
   return (
     <div
-      className={cx('side-nav-container', { 'workspace-visible': workspaceIsVisible })}
+      className={cx('side-nav-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
       ref={pageContainerRef}
     >
       <div
@@ -229,8 +318,8 @@ const NavigationPageContainer = ({
       </div>
       {enableWorkspace && (
         <div
-          className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
-          style={workspaceCustomSize && !hasOverlayWorkspace ? { width: `${workspaceCustomSize}px` } : null}
+          className={cx('workspace', { visible: workspaceIsVisible, overlay: activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay' })}
+          style={workspaceSize.px ? { width: `${workspaceSize.px}px` } : null}
           ref={workspacePanelRef}
         >
           <div
@@ -239,23 +328,55 @@ const NavigationPageContainer = ({
             }}
           >
             <MockWorkspace
-              workspaceCustomSize={workspaceCustomSize}
+              workspaceSize={workspaceSize.size || workspaceSize.type}
+              workspaceCustomSize={workspaceSize.px}
+              onUpdateSize={(size) => {
+                userSelectedTypeRef.current = undefined;
+                userSelectedPxRef.current = undefined;
 
-              onUpdateSize={!hasOverlayWorkspace ? (size) => {
                 if (size === 'small') {
-                  setWorkspaceCustomSize(320);
+                  userSelectedSizeRef.current = 'small';
+                  setWorkspaceSize({
+                    px: undefined,
+                    size: 'small',
+                    type: undefined,
+                  });
                 } else if (size === 'medium') {
-                  setWorkspaceCustomSize(Math.max(Math.floor((pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320 - 320) / 2) + 320, 320));
+                  userSelectedSizeRef.current = 'medium';
+                  setWorkspaceSize({
+                    px: undefined,
+                    size: 'medium',
+                    type: undefined,
+                  });
                 } else if (size === 'large') {
-                  setWorkspaceCustomSize(Math.max(pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320, 320));
+                  userSelectedSizeRef.current = 'large';
+                  setWorkspaceSize({
+                    px: undefined,
+                    size: 'large',
+                    type: undefined,
+                  });
+                } else if (size === 'split') {
+                  userSelectedTypeRef.current = 'split';
+                  setWorkspaceSize({
+                    px: undefined,
+                    size: undefined,
+                    type: 'split',
+                  });
+                } else if (size === 'overlay') {
+                  userSelectedTypeRef.current = 'overlay';
+                  setWorkspaceSize({
+                    px: undefined,
+                    size: undefined,
+                    type: 'overlay',
+                  });
                 }
-              } : null}
+              }}
               onDismiss={() => {
                 setWorkspaceIsVisible(false);
               }}
             />
           </div>
-          {workspaceOverlayBreakpoints.indexOf(activeBreakpoint) === -1 ? (
+          {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
             <ResizeHandle
               onResizeStart={() => {
                 resizeOverlayRef.current.style.display = 'block';
@@ -264,7 +385,7 @@ const NavigationPageContainer = ({
                 workspaceResizeBoundsRef.current = {
                   maxWidth: pageContainerRef.current.getBoundingClientRect().width - sideNavPanelRef.current.getBoundingClientRect().width - 320,
                   minWidth: 320,
-                  currentWidth: workspaceCustomSize || workspacePanelRef.current.getBoundingClientRect().width,
+                  currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
                 };
               }}
               onResizeStop={(position) => {
@@ -273,14 +394,33 @@ const NavigationPageContainer = ({
 
                 const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
 
+                userSelectedSizeRef.current = undefined;
+                userSelectedTypeRef.current = undefined;
+
                 if (newWidth >= workspaceResizeBoundsRef.current.maxWidth) {
-                  setWorkspaceCustomSize(workspaceResizeBoundsRef.current.maxWidth);
-                } else if (newWidth <= 100) {
-                  setWorkspaceIsVisible(false);
+                  userSelectedPxRef.current = workspaceResizeBoundsRef.current.maxWidth;
+
+                  setWorkspaceSize({
+                    px: workspaceResizeBoundsRef.current.maxWidth,
+                    size: undefined,
+                    type: undefined,
+                  });
                 } else if (newWidth <= workspaceResizeBoundsRef.current.minWidth) {
-                  setWorkspaceCustomSize(workspaceResizeBoundsRef.current.minWidth);
+                  userSelectedPxRef.current = workspaceResizeBoundsRef.current.minWidth;
+
+                  setWorkspaceSize({
+                    px: workspaceResizeBoundsRef.current.minWidth,
+                    size: undefined,
+                    type: undefined,
+                  });
                 } else {
-                  setWorkspaceCustomSize(newWidth);
+                  userSelectedPxRef.current = newWidth;
+
+                  setWorkspaceSize({
+                    px: newWidth,
+                    size: undefined,
+                    type: undefined,
+                  });
                 }
               }}
             />

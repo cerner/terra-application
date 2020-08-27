@@ -77,21 +77,17 @@ const NotificationBanner = ({
       throw new Error('A NotificationBanner was not rendered within the context of a NotificationBannerProvider. If this is unexpected, validate that the expected version of the terra-application package is installed.');
     }
 
-    if (bannerRegistration && bannerRegistration.registerNotificationBanner) {
-      bannerRegistration.registerNotificationBanner(uuid, {
-        bannerAction,
-        custom,
-        description,
-        key: uuid,
-        onRequestClose,
-        variant,
-      });
-    }
+    bannerRegistration.registerNotificationBanner(uuid, {
+      bannerAction,
+      custom,
+      description,
+      key: uuid,
+      onRequestClose,
+      variant,
+    });
 
     return () => {
-      if (bannerRegistration && bannerRegistration.unregisterNotificationBanner) {
-        bannerRegistration.unregisterNotificationBanner(uuid, variant);
-      }
+      bannerRegistration.unregisterNotificationBanner(uuid, variant);
     };
   }, [bannerRegistration, description, custom, bannerAction, onRequestClose, variant]);
 

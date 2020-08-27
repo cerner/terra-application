@@ -9,13 +9,13 @@ When rendered, the Notification Banner registers itself with the framework so it
 
 ## Banner Variants
 
-The Notification Banner implements the Patient Safety Notification Strategy such that notifications can be presented as `hazardous` or `non-hazardous`.
+The Notification Banner can be used to bring awarness to the a user’s risk and non-risk situations that may occur within an application; there are multiple variants provided for common situtations. 
 
-- Hazardous notifications should be used to notify the user of critical and/or patient safety related messages. Hazardous Notifications Banners are rigid to provide consistent icon and signal word pairs to prevent accidental confusion of the banner's severity by the user. There are three severity levels of hazardous notifications: `hazard-high`, `hazard-medium` and `hazard-low`.
+- Notification Banners show for risk situations are intended to notify the user of hazards, such as risks to patient safety or causing financial harm, and provide options to mitigate or remove the hazard. There are three variants of risk oriented notification banners, based on the severity: `hazard-high`, `hazard-medium` and `hazard-low`. These variants are rigid to provide consistent icon and signal word pairs to prevent accidental confusion by the user of the banner's severity.
 
-- Non-hazardous notification should be used to provide informational awareness about the user or the system. Since non-hazardous Notification Banners are less severe, yet important, there could be several use-cases for displaying non-hazardous banner to the user. Currently there is one pre-defined non-hazardous banner variant of `error`.
+- Notification Banners used in non-risk situations are intended to inform a user of system activity or required actions considered to be non-hazards. Currently there are three pre-defined non-risk oriented notification banner variants: `error`, `unsatisfied` and `unverified`.
 
-- Custom notification banners can be created, but are **not** recommended. Custom banners are classified as non-hazardous notification banners and they allow you to customize the signal word and the icon that the banner displays. By choosing to create a custom Notification Banner, you are responsible for providing an icon that is themed correctly for the terra-default-theme, orion-fusion-theme, and clinical-lowlight-theme. See Terra's [Theme Strategy Guide](/guides/terra-application/theme-strategy) for more info.
+- The custom variant allows for less common standardized non-hazard situations, requiring an icon and signal word be provided in addition to the common props. By choosing to create a custom Notification Banner, you are responsible for providing an icon that is themed correctly for the terra-default-theme, orion-fusion-theme, and clinical-lowlight-theme. See Terra’s [Theme Strategy Guide](/guides/terra-application/theme-strategy) for more info.
 
 ## Banner Priority Order
 

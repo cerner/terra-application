@@ -8,28 +8,28 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
 const EventEmitterExample = () => {
   const [counter, setCounter] = useState(0);
-  const [eventEmitter, setEventEmitter] = useState(() => new EventEmitter());
 
   useEffect(() => {
     const listener = () => {
       setCounter(prevCounter => prevCounter + 1);
     };
 
-    eventEmitter.on('increment-counter', listener);
+    // Registers the listener function to the event named "increment-counter".
+    EventEmitter.on('increment-counter', listener);
 
     return () => {
-      eventEmitter.removeAllListeners();
+      // Removes all the listeners when they are no longer needed.
+      EventEmitter.removeAllListeners();
     };
-  }, [eventEmitter]);
+  }, []);
 
   return (
     <div>
       <h3>Event Emitter</h3>
-      <p>The EventEmitter is used to facilitate communications within the application. Clicking the emitter button emits an event to the Listener to increment the value by 1.</p>
       <p>
         Emitter:
         {' '}
-        <button type="button" onClick={() => { eventEmitter.emit('increment-counter'); }}>
+        <button type="button" onClick={() => { EventEmitter.emit('increment-counter'); }}>
           Emit event to increment
         </button>
       </p>

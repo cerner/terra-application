@@ -3,19 +3,18 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 
 const EventEmitterExample = () => {
   const [counter, setCounter] = useState(0);
-  const [eventEmitter] = useState(() => new EventEmitter());
 
   useEffect(() => {
     const listener = () => {
       setCounter(prevCounter => prevCounter + 1);
     };
 
-    eventEmitter.on('increment-counter', listener);
+    EventEmitter.on('increment-counter', listener);
 
     return () => {
-      eventEmitter.removeAllListeners();
+      EventEmitter.removeAllListeners();
     };
-  }, [eventEmitter]);
+  }, []);
 
   return (
     <div>
@@ -24,7 +23,7 @@ const EventEmitterExample = () => {
       <p>
         Emitter:
         {' '}
-        <button type="button" onClick={() => { eventEmitter.emit('increment-counter'); }}>
+        <button type="button" onClick={() => { EventEmitter.emit('increment-counter'); }}>
           Emit event to increment
         </button>
       </p>

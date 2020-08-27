@@ -6,7 +6,6 @@
   * Add terra-notification-dialog dependency to project
 
 * Changed
-  * Lock down terra-navigation-prompt to ensure MVB of terra-notification-dialog is consumed correctly
   * Update terra-navigation-prompt to use the latest version
   * Update terra-application/lib/notification-prompt to use the ContentLayoutAsList component provided from terra-notification-dialog
       to apply the correct list styles when an unsaved dialog is presented.

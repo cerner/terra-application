@@ -12,7 +12,7 @@ const EventEmitterExample = () => {
     EventEmitter.on('increment-counter', listener);
 
     return () => {
-      EventEmitter.removeAllListeners();
+      EventEmitter.off('increment-counter', listener);
     };
   }, []);
 

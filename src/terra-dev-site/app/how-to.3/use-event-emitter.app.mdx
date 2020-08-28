@@ -18,8 +18,8 @@ const EventEmitterExample = () => {
     EventEmitter.on('increment-counter', listener);
 
     return () => {
-      // Removes all the listeners when they are no longer needed.
-      EventEmitter.removeAllListeners();
+      // Removes the listener when it is no longer needed.
+      EventEmitter.off('increment-counter', listener);
     };
   }, []);
 

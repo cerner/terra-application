@@ -17,14 +17,14 @@ exports[`getUnsavedChangesPromptOptions generates a function that provides appro
 Object {
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
-  "content": <ul>
-    <li>
-      Test Prompt
-    </li>
-    <li>
-      Another Test Prompt
-    </li>
-  </ul>,
+  "content": <ContentLayoutAsList
+    items={
+      Array [
+        "Test Prompt",
+        "Another Test Prompt",
+      ]
+    }
+  />,
   "emphasizedAction": "reject",
   "endMessage": "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro",
   "rejectButtonText": "terraApplication.unsavedChangesPrompt.rejectButtonText",

@@ -108,11 +108,17 @@ const useNotificationBanners = () => {
   const NotificationBanners = () => {
     const theme = React.useContext(ThemeContext);
     const [banners, setBanners] = React.useState([]);
+
+    /**
+     * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
+     * while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
+     */
     updateBannerState.current = setBanners;
 
     if (!Object.keys(banners).length) {
       return null;
     }
+
     const prioritizedBanners = organizeBannersByPriority(banners, theme.name);
 
     return (

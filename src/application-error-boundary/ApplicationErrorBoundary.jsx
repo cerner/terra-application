@@ -41,7 +41,7 @@ class ApplicationErrorBoundary extends React.Component {
     };
 
     this.errorRef = React.createRef();
-    this.errorBoundaryRef = React.createRef();
+
     this.state = { error: undefined };
   }
 
@@ -67,10 +67,6 @@ class ApplicationErrorBoundary extends React.Component {
 
   componentDidUpdate() {
     this.resetError();
-
-    if (this.errorBoundaryRef.current) {
-      this.errorBoundaryRef.current.focus();
-    }
   }
 
   componentDidCatch(error) {
@@ -96,12 +92,11 @@ class ApplicationErrorBoundary extends React.Component {
       const errorDetails = activeError.message.toString();
       const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
       return (
-        <div ref={this.errorBoundaryRef} role="alert" tabIndex="-1">
-          <StatusView
-            variant="error"
-            message={errorText}
-          />
-        </div>
+        <StatusView
+          variant="error"
+          message={errorText}
+          role="alert"
+        />
       );
     }
 

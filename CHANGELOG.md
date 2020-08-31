@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Added
-  * Added logic to focus error boundary when triggered.
+  * Added `aria` role to announce error boundary error text.
 
 ## 1.31.1 - (Aug 19, 2020)
 

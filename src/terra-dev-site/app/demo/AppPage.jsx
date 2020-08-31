@@ -13,6 +13,7 @@ import ModalPresenter from './ModalPresenter';
 import NotificationBannerToggle from './NotificationBannerToggle';
 import PendingActionToggle from './PendingActionToggle';
 import StatusOverlayPresenter from './StatusOverlayPresenter';
+import EventEmitter from './EventEmitter';
 
 import styles from './AppPage.module.scss';
 
@@ -74,6 +75,7 @@ const AppPage = ({ pageName }) => {
       <h3>Theming</h3>
       <p>{`The div below uses the theme context to apply styling for theme: ${theme.name}.`}</p>
       <div className={cx('themed-block')} />
+      <EventEmitter />
     </div>
   );
 };

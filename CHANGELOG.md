@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Added
+  * Added EventEmitter
   * Add terra-notification-dialog dependency to project
 
 * Changed

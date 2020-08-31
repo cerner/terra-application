@@ -104,6 +104,7 @@
   },
   "dependencies": {
     "classnames": "^2.2.5",
+    "eventemitter3": "^4.0.4",
     "prop-types": "^15.5.8",
     "terra-application-navigation": "^1.11.0",
     "terra-base": "^5.0.0",

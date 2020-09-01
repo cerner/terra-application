@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.32.0 - (September 1, 2020)
+
 * Added
   * Added EventEmitter
   * Add terra-notification-dialog dependency to project

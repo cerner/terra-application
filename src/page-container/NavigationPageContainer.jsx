@@ -218,7 +218,14 @@ const NavigationPageContainer = ({
       <div
         ref={resizeOverlayRef}
         style={{
-          position: 'absolute', left: '0', right: '0', top: '0', bottom: '0', zIndex: '1', display: 'none',
+          position: 'absolute',
+          left: '0',
+          right: '0',
+          top: '0',
+          bottom: '0',
+          zIndex: '3', // 3 is very  important for safari
+          display: 'none',
+          cursor: 'col-resize',
         }}
       />
       <div
@@ -322,7 +329,7 @@ const NavigationPageContainer = ({
             </div>
             {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
               <ResizeHandle
-                onResizeStart={() => {
+                onResizeStart={(registerBounds) => {
                   resizeOverlayRef.current.style.display = 'block';
                   resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
 
@@ -330,6 +337,11 @@ const NavigationPageContainer = ({
                     range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
                     currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
                   };
+
+                  registerBounds({
+                    range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
+                    currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
+                  });
                 }}
                 onResizeStop={(position) => {
                   resizeOverlayRef.current.style.display = 'none';

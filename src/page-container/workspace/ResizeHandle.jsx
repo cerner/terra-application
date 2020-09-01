@@ -31,16 +31,23 @@ class ResizeHandle extends React.Component {
     this.handleDragMove = this.handleDragMove.bind(this);
     this.handleDragStart = this.handleDragStart.bind(this);
     this.handleDragStop = this.handleDragStop.bind(this);
+
+    this.resizeBoundsRef = React.createRef();
   }
 
   handleDragMove(event, data) {
-    const { onResizeMove } = this.props;
+    const { onResizeMove, allowDragMove } = this.props;
 
     const handleNode = data.node;
 
     this.resizeHandleDragPosition += data.deltaX;
 
-    handleNode.style.transform = `translate3d(${this.resizeHandleDragPosition}px, 0, 0)`;
+    const newWidth = data.x * -1 + this.resizeBoundsRef.current.currentWidth;
+    const scale = (newWidth - 320) / this.resizeBoundsRef.current.range; // TODO genericize this?
+
+    if (scale >= 0 && scale <= 1) {
+      handleNode.style.transform = `translate3d(${this.resizeHandleDragPosition}px, 0, 0)`;
+    }
 
     if (onResizeMove) {
       onResizeMove(handleNode);
@@ -57,7 +64,9 @@ class ResizeHandle extends React.Component {
     handleNode.classList.add(cx('dragging'));
 
     if (onResizeStart) {
-      onResizeStart(this.resizeHandleDragPosition);
+      onResizeStart((bounds) => {
+        this.resizeBoundsRef.current = bounds;
+      });
     }
   }
 

@@ -1,3 +1,1 @@
-import NotificationBanner from './NotificationBanner';
-
-export default NotificationBanner;
+export { default } from './NotificationBanner';

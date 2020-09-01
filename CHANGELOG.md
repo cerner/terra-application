@@ -4,6 +4,13 @@
 
 * Added
   * Added `aria` role to announce error boundary error text.
+  * Added EventEmitter
+  * Add terra-notification-dialog dependency to project
+
+* Changed
+  * Update terra-navigation-prompt to use the latest version
+  * Update terra-application/lib/notification-prompt to use the ContentLayoutAsList component provided from terra-notification-dialog
+      to apply the correct list styles when an unsaved dialog is presented.
 
 ## 1.31.1 - (Aug 19, 2020)
 
@@ -14,6 +21,7 @@
 
 * Changed
   * Updated `uuid` dependency to `v8.0.0`.
+
 * Fixed
   * Fix ApplicationStatusOverlayProvider contextType warning
 

@@ -130,10 +130,12 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       isAlignedTop={false}
       isGlyphHidden={false}
       message="terraApplication.errorBoundary.defaultErrorMessage"
+      role="alert"
       variant="error"
     >
       <div
         className="outer-view"
+        role="alert"
       >
         <div
           className="top-space"
@@ -249,10 +251,12 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       isAlignedTop={false}
       isGlyphHidden={false}
       message="terraApplication.errorBoundary.defaultErrorMessage"
+      role="alert"
       variant="error"
     >
       <div
         className="outer-view"
+        role="alert"
       >
         <div
           className="top-space"

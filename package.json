@@ -1,5 +1,5 @@
 {
-  "name": "terra-application",
+  "name": "mjhenkes-terra-application",
   "main": "lib/application-base/ApplicationBase.js",
   "version": "1.32.0",
   "description": "A framework to support application development with Terra components",
@@ -100,7 +100,8 @@
     "wdio-locale": "LOCALE=de wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
-    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
+    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion",
+    "version": "echo derp"
   },
   "dependencies": {
     "classnames": "^2.2.5",

@@ -9,6 +9,7 @@
     height: 100%;
     justify-content: stretch;
     overflow: hidden;
+    position: relative;
   }
 
   .side-nav-sidebar {
@@ -29,7 +30,7 @@
       left: 0;
       top: 0;
       bottom: 0;
-      z-index: 1;
+      z-index: 6;
 
       @include terra-mq-medium-up {
         width: 200px;
@@ -45,7 +46,7 @@
     flex-wrap: nowrap;
     height: 100%;
     justify-content: stretch;
-    // overflow: hidden;
+    overflow: hidden;
   }
 
   .page-body {

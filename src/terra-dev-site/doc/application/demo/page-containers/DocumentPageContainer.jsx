@@ -8,7 +8,7 @@ import OrderProfilePage from '../pages/OrderProfilePage';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 
 const DocumentPageContainer = () => {
-  const [activePageKey, setActivePageKey] = React.useState();
+  const [activePageKey, setActivePageKey] = React.useState('summary');
 
   const dynamicPages = [];
 

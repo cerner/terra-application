@@ -24,9 +24,11 @@ const sideNavOverlayBreakpoints = ['tiny', 'small', 'medium'];
 
 const propTypes = {};
 
-const DefaultSideNavPanel = ({ activePageKey, onRequestActivatePage, items }) => (
+const DefaultSideNavPanel = ({
+  activePageKey, onRequestActivatePage, items, onDismiss,
+}) => (
   <ContentContainer
-    header={<ActionHeader title="Side Nav" />}
+    header={<ActionHeader title="Side Nav" onBack={onDismiss} />}
     fill
   >
     <CollapsingNavigationMenu
@@ -78,6 +80,9 @@ const NavigationPageContainer = ({
   const lastActivePageKeyRef = React.useRef();
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
+  const sideNavOverlayRef = React.useRef();
+  const workspaceOverlayRef = React.useRef();
+  const lastActiveSizeRef = React.useRef();
 
   const userSelectedTypeRef = React.useRef();
   const userSelectedScaleRef = React.useRef(0);
@@ -145,10 +150,6 @@ const NavigationPageContainer = ({
   }, [activePageKey]);
 
   React.useEffect(() => {
-    if (activePageKey) {
-      return;
-    }
-
     const pageKeys = React.Children.map(children, (child) => (child.props.pageKey));
 
     // Cleanup nodes for removed children
@@ -156,11 +157,8 @@ const NavigationPageContainer = ({
     danglingPageKeys.forEach((pageKey) => {
       delete pageContainerPortalsRef.current[pageKey];
     });
+  }, [children]);
 
-    onRequestActivatePage(pageKeys[0]);
-  }, [activePageKey, activeBreakpoint, children, onRequestActivatePage]);
-
-  const lastActiveSizeRef = React.useRef();
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {
       lastActiveSizeRef.current = activeBreakpoint;
@@ -200,6 +198,20 @@ const NavigationPageContainer = ({
     }
   }, [workspaceSize, activeBreakpoint]);
 
+  React.useEffect(() => {
+    if (sideNavOverlayIsVisible) {
+      sideNavPanelRef.current.focus();
+    }
+  }, [sideNavOverlayIsVisible]);
+
+  const workspaceOverlayIsOpen = workspaceIsVisible && hasOverlayWorkspace;
+  React.useEffect(() => {
+    if (workspaceOverlayIsOpen) {
+      console.log('hi mom');
+      workspacePanelRef.current.focus();
+    }
+  }, [workspaceOverlayIsOpen]);
+
   function activatePage(pageKey) {
     setSideNavOverlayIsVisible(false);
 
@@ -223,7 +235,7 @@ const NavigationPageContainer = ({
           right: '0',
           top: '0',
           bottom: '0',
-          zIndex: '3', // 3 is very  important for safari
+          zIndex: '3', // 3 is very important for safari
           display: 'none',
           cursor: 'col-resize',
         }}
@@ -231,9 +243,11 @@ const NavigationPageContainer = ({
       <div
         ref={sideNavPanelRef}
         className={cx('side-nav-sidebar', { visible: hasSidebar && sideNavIsVisible, overlay: hasOverlaySidebar })}
+        tabIndex="-1"
       >
         {sidebar || (hasSidebar && (
           <DefaultSideNavPanel
+            onDismiss={sideNavOverlayIsVisible ? () => { setSideNavOverlayIsVisible(false); } : undefined}
             activePageKey={activePageKey}
             onRequestActivatePage={activatePage}
             items={React.Children.map(children, (child) => ({ key: child.props.pageKey, text: child.props.description }))}
@@ -244,7 +258,8 @@ const NavigationPageContainer = ({
         <div
           ref={pageBodyRef}
           className={cx('page-body')}
-          style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null}
+          style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null} // TODO add IE flex styles
+          inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
         >
           <PageContainerContext.Provider value={pageContainerContextValue}>
             {React.Children.map(children, (child) => {
@@ -274,6 +289,8 @@ const NavigationPageContainer = ({
             ref={workspacePanelRef}
             className={cx('workspace', { visible: workspaceIsVisible, overlay: activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay' })}
             style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
+            inert={sideNavOverlayIsVisible ? 'true' : null}
+            tabIndex="-1"
           >
             <div
               style={{
@@ -379,6 +396,38 @@ const NavigationPageContainer = ({
             ) : null}
           </div>
         )}
+        {workspaceIsVisible && hasOverlayWorkspace ? (
+          <div
+            ref={workspaceOverlayRef}
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              position: 'absolute',
+              left: '0',
+              right: '0',
+              top: '0',
+              bottom: '0',
+              zIndex: '1',
+              display: 'block',
+            }}
+            onClick={() => { setWorkspaceIsVisible(false); }}
+          />
+        ) : null}
+        {sideNavOverlayIsVisible ? (
+          <div
+            ref={sideNavOverlayRef}
+            style={{
+              backgroundColor: 'rgba(0, 0, 0, 0.3)',
+              position: 'absolute',
+              left: '0',
+              right: '0',
+              top: '0',
+              bottom: '0',
+              zIndex: '5',
+              display: 'block',
+            }}
+            onClick={() => { setSideNavOverlayIsVisible(false); }}
+          />
+        ) : null}
       </div>
     </div>
   );

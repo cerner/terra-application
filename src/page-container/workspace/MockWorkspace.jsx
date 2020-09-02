@@ -15,13 +15,16 @@ const MockWorkspace = ({
   onDismiss, workspaceSize, workspaceCustomSize, onUpdateSize,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-
+  const callbackRef = React.useRef();
   const [menuIsOpen, setMenuIsOpen] = React.useState(false);
   const menuButtonRef = React.useRef();
 
   React.useEffect(() => {
-    setMenuIsOpen(false);
-  }, [workspaceCustomSize, workspaceSize]);
+    if (!menuIsOpen && callbackRef.current) {
+      callbackRef.current();
+      callbackRef.current = undefined;
+    }
+  }, [menuIsOpen]);
 
   let menuOptions;
   if (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous') {
@@ -30,12 +33,13 @@ const MockWorkspace = ({
         key="Group"
         onChange={(event, index) => {
           if (index === 0) {
-            onUpdateSize('small');
+            callbackRef.current = () => { onUpdateSize('small'); };
           } else if (index === 1) {
-            onUpdateSize('medium');
+            callbackRef.current = () => { onUpdateSize('medium'); };
           } else if (index === 2) {
-            onUpdateSize('large');
+            callbackRef.current = () => { onUpdateSize('large'); };
           }
+          setMenuIsOpen(false);
         }}
       >
         <Menu.Item text="Small" key="small" isSelected={workspaceSize === 'small'} />
@@ -49,10 +53,12 @@ const MockWorkspace = ({
         key="Group"
         onChange={(event, index) => {
           if (index === 0) {
-            onUpdateSize('split');
+            callbackRef.current = () => { onUpdateSize('split'); };
           } else if (index === 1) {
-            onUpdateSize('overlay');
+            callbackRef.current = () => { onUpdateSize('overlay'); };
           }
+
+          setMenuIsOpen(false);
         }}
       >
         <Menu.Item text="Split" key="split" isSelected={workspaceSize === 'split'} />

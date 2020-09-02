@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import NotificationBanner from '../../../notification-banner';
 import NavigationPrompt from '../../../navigation-prompt';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
@@ -29,7 +28,6 @@ PendingAction.propTypes = {
 const PageContent = ({ title }) => {
   const [hasPendingAction1, setHasPendingAction1] = useState(false);
   const [hasPendingAction2, setHasPendingAction2] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
 
   return (
     <div data-nav-test-content>
@@ -50,12 +48,6 @@ const PageContent = ({ title }) => {
       />
       {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
       {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
-      <p>
-        Show Notification Banner:
-        {' '}
-        <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
-      </p>
-      {showBanner && <NotificationBanner variant="hazard-medium" onRequestClose={() => { setShowBanner(false); }} />}
     </div>
   );
 };

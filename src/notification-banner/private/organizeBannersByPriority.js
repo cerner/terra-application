@@ -37,7 +37,6 @@ const organizeBannersByPriority = (banners, themeName) => {
 
   const bannersList = priorityOrder.reduce((coll, variant) => {
     if (banners[variant]) {
-      // eslint-disable-next-line compat/compat
       const registeredBannersByVariant = Object.values(banners[variant]);
       registeredBannersByVariant.map(registeredBannerProps => coll.push(registeredBannerProps));
     }

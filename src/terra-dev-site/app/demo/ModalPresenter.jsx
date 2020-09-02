@@ -11,7 +11,6 @@ import ApplicationStatusOverlay from 'terra-application/lib/application-status-o
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 
-import NotificationBannerToggle from './NotificationBannerToggle';
 import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';
 
@@ -110,7 +109,6 @@ const ModalContent = ({ name, onSubmit }) => {
           </p>
           {showStatusOverlay && <ApplicationStatusOverlay message="This is a demo status view" variant="no-data" />}
           <PendingActionToggle />
-          <NotificationBannerToggle />
         </div>
       </Scroll>
     </>

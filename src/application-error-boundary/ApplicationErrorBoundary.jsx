@@ -95,6 +95,7 @@ class ApplicationErrorBoundary extends React.Component {
         <StatusView
           variant="error"
           message={errorText}
+          role="alert"
         />
       );
     }

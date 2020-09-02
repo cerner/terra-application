@@ -38,25 +38,18 @@ exports[`ApplicationBase should render with all props 1`] = `
               >
                 <ApplicationLoadingOverlayProvider>
                   <ApplicationStatusOverlayProvider>
-                    <ContentContainer
-                      fill={false}
-                      header={<NotificationBanners />}
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
                     >
-                      <NotificationBannerProvider>
-                        <Suspense
-                          fallback={
-                            <ApplicationLoadingOverlay
-                              backgroundStyle="clear"
-                              isOpen={true}
-                            />
-                          }
-                        >
-                          <div>
-                            content
-                          </div>
-                        </Suspense>
-                      </NotificationBannerProvider>
-                    </ContentContainer>
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
                   </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
@@ -96,25 +89,18 @@ exports[`ApplicationBase should render with minimal props 1`] = `
               >
                 <ApplicationLoadingOverlayProvider>
                   <ApplicationStatusOverlayProvider>
-                    <ContentContainer
-                      fill={true}
-                      header={<NotificationBanners />}
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
                     >
-                      <NotificationBannerProvider>
-                        <Suspense
-                          fallback={
-                            <ApplicationLoadingOverlay
-                              backgroundStyle="clear"
-                              isOpen={true}
-                            />
-                          }
-                        >
-                          <div>
-                            content
-                          </div>
-                        </Suspense>
-                      </NotificationBannerProvider>
-                    </ContentContainer>
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
                   </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>
@@ -154,25 +140,18 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
               >
                 <ApplicationLoadingOverlayProvider>
                   <ApplicationStatusOverlayProvider>
-                    <ContentContainer
-                      fill={true}
-                      header={<NotificationBanners />}
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
                     >
-                      <NotificationBannerProvider>
-                        <Suspense
-                          fallback={
-                            <ApplicationLoadingOverlay
-                              backgroundStyle="clear"
-                              isOpen={true}
-                            />
-                          }
-                        >
-                          <div>
-                            content
-                          </div>
-                        </Suspense>
-                      </NotificationBannerProvider>
-                    </ContentContainer>
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
                   </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </withPromptRegistration(NavigationPromptCheckpoint)>

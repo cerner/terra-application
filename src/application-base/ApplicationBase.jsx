@@ -9,14 +9,12 @@ import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
-import ContentContainer from 'terra-content-container';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationIntlProvider } from '../application-intl';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
-import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
@@ -117,8 +115,6 @@ const ApplicationBase = ({
     className: themeName,
   }), [themeName]);
 
-  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <ThemeProvider
@@ -140,13 +136,9 @@ const ApplicationBase = ({
                   >
                     <ApplicationLoadingOverlayProvider>
                       <ApplicationStatusOverlayProvider>
-                        <ContentContainer header={<NotificationBanners />} fill={!fitToParentIsDisabled}>
-                          <NotificationBannerProvider>
-                            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                              {children}
-                            </Suspense>
-                          </NotificationBannerProvider>
-                        </ContentContainer>
+                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                          {children}
+                        </Suspense>
                       </ApplicationStatusOverlayProvider>
                     </ApplicationLoadingOverlayProvider>
                   </NavigationPromptCheckpoint>

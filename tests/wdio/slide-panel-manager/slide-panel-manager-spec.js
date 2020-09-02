@@ -103,11 +103,6 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     Terra.validates.element('12. root panel-global dismiss', { selector });
   });
 
-  it('renders notification banners in root content', () => {
-    browser.click('#root-component #toggle-hazard-medium-banner-root-component');
-    Terra.validates.element('13. component-level notification banner', { selector });
-  });
-
   it('opens small slide panel', () => {
     browser.click('#root-component .disclose-small');
     browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-small');
@@ -120,9 +115,6 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     browser.waitForExist('[data-terra-application-notification-banner="hazard-low"]');
     browser.click('#toggle-unverified-banner-DemoContainer-1');
     browser.waitForExist('[data-terra-application-notification-banner="unverified"]');
-  });
-
-  it('validates banners in slide panel banner checkpoint', () => {
     Terra.validates.element('14. slide panel notification banners', { selector });
   });
 });

@@ -17,7 +17,7 @@ const cx = classNamesBind.bind(styles);
  *
  * Returns:
  *   - NotificationBannerProvider - React Context Provider - Provides the Banner Registration Context to its children.
- *         This allows any NotificationBanner registered beneath it to be displayed in teh NotificationBanner's list.
+ *         This allows any NotificationBanner registered beneath it to be displayed in the NotificationBanner's list.
  *   - NotificationBanners - React Component - Renders a list of prioritized notification banners.
  *
  * @returns { NotificationBannerProvider, NotificationBanners }

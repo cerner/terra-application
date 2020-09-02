@@ -4,7 +4,6 @@ import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
-import NotificationBanner from '../../../notification-banner';
 import { ApplicationIntlContext } from '../../../application-intl';
 
 const ApplicationContentTest = () => {
@@ -12,7 +11,6 @@ const ApplicationContentTest = () => {
   const [throwError, setThrowError] = useState(false);
   const [blockUnload, setBlockUnload] = useState(false);
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
-  const [showBanner, setShowBanner] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
@@ -86,17 +84,6 @@ const ApplicationContentTest = () => {
     </>
   );
 
-  const bannerTest = (
-    <>
-      <p>
-        Show Notification Banner:
-        {' '}
-        <button id="notification-banner" type="button" onClick={() => { setShowBanner(true); }}>Show</button>
-      </p>
-      {showBanner && <NotificationBanner variant="hazard-medium" onRequestClose={() => { setShowBanner(false); }} />}
-    </>
-  );
-
   return (
     <div>
       {activeBreakpointTest}
@@ -105,7 +92,6 @@ const ApplicationContentTest = () => {
       {loadingOverlayTest}
       {statusOverlayTest}
       {navigationPromptTest}
-      {bannerTest}
     </div>
   );
 };

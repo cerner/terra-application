@@ -5,13 +5,13 @@ import NotificationBannerExample from './example/NotificationBannerExample?dev-s
 
 A Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. This is a non-disruptive notification that does not require immediate input or attention by the user.
 
-When rendered, the Notification Banner registers itself with the framework so it prioritized correctly when any other rendered notification banners before it is displayed in a list above all other content.
+When rendered, the Notification Banner registers itself with the framework so it is prioritized correctly when any other rendered notification banners before they are is displayed in a list above all other content.
 
 ## Banner Variants
 
-The Notification Banner can be used to bring awarness to the a user’s risk and non-risk situations that may occur within an application; there are multiple variants provided for common situtations. 
+The Notification Banner can be used to bring awareness to a user’s risk and non-risk situations that may occur within an application; there are multiple variants provided for common situations. 
 
-- Notification Banners show for risk situations are intended to notify the user of hazards, such as risks to patient safety or causing financial harm, and provide options to mitigate or remove the hazard. There are three variants of risk oriented notification banners, based on the severity: `hazard-high`, `hazard-medium` and `hazard-low`. These variants are rigid to provide consistent icon and signal word pairs to prevent accidental confusion by the user of the banner's severity.
+- Notification Banners shown for risk situations are intended to notify the user of hazards, such as risks to patient safety or causing financial harm, and provide options to mitigate or remove the hazard. There are three variants of risk oriented notification banners, based on the severity: `hazard-high`, `hazard-medium` and `hazard-low`. These variants are rigid to provide consistent icon and signal word pairs to prevent accidental confusion by the user of the banner's severity.
 
 - Notification Banners used in non-risk situations are intended to inform a user of system activity or required actions considered to be non-hazards. Currently there are three pre-defined non-risk oriented notification banner variants: `error`, `unsatisfied` and `unverified`.
 
@@ -24,7 +24,7 @@ Notification Banners are prioritized by variant and in the following order:
 1. `hazard-high` - displays a critical notification for current emergencies or situations of high severity that need to be addressed promptly
 2. `hazard-medium` - recommended to show moderately urgent notifications that are cautionary in nature and forecast potential risk
 3. `hazard-low` - recommended to provide the user with guidance and/or advice for completing an action
-4. `error` - recommended to provide feedback of a negative system status such as failures, inabilities, or limitations
+4. `error` - recommended to provide feedback of a negative system status such as failures or limitations of the system
 5. `unsatisfied` - recommended to show the user that an unsatisfied or incomplete action needs to be addressed
 6. `unverified` - recommended to provide feedback that information from outside systems has been included but has yet to be verified by the user
 7. `custom` - not recommended but can be used to create a custom signal word-icon banner to display information to the user
@@ -60,7 +60,7 @@ import NotificationBanner from 'terra-application/lib/notification-banner';
 ## Testing
 
 The Notification Banner has the following data attribute available for browser tests:
-- The data attribute, `data-terra-application-notification-banner` can be used to validate the expect banner exists
+- The data attribute, `data-terra-application-notification-banner` can be used to validate the expected banner exists
 
 ```js
 describe('Notification Banner', () => {

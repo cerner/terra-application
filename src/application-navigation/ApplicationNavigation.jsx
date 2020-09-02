@@ -6,14 +6,12 @@ import TerraApplicationNavigation from 'terra-application-navigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from 'terra-application-navigation/lib/utils/propTypes';
-import ContentContainer from 'terra-content-container';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 const propTypes = {
   /**
@@ -142,7 +140,6 @@ const ApplicationNavigation = ({
   utilityItems,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const navigationPromptCheckpointRef = useRef();
 
@@ -192,13 +189,9 @@ const ApplicationNavigation = ({
             ref={navigationPromptCheckpointRef}
           >
             <ApplicationErrorBoundary>
-              <ContentContainer header={<NotificationBanners />} fill>
-                <NotificationBannerProvider>
-                  <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                    {children}
-                  </Suspense>
-                </NotificationBannerProvider>
-              </ContentContainer>
+              <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                {children}
+              </Suspense>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
         </ApplicationStatusOverlayProvider>

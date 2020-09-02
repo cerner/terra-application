@@ -10,7 +10,6 @@ import { ThemeContext } from 'terra-application/lib/theme';
 
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';
-import NotificationBannerToggle from './NotificationBannerToggle';
 import PendingActionToggle from './PendingActionToggle';
 import StatusOverlayPresenter from './StatusOverlayPresenter';
 import EventEmitter from './EventEmitter';
@@ -71,7 +70,6 @@ const AppPage = ({ pageName }) => {
       <StatusOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
-      <NotificationBannerToggle />
       <h3>Theming</h3>
       <p>{`The div below uses the theme context to apply styling for theme: ${theme.name}.`}</p>
       <div className={cx('themed-block')} />

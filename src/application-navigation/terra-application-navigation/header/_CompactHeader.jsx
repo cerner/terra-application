@@ -321,9 +321,9 @@ const CompactHeader = ({
 
   return (
     <header role="banner" className={cx('compact-header')}>
-      <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
+      {/* <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'Terra.applicationNavigation.header.skipToContentTitle' })}
-      </button>
+      </button> */}
       {renderMenuButton()}
       <div className={cx('title-container')}>
         {renderTitle()}

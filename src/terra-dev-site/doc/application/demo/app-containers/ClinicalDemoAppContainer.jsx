@@ -6,6 +6,7 @@ import NavigationApplicationContainer, { NavigationPageContainer } from '../../.
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';
 import DocumentPageContainer from '../page-containers/DocumentPageContainer';
+import BillingPageContainer from '../page-containers/BillingPageContainer';
 import PatientConceptProvider from '../shared/PatientConceptProvider';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
 
@@ -29,6 +30,9 @@ const ClinicalDemoAppContainer = () => {
   }, {
     key: 'document',
     text: 'Document',
+  }, {
+    key: 'billing',
+    text: 'Billing',
   }]);
 
   if (loggedOut) {
@@ -76,6 +80,10 @@ const ClinicalDemoAppContainer = () => {
           <NavigationPageContainer
             pageKey="document"
             render={() => <DocumentPageContainer />}
+          />
+          <NavigationPageContainer
+            pageKey="billing"
+            render={() => <BillingPageContainer />}
           />
         </NavigationApplicationContainer>
       </PatientConceptProvider>

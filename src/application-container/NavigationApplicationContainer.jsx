@@ -7,7 +7,9 @@ import {
 } from '../application-navigation/terra-application-navigation/utils/propTypes';
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
+import NavigationContext from '../navigation/NavigationContext';
 
+import useSkipToLinks from './useSkipToLinks';
 import ApplicationContainer from './ApplicationContainer';
 
 const propTypes = {
@@ -122,6 +124,8 @@ const NavigationApplicationContainer = ({
   const pageContainerPortalsRef = React.useRef({});
   const lastActivePageKeyRef = React.useRef();
 
+  const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
+
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[props.activeNavigationItemKey];
 
@@ -157,29 +161,38 @@ const NavigationApplicationContainer = ({
   }, [props.activeNavigationItemKey]);
 
   return (
-    <ApplicationNavigation {...props} disablePromptsForNavigationItems>
-      <ApplicationContainer>
-        <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
-          {React.Children.map(children, (child) => {
-            let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
-            if (!portalElement) {
-              portalElement = document.createElement('div');
-              portalElement.style.position = 'relative';
-              portalElement.style.height = '100%';
-              portalElement.style.width = '100%';
-              portalElement.id = `primary-nav-${child.props.pageKey}`;
-              pageContainerPortalsRef.current[child.props.pageKey] = {
-                element: portalElement,
-              };
-            }
+    <div
+      style={{ height: '100%', overflow: 'hidden', position: 'relative' }}
+    >
+      <SkipToLinks />
+      <SkipToLinksProvider>
+        <ApplicationNavigation {...props} disablePromptsForNavigationItems>
+          <ApplicationContainer>
+            <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
+              {React.Children.map(children, (child) => {
+                let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
+                if (!portalElement) {
+                  portalElement = document.createElement('div');
+                  portalElement.style.position = 'relative';
+                  portalElement.style.height = '100%';
+                  portalElement.style.width = '100%';
+                  portalElement.id = `primary-nav-${child.props.pageKey}`;
+                  pageContainerPortalsRef.current[child.props.pageKey] = {
+                    element: portalElement,
+                  };
+                }
 
-            return (
-              React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })
-            );
-          })}
-        </div>
-      </ApplicationContainer>
-    </ApplicationNavigation>
+                return (
+                  <NavigationContext.Provider value={{ isActive: child.props.pageKey === props.activeNavigationItemKey }}>
+                    {React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })}
+                  </NavigationContext.Provider>
+                );
+              })}
+            </div>
+          </ApplicationContainer>
+        </ApplicationNavigation>
+      </SkipToLinksProvider>
+    </div>
   );
 };
 

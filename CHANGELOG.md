@@ -5,6 +5,7 @@
 ## 1.32.0 - (September 1, 2020)
 
 * Added
+  * Added `aria` role to announce error boundary error text.
   * Added EventEmitter
   * Add terra-notification-dialog dependency to project
 

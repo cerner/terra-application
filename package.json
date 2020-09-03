@@ -85,6 +85,7 @@
     "lint:js": "eslint --ext .js,.jsx .",
     "lint:scss": "stylelint src/**/*.scss",
     "precompile": "rm -rf lib",
+    "prepare": "npm run compile",
     "start": "tt-serve",
     "start-prod": "tt-serve -p",
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",

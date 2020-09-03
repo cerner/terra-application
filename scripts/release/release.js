@@ -3,6 +3,7 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 const pacote = require('pacote');
 const { execSync } = require('child_process');
+const { exit } = require('process');
 const packageJson = require('../../package.json');
 
 // If on travis setup git to be able to push the tags
@@ -40,13 +41,12 @@ const release = async () => {
 
   const tag = `v${packageJson.version}`;
 
-  try {
-    execSync('npm publish');
-  } catch (error) {
-    process.exit(1);
-  }
+  execSync('npm publish');
   execSync(`git tag -a ${tag} -m "${tag}"`);
   execSync('git push origin --tags');
 };
 
-release();
+release().catch(() => {
+  console.log('Failed to publish or tag');
+  exit(1);
+});

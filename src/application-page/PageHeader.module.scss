@@ -11,11 +11,12 @@
 
 
     overflow: hidden;
-    padding: 0 10px;
+    padding: 0 5px;
     width: 100%;
   }
 
   .back-button-container {
+    display: flex;
     flex: 0 0 auto;
     padding-right: 5px;
 
@@ -50,12 +51,21 @@
     padding-left: 5px;
   }
 
-  .action-container {
+  .actions-container {
+    display: flex;
     flex: 0 0 auto;
   }
 
   .breadcrumb-header {
     min-height: 46px;
+  }
+
+  .actions-divider {
+    align-self: stretch;
+    background-color: grey;
+    flex: 0 0 auto;
+    margin: 3px 2px;
+    width: 1px;
   }
 
   .breadcrumbs {

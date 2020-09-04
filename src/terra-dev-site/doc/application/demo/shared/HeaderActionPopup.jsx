@@ -12,10 +12,9 @@ const HeaderActionPopup = ({
     targetRef={targetRef}
     onRequestClose={onRequestClose}
     contentAttachment="top right"
-    targetAttachment="bottom center"
+    targetAttachment="bottom right"
     contentHeight="auto"
     contentWidth="240"
-    isArrowDisplayed
   >
     <ActionHeader title={title} />
     <div style={{ padding: '1rem' }}>

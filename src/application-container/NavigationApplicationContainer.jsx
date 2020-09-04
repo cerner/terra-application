@@ -183,7 +183,7 @@ const NavigationApplicationContainer = ({
                 }
 
                 return (
-                  <NavigationContext.Provider value={{ isActive: child.props.pageKey === props.activeNavigationItemKey }}>
+                  <NavigationContext.Provider value={{ isActive: child.props.pageKey === props.activeNavigationItemKey, navigationIdentifier: child.props.pageKey }}>
                     {React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })}
                   </NavigationContext.Provider>
                 );

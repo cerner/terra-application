@@ -13,6 +13,7 @@ import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '..
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import { ApplicationIntlProvider } from '../application-intl';
 import LayerManagerProvider from '../layers/LayerManagerProvider';
+import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
@@ -114,31 +115,33 @@ const ApplicationBase = ({
   return (
     <div className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <LayerManagerProvider>
-        <ThemeProvider
-          themeName={themeName}
-        >
-          <ThemeContextProvider theme={theme}>
-            <Base
-              customMessages={customTranslatedMessages}
-              translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-              locale={localeOverride || locale || browserLocale}
-            >
-              <ApplicationErrorBoundary>
-                <ApplicationIntlProvider>
-                  <ActiveBreakpointProvider>
-                    <NavigationPromptCheckpoint
-                      onPromptChange={(registeredPrompts) => {
-                        registeredPromptsRef.current = registeredPrompts;
-                      }}
-                    >
-                      {children}
-                    </NavigationPromptCheckpoint>
-                  </ActiveBreakpointProvider>
-                </ApplicationIntlProvider>
-              </ApplicationErrorBoundary>
-            </Base>
-          </ThemeContextProvider>
-        </ThemeProvider>
+        <NavigationRegistrationProvider>
+          <ThemeProvider
+            themeName={themeName}
+          >
+            <ThemeContextProvider theme={theme}>
+              <Base
+                customMessages={customTranslatedMessages}
+                translationsLoadingPlaceholder={translationsLoadingPlaceholder}
+                locale={localeOverride || locale || browserLocale}
+              >
+                <ApplicationErrorBoundary>
+                  <ApplicationIntlProvider>
+                    <ActiveBreakpointProvider>
+                      <NavigationPromptCheckpoint
+                        onPromptChange={(registeredPrompts) => {
+                          registeredPromptsRef.current = registeredPrompts;
+                        }}
+                      >
+                        {children}
+                      </NavigationPromptCheckpoint>
+                    </ActiveBreakpointProvider>
+                  </ApplicationIntlProvider>
+                </ApplicationErrorBoundary>
+              </Base>
+            </ThemeContextProvider>
+          </ThemeProvider>
+        </NavigationRegistrationProvider>
       </LayerManagerProvider>
     </div>
   );

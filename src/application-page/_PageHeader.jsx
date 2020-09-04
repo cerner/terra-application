@@ -25,7 +25,12 @@ const PageHeader = ({
     <div className={cx('page-layout-header')}>
       {onBack || pageContainerContext?.leftActionComponent ? (
         <div className={cx('back-button-container')}>
-          {pageContainerContext?.leftActionComponent}
+          {pageContainerContext?.leftActionComponent ? (
+            <>
+              {pageContainerContext?.leftActionComponent}
+              <div className={cx('actions-divider')} />
+            </>
+          ) : null}
           {onBack ? (
             <Button
               className={cx(['header-button', 'back-button'])}
@@ -54,7 +59,6 @@ const PageHeader = ({
             isDisabled={action.isDisabled}
           />
         ))}
-        {pageContainerContext?.rightActionComponent}
         {(actions && actions.slice(2).length) ? (
           <Button
             refCallback={(ref) => {
@@ -74,25 +78,15 @@ const PageHeader = ({
             onClick={(event) => { event.preventDefault(); setShowPopup(true); }}
           />
         ) : undefined}
-        {/* {onClose ? (
-          <Button
-            className={cx(['header-button'])}
-            icon={<IconClose />}
-            text="Close"
-            onClick={onClose}
-            variant={ButtonVariants.UTILITY}
-          />
-        ) : null} */}
         {showPopup && (
           <Popup
             isOpen
             targetRef={() => moreActionsButtonRef.current}
             onRequestClose={() => { setShowPopup(false); }}
             contentAttachment="top right"
-            targetAttachment="bottom center"
+            targetAttachment="bottom right"
             contentHeight="auto"
             contentWidth="240"
-            isArrowDisplayed
           >
             <ActionHeader title="More Actions" />
             <List dividerStyle="standard" role="listbox" aria-label="It's Side Navigation">
@@ -116,6 +110,12 @@ const PageHeader = ({
             </List>
           </Popup>
         )}
+        {pageContainerContext?.rightActionComponent ? (
+          <>
+            <div className={cx('actions-divider')} />
+            {pageContainerContext?.rightActionComponent}
+          </>
+        ) : null}
       </div>
     </div>
   );

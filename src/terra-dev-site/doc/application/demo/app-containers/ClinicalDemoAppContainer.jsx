@@ -9,14 +9,30 @@ import DocumentPageContainer from '../page-containers/DocumentPageContainer';
 import BillingPageContainer from '../page-containers/BillingPageContainer';
 import PatientConceptProvider from '../shared/PatientConceptProvider';
 import ApplicationModal from '../../../../../application-modal/ApplicationModal';
+import useNavigationState from '../../../../../navigation/useNavigationState';
 
 const userConfig = {
   name: 'Demo User',
   initials: 'DU',
 };
 
+const navigationItemsForState = [{
+  key: 'review',
+  description: 'Review',
+}, {
+  key: 'order',
+  description: 'Order',
+}, {
+  key: 'document',
+  description: 'Document',
+}, {
+  key: 'billing',
+  description: 'Billing',
+}];
+
 const ClinicalDemoAppContainer = () => {
-  const [activeNavItem, setActiveNavItem] = useState('review');
+  const [navigationState, setNavigationState] = useNavigationState(navigationItemsForState);
+
   const [showPatientSearchModal, setShowPatientSearchModal] = useState(false);
 
   const [loggedOut, setLoggedOut] = useState(false);
@@ -53,8 +69,8 @@ const ClinicalDemoAppContainer = () => {
           }}
           userConfig={userConfig}
           navigationItems={navigationItemsRef.current}
-          activeNavigationItemKey={activeNavItem}
-          onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
+          activeNavigationItemKey={navigationState.key}
+          onSelectNavigationItem={(key) => { setNavigationState({ key }); }}
           extensionItems={[{
             key: 'patient-search',
             icon: <IconSearch />,

@@ -247,7 +247,7 @@ const NavigationPageContainer = ({
       }
 
       return (
-        <NavigationContext.Provider value={{ isActive: navigationContextValue.isActive && page.props.pageKey === activePageKey }}>
+        <NavigationContext.Provider value={{ isActive: navigationContextValue.isActive && page.props.pageKey === activePageKey, navigationIdentifier: page.props.pageKey }}>
           {React.cloneElement(page, {
             isActive: page.props.pageKey === activePageKey, portalElement, enableWorkspace,
           })}
@@ -463,13 +463,13 @@ const NavigationPageContainer = ({
                       });
                     }
                   }}
-                  onDismiss={() => {
+                  onDismiss={hasOverlayWorkspace ? () => {
                     setWorkspaceIsVisible(false);
 
                     deferAction(() => {
                       document.querySelector('main')?.focus(); // TODO talk about movinig focus in these scenarios (plus the size dropdown stuff)
                     });
-                  }}
+                  } : null}
                 />
               </div>
               {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (

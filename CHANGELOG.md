@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.34.0 - (September 8, 2020)
+
+* Added
+  * Added Notification Banners and provide in disclosure manager content container.
+
 ## 1.33.0 - (September 3, 2020)
 
 * Added

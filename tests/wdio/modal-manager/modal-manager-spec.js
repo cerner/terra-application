@@ -102,6 +102,21 @@ Terra.describeViewports('ModalManager', ['large'], () => {
     browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('12. root modal-global dismiss', { selector });
   });
+
+  it('opens medium modal', () => {
+    browser.click('#root-component .disclose-medium');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-medium');
+  });
+
+  it('renders notification banners in modal', () => {
+    browser.click('#toggle-hazard-medium-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-medium"]');
+    browser.click('#toggle-hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-low"]');
+    browser.click('#toggle-error-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="error"]');
+    Terra.validates.element('14. modal notification banners', { selector });
+  });
 });
 
 Terra.describeViewports('CustomDismissCheckWorkflow', ['large'], () => {

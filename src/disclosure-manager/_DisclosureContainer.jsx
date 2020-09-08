@@ -3,14 +3,15 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
+import ContentContainer from 'terra-content-container';
 
 import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
 import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureManagerDelegate';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
+import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
 const propTypes = {
@@ -33,6 +34,7 @@ const propTypes = {
 
 const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
   const promptCheckpointRef = useRef();
   const customRegisterDismissCheckRef = useRef();
 
@@ -79,13 +81,15 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
     <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
       <ApplicationErrorBoundary>
         <ApplicationLoadingOverlayProvider>
-          <ApplicationStatusOverlayProvider>
-            <NavigationPromptCheckpoint
-              ref={promptCheckpointRef}
-            >
-              {children}
-            </NavigationPromptCheckpoint>
-          </ApplicationStatusOverlayProvider>
+          <NavigationPromptCheckpoint
+            ref={promptCheckpointRef}
+          >
+            <ContentContainer header={<NotificationBanners />} fill>
+              <NotificationBannerProvider>
+                {children}
+              </NotificationBannerProvider>
+            </ContentContainer>
+          </NavigationPromptCheckpoint>
         </ApplicationLoadingOverlayProvider>
       </ApplicationErrorBoundary>
     </DisclosureManagerContext.Provider>

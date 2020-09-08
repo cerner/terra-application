@@ -102,6 +102,21 @@ Terra.describeViewports('SlidePanelManager', ['large'], () => {
     browser.click('[class*="slide-group"] #DemoContainer-1 .global-close-disclosure');
     Terra.validates.element('12. root panel-global dismiss', { selector });
   });
+
+  it('opens small slide panel', () => {
+    browser.click('#root-component .disclose-small');
+    browser.waitForVisible('[class*="slide-group"] #DemoContainer-1 .disclose-small');
+  });
+
+  it('renders notification banners in slide panel', () => {
+    browser.click('#toggle-error-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="error"]');
+    browser.click('#toggle-hazard-low-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="hazard-low"]');
+    browser.click('#toggle-unverified-banner-DemoContainer-1');
+    browser.waitForExist('[data-terra-application-notification-banner="unverified"]');
+    Terra.validates.element('14. slide panel notification banners', { selector });
+  });
 });
 
 Terra.describeViewports('CustomDismissCheckWorkflow', ['large'], () => {

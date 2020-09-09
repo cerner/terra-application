@@ -160,13 +160,18 @@ const NavigationApplicationContainer = ({
     }
   }, [props.activeNavigationItemKey]);
 
+  const navigationItems = React.Children.map(children, (child) => ({
+    key: child.props.pageKey,
+    text: child.props.description,
+  }));
+
   return (
     <div
       style={{ height: '100%', overflow: 'hidden', position: 'relative' }}
     >
       <SkipToLinks />
       <SkipToLinksProvider>
-        <ApplicationNavigation {...props} disablePromptsForNavigationItems>
+        <ApplicationNavigation {...props} navigationItems={navigationItems} disablePromptsForNavigationItems>
           <ApplicationContainer>
             <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
               {React.Children.map(children, (child) => {
@@ -199,20 +204,8 @@ const NavigationApplicationContainer = ({
 NavigationApplicationContainer.propTypes = propTypes;
 
 const NavigationPageContainer = ({
-  isActive, children, render, portalElement, preload,
+  isActive, children, render, portalElement,
 }) => {
-  const hasActivatedRef = React.useRef(isActive || preload);
-
-  React.useEffect(() => {
-    if (isActive || preload) {
-      hasActivatedRef.current = true;
-    }
-  }, [isActive, preload]);
-
-  if (!isActive && !preload && !hasActivatedRef.current) {
-    return null;
-  }
-
   let pageContent;
 
   if (render) {

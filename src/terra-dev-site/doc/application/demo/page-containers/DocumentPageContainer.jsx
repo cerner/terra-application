@@ -2,43 +2,43 @@ import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 import NavigationPageContainer, { NavigationPage } from '../../../../../page-container/NavigationPageContainer';
+import useNavigationState from '../../../../../navigation/useNavigationState';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 
 const DocumentPageContainer = () => {
-  const [activePageKey, setActivePageKey] = React.useState('summary');
+  const [navigationState, setNavigationState] = useNavigationState(['document-summary', 'document-orders', 'document-allergies', 'document-inline-page']);
 
-  const dynamicPages = [];
-
-  for (let i = 0; i < 0; i++) {
-    dynamicPages.push(i);
-  }
+  // const dynamicPages = [];
+  // for (let i = 0; i < 0; i++) {
+  //   dynamicPages.push(i);
+  // }
 
   return (
     <NavigationPageContainer
       enableWorkspace
-      activePageKey={activePageKey}
-      onRequestActivatePage={(key) => { setActivePageKey(key); }}
+      activePageKey={navigationState}
+      onRequestActivatePage={(key) => { setNavigationState(key); }}
     >
       <NavigationPage
-        pageKey="summary"
+        pageKey="document-summary"
         description="Chart Review"
         render={() => <ChartReviewPage />}
       />
       <NavigationPage
-        pageKey="orders"
+        pageKey="document-orders"
         description="Order Profile"
         render={() => <OrderProfilePage />}
       />
       <NavigationPage
-        pageKey="allergies"
+        pageKey="document-allergies"
         description="Allergy Profile"
         render={() => <AllergyProfilePage />}
       />
       <NavigationPage
-        pageKey="inline-page"
+        pageKey="document-inline-page"
         description="Inline Page"
         render={() => (
           <ApplicationPage title="Inline Page">
@@ -48,17 +48,17 @@ const DocumentPageContainer = () => {
           </ApplicationPage>
         )}
       />
-      {dynamicPages.map((index) => (
+      {/* {dynamicPages.map((index) => (
         <NavigationPage
           preload
-          key={`dynamic-page-${index}`}
+          key={`document-dynamic-page-${index}`}
           pageKey={`dynamic-page-${index}`}
           description={`Page ${index}`}
           render={() => (
             <ChartReviewPage key={index} />
           )}
         />
-      ))}
+      ))} */}
     </NavigationPageContainer>
   );
 };

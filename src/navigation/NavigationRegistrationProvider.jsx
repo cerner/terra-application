@@ -3,30 +3,41 @@ import React from 'react';
 import NavigationRegistrationContext from './NavigationRegistrationContext';
 
 const NavigationRegistrationProvider = ({ children }) => {
-  const registeredNavigationEndpoints = React.useRef({});
+  const registeredNavigationEndpointsRef = React.useRef({});
   const navigationKeysRef = React.useRef({});
 
   const contextValue = React.useMemo(() => {
-    const registerNavigationEndpoints = (id, navigationItems, stateCallback) => {
-      registeredNavigationEndpoints.current[id] = {
-        id, navigationItems, stateCallback,
+    const registerNavigationEndpoints = (id, navigationItems, stateCallback, navigationAncestor) => {
+      registeredNavigationEndpointsRef.current[id] = {
+        id, navigationItems, stateCallback, navigationAncestor,
       };
 
       navigationItems.forEach((item) => {
-        navigationKeysRef.current[item.key] = { stateId: id, description: item.description, key: item.key };
+        navigationKeysRef.current[item] = {
+          stateId: id, description: item.description, key: item, navigationAncestor,
+        };
       });
     };
 
     const unregisterNavigationEndpoints = (id) => {
-      delete registeredNavigationEndpoints.current[id];
+      const endpointToUnregister = registeredNavigationEndpointsRef.current[id];
+      delete registeredNavigationEndpointsRef.current[id];
+
+      endpointToUnregister.navigationItems.forEach((item) => {
+        delete navigationKeysRef.current[item];
+      });
     };
 
     const getNavigableEndpoints = () => (Object.keys(navigationKeysRef.current));
     const canNavigateTo = (endpointId) => !!navigationKeysRef.current[endpointId];
     const navigateTo = (endpointId) => {
-      const { stateId } = navigationKeysRef.current[endpointId];
+      const { stateId, navigationAncestor } = navigationKeysRef.current[endpointId];
 
-      registeredNavigationEndpoints[stateId].stateCallback(endpointId);
+      if (navigationAncestor) {
+        navigateTo(navigationAncestor);
+      }
+
+      registeredNavigationEndpointsRef.current[stateId].stateCallback(endpointId);
     };
 
     return {
@@ -37,6 +48,22 @@ const NavigationRegistrationProvider = ({ children }) => {
       navigateTo,
     };
   }, []);
+
+  React.useEffect(() => {
+    function handleNavigationEvent(event) {
+      const navigationEndpoint = event.detail;
+
+      if (contextValue.canNavigateTo(navigationEndpoint)) {
+        contextValue.navigateTo(navigationEndpoint);
+      }
+    }
+
+    window.addEventListener('terra-application.navigation.navigate-to', handleNavigationEvent);
+
+    return () => {
+      window.removeEventListener('terra-application.navigation.navigate-to', handleNavigationEvent);
+    };
+  });
 
   return (
     <NavigationRegistrationContext.Provider value={contextValue}>

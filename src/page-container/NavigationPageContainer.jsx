@@ -107,6 +107,7 @@ const NavigationPageContainer = ({
   const pageContainerContextValue = React.useMemo(() => ({
     rightActionComponent: enableWorkspace ? (
       <Button
+        className={cx({ 'active-button': workspaceIsVisible })}
         icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
         text="Toggle Workspace"
         onClick={() => { setWorkspaceIsVisible((state) => !state); }}
@@ -258,7 +259,9 @@ const NavigationPageContainer = ({
     return React.Children.map(childComponents, (child) => {
       if (child.type === NavigationPage) {
         return renderPage(child);
-      } if (child.type === NavigationGroup) {
+      }
+
+      if (child.type === NavigationGroup) {
         return renderChildPages(child.props.children);
       }
 
@@ -565,20 +568,8 @@ const NavigationPageContainer = ({
 NavigationPageContainer.propTypes = propTypes;
 
 const NavigationPage = ({
-  isActive, children, render, portalElement, preload,
+  isActive, children, render, portalElement,
 }) => {
-  const hasActivatedRef = React.useRef(isActive || preload);
-
-  React.useEffect(() => {
-    if (isActive || preload) {
-      hasActivatedRef.current = true;
-    }
-  }, [isActive, preload]);
-
-  if (!isActive && !preload && !hasActivatedRef.current) {
-    return null;
-  }
-
   let pageContent;
 
   if (render) {

@@ -2,36 +2,36 @@ import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
 import NavigationPageContainer, { NavigationGroup, NavigationPage } from '../../../../../page-container/NavigationPageContainer';
+import useNavigationState from '../../../../../navigation/useNavigationState';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
 import OrderProfilePage from '../pages/OrderProfilePage';
 import AllergyProfilePage from '../pages/AllergyProfilePage';
 
 const BillingPageContainer = () => {
-  const [activePageKey, setActivePageKey] = React.useState('summary');
+  const [navigationState, setNavigationState] = useNavigationState(['billing-summary', 'billing-orders', 'billing-allergies', 'billing-inline-page', 'billing-inline-page-nested', 'billing-inline-page-not-in-group']);
 
-  const dynamicPages = [];
-
-  for (let i = 0; i < 0; i++) {
-    dynamicPages.push(i);
-  }
+  // const dynamicPages = [];
+  // for (let i = 0; i < 0; i++) {
+  //   dynamicPages.push(i);
+  // }
 
   return (
     <NavigationPageContainer
       enableWorkspace
-      activePageKey={activePageKey}
-      onRequestActivatePage={(key) => { setActivePageKey(key); }}
+      activePageKey={navigationState}
+      onRequestActivatePage={(key) => { setNavigationState(key); }}
     >
       <NavigationGroup
         description="Group 1"
       >
         <NavigationPage
-          pageKey="summary"
+          pageKey="billing-summary"
           description="Chart Review"
           render={() => <ChartReviewPage />}
         />
         <NavigationPage
-          pageKey="orders"
+          pageKey="billing-orders"
           description="Order Profile"
           render={() => <OrderProfilePage />}
         />
@@ -40,12 +40,12 @@ const BillingPageContainer = () => {
         description="Group 2"
       >
         <NavigationPage
-          pageKey="allergies"
+          pageKey="billing-allergies"
           description="Allergy Profile"
           render={() => <AllergyProfilePage />}
         />
         <NavigationPage
-          pageKey="inline-page"
+          pageKey="billing-inline-page"
           description="Inline Page"
           render={() => (
             <ApplicationPage title="Inline Page">
@@ -66,7 +66,7 @@ const BillingPageContainer = () => {
             description="Group 3``"
           >
             <NavigationPage
-              pageKey="inline-page-nested"
+              pageKey="billing-inline-page-nested"
               description="Inline Page In Nested Group"
               render={() => (
                 <ApplicationPage title="Inline Page In Nested Group">
@@ -80,7 +80,7 @@ const BillingPageContainer = () => {
         </NavigationGroup>
       </NavigationGroup>
       <NavigationPage
-        pageKey="inline-page-not-in-group"
+        pageKey="billing-inline-page-not-in-group"
         description="Inline Page Not In Group"
         render={() => (
           <ApplicationPage title="Inline Page Not In Group">
@@ -90,7 +90,7 @@ const BillingPageContainer = () => {
           </ApplicationPage>
         )}
       />
-      {dynamicPages.map((index) => (
+      {/* {dynamicPages.map((index) => (
         <NavigationPage
           preload
           key={`dynamic-page-${index}`}
@@ -100,7 +100,7 @@ const BillingPageContainer = () => {
             <ChartReviewPage key={index} />
           )}
         />
-      ))}
+      ))} */}
     </NavigationPageContainer>
   );
 };

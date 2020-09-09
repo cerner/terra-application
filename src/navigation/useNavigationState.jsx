@@ -1,20 +1,22 @@
 import React from 'react';
 import uuidv4 from 'uuid/v4';
+import NavigationContext from './NavigationContext';
 import NavigationRegistrationContext from './NavigationRegistrationContext';
 
 const useNavigationState = (navigationItems, initialState) => {
   const uuidRef = React.useRef(uuidv4());
+  const navigation = React.useContext(NavigationContext);
+  const navigationRegistration = React.useContext(NavigationRegistrationContext);
 
   const [state, setState] = React.useState(initialState || navigationItems[0]);
-  const navigationContextValue = React.useContext(NavigationRegistrationContext);
 
   React.useEffect(() => {
-    navigationContextValue.registerNavigationEndpoints(uuidRef.current, navigationItems, setState);
-  }, [navigationContextValue, navigationItems]);
+    navigationRegistration.registerNavigationEndpoints(uuidRef.current, navigationItems, setState, navigation.navigationIdentifier);
+  }, [navigationRegistration, navigationItems, navigation]);
 
   React.useEffect(() => () => {
-    navigationContextValue.unregisterNavigationEndpoints(uuidRef.current);
-  }, [navigationContextValue]);
+    navigationRegistration.unregisterNavigationEndpoints(uuidRef.current);
+  }, [navigationRegistration]);
 
   return [state, setState];
 };

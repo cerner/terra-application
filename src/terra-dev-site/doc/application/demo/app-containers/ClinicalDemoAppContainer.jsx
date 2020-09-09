@@ -16,40 +16,11 @@ const userConfig = {
   initials: 'DU',
 };
 
-const navigationItemsForState = [{
-  key: 'review',
-  description: 'Review',
-}, {
-  key: 'order',
-  description: 'Order',
-}, {
-  key: 'document',
-  description: 'Document',
-}, {
-  key: 'billing',
-  description: 'Billing',
-}];
-
 const ClinicalDemoAppContainer = () => {
-  const [navigationState, setNavigationState] = useNavigationState(navigationItemsForState);
+  const [navigationState, setNavigationState] = useNavigationState(['review', 'order', 'document', 'billing']);
 
   const [showPatientSearchModal, setShowPatientSearchModal] = useState(false);
-
   const [loggedOut, setLoggedOut] = useState(false);
-
-  const navigationItemsRef = useRef([{
-    key: 'review',
-    text: 'Review',
-  }, {
-    key: 'order',
-    text: 'Order',
-  }, {
-    key: 'document',
-    text: 'Document',
-  }, {
-    key: 'billing',
-    text: 'Billing',
-  }]);
 
   if (loggedOut) {
     return (
@@ -64,13 +35,10 @@ const ClinicalDemoAppContainer = () => {
     <>
       <PatientConceptProvider>
         <NavigationApplicationContainer
-          titleConfig={{
-            title: '(Not) Powerchart Touch',
-          }}
+          titleConfig={{ title: '(Not) Powerchart Touch' }}
           userConfig={userConfig}
-          navigationItems={navigationItemsRef.current}
-          activeNavigationItemKey={navigationState.key}
-          onSelectNavigationItem={(key) => { setNavigationState({ key }); }}
+          activeNavigationItemKey={navigationState}
+          onSelectNavigationItem={(key) => { setNavigationState(key); }}
           extensionItems={[{
             key: 'patient-search',
             icon: <IconSearch />,
@@ -87,18 +55,22 @@ const ClinicalDemoAppContainer = () => {
         >
           <NavigationPageContainer
             pageKey="review"
+            description="Review"
             render={() => <ReviewPageContainer />}
           />
           <NavigationPageContainer
             pageKey="order"
+            description="Order"
             render={() => <OrderPageContainer />}
           />
           <NavigationPageContainer
             pageKey="document"
+            description="Document"
             render={() => <DocumentPageContainer />}
           />
           <NavigationPageContainer
             pageKey="billing"
+            description="Billing"
             render={() => <BillingPageContainer />}
           />
         </NavigationApplicationContainer>

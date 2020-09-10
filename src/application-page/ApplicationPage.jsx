@@ -20,7 +20,7 @@ import styles from './ApplicationPage.module.scss';
 const cx = classNames.bind(styles);
 
 const ApplicationPage = ({
-  title, actions, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
+  title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pagePortalContext = React.useContext(PagePortalContext);
@@ -90,10 +90,7 @@ const ApplicationPage = ({
             onBack={onRequestClose && goBack}
             title={title}
             actions={actions}
-            backLinks={contextValue.backLinks}
-            onSelectAction={onSelectAction}
-            onToggleWorkspace={() => {}}
-            onToggleNavigation={() => {}}
+            menu={menu}
           />
           {toolbar}
           {banners}

@@ -15,7 +15,9 @@ import {
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
+
 import styles from './DisclosureComponent.module.scss';
 
 const cx = classNames.bind(styles);
@@ -158,7 +160,9 @@ class DisclosureComponent extends React.Component {
   }
 
   render() {
-    const { disclosureManager, identifier, renderHeaderAdapter } = this.props;
+    const {
+      disclosureManager, identifier, nestedIndex, renderHeaderAdapter,
+    } = this.props;
     const {
       hasPendingAction, hasLoadingOverlay, hasError, hasStatusOverlay, disclosureCount,
     } = this.state;
@@ -169,7 +173,7 @@ class DisclosureComponent extends React.Component {
 
     return (
       <ContentContainer id={identifier} className="nested-component" fill header={<h2 className={cx('content-wrapper')}>Content Component</h2>}>
-        {renderHeaderAdapter ? (
+        {renderHeaderAdapter && nestedIndex > 0 ? (
           <DisclosureManagerHeaderAdapter
             title={`Disclosure - ${identifier}`}
             collapsibleMenuView={(
@@ -214,6 +218,7 @@ class DisclosureComponent extends React.Component {
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+        <NotificationBannerExample isInitiallyClosed id={identifier} />
         {hasStatusOverlay && <ApplicationStatusOverlay message="Test status view" variant="no-data" />}
       </ContentContainer>
     );

@@ -8,10 +8,11 @@ import ApplicationLoadingOverlay from 'terra-application/lib/application-loading
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 
+import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';
 import PendingActionToggle from './PendingActionToggle';
-import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import StatusOverlayPresenter from './StatusOverlayPresenter';
+import EventEmitter from './EventEmitter';
 
 import styles from './AppPage.module.scss';
 
@@ -69,9 +70,10 @@ const AppPage = ({ pageName }) => {
       <StatusOverlayPresenter />
       <ModalPresenter />
       <PendingActionToggle />
-      <h3>Themeing</h3>
+      <h3>Theming</h3>
       <p>{`The div below uses the theme context to apply styling for theme: ${theme.name}.`}</p>
       <div className={cx('themed-block')} />
+      <EventEmitter />
     </div>
   );
 };

@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`utils organizes banner by priority allows multiple banners by of one type 1`] = `
+Array [
+  Object {
+    "id": "hazard-medium",
+    "variant": "hazard-medium",
+  },
+  Object {
+    "id": "second-banner-of-type-hazard-medium",
+    "variant": "hazard-medium",
+  },
+]
+`;
+
+exports[`utils organizes banner by priority organizes banner by default priority 1`] = `
+Array [
+  Object {
+    "id": "hazard-high",
+    "variant": "hazard-high",
+  },
+  Object {
+    "id": "hazard-medium",
+    "variant": "hazard-medium",
+  },
+  Object {
+    "id": "hazard-low",
+    "variant": "hazard-low",
+  },
+  Object {
+    "id": "error",
+    "variant": "error",
+  },
+  Object {
+    "id": "unsatisfied",
+    "variant": "unsatisfied",
+  },
+  Object {
+    "id": "unverified",
+    "variant": "unverified",
+  },
+  Object {
+    "id": "custom",
+    "variant": "custom",
+  },
+]
+`;
+
+exports[`utils organizes banner by priority organizes banner by fusion priority 1`] = `
+Array [
+  Object {
+    "id": "hazard-high",
+    "variant": "hazard-high",
+  },
+  Object {
+    "id": "error",
+    "variant": "error",
+  },
+  Object {
+    "id": "hazard-medium",
+    "variant": "hazard-medium",
+  },
+  Object {
+    "id": "unsatisfied",
+    "variant": "unsatisfied",
+  },
+  Object {
+    "id": "unverified",
+    "variant": "unverified",
+  },
+  Object {
+    "id": "hazard-low",
+    "variant": "hazard-low",
+  },
+  Object {
+    "id": "custom",
+    "variant": "custom",
+  },
+]
+`;

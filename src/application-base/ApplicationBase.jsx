@@ -1,3 +1,5 @@
+/* global TERRA_THEME_CONFIG */
+
 import React, {
   useRef, useEffect, Suspense, useMemo,
 } from 'react';
@@ -9,16 +11,14 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
+import { ApplicationIntlProvider } from '../application-intl';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
-import { ApplicationIntlProvider } from '../application-intl';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
 import styles from './ApplicationBase.module.scss';
-
-/* global TERRA_THEME_CONFIG */
 
 const cx = classNames.bind(styles);
 
@@ -65,7 +65,7 @@ const propTypes = {
   /**
    * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
    * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
-   * overflow potentially overflow its parent.
+   * potentially overflow its parent.
    */
   fitToParentIsDisabled: PropTypes.bool,
   /**

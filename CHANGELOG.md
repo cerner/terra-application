@@ -2,6 +2,27 @@
 
 ## Unreleased
 
+## 1.34.0 - (September 8, 2020)
+
+* Added
+  * Added Notification Banners and provide in disclosure manager content container.
+
+## 1.33.0 - (September 3, 2020)
+
+* Added
+  * Added `aria` role to announce error boundary error text.
+
+## 1.32.0 - (September 1, 2020)
+
+* Added
+  * Added EventEmitter
+  * Add terra-notification-dialog dependency to project
+
+* Changed
+  * Update terra-navigation-prompt to use the latest version
+  * Update terra-application/lib/notification-prompt to use the ContentLayoutAsList component provided from terra-notification-dialog
+      to apply the correct list styles when an unsaved dialog is presented.
+
 ## 1.31.1 - (Aug 19, 2020)
 
 * Changed
@@ -11,6 +32,7 @@
 
 * Changed
   * Updated `uuid` dependency to `v8.0.0`.
+
 * Fixed
   * Fix ApplicationStatusOverlayProvider contextType warning
 

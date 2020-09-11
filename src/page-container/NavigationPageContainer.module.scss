@@ -4,6 +4,7 @@
   .active-button,
   .active-button:hover {
     background-color:rgba(25, 127, 229, 0.2);
+    border: solid 1px #4a90e2;
 
     &:active {
       background-color:rgba(25, 127, 229, 0.5);

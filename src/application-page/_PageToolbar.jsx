@@ -8,9 +8,11 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageToolbar = ({
+  title,
   children,
 }) => (
   <div className={cx('page-toolbar')}>
+    <div>{title}</div>
     {React.Children.map(children, (child) => (
       <div className={cx('toolbar-item')}>
         {child}

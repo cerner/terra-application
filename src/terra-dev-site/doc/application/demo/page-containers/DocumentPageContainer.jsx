@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../../application-page/ApplicationPage';
-import NavigationPageContainer, { NavigationPage } from '../../../../../page-container/NavigationPageContainer';
+import NavigationPageContainer, { NavigationItem } from '../../../../../page-container/NavigationPageContainer';
 import useNavigationState from '../../../../../navigation/useNavigationState';
 
 import ChartReviewPage from '../pages/ChartReviewPage';
@@ -19,27 +19,27 @@ const DocumentPageContainer = () => {
   return (
     <NavigationPageContainer
       enableWorkspace
-      activePageKey={navigationState}
-      onRequestActivatePage={(key) => { setNavigationState(key); }}
+      activeNavigationKey={navigationState}
+      onSelectNavigationItem={(key) => { setNavigationState(key); }}
     >
-      <NavigationPage
-        pageKey="document-summary"
-        description="Chart Review"
+      <NavigationItem
+        navigationKey="document-summary"
+        text="Chart Review"
         render={() => <ChartReviewPage />}
       />
-      <NavigationPage
-        pageKey="document-orders"
-        description="Order Profile"
+      <NavigationItem
+        navigationKey="document-orders"
+        text="Order Profile"
         render={() => <OrderProfilePage />}
       />
-      <NavigationPage
-        pageKey="document-allergies"
-        description="Allergy Profile"
+      <NavigationItem
+        navigationKey="document-allergies"
+        text="Allergy Profile"
         render={() => <AllergyProfilePage />}
       />
-      <NavigationPage
-        pageKey="document-inline-page"
-        description="Inline Page"
+      <NavigationItem
+        navigationKey="document-inline-page"
+        text="Inline Page"
         render={() => (
           <ApplicationPage title="Inline Page">
             <div style={{ padding: '1rem' }}>
@@ -49,11 +49,10 @@ const DocumentPageContainer = () => {
         )}
       />
       {/* {dynamicPages.map((index) => (
-        <NavigationPage
-          preload
+        <NavigationItem
           key={`document-dynamic-page-${index}`}
-          pageKey={`dynamic-page-${index}`}
-          description={`Page ${index}`}
+          navigationKey={`dynamic-page-${index}`}
+          text={`Page ${index}`}
           render={() => (
             <ChartReviewPage key={index} />
           )}

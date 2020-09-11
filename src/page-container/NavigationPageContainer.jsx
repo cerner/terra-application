@@ -36,15 +36,15 @@ function mapChildItem(item) {
 }
 
 const DefaultSideNavPanel = ({
-  activePageKey, onRequestActivatePage, items, onDismiss,
+  activeNavigationKey, onSelectNavigationItem, items, onDismiss,
 }) => (
   <ContentContainer
     header={<ActionHeader title="Side Nav" onBack={onDismiss} />}
     fill
   >
     <CollapsingNavigationMenu
-      selectedPath={activePageKey}
-      onSelect={(key) => { onRequestActivatePage(key); }}
+      selectedPath={activeNavigationKey}
+      onSelect={(key) => { onSelectNavigationItem(key); }}
       menuItems={[{
         childItems: items.map(mapChildItem),
       }]}
@@ -74,7 +74,7 @@ const initialSizeForBreakpoint = (breakpoint) => {
 };
 
 const NavigationPageContainer = ({
-  sidebar, activePageKey, children, onRequestActivatePage, enableWorkspace,
+  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const navigationContextValue = React.useContext(NavigationContext);
@@ -85,7 +85,7 @@ const NavigationPageContainer = ({
   const sideNavPanelRef = React.useRef();
   const workspacePanelRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
-  const lastActivePageKeyRef = React.useRef();
+  const lastActiveNavigationKeyRef = React.useRef();
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
   const sideNavOverlayRef = React.useRef();
@@ -125,7 +125,7 @@ const NavigationPageContainer = ({
   }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
 
   React.useLayoutEffect(() => {
-    const pageNodeForActivePage = pageContainerPortalsRef.current[activePageKey];
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
 
     if (!pageBodyRef.current) {
       return;
@@ -135,9 +135,9 @@ const NavigationPageContainer = ({
       return;
     }
 
-    if (lastActivePageKeyRef.current) {
-      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
-      pageBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
+    if (lastActiveNavigationKeyRef.current) {
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
+      pageBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
@@ -148,15 +148,15 @@ const NavigationPageContainer = ({
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
 
-      lastActivePageKeyRef.current = activePageKey;
+      lastActiveNavigationKeyRef.current = activeNavigationKey;
 
       setTimeout(() => {
         document.body.focus();
       }, 0);
     } else {
-      lastActivePageKeyRef.current = undefined;
+      lastActiveNavigationKeyRef.current = undefined;
     }
-  }, [activePageKey]);
+  }, [activeNavigationKey]);
 
   // TODO Fix this to handle navigation groups
   // React.useEffect(() => {
@@ -226,38 +226,38 @@ const NavigationPageContainer = ({
   function activatePage(pageKey) {
     setSideNavOverlayIsVisible(false);
 
-    if (pageKey === activePageKey) {
+    if (pageKey === activeNavigationKey) {
       return;
     }
 
-    onRequestActivatePage(pageKey);
+    onSelectNavigationItem(pageKey);
   }
 
   function renderChildPages(childComponents) {
     function renderPage(page) {
-      let portalElement = pageContainerPortalsRef.current[page.props.pageKey]?.element;
+      let portalElement = pageContainerPortalsRef.current[page.props.navigationKey]?.element;
       if (!portalElement) {
         portalElement = document.createElement('div');
         portalElement.style.position = 'relative';
         portalElement.style.height = '100%';
         portalElement.style.width = '100%';
-        portalElement.id = `side-nav-${page.props.pageKey}`;
-        pageContainerPortalsRef.current[page.props.pageKey] = {
+        portalElement.id = `side-nav-${page.props.navigationKey}`;
+        pageContainerPortalsRef.current[page.props.navigationKey] = {
           element: portalElement,
         };
       }
 
       return (
-        <NavigationContext.Provider value={{ isActive: navigationContextValue.isActive && page.props.pageKey === activePageKey, navigationIdentifier: page.props.pageKey }}>
+        <NavigationContext.Provider value={{ isActive: navigationContextValue.isActive && page.props.navigationKey === activeNavigationKey, navigationIdentifier: page.props.navigationKey }}>
           {React.cloneElement(page, {
-            isActive: page.props.pageKey === activePageKey, portalElement, enableWorkspace,
+            isActive: page.props.navigationKey === activeNavigationKey, portalElement, enableWorkspace,
           })}
         </NavigationContext.Provider>
       );
     }
 
     return React.Children.map(childComponents, (child) => {
-      if (child.type === NavigationPage) {
+      if (child.type === NavigationItem) {
         return renderPage(child);
       }
 
@@ -271,12 +271,12 @@ const NavigationPageContainer = ({
 
   function buildSideNavItems(childComponents) {
     return React.Children.map(childComponents, (child) => {
-      if (child.type === NavigationPage) {
-        return { key: child.props.pageKey, text: child.props.description };
+      if (child.type === NavigationItem) {
+        return { key: child.props.navigationKey, text: child.props.text };
       }
 
       if (child.type === NavigationGroup) {
-        return { key: child.props.description, text: child.props.description, childItems: buildSideNavItems(child.props.children) };
+        return { key: child.props.text, text: child.props.text, childItems: buildSideNavItems(child.props.children) };
       }
 
       return null;
@@ -310,7 +310,7 @@ const NavigationPageContainer = ({
   return (
     <>
       <SkipToLink
-        description="Skip to Content"
+        description="Skip to Content" // TODO INTL
         callback={() => {
           if (workspaceIsVisible && hasOverlayWorkspace) {
             setWorkspaceIsVisible(false);
@@ -394,8 +394,8 @@ const NavigationPageContainer = ({
                   document.querySelector('main')?.focus();
                 });
               } : undefined}
-              activePageKey={activePageKey}
-              onRequestActivatePage={activatePage}
+              activeNavigationKey={activeNavigationKey}
+              onSelectNavigationItem={activatePage}
               items={buildSideNavItems(children)}
             />
           ))}
@@ -567,7 +567,7 @@ const NavigationPageContainer = ({
 
 NavigationPageContainer.propTypes = propTypes;
 
-const NavigationPage = ({
+const NavigationItem = ({
   isActive, children, render, portalElement,
 }) => {
   let pageContent;
@@ -590,4 +590,4 @@ const NavigationGroup = ({
 }) => null;
 
 export default NavigationPageContainer;
-export { NavigationGroup, NavigationPage };
+export { NavigationGroup, NavigationItem };

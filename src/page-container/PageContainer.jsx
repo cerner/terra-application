@@ -1,17 +1,17 @@
 import React from 'react';
-import NavigationPageContainer, { NavigationPage } from './NavigationPageContainer';
+import NavigationPageContainer, { NavigationItem } from './NavigationPageContainer';
 
 const PageContainer = ({
   children, enableWorkspace,
 }) => (
   <NavigationPageContainer
     enableWorkspace={enableWorkspace}
-    activePageKey="default-page"
-    onRequestActivatePage={() => {}}
+    activeNavigationKey="default-page"
+    onSelectNavigationItem={() => {}}
   >
-    <NavigationPage
-      pageKey="default-page"
-      description="Default"
+    <NavigationItem
+      navigationKey="default-page"
+      text="Default"
       render={() => children}
     />
   </NavigationPageContainer>

@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 
-import NavigationApplicationContainer, { NavigationPageContainer } from '../../../../../application-container/NavigationApplicationContainer';
+import NavigationApplicationContainer, { NavigationItem } from '../../../../../application-container/NavigationApplicationContainer';
 
 import ReviewPageContainer from '../page-containers/ReviewPageContainer';
 import OrderPageContainer from '../page-containers/OrderPageContainer';
@@ -53,24 +53,24 @@ const ClinicalDemoAppContainer = () => {
             setLoggedOut(true);
           }}
         >
-          <NavigationPageContainer
-            pageKey="review"
-            description="Review"
+          <NavigationItem
+            navigationKey="review"
+            text="Review"
             render={() => <ReviewPageContainer />}
           />
-          <NavigationPageContainer
-            pageKey="order"
-            description="Order"
+          <NavigationItem
+            navigationKey="order"
+            text="Order"
             render={() => <OrderPageContainer />}
           />
-          <NavigationPageContainer
-            pageKey="document"
-            description="Document"
+          <NavigationItem
+            navigationKey="document"
+            text="Document"
             render={() => <DocumentPageContainer />}
           />
-          <NavigationPageContainer
-            pageKey="billing"
-            description="Billing"
+          <NavigationItem
+            navigationKey="billing"
+            text="Billing"
             render={() => <BillingPageContainer />}
           />
         </NavigationApplicationContainer>

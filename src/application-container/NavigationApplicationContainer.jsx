@@ -122,7 +122,7 @@ const NavigationApplicationContainer = ({
 }) => {
   const sideNavBodyRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
-  const lastActivePageKeyRef = React.useRef();
+  const lastActiveNavigationKeyRef = React.useRef();
 
   const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
 
@@ -137,9 +137,9 @@ const NavigationApplicationContainer = ({
       return;
     }
 
-    if (lastActivePageKeyRef.current) {
-      pageContainerPortalsRef.current[lastActivePageKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActivePageKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
-      sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActivePageKeyRef.current].element);
+    if (lastActiveNavigationKeyRef.current) {
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
+      sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
@@ -150,19 +150,19 @@ const NavigationApplicationContainer = ({
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
 
-      lastActivePageKeyRef.current = props.activeNavigationItemKey;
+      lastActiveNavigationKeyRef.current = props.activeNavigationItemKey;
 
       setTimeout(() => {
         document.body.focus();
       }, 0);
     } else {
-      lastActivePageKeyRef.current = undefined;
+      lastActiveNavigationKeyRef.current = undefined;
     }
   }, [props.activeNavigationItemKey]);
 
   const navigationItems = React.Children.map(children, (child) => ({
-    key: child.props.pageKey,
-    text: child.props.description,
+    key: child.props.navigationKey,
+    text: child.props.text,
   }));
 
   return (
@@ -175,21 +175,21 @@ const NavigationApplicationContainer = ({
           <ApplicationContainer>
             <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
               {React.Children.map(children, (child) => {
-                let portalElement = pageContainerPortalsRef.current[child.props.pageKey]?.element;
+                let portalElement = pageContainerPortalsRef.current[child.props.navigationKey]?.element;
                 if (!portalElement) {
                   portalElement = document.createElement('div');
                   portalElement.style.position = 'relative';
                   portalElement.style.height = '100%';
                   portalElement.style.width = '100%';
-                  portalElement.id = `primary-nav-${child.props.pageKey}`;
-                  pageContainerPortalsRef.current[child.props.pageKey] = {
+                  portalElement.id = `primary-nav-${child.props.navigationKey}`;
+                  pageContainerPortalsRef.current[child.props.navigationKey] = {
                     element: portalElement,
                   };
                 }
 
                 return (
-                  <NavigationContext.Provider value={{ isActive: child.props.pageKey === props.activeNavigationItemKey, navigationIdentifier: child.props.pageKey }}>
-                    {React.cloneElement(child, { isActive: child.props.pageKey === props.activeNavigationItemKey, portalElement })}
+                  <NavigationContext.Provider value={{ isActive: child.props.navigationKey === props.activeNavigationItemKey, navigationIdentifier: child.props.navigationKey }}>
+                    {React.cloneElement(child, { isActive: child.props.navigationKey === props.activeNavigationItemKey, portalElement })}
                   </NavigationContext.Provider>
                 );
               })}
@@ -203,8 +203,8 @@ const NavigationApplicationContainer = ({
 
 NavigationApplicationContainer.propTypes = propTypes;
 
-const NavigationPageContainer = ({
-  isActive, children, render, portalElement,
+const NavigationItem = ({
+  navigationKey, text, isActive, children, render, portalElement,
 }) => {
   let pageContent;
 
@@ -218,4 +218,4 @@ const NavigationPageContainer = ({
 };
 
 export default NavigationApplicationContainer;
-export { NavigationPageContainer };
+export { NavigationItem };

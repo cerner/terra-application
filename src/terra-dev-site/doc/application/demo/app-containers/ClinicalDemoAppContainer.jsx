@@ -37,7 +37,7 @@ const ClinicalDemoAppContainer = () => {
         <NavigationApplicationContainer
           titleConfig={{ title: '(Not) Powerchart Touch' }}
           userConfig={userConfig}
-          activeNavigationItemKey={navigationState}
+          activeNavigationKey={navigationState}
           onSelectNavigationItem={(key) => { setNavigationState(key); }}
           extensionItems={[{
             key: 'patient-search',

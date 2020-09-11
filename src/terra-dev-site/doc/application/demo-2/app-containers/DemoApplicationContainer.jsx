@@ -38,8 +38,6 @@ const DemoApplicationContainer = () => {
         <NavigationApplicationContainer
           titleConfig={{ title: 'Demo Application' }}
           userConfig={userConfig}
-          activeNavigationItemKey={navigationState}
-          onSelectNavigationItem={(key) => { setNavigationState(key); }}
           extensionItems={[{
             key: 'search',
             icon: <IconSearch />,
@@ -55,6 +53,8 @@ const DemoApplicationContainer = () => {
           }}
           onSelectSettings={() => {}}
           onSelectHelp={() => {}}
+          activeNavigationKey={navigationState}
+          onSelectNavigationItem={(key) => { setNavigationState(key); }}
         >
           <NavigationItem
             navigationKey="nav-A"

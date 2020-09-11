@@ -17,7 +17,7 @@ const propTypes = {
    * A string key representing the currently active navigation item. This value should match one of the item keys provided in the
    * `navigationItems` array.
    */
-  activeNavigationItemKey: PropTypes.string,
+  activeNavigationKey: PropTypes.string,
   /**
    * A collection of child elements to render within the ApplicationNavigation body.
    */
@@ -118,39 +118,39 @@ const propTypes = {
 };
 
 const NavigationApplicationContainer = ({
-  children, ...props
+  children, activeNavigationKey, ...props
 }) => {
-  const sideNavBodyRef = React.useRef();
+  const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActiveNavigationKeyRef = React.useRef();
 
   const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
 
   React.useLayoutEffect(() => {
-    const pageNodeForActivePage = pageContainerPortalsRef.current[props.activeNavigationItemKey];
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
 
-    if (!sideNavBodyRef.current) {
+    if (!contentElementRef.current) {
       return;
     }
 
-    if (sideNavBodyRef.current.contains(pageNodeForActivePage?.element)) {
+    if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
       return;
     }
 
     if (lastActiveNavigationKeyRef.current) {
       pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
-      sideNavBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
-      sideNavBodyRef.current.appendChild(pageNodeForActivePage.element);
+      contentElementRef.current.appendChild(pageNodeForActivePage.element);
 
       const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
       if (pageMainElement) {
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
 
-      lastActiveNavigationKeyRef.current = props.activeNavigationItemKey;
+      lastActiveNavigationKeyRef.current = activeNavigationKey;
 
       setTimeout(() => {
         document.body.focus();
@@ -158,7 +158,7 @@ const NavigationApplicationContainer = ({
     } else {
       lastActiveNavigationKeyRef.current = undefined;
     }
-  }, [props.activeNavigationItemKey]);
+  }, [activeNavigationKey]);
 
   const navigationItems = React.Children.map(children, (child) => ({
     key: child.props.navigationKey,
@@ -171,9 +171,9 @@ const NavigationApplicationContainer = ({
     >
       <SkipToLinks />
       <SkipToLinksProvider>
-        <ApplicationNavigation {...props} navigationItems={navigationItems} disablePromptsForNavigationItems>
+        <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
           <ApplicationContainer>
-            <div ref={sideNavBodyRef} style={{ height: '100%', position: 'relative' }}>
+            <div ref={contentElementRef} style={{ height: '100%', position: 'relative' }}>
               {React.Children.map(children, (child) => {
                 let portalElement = pageContainerPortalsRef.current[child.props.navigationKey]?.element;
                 if (!portalElement) {

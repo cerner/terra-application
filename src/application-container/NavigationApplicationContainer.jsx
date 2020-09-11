@@ -1,25 +1,23 @@
-import React, {
-  useRef, useCallback, Suspense,
-} from 'react';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from './terra-application-navigation/utils/propTypes';
-import TerraApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
-import ApplicationContainer from '../application-container/ApplicationContainer';
-import ApplicationErrorBoundary from '../application-error-boundary';
-import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { ApplicationIntlContext } from '../application-intl';
+} from '../application-navigation/terra-application-navigation/utils/propTypes';
+import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
+import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
+import NavigationContext from '../navigation/NavigationContext';
+
+import useSkipToLinks from './useSkipToLinks';
+import ApplicationContainer from './ApplicationContainer';
 
 const propTypes = {
   /**
    * A string key representing the currently active navigation item. This value should match one of the item keys provided in the
    * `navigationItems` array.
    */
-  activeNavigationItemKey: PropTypes.string,
+  activeNavigationKey: PropTypes.string,
   /**
    * A collection of child elements to render within the ApplicationNavigation body.
    */
@@ -60,7 +58,7 @@ const propTypes = {
    * Key/Value pairs associating a string key entry to a Number notification count. The keys must correspond to a
    * navigationItem or extensionItem key provided through their associated props.
    */
-  notifications: PropTypes.object,
+  notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
   /**
    * Callback function triggered on Drawer Menu state change.
    */
@@ -119,80 +117,105 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 };
 
-const ApplicationNavigation = ({
-  activeNavigationItemKey,
-  children,
-  disablePromptsForLogout,
-  disablePromptsForNavigationItems,
-  extensionItems,
-  hero,
-  navigationItems,
-  navigationPromptResolutionOptions,
-  notifications,
-  onDrawerMenuStateChange,
-  onSelectExtensionItem,
-  onSelectHelp,
-  onSelectLogout: propOnSelectLogout,
-  onSelectNavigationItem: propOnSelectNavigationItem,
-  onSelectSettings,
-  onSelectUtilityItem,
-  titleConfig,
-  userConfig,
-  utilityItems,
+const NavigationApplicationContainer = ({
+  children, activeNavigationKey, ...props
 }) => {
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const contentElementRef = React.useRef();
+  const pageContainerPortalsRef = React.useRef({});
+  const lastActiveNavigationKeyRef = React.useRef();
 
-  const navigationPromptCheckpointRef = useRef();
+  const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
 
-  const onSelectNavigationItem = useCallback((selectedItemKey) => {
-    if (disablePromptsForNavigationItems) {
-      propOnSelectNavigationItem(selectedItemKey);
+  React.useLayoutEffect(() => {
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
+
+    if (!contentElementRef.current) {
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      propOnSelectNavigationItem(selectedItemKey);
-    }).catch((e) => { if (e) throw e; });
-  }, [applicationIntl, disablePromptsForNavigationItems, navigationPromptResolutionOptions, propOnSelectNavigationItem]);
-
-  const onSelectLogout = useCallback(() => {
-    if (disablePromptsForLogout) {
-      propOnSelectLogout();
+    if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      propOnSelectLogout();
-    }).catch((e) => { if (e) throw e; });
-  }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
+    if (lastActiveNavigationKeyRef.current) {
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
+      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+    }
+
+    if (pageNodeForActivePage?.element) {
+      contentElementRef.current.appendChild(pageNodeForActivePage.element);
+
+      const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
+      if (pageMainElement) {
+        pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
+      }
+
+      lastActiveNavigationKeyRef.current = activeNavigationKey;
+
+      setTimeout(() => {
+        document.body.focus();
+      }, 0);
+    } else {
+      lastActiveNavigationKeyRef.current = undefined;
+    }
+  }, [activeNavigationKey]);
+
+  const navigationItems = React.Children.map(children, (child) => ({
+    key: child.props.navigationKey,
+    text: child.props.text,
+  }));
 
   return (
-    <TerraApplicationNavigation
-      hero={hero}
-      notifications={notifications}
-      titleConfig={titleConfig}
-      navigationItems={navigationItems}
-      onSelectNavigationItem={propOnSelectNavigationItem && onSelectNavigationItem}
-      activeNavigationItemKey={activeNavigationItemKey}
-      userConfig={userConfig}
-      extensionItems={extensionItems}
-      onSelectExtensionItem={onSelectExtensionItem}
-      utilityItems={utilityItems}
-      onSelectUtilityItem={onSelectUtilityItem}
-      onSelectSettings={onSelectSettings}
-      onSelectHelp={onSelectHelp}
-      onSelectLogout={propOnSelectLogout && onSelectLogout}
-      onDrawerMenuStateChange={onDrawerMenuStateChange}
+    <div
+      style={{ height: '100%', overflow: 'hidden', position: 'relative' }}
     >
-      <NavigationPromptCheckpoint
-        ref={navigationPromptCheckpointRef}
-      >
-        {children}
-      </NavigationPromptCheckpoint>
-    </TerraApplicationNavigation>
+      <SkipToLinks />
+      <SkipToLinksProvider>
+        <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
+          <ApplicationContainer>
+            <div ref={contentElementRef} style={{ height: '100%', position: 'relative' }}>
+              {React.Children.map(children, (child) => {
+                let portalElement = pageContainerPortalsRef.current[child.props.navigationKey]?.element;
+                if (!portalElement) {
+                  portalElement = document.createElement('div');
+                  portalElement.style.position = 'relative';
+                  portalElement.style.height = '100%';
+                  portalElement.style.width = '100%';
+                  portalElement.id = `primary-nav-${child.props.navigationKey}`;
+                  pageContainerPortalsRef.current[child.props.navigationKey] = {
+                    element: portalElement,
+                  };
+                }
+
+                return (
+                  <NavigationContext.Provider value={{ isActive: child.props.navigationKey === props.activeNavigationItemKey, navigationIdentifier: child.props.navigationKey }}>
+                    {React.cloneElement(child, { isActive: child.props.navigationKey === props.activeNavigationItemKey, portalElement })}
+                  </NavigationContext.Provider>
+                );
+              })}
+            </div>
+          </ApplicationContainer>
+        </ApplicationNavigation>
+      </SkipToLinksProvider>
+    </div>
   );
 };
 
-ApplicationNavigation.propTypes = propTypes;
+NavigationApplicationContainer.propTypes = propTypes;
 
-export default ApplicationNavigation;
+const NavigationItem = ({
+  navigationKey, text, isActive, children, render, portalElement,
+}) => {
+  let pageContent;
+
+  if (render) {
+    pageContent = render({ isActive });
+  } else {
+    pageContent = children;
+  }
+
+  return ReactDOM.createPortal(pageContent, portalElement);
+};
+
+export default NavigationApplicationContainer;
+export { NavigationItem };

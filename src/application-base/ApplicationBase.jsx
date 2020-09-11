@@ -15,14 +15,23 @@ import { ApplicationIntlProvider } from '../application-intl';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import LayerManagerProvider from '../layers/LayerManagerProvider';
+import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
+
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
+import initializeGlobalEvents from './initializeGlobalEvents';
+
 import styles from './ApplicationBase.module.scss';
+
+// window.LayerManager = new LayerManager();
 
 const cx = classNames.bind(styles);
 
 const browserLocale = getBrowserLocale();
+
+initializeGlobalEvents();
 
 // We only need to retrieve the root theme and root theme name once for the life of the application.
 const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : undefined;
@@ -117,37 +126,41 @@ const ApplicationBase = ({
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider
-        themeName={themeName}
-      >
-        <ThemeContextProvider theme={theme}>
-          <Base
-            customMessages={customTranslatedMessages}
-            translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={localeOverride || locale || browserLocale}
+      <LayerManagerProvider>
+        <NavigationRegistrationProvider>
+          <ThemeProvider
+            themeName={themeName}
           >
-            <ApplicationErrorBoundary>
-              <ApplicationIntlProvider>
-                <ActiveBreakpointProvider>
-                  <NavigationPromptCheckpoint
-                    onPromptChange={(registeredPrompts) => {
-                      registeredPromptsRef.current = registeredPrompts;
-                    }}
-                  >
-                    <ApplicationLoadingOverlayProvider>
-                      <ApplicationStatusOverlayProvider>
-                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                          {children}
-                        </Suspense>
-                      </ApplicationStatusOverlayProvider>
-                    </ApplicationLoadingOverlayProvider>
-                  </NavigationPromptCheckpoint>
-                </ActiveBreakpointProvider>
-              </ApplicationIntlProvider>
-            </ApplicationErrorBoundary>
-          </Base>
-        </ThemeContextProvider>
-      </ThemeProvider>
+            <ThemeContextProvider theme={theme}>
+              <Base
+                customMessages={customTranslatedMessages}
+                translationsLoadingPlaceholder={translationsLoadingPlaceholder}
+                locale={localeOverride || locale || browserLocale}
+              >
+                <ApplicationErrorBoundary>
+                  <ApplicationIntlProvider>
+                    <ActiveBreakpointProvider>
+                      <NavigationPromptCheckpoint
+                        onPromptChange={(registeredPrompts) => {
+                          registeredPromptsRef.current = registeredPrompts;
+                        }}
+                      >
+                        <ApplicationLoadingOverlayProvider>
+                          <ApplicationStatusOverlayProvider>
+                            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                              {children}
+                            </Suspense>
+                          </ApplicationStatusOverlayProvider>
+                        </ApplicationLoadingOverlayProvider>
+                      </NavigationPromptCheckpoint>
+                    </ActiveBreakpointProvider>
+                  </ApplicationIntlProvider>
+                </ApplicationErrorBoundary>
+              </Base>
+            </ThemeContextProvider>
+          </ThemeProvider>
+        </NavigationRegistrationProvider>
+      </LayerManagerProvider>
     </div>
   );
 };

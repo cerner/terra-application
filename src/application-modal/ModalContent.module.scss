@@ -1,0 +1,39 @@
+// Themes
+// @import './orion-fusion-theme/AbstractModal.module';
+// @import './clinical-lowlight-theme/AbstractModal.module';
+
+:local {
+  .abstract-modal {
+    background-color: var(--terra-modal-manager-background-color, #fff);
+    border: var(--terra-modal-manager-border);
+    border-radius: var(--terra-modal-manager-border-radius, 5px);
+    box-shadow: var(--terra-modal-manager-box-shadow, 0 3px 7px rgba(0, 0, 0, 0.3));
+    color: var(--terra-modal-manager-foreground-color);
+
+    display: block;
+    left: 50%;
+    max-height: calc(100% - 2 * var(--terra-abstract-modal-vertical-inset, 10px));
+    max-width: calc(100% - 2 * var(--terra-abstract-modal-horizontal-inset, 10px));
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    &.is-fullscreen {
+      height: 100%;
+      width: 100%;
+    }
+
+    &.large {
+      height: 768px;
+      width: 1024px;
+  
+    }
+
+    &.small {
+      width: 640px;
+      height: 480px;  
+    }
+  }
+}

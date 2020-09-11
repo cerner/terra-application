@@ -1,0 +1,99 @@
+@import '~terra-mixins/lib/Mixins';
+
+:local {
+  .page-layout-header {
+    align-items: center;
+    background-color: #fff;
+    border-bottom: 1px solid black;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+
+    overflow: hidden;
+    padding: 0 5px;
+    width: 100%;
+  }
+
+  .back-button-container {
+    display: flex;
+    flex: 0 0 auto;
+    padding-right: 5px;
+
+    .back {
+      background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
+      background-repeat: no-repeat;
+      background-size: auto;
+      display: inline-block;
+      height: 1rem;
+      position: relative;
+      top: 0;
+      vertical-align: -0.14285rem;
+      width: 1rem;
+  
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+        height: 1rem;
+        vertical-align: -0.17285rem;
+      }  
+
+      &:hover {
+        background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
+      }
+    }
+  }
+
+  .title-container {
+    flex: 1 1 auto;
+    padding: 10px 0;
+  }
+
+  .title-container:first-child {
+    padding-left: 5px;
+  }
+
+  .actions-container {
+    display: flex;
+    flex: 0 0 auto;
+  }
+
+  .breadcrumb-header {
+    min-height: 46px;
+  }
+
+  .actions-divider {
+    align-self: stretch;
+    background-color: grey;
+    flex: 0 0 auto;
+    margin: 4px 5px;
+    width: 1px;
+  }
+
+  .breadcrumbs {
+    align-items: baseline;
+    display: flex;
+    flex: 1 1 auto;
+    padding: 10px 0;
+    // font-size: 1.429rem;
+    // margin-bottom: 0.3571rem;
+    // margin-left: 1.071rem;
+    // margin-right: 1.071rem;
+    // margin-top: 0.3571rem;
+
+    .divider {
+      margin-left: 0.3571rem;
+      margin-right: 0.3571rem;
+    }
+
+    .endpoint {
+      color: #1c1f21;
+      // font-weight: 500;
+    }
+
+    .link-button {      
+      > * {
+        padding: 0;
+      }
+    }
+  
+  }
+}

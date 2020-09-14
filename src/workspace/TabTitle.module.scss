@@ -1,0 +1,23 @@
+:local {
+  .title-bar {
+    background-color: #ccc;
+    border-bottom: 1px solid #a5a3a3;
+    color: #000;
+    display: flex;
+    flex-direction: row;
+    overflow: hidden;
+    padding: 0.643rem 1.071rem;
+    position: relative;
+    width: 100%;
+  }
+
+  .title {
+    flex: 1 1 auto;
+    width: 100;
+  }
+
+  .actions {
+    flex: 0 0 auto;
+    max-width: 20%;
+  }
+}

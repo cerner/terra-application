@@ -1,0 +1,35 @@
+:local {
+  .tabs {
+    background-color: var(--terra-tabs-structural-container-background-color, #fff);
+    position: relative;
+    width: 100%;
+
+    // // Content div of content container component
+    // > :nth-child(2) {
+    //   background-clip: content-box;
+    //   background-color: var(--terra-tabs-structural-content-background-color, #fff);
+    //   background-image: var(--terra-tabs-structural-content-background-image);
+    //   border-radius: var(--terra-tabs-structural-content-border-radius, 0);
+    //   box-shadow: var(--terra-tabs-structural-content-box-shadow, 0);
+    //   // Used to make the content sit above the tab to block the box shadow that can be applied
+    //   z-index: var(--terra-tabs-structural-content-z-index, 0);
+    // }
+  }
+
+  .body-fill {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    > .header {
+      flex: 0 0 auto;
+      z-index: 20;
+    }
+
+    > .body {
+      flex: 1 1 auto;
+      height: 100%;
+      z-index: 10;
+    }
+  }
+}

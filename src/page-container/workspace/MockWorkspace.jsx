@@ -5,6 +5,7 @@ import Menu from 'terra-menu';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import HeaderContainer from '../../header-container/_HeaderContainer';
+import Tabs from '../../workspace/mock/TempImplement';
 
 const propTypes = {};
 
@@ -69,27 +70,32 @@ const MockWorkspace = ({
 
   return (
     <HeaderContainer
-      header={<ActionHeader title="Workspace" onClose={onDismiss} />}
-    >
-      <div style={{ padding: '1rem' }}>
-        <p>Workspace goes here.</p>
-        {menuOptions && (
-          <>
+      header={(
+        <ActionHeader
+          title="Workspace"
+          onClose={onDismiss}
+          children={(
             <p>
               Size:
               {' '}
-              <Button text={workspaceCustomSize !== undefined ? `${workspaceCustomSize * 100}%` : `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}`} refCallback={(ref) => { menuButtonRef.current = ref; }} onClick={() => { setMenuIsOpen(true); }} />
+              <Button
+                text={workspaceCustomSize !== undefined ? `${workspaceCustomSize * 100}%` : `${workspaceSize?.[0].toUpperCase() + workspaceSize?.substring(1)}`}
+                refCallback={(ref) => { menuButtonRef.current = ref; }}
+                onClick={() => { setMenuIsOpen(true); }}
+              />
+              <Menu
+                isOpen={menuIsOpen}
+                targetRef={() => menuButtonRef.current}
+                onRequestClose={() => { setMenuIsOpen(false); }}
+              >
+        {menuOptions}
+      </Menu>
             </p>
-            <Menu
-              isOpen={menuIsOpen}
-              targetRef={() => menuButtonRef.current}
-              onRequestClose={() => { setMenuIsOpen(false); }}
-            >
-              {menuOptions}
-            </Menu>
-          </>
-        )}
-      </div>
+          )}
+        />
+      )}
+    >
+      <Tabs />
     </HeaderContainer>
   );
 };

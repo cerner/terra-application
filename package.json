@@ -90,7 +90,7 @@
     "start-prod": "tt-serve -p",
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
-    "test": "npm run lint && npm run jest && npm run wdio",
+    "test": "npm run lint && npm run jest",
     "wdio-default": "wdio",
     "wdio-locale": "LOCALE=de wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",

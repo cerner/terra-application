@@ -5,7 +5,7 @@ import Menu from 'terra-menu';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import HeaderContainer from '../../header-container/_HeaderContainer';
-import Tabs from '../../workspace/mock/TempImplement';
+import Tabs from './mock/TempImplement';
 
 const propTypes = {};
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import Tabs from '../Tabs';
-import TabPage from '../TabPage';
+import Tabs from '../../../workspace/Tabs';
+import TabPage from '../../../workspace/TabPage';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';

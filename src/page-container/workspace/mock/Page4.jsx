@@ -1,5 +1,6 @@
 import React from 'react';
-import Panel from '../Panel';
+import Panel from '../../../workspace/Panel';
+import MockContent from './MockContent';
 
 const Page4 = () => {
   return (
@@ -7,7 +8,7 @@ const Page4 = () => {
       toolBar={<p style={{ backgroundColor: 'lightgreen', padding: '0.5rem', margin: '0' }}>Page 4 Toolbar</p>}
       actions={[<button key="lobster">test4</button>]}
     >
-      <p>content 4</p>
+      <MockContent title="Page 4" initialCount={0} />
     </Panel>  
   );
 };

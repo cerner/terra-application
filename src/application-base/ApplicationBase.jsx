@@ -15,7 +15,6 @@ import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
-// We determine the browser's default locale to be used when no locale is provided to ApplicationBase.
 const browserLocale = getBrowserLocale();
 
 // We only need to retrieve the root theme and root theme name once for the life of the application.

@@ -4,7 +4,6 @@ const siteConfig = {
   navConfig,
   includeTestEvidence: false,
   appConfig: {
-
     themes: {
       'Default Theme': '',
       'Clinical-lowlight-theme': 'clinical-lowlight-theme',

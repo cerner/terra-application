@@ -1,5 +1,5 @@
 import React, {
-  useRef, useCallback, Suspense,
+  useRef, useCallback,
 } from 'react';
 import PropTypes from 'prop-types';
 
@@ -7,10 +7,6 @@ import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from './terra-application-navigation/utils/propTypes';
 import TerraApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
-import ApplicationContainer from '../application-container/ApplicationContainer';
-import ApplicationErrorBoundary from '../application-error-boundary';
-import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 

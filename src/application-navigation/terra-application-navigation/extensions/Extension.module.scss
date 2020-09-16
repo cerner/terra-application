@@ -2,7 +2,7 @@
 :local {
   .extension {
     align-items: center;
-    color: var(--terra-application-navigation-extension-color, rgba(255, 255, 255, 0.8));
+    color: var(--terra-application-application-navigation-extension-color, rgba(255, 255, 255, 0.8));
     cursor: pointer;
     display: flex;
     height: 100%;
@@ -14,24 +14,24 @@
       &:hover {
         /* stylelint-disable-next-line max-nesting-depth */
         .extension-inner {
-          color: var(--terra-application-navigation-extension-hover-color, #fff);
+          color: var(--terra-application-application-navigation-extension-hover-color, #fff);
         }
       }
     }
 
     &[data-focus-styles-enabled='true']:focus {
       .extension-inner {
-        background-color: var(--terra-application-navigation-extension-focus-background-color, transparent);
+        background-color: var(--terra-application-application-navigation-extension-focus-background-color, transparent);
         border-radius: 100%;
-        color: var(--terra-application-navigation-extension-focus-color, rgba(255, 255, 255, 0.8));
-        outline: var(--terra-application-navigation-extension-focus-outline, 2px dashed #fff);
-        outline-offset: var(--terra-application-navigation-extension-focus-outline-offset, -2px);
+        color: var(--terra-application-application-navigation-extension-focus-color, rgba(255, 255, 255, 0.8));
+        outline: var(--terra-application-application-navigation-extension-focus-outline, 2px dashed #fff);
+        outline-offset: var(--terra-application-application-navigation-extension-focus-outline-offset, -2px);
       }
     }
   
     &:active {
       .extension-inner {
-        color: var(--terra-application-navigation-extension-active-color, rgba(255, 255, 255, 0.5));
+        color: var(--terra-application-application-navigation-extension-active-color, rgba(255, 255, 255, 0.5));
       }
     }
   }

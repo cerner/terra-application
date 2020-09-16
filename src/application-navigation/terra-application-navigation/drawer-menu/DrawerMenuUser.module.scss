@@ -23,7 +23,7 @@
     }
 
     .avatar-outline {
-      border: var(--terra-application-navigation-drawer-menu-avatar-outline-border, 0.1429rem solid rgba(255, 255, 255, 0.1));
+      border: var(--terra-application-application-navigation-drawer-menu-avatar-outline-border, 0.1429rem solid rgba(255, 255, 255, 0.1));
       border-radius: 50%;
       height: 100%;
       position: absolute;
@@ -31,11 +31,11 @@
     }
 
     .avatar-inner {
-      font-size: var(--terra-application-navigation-drawer-menu-user-large-avatar-inner-font-size, 1.6521rem);
+      font-size: var(--terra-application-application-navigation-drawer-menu-user-large-avatar-inner-font-size, 1.6521rem);
     }
 
     .name {
-      color: var(--terra-application-navigation-drawer-menu-user-large-name-color, #fff);
+      color: var(--terra-application-application-navigation-drawer-menu-user-large-name-color, #fff);
       font-size: 1.2857142857rem;
       font-weight: 500;
       overflow-wrap: break-word;
@@ -46,7 +46,7 @@
     }
   
     .detail {
-      color: var(--terra-application-navigation-drawer-menu-user-large-detail-color, rgba(255, 255, 255, 0.7));
+      color: var(--terra-application-application-navigation-drawer-menu-user-large-detail-color, rgba(255, 255, 255, 0.7));
       font-size: 1rem;
       margin-top: 0.2142857143rem;
       overflow-wrap: break-word;
@@ -78,7 +78,7 @@
     }
   
     .avatar-inner {
-      font-size: var(--terra-application-navigation-drawer-menu-user-small-avatar-inner-font-size, 0.6522rem);
+      font-size: var(--terra-application-application-navigation-drawer-menu-user-small-avatar-inner-font-size, 0.6522rem);
     }
 
     .info-container {
@@ -90,7 +90,7 @@
     }
   
     .name {
-      color: var(--terra-application-navigation-drawer-menu-user-small-name-color, rgba(255, 255, 255, 1));
+      color: var(--terra-application-application-navigation-drawer-menu-user-small-name-color, rgba(255, 255, 255, 1));
       font-size: 1rem;
       font-weight: 500;
       overflow-wrap: break-word;
@@ -100,7 +100,7 @@
     }
   
     .detail {
-      color: var(--terra-application-navigation-drawer-menu-user-small-detail-color, rgba(255, 255, 255, 0.7));
+      color: var(--terra-application-application-navigation-drawer-menu-user-small-detail-color, rgba(255, 255, 255, 0.7));
       font-size: 0.8571428571rem;
       overflow-wrap: break-word;
       padding-top: 0.2142857143rem;

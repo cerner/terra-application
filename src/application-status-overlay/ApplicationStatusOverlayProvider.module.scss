@@ -23,4 +23,14 @@
     width: 100%;
     z-index: 1;
   }
+  
+  .inert {
+    cursor: default;
+    pointer-events: none;
+    /* stylelint-disable property-no-vendor-prefix */
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+  }
 }

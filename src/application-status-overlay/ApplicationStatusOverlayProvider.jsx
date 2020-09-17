@@ -27,6 +27,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const [registeredStatusOverlay, setRegisteredStatusOverlay] = React.useState({});
 
   const containerRef = React.useRef();
+  const linkRef = React.useRef();
 
   const contextValue = useMemo(() => ({
     show: (key, data) => {
@@ -69,6 +70,10 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.variant;
 
   useEffect(() => {
+    if (linkRef && linkRef.current) {
+      linkRef.current.className = cx('inert');
+      linkRef.current.id = 'inert-style';
+    }
     // eslint-disable-next-line no-prototype-builtins
     if (!Element.prototype.hasOwnProperty('inert')) {
       // IE10 throws an error if wicg-inert is imported too early, as wicg-inert tries to set an observer on document.body which may not exist on import
@@ -103,6 +108,8 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   return (
     <div {...customProps} className={className}>
+      { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+      <link href="" ref={linkRef} />
       {statusView}
       <div data-status-overlay-container-content ref={containerRef} className={cx('container-content')}>
         <Scroll refCallback={scrollRefCallback}>

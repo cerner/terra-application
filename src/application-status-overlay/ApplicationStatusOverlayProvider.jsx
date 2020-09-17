@@ -27,7 +27,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const [registeredStatusOverlay, setRegisteredStatusOverlay] = React.useState({});
 
   const containerRef = React.useRef();
-  const linkRef = React.useRef();
 
   const contextValue = useMemo(() => ({
     show: (key, data) => {
@@ -70,9 +69,16 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.variant;
 
   useEffect(() => {
-    if (linkRef && linkRef.current) {
-      // linkRef.current.className = cx('inert');
-      linkRef.current.id = 'inert';
+    const { head } = document;
+    if (!head.querySelector('link#inert-style')) {
+      const link = document.createElement('link');
+      link.type = 'text/css';
+      link.rel = 'stylesheet';
+      link.href = './ApplicationStatusOverlayProvider.module.scss';
+      link.class = 'inert';
+      link.id = 'inert-style';
+      head.appendChild(link);
+      document.documentElement.classList.add('inert');
     }
     // eslint-disable-next-line no-prototype-builtins
     if (!Element.prototype.hasOwnProperty('inert')) {
@@ -108,8 +114,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   return (
     <div {...customProps} className={className}>
-      { /* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-      <link href="" ref={linkRef} />
       {statusView}
       <div data-status-overlay-container-content ref={containerRef} className={cx('container-content')}>
         <Scroll refCallback={scrollRefCallback}>

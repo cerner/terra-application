@@ -71,8 +71,8 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   useEffect(() => {
     if (linkRef && linkRef.current) {
-      linkRef.current.className = cx('inert');
-      linkRef.current.id = 'inert-style';
+      // linkRef.current.className = cx('inert');
+      linkRef.current.id = 'inert';
     }
     // eslint-disable-next-line no-prototype-builtins
     if (!Element.prototype.hasOwnProperty('inert')) {

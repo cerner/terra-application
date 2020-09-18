@@ -72,13 +72,9 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
     const { head } = document;
     if (!head.querySelector('link#inert-style')) {
       const link = document.createElement('link');
-      link.type = 'text/css';
-      link.rel = 'stylesheet';
-      link.href = './ApplicationStatusOverlayProvider.module.scss';
-      link.class = 'inert';
       link.id = 'inert-style';
       head.appendChild(link);
-      document.documentElement.classList.add('inert');
+      document.documentElement.classList.add(cx('inert'));
     }
     // eslint-disable-next-line no-prototype-builtins
     if (!Element.prototype.hasOwnProperty('inert')) {

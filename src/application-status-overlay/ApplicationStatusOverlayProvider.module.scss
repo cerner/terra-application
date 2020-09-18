@@ -23,14 +23,16 @@
     width: 100%;
     z-index: 1;
   }
+}
 
-  .inert {
+:global {
+  [inert] {
     cursor: default;
     pointer-events: none;
   }
 
-  .inert,
-  .inert * {
+  [inert],
+  [inert] * {
     /* stylelint-disable property-no-vendor-prefix */
     -moz-user-select: none;
     -ms-user-select: none;

@@ -3,8 +3,8 @@
 ## Unreleased
 
 * Changed
-  * Provided [inert styles](https://github.com/WICG/inert/pull/148/files#diff-04c6e90faac2675aa89e2176d2eec7d8R101-R111) as global.
-  * Injecting an empty link with id `inert-style` to head to avoid CSP violations. 
+  * Provide [inert styles](https://github.com/WICG/inert/pull/148/files#diff-04c6e90faac2675aa89e2176d2eec7d8R101-R111) as global styles.
+  * Injecting an empty link with id `inert-style` to head in order avoid CSP violations. 
 
 * Changed
   * Updated documentation for ApplicationBase and its unsaved changes handling across browsers.

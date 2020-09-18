@@ -49,7 +49,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   const disableContainerChildrenFocus = () => {
     if (containerRef.current) {
-      containerRef.current.setAttribute('inert', '');
       containerRef.current.classList.add(cx('inert'));
     }
   };
@@ -57,7 +56,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const enableContainerChildrenFocus = () => {
     if (containerRef.current) {
       containerRef.current.removeAttribute('inert');
-      containerRef.current.removeAttribute('aria-hidden');
       containerRef.current.classList.remove(cx('inert'));
     }
   };

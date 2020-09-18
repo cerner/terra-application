@@ -3,6 +3,10 @@
 ## Unreleased
 
 * Changed
+  * Provided [inert styles](https://github.com/WICG/inert/pull/148/files#diff-04c6e90faac2675aa89e2176d2eec7d8R101-R111) as global.
+  * Injecting an empty link with id `inert-style` to head to avoid CSP violations. 
+
+* Changed
   * Updated documentation for ApplicationBase and its unsaved changes handling across browsers.
 
 ## 1.34.0 - (September 8, 2020)

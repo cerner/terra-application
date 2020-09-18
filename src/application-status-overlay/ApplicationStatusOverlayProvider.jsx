@@ -71,6 +71,9 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   useEffect(() => {
     const { head } = document;
     if (!head.querySelector('link#inert-style')) {
+      if (head.querySelector('style#inert-style')) {
+        head.removeChild(head.querySelector('style#inert-style'));
+      }
       const link = document.createElement('link');
       link.id = 'inert-style';
       head.appendChild(link);

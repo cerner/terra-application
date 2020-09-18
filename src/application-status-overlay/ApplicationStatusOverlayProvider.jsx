@@ -55,7 +55,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
 
   const enableContainerChildrenFocus = () => {
     if (containerRef.current) {
-      containerRef.current.removeAttribute('inert');
       containerRef.current.classList.remove(cx('inert'));
     }
   };

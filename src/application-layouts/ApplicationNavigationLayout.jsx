@@ -10,6 +10,7 @@ import ApplicationNavigation from '../application-navigation/ApplicationNavigati
 import NavigationContext from '../navigation/NavigationContext';
 
 import ApplicationConceptLayout from './ApplicationConceptLayout';
+import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
 
 const propTypes = {
   /**
@@ -116,10 +117,17 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 
   disableApplicationConceptRendering: PropTypes.bool,
+  primaryConceptBanner: PropTypes.element,
+  modalConceptBanner: PropTypes.element,
 };
 
 const ApplicationNavigationLayout = ({
-  children, activeNavigationKey, disableApplicationConceptRendering, ...props
+  children,
+  activeNavigationKey,
+  disableApplicationConceptRendering,
+  primaryConceptBanner,
+  modalConceptBanner,
+  ...props
 }) => {
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -193,11 +201,9 @@ const ApplicationNavigationLayout = ({
   return (
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
       <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
-        {disableApplicationConceptRendering ? renderNavigationItems() : (
-          <ApplicationConceptLayout>
-            {renderNavigationItems()}
-          </ApplicationConceptLayout>
-        )}
+        <ApplicationConceptLayout primaryConceptBanner={primaryConceptBanner} modalConceptBanner={modalConceptBanner}>
+          {renderNavigationItems()}
+        </ApplicationConceptLayout>
       </ApplicationNavigation>
     </div>
   );

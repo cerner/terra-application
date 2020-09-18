@@ -17,17 +17,17 @@ const NavCPageContainer = () => {
     >
       <NavigationItem
         navigationKey="nav-C-1"
-        text="Nav C-1: Page 1"
+        text="Nav C-1 Page 1"
         render={() => <Page1 />}
       />
       <NavigationItem
         navigationKey="nav-C-2"
-        text="Nav C-2: Page 2"
+        text="Nav C-2 Page 2"
         render={() => <Page2 />}
       />
       <NavigationItem
         navigationKey="nav-C-3"
-        text="Nav C-3: Page 3"
+        text="Nav C-3 Page 3"
         render={() => <Page3 />}
       />
     </NavigationPageContainer>

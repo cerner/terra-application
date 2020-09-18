@@ -22,12 +22,12 @@ const NavDPageContainer = () => {
       >
         <NavigationItem
           navigationKey="nav-D-1"
-          text="Nav D-1: Page 1"
+          text="Nav D-1 Page 1"
           render={() => <Page1 />}
         />
         <NavigationItem
           navigationKey="nav-D-2"
-          text="Nav D-2: Page 2"
+          text="Nav D-2 Page 2"
           render={() => <Page2 />}
         />
       </NavigationGroup>
@@ -36,12 +36,12 @@ const NavDPageContainer = () => {
       >
         <NavigationItem
           navigationKey="nav-D-3"
-          text="Nav D-3: Page 3"
+          text="Nav D-3 Page 3"
           render={() => <Page3 />}
         />
         <NavigationItem
           navigationKey="nav-D-4"
-          text="Nav D-4: Inline Page"
+          text="Nav D-4 Inline Page"
           render={() => (
             <ApplicationPage title="Inline Page">
               <div style={{ padding: '1rem' }}>
@@ -59,7 +59,7 @@ const NavDPageContainer = () => {
         >
           <NavigationItem
             navigationKey="nav-D-5"
-            text="Nav D-5: Inline Page In Nested Group"
+            text="Nav D-5 Inline Page In Nested Group"
             render={() => (
               <ApplicationPage title="Inline Page In Nested Group">
                 <div style={{ padding: '1rem' }}>
@@ -72,7 +72,7 @@ const NavDPageContainer = () => {
       </NavigationGroup>
       <NavigationItem
         navigationKey="nav-D-6"
-        text="Nav D-6: Inline Page Not In Group"
+        text="Nav D-6 Inline Page Not In Group"
         render={() => (
           <ApplicationPage title="Inline Page Not In Group">
             <div style={{ padding: '1rem' }}>

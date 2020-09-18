@@ -1,7 +1,7 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, useMemo,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
 import Base from 'terra-base';
@@ -10,7 +10,6 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import { ApplicationIntlProvider } from '../application-intl';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import LayerManagerProvider from '../layers/LayerManagerProvider';
 import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
@@ -53,19 +52,11 @@ const propTypes = {
    * The name of the theme to apply to the application using terra-theme-provider.
    */
   themeName: PropTypes.string,
-  /**
-   * By default, NavigationPrompts rendered within ApplicationBase will cause the user to be prompted during
-   * the window's beforeUnload event. If `unloadPromptIsDisabled` is provided, the user will **not** be prompted
-   * before continuing with the unload event, even if NavigationPrompts are present.
-   */
-  unloadPromptIsDisabled: PropTypes.bool,
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, themeName, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, themeName, children,
 }) => {
-  const registeredPromptsRef = useRef();
-
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
   const theme = useMemo(() => ({
@@ -73,32 +64,6 @@ const ApplicationBase = ({
     name: themeName || rootThemeName,
     className: themeName,
   }), [themeName]);
-
-  useEffect(() => {
-    if (unloadPromptIsDisabled) {
-      return undefined;
-    }
-
-    function onBeforeUnload(event) {
-      if (registeredPromptsRef.current && registeredPromptsRef.current.length) {
-        event.preventDefault();
-
-        // Chrome requires returnValue to be set to present the confirmation dialog
-        event.returnValue = ''; // eslint-disable-line no-param-reassign
-
-        // For this prompt, ApplicationBase is limited to browser-defaulted messaging.
-        return '';
-      }
-
-      return undefined;
-    }
-
-    window.addEventListener('beforeunload', onBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
-    };
-  }, [unloadPromptIsDisabled]);
 
   return (
     <LayerManagerProvider>
@@ -113,13 +78,7 @@ const ApplicationBase = ({
             >
               <ApplicationIntlProvider>
                 <ActiveBreakpointProvider>
-                  <NavigationPromptCheckpoint
-                    onPromptChange={(registeredPrompts) => {
-                      registeredPromptsRef.current = registeredPrompts;
-                    }}
-                  >
-                    {children}
-                  </NavigationPromptCheckpoint>
+                  {children}
                 </ActiveBreakpointProvider>
               </ApplicationIntlProvider>
             </Base>

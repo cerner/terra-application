@@ -3,9 +3,8 @@ import React, { useContext } from 'react';
 import { ApplicationIntlContext } from '../../application-intl';
 import { ThemeContext } from '../../theme';
 import ApplicationBase from '../../application-base';
-import ApplicationContainer from '../../application-container/ApplicationContainer';
 
-import DemoApplicationConceptLayout from './demo-2/app-containers/DemoApplicationConceptLayout';
+import DemoApplicationContainer from './demo-2/app-containers/DemoApplicationContainer';
 
 window.TEST_APP_TIMEOUT = 3000;
 
@@ -18,9 +17,7 @@ const DemoApplication = () => {
 
   return (
     <ApplicationBase locale={applicationIntl?.locale || 'en'} themeName={theme?.className}>
-      <ApplicationContainer>
-        <DemoApplicationConceptLayout />
-      </ApplicationContainer>
+      <DemoApplicationContainer />
     </ApplicationBase>
   );
 };

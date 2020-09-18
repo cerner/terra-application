@@ -67,6 +67,7 @@ const openKeysToItem = (menuItems, selectedPath) => keysToItem(menuItems, select
 }, {});
 
 const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelect }) => {
+  const containerRef = React.useRef();
   const [openKeys, setOpenKeys] = useState(openKeysToItem(menuItems[0], selectedPath));
   const currentNodeId = useRef();
   const cursor = useRef(0);
@@ -78,7 +79,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
    * Sets tabindex for current node
    */
   const setTabIndex = (val) => {
-    const currentNode = currentNodeId.current ? document.getElementById(currentNodeId.current) : null;
+    const currentNode = currentNodeId.current ? containerRef?.current.querySelector(`#${currentNodeId.current}`) : null;
     if (currentNode) {
       currentNode.setAttribute('tabIndex', val);
     }
@@ -88,7 +89,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
    * Assigns focus to current node.
    */
   const focusCurrentNode = () => {
-    const currentNode = currentNodeId.current ? document.getElementById(currentNodeId.current) : null;
+    const currentNode = currentNodeId.current ? containerRef?.current.querySelector(`#${currentNodeId.current}`) : null;
     if (currentNode) {
       currentNode.focus();
     }
@@ -138,7 +139,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
     }
     if (previousSelectedPath.current !== selectedPath) {
       const selectedItemPosition = selectedItem?.current ? selectedItem.current.getBoundingClientRect() : null;
-      const navigationMenuPosition = document.querySelector('#terra-dev-site-nav-menu').getBoundingClientRect();
+      const navigationMenuPosition = containerRef.current.getBoundingClientRect();
       if (selectedItemPosition && navigationMenuPosition && (selectedItemPosition.bottom > navigationMenuPosition.bottom || selectedItemPosition.top < navigationMenuPosition.top)) {
         selectedItem.current.scrollIntoView();
       }
@@ -246,7 +247,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
       case KeyCode.KEY_RIGHT:
         event.preventDefault();
         if (currentNodeId.current) {
-          expandedValue = document.getElementById(currentNodeId.current).getAttribute('aria-expanded');
+          expandedValue = containerRef.current.querySelector(`#${currentNodeId.current}`).getAttribute('aria-expanded');
           if (expandedValue) {
             if (expandedValue === 'true') {
               handleDownArrow();
@@ -259,7 +260,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
       case KeyCode.KEY_LEFT:
         event.preventDefault();
         if (currentNodeId.current) {
-          expandedValue = document.getElementById(currentNodeId.current).getAttribute('aria-expanded');
+          expandedValue = containerRef.current.querySelector(`#${currentNodeId.current}`).getAttribute('aria-expanded');
           if (expandedValue && expandedValue === 'true') {
             handleOnClick(event, item);
           } else {
@@ -330,6 +331,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
 
   return (
     <div
+      ref={containerRef}
       className={cx('collapsing-navigation-menu')}
       id="terra-dev-site-nav-menu"
       role="tree"

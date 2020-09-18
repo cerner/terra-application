@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Scroll from 'terra-scroll';
 import styles from './HeaderContainer.module.scss';
 
 const cx = classNames.bind(styles);

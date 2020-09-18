@@ -3,7 +3,7 @@ const merge = require('webpack-merge');
 const defaultWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const demoConfig = (env = {}, argv = {}) => ({
+const demoConfig = () => ({
   mode: 'development',
   entry: {
     app: './site/index.jsx',

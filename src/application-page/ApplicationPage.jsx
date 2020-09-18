@@ -10,8 +10,7 @@ import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
-import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
+import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import PageHeader from './_PageHeader';
 
@@ -30,7 +29,7 @@ const ApplicationPage = ({
 
   const [showOverflowFocus, setShowOverflowFocus] = React.useState(false);
 
-  const { bannerProviderValue, banners } = useNotificationBanners();
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   function onSelectAction(action) {
     if (action.onSelect) {
@@ -93,14 +92,14 @@ const ApplicationPage = ({
             menu={menu}
           />
           {toolbar}
-          {banners}
+          <NotificationBanners />
         </div>
         <div className={cx('content')}>
           <PagePortalContext.Provider value={contextValue}>
             <NavigationPromptCheckpoint
               ref={navigationPromptCheckpointRef}
             >
-              <BannerRegistrationContext.Provider value={bannerProviderValue}>
+              <NotificationBannerProvider>
                 <ApplicationErrorBoundary>
                   <ApplicationLoadingOverlayProvider>
                     <div
@@ -119,7 +118,7 @@ const ApplicationPage = ({
                     </div>
                   </ApplicationLoadingOverlayProvider>
                 </ApplicationErrorBoundary>
-              </BannerRegistrationContext.Provider>
+              </NotificationBannerProvider>
             </NavigationPromptCheckpoint>
           </PagePortalContext.Provider>
         </div>

@@ -1,0 +1,10 @@
+#terra-application-container {
+  overflow: hidden;
+  position: relative;
+}
+
+:local {
+  .fill-parent {
+    height: 100%;
+  }
+}

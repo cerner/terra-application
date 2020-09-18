@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Button from 'terra-button';
-import NotificationBanner from '../../../../application-notification/NotificationBanner';
+import NotificationBanner from '../../../../notification-banner/NotificationBanner';
 
 const BannerPresenter = () => {
   const [showAlertBanner, setShowAlertBanner] = React.useState(false);
@@ -11,13 +11,13 @@ const BannerPresenter = () => {
     <>
       <div>
         <Button
-          text="Show Alert Banner"
+          text="Show High-Hazard Banner"
           onClick={() => {
             setShowAlertBanner(true);
           }}
         />
         <Button
-          text="Show Warning Banner"
+          text="Show Medium-Hazard Banner"
           onClick={() => {
             setShowWarningBanner(true);
           }}
@@ -25,23 +25,16 @@ const BannerPresenter = () => {
       </div>
       {showAlertBanner && (
         <NotificationBanner
-          type="alert"
+          variant="hazard-high"
           id="chart-review-page-alert-banner"
-          onRequestDismiss={() => setShowAlertBanner(false)}
-          description={<div>Please do not break</div>}
+          onRequestClose={() => setShowAlertBanner(false)}
         />
       )}
       {showWarningBanner && (
         <NotificationBanner
-          type="warning"
+          variant="hazard-medium"
           id="chart-review-page-warning-banner"
-          onRequestDismiss={() => setShowWarningBanner(false)}
-          bannerAction={{
-            text: 'Custom Dismiss',
-            onClick: () => {
-              setShowWarningBanner(false);
-            },
-          }}
+          onRequestClose={() => setShowWarningBanner(false)}
         />
       )}
     </>

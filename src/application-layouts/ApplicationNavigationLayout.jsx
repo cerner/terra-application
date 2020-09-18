@@ -9,8 +9,7 @@ import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
 
-import useSkipToLinks from './useSkipToLinks';
-import ApplicationContainer from './ApplicationContainer';
+import ApplicationConceptLayout from './ApplicationConceptLayout';
 
 const propTypes = {
   /**
@@ -115,16 +114,16 @@ const propTypes = {
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
   utilityItems: utilityItemsPropType,
+
+  disableApplicationConceptRendering: PropTypes.bool,
 };
 
-const NavigationApplicationContainer = ({
-  children, activeNavigationKey, ...props
+const ApplicationNavigationLayout = ({
+  children, activeNavigationKey, disableApplicationConceptRendering, ...props
 }) => {
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActiveNavigationKeyRef = React.useRef();
-
-  const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
@@ -165,43 +164,46 @@ const NavigationApplicationContainer = ({
     text: child.props.text,
   }));
 
-  return (
-    <div
-      style={{ height: '100%', overflow: 'hidden', position: 'relative' }}
-    >
-      <SkipToLinks />
-      <SkipToLinksProvider>
-        <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
-          <ApplicationContainer>
-            <div ref={contentElementRef} style={{ height: '100%', position: 'relative' }}>
-              {React.Children.map(children, (child) => {
-                let portalElement = pageContainerPortalsRef.current[child.props.navigationKey]?.element;
-                if (!portalElement) {
-                  portalElement = document.createElement('div');
-                  portalElement.style.position = 'relative';
-                  portalElement.style.height = '100%';
-                  portalElement.style.width = '100%';
-                  portalElement.id = `primary-nav-${child.props.navigationKey}`;
-                  pageContainerPortalsRef.current[child.props.navigationKey] = {
-                    element: portalElement,
-                  };
-                }
+  function renderNavigationItems() {
+    return (
+      <div ref={contentElementRef} style={{ height: '100%', position: 'relative' }}>
+        {React.Children.map(children, (child) => {
+          let portalElement = pageContainerPortalsRef.current[child.props.navigationKey]?.element;
+          if (!portalElement) {
+            portalElement = document.createElement('div');
+            portalElement.style.position = 'relative';
+            portalElement.style.height = '100%';
+            portalElement.style.width = '100%';
+            portalElement.id = `primary-nav-${child.props.navigationKey}`;
+            pageContainerPortalsRef.current[child.props.navigationKey] = {
+              element: portalElement,
+            };
+          }
 
-                return (
-                  <NavigationContext.Provider value={{ isActive: child.props.navigationKey === activeNavigationKey, navigationIdentifier: child.props.navigationKey }}>
-                    {React.cloneElement(child, { isActive: child.props.navigationKey === activeNavigationKey, portalElement })}
-                  </NavigationContext.Provider>
-                );
-              })}
-            </div>
-          </ApplicationContainer>
-        </ApplicationNavigation>
-      </SkipToLinksProvider>
+          return (
+            <NavigationContext.Provider value={{ isActive: child.props.navigationKey === activeNavigationKey, navigationIdentifier: child.props.navigationKey }}>
+              {React.cloneElement(child, { isActive: child.props.navigationKey === activeNavigationKey, portalElement })}
+            </NavigationContext.Provider>
+          );
+        })}
+      </div>
+    );
+  }
+
+  return (
+    <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
+      <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
+        {disableApplicationConceptRendering ? renderNavigationItems() : (
+          <ApplicationConceptLayout>
+            {renderNavigationItems()}
+          </ApplicationConceptLayout>
+        )}
+      </ApplicationNavigation>
     </div>
   );
 };
 
-NavigationApplicationContainer.propTypes = propTypes;
+ApplicationNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
   navigationKey, text, isActive, children, render, portalElement,
@@ -217,5 +219,5 @@ const NavigationItem = ({
   return ReactDOM.createPortal(pageContent, portalElement);
 };
 
-export default NavigationApplicationContainer;
+export default ApplicationNavigationLayout;
 export { NavigationItem };

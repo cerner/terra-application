@@ -18,8 +18,7 @@ import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
 import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
-import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
-import BannerRegisrationContext from '../application-notification/private/BannerRegistrationContext';
+import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 const cx = classNamesBind.bind(styles);
 
@@ -116,7 +115,7 @@ const ModalContent = (props) => {
   const applicationConcept = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
 
-  const { bannerProviderValue, banners } = useNotificationBanners();
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const modalClassNames = classNames(
     modalClassName,
@@ -167,14 +166,14 @@ const ModalContent = (props) => {
                 onClose={onRequestClose}
               />
               {applicationConcept && applicationConcept.renderModalConceptView()}
-              {/* {banners} */}
+              <NotificationBanners />
             </>
           )}
           footer={(
             <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
           )}
         >
-          <BannerRegisrationContext.Provider value={bannerProviderValue}>
+          <NotificationBannerProvider>
             <ApplicationLoadingOverlayProvider>
               <ApplicationErrorBoundary>
                 <Scroll>
@@ -182,7 +181,7 @@ const ModalContent = (props) => {
                 </Scroll>
               </ApplicationErrorBoundary>
             </ApplicationLoadingOverlayProvider>
-          </BannerRegisrationContext.Provider>
+          </NotificationBannerProvider>
         </ContentContainer>
         <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
           {text => (

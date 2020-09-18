@@ -11,6 +11,8 @@ const propTypes = {
    */
   children: PropTypes.node,
 
+  renderErrorView: PropTypes.func,
+
   /**
    * @private
    * Intl object for translations.
@@ -85,11 +87,16 @@ class ApplicationErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children, intl } = this.props;
+    const { children, renderErrorView, intl } = this.props;
     const activeError = this.state.error || this.errorRef.current;
 
     if (activeError) {
       const errorDetails = activeError.message.toString();
+
+      if (renderErrorView) {
+        return renderErrorView(errorDetails);
+      }
+
       const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
       return (
         <StatusView

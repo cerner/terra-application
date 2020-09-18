@@ -50,6 +50,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const disableContainerChildrenFocus = () => {
     if (containerRef.current) {
       containerRef.current.setAttribute('inert', '');
+      containerRef.current.classList.add(cx('inert'));
     }
   };
 
@@ -57,6 +58,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
     if (containerRef.current) {
       containerRef.current.removeAttribute('inert');
       containerRef.current.removeAttribute('aria-hidden');
+      containerRef.current.classList.remove(cx('inert'));
     }
   };
 
@@ -77,7 +79,6 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
       const link = document.createElement('link');
       link.id = 'inert-style';
       head.appendChild(link);
-      document.documentElement.classList.add(cx('inert'));
     }
     // eslint-disable-next-line no-prototype-builtins
     if (!Element.prototype.hasOwnProperty('inert')) {

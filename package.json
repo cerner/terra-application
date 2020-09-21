@@ -116,7 +116,7 @@
     "terra-modal-manager": "^6.20.0",
     "terra-navigation-prompt": "^1.40.0",
     "terra-notification-dialog": "^4.0.0",
-    "terra-overlay": "^3.32.0",
+    "terra-overlay": "https://github.cerner.com/terra/terra-snapshots/blob/master/terra-core/csp-demo/terra-overlay.tgz?raw=true",
     "terra-scroll": "^2.18.0",
     "terra-slide-panel-manager": "^5.19.0",
     "terra-status-view": "^4.10.0",

@@ -82,12 +82,14 @@ const useNotificationBanners = () => {
       }
     };
 
+    const registrationContextValue = { registerNotificationBanner, unregisterNotificationBanner };
+
     return {
       /**
        * Provides the Banner Registration Context to its children.
        */
       NotificationBannerProvider: ({ children }) => ( // eslint-disable-line react/prop-types
-        <BannerRegistrationContext.Provider value={{ registerNotificationBanner, unregisterNotificationBanner }}>
+        <BannerRegistrationContext.Provider value={registrationContextValue}>
           {children}
         </BannerRegistrationContext.Provider>
       ),

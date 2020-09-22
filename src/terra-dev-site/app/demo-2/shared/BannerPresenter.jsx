@@ -7,6 +7,9 @@ const BannerPresenter = () => {
   const [showAlertBanner, setShowAlertBanner] = React.useState(false);
   const [showWarningBanner, setShowWarningBanner] = React.useState(false);
 
+  const hideAlertBanner = React.useCallback(() => { setShowAlertBanner(false); }, []);
+  const hideWarningBanner = React.useCallback(() => { setShowWarningBanner(false); }, []);
+
   return (
     <>
       <div>
@@ -27,14 +30,14 @@ const BannerPresenter = () => {
         <NotificationBanner
           variant="hazard-high"
           id="chart-review-page-alert-banner"
-          onRequestClose={() => setShowAlertBanner(false)}
+          onRequestClose={hideAlertBanner}
         />
       )}
       {showWarningBanner && (
         <NotificationBanner
           variant="hazard-medium"
           id="chart-review-page-warning-banner"
-          onRequestClose={() => setShowWarningBanner(false)}
+          onRequestClose={hideWarningBanner}
         />
       )}
     </>

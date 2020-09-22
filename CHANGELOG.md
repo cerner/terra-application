@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.35.0 - (September 22, 2020)
+
 * Changed
   * Updated documentation for ApplicationBase and its unsaved changes handling across browsers.
 

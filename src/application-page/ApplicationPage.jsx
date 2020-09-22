@@ -71,11 +71,15 @@ const ApplicationPage = ({
     return null;
   }
 
+  const RootElement = pagePortalContext.isMain ? 'main' : 'div';
+
+  const pageTitleId = `application-page-title-${pageIdRef.current}`;
+
   return (
     ReactDOM.createPortal((
-      <main
+      <RootElement
         className={cx('page')}
-        aria-labelledby="application-page-title"
+        aria-labelledby={pageTitleId}
         tabIndex="0"
         onMouseDown={() => { setShowOverflowFocus(false); }}
         onKeyDown={(event) => {
@@ -103,13 +107,14 @@ const ApplicationPage = ({
                 <ApplicationErrorBoundary>
                   <ApplicationLoadingOverlayProvider>
                     <div
-                      id="application-page-main"
+                      data-page-overflow-container
+                      // id="application-page-main" // TODO think about this ID, needs to not be ID (page + modal causes dupes)
                       tabIndex="0"
                       className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
                     >
                       <div className={cx('width-normalizer')}>
                         <VisuallyHiddenText
-                          id="application-page-title"
+                          id={pageTitleId}
                           aria-hidden
                           text={title}
                         />
@@ -122,7 +127,7 @@ const ApplicationPage = ({
             </NavigationPromptCheckpoint>
           </PagePortalContext.Provider>
         </div>
-      </main>
+      </RootElement>
     ), portalNode)
   );
 };

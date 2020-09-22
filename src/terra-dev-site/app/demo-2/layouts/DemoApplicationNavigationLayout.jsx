@@ -3,22 +3,24 @@ import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import Button from 'terra-button';
 
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
-import ApplicationNavigationLayout, { NavigationItem } from '../../../../application-layouts/ApplicationNavigationLayout';
+import PrimaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/PrimaryNavigationLayout';
+import PageContainer from '../../../../page-container/PageContainer';
+
 import useNavigationState from '../../../../navigation/useNavigationState';
 
-import { PatientConceptContext } from './patient-concept/PatientConceptProvider';
+import { PatientConceptContext } from '../app-containers/patient-concept/PatientConceptProvider';
 
-import NavAPageContainer from '../page-containers/NavAPageContainer';
-import NavBPageContainer from '../page-containers/NavBPageContainer';
-import NavCPageContainer from '../page-containers/NavCPageContainer';
-import NavDPageContainer from '../page-containers/NavDPageContainer';
+import Page1 from '../pages/Page1';
+import NavBLayout from './NavBLayout';
+import NavCLayout from './NavCLayout';
+import NavDLayout from './NavDLayout';
 
 const userConfig = {
   name: 'Demo User',
   initials: 'DU',
 };
 
-const DemoApplicationLayout = () => {
+const DemoApplicationNavigationLayout = () => {
   const patientContext = React.useContext(PatientConceptContext);
 
   const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D']);
@@ -33,9 +35,9 @@ const DemoApplicationLayout = () => {
         }}
       >
         <div style={{ padding: '10px', border: '1px dashed white' }}>
-          Application Context Banner (
+          Patient
+          {' '}
           {patientContext.patientData}
-          )
         </div>
       </div>
     )
@@ -49,9 +51,11 @@ const DemoApplicationLayout = () => {
         }}
       >
         <div style={{ padding: '10px', border: '1px dashed white' }}>
-          Modal Application Context Banner (
+          Patient
+          {' '}
           {patientContext.patientData}
-          )
+          {' '}
+          (Modal)
         </div>
       </div>
     )
@@ -68,7 +72,7 @@ const DemoApplicationLayout = () => {
 
   return (
     <>
-      <ApplicationNavigationLayout
+      <PrimaryNavigationLayout
         titleConfig={{ title: 'Demo Application' }}
         userConfig={userConfig}
         extensionItems={[{
@@ -94,24 +98,28 @@ const DemoApplicationLayout = () => {
         <NavigationItem
           navigationKey="nav-A"
           text="Nav A"
-          render={() => <NavAPageContainer />}
+          render={() => (
+            <PageContainer>
+              <Page1 />
+            </PageContainer>
+          )}
         />
         <NavigationItem
           navigationKey="nav-B"
           text="Nav B"
-          render={() => <NavBPageContainer />}
+          render={() => <NavBLayout />}
         />
         <NavigationItem
           navigationKey="nav-C"
           text="Nav C"
-          render={() => <NavCPageContainer />}
+          render={() => <NavCLayout />}
         />
         <NavigationItem
           navigationKey="nav-D"
           text="Nav D"
-          render={() => <NavDPageContainer />}
+          render={() => <NavDLayout />}
         />
-      </ApplicationNavigationLayout>
+      </PrimaryNavigationLayout>
       {showSearchModal && (
         <ApplicationModal title="Search" size="large" onRequestClose={() => { setShowSearchModal(false); }}>
           <div style={{ padding: '1rem' }}>
@@ -125,4 +133,4 @@ const DemoApplicationLayout = () => {
   );
 };
 
-export default DemoApplicationLayout;
+export default DemoApplicationNavigationLayout;

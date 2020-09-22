@@ -8,9 +8,9 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
+import PageContainer from '../page-container/PageContainer';
 
-import ApplicationConceptLayout from './ApplicationConceptLayout';
-import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
+import EmbeddedLayout from './EmbeddedLayout';
 
 const propTypes = {
   /**
@@ -121,7 +121,7 @@ const propTypes = {
   modalConceptBanner: PropTypes.element,
 };
 
-const ApplicationNavigationLayout = ({
+const PrimaryNavigationLayout = ({
   children,
   activeNavigationKey,
   disableApplicationConceptRendering,
@@ -145,14 +145,14 @@ const ApplicationNavigationLayout = ({
     }
 
     if (lastActiveNavigationKeyRef.current) {
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
       contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
       contentElementRef.current.appendChild(pageNodeForActivePage.element);
 
-      const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
+      const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
       if (pageMainElement) {
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
@@ -201,22 +201,28 @@ const ApplicationNavigationLayout = ({
   return (
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
       <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
-        <ApplicationConceptLayout primaryConceptBanner={primaryConceptBanner} modalConceptBanner={modalConceptBanner}>
+        <EmbeddedLayout primaryConceptBanner={primaryConceptBanner} modalConceptBanner={modalConceptBanner}>
           {renderNavigationItems()}
-        </ApplicationConceptLayout>
+        </EmbeddedLayout>
       </ApplicationNavigation>
     </div>
   );
 };
 
-ApplicationNavigationLayout.propTypes = propTypes;
+PrimaryNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
-  navigationKey, text, isActive, children, render, portalElement,
+  navigationKey, text, isActive, children, render, renderPage, portalElement,
 }) => {
   let pageContent;
 
-  if (render) {
+  if (renderPage) {
+    pageContent = (
+      <PageContainer>
+        {renderPage({ isActive })}
+      </PageContainer>
+    );
+  } else if (render) {
     pageContent = render({ isActive });
   } else {
     pageContent = children;
@@ -225,5 +231,5 @@ const NavigationItem = ({
   return ReactDOM.createPortal(pageContent, portalElement);
 };
 
-export default ApplicationNavigationLayout;
+export default PrimaryNavigationLayout;
 export { NavigationItem };

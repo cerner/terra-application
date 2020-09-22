@@ -17,7 +17,7 @@ import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
-import ApplicationConceptContext from '../application-concept/ApplicationConceptContext';
+import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 const cx = classNamesBind.bind(styles);

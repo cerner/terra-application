@@ -49,7 +49,8 @@ const SuspensePage = ({
   return (
     ReactDOM.createPortal((
       <main
-        id="application-page-main"
+        // id="application-page-main"
+        data-page-overflow-container
         ref={mainElementRef}
         tabIndex="-1"
         role="main"

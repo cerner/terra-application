@@ -14,6 +14,7 @@ import './_contains-polyfill';
 import './_matches-polyfill';
 
 import ModalContent from './_ModalContent';
+import ModalPresentationContext from './ModalPresentationContext';
 import PagePortalContext from '../page-container/PagePortalContext';
 
 const propTypes = {
@@ -37,24 +38,26 @@ const ApplicationModal = ({
   return (
     <LayerPortal>
       <PagePortalContext.Provider value={undefined}>
-        <NavigationPromptCheckpoint
-          ref={navigationPromptCheckpointRef}
-        >
-          <ModalContent
-            modalClassName={modalClassName}
-            title={title}
-            actions={actions}
-            size={size}
-            onRequestClose={() => {
-              navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-                onRequestClose();
-              });
-            }}
-            aria-modal="true"
+        <ModalPresentationContext.Provider value>
+          <NavigationPromptCheckpoint
+            ref={navigationPromptCheckpointRef}
           >
-            {children}
-          </ModalContent>
-        </NavigationPromptCheckpoint>
+            <ModalContent
+              modalClassName={modalClassName}
+              title={title}
+              actions={actions}
+              size={size}
+              onRequestClose={() => {
+                navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+                  onRequestClose();
+                });
+              }}
+              aria-modal="true"
+            >
+              {children}
+            </ModalContent>
+          </NavigationPromptCheckpoint>
+        </ModalPresentationContext.Provider>
       </PagePortalContext.Provider>
     </LayerPortal>
   );

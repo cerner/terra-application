@@ -1,37 +1,50 @@
 import React from 'react';
 
-import NavigationPageContainer, { NavigationItem } from '../../../../page-container/NavigationPageContainer';
+import SecondaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/SecondaryNavigationLayout';
+import PageContainer from '../../../../page-container/PageContainer';
 import useNavigationState from '../../../../navigation/useNavigationState';
 
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 
-const NavCPageContainer = () => {
+const NavCLayout = () => {
   const [navigationState, setNavigationState] = useNavigationState(['nav-C-1', 'nav-C-2', 'nav-C-3']);
 
   return (
-    <NavigationPageContainer
+    <SecondaryNavigationLayout
       activeNavigationKey={navigationState}
       onSelectNavigationItem={(key) => { setNavigationState(key); }}
     >
       <NavigationItem
         navigationKey="nav-C-1"
         text="Nav C-1 Page 1"
-        render={() => <Page1 />}
+        render={() => (
+          <PageContainer>
+            <Page1 />
+          </PageContainer>
+        )}
       />
       <NavigationItem
         navigationKey="nav-C-2"
         text="Nav C-2 Page 2"
-        render={() => <Page2 />}
+        render={() => (
+          <PageContainer>
+            <Page2 />
+          </PageContainer>
+        )}
       />
       <NavigationItem
         navigationKey="nav-C-3"
         text="Nav C-3 Page 3"
-        render={() => <Page3 />}
+        render={() => (
+          <PageContainer>
+            <Page3 />
+          </PageContainer>
+        )}
       />
-    </NavigationPageContainer>
+    </SecondaryNavigationLayout>
   );
 };
 
-export default NavCPageContainer;
+export default NavCLayout;

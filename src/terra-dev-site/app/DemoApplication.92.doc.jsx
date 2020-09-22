@@ -1,25 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 
-import { ApplicationIntlContext } from '../../application-intl';
-import { ThemeContext } from '../../theme';
 import ApplicationBase from '../../application-base';
+import ApplicationContainer from '../../application-container/ApplicationContainer';
 
-import DemoApplicationContainer from './demo-2/app-containers/DemoApplicationContainer';
+import DemoApplicationNavigation from './demo-2/layouts/DemoApplicationNavigationLayout';
+import PatientConceptProvider from './demo-2/app-containers/patient-concept/PatientConceptProvider';
 
 window.TEST_APP_TIMEOUT = 3000;
 
 document.body.setAttribute('tabindex', -1);
 
-const DemoApplication = () => {
-  // For dev-site integration
-  const applicationIntl = useContext(ApplicationIntlContext);
-  const theme = React.useContext(ThemeContext);
-
-  return (
-    <ApplicationBase locale={applicationIntl?.locale || 'en'} themeName={theme?.className}>
-      <DemoApplicationContainer />
-    </ApplicationBase>
-  );
-};
+const DemoApplication = () => (
+  <ApplicationBase locale="en-US">
+    <ApplicationContainer>
+      <PatientConceptProvider>
+        <DemoApplicationNavigation />
+      </PatientConceptProvider>
+    </ApplicationContainer>
+  </ApplicationBase>
+);
 
 export default DemoApplication;

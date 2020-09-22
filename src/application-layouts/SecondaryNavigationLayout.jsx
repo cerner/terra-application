@@ -12,13 +12,12 @@ import { ActiveBreakpointContext } from '../breakpoints';
 import SkipToLink from '../application-container/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
 
-import BasePageContainer from './_BasePageContainer';
-import PageContainerContext from './PageContainerContext';
+import PageContainerContext from '../page-container/PageContainerContext';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';
 
-import styles from './NavigationPageContainer.module.scss';
+import styles from './SecondaryNavigationLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -73,7 +72,7 @@ const initialSizeForBreakpoint = (breakpoint) => {
   };
 };
 
-const NavigationPageContainer = ({
+const SecondaryNavigationLayout = ({
   sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -97,7 +96,13 @@ const NavigationPageContainer = ({
   const [workspaceSize, setWorkspaceSize] = React.useState(initialSizeForBreakpoint(activeBreakpoint));
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
-  const hasSidebar = React.Children.count(children) > 1; // TODO this check needs to be better now that NavigationGroups exist
+
+  let hasSidebar = false;
+  if (React.Children.toArray(children).filter((child) => (child.type === NavigationItem || child.type === NavigationGroup)).length > 0) {
+    hasSidebar = true;
+  }
+
+  // const hasSidebar = React.Children.count(children) > 1; // TODO this check needs to be better now that NavigationGroups exist
   const hasOverlaySidebar = sideNavOverlayBreakpoints.indexOf(activeBreakpoint) !== -1;
   const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
 
@@ -136,14 +141,14 @@ const NavigationPageContainer = ({
     }
 
     if (lastActiveNavigationKeyRef.current) {
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('#application-page-main')?.scrollTop || 0;
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
       pageBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {
       pageBodyRef.current.appendChild(pageNodeForActivePage.element);
 
-      const pageMainElement = pageNodeForActivePage.element.querySelector('#application-page-main');
+      const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
       if (pageMainElement) {
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
@@ -265,7 +270,7 @@ const NavigationPageContainer = ({
         return renderChildPages(child.props.children);
       }
 
-      return undefined;
+      return child;
     });
   }
 
@@ -565,7 +570,7 @@ const NavigationPageContainer = ({
   );
 };
 
-NavigationPageContainer.propTypes = propTypes;
+SecondaryNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
   isActive, children, render, portalElement,
@@ -578,16 +583,12 @@ const NavigationItem = ({
     pageContent = children;
   }
 
-  return ReactDOM.createPortal((
-    <BasePageContainer>
-      {pageContent}
-    </BasePageContainer>
-  ), portalElement);
+  return ReactDOM.createPortal(pageContent, portalElement);
 };
 
 const NavigationGroup = ({
   description, children,
 }) => null;
 
-export default NavigationPageContainer;
+export default SecondaryNavigationLayout;
 export { NavigationGroup, NavigationItem };

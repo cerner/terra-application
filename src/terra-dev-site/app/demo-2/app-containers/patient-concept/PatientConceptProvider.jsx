@@ -1,6 +1,4 @@
 import React from 'react';
-// import DemographicsBanner from 'terra-demographics-banner';
-// import Avatar from 'terra-avatar';
 
 const PatientConceptContext = React.createContext();
 

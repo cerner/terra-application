@@ -20,7 +20,7 @@ class PageLayoutNodeManager {
     }
 
     if (this._containerRef.current.contains(nodeData.element)) {
-      nodeData.lastScrollPosition = nodeData.element.querySelector('#application-page-main').scrollTop;
+      nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
       this._containerRef.current.removeChild(nodeData.element);
     }
 
@@ -88,7 +88,7 @@ class PageLayoutNodeManager {
     if (this._nodeMap[page.ancestor]) {
       this._nodeMap[page.ancestor].child = undefined;
       this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
-      this._nodeMap[page.ancestor].element.querySelector('#application-page-main').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
+      this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
     }
 
     setTimeout(() => {
@@ -100,7 +100,7 @@ class PageLayoutNodeManager {
 }
 
 const BasePageContainer = ({
-  children,
+  children, isMain,
 }) => {
   const pageLayoutContainerRef = React.useRef();
 
@@ -108,7 +108,8 @@ const BasePageContainer = ({
 
   const pagePortalContextValue = React.useMemo(() => ({
     nodeManager: new PageLayoutNodeManager(pageLayoutContainerRef),
-  }), []);
+    isMain,
+  }), [isMain]);
 
   React.useLayoutEffect(() => {
     setIsInitialized(true);

@@ -1,14 +1,14 @@
 :local {
-  .concept-layout {
+  .embedded-layout {
     display: flex;
     flex-direction: column;
     width: 100%;
 
-    > .header {
+    > .concept-banner-container {
       flex: 0 0 auto;
     }
 
-    > .content {
+    > .content-container {
       flex: 1 1 auto;
       position: relative;
     }

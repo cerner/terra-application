@@ -24,6 +24,7 @@ const TempImplement = ({
       id={id || 'test-id'}
       activeTabKey={activeTabKey}
       onRequestActivate={metaData => setActiveTabKey(metaData.key)}
+      title="work space" // TODO: need proper title setup
       // onCOnfig
     >
       <TabPage

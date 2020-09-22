@@ -23,9 +23,15 @@ const Panel = ({
   const { panelId, tabId, title } = React.useContext(TabContext);
 
   return (
-    <div className={cx('page')}>
+    <div
+      className={cx('page')}
+      role="none"
+    >
       {/* <ApplicationErrorBoundary> */}
-        <div className={cx('page-header')}>
+        <div
+          className={cx('page-header')}
+          role="none"
+        >
           <TabTitle actions={actions}>{title}</TabTitle>
           {toolBar}
         </div>

@@ -60,7 +60,7 @@ const MoreButton = ({
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
       data-terra-tabs-menu
     >
-      <span>{menuToggleText}</span>
+      {/* <span>{menuToggleText}</span> */}
       <IconCaretDown />
     </div>
     /* eslint-enable jsx-ally/no-static-element-interactions */

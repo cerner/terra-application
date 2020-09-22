@@ -16,6 +16,44 @@
     // }
   }
 
+  .header,
+  .header2 {
+    display: flex;
+    width: 100%;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+  }
+
+  .header2 {
+    margin-top: 10px;
+    // margin-bottom: 5px;
+    // order: 1;
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+
+  .start-button,
+  .end-button {
+    flex: 0 0 auto;
+    height: 40px;
+    margin: 5px;
+    width: 40px;
+  }
+
+  .start-button {
+    // margin-right: 10px;
+    // order: 0;
+  }
+  .end-button {
+    // margin-left: 10px;
+    // order: 2;
+  }
   .body-fill {
     display: flex;
     flex-direction: column;

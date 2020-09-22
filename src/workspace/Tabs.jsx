@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import IconChevronLeft from 'terra-icon/lib/icon/IconChevronLeft';
 import TabContainer from './_TabContainer';
 import styles from './Tabs.module.scss';
 
@@ -11,6 +13,7 @@ const propTypes = {
   activeTabKey: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onRequestActivate: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
 };
 
 const Tabs = ({
@@ -18,6 +21,7 @@ const Tabs = ({
   activeTabKey,
   children,
   onRequestActivate,
+  title,
   ...customProps
 }) => {
   const workspacePortalsRef = useRef({});
@@ -72,18 +76,23 @@ const Tabs = ({
       className={tabsClassNames} 
       role="none"
     >
-      <div className={cx('header')}>
-        <TabContainer tabData={tabData} />
+      <div role="none" className={cx('header')}>
+        <button  aria-label="start"className={cx('start-button')}><IconChevronLeft /></button>
+        <button aria-label="dumpster" className={cx('end-button')}><IconAdd /></button>
       </div>
-      <div className={cx('body')} ref={workspaceRef}>
+      <div role="none" className={cx('header2')}>
+        <TabContainer title={title} tabData={tabData} />
+      </div>
+      <div role="none" className={cx('body')} ref={workspaceRef}>
         {React.Children.map(children, child => {
           let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
           if (!portalElement) {
             portalElement = document.createElement('div');
+            portalElement.setAttribute("role", "none"); 
             portalElement.style.position = 'relative';
             portalElement.style.height = '100%';
             portalElement.style.width = '100%';
-            portalElement.id = `${id}-${child.props.tabKey}`;
+            // portalElement.id = `${id}-${child.props.tabKey}`;
             workspacePortalsRef.current[child.props.tabKey] = {
               element: portalElement,
             };
@@ -93,6 +102,7 @@ const Tabs = ({
             React.cloneElement(child, {
               key: child.props.tabKey,
               id: `${id}-${child.props.tabKey}`,
+              associatedPanelId: `${id}-${child.props.tabKey}-panel`,
               isActive: child.props.tabKey === activeTabKey,
               portalElement,
             })

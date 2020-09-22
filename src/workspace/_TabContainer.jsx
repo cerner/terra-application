@@ -12,6 +12,7 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   tabData: PropTypes.array,
+  title: PropTypes.string,
 };
 
 class TabContainer extends React.Component {
@@ -161,7 +162,7 @@ class TabContainer extends React.Component {
   }
 
   render() {
-    const { tabData } = this.props;
+    const { tabData, title } = this.props;
     const theme = this.context;
     const ids = tabData.map(tab => tab.id);
     const hiddenIds = [];
@@ -207,6 +208,7 @@ class TabContainer extends React.Component {
         ref={this.containerRef}
         role="tablist"
         aria-owns={hiddenIds.join(' ')}
+        aria-label={title}
       >
         {visibleTabs}
         <TabDropDown

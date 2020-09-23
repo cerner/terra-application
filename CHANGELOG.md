@@ -2,8 +2,12 @@
 
 ## Unreleased
 
-* Changed
+* V2
   * Updated ApplicationBase to align with future framework changes
+
+* Changed
+  * Updated application-base to initialize `inert`.
+  * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.
 
 ## 1.35.0 - (September 22, 2020)
 

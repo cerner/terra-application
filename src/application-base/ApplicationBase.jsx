@@ -19,7 +19,6 @@ import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
 import './private/initializeInert';
-import './private/inertStyles.scss';
 
 import styles from './ApplicationBase.module.scss';
 

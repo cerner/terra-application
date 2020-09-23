@@ -1,3 +1,5 @@
+import './inertStyles.scss';
+
 /**
  * Components within the framework utilize the inert property (https://html.spec.whatwg.org/multipage/interaction.html#inert)
  * to build accessible interactions with modal or otherwise disclosed content. Support for the inert property is not uniform
@@ -28,12 +30,4 @@ function initializeInert() {
   require('wicg-inert/dist/inert');
 }
 
-if (document.readyState === 'loading') {
-  /**
-   * The polyfill is executed after DOM content completes loading to ensure that the necessary elements
-   * are present prior to execution.
-   */
-  window.addEventListener('DOMContentLoaded', initializeInert);
-} else {
-  initializeInert();
-}
+initializeInert();

@@ -146,8 +146,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <div
             className="glyph"
           >
-            <svg
-              className="error"
+            <div
+              className="error glyph-icon"
             />
           </div>
           <p
@@ -267,8 +267,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <div
             className="glyph"
           >
-            <svg
-              className="error"
+            <div
+              className="error glyph-icon"
             />
           </div>
           <p

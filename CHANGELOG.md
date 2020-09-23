@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated ApplicationBase to align with future framework changes
+
 ## 1.34.0 - (September 8, 2020)
 
 * Added

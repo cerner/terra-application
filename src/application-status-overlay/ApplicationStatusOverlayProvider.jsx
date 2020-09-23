@@ -69,9 +69,12 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   const registeredVariant = registeredStatusOverlay[lastRegisteredStatusOverlayKey]?.variant;
 
   useEffect(() => {
-    // IE10 throws an error if wicg-inert is imported too early, as wicg-inert tries to set an observer on document.body which may not exist on import
-    // eslint-disable-next-line global-require
-    require('wicg-inert/dist/inert');
+    // eslint-disable-next-line no-prototype-builtins
+    if (!Element.prototype.hasOwnProperty('inert')) {
+      // IE10 throws an error if wicg-inert is imported too early, as wicg-inert tries to set an observer on document.body which may not exist on import
+      // eslint-disable-next-line global-require
+      require('wicg-inert/dist/inert');
+    }
   });
 
   useEffect(() => {

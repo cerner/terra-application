@@ -6,6 +6,7 @@
 
 * Changed
   * Updated documentation for ApplicationBase and its unsaved changes handling across browsers.
+  * Updated error boundary jest snapshots.
 
 ## 1.34.0 - (September 8, 2020)
 

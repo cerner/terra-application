@@ -14,29 +14,21 @@ const propTypes = {
    * A collection of child elements to render within the ApplicationContainer body.
    */
   children: PropTypes.node,
-  primaryConceptBanner: PropTypes.element,
-  modalConceptBanner: PropTypes.element,
 };
 
 const EmbeddedLayout = ({
-  children, primaryConceptBanner, modalConceptBanner,
+  children,
 }) => {
   const applicationContainer = React.useContext(ApplicationContainerContext);
-
-  const conceptBannerProviderValue = React.useMemo(() => ({
-    renderModalConceptView: () => modalConceptBanner,
-    renderPageConceptView: () => primaryConceptBanner,
-  }), [primaryConceptBanner, modalConceptBanner]);
+  const conceptContext = React.useContext(ApplicationConceptContext);
 
   return (
     <div className={cx('embedded-layout', { 'fill-parent': !applicationContainer.disableParentFill })}>
       <div className={cx('concept-banner-container')}>
-        {primaryConceptBanner}
+        {conceptContext?.renderPageConceptView()}
       </div>
       <div className={cx('content-container')}>
-        <ApplicationConceptContext.Provider value={conceptBannerProviderValue}>
-          {children}
-        </ApplicationConceptContext.Provider>
+        {children}
       </div>
     </div>
   );

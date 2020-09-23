@@ -315,7 +315,8 @@ const SecondaryNavigationLayout = ({
   return (
     <>
       <SkipToLink
-        description="Skip to Content" // TODO INTL
+        isMain // TODO talk about expectations with Skip to Main while main is inert.
+        description="Skip to Main Content" // TODO INTL
         callback={() => {
           if (workspaceIsVisible && hasOverlayWorkspace) {
             setWorkspaceIsVisible(false);

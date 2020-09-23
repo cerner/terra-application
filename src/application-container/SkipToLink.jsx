@@ -9,7 +9,7 @@ import SkipToLinksContext from './SkipToLinksContext';
 const propTypes = {};
 
 const SkipToLink = ({
-  description, callback,
+  description, isMain, callback,
 }) => {
   const skipToLinkContextValue = React.useContext(SkipToLinksContext);
   const navigationContextValue = React.useContext(NavigationContext);
@@ -25,8 +25,8 @@ const SkipToLink = ({
       return;
     }
 
-    skipToLinkContextValue.registerLink(uuidRef.current, description, callback);
-  }, [skipToLinkContextValue, description, callback, navigationContextValue.isActive]);
+    skipToLinkContextValue.registerLink(uuidRef.current, description, isMain, callback);
+  }, [skipToLinkContextValue, description, isMain, callback, navigationContextValue.isActive]);
 
   React.useEffect(() => {
     if (!navigationContextValue.isActive) {

@@ -8,7 +8,6 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../application-page/PageContainer';
 
 import EmbeddedLayout from './EmbeddedLayout';
 
@@ -117,16 +116,12 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 
   disableApplicationConceptRendering: PropTypes.bool,
-  primaryConceptBanner: PropTypes.element,
-  modalConceptBanner: PropTypes.element,
 };
 
 const PrimaryNavigationLayout = ({
   children,
   activeNavigationKey,
   disableApplicationConceptRendering,
-  primaryConceptBanner,
-  modalConceptBanner,
   ...props
 }) => {
   const contentElementRef = React.useRef();
@@ -205,7 +200,7 @@ const PrimaryNavigationLayout = ({
   return (
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
       <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
-        <EmbeddedLayout primaryConceptBanner={primaryConceptBanner} modalConceptBanner={modalConceptBanner}>
+        <EmbeddedLayout>
           {navigationItems ? renderNavigationItems() : children}
         </EmbeddedLayout>
       </ApplicationNavigation>

@@ -8,7 +8,7 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../page-container/PageContainer';
+import PageContainer from '../application-page/PageContainer';
 
 import EmbeddedLayout from './EmbeddedLayout';
 
@@ -167,10 +167,14 @@ const PrimaryNavigationLayout = ({
     }
   }, [activeNavigationKey]);
 
-  const navigationItems = React.Children.map(children, (child) => ({
-    key: child.props.navigationKey,
-    text: child.props.text,
-  }));
+  let navigationItems;
+  const navigationItemChildren = React.Children.toArray(children).filter((child) => child.type === NavigationItem);
+  if (navigationItemChildren.length > 0) {
+    navigationItems = navigationItemChildren.map(child => ({
+      key: child.props.navigationKey,
+      text: child.props.text,
+    }));
+  }
 
   function renderNavigationItems() {
     return (
@@ -202,7 +206,7 @@ const PrimaryNavigationLayout = ({
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
       <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
         <EmbeddedLayout primaryConceptBanner={primaryConceptBanner} modalConceptBanner={modalConceptBanner}>
-          {renderNavigationItems()}
+          {navigationItems ? renderNavigationItems() : children}
         </EmbeddedLayout>
       </ApplicationNavigation>
     </div>
@@ -212,17 +216,11 @@ const PrimaryNavigationLayout = ({
 PrimaryNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
-  navigationKey, text, isActive, children, render, renderPage, portalElement,
+  navigationKey, text, isActive, children, render, portalElement,
 }) => {
   let pageContent;
 
-  if (renderPage) {
-    pageContent = (
-      <PageContainer>
-        {renderPage({ isActive })}
-      </PageContainer>
-    );
-  } else if (render) {
+  if (render) {
     pageContent = render({ isActive });
   } else {
     pageContent = children;

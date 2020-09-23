@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
-import PageContainer from '../../../../page-container/PageContainer';
+import PageContainer from '../../../../application-page/PageContainer';
 import SecondaryNavigationLayout, { NavigationGroup, NavigationItem } from '../../../../application-layouts/SecondaryNavigationLayout';
 import useNavigationState from '../../../../navigation/useNavigationState';
 

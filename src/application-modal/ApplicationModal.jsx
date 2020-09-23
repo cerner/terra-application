@@ -15,7 +15,7 @@ import './_matches-polyfill';
 
 import ModalContent from './_ModalContent';
 import ModalPresentationContext from './ModalPresentationContext';
-import PagePortalContext from '../page-container/PagePortalContext';
+import PagePortalContext from '../application-page/PagePortalContext';
 
 const propTypes = {
   title: PropTypes.string,

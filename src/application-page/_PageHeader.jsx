@@ -5,7 +5,7 @@ import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 
 import { ActiveBreakpointContext } from '../breakpoints';
-import PageContainerContext from '../page-container/PageContainerContext';
+import PageContainerContext from './PageContainerContext';
 import PageMenu, { MenuItem, MenuItemDivider } from './PageMenu';
 import styles from './PageHeader.module.scss';
 

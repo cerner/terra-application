@@ -5,7 +5,7 @@ import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { KEY_TAB } from 'keycode-js';
 
-import PagePortalContext from '../page-container/PagePortalContext';
+import PagePortalContext from './PagePortalContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';

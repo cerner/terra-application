@@ -11,8 +11,8 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 import { ActiveBreakpointContext } from '../breakpoints';
 import SkipToLink from '../application-container/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
+import PageContainerContext from '../application-page/PageContainerContext';
 
-import PageContainerContext from '../page-container/PageContainerContext';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';

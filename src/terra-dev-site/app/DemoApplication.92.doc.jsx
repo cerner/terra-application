@@ -3,8 +3,9 @@ import React from 'react';
 import ApplicationBase from '../../application-base';
 import ApplicationContainer from '../../application-container/ApplicationContainer';
 
-import DemoApplicationNavigation from './demo-2/layouts/DemoApplicationNavigationLayout';
-import PatientConceptProvider from './demo-2/app-containers/patient-concept/PatientConceptProvider';
+import DemoApplicationNavigation from './generic-demo/layouts/DemoApplicationNavigationLayout';
+import ConceptProvider from './generic-demo/app-containers/ConceptProvider';
+import SessionProvider from './generic-demo/app-containers/SessionProvider';
 
 window.TEST_APP_TIMEOUT = 3000;
 
@@ -13,9 +14,11 @@ document.body.setAttribute('tabindex', -1);
 const DemoApplication = () => (
   <ApplicationBase locale="en-US">
     <ApplicationContainer>
-      <PatientConceptProvider>
-        <DemoApplicationNavigation />
-      </PatientConceptProvider>
+      <SessionProvider>
+        <ConceptProvider>
+          <DemoApplicationNavigation />
+        </ConceptProvider>
+      </SessionProvider>
     </ApplicationContainer>
   </ApplicationBase>
 );

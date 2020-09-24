@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+* Changed
+  * Updated application-base to initialize `inert`.
+  * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.
+
+## 1.35.0 - (September 22, 2020)
+
+* Changed
+  * Updated documentation for ApplicationBase and its unsaved changes handling across browsers.
+  * Updated error boundary jest snapshots.
+
 ## 1.34.0 - (September 8, 2020)
 
 * Added

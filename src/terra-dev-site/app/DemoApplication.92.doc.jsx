@@ -3,9 +3,12 @@ import React from 'react';
 import ApplicationBase from '../../application-base';
 import ApplicationContainer from '../../application-container/ApplicationContainer';
 
-import DemoApplicationNavigation from './generic-demo/layouts/DemoApplicationNavigationLayout';
-import ConceptProvider from './generic-demo/app-containers/ConceptProvider';
-import SessionProvider from './generic-demo/app-containers/SessionProvider';
+import DemoApplicationNavigationLayout from './generic-demo/layouts/DemoApplicationNavigationLayout';
+import SimpleApplicationLayout from './generic-demo/layouts/SimpleApplicationLayout';
+import HeadlessApplicationLayout from './generic-demo/layouts/HeadlessApplicationLayout';
+
+import ConceptProvider from './generic-demo/providers/ConceptProvider';
+import SessionProvider from './generic-demo/providers/SessionProvider';
 
 window.TEST_APP_TIMEOUT = 3000;
 
@@ -16,7 +19,7 @@ const DemoApplication = () => (
     <ApplicationContainer>
       <SessionProvider>
         <ConceptProvider>
-          <DemoApplicationNavigation />
+          <HeadlessApplicationLayout />
         </ConceptProvider>
       </SessionProvider>
     </ApplicationContainer>

@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'terra-button';
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
-import PageContainer from '../../../../application-page/PageContainer';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 
@@ -16,19 +15,21 @@ const PagePresentingModal = ({ onRequestClose }) => {
         <br />
         <Button text="Show Page 2" onClick={() => { setShowPage2(true); }} />
         {showPage2 && (
-          <ApplicationModal size="large" title="Page 2 Modal" onRequestClose={() => { setShowPage2(false); }}>
-            <PageContainer>
-              <Page2 />
-            </PageContainer>
-          </ApplicationModal>
+          <ApplicationModal
+            size="large"
+            title="Page 2 Modal"
+            onRequestClose={() => { setShowPage2(false); }}
+            renderPage={() => <Page2 />}
+          />
         )}
         <Button text="Show Page 3" onClick={() => { setShowPage3(true); }} />
         {showPage3 && (
-          <ApplicationModal size="large" title="Page 3 Modal" onRequestClose={() => { setShowPage3(false); }}>
-            <PageContainer>
-              <Page3 />
-            </PageContainer>
-          </ApplicationModal>
+          <ApplicationModal
+            size="large"
+            title="Page 3 Modal"
+            onRequestClose={() => { setShowPage3(false); }}
+            renderPage={() => <Page3 />}
+          />
         )}
       </div>
     </ApplicationModal>

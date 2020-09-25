@@ -8,6 +8,7 @@ import uuidv4 from 'uuid/v4';
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+import PageContainer from '../application-page/PageContainer';
 
 import 'mutationobserver-shim';
 import './_contains-polyfill';
@@ -31,6 +32,7 @@ const ApplicationModal = ({
   actions,
   onRequestClose,
   children,
+  renderPage,
   modalClassName,
 }) => {
   const navigationPromptCheckpointRef = React.useRef();
@@ -54,7 +56,11 @@ const ApplicationModal = ({
               }}
               aria-modal="true"
             >
-              {children}
+              {renderPage ? (
+                <PageContainer>
+                  {renderPage()}
+                </PageContainer>
+              ) : children}
             </ModalContent>
           </NavigationPromptCheckpoint>
         </ModalPresentationContext.Provider>

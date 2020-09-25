@@ -22,6 +22,8 @@ class PageLayoutNodeManager {
     if (this._containerRef.current.contains(nodeData.element)) {
       nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
       this._containerRef.current.removeChild(nodeData.element);
+
+      setTimeout(() => { nodeData.setVisibility(false); }, 0);
     }
 
     if (nodeData.ancestor) {
@@ -29,7 +31,7 @@ class PageLayoutNodeManager {
     }
   }
 
-  getNode(pageKey, ancestorPageKey) {
+  getNode(pageKey, ancestorPageKey, setVisibility) {
     if (!this._containerRef.current) {
       return;
     }
@@ -54,6 +56,7 @@ class PageLayoutNodeManager {
       ancestor: ancestorPageKey,
       element: newPortalElement,
       child: undefined,
+      setVisibility,
     };
 
     if (this._nodeMap[ancestorPageKey]) {
@@ -89,6 +92,8 @@ class PageLayoutNodeManager {
       this._nodeMap[page.ancestor].child = undefined;
       this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
       this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
+
+      setTimeout(() => { this._nodeMap[page.ancestor].setVisibility(true); }, 0);
     }
 
     setTimeout(() => {

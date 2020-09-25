@@ -5,13 +5,14 @@ import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { KEY_TAB } from 'keycode-js';
 
-import PagePortalContext from './PagePortalContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
+import PagePortalContext from './PagePortalContext';
+import MainContainer from './_MainContainer';
 import PageHeader from './_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
@@ -19,23 +20,18 @@ import styles from './ApplicationPage.module.scss';
 const cx = classNames.bind(styles);
 
 const ApplicationPage = ({
-  title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
+  title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack, pageKey, onVisibilityChange,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const pagePortalContext = React.useContext(PagePortalContext);
 
   const navigationPromptCheckpointRef = React.useRef();
-  const pageIdRef = React.useRef(uuidv4());
+  const pageIdRef = React.useRef(pageKey || uuidv4());
 
   const [showOverflowFocus, setShowOverflowFocus] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-
-  function onSelectAction(action) {
-    if (action.onSelect) {
-      action.onSelect();
-    }
-  }
 
   const goBack = useCallback(() => {
     if (disableNavigationPromptsOnBack) {
@@ -54,6 +50,7 @@ const ApplicationPage = ({
     ancestorTitle: title,
     backLinks: pagePortalContext?.backLinks ? [...pagePortalContext.backLinks, { title: pagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
     nodeManager: pagePortalContext?.nodeManager,
+    isMain: pagePortalContext.isMain,
   }), [title, pagePortalContext, goBack]);
 
   React.useLayoutEffect(() => () => {
@@ -62,16 +59,22 @@ const ApplicationPage = ({
     }
   }, [nodeManager]);
 
+  React.useLayoutEffect(() => {
+    if (onVisibilityChange) {
+      onVisibilityChange(isVisible);
+    }
+  }, [isVisible, onVisibilityChange]);
+
   let portalNode;
   if (nodeManager) {
-    portalNode = nodeManager.getNode(pageIdRef.current, pagePortalContext.ancestorPage);
+    portalNode = nodeManager.getNode(pageIdRef.current, pagePortalContext.ancestorPage, setIsVisible);
   }
 
   if (!nodeManager) {
     return null;
   }
 
-  const RootElement = pagePortalContext.isMain ? 'main' : 'div';
+  const RootElement = pagePortalContext.isMain ? MainContainer : 'div';
 
   const pageTitleId = `application-page-title-${pageIdRef.current}`;
 
@@ -87,6 +90,7 @@ const ApplicationPage = ({
             setShowOverflowFocus(true);
           }
         }}
+        isVisible={isVisible}
       >
         <div className={cx('header')}>
           <PageHeader
@@ -108,7 +112,6 @@ const ApplicationPage = ({
                   <ApplicationLoadingOverlayProvider>
                     <div
                       data-page-overflow-container
-                      // id="application-page-main" // TODO think about this ID, needs to not be ID (page + modal causes dupes)
                       tabIndex="0"
                       className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
                     >

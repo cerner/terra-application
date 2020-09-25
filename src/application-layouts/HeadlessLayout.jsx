@@ -4,8 +4,9 @@ import classNames from 'classnames/bind';
 
 import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
 import ApplicationContainerContext from '../application-container/private/ApplicationContainerContext';
+import PageContainer from '../application-page/PageContainer';
 
-import styles from './EmbeddedLayout.module.scss';
+import styles from './HeadlessLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -16,8 +17,8 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const EmbeddedLayout = ({
-  children,
+const HeadlessLayout = ({
+  children, renderPage,
 }) => {
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const conceptContext = React.useContext(ApplicationConceptContext);
@@ -28,12 +29,16 @@ const EmbeddedLayout = ({
         {conceptContext?.renderPageConceptView()}
       </div>
       <div className={cx('content-container')}>
-        {children}
+        {renderPage ? (
+          <PageContainer>
+            {renderPage()}
+          </PageContainer>
+        ) : children}
       </div>
     </div>
   );
 };
 
-EmbeddedLayout.propTypes = propTypes;
+HeadlessLayout.propTypes = propTypes;
 
-export default EmbeddedLayout;
+export default HeadlessLayout;

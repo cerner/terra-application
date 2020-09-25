@@ -22,54 +22,12 @@ const userConfig = {
   initials: 'DU',
 };
 
-const DemoApplicationNavigationLayout = () => {
+const SimpleApplicationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
   const sessionContext = React.useContext(SessionContext);
 
-  const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D']);
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
-
-  function renderNavigationItems() {
-    if (conceptContext.data) {
-      return [(
-        <NavigationItem
-          key="nav-A"
-          navigationKey="nav-A"
-          text="Nav A"
-          renderPage={() => <Page1 />}
-        />
-      ), (
-        <NavigationItem
-          key="nav-B"
-          navigationKey="nav-B"
-          text="Nav B"
-          render={() => <NavBLayout />}
-        />
-      ), (
-        <NavigationItem
-          key="nav-C"
-          navigationKey="nav-C"
-          text="Nav C"
-          render={() => <NavCLayout />}
-        />
-      ), (
-        <NavigationItem
-          key="nav-D"
-          navigationKey="nav-D"
-          text="Nav D"
-          render={() => <NavDLayout />}
-        />
-      )];
-    }
-
-    return (
-      <main style={{ padding: '0 1.5rem' }}>
-        <h1>No Context</h1>
-        <p>Select a option from the Search modal.</p>
-      </main>
-    );
-  }
 
   return (
     <>
@@ -104,17 +62,21 @@ const DemoApplicationNavigationLayout = () => {
           }}
           onSelectSettings={() => {}}
           onSelectHelp={() => {}}
-          activeNavigationKey={conceptContext.data ? navigationState : undefined}
-          onSelectNavigationItem={(key) => { setNavigationState(key); }}
+          renderPage={conceptContext.data ? () => <Page1 /> : undefined}
         >
-          {renderNavigationItems()}
+          {!conceptContext.data ? (
+            <main style={{ padding: '0 1.5rem' }}>
+              <h1>No Context</h1>
+              <p>Select a option from the Search modal.</p>
+            </main>
+          ) : undefined}
         </PrimaryNavigationLayout>
         {showDetailsModal && (
-        <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
-          <div style={{ padding: '1rem' }}>
-            <p>Details go here.</p>
-          </div>
-        </ApplicationModal>
+          <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
+            <div style={{ padding: '1rem' }}>
+              <p>Details go here.</p>
+            </div>
+          </ApplicationModal>
         )}
       </ApplicationConceptProvider>
       {showSearchModal && (
@@ -130,4 +92,4 @@ const DemoApplicationNavigationLayout = () => {
   );
 };
 
-export default DemoApplicationNavigationLayout;
+export default SimpleApplicationLayout;

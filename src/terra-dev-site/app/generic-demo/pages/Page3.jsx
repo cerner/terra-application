@@ -14,7 +14,7 @@ import PrintModal from '../modals/PrintModal';
 
 import Page3Content from './content/_Page3Content';
 
-const AllergyProfilePage = ({ onRequestClose }) => {
+const Page3 = ({ onRequestClose }) => {
   const isInitialized = useDeferredInitializer();
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
@@ -89,4 +89,4 @@ const AllergyProfilePage = ({ onRequestClose }) => {
   );
 };
 
-export default AllergyProfilePage;
+export default Page3;

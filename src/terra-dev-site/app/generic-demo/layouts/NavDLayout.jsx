@@ -1,7 +1,6 @@
 import React from 'react';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
-import PageContainer from '../../../../application-page/PageContainer';
 import SecondaryNavigationLayout, { NavigationGroup, NavigationItem } from '../../../../application-layouts/SecondaryNavigationLayout';
 import useNavigationState from '../../../../navigation/useNavigationState';
 
@@ -24,20 +23,12 @@ const NavDLayout = () => {
         <NavigationItem
           navigationKey="nav-D-1"
           text="Nav D-1 Page 1"
-          render={() => (
-            <PageContainer>
-              <Page1 />
-            </PageContainer>
-          )}
+          renderPage={() => <Page1 />}
         />
         <NavigationItem
           navigationKey="nav-D-2"
           text="Nav D-2 Page 2"
-          render={() => (
-            <PageContainer>
-              <Page2 />
-            </PageContainer>
-          )}
+          renderPage={() => <Page2 />}
         />
       </NavigationGroup>
       <NavigationGroup
@@ -46,23 +37,17 @@ const NavDLayout = () => {
         <NavigationItem
           navigationKey="nav-D-3"
           text="Nav D-3 Page 3"
-          render={() => (
-            <PageContainer>
-              <Page3 />
-            </PageContainer>
-          )}
+          renderPage={() => <Page3 />}
         />
         <NavigationItem
           navigationKey="nav-D-4"
           text="Nav D-4 Inline Page"
-          render={() => (
-            <PageContainer>
-              <ApplicationPage title="Inline Page">
-                <div style={{ padding: '1rem' }}>
-                  Page content here...
-                </div>
-              </ApplicationPage>
-            </PageContainer>
+          renderPage={() => (
+            <ApplicationPage title="Inline Page">
+              <div style={{ padding: '1rem' }}>
+                Page content here...
+              </div>
+            </ApplicationPage>
           )}
         />
       </NavigationGroup>
@@ -75,14 +60,12 @@ const NavDLayout = () => {
           <NavigationItem
             navigationKey="nav-D-5"
             text="Nav D-5 Inline Page In Nested Group"
-            render={() => (
-              <PageContainer>
-                <ApplicationPage title="Inline Page In Nested Group">
-                  <div style={{ padding: '1rem' }}>
-                    Page content here...
-                  </div>
-                </ApplicationPage>
-              </PageContainer>
+            renderPage={() => (
+              <ApplicationPage title="Inline Page In Nested Group">
+                <div style={{ padding: '1rem' }}>
+                  Page content here...
+                </div>
+              </ApplicationPage>
             )}
           />
         </NavigationGroup>
@@ -90,14 +73,12 @@ const NavDLayout = () => {
       <NavigationItem
         navigationKey="nav-D-6"
         text="Nav D-6 Inline Page Not In Group"
-        render={() => (
-          <PageContainer>
-            <ApplicationPage title="Inline Page Not In Group">
-              <div style={{ padding: '1rem' }}>
-                Page content here...
-              </div>
-            </ApplicationPage>
-          </PageContainer>
+        renderPage={() => (
+          <ApplicationPage title="Inline Page Not In Group">
+            <div style={{ padding: '1rem' }}>
+              Page content here...
+            </div>
+          </ApplicationPage>
         )}
       />
     </SecondaryNavigationLayout>

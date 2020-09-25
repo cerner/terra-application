@@ -1,7 +1,6 @@
 import React from 'react';
 
 import SecondaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/SecondaryNavigationLayout';
-import PageContainer from '../../../../application-page/PageContainer';
 import useNavigationState from '../../../../navigation/useNavigationState';
 
 import Page1 from '../pages/Page1';
@@ -19,28 +18,23 @@ const NavCLayout = () => {
       <NavigationItem
         navigationKey="nav-C-1"
         text="Nav C-1 Page 1"
-        render={() => (
-          <PageContainer>
-            <Page1 />
-          </PageContainer>
-        )}
+        renderPage={() => (<Page1 />)}
       />
       <NavigationItem
         navigationKey="nav-C-2"
         text="Nav C-2 Page 2"
-        render={() => (
-          <PageContainer>
-            <Page2 />
-          </PageContainer>
-        )}
+        renderPage={() => (<Page2 />)}
       />
       <NavigationItem
         navigationKey="nav-C-3"
         text="Nav C-3 Page 3"
+        renderPage={() => (<Page3 />)}
+      />
+      <NavigationItem
+        navigationKey="nav-C-4"
+        text="Nav C-4 Not A Page"
         render={() => (
-          <PageContainer>
-            <Page3 />
-          </PageContainer>
+          <h2>Not a Page</h2>
         )}
       />
     </SecondaryNavigationLayout>

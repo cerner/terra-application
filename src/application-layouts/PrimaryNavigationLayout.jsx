@@ -8,8 +8,9 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
+import PageContainer from '../application-page/PageContainer';
 
-import EmbeddedLayout from './EmbeddedLayout';
+import HeadlessLayout from './HeadlessLayout';
 
 const propTypes = {
   /**
@@ -120,6 +121,7 @@ const propTypes = {
 
 const PrimaryNavigationLayout = ({
   children,
+  renderPage,
   activeNavigationKey,
   disableApplicationConceptRendering,
   ...props
@@ -197,12 +199,25 @@ const PrimaryNavigationLayout = ({
     );
   }
 
+  let content;
+  if (renderPage) {
+    content = (
+      <PageContainer>
+        {renderPage()}
+      </PageContainer>
+    );
+  } else if (navigationItems) {
+    content = renderNavigationItems();
+  } else {
+    content = children;
+  }
+
   return (
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
       <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
-        <EmbeddedLayout>
-          {navigationItems ? renderNavigationItems() : children}
-        </EmbeddedLayout>
+        <HeadlessLayout>
+          {content}
+        </HeadlessLayout>
       </ApplicationNavigation>
     </div>
   );
@@ -211,11 +226,17 @@ const PrimaryNavigationLayout = ({
 PrimaryNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
-  navigationKey, text, isActive, children, render, portalElement,
+  navigationKey, text, isActive, children, render, renderPage, portalElement,
 }) => {
   let pageContent;
 
-  if (render) {
+  if (renderPage) {
+    pageContent = (
+      <PageContainer>
+        {renderPage()}
+      </PageContainer>
+    );
+  } else if (render) {
     pageContent = render({ isActive });
   } else {
     pageContent = children;

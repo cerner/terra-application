@@ -11,7 +11,9 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 import { ActiveBreakpointContext } from '../breakpoints';
 import SkipToLink from '../application-container/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
+import PageContainer from '../application-page/PageContainer';
 import PageContainerContext from '../application-page/PageContainerContext';
+import EventEmitter from '../utils/event-emitter';
 
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
@@ -73,7 +75,7 @@ const initialSizeForBreakpoint = (breakpoint) => {
 };
 
 const SecondaryNavigationLayout = ({
-  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace,
+  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace, renderPage,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const navigationContextValue = React.useContext(NavigationContext);
@@ -128,6 +130,24 @@ const SecondaryNavigationLayout = ({
       />
     ) : null,
   }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
+
+  React.useEffect(() => {
+    function dismissOverlaySidebars() {
+      if (hasOverlaySidebar) {
+        setSideNavOverlayIsVisible(false);
+      }
+
+      if (hasOverlayWorkspace) {
+        setWorkspaceIsVisible(false);
+      }
+    }
+
+    EventEmitter.on('terra-application.dismiss-transient-layers', dismissOverlaySidebars);
+
+    return () => {
+      EventEmitter.off('terra-application.dismiss-transient-layers', dismissOverlaySidebars);
+    };
+  }, [hasOverlaySidebar, hasOverlayWorkspace]);
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
@@ -239,7 +259,7 @@ const SecondaryNavigationLayout = ({
   }
 
   function renderChildPages(childComponents) {
-    function renderPage(page) {
+    function renderChildPage(page) {
       let portalElement = pageContainerPortalsRef.current[page.props.navigationKey]?.element;
       if (!portalElement) {
         portalElement = document.createElement('div');
@@ -261,9 +281,17 @@ const SecondaryNavigationLayout = ({
       );
     }
 
+    if (renderPage) {
+      return (
+        <PageContainer>
+          {renderPage()}
+        </PageContainer>
+      );
+    }
+
     return React.Children.map(childComponents, (child) => {
       if (child.type === NavigationItem) {
-        return renderPage(child);
+        return renderChildPage(child);
       }
 
       if (child.type === NavigationGroup) {
@@ -288,60 +316,21 @@ const SecondaryNavigationLayout = ({
     });
   }
 
-  /**
-   * TODO Make custom hook for this deferred action junk
-   */
-
-  const deferredActionsRef = React.useRef([]);
-  const [deferredActionState, setDeferredActionState] = React.useState(false);
-
   function deferAction(callback) {
-    deferredActionsRef.current.push(callback);
-
-    setDeferredActionState(state => !state);
+    setTimeout(callback, 0);
   }
-
-  React.useEffect(() => {
-    if (deferredActionsRef.current.length) {
-      deferredActionsRef.current.forEach(callback => callback());
-      deferredActionsRef.current = [];
-    }
-  }, [deferredActionState]);
-
-  /**
-   * End deferred action stuff
-   */
 
   return (
     <>
-      <SkipToLink
-        isMain // TODO talk about expectations with Skip to Main while main is inert.
-        description="Skip to Main Content" // TODO INTL
-        callback={() => {
-          if (workspaceIsVisible && hasOverlayWorkspace) {
-            setWorkspaceIsVisible(false);
-          }
-
-          if (sideNavOverlayIsVisible) {
-            setSideNavOverlayIsVisible(false);
-          }
-
-          deferAction(() => {
-            if (document.querySelector('main')) {
-              document.querySelector('main').focus();
-            }
-          });
-        }}
-      />
       {hasSidebar && (
         <SkipToLink
           description="Skip to Side Navigation"
           callback={() => {
-            if (workspaceIsVisible && hasOverlayWorkspace) {
+            if (hasOverlayWorkspace) {
               setWorkspaceIsVisible(false);
             }
 
-            if (!sideNavOverlayIsVisible && hasOverlaySidebar) {
+            if (hasOverlaySidebar) {
               setSideNavOverlayIsVisible(true);
             }
 
@@ -355,13 +344,11 @@ const SecondaryNavigationLayout = ({
         <SkipToLink
           description="Skip to Workspace"
           callback={() => {
-            if (sideNavOverlayIsVisible) {
+            if (hasOverlaySidebar) {
               setSideNavOverlayIsVisible(false);
             }
 
-            if (!workspaceIsVisible) {
-              setWorkspaceIsVisible(true);
-            }
+            setWorkspaceIsVisible(true);
 
             deferAction(() => {
               workspacePanelRef.current.focus();
@@ -574,11 +561,17 @@ const SecondaryNavigationLayout = ({
 SecondaryNavigationLayout.propTypes = propTypes;
 
 const NavigationItem = ({
-  isActive, children, render, portalElement,
+  isActive, children, render, renderPage, portalElement,
 }) => {
   let pageContent;
 
-  if (render) {
+  if (renderPage) {
+    pageContent = (
+      <PageContainer>
+        {renderPage()}
+      </PageContainer>
+    );
+  } else if (render) {
     pageContent = render({ isActive });
   } else {
     pageContent = children;

@@ -1,5 +1,8 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+
+import EventEmitter from '../utils/event-emitter';
+
 import SkipToLinksContext from './SkipToLinksContext';
 
 import styles from './SkipToLink.module.scss';
@@ -57,38 +60,39 @@ const useSkipToLinks = () => {
 
         updateLinksStateRef.current = setLinks;
 
-        const linkObjects = Object.values(links);
-        let defaultSkipToMain;
-        if (linkObjects.filter(link => link.isMain).length === 0) {
-          defaultSkipToMain = (
+        function buildButtonFromLink(link) {
+          return (
             <button
-              key="terra-application-main-content-skip-to-link"
+              key={link.key}
               type="button"
               role="link"
               onClick={() => {
-                document.querySelector('main')?.focus();
+                EventEmitter.emit('terra-application.dismiss-transient-layers');
+
+                setTimeout(() => { link.callback(); }, 0);
               }}
               className={cx('skip-content-button')}
             >
-              Skip to Main Content
+              {link.description}
             </button>
           );
         }
 
+        const linkObjects = Object.values(links);
+        const mainLinks = [];
+        const otherLinks = [];
+        linkObjects.forEach((link) => {
+          if (link.isMain) {
+            mainLinks.push(buildButtonFromLink(link));
+          } else {
+            otherLinks.push(buildButtonFromLink(link));
+          }
+        });
+
         return (
           <div>
-            {defaultSkipToMain}
-            {linkObjects.map((link) => (
-              <button
-                key={link.key}
-                type="button"
-                role="link"
-                onClick={link.callback}
-                className={cx('skip-content-button')}
-              >
-                {link.description}
-              </button>
-            ))}
+            {mainLinks}
+            {otherLinks}
           </div>
         );
       },

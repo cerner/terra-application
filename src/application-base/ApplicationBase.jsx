@@ -18,6 +18,8 @@ import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
+import './private/initializeInert';
+
 import styles from './ApplicationBase.module.scss';
 
 const cx = classNames.bind(styles);

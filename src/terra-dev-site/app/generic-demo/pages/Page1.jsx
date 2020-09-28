@@ -21,9 +21,10 @@ const Page1 = ({ onRequestClose }) => {
 
   React.useEffect(() => {
     if (pageIsVisible && navigationContext.isActive) {
+      console.log('Page 1 is visible');
       const interval = setInterval(() => {
         console.log('Page 1 is visible');
-      }, [1000]);
+      }, [2000]);
 
       return () => {
         clearInterval(interval);

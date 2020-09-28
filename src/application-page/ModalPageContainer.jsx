@@ -1,16 +1,16 @@
 import React from 'react';
 
 import BasePageContainer from './BasePageContainer';
-import PageContainerContext from './PageContainerContext';
+import PageActionsContext from './PageActionsContext';
 
 const ModalPageContainer = ({
   children,
 }) => (
-  <PageContainerContext.Provider value={undefined}>
+  <PageActionsContext.Provider value={undefined}>
     <BasePageContainer>
       {children}
     </BasePageContainer>
-  </PageContainerContext.Provider>
+  </PageActionsContext.Provider>
 );
 
 export default ModalPageContainer;

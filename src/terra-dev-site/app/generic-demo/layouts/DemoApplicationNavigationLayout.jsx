@@ -60,6 +60,13 @@ const DemoApplicationNavigationLayout = () => {
           text="Nav D"
           render={() => <NavDLayout />}
         />
+      ), (
+        <NavigationItem
+          key="nav-E"
+          navigationKey="nav-E"
+          text="Nav E"
+          render={() => <h2>Not a Page</h2>}
+        />
       )];
     }
 

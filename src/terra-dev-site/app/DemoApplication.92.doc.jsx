@@ -19,7 +19,7 @@ const DemoApplication = () => (
     <ApplicationContainer>
       <SessionProvider>
         <ConceptProvider>
-          <HeadlessApplicationLayout />
+          <DemoApplicationNavigationLayout />
         </ConceptProvider>
       </SessionProvider>
     </ApplicationContainer>

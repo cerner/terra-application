@@ -12,7 +12,7 @@ import { ActiveBreakpointContext } from '../breakpoints';
 import SkipToLink from '../application-container/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
 import PageContainer from '../application-page/PageContainer';
-import PageContainerContext from '../application-page/PageContainerContext';
+import PageActionsContext from '../application-page/PageActionsContext';
 import EventEmitter from '../utils/event-emitter';
 
 import ResizeHandle from './workspace/ResizeHandle';
@@ -104,32 +104,38 @@ const SecondaryNavigationLayout = ({
     hasSidebar = true;
   }
 
-  // const hasSidebar = React.Children.count(children) > 1; // TODO this check needs to be better now that NavigationGroups exist
   const hasOverlaySidebar = sideNavOverlayBreakpoints.indexOf(activeBreakpoint) !== -1;
   const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
 
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(enableWorkspace && !hasOverlayWorkspace);
 
-  const pageContainerContextValue = React.useMemo(() => ({
-    rightActionComponent: enableWorkspace ? (
-      <Button
-        className={cx({ 'active-button': workspaceIsVisible })}
-        icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
-        text="Toggle Workspace"
-        onClick={() => { setWorkspaceIsVisible((state) => !state); }}
-        variant={ButtonVariants.UTILITY}
-      />
-    ) : undefined,
-    leftActionComponent: hasSidebar && hasOverlaySidebar ? (
+  const pageActionsContextValue = React.useMemo(() => ({
+    startActions: hasSidebar && hasOverlaySidebar ? (
       <Button
         icon={<IconLeftPane />}
-        text="Toggle Side Nav"
+        text="Toggle Side Nav" // TODO INTL
         onClick={() => { setSideNavOverlayIsVisible((state) => !state); }}
         variant={ButtonVariants.UTILITY}
       />
-    ) : null,
+    ) : undefined,
+    endActions: enableWorkspace ? (
+      <Button
+        className={cx({ 'active-button': workspaceIsVisible })}
+        icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
+        text="Toggle Workspace" // TODO INTL
+        onClick={() => { setWorkspaceIsVisible(state => !state); }}
+        variant={ButtonVariants.UTILITY}
+      />
+    ) : undefined,
   }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
+
+  // const secondaryNavigationLayoutContextValue = React.useMemo(() => ({
+  //   workspaceIsVisible,
+  //   toggleWorkspace: () => { setWorkspaceIsVisible(state => !state); },
+  //   sideNavIsVisible: hasSidebar ? (sideNavOverlayIsVisible && hasOverlaySidebar) : true,
+  //   toggleSideNav: hasSidebar && hasOverlaySidebar ? () => { setSideNavOverlayIsVisible(state => !state); } : undefined,
+  // }), [workspaceIsVisible, hasSidebar, hasOverlaySidebar, sideNavOverlayIsVisible]);
 
   React.useEffect(() => {
     function dismissOverlaySidebars() {
@@ -400,9 +406,9 @@ const SecondaryNavigationLayout = ({
             style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null} // TODO add IE flex styles
             inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
           >
-            <PageContainerContext.Provider value={pageContainerContextValue}>
+            <PageActionsContext.Provider value={pageActionsContextValue}>
               {renderChildPages(children)}
-            </PageContainerContext.Provider>
+            </PageActionsContext.Provider>
           </div>
           {enableWorkspace && (
             <div

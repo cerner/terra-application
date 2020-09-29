@@ -10,8 +10,6 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import { ApplicationIntlProvider } from '../application-intl';
-import LayerManagerProvider from '../layers/LayerManagerProvider';
-import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
@@ -66,26 +64,22 @@ const ApplicationBase = ({
   }), [themeName]);
 
   return (
-    <LayerManagerProvider>
-      <NavigationRegistrationProvider>
-        <ThemeProvider
-          themeName={themeName}
+    <ThemeProvider
+      themeName={themeName}
+    >
+      <ThemeContextProvider theme={theme}>
+        <Base
+          customMessages={customTranslatedMessages}
+          locale={localeOverride || locale || browserLocale}
         >
-          <ThemeContextProvider theme={theme}>
-            <Base
-              customMessages={customTranslatedMessages}
-              locale={localeOverride || locale || browserLocale}
-            >
-              <ApplicationIntlProvider>
-                <ActiveBreakpointProvider>
-                  {children}
-                </ActiveBreakpointProvider>
-              </ApplicationIntlProvider>
-            </Base>
-          </ThemeContextProvider>
-        </ThemeProvider>
-      </NavigationRegistrationProvider>
-    </LayerManagerProvider>
+          <ApplicationIntlProvider>
+            <ActiveBreakpointProvider>
+              {children}
+            </ActiveBreakpointProvider>
+          </ApplicationIntlProvider>
+        </Base>
+      </ThemeContextProvider>
+    </ThemeProvider>
   );
 };
 

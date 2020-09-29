@@ -12,7 +12,8 @@ let incrementer = 0;
 
 const DisclosedComponent = () => {
   const disclosureManager = React.useContext(DisclosureManagerContext);
-  const [id, setId] = React.useState(incrementer++);
+  const [id, setId] = React.useState(() => incrementer++);
+  const [hasUnsavedChanges, setHasUnsavedChanges] = React.useState(false);
 
   return (
     <div>
@@ -45,20 +46,20 @@ const DisclosedComponent = () => {
       <Button
         text="Abort"
         onClick={() => {
-          debugger;
           disclosureManager.closeDisclosure();
         }}
       />
-      <NavigationPrompt description={id} />
+      <Button
+        text={`Unsaved Changes - ${hasUnsavedChanges ? 'Yes' : 'No'}`}
+        onClick={() => { setHasUnsavedChanges(state => !state); }}
+      />
+      {hasUnsavedChanges && <NavigationPrompt description={id} />}
     </div>
   );
 };
 
 const Page4 = ({ onRequestClose }) => {
-  const isInitialized = useDeferredInitializer();
   const disclosureManager = React.useContext(DisclosureManagerContext);
-
-  const [showPage2, setShowPage2] = React.useState(false);
 
   return (
     <ApplicationPage

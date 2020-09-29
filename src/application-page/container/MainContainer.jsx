@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SkipToLink from '../application-container/SkipToLink';
+import SkipToLink from '../../application-container/private/skip-to/SkipToLink';
 
 const propTypes = {};
 

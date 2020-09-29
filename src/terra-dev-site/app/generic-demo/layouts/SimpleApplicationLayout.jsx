@@ -4,7 +4,7 @@ import Button from 'terra-button';
 
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
 import PrimaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/PrimaryNavigationLayout';
-import ApplicationConceptProvider from '../../../../application-container/ApplicationConceptProvider';
+import ApplicationConceptBannerProvider from '../../../../application-container/ApplicationConceptBannerProvider';
 import useNavigationState from '../../../../navigation/useNavigationState';
 
 import { ConceptContext } from '../providers/ConceptProvider';
@@ -31,9 +31,9 @@ const SimpleApplicationLayout = () => {
 
   return (
     <>
-      <ApplicationConceptProvider
-        primaryConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
-        modalConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
+      <ApplicationConceptBannerProvider
+        layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
+        modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
         <PrimaryNavigationLayout
           titleConfig={{ title: 'Demo Application' }}
@@ -78,7 +78,7 @@ const SimpleApplicationLayout = () => {
             </div>
           </ApplicationModal>
         )}
-      </ApplicationConceptProvider>
+      </ApplicationConceptBannerProvider>
       {showSearchModal && (
         <ApplicationModal title="Search" size="large" onRequestClose={() => { setShowSearchModal(false); }}>
           <div style={{ padding: '1rem' }}>

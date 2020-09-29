@@ -113,7 +113,7 @@ const ModalContent = (props) => {
   //     hideModalDomUpdates(modalTrigger, rootSelector);
   //   };
   // }, [ref, rootSelector]);
-  const applicationConcept = React.useContext(ApplicationConceptContext);
+  const applicationConceptBanner = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
@@ -167,7 +167,7 @@ const ModalContent = (props) => {
                 onClose={onRequestClose}
               />
               {toolbar}
-              {applicationConcept && applicationConcept.renderModalConceptView()}
+              {applicationConceptBanner && applicationConceptBanner.modalBanner}
               <NotificationBanners />
             </>
           )}

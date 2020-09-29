@@ -7,7 +7,7 @@ import ApplicationConceptContext from '../../../../application-concept/Applicati
 const PatientConceptProvider = ({ children }) => (
   <ApplicationConceptContext.Provider
     value={{
-      renderPageConceptView: () => (
+      layoutBanner: (
         <div style={{ borderTop: '1px solid #002238' }}>
           <DemographicsBanner
             photo={<Avatar alt="John Doe" initials="JD" />}
@@ -21,7 +21,7 @@ const PatientConceptProvider = ({ children }) => (
           />
         </div>
       ),
-      renderModalConceptView: () => (
+      modalBanner: (
         <DemographicsBanner
           photo={<Avatar alt="John Doe" initials="JD" />}
           age="25 Years"

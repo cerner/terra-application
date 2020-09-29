@@ -4,9 +4,9 @@ import Button, { ButtonVariants } from 'terra-button';
 import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 
-import { ActiveBreakpointContext } from '../breakpoints';
-import PageActionsContext from './PageActionsContext';
-import PageMenu, { MenuItem, MenuItemDivider } from './PageMenu';
+import { ActiveBreakpointContext } from '../../breakpoints';
+import PageActionsContext from '../PageActionsContext';
+import PageMenu, { MenuItem, MenuItemDivider } from '../PageMenu';
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);

@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 
 import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
 import ApplicationContainerContext from '../application-container/private/ApplicationContainerContext';
-import PageContainer from '../application-page/PageContainer';
+import PageContainer from '../application-page/container/PageContainer';
 
 import styles from './HeadlessLayout.module.scss';
 
@@ -26,7 +26,7 @@ const HeadlessLayout = ({
   return (
     <div className={cx('embedded-layout', { 'fill-parent': !applicationContainer.disableParentFill })}>
       <div className={cx('concept-banner-container')}>
-        {conceptContext?.renderPageConceptView()}
+        {conceptContext?.layoutBanner}
       </div>
       <div className={cx('content-container')}>
         {renderPage ? (

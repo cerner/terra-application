@@ -1,8 +1,4 @@
-import React from 'react';
-
-import PagePortalContext from './PagePortalContext';
-
-class PageLayoutNodeManager {
+class PageContainerPortalManager {
   constructor(containerRef) {
     this._containerRef = containerRef;
     this._nodeMap = {};
@@ -104,35 +100,4 @@ class PageLayoutNodeManager {
   }
 }
 
-const BasePageContainer = ({
-  children, isMain,
-}) => {
-  const pageLayoutContainerRef = React.useRef();
-
-  const [isInitialized, setIsInitialized] = React.useState();
-
-  const pagePortalContextValue = React.useMemo(() => ({
-    nodeManager: new PageLayoutNodeManager(pageLayoutContainerRef),
-    isMain,
-  }), [isMain]);
-
-  React.useLayoutEffect(() => {
-    setIsInitialized(true);
-  }, []);
-
-  return (
-    <div
-      ref={pageLayoutContainerRef}
-      style={{
-        height: '100%', width: '100%', position: 'relative', overflow: 'auto',
-      }}
-    >
-      <PagePortalContext.Provider value={pagePortalContextValue}>
-        {isInitialized && children}
-      </PagePortalContext.Provider>
-    </div>
-  );
-};
-
-export default BasePageContainer;
-export { PageLayoutNodeManager };
+export default PageContainerPortalManager;

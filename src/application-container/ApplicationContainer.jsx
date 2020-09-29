@@ -5,8 +5,10 @@ import classNames from 'classnames/bind';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import ModalManager from '../modal-manager';
+import LayerManagerProvider from '../layers/LayerManagerProvider';
+import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
-import useSkipToLinks from './useSkipToLinks';
+import useSkipToLinks from './private/skip-to/useSkipToLinks';
 import ApplicationContainerContext from './private/ApplicationContainerContext';
 import styles from './ApplicationContainer.module.scss';
 
@@ -62,24 +64,28 @@ const ApplicationContainer = ({
   }, [unloadPromptIsDisabled]);
 
   return (
-    <ApplicationContainerContext.Provider value={contextValue}>
-      <div id="terra-application-container" className={cx({ 'fill-parent': !disableParentFill })}>
-        {!hideSkipToLinks && <SkipToLinks />}
-        <SkipToLinksProvider>
-          <NavigationPromptCheckpoint
-            onPromptChange={(registeredPrompts) => {
-              registeredPromptsRef.current = registeredPrompts;
-            }}
-          >
+    <NavigationPromptCheckpoint
+      onPromptChange={(registeredPrompts) => {
+        registeredPromptsRef.current = registeredPrompts;
+      }}
+    >
+      <ApplicationContainerContext.Provider value={contextValue}>
+        <div id="terra-application-container" className={cx({ 'fill-parent': !disableParentFill })}>
+          {!hideSkipToLinks && <SkipToLinks />}
+          <SkipToLinksProvider>
             <ApplicationErrorBoundary renderErrorView={(errorDetails) => <ApplicationContainerErrorView errorDetails={errorDetails} />}>
-              <ModalManager>
-                {children}
-              </ModalManager>
+              <LayerManagerProvider>
+                <NavigationRegistrationProvider>
+                  <ModalManager>
+                    {children}
+                  </ModalManager>
+                </NavigationRegistrationProvider>
+              </LayerManagerProvider>
             </ApplicationErrorBoundary>
-          </NavigationPromptCheckpoint>
-        </SkipToLinksProvider>
-      </div>
-    </ApplicationContainerContext.Provider>
+          </SkipToLinksProvider>
+        </div>
+      </ApplicationContainerContext.Provider>
+    </NavigationPromptCheckpoint>
   );
 };
 

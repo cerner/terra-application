@@ -7,7 +7,7 @@ import ApplicationConceptContext from '../../../../application-concept/Applicati
 const DemoApplicationConceptProvider = ({ children }) => (
   <ApplicationConceptContext.Provider
     value={{
-      renderPageConceptView: () => (
+      layoutBanner: (
         <div style={{
           borderTop: '1px solid #002238', backgroundColor: 'purple', color: 'white', padding: '10px',
         }}
@@ -15,7 +15,7 @@ const DemoApplicationConceptProvider = ({ children }) => (
           <div style={{ padding: '10px', border: '1px dashed white' }}>Application Context Banner</div>
         </div>
       ),
-      renderModalConceptView: () => (
+      modalBanner: (
         <div style={{
           borderTop: '1px solid #002238', backgroundColor: 'purple', color: 'white', padding: '10px',
         }}

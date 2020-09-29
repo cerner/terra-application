@@ -1,5 +1,5 @@
 import React from 'react';
-import ModalPresentationContext from '../application-modal/ModalPresentationContext';
+import ModalPresentationContext from '../../application-modal/ModalPresentationContext';
 
 import ModalPageContainer from './ModalPageContainer';
 import BasePageContainer from './BasePageContainer';

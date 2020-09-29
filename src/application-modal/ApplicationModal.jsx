@@ -8,7 +8,7 @@ import uuidv4 from 'uuid/v4';
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import PageContainer from '../application-page/PageContainer';
+import PageContainer from '../application-page/container/PageContainer';
 
 import 'mutationobserver-shim';
 import './_contains-polyfill';
@@ -16,7 +16,7 @@ import './_matches-polyfill';
 
 import ModalContent from './_ModalContent';
 import ModalPresentationContext from './ModalPresentationContext';
-import PagePortalContext from '../application-page/PagePortalContext';
+import PagePortalContext from '../application-page/private/PagePortalContext';
 
 const propTypes = {
   title: PropTypes.string,

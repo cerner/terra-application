@@ -4,7 +4,7 @@ import Button from 'terra-button';
 
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
 import HeadlessLayout from '../../../../application-layouts/HeadlessLayout';
-import ApplicationConceptProvider from '../../../../application-container/ApplicationConceptProvider';
+import ApplicationConceptBannerProvider from '../../../../application-container/ApplicationConceptBannerProvider';
 import useNavigationState from '../../../../navigation/useNavigationState';
 
 import { ConceptContext } from '../providers/ConceptProvider';
@@ -29,9 +29,9 @@ const HeadlessApplicationLayout = () => {
 
   return (
     <>
-      <ApplicationConceptProvider
-        primaryConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
-        modalConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
+      <ApplicationConceptBannerProvider
+        layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
+        modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
         <HeadlessLayout>
           <NavDLayout />
@@ -43,7 +43,7 @@ const HeadlessApplicationLayout = () => {
             </div>
           </ApplicationModal>
         )}
-      </ApplicationConceptProvider>
+      </ApplicationConceptBannerProvider>
     </>
   );
 };

@@ -8,7 +8,7 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../application-page/PageContainer';
+import PageContainer from '../application-page/container/PageContainer';
 
 import HeadlessLayout from './HeadlessLayout';
 

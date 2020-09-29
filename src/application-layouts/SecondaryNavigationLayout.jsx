@@ -9,9 +9,9 @@ import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../breakpoints';
-import SkipToLink from '../application-container/SkipToLink';
+import SkipToLink from '../application-container/private/skip-to/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../application-page/PageContainer';
+import PageContainer from '../application-page/container/PageContainer';
 import PageActionsContext from '../application-page/PageActionsContext';
 import EventEmitter from '../utils/event-emitter';
 

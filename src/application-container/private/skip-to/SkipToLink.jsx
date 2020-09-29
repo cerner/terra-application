@@ -2,7 +2,7 @@ import React from 'react';
 // import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
-import NavigationContext from '../navigation/NavigationContext';
+import NavigationContext from '../../../navigation/NavigationContext';
 
 import SkipToLinksContext from './SkipToLinksContext';
 

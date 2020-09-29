@@ -1,7 +1,7 @@
 import React from 'react';
 
 import BasePageContainer from './BasePageContainer';
-import PageActionsContext from './PageActionsContext';
+import PageActionsContext from '../PageActionsContext';
 
 const ModalPageContainer = ({
   children,

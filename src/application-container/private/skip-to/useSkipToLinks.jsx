@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import EventEmitter from '../utils/event-emitter';
+import EventEmitter from '../../../utils/event-emitter';
 
 import SkipToLinksContext from './SkipToLinksContext';
 

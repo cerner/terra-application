@@ -4,7 +4,7 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
-import PageToolbar from '../../../../application-page/_PageToolbar';
+import PageToolbar from '../../../../application-page/private/_PageToolbar';
 import PageMenu, { MenuItem, MenuItemDivider } from '../../../../application-page/PageMenu';
 
 import useDeferredInitializer from '../shared/useDeferredInitializer';

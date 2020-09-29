@@ -4,9 +4,9 @@ import Button from 'terra-button';
 
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
 import PrimaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/PrimaryNavigationLayout';
-import ApplicationConceptProvider from '../../../../application-container/ApplicationConceptProvider';
+import ApplicationConceptBannerProvider from '../../../../application-container/ApplicationConceptBannerProvider';
 import useNavigationState from '../../../../navigation/useNavigationState';
-
+import ModalManager from '../../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
 import { SessionContext } from '../providers/SessionProvider';
 
@@ -27,7 +27,7 @@ const DemoApplicationNavigationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
   const sessionContext = React.useContext(SessionContext);
 
-  const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D']);
+  const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D', 'nav-E', 'nav-F']);
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
 
@@ -88,42 +88,44 @@ const DemoApplicationNavigationLayout = () => {
 
   return (
     <>
-      <ApplicationConceptProvider
-        primaryConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
-        modalConceptBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
+      <ApplicationConceptBannerProvider
+        layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
+        modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
-        <PrimaryNavigationLayout
-          titleConfig={{ title: 'Demo Application' }}
-          userConfig={userConfig}
-          extensionItems={[{
-            key: 'search',
-            icon: <IconSearch />,
-            text: 'Search',
-          }]}
-          onSelectExtensionItem={(itemKey) => {
-            if (itemKey === 'search') {
-              setShowSearchModal(true);
-            }
-          }}
-          utilityItems={[{
-            key: 'lock',
-            text: 'Lock Session',
-          }]}
-          onSelectUtilityItem={(key) => {
-            if (key === 'lock') {
-              sessionContext.lock();
-            }
-          }}
-          onSelectLogout={() => {
-            sessionContext.logOut();
-          }}
-          onSelectSettings={() => {}}
-          onSelectHelp={() => {}}
-          activeNavigationKey={conceptContext.data ? navigationState : undefined}
-          onSelectNavigationItem={(key) => { setNavigationState(key); }}
-        >
-          {renderNavigationItems()}
-        </PrimaryNavigationLayout>
+        <ModalManager>
+          <PrimaryNavigationLayout
+            titleConfig={{ title: 'Demo Application' }}
+            userConfig={userConfig}
+            extensionItems={[{
+              key: 'search',
+              icon: <IconSearch />,
+              text: 'Search',
+            }]}
+            onSelectExtensionItem={(itemKey) => {
+              if (itemKey === 'search') {
+                setShowSearchModal(true);
+              }
+            }}
+            utilityItems={[{
+              key: 'lock',
+              text: 'Lock Session',
+            }]}
+            onSelectUtilityItem={(key) => {
+              if (key === 'lock') {
+                sessionContext.lock();
+              }
+            }}
+            onSelectLogout={() => {
+              sessionContext.logOut();
+            }}
+            onSelectSettings={() => {}}
+            onSelectHelp={() => {}}
+            activeNavigationKey={conceptContext.data ? navigationState : undefined}
+            onSelectNavigationItem={(key) => { setNavigationState(key); }}
+          >
+            {renderNavigationItems()}
+          </PrimaryNavigationLayout>
+        </ModalManager>
         {showDetailsModal && (
         <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
           <div style={{ padding: '1rem' }}>
@@ -131,7 +133,7 @@ const DemoApplicationNavigationLayout = () => {
           </div>
         </ApplicationModal>
         )}
-      </ApplicationConceptProvider>
+      </ApplicationConceptBannerProvider>
       {showSearchModal && (
         <ApplicationModal title="Search" size="large" onRequestClose={() => { setShowSearchModal(false); }}>
           <div style={{ padding: '1rem' }}>

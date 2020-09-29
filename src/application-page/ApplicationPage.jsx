@@ -11,9 +11,9 @@ import { ApplicationLoadingOverlayProvider } from '../application-loading-overla
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
-import PagePortalContext from './PagePortalContext';
-import MainContainer from './_MainContainer';
-import PageHeader from './_PageHeader';
+import PagePortalContext from './private/PagePortalContext';
+import MainContainer from './container/MainContainer';
+import PageHeader from './private/_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
 

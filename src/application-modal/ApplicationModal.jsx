@@ -28,12 +28,14 @@ const propTypes = {
 
 const ApplicationModal = ({
   title,
+  toolbar,
   size,
   actions,
   onRequestClose,
   children,
   renderPage,
   modalClassName,
+  dangerouslyDisableNavigationPromptHandling,
 }) => {
   const navigationPromptCheckpointRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -48,8 +50,14 @@ const ApplicationModal = ({
               modalClassName={modalClassName}
               title={title}
               actions={actions}
+              toolbar={toolbar}
               size={size}
               onRequestClose={() => {
+                if (dangerouslyDisableNavigationPromptHandling) {
+                  onRequestClose();
+                  return;
+                }
+
                 navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
                   onRequestClose();
                 });

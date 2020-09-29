@@ -87,6 +87,7 @@ const ModalContent = (props) => {
   const {
     title,
     actions,
+    toolbar,
     size,
     // ariaLabel,
     children,
@@ -165,6 +166,7 @@ const ModalContent = (props) => {
                 title={title}
                 onClose={onRequestClose}
               />
+              {toolbar}
               {applicationConcept && applicationConcept.renderModalConceptView()}
               <NotificationBanners />
             </>

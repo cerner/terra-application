@@ -11,6 +11,7 @@ import { ConceptContext } from '../providers/ConceptProvider';
 import { SessionContext } from '../providers/SessionProvider';
 
 import Page1 from '../pages/Page1';
+import Page4 from '../pages/Page4';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
@@ -66,6 +67,13 @@ const DemoApplicationNavigationLayout = () => {
           navigationKey="nav-E"
           text="Nav E"
           render={() => <h2>Not a Page</h2>}
+        />
+      ), (
+        <NavigationItem
+          key="nav-F"
+          navigationKey="nav-F"
+          text="Nav F"
+          renderPage={() => <Page4 />}
         />
       )];
     }

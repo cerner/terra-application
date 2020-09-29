@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import ModalManager from '../modal-manager';
 
 import useSkipToLinks from './useSkipToLinks';
 import ApplicationContainerContext from './private/ApplicationContainerContext';
@@ -71,7 +72,9 @@ const ApplicationContainer = ({
             }}
           >
             <ApplicationErrorBoundary renderErrorView={(errorDetails) => <ApplicationContainerErrorView errorDetails={errorDetails} />}>
-              {children}
+              <ModalManager>
+                {children}
+              </ModalManager>
             </ApplicationErrorBoundary>
           </NavigationPromptCheckpoint>
         </SkipToLinksProvider>

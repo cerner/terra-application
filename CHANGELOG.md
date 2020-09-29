@@ -5,6 +5,7 @@
 * Changed
   * Updated application-base to initialize `inert`.
   * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.
+  * Thrown error when i18n data fails to load
 
 ## 1.35.0 - (September 22, 2020)
 

@@ -119,12 +119,11 @@ const ApplicationBase = ({
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider
-        themeName={themeName}
-      >
+      <ThemeProvider themeName={themeName}>
         <ThemeContextProvider theme={theme}>
           <Base
             customMessages={customTranslatedMessages}
+            throwOnI18nLoadError
             translationsLoadingPlaceholder={translationsLoadingPlaceholder}
             locale={localeOverride || locale || browserLocale}
           >

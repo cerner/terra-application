@@ -31,7 +31,7 @@ class TabContainer extends React.Component {
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
-    
+    this.positionDropDown = this.positionDropDown.bind(this);
     this.resetCache();
   }
 
@@ -108,6 +108,15 @@ class TabContainer extends React.Component {
       this.hiddenStartIndex = newHideIndex;
       this.forceUpdate();
     }
+  }
+
+  positionDropDown() {
+    if (this.isCalculating || !this.dropdownRef.current.children.length) {
+      return;
+    }
+    const right = this.contentWidth - this.dropdownRef.current.children[0].getBoundingClientRect().width;
+    this.dropdownRef.current.style.right = `${right}px`;
+    this.dropdownRef.current.style.top = `${50}px`;
   }
 
   setIsOpen(value) {
@@ -201,6 +210,10 @@ class TabContainer extends React.Component {
         }
       }
     });
+
+    if (this.showMoreButton && this.dropdownRef.current) {
+      this.positionDropDown();
+    }
 
     return (
       <div

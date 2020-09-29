@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.36.0 - (September 29, 2020)
+
 * Changed
   * Updated application-base to initialize `inert`.
   * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.

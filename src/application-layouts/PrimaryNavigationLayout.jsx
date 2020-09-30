@@ -8,7 +8,8 @@ import {
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
 import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../application-page/container/PageContainer';
+// import PageContainer from '../application-page/container/PageContainer';
+import MainPageContainer from '../application-page/container/MainPageContainer';
 
 import HeadlessLayout from './HeadlessLayout';
 
@@ -202,9 +203,9 @@ const PrimaryNavigationLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <PageContainer>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (navigationItems) {
     content = renderNavigationItems();
@@ -232,9 +233,9 @@ const NavigationItem = ({
 
   if (renderPage) {
     pageContent = (
-      <PageContainer>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (render) {
     pageContent = render({ isActive });

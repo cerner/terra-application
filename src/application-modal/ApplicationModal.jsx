@@ -8,7 +8,7 @@ import uuidv4 from 'uuid/v4';
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import PageContainer from '../application-page/container/PageContainer';
+import ModalPageContainer from '../application-page/container/ModalPageContainer';
 
 import 'mutationobserver-shim';
 import './_contains-polyfill';
@@ -65,9 +65,9 @@ const ApplicationModal = ({
               aria-modal="true"
             >
               {renderPage ? (
-                <PageContainer>
+                <ModalPageContainer>
                   {renderPage()}
-                </PageContainer>
+                </ModalPageContainer>
               ) : children}
             </ModalContent>
           </NavigationPromptCheckpoint>

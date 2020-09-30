@@ -11,7 +11,9 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 import { ActiveBreakpointContext } from '../breakpoints';
 import SkipToLink from '../application-container/private/skip-to/SkipToLink';
 import NavigationContext from '../navigation/NavigationContext';
-import PageContainer from '../application-page/container/PageContainer';
+// import PageContainer from '../application-page/container/PageContainer';
+import MainPageContainer from '../application-page/container/MainPageContainer';
+
 import PageActionsContext from '../application-page/PageActionsContext';
 import EventEmitter from '../utils/event-emitter';
 
@@ -289,9 +291,9 @@ const SecondaryNavigationLayout = ({
 
     if (renderPage) {
       return (
-        <PageContainer>
+        <MainPageContainer>
           {renderPage()}
-        </PageContainer>
+        </MainPageContainer>
       );
     }
 
@@ -573,9 +575,9 @@ const NavigationItem = ({
 
   if (renderPage) {
     pageContent = (
-      <PageContainer>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (render) {
     pageContent = render({ isActive });

@@ -4,7 +4,7 @@ import ActionHeader from 'terra-action-header';
 import Menu from 'terra-menu';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-import HeaderContainer from '../../header-container/_HeaderContainer';
+import HeaderContainer from './header-container/_HeaderContainer';
 
 const propTypes = {};
 

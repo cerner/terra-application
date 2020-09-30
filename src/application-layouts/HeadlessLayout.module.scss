@@ -2,6 +2,7 @@
   .embedded-layout {
     display: flex;
     flex-direction: column;
+    height: 100%;
     width: 100%;
 
     > .concept-banner-container {
@@ -10,15 +11,8 @@
 
     > .content-container {
       flex: 1 1 auto;
-      position: relative;
-    }
-  }
-
-  .fill-parent {
-    height: 100%;
-
-    > .content-container {
       overflow: hidden;
+      position: relative;
     }
   }
 }

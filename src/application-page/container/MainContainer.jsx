@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 
 import SkipToLink from '../../application-container/private/skip-to/SkipToLink';
+import NavigationContext from '../../navigation/NavigationContext';
 
 const propTypes = {};
 
@@ -8,12 +9,13 @@ function deferAction(callback) {
   setTimeout(callback, 0);
 }
 
-const MainContainer = ({ isVisible, ...props }) => {
+const MainContainer = forwardRef(({ isVisible, ...props }, ref) => {
   const mainElementRef = React.useRef();
+  const navigationContext = React.useContext(NavigationContext);
 
   return (
     <>
-      {isVisible ? (
+      {navigationContext.isActive ? (
         <SkipToLink
           isMain
           description="Skip to Main Content" // TODO INTL
@@ -22,10 +24,26 @@ const MainContainer = ({ isVisible, ...props }) => {
           }}
         />
       ) : undefined}
-      <main ref={mainElementRef} {...props} />
+      <main
+        tabIndex="-1"
+        ref={(mainRef) => {
+          mainElementRef.current = mainRef;
+
+          if (!ref) {
+            return;
+          }
+
+          if (typeof ref === 'function') {
+            ref.call(mainRef);
+          } else {
+            ref.current = mainRef;
+          }
+        }}
+        {...props}
+      />
     </>
   );
-};
+});
 
 MainContainer.propTypes = propTypes;
 

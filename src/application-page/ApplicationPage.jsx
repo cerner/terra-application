@@ -74,23 +74,21 @@ const ApplicationPage = ({
     return null;
   }
 
-  const RootElement = pagePortalContext.isMain ? MainContainer : 'div';
-
   const pageTitleId = `application-page-title-${pageIdRef.current}`;
 
   return (
     ReactDOM.createPortal((
-      <RootElement
+      <div
         className={cx('page')}
         aria-labelledby={pageTitleId}
-        tabIndex="0"
+        // tabIndex="0"
         onMouseDown={() => { setShowOverflowFocus(false); }}
         onKeyDown={(event) => {
           if (event.nativeEvent.keyCode === KEY_TAB) {
             setShowOverflowFocus(true);
           }
         }}
-        isVisible={isVisible}
+        // isVisible={isVisible}
       >
         <div className={cx('header')}>
           <PageHeader
@@ -130,7 +128,7 @@ const ApplicationPage = ({
             </NavigationPromptCheckpoint>
           </PagePortalContext.Provider>
         </div>
-      </RootElement>
+      </div>
     ), portalNode)
   );
 };

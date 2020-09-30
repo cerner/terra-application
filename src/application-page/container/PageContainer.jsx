@@ -2,7 +2,7 @@ import React from 'react';
 import ModalPresentationContext from '../../application-modal/ModalPresentationContext';
 
 import ModalPageContainer from './ModalPageContainer';
-import BasePageContainer from './BasePageContainer';
+import MainPageContainer from './MainPageContainer';
 
 const PageContainer = (props) => {
   const modalContext = React.useContext(ModalPresentationContext);
@@ -11,7 +11,7 @@ const PageContainer = (props) => {
     return <ModalPageContainer {...props} />;
   }
 
-  return <BasePageContainer {...props} isMain />;
+  return <MainPageContainer {...props} />;
 };
 
 export default PageContainer;

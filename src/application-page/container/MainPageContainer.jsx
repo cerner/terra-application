@@ -1,36 +1,41 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 
 import PagePortalContext from '../private/PagePortalContext';
 import PageContainerPortalManager from '../private/_PageContainerPortalManager';
 
-const BasePageContainer = ({
-  children, isMain,
+import MainContainer from './MainContainer';
+
+import styles from './MainPageContainer.module.scss';
+
+const cx = classNames.bind(styles);
+
+const MainPageContainer = ({
+  children,
 }) => {
-  const pageLayoutContainerRef = React.useRef();
+  const portalContainerRef = React.useRef();
 
   const [isInitialized, setIsInitialized] = React.useState();
 
   const pagePortalContextValue = React.useMemo(() => ({
-    nodeManager: new PageContainerPortalManager(pageLayoutContainerRef),
-    isMain,
-  }), [isMain]);
+    nodeManager: new PageContainerPortalManager(portalContainerRef),
+    isMain: true,
+  }), []);
 
   React.useLayoutEffect(() => {
     setIsInitialized(true);
   }, []);
 
   return (
-    <div
-      ref={pageLayoutContainerRef}
-      style={{
-        height: '100%', width: '100%', position: 'relative', overflow: 'auto',
-      }}
+    <MainContainer
+      ref={portalContainerRef}
+      className={cx('main-container')}
     >
       <PagePortalContext.Provider value={pagePortalContextValue}>
         {isInitialized && children}
       </PagePortalContext.Provider>
-    </div>
+    </MainContainer>
   );
 };
 
-export default BasePageContainer;
+export default MainPageContainer;

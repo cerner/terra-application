@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import ModalManager from '../modal-manager';
-import LayerManagerProvider from '../layers/LayerManagerProvider';
+import LayerContainer from '../layers/LayerContainer';
 import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
 import useSkipToLinks from './private/skip-to/useSkipToLinks';
@@ -28,6 +28,7 @@ const ApplicationContainer = ({
   children, hideSkipToLinks, unloadPromptIsDisabled,
 }) => {
   const registeredPromptsRef = React.useRef();
+
   const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
 
   React.useEffect(() => {
@@ -63,18 +64,18 @@ const ApplicationContainer = ({
       }}
     >
       <div id="terra-application-container">
-        {!hideSkipToLinks && <SkipToLinks />}
-        <SkipToLinksProvider>
-          <ApplicationErrorBoundary renderErrorView={(errorDetails) => <ApplicationContainerErrorView errorDetails={errorDetails} />}>
-            <LayerManagerProvider>
+        <LayerContainer>
+          {!hideSkipToLinks && <SkipToLinks />}
+          <SkipToLinksProvider>
+            <ApplicationErrorBoundary renderErrorView={(errorDetails) => <ApplicationContainerErrorView errorDetails={errorDetails} />}>
               <NavigationRegistrationProvider>
                 <ModalManager>
                   {children}
                 </ModalManager>
               </NavigationRegistrationProvider>
-            </LayerManagerProvider>
-          </ApplicationErrorBoundary>
-        </SkipToLinksProvider>
+            </ApplicationErrorBoundary>
+          </SkipToLinksProvider>
+        </LayerContainer>
       </div>
     </NavigationPromptCheckpoint>
   );

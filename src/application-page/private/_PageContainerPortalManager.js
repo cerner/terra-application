@@ -27,7 +27,7 @@ class PageContainerPortalManager {
     }
   }
 
-  getNode(pageKey, ancestorPageKey, setVisibility) {
+  getNode(pageKey, ancestorPageKey, setVisibility, pageTitleId) {
     if (!this._containerRef.current) {
       return;
     }
@@ -53,6 +53,7 @@ class PageContainerPortalManager {
       element: newPortalElement,
       child: undefined,
       setVisibility,
+      pageTitleId,
     };
 
     if (this._nodeMap[ancestorPageKey]) {
@@ -60,6 +61,8 @@ class PageContainerPortalManager {
     }
 
     this._containerRef.current.appendChild(newPortalElement);
+    this._containerRef.current.setAttribute('aria-labelledby', pageTitleId);
+
     this.hideAncestors(ancestorPageKey);
 
     setTimeout(() => {
@@ -86,7 +89,10 @@ class PageContainerPortalManager {
 
     if (this._nodeMap[page.ancestor]) {
       this._nodeMap[page.ancestor].child = undefined;
+
       this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
+      this._containerRef.current.setAttribute('aria-labelledby', this._nodeMap[page.ancestor].pageTitleId);
+
       this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
 
       setTimeout(() => { this._nodeMap[page.ancestor].setVisibility(true); }, 0);

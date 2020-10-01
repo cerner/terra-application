@@ -40,7 +40,7 @@ const ApplicationModal = ({
   const navigationPromptCheckpointRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
   return (
-    <LayerPortal>
+    <LayerPortal type="modal">
       <PagePortalContext.Provider value={undefined}>
         <ModalPresentationContext.Provider value>
           <NavigationPromptCheckpoint

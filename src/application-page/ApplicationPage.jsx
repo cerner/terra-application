@@ -12,7 +12,6 @@ import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../n
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import PagePortalContext from './private/PagePortalContext';
-import MainContainer from './container/MainContainer';
 import PageHeader from './private/_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
@@ -23,7 +22,7 @@ const ApplicationPage = ({
   title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack, pageKey, onVisibilityChange,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const pagePortalContext = React.useContext(PagePortalContext);
+  const ancestorPagePortalContext = React.useContext(PagePortalContext);
 
   const navigationPromptCheckpointRef = React.useRef();
   const pageIdRef = React.useRef(pageKey || uuidv4());
@@ -44,14 +43,14 @@ const ApplicationPage = ({
     });
   }, [disableNavigationPromptsOnBack, applicationIntl, onRequestClose]);
 
-  const nodeManager = pagePortalContext?.nodeManager;
-  const contextValue = React.useMemo(() => ({
+  const nodeManager = ancestorPagePortalContext?.nodeManager;
+  const pagePortalContextValue = React.useMemo(() => ({
     ancestorPage: pageIdRef.current,
     ancestorTitle: title,
-    backLinks: pagePortalContext?.backLinks ? [...pagePortalContext.backLinks, { title: pagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
-    nodeManager: pagePortalContext?.nodeManager,
-    isMain: pagePortalContext.isMain,
-  }), [title, pagePortalContext, goBack]);
+    backLinks: ancestorPagePortalContext?.backLinks ? [...ancestorPagePortalContext.backLinks, { title: ancestorPagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
+    nodeManager: ancestorPagePortalContext?.nodeManager,
+    isMain: ancestorPagePortalContext.isMain,
+  }), [title, ancestorPagePortalContext, goBack]);
 
   React.useLayoutEffect(() => () => {
     if (nodeManager) {
@@ -65,30 +64,28 @@ const ApplicationPage = ({
     }
   }, [isVisible, onVisibilityChange]);
 
+  const pageTitleId = `application-page-title-${pageIdRef.current}`;
+
   let portalNode;
   if (nodeManager) {
-    portalNode = nodeManager.getNode(pageIdRef.current, pagePortalContext.ancestorPage, setIsVisible);
+    portalNode = nodeManager.getNode(pageIdRef.current, ancestorPagePortalContext.ancestorPage, setIsVisible, pageTitleId);
   }
 
   if (!nodeManager) {
     return null;
   }
 
-  const pageTitleId = `application-page-title-${pageIdRef.current}`;
-
   return (
     ReactDOM.createPortal((
       <div
         className={cx('page')}
-        aria-labelledby={pageTitleId}
-        // tabIndex="0"
+        // aria-labelledby={pageTitleId}
         onMouseDown={() => { setShowOverflowFocus(false); }}
         onKeyDown={(event) => {
           if (event.nativeEvent.keyCode === KEY_TAB) {
             setShowOverflowFocus(true);
           }
         }}
-        // isVisible={isVisible}
       >
         <div className={cx('header')}>
           <PageHeader
@@ -101,7 +98,7 @@ const ApplicationPage = ({
           <NotificationBanners />
         </div>
         <div className={cx('content')}>
-          <PagePortalContext.Provider value={contextValue}>
+          <PagePortalContext.Provider value={pagePortalContextValue}>
             <NavigationPromptCheckpoint
               ref={navigationPromptCheckpointRef}
             >

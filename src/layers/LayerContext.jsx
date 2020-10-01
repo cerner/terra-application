@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 const contextShape = {};
 
-const LayerManagerContext = createContext();
+const LayerContext = createContext();
 
-export default LayerManagerContext;
+export default LayerContext;
 export { contextShape };

@@ -5,7 +5,7 @@ import PagePortalContext from '../private/PagePortalContext';
 import PageContainerPortalManager from '../private/_PageContainerPortalManager';
 import PageActionsContext from '../PageActionsContext';
 
-import styles from './MainPageContainer.module.scss';
+import styles from './ModalPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 

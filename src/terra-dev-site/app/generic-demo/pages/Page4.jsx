@@ -5,6 +5,7 @@ import CollapsibleMenuView from 'terra-collapsible-menu-view';
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '../../../../disclosure-manager';
 import NavigationPrompt from '../../../../navigation-prompt';
+import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
 
 import useDeferredInitializer from '../shared/useDeferredInitializer';
 
@@ -14,6 +15,15 @@ const DisclosedComponent = () => {
   const disclosureManager = React.useContext(DisclosureManagerContext);
   const [id, setId] = React.useState(() => incrementer++);
   const [hasUnsavedChanges, setHasUnsavedChanges] = React.useState(false);
+  const [showBlockingOverlay, setShowBlockingOverlay] = React.useState(false);
+
+  React.useEffect(() => {
+    if (showBlockingOverlay) {
+      setTimeout(() => {
+        setShowBlockingOverlay(false);
+      }, 5000);
+    }
+  }, [showBlockingOverlay]);
 
   return (
     <div>
@@ -54,6 +64,11 @@ const DisclosedComponent = () => {
         onClick={() => { setHasUnsavedChanges(state => !state); }}
       />
       {hasUnsavedChanges && <NavigationPrompt description={id} />}
+      <Button
+        text="Show Blocking Overlay"
+        onClick={() => { setShowBlockingOverlay(state => !state); }}
+      />
+      {showBlockingOverlay && <ApplicationBlockingOverlay />}
     </div>
   );
 };

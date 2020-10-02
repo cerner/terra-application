@@ -89,6 +89,7 @@
     "start": "tt-serve",
     "start-prod": "tt-serve -p",
     "start-demo": "tt-serve --config demo.webpack.config.js",
+    "start-demo-prod": "tt-serve -p --config demo.webpack.config.js",
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",

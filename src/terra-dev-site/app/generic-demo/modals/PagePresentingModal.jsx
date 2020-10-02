@@ -29,7 +29,7 @@ const PagePresentingModal = ({ onRequestClose }) => {
         <Button text="Show Page 2" onClick={() => { setShowPage2(true); }} />
         {showPage2 && (
           <ApplicationModal
-            size="large"
+            size="huge"
             title="Page 2 Modal"
             onRequestClose={() => { setShowPage2(false); }}
             renderPage={() => <Page2 />}
@@ -38,7 +38,7 @@ const PagePresentingModal = ({ onRequestClose }) => {
         <Button text="Show Page 3" onClick={() => { setShowPage3(true); }} />
         {showPage3 && (
           <ApplicationModal
-            size="large"
+            size="huge"
             title="Page 3 Modal"
             onRequestClose={() => { setShowPage3(false); }}
             renderPage={() => <Page3 />}
@@ -47,7 +47,7 @@ const PagePresentingModal = ({ onRequestClose }) => {
         <Button text="Show Page 4" onClick={() => { setShowPage4(true); }} />
         {showPage4 && (
           <ApplicationModal
-            size="large"
+            size="huge"
             title="Page 4 Modal"
             onRequestClose={() => { setShowPage4(false); }}
             renderPage={() => <Page4 />}

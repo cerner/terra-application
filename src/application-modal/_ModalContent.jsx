@@ -1,19 +1,16 @@
 import React, { forwardRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
-import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import ContentContainer from 'terra-content-container';
-import IconClose from 'terra-icon/lib/icon/IconClose';
 import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
 import ModalHeader from './_ModalHeader';
 import ModalOverlay from './_ModalOverlay';
-import { hideModalDomUpdates, showModalDomUpdates } from './inertHelpers';
 import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
@@ -22,123 +19,76 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 
 const cx = classNamesBind.bind(styles);
 
-const zIndexes = ['6000', '7000', '8000', '9000'];
+const heightFromSize = {
+  tiny: 240,
+  small: 420,
+  medium: 600,
+  large: 870,
+  huge: 960,
+};
+
+const widthFromSize = {
+  tiny: 320,
+  small: 640,
+  medium: 960,
+  large: 1280,
+  huge: 1600,
+};
 
 const propTypes = {
-  /**
-   * String that labels the modal for screen readers.
-   */
-  // ariaLabel: PropTypes.string.isRequired,
-  /**
-   * Content inside the modal dialog.
-   */
-  children: PropTypes.node.isRequired,
-  /**
-   * CSS classnames that are appended to the modal.
-   */
-  classNameModal: PropTypes.string,
-  /**
-   * CSS classnames that are appended to the overlay.
-   */
-  classNameOverlay: PropTypes.string,
-  /**
-   * If set to true, the modal will close when a mouseclick is triggered outside the modal.
-   */
-  closeOnOutsideClick: PropTypes.bool,
-  /**
-   * Callback function indicating a close condition was met, should be combined with isOpen for state management.
-   */
+  title: PropTypes.string,
+  toolbar: PropTypes.element,
+  children: PropTypes.node,
+  refCallback: PropTypes.func,
   onRequestClose: PropTypes.func.isRequired,
-  /**
-   * If set to true, the modal will be fullscreen on all breakpoint sizes.
-   */
-  isFullscreen: PropTypes.bool,
-  /**
-   * If set to true, the modal dialog with have overflow-y set to scroll.
-   */
-  isScrollable: PropTypes.bool,
-  /**
-   * Role attribute on the modal dialog.
-   */
-  role: PropTypes.string,
-  /**
-   * Allows assigning of root element custom data attribute for easy selecting of document base component.
-   */
-  rootSelector: PropTypes.string,
-  /**
-   * Z-Index layer to apply to the ModalContent and ModalOverlay.
-   */
-  zIndex: PropTypes.oneOf(zIndexes),
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge']),
+    PropTypes.shape({
+      height: PropTypes.oneOf([240, 420, 600, 870, 960]),
+      width: PropTypes.oneOf([320, 640, 960, 1280, 1600]),
+    }),
+  ]),
 };
 
 const defaultProps = {
-  classNameModal: null,
-  classNameOverlay: null,
-  closeOnOutsideClick: true,
-  isFullscreen: false,
-  isScrollable: false,
-  role: 'dialog',
-  rootSelector: '#root',
-  zIndex: '6000',
   size: 'small',
 };
 
 const ModalContent = (props) => {
   const {
     title,
-    actions,
     toolbar,
     size,
-    // ariaLabel,
     children,
-    classNameModal,
-    classNameOverlay,
-    closeOnOutsideClick,
     onRequestClose,
-    role,
-    isFullscreen,
-    isScrollable,
-    rootSelector,
-    zIndex,
-    modalClassName,
     refCallback,
     ...customProps
   } = props;
 
-  // useEffect(() => {
-  //   // Store element that was last focused prior to modal opening
-  //   const modalTrigger = document.activeElement;
-  //   showModalDomUpdates(ref.current, rootSelector);
-
-  //   return () => {
-  //     hideModalDomUpdates(modalTrigger, rootSelector);
-  //   };
-  // }, [ref, rootSelector]);
   const applicationConceptBanner = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
-  const modalClassNames = classNames(
-    modalClassName,
-    cx('abstract-modal',
-      {
-        'is-fullscreen': isFullscreen,
-        large: size === 'large',
-        small: size === 'small',
-      },
-      theme.className),
-    classNameModal,
-  );
+  let modalHeight;
+  let modalWidth;
+  if (typeof size === 'string') {
+    modalHeight = heightFromSize[size] || 420;
+    modalWidth = widthFromSize[size] || 640;
+  } else if (typeof size === 'object') {
+    modalHeight = size.height || 420;
+    modalWidth = size.width || 640;
+  } else {
+    modalHeight = 420;
+    modalWidth = 640;
+  }
 
-  // // Delete the closePortal prop that comes from react-portal.
-  // delete customProps.closePortal;
-  // delete customProps.fallbackFocus;
+  const modalClassNames = cx('application-modal', `height-${modalHeight}`, `width-${modalWidth}`, theme.className);
 
   const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   return (
-    <React.Fragment>
+    <>
       <ModalOverlay />
       {
         /*
@@ -149,10 +99,10 @@ const ModalContent = (props) => {
       <div
         {...customProps}
         tabIndex={platformIsiOS ? '-1' : '0'}
+        aria-modal="true"
         aria-label={title}
         className={modalClassNames}
-        role={role}
-        style={{ zIndex: '2' }}
+        role="dialog"
         ref={(ref) => { if (refCallback) { refCallback(ref); } }}
       >
         <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
@@ -193,7 +143,7 @@ const ModalContent = (props) => {
           )}
         </FormattedMessage>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 

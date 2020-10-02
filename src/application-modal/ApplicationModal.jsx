@@ -19,21 +19,28 @@ import PagePortalContext from '../application-page/private/PagePortalContext';
 
 const propTypes = {
   title: PropTypes.string,
-  actions: PropTypes.arrayOf(PropTypes.shape({})),
-  size: PropTypes.oneOf(['small', 'large']),
+  toolbar: PropTypes.element,
+  size: PropTypes.oneOfType([
+    PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge']),
+    PropTypes.shape({
+      height: PropTypes.oneOf([240, 420, 600, 870, 960]),
+      width: PropTypes.oneOf([320, 640, 960, 1280, 1600]),
+    }),
+  ]),
   onRequestClose: PropTypes.func.isRequired,
   children: PropTypes.node,
+  renderPage: PropTypes.func,
+  dangerouslyDisableNavigationPromptHandling: PropTypes.bool,
+  onInert: PropTypes.func,
 };
 
 const ApplicationModal = ({
   title,
   toolbar,
   size,
-  actions,
   onRequestClose,
   children,
   renderPage,
-  modalClassName,
   dangerouslyDisableNavigationPromptHandling,
   onInert,
 }) => {
@@ -42,7 +49,7 @@ const ApplicationModal = ({
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const [inert, setInert] = React.useState(false);
 
-  function safeRequestClose() {
+  const safeRequestClose = React.useCallback(() => {
     if (dangerouslyDisableNavigationPromptHandling) {
       onRequestClose();
       return;
@@ -51,7 +58,7 @@ const ApplicationModal = ({
     navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       onRequestClose();
     });
-  }
+  }, [dangerouslyDisableNavigationPromptHandling, onRequestClose, applicationIntl]);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -104,13 +111,10 @@ const ApplicationModal = ({
           >
             <ModalContent
               refCallback={(ref) => { modalContainerRef.current = ref; }}
-              modalClassName={modalClassName}
               title={title}
-              actions={actions}
               toolbar={toolbar}
               size={size}
               onRequestClose={safeRequestClose}
-              aria-modal="true"
             >
               {renderPage ? (
                 <ModalPageContainer>

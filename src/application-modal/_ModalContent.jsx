@@ -101,6 +101,7 @@ const ModalContent = (props) => {
     rootSelector,
     zIndex,
     modalClassName,
+    refCallback,
     ...customProps
   } = props;
 
@@ -152,6 +153,7 @@ const ModalContent = (props) => {
         className={modalClassNames}
         role={role}
         style={{ zIndex: '2' }}
+        ref={(ref) => { if (refCallback) { refCallback(ref); } }}
       >
         <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
           {text => (

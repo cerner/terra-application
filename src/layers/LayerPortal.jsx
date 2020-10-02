@@ -28,7 +28,7 @@ import LayerContext from './LayerContext';
 // };
 
 const LayerPortal = ({
-  type, children,
+  type, setInert, children,
 }) => {
   const layerContext = React.useContext(LayerContext);
   const layerKeyRef = React.useRef(uuidv4());
@@ -39,7 +39,7 @@ const LayerPortal = ({
     layerContext.nodeManager.releaseNode(layerKeyRef.current);
   }, [layerContext, type]);
 
-  const node = layerContext.nodeManager.getNode(layerKeyRef.current, type);
+  const node = layerContext.nodeManager.getNode(layerKeyRef.current, type, setInert);
 
   if (!node) {
     return null;

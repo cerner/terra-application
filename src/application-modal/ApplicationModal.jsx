@@ -1,9 +1,8 @@
 import React, {
   useRef, useLayoutEffect, useEffect, useContext,
 } from 'react';
-
 import PropTypes from 'prop-types';
-import uuidv4 from 'uuid/v4';
+import { KEY_ESCAPE } from 'keycode-js';
 
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
@@ -38,30 +37,72 @@ const ApplicationModal = ({
   dangerouslyDisableNavigationPromptHandling,
 }) => {
   const navigationPromptCheckpointRef = React.useRef();
+  const modalContainerRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
+  const [inert, setInert] = React.useState(false);
+
+  function safeRequestClose() {
+    if (dangerouslyDisableNavigationPromptHandling) {
+      onRequestClose();
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      onRequestClose();
+    });
+  }
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      // Handle focus shift for VoiceOver on iOS
+      if ('ontouchstart' in window) {
+        modalContainerRef.current.querySelector('[data-terra-abstract-modal-begin]').focus();
+      } else {
+        // Shift focus to modal dialog
+        modalContainerRef.current.focus();
+      }
+    }, 0);
+  }, []);
+
+  React.useEffect(() => {
+    if (inert) {
+      return undefined;
+    }
+
+    function handleKeydown(e) {
+      if (e.keyCode === KEY_ESCAPE) {
+        const body = document.querySelector('body');
+        if (e.target === modalContainerRef.current || modalContainerRef.current.contains(e.target) || e.target === body) {
+          safeRequestClose();
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, [safeRequestClose, inert]);
+
   return (
-    <LayerPortal type="modal">
+    <LayerPortal
+      type="modal"
+      setInert={setInert}
+    >
       <PagePortalContext.Provider value={undefined}>
         <ModalPresentationContext.Provider value>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
           >
             <ModalContent
+              refCallback={(ref) => { modalContainerRef.current = ref; }}
               modalClassName={modalClassName}
               title={title}
               actions={actions}
               toolbar={toolbar}
               size={size}
-              onRequestClose={() => {
-                if (dangerouslyDisableNavigationPromptHandling) {
-                  onRequestClose();
-                  return;
-                }
-
-                navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-                  onRequestClose();
-                });
-              }}
+              onRequestClose={safeRequestClose}
               aria-modal="true"
             >
               {renderPage ? (

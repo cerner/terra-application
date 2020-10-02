@@ -1,4 +1,6 @@
 import classNames from 'classnames/bind';
+import { KEY_ESCAPE } from 'keycode-js';
+
 import styles from './LayerNodeManager.module.scss';
 
 const cx = classNames.bind(styles);
@@ -30,7 +32,7 @@ class LayerNodeManager {
     });
   }
 
-  getNode(layerKey, type) {
+  getNode(layerKey, type, setInert) {
     const existingNode = this._nodeMap[layerKey];
 
     if (existingNode) {
@@ -51,22 +53,37 @@ class LayerNodeManager {
 
     this._nodeMap[layerKey] = {
       type,
+      setInert,
       element: newPortalElement,
       focusActiveElement: () => { currentActiveElement && currentActiveElement.focus(); },
     };
 
-    layerContainerForType.children.push(newPortalElement);
+    layerContainerForType.children.push(layerKey);
 
     // Inert previous layers in the same type container
-    layerContainerForType.children.slice(0, -1).forEach((element) => {
+    layerContainerForType.children.slice(0, -1).forEach((childLayerKey) => {
+      const childLayer = this._nodeMap[childLayerKey];
       // element.style.display = 'none';
-      element.setAttribute('inert', '');
+      childLayer.element.setAttribute('inert', '');
+
+      setTimeout(() => {
+        childLayer.setInert(true);
+      }, 0);
     });
 
     // Inert type containers lower than this type
     const lowerLayerContainers = orderedLayerTypes.slice(0, orderedLayerTypes.indexOf(type));
     lowerLayerContainers.forEach((lowerType) => {
+      // LayerNodeManager.inertContainer(this._layerContainers[lowerType]);
       this._layerContainers[lowerType].element.setAttribute('inert', '');
+
+      this._layerContainers[lowerType].children.forEach((childLayerKey) => {
+        const childLayer = this._nodeMap[childLayerKey];
+
+        setTimeout(() => {
+          childLayer.setInert(true);
+        }, 0);
+      });
     });
 
     // Inert the base container
@@ -76,6 +93,26 @@ class LayerNodeManager {
 
     return newPortalElement;
   }
+
+  // static enableContainer(container) {
+  //   container.element.removeAttribute('inert');
+  //   container.element.addEventListener('keydown', (e) => {
+  //     if (e.keyCode === KEY_ESCAPE) {
+  //       debugger;
+  //       // if (modalElementRef.current) {
+  //       //   const body = document.querySelector('body');
+  //       //   if (e.target === modalElementRef.current || modalElementRef.current.contains(e.target) || e.target === body) {
+  //       //     onRequestClose();
+  //       //   }
+  //       // }
+  //     }
+  //   });
+  // }
+
+  // static inertContainer(container) {
+  //   container.element.setAttribute('inert', '');
+  //   container.element.removeEventListener('keydown');
+  // }
 
   releaseNode(layerKey) {
     const layer = this._nodeMap[layerKey];
@@ -92,13 +129,15 @@ class LayerNodeManager {
 
     this._nodeMap[layerKey] = undefined;
 
-    layerContainerForType.children.splice(layerContainerForType.children.findIndex((element) => element.getAttribute('data-terra-layer-id') === layerKey), 1);
+    layerContainerForType.children.splice(layerContainerForType.children.findIndex((childLayerKey) => childLayerKey === layerKey), 1);
 
     if (layerContainerForType.children.length) {
       // If there are remaining children in the layer container, enable the last child for interaction
 
       // this._nodeArray[this._nodeArray.length - 1].style.display = 'block';
-      layerContainerForType.children[layerContainerForType.children.length - 1].removeAttribute('inert');
+      const lastChildLayerKey = layerContainerForType.children[layerContainerForType.children.length - 1];
+      this._nodeMap[lastChildLayerKey].element.removeAttribute('inert');
+      this._nodeMap[lastChildLayerKey].setInert(false);
     } else if (!layerContainerForType.element.getAttribute('inert')) {
       // If there are no children left in the layer container, and if the layer container is itself not inert
       // due to a higher container being active...
@@ -117,10 +156,15 @@ class LayerNodeManager {
           if (lowerContainer) {
           // If a lower container is present, enable the lower container
             lowerContainer.element.removeAttribute('inert');
+            // LayerNodeManager.enableContainer(lowerContainer);
 
             if (lowerContainer.children.length) {
-            // If children are present in this lower container, we are done. We want to leave any subsequent lower
-            // layers inert.
+              const lastChildLayerKey = lowerContainer.children[lowerContainer.children.length - 1];
+              this._nodeMap[lastChildLayerKey].element.removeAttribute('inert');
+              this._nodeMap[lastChildLayerKey].setInert(false);
+
+              // If children are present in this lower container, we are done. We want to leave any subsequent lower
+              // layers inert.
               break;
             }
           } else {
@@ -132,8 +176,9 @@ class LayerNodeManager {
       }
     }
 
+    // After the proper containers have been enabled, reapply focus to the
+    // triggering element for the released layer.
     setTimeout(() => {
-      debugger;
       layer.focusActiveElement();
     }, 0);
   }

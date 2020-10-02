@@ -130,7 +130,7 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
 
 const NotificationDialog = (props) => {
   const theme = React.useContext(ThemeContext);
-
+  const modalContainerRef = React.useRef();
   const {
     dialogTitle,
     startMessage,
@@ -144,6 +144,18 @@ const NotificationDialog = (props) => {
     custom,
     intl,
   } = props;
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      // Handle focus shift for VoiceOver on iOS
+      if ('ontouchstart' in window) {
+        modalContainerRef.current.querySelector('[data-terra-abstract-modal-begin]').focus();
+      } else {
+        // Shift focus to modal dialog
+        modalContainerRef.current.focus();
+      }
+    }, 0);
+  }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
     throw new Error('Either the `acceptAction` or `rejectAction` props must be provided for Notification dialog');
@@ -174,6 +186,7 @@ const NotificationDialog = (props) => {
           className={dialogClassNames}
           style={{ zIndex: '2' }}
           tabIndex={platformIsiOS ? '-1' : '0'}
+          ref={modalContainerRef}
         >
           <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
             {text => (

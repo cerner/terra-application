@@ -2,16 +2,17 @@ import React, {
   useRef, useCallback, Suspense,
 } from 'react';
 import PropTypes from 'prop-types';
-import TerraApplicationNavigation from 'terra-application-navigation';
-import {
-  titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from 'terra-application-navigation/lib/utils/propTypes';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+
+import TerraApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import {
+  titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
+} from './terra-application-navigation/utils/propTypes';
 
 const propTypes = {
   /**

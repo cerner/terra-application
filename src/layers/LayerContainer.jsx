@@ -1,6 +1,7 @@
 import React from 'react';
 import LayerContext from './LayerContext';
 import LayerNodeManager from './LayerNodeManager';
+import InertContext from './InertContext';
 
 const propTypes = {};
 
@@ -8,11 +9,12 @@ const LayerContainer = ({ children }) => {
   const layerContainerRef = React.useRef();
   const baseContentRef = React.useRef();
   const [layerContextValue, setLayerContextValue] = React.useState();
+  const [baseContentInert, setBaseContentInert] = React.useState();
 
   React.useLayoutEffect(() => {
     // The LayerNodeManager needs valid refs when it is instantiated
     setLayerContextValue({
-      nodeManager: new LayerNodeManager(layerContainerRef, baseContentRef),
+      nodeManager: new LayerNodeManager(layerContainerRef, baseContentRef, setBaseContentInert),
     });
   }, []);
 
@@ -30,7 +32,9 @@ const LayerContainer = ({ children }) => {
           }}
           ref={baseContentRef}
         >
-          {layerContextValue && children}
+          <InertContext.Provider value={baseContentInert}>
+            {layerContextValue && children}
+          </InertContext.Provider>
         </div>
       </div>
     </LayerContext.Provider>

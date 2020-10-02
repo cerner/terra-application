@@ -35,6 +35,7 @@ const ApplicationModal = ({
   renderPage,
   modalClassName,
   dangerouslyDisableNavigationPromptHandling,
+  onInert,
 }) => {
   const navigationPromptCheckpointRef = React.useRef();
   const modalContainerRef = React.useRef();
@@ -84,6 +85,12 @@ const ApplicationModal = ({
       document.removeEventListener('keydown', handleKeydown);
     };
   }, [safeRequestClose, inert]);
+
+  React.useEffect(() => {
+    if (onInert) {
+      onInert(inert);
+    }
+  }, [inert, onInert]);
 
   return (
     <LayerPortal

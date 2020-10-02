@@ -11,7 +11,18 @@ const PagePresentingModal = ({ onRequestClose }) => {
   const [showPage4, setShowPage4] = React.useState(false);
 
   return (
-    <ApplicationModal title="Page Presenting Modal" size="small" onRequestClose={onRequestClose}>
+    <ApplicationModal
+      title="Page Presenting Modal"
+      size="small"
+      onRequestClose={onRequestClose}
+      onInert={(isInert) => {
+        if (isInert) {
+          console.log('PagePresentingModal is inert');
+        } else {
+          console.log('PagePresentingModal is not inert');
+        }
+      }}
+    >
       <div style={{ padding: '1rem' }}>
         <h2>Page Presenting Modal</h2>
         <br />

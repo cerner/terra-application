@@ -7,10 +7,15 @@ const cx = classNames.bind(styles);
 
 const orderedLayerTypes = ['modal', 'blocking-overlay', 'notification-dialog', 'framework-dialog'];
 
+const defer = (action) => {
+  setTimeout(action, 0);
+};
+
 class LayerNodeManager {
-  constructor(containerRef, baseContentRef) {
+  constructor(containerRef, baseContentRef, setBaseContentInert) {
     this._containerRef = containerRef || { current: document.body };
     this._baseContentRef = baseContentRef;
+    this._setBaseContentInert = setBaseContentInert;
     this._nodeMap = {};
     this._nodeArray = [];
     this._layerContainers = {};
@@ -80,14 +85,15 @@ class LayerNodeManager {
       this._layerContainers[lowerType].children.forEach((childLayerKey) => {
         const childLayer = this._nodeMap[childLayerKey];
 
-        setTimeout(() => {
+        defer(() => {
           childLayer.setInert(true);
-        }, 0);
+        });
       });
     });
 
     // Inert the base container
     this._baseContentRef.current.setAttribute('inert', '');
+    defer(() => this._setBaseContentInert(true));
 
     layerContainerForType.element.appendChild(newPortalElement);
 
@@ -148,6 +154,7 @@ class LayerNodeManager {
         // If there are no layer containers below the current one, enable the base content.
 
         this._baseContentRef.current.removeAttribute('inert');
+        defer(() => this._setBaseContentInert(false));
       } else {
         // Iterate over each lower container in reverse order...
         for (let i = lowerLayerContainerTypes.length - 1; i >= -1; i -= 1) {
@@ -171,6 +178,7 @@ class LayerNodeManager {
           // If we have enabled all lower containers and have still not broken out of the loop,
           // there are no layers present, and we need to enable the base content.
             this._baseContentRef.current.removeAttribute('inert');
+            defer(() => this._setBaseContentInert(false));
           }
         }
       }
@@ -178,9 +186,9 @@ class LayerNodeManager {
 
     // After the proper containers have been enabled, reapply focus to the
     // triggering element for the released layer.
-    setTimeout(() => {
+    defer(() => {
       layer.focusActiveElement();
-    }, 0);
+    });
   }
 }
 

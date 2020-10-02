@@ -39,6 +39,8 @@ class LayerNodeManager {
 
     const layerContainerForType = this._layerContainers[type];
 
+    const currentActiveElement = document.activeElement;
+
     if (!layerContainerForType) {
       return null;
     }
@@ -50,6 +52,7 @@ class LayerNodeManager {
     this._nodeMap[layerKey] = {
       type,
       element: newPortalElement,
+      focusActiveElement: () => { currentActiveElement && currentActiveElement.focus(); },
     };
 
     layerContainerForType.children.push(newPortalElement);
@@ -106,25 +109,33 @@ class LayerNodeManager {
         // If there are no layer containers below the current one, enable the base content.
 
         this._baseContentRef.current.removeAttribute('inert');
-        return;
-      }
+      } else {
+        // Iterate over each lower container in reverse order...
+        for (let i = lowerLayerContainerTypes.length - 1; i >= -1; i -= 1) {
+          const lowerContainer = this._layerContainers[lowerLayerContainerTypes[i]];
 
-      // Iterate over each lower container in reverse order...
-      for (let i = lowerLayerContainerTypes.length; i >= 0; i -= 1) {
-        const lowerContainer = this._layerContainers[lowerLayerContainerTypes[i]];
+          if (lowerContainer) {
+          // If a lower container is present, enable the lower container
+            lowerContainer.element.removeAttribute('inert');
 
-        if (lowerContainer) {
-          // Enable the lower container
-          lowerContainer.element.removeAttribute('inert');
-
-          if (lowerContainer.children.length) {
+            if (lowerContainer.children.length) {
             // If children are present in this lower container, we are done. We want to leave any subsequent lower
             // layers inert.
-            break;
+              break;
+            }
+          } else {
+          // If we have enabled all lower containers and have still not broken out of the loop,
+          // there are no layers present, and we need to enable the base content.
+            this._baseContentRef.current.removeAttribute('inert');
           }
         }
       }
     }
+
+    setTimeout(() => {
+      debugger;
+      layer.focusActiveElement();
+    }, 0);
   }
 }
 

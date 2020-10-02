@@ -6,6 +6,7 @@ import ApplicationPage from '../../../../application-page/ApplicationPage';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '../../../../disclosure-manager';
 import NavigationPrompt from '../../../../navigation-prompt';
 import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
+import NotificationDialog from '../../../../notification-dialog/NotificationDialog';
 
 import useDeferredInitializer from '../shared/useDeferredInitializer';
 
@@ -75,6 +76,7 @@ const DisclosedComponent = () => {
 
 const Page4 = ({ onRequestClose }) => {
   const disclosureManager = React.useContext(DisclosureManagerContext);
+  const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
 
   return (
     <ApplicationPage
@@ -93,6 +95,25 @@ const Page4 = ({ onRequestClose }) => {
           });
         }}
       />
+      <Button
+        text="Show Notification Dialog"
+        onClick={() => {
+          setShowNotificationDialog(true);
+        }}
+      />
+      {showNotificationDialog && (
+        <NotificationDialog
+          variant="hazard-high"
+          dialogTitle="Drug Dosage Risk"
+          startMessage="A wrong drug dosage can occur if the suggested cycle (e.g. daily) does not match the intended cycle (e.g. weekly)."
+          endMessage="Change the suggested cycle or the intended cycle so they match."
+          acceptAction={{
+            text: 'OK',
+            onClick: () => { setShowNotificationDialog(false); },
+          }}
+          emphasizedAction="accept"
+        />
+      )}
     </ApplicationPage>
   );
 };

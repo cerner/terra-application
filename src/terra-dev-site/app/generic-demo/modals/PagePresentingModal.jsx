@@ -3,10 +3,12 @@ import Button from 'terra-button';
 import ApplicationModal from '../../../../application-modal/ApplicationModal';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
+import Page4 from '../pages/Page4';
 
 const PagePresentingModal = ({ onRequestClose }) => {
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPage3, setShowPage3] = React.useState(false);
+  const [showPage4, setShowPage4] = React.useState(false);
 
   return (
     <ApplicationModal title="Page Presenting Modal" size="small" onRequestClose={onRequestClose}>
@@ -31,6 +33,16 @@ const PagePresentingModal = ({ onRequestClose }) => {
             renderPage={() => <Page3 />}
           />
         )}
+        <Button text="Show Page 4" onClick={() => { setShowPage4(true); }} />
+        {showPage4 && (
+          <ApplicationModal
+            size="large"
+            title="Page 4 Modal"
+            onRequestClose={() => { setShowPage4(false); }}
+            renderPage={() => <Page4 />}
+          />
+        )}
+
       </div>
     </ApplicationModal>
   );

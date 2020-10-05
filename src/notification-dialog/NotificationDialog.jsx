@@ -177,7 +177,6 @@ const NotificationDialog = (props) => {
   return (
     <LayerPortal type="notification-dialog">
       <>
-        <ModalOverlay />
         <div
           aria-label={signalWord}
           aria-labelledby="notification-dialog-signal-word"

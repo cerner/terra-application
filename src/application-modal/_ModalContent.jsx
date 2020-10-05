@@ -89,7 +89,6 @@ const ModalContent = (props) => {
 
   return (
     <>
-      <ModalOverlay />
       {
         /*
           When an aria-label is set and tabIndex is set to 0, VoiceOver will read

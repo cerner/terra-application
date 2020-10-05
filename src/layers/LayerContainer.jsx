@@ -9,7 +9,7 @@ const LayerContainer = ({ children }) => {
   const layerContainerRef = React.useRef();
   const baseContentRef = React.useRef();
   const [layerContextValue, setLayerContextValue] = React.useState();
-  const [baseContentInert, setBaseContentInert] = React.useState();
+  const [baseContentInert, setBaseContentInert] = React.useState(false);
 
   React.useLayoutEffect(() => {
     // The LayerNodeManager needs valid refs when it is instantiated
@@ -28,7 +28,7 @@ const LayerContainer = ({ children }) => {
       >
         <div
           style={{
-            height: '100%', width: '100%', position: 'relative', overflow: 'hidden',
+            height: '100%', width: '100%', position: 'relative', overflow: 'hidden', zIndex: '0',
           }}
           ref={baseContentRef}
         >

@@ -1,4 +1,14 @@
 :local {
+  .layer-container {
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+  }
+  
   .portal-element {
     bottom: 0;
     height: 100%;
@@ -7,6 +17,18 @@
     right: 0;
     top: 0;
     width: 100%;
-    z-index: 1;
+    // z-index: 1;
+  }
+
+  .overlay {
+    background-color: var(--terra-abstract-modal-overlay-background-color, rgba(0, 0, 0, 0.4));
+    background-image: var(--terra-abstract-modal-overlay-background-image);
+    bottom: 0;
+    color: var(--terra-abstract-modal-overlay-foreground-color);
+    left: 0;
+    opacity: var(--terra-abstract-modal-overlay-opacity);
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }

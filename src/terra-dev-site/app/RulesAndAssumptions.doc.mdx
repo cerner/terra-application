@@ -4,6 +4,12 @@
 
 * Modals that render a Page will nullify all relevant Page-related contexts (PageActionsContext, others?) to ensure presentation within the Modal is scoped.
   * If usage of those contexts is necessary, the Providers should be rendered within the renderPage prop, not around the Modal itself.
+* Programtic navigation cannot be performed from within Modal.
+
+
+## Navigation
+
+* Modals/notification dialogs must be dismissed prior to programatic navigation
 
 ## ApplicationContainer
 
@@ -11,7 +17,7 @@
   * Thus, the ApplicationContainer's immediate parent element must have an explicit height value.
 * One (1) ApplicationContainer can be rendered to the DOM at any given time.
 
-# Layouts
+## Layouts
 
 * Should not be rendered within Modals
 

@@ -1,17 +1,17 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, Suspense, useMemo,
+  useRef, useEffect, Suspense, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
+import { IntlProvider } from 'react-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
-import { ApplicationIntlProvider } from '../application-intl';
+import i18nLoader from './private/i18nLoader';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
@@ -82,6 +82,7 @@ const ApplicationBase = ({
   locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
 }) => {
   const registeredPromptsRef = useRef();
+  const [messages, setMessages] = useState({});
 
   useEffect(() => {
     if (unloadPromptIsDisabled) {
@@ -111,11 +112,26 @@ const ApplicationBase = ({
 
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
+  const finalLocale = localeOverride || locale || browserLocale;
+
+  useEffect(() => {
+    if (finalLocale !== undefined) {
+      try {
+        i18nLoader(finalLocale, setMessages);
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+      }
+    }
+  }, [finalLocale]);
+
   const theme = useMemo(() => ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
     name: themeName || rootThemeName,
     className: themeName,
   }), [themeName]);
+
+  if (messages === undefined) return <div>{translationsLoadingPlaceholder}</div>;
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
@@ -123,31 +139,29 @@ const ApplicationBase = ({
         themeName={themeName}
       >
         <ThemeContextProvider theme={theme}>
-          <Base
-            customMessages={customTranslatedMessages}
-            translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={localeOverride || locale || browserLocale}
-          >
-            <ApplicationErrorBoundary>
-              <ApplicationIntlProvider>
-                <ActiveBreakpointProvider>
-                  <NavigationPromptCheckpoint
-                    onPromptChange={(registeredPrompts) => {
-                      registeredPromptsRef.current = registeredPrompts;
-                    }}
-                  >
-                    <ApplicationLoadingOverlayProvider>
-                      <ApplicationStatusOverlayProvider>
-                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                          {children}
-                        </Suspense>
-                      </ApplicationStatusOverlayProvider>
-                    </ApplicationLoadingOverlayProvider>
-                  </NavigationPromptCheckpoint>
-                </ActiveBreakpointProvider>
-              </ApplicationIntlProvider>
-            </ApplicationErrorBoundary>
-          </Base>
+          <ApplicationErrorBoundary>
+            <IntlProvider
+              key={locale}
+              locale={locale}
+              messages={{ ...customTranslatedMessages, ...messages }}
+            >
+              <ActiveBreakpointProvider>
+                <NavigationPromptCheckpoint
+                  onPromptChange={(registeredPrompts) => {
+                    registeredPromptsRef.current = registeredPrompts;
+                  }}
+                >
+                  <ApplicationLoadingOverlayProvider>
+                    <ApplicationStatusOverlayProvider>
+                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                        {children}
+                      </Suspense>
+                    </ApplicationStatusOverlayProvider>
+                  </ApplicationLoadingOverlayProvider>
+                </NavigationPromptCheckpoint>
+              </ActiveBreakpointProvider>
+            </IntlProvider>
+          </ApplicationErrorBoundary>
         </ThemeContextProvider>
       </ThemeProvider>
     </div>

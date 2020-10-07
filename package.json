@@ -102,6 +102,11 @@
     "postversion": "node ./scripts/changelog-updater/index.js"
   },
   "dependencies": {
+    "@formatjs/intl-pluralrules": "^3.4.7",
+    "@formatjs/intl-relativetimeformat": "^7.2.7",
+    "@formatjs/intl-numberformat": "^5.6.2",
+    "@formatjs/intl-datetimeformat": "^2.6.7",
+    "@formatjs/intl-getcanonicallocales": "^1.4.5",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "prop-types": "^15.5.8",
@@ -128,7 +133,7 @@
   "peerDependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-intl": "^2.9.0"
+    "react-intl": "^5.8.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -159,7 +164,7 @@
     "raf": "^3.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-intl": "^2.9.0",
+    "react-intl": "^5.8.2",
     "regenerator-runtime": "^0.13.5",
     "stylelint": "^10.0.1",
     "stylelint-config-terra": "^3.3.0",

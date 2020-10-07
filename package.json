@@ -120,7 +120,6 @@
     "terra-icon": "^3.36.0",
     "terra-list": "^4.32.0",
     "terra-modal-manager": "^6.20.0",
-    "terra-navigation-prompt": "^1.40.0",
     "terra-notification-dialog": "^4.0.0",
     "terra-overlay": "^3.32.0",
     "terra-scroll": "^2.18.0",
@@ -139,7 +138,8 @@
     "terra-menu": "^6.40.0",
     "lodash.debounce": "^4.0.8",
     "react-draggable": "^4.4.3",
-    "terra-responsive-element": "^5.0.0"
+    "terra-responsive-element": "^5.0.0",
+    "focus-trap": "^4.0.0"
   },
   "peerDependencies": {
     "react": "^16.8.5",

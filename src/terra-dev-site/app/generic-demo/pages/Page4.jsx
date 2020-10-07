@@ -33,7 +33,7 @@ const DisclosedComponent = () => {
         collapsibleMenuView={(
           <CollapsibleMenuView>
             <CollapsibleMenuView.Item
-              text={id}
+              text={`${id}`}
               key={id}
               shouldCloseOnClick={false}
             />

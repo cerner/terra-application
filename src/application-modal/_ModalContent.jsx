@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { FormattedMessage } from 'react-intl';
 import classNamesBind from 'classnames/bind';
@@ -10,7 +10,6 @@ import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
 import ModalHeader from './_ModalHeader';
-import ModalOverlay from './_ModalOverlay';
 import styles from './ModalContent.module.scss';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
@@ -88,61 +87,53 @@ const ModalContent = (props) => {
   const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
   return (
-    <>
-      {
-        /*
-          When an aria-label is set and tabIndex is set to 0, VoiceOver will read
-          the aria-label value when the modal is opened
-        */
-      }
-      <div
-        {...customProps}
-        tabIndex={platformIsiOS ? '-1' : '0'}
-        aria-modal="true"
-        aria-label={title}
-        className={modalClassNames}
-        role="dialog"
-        ref={(ref) => { if (refCallback) { refCallback(ref); } }}
+    <div
+      {...customProps}
+      tabIndex={platformIsiOS ? '-1' : '0'}
+      aria-modal="true"
+      aria-label={title}
+      className={modalClassNames}
+      role="dialog"
+      ref={(ref) => { if (refCallback) { refCallback(ref); } }}
+    >
+      <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
+        {text => (
+          <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={text} />
+        )}
+      </FormattedMessage>
+      <ContentContainer
+        fill
+        header={(
+          <>
+            <ModalHeader
+              title={title}
+              onClose={onRequestClose}
+            />
+            {toolbar}
+            {applicationConceptBanner && applicationConceptBanner.modalBanner}
+            <NotificationBanners />
+          </>
+          )}
+        footer={(
+          <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
+          )}
       >
-        <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
-          {text => (
-            <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={text} />
-          )}
-        </FormattedMessage>
-        <ContentContainer
-          fill
-          header={(
-            <>
-              <ModalHeader
-                title={title}
-                onClose={onRequestClose}
-              />
-              {toolbar}
-              {applicationConceptBanner && applicationConceptBanner.modalBanner}
-              <NotificationBanners />
-            </>
-          )}
-          footer={(
-            <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
-          )}
-        >
-          <NotificationBannerProvider>
-            <ApplicationLoadingOverlayProvider>
-              <ApplicationErrorBoundary>
-                <Scroll>
-                  {children}
-                </Scroll>
-              </ApplicationErrorBoundary>
-            </ApplicationLoadingOverlayProvider>
-          </NotificationBannerProvider>
-        </ContentContainer>
-        <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
-          {text => (
-            <VisuallyHiddenText text={text} />
-          )}
-        </FormattedMessage>
-      </div>
-    </>
+        <NotificationBannerProvider>
+          <ApplicationLoadingOverlayProvider>
+            <ApplicationErrorBoundary>
+              <Scroll>
+                {children}
+              </Scroll>
+            </ApplicationErrorBoundary>
+          </ApplicationLoadingOverlayProvider>
+        </NotificationBannerProvider>
+      </ContentContainer>
+      <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
+        {text => (
+          <VisuallyHiddenText text={text} />
+        )}
+      </FormattedMessage>
+    </div>
   );
 };
 

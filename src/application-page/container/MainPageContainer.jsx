@@ -10,6 +10,16 @@ import styles from './MainPageContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
+function onPageStackChange() {
+  /**
+   * Focus is reset to application root if Pages within the MainPageContainer are pushed or
+   * popped off the Page stack.
+   */
+  setTimeout(() => {
+    document.body.focus();
+  }, []);
+}
+
 const MainPageContainer = ({
   children,
 }) => {
@@ -18,7 +28,7 @@ const MainPageContainer = ({
   const [isInitialized, setIsInitialized] = React.useState();
 
   const pagePortalContextValue = React.useMemo(() => ({
-    nodeManager: new PageContainerPortalManager(portalContainerRef),
+    nodeManager: new PageContainerPortalManager(portalContainerRef, onPageStackChange),
     isMain: true,
   }), []);
 

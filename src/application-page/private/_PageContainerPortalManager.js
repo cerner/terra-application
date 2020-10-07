@@ -1,6 +1,7 @@
 class PageContainerPortalManager {
-  constructor(containerRef) {
+  constructor(containerRef, onPageStackChange) {
     this._containerRef = containerRef;
+    this._onPageStackChange = onPageStackChange;
     this._nodeMap = {};
   }
 
@@ -65,9 +66,9 @@ class PageContainerPortalManager {
 
     this.hideAncestors(ancestorPageKey);
 
-    setTimeout(() => {
-      document.body.focus();
-    }, 0);
+    if (this._onPageStackChange) {
+      this._onPageStackChange();
+    }
 
     return newPortalElement;
   }
@@ -98,9 +99,9 @@ class PageContainerPortalManager {
       setTimeout(() => { this._nodeMap[page.ancestor].setVisibility(true); }, 0);
     }
 
-    setTimeout(() => {
-      document.body.focus();
-    }, 0);
+    if (this._onPageStackChange) {
+      this._onPageStackChange();
+    }
 
     this._nodeMap[pageKey] = undefined;
   }

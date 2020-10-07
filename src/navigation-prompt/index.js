@@ -1,4 +1,7 @@
 import PropTypes from 'prop-types';
+import NavigationPrompt from './NavigationPrompt';
+import NavigationPromptCheckpoint from './NavigationPromptCheckpoint';
+import PromptRegistrationContext from './PromptRegistrationContext';
 import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
 const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
@@ -36,6 +39,6 @@ const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.sh
   buttonOrder: PropTypes.oneOf(['acceptFirst', 'rejectFirst']),
 }), PropTypes.func]);
 
-export { default } from 'terra-navigation-prompt';
-export { NavigationPromptCheckpoint, PromptRegistrationContext } from 'terra-navigation-prompt';
+export default NavigationPrompt;
+export { NavigationPromptCheckpoint, PromptRegistrationContext };
 export { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };

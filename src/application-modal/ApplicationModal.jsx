@@ -60,7 +60,7 @@ const ApplicationModal = ({
     });
   }, [dangerouslyDisableNavigationPromptHandling, onRequestClose, applicationIntl]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     setTimeout(() => {
       // Handle focus shift for VoiceOver on iOS
       if ('ontouchstart' in window) {

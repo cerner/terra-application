@@ -20,34 +20,37 @@ const i18nLoader = async (locale, callback) => {
     getcanonicallocales: {
       shouldPolyfill: shouldPolyfillGetCanonicalLocales,
       shouldLoadLocaleData: false, // getCononicalLocales does not have locale data
+      polyfill: '@formatjs/intl-getcanonicallocales/polyfill',
     },
     pluralrules: {
       shouldPolyfill: shouldPolyfillPluralRules,
       shouldLoadLocaleData: Intl.PluralRules.polyfilled,
+      polyfill: '@formatjs/intl-pluralrules/polyfill',
     },
     relativetimeformat: {
       shouldPolyfill: shouldPolyfillRelativeTimeFormat,
       shouldLoadLocaleData: Intl.RelativeTimeFormat.polyfilled,
+      polyfill: '@formatjs/intl-relativetimeformat/polyfill',
     },
     numberformat: {
       shouldPolyfill: shouldPolyfillNumberFormat,
       shouldLoadLocaleData: Intl.NumberFormat.polyfilled,
+      polyfill: '@formatjs/intl-numberformat/polyfill',
     },
     datetimeformat: {
       shouldPolyfill: shouldPolyfillDateTimeFormat,
       shouldLoadLocaleData: Intl.DateTimeFormat.polyfilled,
+      polyfill: '@formatjs/intl-datetimeformat/polyfill',
     },
   };
 
   Object.keys(polyfills).map(async key => {
     try {
       if (polyfills[key].shouldPolyfill()) {
-        const polyfill = `@formatjs/intl-${key}/polyfill`;
-        await import(polyfill);
+        await import(polyfills[key].polyfill);
       }
     } catch (error) {
-      const polyfill = `@formatjs/intl-${key}/polyfill`;
-      await import(polyfill);
+      await import(polyfills[key].polyfill);
     }
 
     if (polyfills[key].shouldLoadLocaleData) {

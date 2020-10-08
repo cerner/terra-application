@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated documentation for terra-application-navigation initials.
+
 ## 1.37.0 - (October 6, 2020)
 
 * Changed

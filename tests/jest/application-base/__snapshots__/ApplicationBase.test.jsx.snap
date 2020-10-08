@@ -16,7 +16,6 @@ exports[`ApplicationBase should render with all props 1`] = `
       customMessages={Object {}}
       locale="en"
       strictMode={false}
-      throwOnI18nLoadError={false}
     >
       <InjectIntl(Component)>
         <ActiveBreakpointProvider>
@@ -48,7 +47,6 @@ exports[`ApplicationBase should render with minimal props 1`] = `
       customMessages={Object {}}
       locale="en"
       strictMode={false}
-      throwOnI18nLoadError={false}
     >
       <InjectIntl(Component)>
         <ActiveBreakpointProvider>
@@ -80,7 +78,6 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
       customMessages={Object {}}
       locale="en"
       strictMode={false}
-      throwOnI18nLoadError={false}
     >
       <InjectIntl(Component)>
         <ActiveBreakpointProvider>

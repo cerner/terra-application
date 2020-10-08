@@ -9,7 +9,7 @@
     position: absolute;
     right: 0;
     top: 2.643rem;
-    width: 1px;
+    // width: 1px;
     z-index: 10;
 
     > * {
@@ -28,7 +28,7 @@
     -webkit-overflow-scrolling: touch;
     max-height: calc(100% - 2.643rem);
     max-width: 100%;
-    width: auto;
+    // width: auto;
 
     > * {
       position: static !important;

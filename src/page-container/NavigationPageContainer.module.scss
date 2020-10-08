@@ -73,7 +73,7 @@
   .workspace {
     background-color: white;
     display: none;
-    flex: 1 1 320px;
+    flex: 0 0 320px;
     height: 100%;
     position: relative;
     z-index: 2;
@@ -84,7 +84,7 @@
     }
 
     &.visible {
-      display: block;
+      display: flex;
     }
 
     &.overlay {

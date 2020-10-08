@@ -114,9 +114,9 @@ class TabContainer extends React.Component {
     if (this.isCalculating || !this.dropdownRef.current.children.length) {
       return;
     }
-    const right = this.contentWidth - this.dropdownRef.current.children[0].getBoundingClientRect().width;
-    this.dropdownRef.current.style.right = `${right}px`;
-    this.dropdownRef.current.style.top = `${50}px`;
+    const left = this.moreButtonRef.current.offsetLeft + this.moreButtonRef.current.offsetWidth - this.dropdownRef.current.getBoundingClientRect().width;
+    this.dropdownRef.current.style.left = `${left < 0 ? 0 : left}px`;
+    this.dropdownRef.current.style.top = `${50}px`; // TODO: Needs theme value
   }
 
   setIsOpen(value) {

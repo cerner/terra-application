@@ -7,6 +7,7 @@
     position: absolute;
     top: 0;
     width: 5px;
+    z-index: 1;
 
     &:hover {
       background-color: var(--terra-clinical-data-grid-resize-handle-hover-background-color, rgba(34, 42, 46, 0.6));

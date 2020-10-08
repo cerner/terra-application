@@ -1,5 +1,6 @@
 import PropsTable from 'terra-application/lib/application-navigation/ApplicationNavigation?dev-site-props-table';
 import ApplicationNavigationExample from './example/ApplicationNavigationExample?dev-site-example';
+import { Notice } from '@cerner/terra-docs';
 
 # ApplicationNavigation
 
@@ -182,6 +183,14 @@ const myTitleConfig = {
 
 The `userConfig` prop allows consumers to set a user associated to the current application context.
 The ApplicationNavigation will render this content in different ways based on the active responsive breakpoint.
+
+<Notice ariaLevel="5">
+
+It is recommended that `initials` prop be provided for all cases if `userConfig` is used. It will be updated to **Required** with the next major version of application navigation, provided via terra-application v2.
+
+*Note: If both `initials` and `imageSrc` are not provided, the avatar will fall back to the generic user avatar. If `initials` are not provided, but `imageSrc` is provided and fails, the avatar will fall back to use first two letters of the provided `name` (not preferred) in place of showing the `initials` (preferred).*
+
+</Notice>
 
 |Key Name|Type|Is Required|Description|
 |---|---|---|---|

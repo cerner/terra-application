@@ -16,6 +16,8 @@ const propTypes = {
 
 const TempImplement = ({
   id,
+  menuOnClick,
+  menuButtonRef,
 }) => {
   const [activeTabKey, setActiveTabKey] = useState('page-1');
 
@@ -25,7 +27,8 @@ const TempImplement = ({
       activeTabKey={activeTabKey}
       onRequestActivate={metaData => setActiveTabKey(metaData.key)}
       title="work space" // TODO: need proper title setup
-      // onCOnfig
+      menuButtonRef={menuButtonRef}
+      menuOnClick={menuOnClick}
     >
       <TabPage
         // possible persistent prop?

@@ -22,6 +22,8 @@ const Tabs = ({
   children,
   onRequestActivate,
   title,
+  menuButtonRef,
+  menuOnClick,
   ...customProps
 }) => {
   const workspacePortalsRef = useRef({});
@@ -68,7 +70,7 @@ const Tabs = ({
     { 'body-fill': true },
     customProps.className,
   ]);
-  
+
   return (
     <div
       {...customProps}
@@ -77,8 +79,19 @@ const Tabs = ({
       role="none"
     >
       <div role="none" className={cx('header')}>
-        <button  aria-label="start"className={cx('start-button')}><IconChevronLeft /></button>
-        <button aria-label="dumpster" className={cx('end-button')}><IconAdd /></button>
+        <button
+          aria-label="start"
+          className={cx('start-button')}
+        >
+          <IconChevronLeft />
+        </button>
+        <button
+          onClick={menuOnClick}
+          className={cx('end-button')}
+          ref={menuButtonRef}
+        >
+          <IconAdd />
+        </button>
       </div>
       <div role="none" className={cx('header2')}>
         <TabContainer title={title} tabData={tabData} />

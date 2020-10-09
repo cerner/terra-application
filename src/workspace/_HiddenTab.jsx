@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import { handleArrows } from './_TabUtils';
 
-import styles from './TabContainer.module.scss';
+import styles from './HiddenTab.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -18,17 +19,13 @@ const propTypes = {
    */
   associatedPanelId: PropTypes.string.isRequired,
   /**
+   * The notification count to display.
+   */
+  count: PropTypes.number,
+  /**
    * Icon to be displayed on the tab.
    */
   icon: PropTypes.element,
-  /**
-   * Text to be displayed on the tab.
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * A custom display for the tab. Component will fallback to label text when collapsed into the menu.
-   */
-  customDisplay: PropTypes.node,
   /**
    * Index value to use for navigation.
    */
@@ -42,17 +39,17 @@ const propTypes = {
    */
   isSelected: PropTypes.bool,
   /**
-   * Indicates if the tab is hidden by the rollup.
+   * Text to be displayed on the tab.
    */
-  isHidden: PropTypes.bool,
-  /**
-   * Callback function triggering on selection.
-   */
-  onSelect: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * Object to be returned in the onSelect.
    */
   metaData: PropTypes.object,
+  /**
+   * Callback function triggering on selection.
+   */
+  onSelect: PropTypes.func.isRequired,
   /**
    * Array of id strings,
    */
@@ -62,33 +59,30 @@ const propTypes = {
 const defaultProps = {
   isIconOnly: false,
   isSelected: false,
-  isHidden: false,
 };
 
 const Tab = ({
   id,
   associatedPanelId,
+  count,
   icon,
-  label,
-  customDisplay,
   index,
   isIconOnly,
   isSelected,
-  isHidden,
-  onSelect,
+  label,
   metaData,
   onBlur,
   onFocus,
+  onSelect,
   tabIds,
   ...customProps
 }) => {
   const attributes = {};
   const paneClassNames = cx([
-    'tab',
+    'hidden',
     { 'is-icon-only': isIconOnly },
     { 'is-text-only': !icon },
     { 'is-active': isSelected },
-    { 'is-hidden': isHidden },
     attributes.className,
   ]);
 
@@ -114,13 +108,10 @@ const Tab = ({
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
-  }
-  attributes['aria-selected'] = isSelected;
-
-  if (isHidden) {
     attributes.onBlur = onBlur;
     attributes.onFocus = onFocus;
   }
+  attributes['aria-selected'] = isSelected;
 
   return (
     <div
@@ -132,9 +123,9 @@ const Tab = ({
       className={paneClassNames}
       title={label}
     >
-      {customDisplay}
-      {customDisplay ? null : icon}
-      {customDisplay || isIconOnly ? null : <span className={cx('label')}>{label}</span>}
+      {!isSelected ? null : <span className={cx('check')}><IconCheckmark /></span>}
+      {!icon ? null : <span className={cx('icon')}>{icon}</span>}
+      {isIconOnly ? null : <span className={cx('label')}>{label}</span>}
     </div>
   );
 };

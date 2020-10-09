@@ -5,7 +5,8 @@ import ThemeContext from 'terra-theme-context';
 import ResizeObserver from 'resize-observer-polyfill';
 import MoreButton from './_MoreButton';
 import TabDropDown from './_TabDropDown';
-import Tab from './Tab';
+import Tab from './_Tab';
+import HiddenTab from './_HiddenTab';
 import styles from './TabContainer.module.scss';
 
 const cx = classNames.bind(styles);
@@ -192,7 +193,7 @@ class TabContainer extends React.Component {
         );
       } else {
         hiddenTabs.push(
-          <Tab
+          <HiddenTab
             {...tab}
             key={tab.id}
             index={index}
@@ -200,7 +201,6 @@ class TabContainer extends React.Component {
             onSelect={this.wrapOnSelectHidden(tab.onSelect)}
             onFocus={this.handleHiddenFocus}
             onBlur={this.handleHiddenBlur}
-            isHidden
           />
         );
         hiddenIds.push(tab.id);

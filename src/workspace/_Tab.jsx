@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import { handleArrows } from './_TabUtils';
 
-import styles from './HiddenTab.module.scss';
+import styles from './TabContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -18,6 +18,10 @@ const propTypes = {
    */
   associatedPanelId: PropTypes.string.isRequired,
   /**
+   * The notification count to display.
+   */
+  count: PropTypes.number,
+  /**
    * Icon to be displayed on the tab.
    */
   icon: PropTypes.element,
@@ -25,6 +29,10 @@ const propTypes = {
    * Text to be displayed on the tab.
    */
   label: PropTypes.string.isRequired,
+  /**
+   * A custom display for the tab. Component will fallback to label text when collapsed into the menu.
+   */
+  customDisplay: PropTypes.node,
   /**
    * Index value to use for navigation.
    */
@@ -59,21 +67,22 @@ const defaultProps = {
 const Tab = ({
   id,
   associatedPanelId,
+  count,
   icon,
-  label,
   index,
   isIconOnly,
   isSelected,
-  onSelect,
+  label,
   metaData,
   onBlur,
   onFocus,
+  onSelect,
   tabIds,
   ...customProps
 }) => {
   const attributes = {};
   const paneClassNames = cx([
-    'hidden',
+    'tab',
     { 'is-icon-only': isIconOnly },
     { 'is-text-only': !icon },
     { 'is-active': isSelected },
@@ -102,8 +111,6 @@ const Tab = ({
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = onBlur;
-    attributes.onFocus = onFocus;
   }
   attributes['aria-selected'] = isSelected;
 
@@ -117,9 +124,9 @@ const Tab = ({
       className={paneClassNames}
       title={label}
     >
-      {!isSelected ? null : <span className={cx('check')}>{derp}</span>}
       {icon}
       {isIconOnly ? null : <span className={cx('label')}>{label}</span>}
+      {count}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React from 'react';
-import Overlay from 'terra-overlay';
 
+import LayerPortal from '../layers/LayerPortal';
 import NavigationPrompt from '../navigation-prompt';
 
 const ApplicationBlockingOverlay = ({ description }) => {
@@ -17,14 +17,16 @@ const ApplicationBlockingOverlay = ({ description }) => {
   }, []);
 
   return (
-    <>
-      <Overlay
-        backgroundStyle={isVisible ? 'dark' : 'clear'}
-        zIndex="9000"
-        isOpen
+    <LayerPortal type="blocking-overlay">
+      <div
+        style={{
+          height: '100%',
+          width: '100%',
+          backgroundColor: isVisible ? 'rgba(255,255,255,0.5)' : 'clear',
+        }}
       />
       <NavigationPrompt description={description} />
-    </>
+    </LayerPortal>
   );
 };
 

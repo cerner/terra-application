@@ -5,38 +5,32 @@ import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { KEY_TAB } from 'keycode-js';
 
-import PagePortalContext from '../page-container/PagePortalContext';
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { useNotificationBanners } from '../application-notification/NotificationBannerProvider';
-import BannerRegistrationContext from '../application-notification/private/BannerRegistrationContext';
+import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
-import PageHeader from './_PageHeader';
+import PagePortalContext from './private/PagePortalContext';
+import PageHeader from './private/_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
 
 const cx = classNames.bind(styles);
 
 const ApplicationPage = ({
-  title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack,
+  title, actions, menu, toolbar, onRequestClose, children, disableNavigationPromptsOnBack, pageKey, onVisibilityChange,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const pagePortalContext = React.useContext(PagePortalContext);
+  const ancestorPagePortalContext = React.useContext(PagePortalContext);
 
   const navigationPromptCheckpointRef = React.useRef();
-  const pageIdRef = React.useRef(uuidv4());
+  const pageIdRef = React.useRef(pageKey || uuidv4());
 
   const [showOverflowFocus, setShowOverflowFocus] = React.useState(false);
+  const [isVisible, setIsVisible] = React.useState(true);
 
-  const { bannerProviderValue, banners } = useNotificationBanners();
-
-  function onSelectAction(action) {
-    if (action.onSelect) {
-      action.onSelect();
-    }
-  }
+  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const goBack = useCallback(() => {
     if (disableNavigationPromptsOnBack) {
@@ -49,13 +43,14 @@ const ApplicationPage = ({
     });
   }, [disableNavigationPromptsOnBack, applicationIntl, onRequestClose]);
 
-  const nodeManager = pagePortalContext?.nodeManager;
-  const contextValue = React.useMemo(() => ({
+  const nodeManager = ancestorPagePortalContext?.nodeManager;
+  const pagePortalContextValue = React.useMemo(() => ({
     ancestorPage: pageIdRef.current,
     ancestorTitle: title,
-    backLinks: pagePortalContext?.backLinks ? [...pagePortalContext.backLinks, { title: pagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
-    nodeManager: pagePortalContext?.nodeManager,
-  }), [title, pagePortalContext, goBack]);
+    backLinks: ancestorPagePortalContext?.backLinks ? [...ancestorPagePortalContext.backLinks, { title: ancestorPagePortalContext.ancestorTitle, onRequestClose: goBack }] : [],
+    nodeManager: ancestorPagePortalContext?.nodeManager,
+    isMain: ancestorPagePortalContext.isMain,
+  }), [title, ancestorPagePortalContext, goBack]);
 
   React.useLayoutEffect(() => () => {
     if (nodeManager) {
@@ -63,9 +58,17 @@ const ApplicationPage = ({
     }
   }, [nodeManager]);
 
+  React.useLayoutEffect(() => {
+    if (onVisibilityChange) {
+      onVisibilityChange(isVisible);
+    }
+  }, [isVisible, onVisibilityChange]);
+
+  const pageTitleId = `application-page-title-${pageIdRef.current}`;
+
   let portalNode;
   if (nodeManager) {
-    portalNode = nodeManager.getNode(pageIdRef.current, pagePortalContext.ancestorPage);
+    portalNode = nodeManager.getNode(pageIdRef.current, ancestorPagePortalContext.ancestorPage, setIsVisible, pageTitleId);
   }
 
   if (!nodeManager) {
@@ -74,10 +77,9 @@ const ApplicationPage = ({
 
   return (
     ReactDOM.createPortal((
-      <main
+      <div
         className={cx('page')}
-        aria-labelledby="application-page-title"
-        tabIndex="0"
+        // aria-labelledby={pageTitleId}
         onMouseDown={() => { setShowOverflowFocus(false); }}
         onKeyDown={(event) => {
           if (event.nativeEvent.keyCode === KEY_TAB) {
@@ -93,24 +95,24 @@ const ApplicationPage = ({
             menu={menu}
           />
           {toolbar}
-          {banners}
+          <NotificationBanners />
         </div>
         <div className={cx('content')}>
-          <PagePortalContext.Provider value={contextValue}>
+          <PagePortalContext.Provider value={pagePortalContextValue}>
             <NavigationPromptCheckpoint
               ref={navigationPromptCheckpointRef}
             >
-              <BannerRegistrationContext.Provider value={bannerProviderValue}>
+              <NotificationBannerProvider>
                 <ApplicationErrorBoundary>
                   <ApplicationLoadingOverlayProvider>
                     <div
-                      id="application-page-main"
+                      data-page-overflow-container
                       tabIndex="0"
                       className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
                     >
                       <div className={cx('width-normalizer')}>
                         <VisuallyHiddenText
-                          id="application-page-title"
+                          id={pageTitleId}
                           aria-hidden
                           text={title}
                         />
@@ -119,11 +121,11 @@ const ApplicationPage = ({
                     </div>
                   </ApplicationLoadingOverlayProvider>
                 </ApplicationErrorBoundary>
-              </BannerRegistrationContext.Provider>
+              </NotificationBannerProvider>
             </NavigationPromptCheckpoint>
           </PagePortalContext.Provider>
         </div>
-      </main>
+      </div>
     ), portalNode)
   );
 };

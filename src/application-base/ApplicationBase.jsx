@@ -1,37 +1,22 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, Suspense, useMemo,
+  useMemo,
 } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
-import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationIntlProvider } from '../application-intl';
-import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
-import LayerManagerProvider from '../layers/LayerManagerProvider';
-import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
-
-import initializeGlobalEvents from './initializeGlobalEvents';
-
-import styles from './ApplicationBase.module.scss';
-
-// window.LayerManager = new LayerManager();
-
-const cx = classNames.bind(styles);
+import './private/initializeInert';
+import './private/inertStyles.scss';
 
 const browserLocale = getBrowserLocale();
-
-initializeGlobalEvents();
 
 // We only need to retrieve the root theme and root theme name once for the life of the application.
 const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : undefined;
@@ -62,60 +47,14 @@ const propTypes = {
     return null;
   },
   /**
-   * The component to render while the translation files are being retrieved.
-   * NOTE: Absolutely no locale-dependent logic should be
-   * utilized in this placeholder.
-   */
-  translationsLoadingPlaceholder: PropTypes.node,
-  /**
    * The name of the theme to apply to the application using terra-theme-provider.
    */
   themeName: PropTypes.string,
-  /**
-   * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
-   * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
-   * potentially overflow its parent.
-   */
-  fitToParentIsDisabled: PropTypes.bool,
-  /**
-   * By default, NavigationPrompts rendered within ApplicationBase will cause the user to be prompted during
-   * the window's beforeUnload event. If `unloadPromptIsDisabled` is provided, the user will **not** be prompted
-   * before continuing with the unload event, even if NavigationPrompts are present.
-   */
-  unloadPromptIsDisabled: PropTypes.bool,
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, themeName, children,
 }) => {
-  const registeredPromptsRef = useRef();
-
-  useEffect(() => {
-    if (unloadPromptIsDisabled) {
-      return undefined;
-    }
-
-    function onBeforeUnload(event) {
-      if (registeredPromptsRef.current && registeredPromptsRef.current.length) {
-        event.preventDefault();
-
-        // Chrome requires returnValue to be set to present the confirmation dialog
-        event.returnValue = ''; // eslint-disable-line no-param-reassign
-
-        // For this prompt, ApplicationBase is limited to browser-defaulted messaging.
-        return '';
-      }
-
-      return undefined;
-    }
-
-    window.addEventListener('beforeunload', onBeforeUnload);
-
-    return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
-    };
-  }, [unloadPromptIsDisabled, registeredPromptsRef]);
-
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
   const theme = useMemo(() => ({
@@ -125,43 +64,22 @@ const ApplicationBase = ({
   }), [themeName]);
 
   return (
-    <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <LayerManagerProvider>
-        <NavigationRegistrationProvider>
-          <ThemeProvider
-            themeName={themeName}
-          >
-            <ThemeContextProvider theme={theme}>
-              <Base
-                customMessages={customTranslatedMessages}
-                translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-                locale={localeOverride || locale || browserLocale}
-              >
-                <ApplicationErrorBoundary>
-                  <ApplicationIntlProvider>
-                    <ActiveBreakpointProvider>
-                      <NavigationPromptCheckpoint
-                        onPromptChange={(registeredPrompts) => {
-                          registeredPromptsRef.current = registeredPrompts;
-                        }}
-                      >
-                        <ApplicationLoadingOverlayProvider>
-                          <ApplicationStatusOverlayProvider>
-                            <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                              {children}
-                            </Suspense>
-                          </ApplicationStatusOverlayProvider>
-                        </ApplicationLoadingOverlayProvider>
-                      </NavigationPromptCheckpoint>
-                    </ActiveBreakpointProvider>
-                  </ApplicationIntlProvider>
-                </ApplicationErrorBoundary>
-              </Base>
-            </ThemeContextProvider>
-          </ThemeProvider>
-        </NavigationRegistrationProvider>
-      </LayerManagerProvider>
-    </div>
+    <ThemeProvider
+      themeName={themeName}
+    >
+      <ThemeContextProvider theme={theme}>
+        <Base
+          customMessages={customTranslatedMessages}
+          locale={localeOverride || locale || browserLocale}
+        >
+          <ApplicationIntlProvider>
+            <ActiveBreakpointProvider>
+              {children}
+            </ActiveBreakpointProvider>
+          </ApplicationIntlProvider>
+        </Base>
+      </ThemeContextProvider>
+    </ThemeProvider>
   );
 };
 

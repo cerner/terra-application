@@ -1,8 +1,8 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.34.0",
-  "description": "A framework to support application development with Terra components",
+  "version": "2.0.0-rc",
+  "description": "A React-based framework for building accessible web applications",
   "engines": {
     "node": ">=8.9.2 <11"
   },
@@ -89,6 +89,7 @@
     "start": "tt-serve",
     "start-prod": "tt-serve -p",
     "start-demo": "tt-serve --config demo.webpack.config.js",
+    "start-demo-prod": "tt-serve -p --config demo.webpack.config.js",
     "start-heroku": "tt-serve-static --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",

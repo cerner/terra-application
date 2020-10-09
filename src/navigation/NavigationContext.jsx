@@ -2,7 +2,7 @@ import { createContext } from 'react';
 
 const NavigationContext = createContext({
   isActive: true,
-  navigationIdentifier: false,
+  navigationIdentifier: undefined,
 });
 
 export default NavigationContext;

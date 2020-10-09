@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import uuidv4 from 'uuid/v4';
 
-import LayerManagerContext from './LayerManagerContext';
+import LayerContext from './LayerContext';
 
 // const Dismissable = ({ onRequestClose, children }) => {
 //   const parentLayerManager = React.useContext(LayerManagerContext);
@@ -28,18 +28,18 @@ import LayerManagerContext from './LayerManagerContext';
 // };
 
 const LayerPortal = ({
-  children,
+  type, setInert, children,
 }) => {
-  const layerManager = React.useContext(LayerManagerContext);
+  const layerContext = React.useContext(LayerContext);
   const layerKeyRef = React.useRef(uuidv4());
 
   // TODO: investigate deferred rendering for managing multiple disclosures at the same disclosure level.
 
   React.useLayoutEffect(() => () => {
-    layerManager.layerManager.releaseNode(layerKeyRef.current);
-  }, [layerManager]);
+    layerContext.nodeManager.releaseNode(layerKeyRef.current);
+  }, [layerContext, type]);
 
-  const node = layerManager.layerManager.getNode(layerKeyRef.current);
+  const node = layerContext.nodeManager.getNode(layerKeyRef.current, type, setInert);
 
   if (!node) {
     return null;

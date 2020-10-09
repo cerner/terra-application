@@ -172,13 +172,13 @@ const ApplicationNavigation = ({
     };
   }
 
-  const focusMainContentCallback = useCallback(() => {
-    const mainElements = document.querySelectorAll('main');
+  // const focusMainContentCallback = useCallback(() => {
+  //   const mainElements = document.querySelectorAll('main');
 
-    if (mainElements) {
-      mainElements[mainElements.length - 1].focus();
-    }
-  }, []);
+  //   if (mainElements) {
+  //     mainElements[mainElements.length - 1].focus();
+  //   }
+  // }, []);
 
   function focusToggle() {
     const toggle = document.querySelector('[data-compact-header-toggle="true"]');
@@ -266,7 +266,7 @@ const ApplicationNavigation = ({
         onSelectExtensionItem={onSelectExtensionItem}
         navigationItems={navigationItems}
         onSelectMenuButton={() => updateDrawerIsOpen(true)}
-        onSelectSkipToContent={focusMainContentCallback}
+        // onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
         isDrawerMenuOpen={drawerMenuIsOpen}
         utilityItems={utilityItems}
@@ -294,7 +294,7 @@ const ApplicationNavigation = ({
         activeNavigationItemKey={activeNavigationItemKey}
         onSelectNavigationItem={onSelectNavigationItem}
         userConfig={userConfig}
-        onSelectSkipToContent={focusMainContentCallback}
+        // onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
         utilityButtonPopupAnchorRef={utilityButtonPopupAnchorRef}
         onSelectUtilityButton={() => setPopupMenuIsOpen(true)}
@@ -323,17 +323,17 @@ const ApplicationNavigation = ({
     }
   });
 
-  useLayoutEffect(() => {
-    if (activeNavigationItemKey !== renderedNavItemKeyRef.current) {
-      // The timeout is necessary due to the AbstractModal's similar focus logic.
-      // Without the timeout, this executes too quickly.
-      setTimeout(() => {
-        focusMainContentCallback();
-      }, 0);
+  // useLayoutEffect(() => {
+  //   if (activeNavigationItemKey !== renderedNavItemKeyRef.current) {
+  //     // The timeout is necessary due to the AbstractModal's similar focus logic.
+  //     // Without the timeout, this executes too quickly.
+  //     setTimeout(() => {
+  //       focusMainContentCallback();
+  //     }, 0);
 
-      renderedNavItemKeyRef.current = activeNavigationItemKey;
-    }
-  }, [activeNavigationItemKey, focusMainContentCallback]);
+  //     renderedNavItemKeyRef.current = activeNavigationItemKey;
+  //   }
+  // }, [activeNavigationItemKey]);
 
   /**
    * This layout effect is used to manage the visibility of the drawer menu during

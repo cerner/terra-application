@@ -11,7 +11,6 @@ import PageHeader from './_PageHeader';
 // import { BreadcrumbsPageHeader as PageHeader } from './_PageHeader';
 
 import styles from './ApplicationPage.module.scss';
-import HeaderContainer from '../header-container/_HeaderContainer';
 
 const cx = classNames.bind(styles);
 
@@ -49,7 +48,7 @@ const SuspensePage = ({
   return (
     ReactDOM.createPortal((
       <main
-        id="application-page-main"
+        data-page-overflow-container
         ref={mainElementRef}
         tabIndex="-1"
         role="main"

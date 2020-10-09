@@ -1,8 +1,8 @@
 const LayerTypes = {
-  base: 0,
   modal: 1,
-  overlay: 2,
-  alert: 3,
+  notificationDialog: 2,
+  blockingOverlay: 3,
+  frameworkDialog: 4,
 };
 
 export default LayerTypes;

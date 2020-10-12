@@ -59,6 +59,7 @@ const propTypes = {
 const defaultProps = {
   isIconOnly: false,
   isSelected: false,
+  count: -1,
 };
 
 const Tab = ({
@@ -123,9 +124,10 @@ const Tab = ({
       className={paneClassNames}
       title={label}
     >
-      {!isSelected ? null : <span className={cx('check')}><IconCheckmark /></span>}
-      {!icon ? null : <span className={cx('icon')}>{icon}</span>}
-      {isIconOnly ? null : <span className={cx('label')}>{label}</span>}
+      {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
+      {icon ? <span className={cx('icon')}>{icon}</span> : null}
+      {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
+      {count !== null && count !== undefined ? <span className={cx('count')}>{count}</span> : null}
     </div>
   );
 };

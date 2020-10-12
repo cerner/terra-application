@@ -26,14 +26,6 @@ const propTypes = {
    */
   icon: PropTypes.element,
   /**
-   * Text to be displayed on the tab.
-   */
-  label: PropTypes.string.isRequired,
-  /**
-   * A custom display for the tab. Component will fallback to label text when collapsed into the menu.
-   */
-  customDisplay: PropTypes.node,
-  /**
    * Index value to use for navigation.
    */
   index: PropTypes.number.isRequired,
@@ -45,6 +37,10 @@ const propTypes = {
    * Indicates if the tab is currently selected.
    */
   isSelected: PropTypes.bool,
+  /**
+   * Text to be displayed on the tab.
+   */
+  label: PropTypes.string.isRequired,
   /**
    * Callback function triggering on selection.
    */
@@ -62,6 +58,7 @@ const propTypes = {
 const defaultProps = {
   isIconOnly: false,
   isSelected: false,
+  count: -1,
 };
 
 const Tab = ({
@@ -125,8 +122,8 @@ const Tab = ({
       title={label}
     >
       {icon}
-      {isIconOnly ? null : <span className={cx('label')}>{label}</span>}
-      {count}
+      {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
+      {count !== null && count !== undefined ? <span className={cx('count')}>{count}</span> : null}
     </div>
   );
 };

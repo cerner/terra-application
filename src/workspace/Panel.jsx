@@ -15,7 +15,12 @@ const cx = classNames.bind(styles);
 const propTypes = {
   children: PropTypes.node,
   toolBar: PropTypes.element,
-  actions: PropTypes.array,
+  actions: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    onAction: PropTypes.func,
+    icon: PropTypes.element,
+    isSelected: PropTypes.bool,
+  })),
 };
 
 const Panel = ({

@@ -491,3 +491,23 @@ TODO 8/13
 * Workpace layouts
 * Side Nav integration with dev site tree view
 * notification counts throughout
+
+TODO 10/08
+* Investigate whether prop for optional navigable item persistance (hidden, not removed) makes sense
+  * for DOM-sensitive elements like iframes
+* F6/Shift+F6 accessibility
+  * https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-24
+  * Might make sense to toggle between page/workspace? not much info otherwise
+  * Might stomp on browser shortcuts: https://www.chromium.org/user-experience/keyboard-access
+* Move over orion-application Features
+* VisibilityContext
+* BlockingOverlay styles
+* PageHeader actions final API
+* "Can Navigate"/"Is Modal Open" API
+* Page error boundary/suspense implementation
+  * SuspensePage - show loading overlay, disable buttons automatically during overlay presentation, callbacks when suspense fails
+  * withPageErrorBoundary - HOC to wrap Page implementations with Page-presenting fallback
+  * Page prop callback on interior error caught
+* SessionContext
+  * UserContext
+  * SessionActionsContext

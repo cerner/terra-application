@@ -7,9 +7,10 @@ import { KEY_TAB } from 'keycode-js';
 
 import { ApplicationIntlContext } from '../application-intl';
 import ApplicationErrorBoundary from '../application-error-boundary';
-import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
+import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 
 import PagePortalContext from './private/PagePortalContext';
 import PageHeader from './private/_PageHeader';
@@ -71,8 +72,8 @@ const ApplicationPage = ({
     portalNode = nodeManager.getNode(pageIdRef.current, ancestorPagePortalContext.ancestorPage, setIsVisible, pageTitleId);
   }
 
-  if (!nodeManager) {
-    return null;
+  if (!nodeManager || !portalNode) {
+    throw new Error(`[ApplicationPage] $${title} could not be rendered`);
   }
 
   return (
@@ -105,20 +106,22 @@ const ApplicationPage = ({
               <NotificationBannerProvider>
                 <ApplicationErrorBoundary>
                   <ApplicationLoadingOverlayProvider>
-                    <div
-                      data-page-overflow-container
-                      tabIndex="0"
-                      className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
-                    >
-                      <div className={cx('width-normalizer')}>
-                        <VisuallyHiddenText
-                          id={pageTitleId}
-                          aria-hidden
-                          text={title}
-                        />
-                        {children}
+                    <ApplicationStatusOverlayProvider>
+                      <div
+                        data-page-overflow-container
+                        tabIndex="0"
+                        className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
+                      >
+                        <div className={cx('width-normalizer')}>
+                          <VisuallyHiddenText
+                            id={pageTitleId}
+                            aria-hidden
+                            text={title}
+                          />
+                          {children}
+                        </div>
                       </div>
-                    </div>
+                    </ApplicationStatusOverlayProvider>
                   </ApplicationLoadingOverlayProvider>
                 </ApplicationErrorBoundary>
               </NotificationBannerProvider>

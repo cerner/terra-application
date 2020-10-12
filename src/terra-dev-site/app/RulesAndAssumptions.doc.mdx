@@ -6,6 +6,11 @@
   * If usage of those contexts is necessary, the Providers should be rendered within the renderPage prop, not around the Modal itself.
 * Programatic navigation cannot be performed from within Modal.
 
+## Pages
+
+* withPageErrorBoundary must be used to wrap Page implementations with error safety to protect disclosure
+* default error boundary is present within Page, with onError callback present to handle custom handling
+
 
 ## Navigation
 

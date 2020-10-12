@@ -41,7 +41,7 @@ class PageContainerPortalManager {
 
     if (this._nodeMap[ancestorPageKey]?.child) {
       // duplicate page request
-      return undefined;
+      return null;
     }
 
     const newPortalElement = document.createElement('div');

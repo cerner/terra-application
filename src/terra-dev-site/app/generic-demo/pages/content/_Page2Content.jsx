@@ -9,7 +9,7 @@ import styles from '../common-page-styles.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Page2Content = ({ onDisclosePage3 }) => (
+const Page2Content = ({ onDisclosePage3, onThrowError }) => (
   <div style={{ padding: '1rem' }}>
     <div className={cx('card')}>
       <div className={cx('card-header')}>
@@ -24,7 +24,7 @@ const Page2Content = ({ onDisclosePage3 }) => (
     <div className={cx('card')}>
       <div className={cx('card-header')}>
         <div className={cx('title-container')}>
-        Pending Actions
+          Pending Actions
         </div>
       </div>
       <div style={{ padding: '1rem' }}>
@@ -34,11 +34,21 @@ const Page2Content = ({ onDisclosePage3 }) => (
     <div className={cx('card')}>
       <div className={cx('card-header')}>
         <div className={cx('title-container')}>
-        Notifications
+          Notifications
         </div>
       </div>
       <div style={{ padding: '1rem' }}>
         <BannerPresenter />
+      </div>
+    </div>
+    <div className={cx('card')}>
+      <div className={cx('card-header')}>
+        <div className={cx('title-container')}>
+          Error Handling
+        </div>
+      </div>
+      <div style={{ padding: '1rem' }}>
+        <Button text="Throw Error" onClick={onThrowError} />
       </div>
     </div>
   </div>

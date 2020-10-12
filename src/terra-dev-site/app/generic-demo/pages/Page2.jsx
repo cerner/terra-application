@@ -6,6 +6,7 @@ import IconModified from 'terra-icon/lib/icon/IconModified';
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
 import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
+import withPageSafeguards from '../../../../application-page/withPageSafeguards';
 
 import Page2Content from './content/_Page2Content';
 import Page3 from './Page3';
@@ -25,6 +26,7 @@ const Page2 = ({ onRequestClose }) => {
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
   const [showPopup, setShowPopup] = React.useState(false);
+  const [throwError, setThrowError] = React.useState(false);
 
   // React.useEffect(() => {
   //   if (!saveOrders) {
@@ -39,6 +41,10 @@ const Page2 = ({ onRequestClose }) => {
   //     clearTimeout(timeout);
   //   };
   // }, [saveOrders]);
+
+  if (throwError) {
+    throw new Error('Page2 threw error to test Page-level error handling');
+  }
 
   const pageActions = [{
     key: 'action-add',
@@ -69,6 +75,7 @@ const Page2 = ({ onRequestClose }) => {
     >
       <Page2Content
         onDisclosePage3={() => { setShowPage3(true); }}
+        onThrowError={() => { setThrowError(true); }}
       />
       {!isInitialized
         && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
@@ -91,4 +98,4 @@ const Page2 = ({ onRequestClose }) => {
   );
 };
 
-export default Page2;
+export default withPageSafeguards(Page2, { defaultTitleId: 'page-2.title' });

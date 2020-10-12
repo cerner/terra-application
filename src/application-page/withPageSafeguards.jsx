@@ -27,14 +27,13 @@ class PageErrorBoundary extends React.Component {
 
   componentDidUpdate() {
     if (this.state.error && !this.state.showDeferredErrorPage) {
-      // setTimeout(() => {
+      // The ErrorPage must be rendered after the immediate render due to the error being caught.
+      // This gives the Page that threw the error the opportunity to unmount prior to presenting a new one.
       this.setState({ showDeferredErrorPage: true });
-      // }, 0);
     }
   }
 
   render() {
-    debugger;
     if (this.state.showDeferredErrorPage) {
       return <ErrorPage title={this.props.title} onRequestClose={this.props.onRequestClose} error={this.state.error} />;
     }

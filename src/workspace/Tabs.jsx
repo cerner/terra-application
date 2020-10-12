@@ -71,6 +71,8 @@ const Tabs = ({
     customProps.className,
   ]);
 
+  // TODO: event emitter listener?
+
   return (
     <div
       {...customProps}

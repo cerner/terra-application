@@ -20,7 +20,7 @@ const TabPage = ({
       panelId: associatedPanelId,
       title: label
     }
-  ), [associatedPanelId, id, label]);
+  ), [associatedPanelId, id, label]); // todo: path?
 
   return (
     ReactDOM.createPortal((

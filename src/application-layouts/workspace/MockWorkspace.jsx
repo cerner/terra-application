@@ -73,13 +73,15 @@ const MockWorkspace = ({
         menuButtonRef={menuButtonRef}
         menuOnClick={() => setMenuIsOpen(true)}
       />
-      <Menu
-        isOpen={menuIsOpen}
-        targetRef={() => menuButtonRef.current}
-        onRequestClose={() => setMenuIsOpen(false)}
-      >
-        {menuOptions}
-      </Menu>
+      {menuOptions ? (
+        <Menu
+          isOpen={menuIsOpen}
+          targetRef={() => menuButtonRef.current}
+          onRequestClose={() => setMenuIsOpen(false)}
+        >
+          {menuOptions}
+        </Menu>
+      ) : null}
     </>
   );
 };

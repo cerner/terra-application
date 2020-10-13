@@ -479,6 +479,8 @@ const SecondaryNavigationLayout = ({
               {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
                 <ResizeHandle
                   onResizeStart={(registerBounds) => {
+                    workspacePanelRef.current.style.overflow = 'unset';
+
                     resizeOverlayRef.current.style.display = 'block';
                     resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
 
@@ -493,6 +495,8 @@ const SecondaryNavigationLayout = ({
                     });
                   }}
                   onResizeStop={(position) => {
+                    workspacePanelRef.current.style.removeProperty('overflow');
+
                     resizeOverlayRef.current.style.display = 'none';
                     resizeOverlayRef.current.style.backgroundColor = 'initial';
 

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added mutation observer-shim to better support inert in IE10.
+
 * Changed
   * Updated documentation for terra-application-navigation initials.
 

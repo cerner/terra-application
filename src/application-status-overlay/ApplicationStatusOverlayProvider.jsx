@@ -6,6 +6,9 @@ import StatusView from 'terra-status-view';
 import ThemeContext from 'terra-theme-context';
 import ApplicationStatusOverlayContext from './ApplicationStatusOverlayContext';
 import styles from './ApplicationStatusOverlayProvider.module.scss';
+import 'mutationobserver-shim';
+import './_contains-polyfill';
+import './_matches-polyfill';
 
 const cx = classNames.bind(styles);
 

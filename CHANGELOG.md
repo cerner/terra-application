@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.38.0 - (October 13, 2020)
+
 * Changed
   * Updated documentation for terra-application-navigation initials.
 

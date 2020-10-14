@@ -12,15 +12,20 @@ import styles from './Panel.module.scss';
 
 const cx = classNames.bind(styles);
 
+// TODO: make common
+const itemShape = PropTypes.shape({
+  title: PropTypes.string,
+  onAction: PropTypes.func,
+  icon: PropTypes.element,
+  isSelected: PropTypes.bool,
+});
+const groupShape = PropTypes.shape({
+  items: PropTypes.arrayOf(itemShape),
+});
 const propTypes = {
   children: PropTypes.node,
   toolBar: PropTypes.element,
-  actions: PropTypes.arrayOf(PropTypes.shape({
-    title: PropTypes.string,
-    onAction: PropTypes.func,
-    icon: PropTypes.element,
-    isSelected: PropTypes.bool,
-  })),
+  actions: PropTypes.arrayOf(PropTypes.oneOfType([itemShape, groupShape])),
 };
 
 const Panel = ({

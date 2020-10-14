@@ -8,7 +8,18 @@ import styles from './TabDropDown.module.scss';
 
 const cx = classNames.bind(styles);
 
+const itemShape = PropTypes.shape({
+  title: PropTypes.string,
+  onAction: PropTypes.func,
+  icon: PropTypes.element,
+  isSelected: PropTypes.bool,
+});
+const groupShape = PropTypes.shape({
+  items: PropTypes.arrayOf(itemShape),
+});
+
 const propTypes = {
+  items: PropTypes.arrayOf(PropTypes.oneOfType([itemShape, groupShape])),
   /**
    * Currently active Tabs.Pane content to be displayed.
    */

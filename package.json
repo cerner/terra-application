@@ -1,6 +1,9 @@
 {
-  "name": "terra-application",
+  "name": "@cerner/terra-application",
   "main": "lib/application-base/ApplicationBase.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "version": "1.35.0",
   "description": "A framework to support application development with Terra components",
   "engines": {

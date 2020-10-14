@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 
-import ApplicationBase from 'terra-application/lib/application-base';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import ModalManager from 'terra-application/lib/modal-manager';
-import { ThemeContext } from 'terra-application/lib/theme';
+import ApplicationBase from '@cerner/terra-application/lib/application-base';
+import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import ModalManager from '@cerner/terra-application/lib/modal-manager';
+import { ThemeContext } from '@cerner/terra-application/lib/theme';
 
 import DemoAppNavigation from './DemoAppNavigation';
 

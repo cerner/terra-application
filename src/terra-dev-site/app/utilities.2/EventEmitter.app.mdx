@@ -7,7 +7,7 @@
 EventEmitter is a singleton that is shared throughout your application. It is important to unsubscribe by removing all listeners to all events when your application is unmounted.
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 ```
 
 ## API
@@ -31,7 +31,7 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 ### `once`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 let listenCount = 0;
@@ -45,7 +45,7 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 1
 ### `on`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 let listenCount = 0;
@@ -59,7 +59,7 @@ eventEmitter.emit('event-name');  // listenCount == 2
 ### `off`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 let listenCount = 0;
@@ -73,7 +73,7 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 0
 ### `removeAllListeners`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 let listenCount = 0;
@@ -91,7 +91,7 @@ eventEmitter.emit('event-name3');  // Ignored: listenCount == 0
 ### `emit`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 let listenCount = 0;
@@ -110,7 +110,7 @@ eventEmitter.emit('event-name', 50);  // listenCount == 51
 ### `eventNames`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 const eventNames = ['event-name1', 'event-name2', 'event-name3']
@@ -125,7 +125,7 @@ eventEmitter.eventNames();  // ['event-name1', 'event-name2', 'event-name3']
 ### `listenerCount`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 
@@ -140,7 +140,7 @@ eventEmitter.listenerCount('event-name2');  // 2
 ### `listeners`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from '@cerner/terra-application/lib/utils/event-emitter';
 
 const eventEmitter = new EventEmitter();
 

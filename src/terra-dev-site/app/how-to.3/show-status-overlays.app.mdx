@@ -1,10 +1,10 @@
 # How to Show Status Overlays
 
-Status View can be rendered within the framework by rendering an [ApplicationStatusOverlay](/application/terra-application/components/application-status-overlay) component. Status Views will be rendered by the closest ancestor [ApplicationStatusOverlayProvider](/application/terra-application/components/application-status-overlay-provider). All content rendered within the responding ApplicationStatusOverlayProvider will be overlaid.
+Status View can be rendered within the framework by rendering an [ApplicationStatusOverlay](/application/cerner-terra-application/components/application-status-overlay) component. Status Views will be rendered by the closest ancestor [ApplicationStatusOverlayProvider](/application/cerner-terra-application/components/application-status-overlay-provider). All content rendered within the responding ApplicationStatusOverlayProvider will be overlaid.
 
 ```jsx
 import React, { useState } from 'react';
-import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
+import ApplicationStatusOverlay from '@cerner/terra-application/lib/application-status-overlay';
 
 const ExampleComponent = () => {
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
@@ -34,6 +34,6 @@ const ExampleComponent = () => {
 export default ExampleComponent;
 ```
 
-Any component that wants to create an status view container for its children can render its own [ApplicationStatusOverlayProvider](/application/terra-application/components/application-status-overlay-provider) to scope status view presentation to that container.
+Any component that wants to create an status view container for its children can render its own [ApplicationStatusOverlayProvider](/application/cerner-terra-application/components/application-status-overlay-provider) to scope status view presentation to that container.
 
-> Note: ApplicationStatusOverlayProviders are provided by [ApplicationBase](/application/terra-application/components/application-base), [ApplicationNavigation](/application/terra-application/components/application-navigation) , [ModalManager](/application/terra-application/components/modal-manager), and the [SlidePanelManager](/application/terra-application/components/slide-panel-manager).
+> Note: ApplicationStatusOverlayProviders are provided by [ApplicationBase](/application/cerner-terra-application/components/application-base), [ApplicationNavigation](/application/cerner-terra-application/components/application-navigation) , [ModalManager](/application/cerner-terra-application/components/modal-manager), and the [SlidePanelManager](/application/cerner-terra-application/components/slide-panel-manager).

@@ -8,7 +8,7 @@
   Terra Application
 </h1>
 
-[![NPM version](https://badgen.net/npm/v/terra-application)](https://www.npmjs.org/package/terra-application)
+[![NPM version](https://badgen.net/npm/v/terra-application)](https://www.npmjs.org/package/@cerner/terra-application)
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
 [![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/main/LICENSE)
 [![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)
@@ -24,7 +24,7 @@ A framework to support application development with Terra components.
 
 ## Getting Started
 
-* Install with [npm](https://www.npmjs.com): `npm install --save terra-application`
+* Install with [npm](https://www.npmjs.com): `npm install --save @cerner/terra-application`
 
 ## Peer Dependencies
 

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import NavigationPrompt from 'terra-application/lib/navigation-prompt';
+import ApplicationNavigation from '@cerner/terra-application/lib/application-navigation';
+import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
 
 import styles from './ApplicationNavigationExample.module.scss';
 

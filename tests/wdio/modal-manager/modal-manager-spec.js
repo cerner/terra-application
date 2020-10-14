@@ -1,7 +1,7 @@
 const selector = '#root';
 
 Terra.describeViewports('ModalManager', ['large'], () => {
-  before(() => browser.url('/#/raw/tests/terra-application/modal-manager/navigation-prompt'));
+  before(() => browser.url('/raw/tests/cerner-terra-application/modal-manager/navigation-prompt'));
 
   it('opens the modal', () => {
     browser.click('#root-component .disclose-large');
@@ -120,7 +120,7 @@ Terra.describeViewports('ModalManager', ['large'], () => {
 });
 
 Terra.describeViewports('CustomDismissCheckWorkflow', ['large'], () => {
-  before(() => browser.url('/#/raw/tests/terra-application/modal-manager/custom-dismiss-check'));
+  before(() => browser.url('/raw/tests/cerner-terra-application/modal-manager/custom-dismiss-check'));
 
   it('opens the modal', () => {
     browser.click('#root-component .disclose-large');

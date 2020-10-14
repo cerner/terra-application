@@ -2,7 +2,7 @@ import React, {
   useState, useRef, useEffect,
 } from 'react';
 
-import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
+import ApplicationStatusOverlay from '@cerner/terra-application/lib/application-status-overlay';
 
 const StatusOverlayPresenter = () => {
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);

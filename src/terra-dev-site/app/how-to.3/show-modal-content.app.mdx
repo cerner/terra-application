@@ -15,8 +15,8 @@ a ModalManager that suits your component's needs.
 
 ```jsx
 import React from 'react';
-import ApplicationBase from 'terra-application/lib/application-base';
-import ModalManager from 'terra-application/lib/modal-manager';
+import ApplicationBase from '@cerner/terra-application/lib/application-base';
+import ModalManager from '@cerner/terra-application/lib/modal-manager';
 
 import ComponentWithModal from './ComponentWithModal';
 
@@ -36,7 +36,7 @@ to communicate with the ModalManager and disclose additional content.
 
 ```jsx
 import React, { useContext } from 'react';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext } from '@cerner/terra-application/lib/disclosure-manager';
 
 import ModalContentComponent from './ModalContentComponent';
 
@@ -66,7 +66,7 @@ Components that need more control over the presentation of the modal have access
 
 ```jsx
 import React, { useContext, useRef } from 'react';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext } from '@cerner/terra-application/lib/disclosure-manager';
 
 import ModalContentComponent from './ModalContentComponent';
 

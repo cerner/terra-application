@@ -58,8 +58,8 @@ const defaultProps = {
   utilityItems: [],
 };
 
-const utilityMenuSettingsKey = 'terra-application-navigation.utility-menu.settings';
-const utilityMenuHelpKey = 'terra-application-navigation.utility-menu.help';
+const utilityMenuSettingsKey = '@cerner/terra-application-navigation.utility-menu.settings';
+const utilityMenuHelpKey = '@cerner/terra-application-navigation.utility-menu.help';
 
 const UtilityMenu = ({
   userConfig, hero, onSelectSettings, onSelectHelp, onSelectLogout, utilityItems, onSelectUtilityItem, isHeightBounded, intl,

@@ -10,7 +10,7 @@ influence its navigational workflows as necessary.
 ## Usage
 
 ```jsx
-import { NavigationPromptCheckpoint } from 'terra-application/lib/navigation-prompt';
+import { NavigationPromptCheckpoint } from '@cerner/terra-application/lib/navigation-prompt';
 ```
 
 ## Props
@@ -62,8 +62,8 @@ to match the prompt messaging provided by the components within `terra-applicati
 
 ```jsx
 import React, { useContext, useRef } from 'react';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from 'terra-application/lib/navigation-prompt';
+import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '@cerner/terra-application/lib/navigation-prompt';
 
 const ExampleComponent = () => {
   const checkpointRef = useRef();

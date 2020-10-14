@@ -3,8 +3,8 @@ import React, {
 } from 'react';
 import IconLightbulb from 'terra-icon/lib/icon/IconLightbulb';
 
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import ApplicationNavigation from '@cerner/terra-application/lib/application-navigation';
+import { DisclosureManagerContext } from '@cerner/terra-application/lib/disclosure-manager';
 
 import { ModalContent } from './ModalPresenter';
 

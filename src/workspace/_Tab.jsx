@@ -58,7 +58,6 @@ const propTypes = {
 const defaultProps = {
   isIconOnly: false,
   isSelected: false,
-  count: -1,
 };
 
 const Tab = ({

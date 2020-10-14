@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconChevronLeft from 'terra-icon/lib/icon/IconChevronLeft';
+import WorkspaceContext from './WorkspaceContext';
 import TabContainer from './_TabContainer';
 import styles from './Tabs.module.scss';
 
@@ -26,6 +27,7 @@ const Tabs = ({
   menuOnClick,
   ...customProps
 }) => {
+  const [notificationCounts, setNotificationCounts] = useState({});
   const workspacePortalsRef = useRef({});
   const workspaceLastKeyRef = useRef();
   const workspaceRef = useRef();
@@ -50,6 +52,13 @@ const Tabs = ({
     }
   }, [activeTabKey]);
 
+  const updateNotificationCount = (key, value) => {
+    if (notificationCounts[key] !== value && value >= 0) {
+      notificationCounts[key] = value;
+      setNotificationCounts(Object.assign({}, notificationCounts));
+    }
+  };
+
   const tabData = React.Children.map(children, child => {
     const tabId = `${id}-${child.props.tabKey}`;
     const panelId = `${tabId}-panel`
@@ -58,20 +67,27 @@ const Tabs = ({
       associatedPanelId: panelId,
       label: child.props.label,
       icon: child.props.icon,
-      count: child.props.count,
+      count: notificationCounts[tabId],
       isSelected: child.props.tabKey == activeTabKey,
       onSelect: onRequestActivate,
       metaData: child.props.metaData,
     };
   });
 
+  // TODO: event emitter listener?
+  const path = 'currentPath';
+  const workspaceContext = React.useMemo(() => (
+    {
+      pagePath: path,
+      updateNotificationCount,
+    }
+  ), [path]);
+
   const tabsClassNames = cx([
     'tabs',
     { 'body-fill': true },
     customProps.className,
   ]);
-
-  // TODO: event emitter listener?
 
   return (
     <div
@@ -99,30 +115,32 @@ const Tabs = ({
         <TabContainer title={title} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>
-        {React.Children.map(children, child => {
-          let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
-          if (!portalElement) {
-            portalElement = document.createElement('div');
-            portalElement.setAttribute("role", "none"); 
-            portalElement.style.position = 'relative';
-            portalElement.style.height = '100%';
-            portalElement.style.width = '100%';
-            // portalElement.id = `${id}-${child.props.tabKey}`;
-            workspacePortalsRef.current[child.props.tabKey] = {
-              element: portalElement,
-            };
-          }
+        <WorkspaceContext.Provider value={workspaceContext}>
+          {React.Children.map(children, child => {
+            let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
+            if (!portalElement) {
+              portalElement = document.createElement('div');
+              portalElement.setAttribute("role", "none"); 
+              portalElement.style.position = 'relative';
+              portalElement.style.height = '100%';
+              portalElement.style.width = '100%';
+              // portalElement.id = `${id}-${child.props.tabKey}`;
+              workspacePortalsRef.current[child.props.tabKey] = {
+                element: portalElement,
+              };
+            }
 
-          return (
-            React.cloneElement(child, {
-              key: child.props.tabKey,
-              id: `${id}-${child.props.tabKey}`,
-              associatedPanelId: `${id}-${child.props.tabKey}-panel`,
-              isActive: child.props.tabKey === activeTabKey,
-              portalElement,
-            })
-          );
-        })}
+            return (
+              React.cloneElement(child, {
+                key: child.props.tabKey,
+                id: `${id}-${child.props.tabKey}`,
+                associatedPanelId: `${id}-${child.props.tabKey}-panel`,
+                isActive: child.props.tabKey === activeTabKey,
+                portalElement,
+              })
+            );
+          })}
+        </WorkspaceContext.Provider>
       </div>
     </div>
   );

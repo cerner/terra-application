@@ -1,9 +1,13 @@
 import React, { useState } from 'react';
+import TabContext from '../../../workspace/TabContext';
+import WorkspaceContext from '../../../workspace/WorkspaceContext';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
 
-const MockContent = ({initialCount = 0, title = ''}) => {
+const MockContent = ({initialCount = 0, title = '', id}) => {
   const [waffle, setWaffle] = useState(initialCount);
   const [showAlertBanner, setShowAlertBanner] = useState(false);
+  const { tabId } = React.useContext(TabContext);
+  const { updateNotificationCount } = React.useContext(WorkspaceContext);
 
   return (
     <div>
@@ -17,6 +21,7 @@ const MockContent = ({initialCount = 0, title = ''}) => {
           onRequestClose={() => setShowAlertBanner(false)}
         />
       )}
+      <button onClick={() => updateNotificationCount(tabId, waffle)}>Update Notifications</button>
     </div>
   );
 };

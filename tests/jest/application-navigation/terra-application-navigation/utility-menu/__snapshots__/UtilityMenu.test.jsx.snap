@@ -217,7 +217,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
           />,
-          "key": "terra-application-navigation.utility-menu.settings",
+          "key": "@cerner/terra-application-navigation.utility-menu.settings",
           "text": "Terra.applicationNavigation.utilityMenu.settings",
         },
         Object {
@@ -228,7 +228,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
             viewBox="0 0 48 48"
             xmlns="http://www.w3.org/2000/svg"
           />,
-          "key": "terra-application-navigation.utility-menu.help",
+          "key": "@cerner/terra-application-navigation.utility-menu.help",
           "text": "Terra.applicationNavigation.utilityMenu.help",
         },
       ]
@@ -496,7 +496,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       />
                     }
-                    key="terra-application-navigation.utility-menu.settings"
+                    key="@cerner/terra-application-navigation.utility-menu.settings"
                     loopFocus={[Function]}
                     onSelect={[Function]}
                     parentRole="listbox"
@@ -579,7 +579,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         xmlns="http://www.w3.org/2000/svg"
                       />
                     }
-                    key="terra-application-navigation.utility-menu.help"
+                    key="@cerner/terra-application-navigation.utility-menu.help"
                     loopFocus={[Function]}
                     onSelect={[Function]}
                     parentRole="listbox"

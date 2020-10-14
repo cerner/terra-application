@@ -2,9 +2,22 @@
 
 ## Unreleased
 
+## 1.38.0 - (October 13, 2020)
+
+* Changed
+  * Updated documentation for terra-application-navigation initials.
+
+## 1.37.0 - (October 6, 2020)
+
+* Changed
+  * Removed terra-doc-template dependency.
+
+## 1.36.0 - (September 29, 2020)
+
 * Changed
   * Updated application-base to initialize `inert`.
   * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.
+  * Thrown error when i18n data fails to load
 
 ## 1.35.0 - (September 22, 2020)
 

@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.35.0",
+  "version": "1.38.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <11"
@@ -102,6 +102,7 @@
     "postversion": "node ./scripts/changelog-updater/index.js"
   },
   "dependencies": {
+    "@cerner/terra-docs": "^1.0.0",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "prop-types": "^15.5.8",
@@ -112,7 +113,6 @@
     "terra-button": "^3.42.0",
     "terra-content-container": "^3.14.0",
     "terra-disclosure-manager": "^4.27.0",
-    "terra-doc-template": "^2.2.0",
     "terra-modal-manager": "^6.20.0",
     "terra-navigation-prompt": "^1.40.0",
     "terra-notification-dialog": "^4.0.0",

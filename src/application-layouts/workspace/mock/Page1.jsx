@@ -27,7 +27,6 @@ const Page1 = () => {
         {
           key: 'item-4',
           title: 'Item 4',
-          isSelected: true,
           onAction: () => setIsReset(!isReset),
         },
         {

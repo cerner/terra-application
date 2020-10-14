@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react';
 import classNames from 'classnames/bind';
 import Popup from 'terra-popup';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
+
 
 import styles from './TabTitle.module.scss';
 
@@ -10,19 +12,23 @@ const TabTitle = ({ actions, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef();
 
-  const createList = items => {
+  const createList = (list, isRoot) => {
     return (
-      <ul className={cx('list')}>
-        {items.map((item, index) => (
-          <li
-            className={cx('item', { 'is-actionable' : item.onAction && !item.items })}
-            key={item.key}
-            onClick={item.onAction}
-          >
-            {item.items && item.items.length ? createList(item.items) : item.title}
-          </li>
-        ))}
-      </ul>
+      <>
+        {!isRoot ? <hr aria-hidden="true" />: null}
+        <ul className={cx('list')} key={list.key}>
+          {list.items.map((item, index) => (
+            <li
+              className={cx('item', { 'is-actionable' : item.onAction && !item.items })}
+              key={item.key}
+              onClick={item.onAction}
+            >
+              {!isRoot ? <span style={{ opacity: !item.isSelected ? 0 : 1, marginRight: '5px' }}><IconCheckmark /></span> : null}
+              {item.items && item.items.length ? createList(item) : item.title}
+            </li>
+          ))}
+        </ul>
+      </>
     );
   };
 
@@ -42,7 +48,7 @@ const TabTitle = ({ actions, children }) => {
               contentHeight="auto"
               contentWidth="auto"
             >
-              {createList(actions)}
+              {createList({ key: 'list-key', items: actions }, true)}
             </Popup>
           </>
         ) : null}

@@ -5,7 +5,7 @@ const REJECT_ACTION_SELECTOR = '[data-terra-notification-dialog-button="reject"]
 
 Terra.describeViewports('ApplicationNavigation', ['large'], () => {
   describe('Prompts Enabled', () => {
-    before(() => browser.url('/raw/tests/terra-application/application-navigation/application-navigation-test'));
+    before(() => browser.url('/raw/tests/cerner-terra-application/application-navigation/application-navigation-test'));
 
     it('prompts user when selecting primary navigation items', () => {
       browser.click('#pending-action-toggle-1');
@@ -66,7 +66,7 @@ Terra.describeViewports('ApplicationNavigation', ['large'], () => {
   });
 
   describe('Prompts Disabled', () => {
-    before(() => browser.url('/raw/tests/terra-application/application-navigation/application-navigation-disabled-prompts-test'));
+    before(() => browser.url('/raw/tests/cerner-terra-application/application-navigation/application-navigation-disabled-prompts-test'));
 
     it('does not prompt user when selecting primary navigation items', () => {
       browser.click('#pending-action-toggle');

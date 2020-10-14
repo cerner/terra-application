@@ -1,6 +1,6 @@
 # How To Show Loading Overlays
 
-Loading overlays can be rendered within the framework by rendering an [ApplicationLoadingOverlay](/application/terra-application/components/application-loading-overlay) component. Overlays will be rendered by the closest ancestor [ApplicationLoadingOverlayProvider](/application/terra-application/components/application-loading-overlay-provider). All content rendered within the responsding ApplicationLoadingOverlayProvider will be overlaid.
+Loading overlays can be rendered within the framework by rendering an [ApplicationLoadingOverlay](/application/cerner-terra-application/components/application-loading-overlay) component. Overlays will be rendered by the closest ancestor [ApplicationLoadingOverlayProvider](/application/cerner-terra-application/components/application-loading-overlay-provider). All content rendered within the responsding ApplicationLoadingOverlayProvider will be overlaid.
 
 ```jsx
 import React, { useState } from 'react';
@@ -31,6 +31,6 @@ const ExampleComponent = () => {
 export default ExampleComponent;
 ```
 
-Any component that wants to create an overlay container for its children can render its own [ApplicationLoadingOverlayProvider](/application/terra-application/components/application-loading-overlay-provider) to scope overlay presentation to that container.
+Any component that wants to create an overlay container for its children can render its own [ApplicationLoadingOverlayProvider](/application/cerner-terra-application/components/application-loading-overlay-provider) to scope overlay presentation to that container.
 
-> Note: ApplicationLoadingOverlayProviders are provided by [ApplicationBase](/application/terra-application/components/application-base), [ApplicationNavigation](/application/terra-application/components/application-navigation), [ModalManager](/application/terra-application/components/modal-manager) and the [SlidePanelManager](/application/terra-application/components/slide-panel-manager).
+> Note: ApplicationLoadingOverlayProviders are provided by [ApplicationBase](/application/cerner-terra-application/components/application-base), [ApplicationNavigation](/application/cerner-terra-application/components/application-navigation), [ModalManager](/application/cerner-terra-application/components/modal-manager) and the [SlidePanelManager](/application/cerner-terra-application/components/slide-panel-manager).

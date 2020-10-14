@@ -1,7 +1,7 @@
 Terra.describeViewports('ApplicationLoadingOverlay', ['large'], () => {
   describe('Loading overlay management', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-loading-overlay/loading-overlay-test');
+      browser.url('/raw/tests/cerner-terra-application/application-loading-overlay/loading-overlay-test');
       browser.moveToObject('#root', 0, 0);
     });
 

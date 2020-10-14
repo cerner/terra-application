@@ -1,7 +1,7 @@
 Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
   describe('Status View', () => {
     it('renders with all props', () => {
-      browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-all-props');
+      browser.url('/raw/tests/cerner-terra-application/application-status-overlay/status-overlay-all-props');
     });
 
     Terra.it.validatesElement('all props', { selector: '#root' });
@@ -9,7 +9,7 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
 
   describe('Status View variant', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-variant');
+      browser.url('/raw/tests/cerner-terra-application/application-status-overlay/status-overlay-variant');
     });
 
     Terra.it.validatesElement('initial', { selector: '#root' });
@@ -57,7 +57,7 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
 
   describe('Status View registration order', () => {
     before(() => {
-      browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-priority');
+      browser.url('/raw/tests/cerner-terra-application/application-status-overlay/status-overlay-priority');
     });
 
     it('renders with last registered status view', () => {

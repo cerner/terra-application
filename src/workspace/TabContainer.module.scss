@@ -40,6 +40,7 @@
     border-width: 1px;
     box-shadow: var(--terra-tabs-structural-box-shadow);
     color: var(--terra-tabs-structural-color, #007ee0);
+    display: flex;
     font-size: var(--terra-tabs-font-size, 1rem);
     line-height: var(--terra-tabs-line-height, 1.4);
     font-weight: var(--terra-tabs-font-weight, normal);

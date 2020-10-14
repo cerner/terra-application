@@ -53,7 +53,7 @@ const Tabs = ({
   }, [activeTabKey]);
 
   const updateNotificationCount = (key, value) => {
-    if (notificationCounts[key] !== value && value >= 0) {
+    if (notificationCounts[key] !== value) {
       notificationCounts[key] = value;
       setNotificationCounts(Object.assign({}, notificationCounts));
     }

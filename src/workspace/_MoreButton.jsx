@@ -10,6 +10,7 @@ import styles from './TabContainer.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  hasNotifications: PropTypes.bool,
   /**
    * Whether or not the 
    */
@@ -34,6 +35,7 @@ const MoreButton = ({
   isActive,
   onSelect,
   refCallback,
+  hasNotifications,
 }) => {
   const theme = React.useContext(ThemeContext);
   const menuToggleText = 'More Tabs'; // TODO: translate
@@ -57,7 +59,7 @@ const MoreButton = ({
       ref={refCallback}
       onClick={handleOnClick}
       onKeyDown={handleOnKeyDown}
-      className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
+      className={cx('tab-menu', { 'is-active': isActive }, { 'has-notifications': hasNotifications }, theme.className)}
       data-terra-tabs-menu
     >
       {/* <span>{menuToggleText}</span> */}

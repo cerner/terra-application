@@ -1,3 +1,7 @@
+// Themes
+@import '../clinical-lowlight-theme/ExtensionsCommon.module';
+@import '../orion-fusion-theme/ExtensionsCommon.module';
+
 /* stylelint-disable selector-class-pattern */
 :local {
   .extension-rollup {
@@ -10,7 +14,7 @@
     outline: none;
     position: relative;
 
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {    
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
         /* stylelint-disable-next-line max-nesting-depth */
         .extension-rollup-inner {
@@ -28,7 +32,7 @@
         outline-offset: var(--terra-application-application-navigation-extension-rollup-focus-outline-offset, -2px);
       }
     }
-  
+
     &:active {
       .extension-rollup-inner {
         color: var(--terra-application-application-navigation-extension-rollup-active-color, rgba(255, 255, 255, 0.5));

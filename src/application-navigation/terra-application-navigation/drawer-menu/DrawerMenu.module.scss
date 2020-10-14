@@ -1,3 +1,7 @@
+// Themes
+@import '../clinical-lowlight-theme/DrawerMenuCommon.module';
+@import '../orion-fusion-theme/DrawerMenuCommon.module';
+
 :local {
   .drawer-container {
     height: 100%;
@@ -48,10 +52,10 @@
     background-color: var(--terra-application-application-navigation-drawer-menu-list-background-color, rgba(8, 72, 114, 0.2));
     list-style: none;
     margin: 0;
-    padding: 0;  
+    padding: 0;
   }
 
-  .utility-item-list { 
+  .utility-item-list {
     padding-bottom: 0.7142857143rem;
     padding-top: 0.7142857143rem;
   }

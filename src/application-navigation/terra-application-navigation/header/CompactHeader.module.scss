@@ -1,3 +1,7 @@
+// Themes
+@import '../clinical-lowlight-theme/HeaderCommon.module';
+@import '../orion-fusion-theme/HeaderCommon.module';
+
 :local {
   .compact-header {
     align-content: center;
@@ -70,7 +74,7 @@
     &:focus {
       outline: var(--terra-application-application-navigation-compact-header-hidden-nav-item-focus-outline, 2px dashed #fff);
       outline-offset: var(--terra-application-application-navigation-compact-header-hidden-nav-item-focus-outline-offset, -0.14285rem);
-    }  
+    }
   }
 
   .menu-button {
@@ -114,7 +118,7 @@
     &::-moz-focus-inner {
       border: 0;
       padding: 0;
-    }    
+    }
   }
 
   .title-container {

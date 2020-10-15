@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import Tabs from '../../../workspace/Tabs';
 import TabPage from '../../../workspace/TabPage';
 import Page1 from './Page1';

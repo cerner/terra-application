@@ -10,7 +10,7 @@ const MockContent = ({initialCount = 0, title = '', id}) => {
   const { updateNotificationCount } = React.useContext(WorkspaceContext);
 
   return (
-    <div>
+    <div style={{ padding: '1rem' }}>
       <h1>{`${title}'s Numer of Clicks: ${waffle}`}</h1>
       <button onClick={() => setWaffle(waffle + 1)}>Click Me</button>
       <button onClick={() => setShowAlertBanner(true)}>Show Banner</button>

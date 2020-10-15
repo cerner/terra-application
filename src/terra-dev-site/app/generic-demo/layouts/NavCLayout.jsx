@@ -6,6 +6,7 @@ import useNavigationState from '../../../../navigation/useNavigationState';
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
+import Page5 from '../pages/Page5';
 
 const NavCLayout = () => {
   const [navigationState, setNavigationState] = useNavigationState(['nav-C-1', 'nav-C-2', 'nav-C-3']);
@@ -36,6 +37,11 @@ const NavCLayout = () => {
         render={() => (
           <h2>Not a Page</h2>
         )}
+      />
+      <NavigationItem
+        navigationKey="nav-C-5"
+        text="Nav C-5 iFrame Page"
+        renderPage={() => <Page5 />}
       />
     </SecondaryNavigationLayout>
   );

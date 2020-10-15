@@ -138,22 +138,40 @@ const PrimaryNavigationLayout = ({
       return;
     }
 
-    if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
+    if (contentElementRef.current.contains(pageNodeForActivePage?.element) && contentElementRef.current.getAttribute('data-active-nav-key') === activeNavigationKey) {
       return;
     }
 
     if (lastActiveNavigationKeyRef.current) {
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
-      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+      const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
+
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = elementToRemove.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
+
+      const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
+      if (hasUnsafeElements.length) {
+        elementToRemove.style.display = 'none';
+        elementToRemove.setAttribute('aria-hidden', true);
+        elementToRemove.setAttribute('inert', '');
+      } else {
+        contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+      }
     }
 
     if (pageNodeForActivePage?.element) {
-      contentElementRef.current.appendChild(pageNodeForActivePage.element);
+      if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
+        pageNodeForActivePage?.element.style.removeProperty('display');
+        pageNodeForActivePage?.element.removeAttribute('aria-hidden');
+        pageNodeForActivePage?.element.removeAttribute('inert');
+      } else {
+        contentElementRef.current.appendChild(pageNodeForActivePage.element);
+      }
 
       const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
       if (pageMainElement) {
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
+
+      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
 
       lastActiveNavigationKeyRef.current = activeNavigationKey;
 

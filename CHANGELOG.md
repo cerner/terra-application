@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated documentation for how to use `EventEmitter` properly.
+
 ## 1.38.0 - (October 13, 2020)
 
 * Changed

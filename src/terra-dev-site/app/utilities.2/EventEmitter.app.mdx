@@ -31,9 +31,8 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 ### `once`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
 
@@ -45,9 +44,8 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 1
 ### `on`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
 
@@ -59,9 +57,8 @@ eventEmitter.emit('event-name');  // listenCount == 2
 ### `off`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
 
@@ -73,9 +70,8 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 0
 ### `removeAllListeners`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
 
@@ -91,9 +87,8 @@ eventEmitter.emit('event-name3');  // Ignored: listenCount == 0
 ### `emit`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 let listenCount = 0;
 const listener = (count) => {
   if (count) {
@@ -110,9 +105,8 @@ eventEmitter.emit('event-name', 50);  // listenCount == 51
 ### `eventNames`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
-const eventEmitter = new EventEmitter();
 const eventNames = ['event-name1', 'event-name2', 'event-name3']
 
 eventEmitter.on(eventNames[0], () => {});
@@ -125,9 +119,7 @@ eventEmitter.eventNames();  // ['event-name1', 'event-name2', 'event-name3']
 ### `listenerCount`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
-
-const eventEmitter = new EventEmitter();
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
 eventEmitter.on('event-name1', () => {});
 eventEmitter.on('event-name2', () => {});
@@ -140,9 +132,7 @@ eventEmitter.listenerCount('event-name2');  // 2
 ### `listeners`
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
-
-const eventEmitter = new EventEmitter();
+import eventEmitter from 'terra-application/lib/utils/event-emitter';
 
 const listener1 = () => {};
 const listener2 = () => {};

@@ -10,7 +10,6 @@ import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureMa
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import ApplicationErrorBoundary from '../application-error-boundary';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
@@ -79,19 +78,17 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
 
   return (
     <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
-      <ApplicationErrorBoundary>
-        <ApplicationLoadingOverlayProvider>
-          <NavigationPromptCheckpoint
-            ref={promptCheckpointRef}
-          >
-            <ContentContainer header={<NotificationBanners />} fill>
-              <NotificationBannerProvider>
-                {children}
-              </NotificationBannerProvider>
-            </ContentContainer>
-          </NavigationPromptCheckpoint>
-        </ApplicationLoadingOverlayProvider>
-      </ApplicationErrorBoundary>
+      <ApplicationLoadingOverlayProvider>
+        <NavigationPromptCheckpoint
+          ref={promptCheckpointRef}
+        >
+          <ContentContainer header={<NotificationBanners />} fill>
+            <NotificationBannerProvider>
+              {children}
+            </NotificationBannerProvider>
+          </ContentContainer>
+        </NavigationPromptCheckpoint>
+      </ApplicationLoadingOverlayProvider>
     </DisclosureManagerContext.Provider>
   );
 });

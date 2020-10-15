@@ -6,7 +6,6 @@ import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { KEY_TAB } from 'keycode-js';
 
 import { ApplicationIntlContext } from '../application-intl';
-import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -104,26 +103,24 @@ const ApplicationPage = ({
               ref={navigationPromptCheckpointRef}
             >
               <NotificationBannerProvider>
-                <ApplicationErrorBoundary>
-                  <ApplicationLoadingOverlayProvider>
-                    <ApplicationStatusOverlayProvider>
-                      <div
-                        data-page-overflow-container
-                        tabIndex="0"
-                        className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
-                      >
-                        <div className={cx('width-normalizer')}>
-                          <VisuallyHiddenText
-                            id={pageTitleId}
-                            aria-hidden
-                            text={title}
-                          />
-                          {children}
-                        </div>
+                <ApplicationLoadingOverlayProvider>
+                  <ApplicationStatusOverlayProvider>
+                    <div
+                      data-page-overflow-container
+                      tabIndex="0"
+                      className={cx('overflow-content', 'page-background', { 'show-focus': showOverflowFocus })}
+                    >
+                      <div className={cx('width-normalizer')}>
+                        <VisuallyHiddenText
+                          id={pageTitleId}
+                          aria-hidden
+                          text={title}
+                        />
+                        {children}
                       </div>
-                    </ApplicationStatusOverlayProvider>
-                  </ApplicationLoadingOverlayProvider>
-                </ApplicationErrorBoundary>
+                    </div>
+                  </ApplicationStatusOverlayProvider>
+                </ApplicationLoadingOverlayProvider>
               </NotificationBannerProvider>
             </NavigationPromptCheckpoint>
           </PagePortalContext.Provider>

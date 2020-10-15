@@ -10,9 +10,7 @@ const propTypes = {
    * by these components during their render lifecycle will be caught by the ApplicationErrorBoundary.
    */
   children: PropTypes.node,
-
-  renderErrorView: PropTypes.func,
-
+  errorViewActions: PropTypes.array,
   /**
    * @private
    * Intl object for translations.
@@ -35,67 +33,23 @@ class ApplicationErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
 
-    this.resetError = () => {
-      this.errorRef.current = undefined;
-      if (this.state.error) {
-        this.setState({ error: undefined });
-      }
-    };
-
-    this.errorRef = React.createRef();
-
     this.state = { error: undefined };
   }
 
   static getDerivedStateFromError(error) {
-    /**
-     * When an exception occurs while rendering children, getDerivedStateFromError gets executed. The error
-     * is returned here and stored within the ApplicationErrorBoundary's state, triggering an update.
-     */
     return { error };
   }
 
-  componentDidMount() {
-    /**
-     * After mounting (and each subsequent update), the error state within the ApplicationErrorBoundary
-     * is reset.
-     *
-     * If the ApplicationErrorBoundary was updated due to a caught exception, the componentDidCatch method will
-     * execute and the error will be stored in the errorRef. Otherwise, resetting the error state will trigger another update that
-     * will  result in the children being rendered (if they were not already successfully rendered).
-     */
-    this.resetError();
-  }
-
-  componentDidUpdate() {
-    this.resetError();
-  }
-
   componentDidCatch(error) {
-    /**
-     * If the ApplicationErrorBoundary was updated due to a caught exception, this lifecycle method will be
-     * executed. componentDidCatch executes after componentDidMount/componentDidUpdate, so this is executing
-     * after the error state has been reset.
-     *
-     * The error that was caught is stored in a ref and the error within state is cleared. This causes
-     * the ApplicationErrorBoundary to update again to ensure that the StatusView remains presented until the
-     * next update occurs.
-     */
     logger.error(error);
-    this.errorRef.current = error;
-    this.setState({ error: undefined });
   }
 
   render() {
-    const { children, renderErrorView, intl } = this.props;
-    const activeError = this.state.error || this.errorRef.current;
+    const { children, errorViewActions, intl } = this.props;
+    const activeError = this.state.error;
 
     if (activeError) {
       const errorDetails = activeError.message.toString();
-
-      if (renderErrorView) {
-        return renderErrorView(errorDetails);
-      }
 
       const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
       return (
@@ -103,6 +57,7 @@ class ApplicationErrorBoundary extends React.Component {
           variant="error"
           message={errorText}
           role="alert"
+          buttonAttrs={errorViewActions}
         />
       );
     }

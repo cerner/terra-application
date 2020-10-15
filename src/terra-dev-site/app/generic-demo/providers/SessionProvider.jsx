@@ -4,14 +4,20 @@ import Button from 'terra-button';
 // import styles from './SessionProvider.module.scss';
 
 import PrimaryNavigationLayout from '../../../../application-layouts/PrimaryNavigationLayout';
+import SessionUserContext from '../../../../session/SessionUserContext';
+import SessionActionsContext from '../../../../session/SessionActionsContext';
+import ApplicationErrorBoundary from '../../../../application-error-boundary';
 
 // const cx = classNames.bind(styles);
 
 const propTypes = {};
 
-const userConfig = {
-  name: 'Demo User',
-  initials: 'DU',
+const userContextValue = {
+  username: 'demouser',
+  firstName: 'Demo',
+  lastName: 'User',
+  features: {},
+  capabilities: {},
 };
 
 const SessionContext = React.createContext();
@@ -25,7 +31,7 @@ const SessionProvider = ({ children }) => {
     isLocked: false,
   });
 
-  const sessionContextValue = React.useMemo(() => ({
+  const sessionActionsContextValue = React.useMemo(() => ({
     logOut: () => { setState({ isLoggedIn: false, isLoggedOut: true, isLocked: false }); },
     lock: () => { setState({ isLoggedIn: false, isLoggedOut: false, isLocked: true }); },
   }), []);
@@ -62,9 +68,20 @@ const SessionProvider = ({ children }) => {
 
   if (state.isLoggedIn) {
     return (
-      <SessionContext.Provider value={sessionContextValue}>
-        {children}
-      </SessionContext.Provider>
+      <SessionUserContext.Provider value={userContextValue}>
+        <SessionActionsContext.Provider value={sessionActionsContextValue}>
+          <ApplicationErrorBoundary errorViewActions={[{
+            text: 'Reload',
+            onClick: () => { window.location.reload(); },
+          }, {
+            text: 'Logout',
+            onClick: () => { sessionActionsContextValue.logOut(); },
+          }]}
+          >
+            {children}
+          </ApplicationErrorBoundary>
+        </SessionActionsContext.Provider>
+      </SessionUserContext.Provider>
     );
   }
 

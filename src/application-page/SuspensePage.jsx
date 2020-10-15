@@ -1,8 +1,6 @@
 import React, { Suspense } from 'react';
 
 import ApplicationLoadingOverlay from '../application-loading-overlay';
-import ApplicationPage from './ApplicationPage';
-import withPageSafeguards from './withPageSafeguards';
 
 // const SuspensePageFallback = ({ title, onRequestClose }) => (
 //   <ApplicationPage title={title} onRequestClose={onRequestClose}>
@@ -16,4 +14,4 @@ const SuspensePage = (props) => (
   </Suspense>
 );
 
-export default withPageSafeguards(SuspensePage);
+export default SuspensePage;

@@ -67,7 +67,7 @@ const ApplicationContainer = ({
         <LayerContainer>
           {!hideSkipToLinks && <SkipToLinks />}
           <SkipToLinksProvider>
-            <ApplicationErrorBoundary renderErrorView={(errorDetails) => <ApplicationContainerErrorView errorDetails={errorDetails} />}>
+            <ApplicationErrorBoundary errorViewActions={[{ text: 'Reload', onClick: () => { window.location.reload(); } }]}>
               <NavigationRegistrationProvider>
                 <ModalManager>
                   {children}

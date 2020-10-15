@@ -6,7 +6,6 @@ import IconModified from 'terra-icon/lib/icon/IconModified';
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
 import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
-import withPageSafeguards from '../../../../application-page/withPageSafeguards';
 
 import Page2Content from './content/_Page2Content';
 import Page3 from './Page3';
@@ -98,4 +97,4 @@ const Page2 = ({ onRequestClose }) => {
   );
 };
 
-export default withPageSafeguards(Page2, { defaultTitleId: 'page-2.title' });
+export default Page2;

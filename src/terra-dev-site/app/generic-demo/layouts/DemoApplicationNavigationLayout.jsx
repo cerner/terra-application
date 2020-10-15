@@ -6,9 +6,11 @@ import ApplicationModal from '../../../../application-modal/ApplicationModal';
 import PrimaryNavigationLayout, { NavigationItem } from '../../../../application-layouts/PrimaryNavigationLayout';
 import ApplicationConceptBannerProvider from '../../../../application-container/ApplicationConceptBannerProvider';
 import useNavigationState from '../../../../navigation/useNavigationState';
+import SessionActionsContext from '../../../../session/SessionActionsContext';
+import SessionUserContext from '../../../../session/SessionUserContext';
+
 import ModalManager from '../../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
-import { SessionContext } from '../providers/SessionProvider';
 
 import Page1 from '../pages/Page1';
 import Page4 from '../pages/Page4';
@@ -18,14 +20,11 @@ import NavDLayout from './NavDLayout';
 
 import ConceptBanner from '../shared/ConceptBanner';
 
-const userConfig = {
-  name: 'Demo User',
-  initials: 'DU',
-};
-
 const DemoApplicationNavigationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
-  const sessionContext = React.useContext(SessionContext);
+
+  const sessionUser = React.useContext(SessionUserContext);
+  const sessionActions = React.useContext(SessionActionsContext);
 
   const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D', 'nav-E', 'nav-F']);
   const [showSearchModal, setShowSearchModal] = React.useState(false);
@@ -95,7 +94,10 @@ const DemoApplicationNavigationLayout = () => {
         <ModalManager>
           <PrimaryNavigationLayout
             titleConfig={{ title: 'Demo Application' }}
-            userConfig={userConfig}
+            userConfig={{
+              name: `${sessionUser.firstName} ${sessionUser.lastName}`,
+              initials: `${sessionUser.firstName[0]?.toUpperCase()}${sessionUser.lastName[0]?.toUpperCase()}`,
+            }}
             extensionItems={[{
               key: 'search',
               icon: <IconSearch />,
@@ -112,11 +114,11 @@ const DemoApplicationNavigationLayout = () => {
             }]}
             onSelectUtilityItem={(key) => {
               if (key === 'lock') {
-                sessionContext.lock();
+                sessionActions.lock();
               }
             }}
             onSelectLogout={() => {
-              sessionContext.logOut();
+              sessionActions.logOut();
             }}
             onSelectSettings={() => {}}
             onSelectHelp={() => {}}

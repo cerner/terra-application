@@ -11,7 +11,6 @@ import Scroll from 'terra-scroll';
 
 import ModalHeader from './_ModalHeader';
 import styles from './ModalContent.module.scss';
-import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
 import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -120,11 +119,9 @@ const ModalContent = (props) => {
       >
         <NotificationBannerProvider>
           <ApplicationLoadingOverlayProvider>
-            <ApplicationErrorBoundary>
-              <Scroll>
-                {children}
-              </Scroll>
-            </ApplicationErrorBoundary>
+            <Scroll>
+              {children}
+            </Scroll>
           </ApplicationLoadingOverlayProvider>
         </NotificationBannerProvider>
       </ContentContainer>

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
@@ -60,11 +59,9 @@ const Panel = ({
         aria-expanded="true"
       >
         <NotificationBannerProvider>
-          <ApplicationErrorBoundary>
-            <ApplicationLoadingOverlayProvider>
-              {children}
-            </ApplicationLoadingOverlayProvider>
-          </ApplicationErrorBoundary>
+          <ApplicationLoadingOverlayProvider>
+            {children}
+          </ApplicationLoadingOverlayProvider>
         </NotificationBannerProvider>
       </div>
     </div>

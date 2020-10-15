@@ -1,11 +1,15 @@
 @import '../../breakpoints/media-queries';
 
+// Themes
+@import './clinical-lowlight-theme/ApplicationNavigation.module';
+@import './orion-fusion-theme/ApplicationNavigation.module';
+
 @keyframes pulse {
   0%,
   100% {
     transform: scale(1);
   }
-  
+
   50% {
     transform: scale(1.2);
   }
@@ -31,7 +35,7 @@
     top: 0;
     width: var(--terra-application-application-navigation-drawer-default-width, calc(100% - 3.571rem));
     z-index: 0;
-    
+
     @include terra-mq-small-up {
       width: var(--terra-application-application-navigation-drawer-medium-width, 20rem);
     }
@@ -63,7 +67,7 @@
 
     @include terra-mq-small-up {
       transform: translate3d(20rem, 0, 0);
-    } 
+    }
   }
 
   [dir=rtl] .content-layout.drawer-menu-is-open {
@@ -71,7 +75,7 @@
 
     @include terra-mq-small-up {
       transform: translate3d(-20rem, 0, 0);
-    } 
+    }
   }
 
   .main-container {

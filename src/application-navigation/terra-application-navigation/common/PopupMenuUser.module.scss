@@ -1,3 +1,7 @@
+// Themes
+@import '../clinical-lowlight-theme/PopupCommon.module';
+@import '../orion-fusion-theme/PopupCommon.module';
+
 :local {
   .utility-user-layout {
     align-items: top;
@@ -10,7 +14,7 @@
       flex: 0 0 auto;
       margin-right: 0.7142857143rem;
     }
-  
+
     .info-container {
       display: flex;
       flex: 1 1 auto;
@@ -18,7 +22,7 @@
       justify-content: center;
       width: 100%;
     }
-  
+
     .name {
       color: var(--terra-application-application-navigation-user-layout-name-color, #383f42);
       font-size: 1.143rem;
@@ -28,7 +32,7 @@
       word-break: break-word;
       word-wrap: break-word;
     }
-  
+
     .detail {
       color: var(--terra-application-application-navigation-user-layout-detail-color, rgba(28, 31, 33, 0.65));
       font-size: 1rem;
@@ -37,6 +41,6 @@
       white-space: normal;
       word-break: break-word;
       word-wrap: break-word;
-    }  
+    }
   }
 }

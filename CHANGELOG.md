@@ -4,6 +4,8 @@
 
 * Added
   * Added mutation observer-shim to better support inert in IE10.
+  
+## 1.38.0 - (October 13, 2020)
 
 * Changed
   * Updated documentation for terra-application-navigation initials.

@@ -21,9 +21,12 @@ const propTypes = {
    * ApplicationLoadingOverlayProvider.
    */
   scrollRefCallback: PropTypes.func,
+  onStateChange: PropTypes.func,
 };
 
-const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...customProps }) => {
+const ApplicationLoadingOverlayProvider = ({
+  children, scrollRefCallback, onStateChange, ...customProps
+}) => {
   const [registeredLoadingOverlays, setRegisteredLoadingOverlays] = React.useState({});
 
   const contextValue = useMemo(() => ({
@@ -47,6 +50,12 @@ const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...cus
 
   const registeredOverlayKeys = Object.keys(registeredLoadingOverlays);
   const registeredBackgroundStyles = registeredOverlayKeys.map(key => (registeredLoadingOverlays[key] && registeredLoadingOverlays[key].backgroundStyle));
+
+  React.useLayoutEffect(() => {
+    if (onStateChange) {
+      onStateChange(registeredOverlayKeys.length > 0);
+    }
+  }, [onStateChange, registeredOverlayKeys]);
 
   /**
    * If multiple styles of overlay are requested, the strongest requested style is used.

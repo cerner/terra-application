@@ -29,6 +29,7 @@ const ApplicationPage = ({
 
   const [showOverflowFocus, setShowOverflowFocus] = React.useState(false);
   const [isVisible, setIsVisible] = React.useState(true);
+  const [hasLoadingOverlay, setHasLoadingOverlay] = React.useState(false);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
@@ -93,6 +94,7 @@ const ApplicationPage = ({
             title={title}
             actions={actions}
             menu={menu}
+            hasLoadingOverlay={hasLoadingOverlay}
           />
           {toolbar}
           <NotificationBanners />
@@ -103,7 +105,7 @@ const ApplicationPage = ({
               ref={navigationPromptCheckpointRef}
             >
               <NotificationBannerProvider>
-                <ApplicationLoadingOverlayProvider>
+                <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setHasLoadingOverlay(loadingOverlayIsPresented); }}>
                   <ApplicationStatusOverlayProvider>
                     <div
                       data-page-overflow-container

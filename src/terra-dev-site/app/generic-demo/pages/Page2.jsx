@@ -26,7 +26,7 @@ const Page2 = ({ onRequestClose }) => {
   const [showPrintModal, setShowPrintModal] = React.useState(false);
   const [showPopup, setShowPopup] = React.useState(false);
   const [throwError, setThrowError] = React.useState(false);
-
+  const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
   // React.useEffect(() => {
   //   if (!saveOrders) {
   //     return undefined;
@@ -75,8 +75,9 @@ const Page2 = ({ onRequestClose }) => {
       <Page2Content
         onDisclosePage3={() => { setShowPage3(true); }}
         onThrowError={() => { setThrowError(true); }}
+        setShowLoadingOverlay={setShowLoadingOverlay}
       />
-      {!isInitialized
+      {(!isInitialized || showLoadingOverlay)
         && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       {showPage3
         && <Page3 onRequestClose={() => { setShowPage3(false); }} />}

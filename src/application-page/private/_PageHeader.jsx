@@ -16,7 +16,7 @@ const collapsingActionsBreakpoints = ['tiny', 'small', 'medium'];
 const propTypes = {};
 
 const PageHeader = ({
-  actions, menu, onBack, title,
+  actions, menu, onBack, title, hasLoadingOverlay,
 }) => {
   const [showMenu, setShowMenu] = React.useState(false);
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -132,7 +132,7 @@ const PageHeader = ({
             text={action.text}
             variant={ButtonVariants.UTILITY}
             onClick={(event) => { event.preventDefault(); action.onSelect(); }}
-            isDisabled={action.isDisabled}
+            isDisabled={hasLoadingOverlay || action.isDisabled}
           />
         ))}
         {menu || (renderActionsInMenu && actions) ? (
@@ -152,6 +152,7 @@ const PageHeader = ({
             text="More Actions"
             variant={ButtonVariants.UTILITY}
             onClick={(event) => { event.preventDefault(); setShowMenu(true); }}
+            isDisabled={hasLoadingOverlay}
           />
         ) : undefined}
         {showMenu && buildMenu()}

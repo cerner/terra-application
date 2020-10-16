@@ -9,7 +9,7 @@ import styles from '../common-page-styles.module.scss';
 
 const cx = classNames.bind(styles);
 
-const Page2Content = ({ onDisclosePage3, onThrowError }) => (
+const Page2Content = ({ onDisclosePage3, onThrowError, setShowLoadingOverlay }) => (
   <div style={{ padding: '1rem' }}>
     <div className={cx('card')}>
       <div className={cx('card-header')}>
@@ -49,6 +49,22 @@ const Page2Content = ({ onDisclosePage3, onThrowError }) => (
       </div>
       <div style={{ padding: '1rem' }}>
         <Button text="Throw Error" onClick={onThrowError} />
+      </div>
+    </div>
+    <div className={cx('card')}>
+      <div className={cx('card-header')}>
+        <div className={cx('title-container')}>
+          Loading Overlay
+        </div>
+      </div>
+      <div style={{ padding: '1rem' }}>
+        <Button
+          text="Show Loading Overlay"
+          onClick={() => {
+            setShowLoadingOverlay(true);
+            setTimeout(() => { setShowLoadingOverlay(false); }, 4000);
+          }}
+        />
       </div>
     </div>
   </div>

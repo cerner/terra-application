@@ -44,6 +44,8 @@ const SessionProvider = ({ children }) => {
         <main style={style}>
           <h1>Logged Out</h1>
           <p>You have been logged out.</p>
+          <br />
+          <Button text="Reload" onClick={() => { window.location.reload(); }} />
         </main>
       </PrimaryNavigationLayout>
     );
@@ -53,7 +55,10 @@ const SessionProvider = ({ children }) => {
     return (
       <PrimaryNavigationLayout
         titleConfig={{ title: 'Demo Application' }}
-        userConfig={userConfig}
+        userConfig={{
+          name: `${userContextValue.firstName} ${userContextValue.lastName}`,
+          initials: `${userContextValue.firstName[0]?.toUpperCase()}${userContextValue.lastName[0]?.toUpperCase()}`,
+        }}
         onSelectLogout={() => { setState({ isLoggedIn: false, isLocked: false, isLoggedOut: true }); }}
       >
         <main style={style}>

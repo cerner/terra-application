@@ -2,20 +2,14 @@
   .drop-down {
     background-color: #fff;
     height: 1px;
+    left: 0;
     margin: -1px;
     opacity: 0;
     overflow: hidden;
     padding: 0;
     position: absolute;
-    right: 0;
     top: 2.643rem;
-    // width: 1px;
     z-index: 10;
-
-    > * {
-      right: 0;
-      position: absolute !important;
-    }
   }
 
   .is-open {
@@ -28,10 +22,5 @@
     -webkit-overflow-scrolling: touch;
     max-height: calc(100% - 2.643rem);
     max-width: 100%;
-    // width: auto;
-
-    > * {
-      position: static !important;
-    }
   }
 }

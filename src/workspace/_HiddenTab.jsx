@@ -121,7 +121,6 @@ const Tab = ({
       aria-controls={associatedPanelId}
       role="tab"
       className={paneClassNames}
-      title={label}
     >
       {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
       {icon ? <span className={cx('icon')}>{icon}</span> : null}

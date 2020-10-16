@@ -42,7 +42,7 @@ const TempImplement = ({
       <TabPage
         tabKey="page-2"
         // label={IntlProvider.getString(MyTabPage.titleKey)}
-        label="Page 222222222222222222222"
+        label="Page 2222222"
         metaData={{ key: 'page-2' }}
         render={() => <Page2 />}
       />

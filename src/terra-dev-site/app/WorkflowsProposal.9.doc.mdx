@@ -503,7 +503,7 @@ TODO 10/08
     * Do we want to offer first-class "persist this" APIs so that individual items can be forced to remain in the DOM regardless of content? Likewise, do
       we offer a first-class "portal this" API to force elements to be portaled, regardless of content?
 
-* F6/Shift+F6 accessibility
+* (X) F6/Shift+F6 accessibility
   * https://www.w3.org/TR/wai-aria-practices-1.1/#keyboard-interaction-24
   * Might stomp on browser shortcuts: https://www.chromium.org/user-experience/keyboard-access
   * Switch between skip-to regions
@@ -516,12 +516,9 @@ TODO 10/08
 * BlockingOverlay styles
 * PageHeader actions final API
 * "Can Navigate"/"Is Modal Open" API (perhaps scope out)
-<!-- * Page error boundary/suspense implementation
-  * SuspensePage - show loading overlay, disable buttons automatically during overlay presentation, callbacks when suspense fails
-  * withPageErrorBoundary - HOC to wrap Page implementations with Page-presenting fallback
-  * Page prop callback on interior error caught -->
-* SessionContext
+* Page disable actions when loading overlay is active
+* (X) SessionContext
   * UserContext
   * SessionActionsContext
-* Discuss purpose and placement of Error Boundaries within the framework in general
+* (X) Discuss purpose and placement of Error Boundaries within the framework in general
   * Seems like a single error boundary is prudent

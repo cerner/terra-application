@@ -412,6 +412,62 @@ const SecondaryNavigationLayout = ({
               {renderChildPages(children)}
             </PageActionsContext.Provider>
           </div>
+          {enableWorkspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
+            ? (
+              <div style={{
+                flex: '0 0 0', position: 'relative', height: '100%', width: '0px', zIndex: '3',
+              }}
+              >
+                <ResizeHandle
+                  onResizeStart={(registerBounds) => {
+                    resizeOverlayRef.current.style.display = 'block';
+                    resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+
+                    workspaceResizeBoundsRef.current = {
+                      range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
+                      currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
+                    };
+
+                    registerBounds({
+                      range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
+                      currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
+                    });
+                  }}
+                  onResizeStop={(position) => {
+                    resizeOverlayRef.current.style.display = 'none';
+                    resizeOverlayRef.current.style.backgroundColor = 'initial';
+
+                    const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
+                    const scale = (newWidth - 320) / workspaceResizeBoundsRef.current.range;
+
+                    userSelectedTypeRef.current = undefined;
+
+                    if (scale >= 1) {
+                      userSelectedScaleRef.current = 1.0;
+
+                      setWorkspaceSize({
+                        scale: 1.0,
+                        type: undefined,
+                      });
+                    } else if (scale < 0) {
+                      userSelectedScaleRef.current = 0;
+
+                      setWorkspaceSize({
+                        scale: 0,
+                        type: undefined,
+                      });
+                    } else {
+                      userSelectedScaleRef.current = scale;
+
+                      setWorkspaceSize({
+                        scale,
+                        type: undefined,
+                      });
+                    }
+                  }}
+                />
+              </div>
+            ) : null}
           {enableWorkspace && (
             <div
               ref={workspacePanelRef}
@@ -476,60 +532,6 @@ const SecondaryNavigationLayout = ({
                   } : null}
                 />
               </div>
-              {activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous' ? (
-                <ResizeHandle
-                  onResizeStart={(registerBounds) => {
-                    workspacePanelRef.current.style.overflow = 'unset';
-
-                    resizeOverlayRef.current.style.display = 'block';
-                    resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
-
-                    workspaceResizeBoundsRef.current = {
-                      range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
-                      currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
-                    };
-
-                    registerBounds({
-                      range: sideNavBodyRef.current.getBoundingClientRect().width - 320 - 320,
-                      currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
-                    });
-                  }}
-                  onResizeStop={(position) => {
-                    workspacePanelRef.current.style.removeProperty('overflow');
-
-                    resizeOverlayRef.current.style.display = 'none';
-                    resizeOverlayRef.current.style.backgroundColor = 'initial';
-
-                    const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
-                    const scale = (newWidth - 320) / workspaceResizeBoundsRef.current.range;
-
-                    userSelectedTypeRef.current = undefined;
-
-                    if (scale >= 1) {
-                      userSelectedScaleRef.current = 1.0;
-
-                      setWorkspaceSize({
-                        scale: 1.0,
-                        type: undefined,
-                      });
-                    } else if (scale < 0) {
-                      userSelectedScaleRef.current = 0;
-
-                      setWorkspaceSize({
-                        scale: 0,
-                        type: undefined,
-                      });
-                    } else {
-                      userSelectedScaleRef.current = scale;
-
-                      setWorkspaceSize({
-                        scale,
-                        type: undefined,
-                      });
-                    }
-                  }}
-                />
-              ) : null}
             </div>
           )}
           {workspaceIsVisible && hasOverlayWorkspace ? (

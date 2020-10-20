@@ -35,7 +35,7 @@ const userConfigPropType = PropTypes.shape({
   /**
    * User initials to be displayed within the avatar if no image is present.
    */
-  initials: PropTypes.string,
+  initials: PropTypes.string.isRequired,
   /**
    * Src to provide to the avatar component.
    */

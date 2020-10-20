@@ -192,6 +192,7 @@ const Header = ({
 
   return (
     <header role="banner" className={cx('header')}>
+
       <div className={cx('title-container')}>
         {renderTitle()}
       </div>

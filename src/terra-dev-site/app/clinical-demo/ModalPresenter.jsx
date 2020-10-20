@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import Scroll from 'terra-scroll';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
-import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
+import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
+import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
+import ApplicationStatusOverlay from '@cerner/terra-application/lib/application-status-overlay';
+import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '@cerner/terra-application/lib/disclosure-manager';
 
 import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';

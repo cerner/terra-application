@@ -13,8 +13,8 @@ import { ApplicationIntlProvider } from '../application-intl';
 
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
+
 import './private/initializeInert';
-import './private/inertStyles.scss';
 
 const browserLocale = getBrowserLocale();
 
@@ -33,27 +33,13 @@ const propTypes = {
    */
   locale: PropTypes.string,
   /**
-   * Custom translations for the current locale.
-   */
-  customTranslatedMessages: (props, propName, componentName) => {
-    if (!props[propName]) {
-      return null;
-    }
-
-    if (Object.keys(props[propName]).length !== 0 && props.locale === undefined) {
-      return new Error(`Missing locale prop for ${propName} in ${componentName} props`);
-    }
-
-    return null;
-  },
-  /**
    * The name of the theme to apply to the application using terra-theme-provider.
    */
   themeName: PropTypes.string,
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, themeName, children,
+  locale, themeName, children,
 }) => {
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
@@ -68,10 +54,7 @@ const ApplicationBase = ({
       themeName={themeName}
     >
       <ThemeContextProvider theme={theme}>
-        <Base
-          customMessages={customTranslatedMessages}
-          locale={localeOverride || locale || browserLocale}
-        >
+        <Base locale={localeOverride || locale || browserLocale}>
           <ApplicationIntlProvider>
             <ActiveBreakpointProvider>
               {children}

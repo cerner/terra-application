@@ -1,3 +1,7 @@
+// Themes
+@import '../clinical-lowlight-theme/PopupCommon.module';
+@import '../orion-fusion-theme/PopupCommon.module';
+
 :local {
   .footer {
     flex: 0 0 auto;
@@ -9,7 +13,7 @@
   }
 
   .content {
-    background-color: var(--terra-application-navigation-popup-content-background-color, #fff);
+    background-color: var(--terra-application-application-navigation-popup-content-background-color, #fff);
   }
 
   .utility-list {
@@ -20,7 +24,7 @@
     width: 100%;
 
     > * {
-      border-bottom: var(--terra-application-navigation-popup-list-child-border-bottom, 1px solid #dedfe0);
+      border-bottom: var(--terra-application-application-navigation-popup-list-child-border-bottom, 1px solid #dedfe0);
 
       &:last-of-type {
         border-bottom: 0;

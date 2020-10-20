@@ -1,12 +1,13 @@
 import React, {
-  useEffect, useLayoutEffect, useState, useRef, useCallback,
+  useEffect, useLayoutEffect, useState, useRef,
 } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNamesBind from 'classnames/bind';
 import Overlay from 'terra-overlay';
 import FocusTrap from 'focus-trap-react';
 import Popup from 'terra-popup';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
+import ThemeContext from 'terra-theme-context';
+
 import { ActiveBreakpointContext } from '../../breakpoints';
 
 import Header from './header/_Header';
@@ -20,7 +21,7 @@ import {
 
 import styles from './ApplicationNavigation.module.scss';
 
-const cx = classNames.bind(styles);
+const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   /**
@@ -266,9 +267,10 @@ const ApplicationNavigation = ({
         onSelectExtensionItem={onSelectExtensionItem}
         navigationItems={navigationItems}
         onSelectMenuButton={() => updateDrawerIsOpen(true)}
-        // onSelectSkipToContent={focusMainContentCallback}
+        onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
-        isDrawerMenuOpen={drawerMenuIsOpen}
+        onSelectMenuButton={() => updateDrawerIsOpen(true)}
+        // onSelectSkipToContent={focusMainContentCallback}
         utilityItems={utilityItems}
         activeNavigationItemKey={activeNavigationItemKey}
         userConfig={userConfig}
@@ -392,25 +394,15 @@ const ApplicationNavigation = ({
     drawerMenuRef.current.removeAttribute('style');
   }
 
-  let hiddenMainTitle;
-  if (navigationItems && activeNavigationItemKey) {
-    hiddenMainTitle = (
-      <VisuallyHiddenText
-        id="main-inner-title"
-        aria-hidden
-        text={navigationItems.filter((item => item.key === activeNavigationItemKey))[0].text}
-      />
-    );
-  }
-
   const handleRequestClose = (event) => {
     event.preventDefault();
     event.stopPropagation();
     updateDrawerIsOpen(false);
   };
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <div className={cx('application-navigation')}>
+    <div className={cx('application-navigation', theme.className)}>
       <div
         ref={drawerMenuRef}
         className={cx('drawer-menu-container')}

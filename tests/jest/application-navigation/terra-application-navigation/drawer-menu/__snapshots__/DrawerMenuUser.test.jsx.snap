@@ -1,0 +1,124 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DrawerMenuUser should render default element 1`] = `
+<div
+  className="small-user-layout"
+>
+  <div
+    className="avatar-container"
+  >
+    <div
+      className="avatar-outline"
+    />
+    <div
+      className="avatar-inner"
+    >
+      <Avatar
+        alt="user-name"
+        color="auto"
+        image="user-src"
+        initials="user-initials"
+        isAriaHidden={false}
+        isDeceased={false}
+      />
+    </div>
+  </div>
+  <div
+    className="info-container"
+  >
+    <div
+      aria-hidden={true}
+      className="name"
+    >
+      user-name
+    </div>
+    <div
+      className="detail"
+    >
+      user-detail
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DrawerMenuUser should render with large variant 1`] = `
+<div
+  className="large-user-layout"
+>
+  <div
+    className="avatar-container"
+  >
+    <div
+      className="avatar-outline"
+    />
+    <div
+      className="avatar-inner"
+    >
+      <Avatar
+        alt="user-name"
+        color="auto"
+        image="user-src"
+        initials="user-initials"
+        isAriaHidden={false}
+        isDeceased={false}
+      />
+    </div>
+  </div>
+  <div
+    className="info-container"
+  >
+    <div
+      aria-hidden={true}
+      className="name"
+    >
+      user-name
+    </div>
+    <div
+      className="detail"
+    >
+      user-detail
+    </div>
+  </div>
+</div>
+`;
+
+exports[`DrawerMenuUser should render with small variant 1`] = `
+<div
+  className="small-user-layout"
+>
+  <div
+    className="avatar-container"
+  >
+    <div
+      className="avatar-outline"
+    />
+    <div
+      className="avatar-inner"
+    >
+      <Avatar
+        alt="user-name"
+        color="auto"
+        image="user-src"
+        initials="user-initials"
+        isAriaHidden={false}
+        isDeceased={false}
+      />
+    </div>
+  </div>
+  <div
+    className="info-container"
+  >
+    <div
+      aria-hidden={true}
+      className="name"
+    >
+      user-name
+    </div>
+    <div
+      className="detail"
+    >
+      user-detail
+    </div>
+  </div>
+</div>
+`;

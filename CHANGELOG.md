@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.39.0 - (October 20, 2020)
+
 * Changed
   * Updated documentation for how to use `EventEmitter` properly.
 

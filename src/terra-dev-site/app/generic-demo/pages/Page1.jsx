@@ -5,8 +5,6 @@ import IconTag from 'terra-icon/lib/icon/IconTag';
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 
 import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
-import NavigationContext from '../../../../navigation/NavigationContext';
-import InertContext from '../../../../layers/InertContext';
 import SuspensePage from '../../../../application-page/SuspensePage';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
@@ -30,28 +28,8 @@ const Page2 = React.lazy(() => new Promise((resolve, reject) => {
 const Page1 = ({ onRequestClose }) => {
   const isInitialized = useDeferredInitializer();
 
-  const navigationContext = React.useContext(NavigationContext);
-  const inertContext = React.useContext(InertContext);
-
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPageModal, setShowPageModal] = React.useState(false);
-  const [pageIsVisible, setPageIsVisible] = React.useState(true);
-
-  React.useEffect(() => {
-    if (pageIsVisible && navigationContext.isActive) {
-      console.log('Page 1 is visible');
-    } else {
-      console.log('Page 1 is not visible');
-    }
-  }, [pageIsVisible, navigationContext.isActive]);
-
-  React.useEffect(() => {
-    if (inertContext) {
-      console.log('Page 1 is inert');
-    } else {
-      console.log('Page 1 is not inert');
-    }
-  }, [inertContext]);
 
   const pageActions = [{
     key: 'action-tag',
@@ -66,9 +44,6 @@ const Page1 = ({ onRequestClose }) => {
       title="Page 1"
       actions={pageActions}
       onRequestClose={onRequestClose}
-      onVisibilityChange={(isVisible) => {
-        setPageIsVisible(isVisible);
-      }}
     >
       <Page1Content onDisclosePage2={() => { setShowPage2(true); }} />
       {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
@@ -81,5 +56,7 @@ const Page1 = ({ onRequestClose }) => {
     </ApplicationPage>
   );
 };
+
+Page1.isPage = true;
 
 export default Page1;

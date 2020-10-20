@@ -4,7 +4,7 @@ import ApplicationPage from '../../../../application-page/ApplicationPage';
 
 const Page5 = ({ onRequestClose }) => (
   <ApplicationPage
-    title="iFrame Example"
+    title="Page 5 - iFrame Example"
     onRequestClose={onRequestClose}
   >
     <iframe src="http://www.tor.com" style={{ height: '100%', width: '100%', position: 'absolute' }} />

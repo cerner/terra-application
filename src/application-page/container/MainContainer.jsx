@@ -1,7 +1,6 @@
 import React, { forwardRef } from 'react';
 
 import SkipToLink from '../../application-container/private/skip-to/SkipToLink';
-import NavigationContext from '../../navigation/NavigationContext';
 
 const propTypes = {};
 
@@ -11,19 +10,16 @@ function deferAction(callback) {
 
 const MainContainer = forwardRef(({ isVisible, ...props }, ref) => {
   const mainElementRef = React.useRef();
-  const navigationContext = React.useContext(NavigationContext);
 
   return (
     <>
-      {navigationContext.isActive ? (
-        <SkipToLink
-          isMain
-          description="Skip to Main Content" // TODO INTL
-          callback={() => {
-            deferAction(() => mainElementRef.current?.focus());
-          }}
-        />
-      ) : undefined}
+      <SkipToLink
+        isMain
+        description="Skip to Main Content" // TODO INTL
+        callback={() => {
+          deferAction(() => mainElementRef.current?.focus());
+        }}
+      />
       <main
         tabIndex="-1"
         ref={(mainRef) => {

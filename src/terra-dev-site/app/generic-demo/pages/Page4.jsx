@@ -7,8 +7,10 @@ import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '../../
 import NavigationPrompt from '../../../../navigation-prompt';
 import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
 import NotificationDialog from '../../../../notification-dialog/NotificationDialog';
+import NavigationContext from '../../../../navigation/NavigationContext';
+import InertContext from '../../../../layers/InertContext';
 
-import useDeferredInitializer from '../shared/useDeferredInitializer';
+import Page5 from './Page5';
 
 let incrementer = 0;
 
@@ -76,12 +78,36 @@ const DisclosedComponent = () => {
 
 const Page4 = ({ onRequestClose }) => {
   const disclosureManager = React.useContext(DisclosureManagerContext);
+  const navigationContext = React.useContext(NavigationContext);
+  const inertContext = React.useContext(InertContext);
+
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
+  const [pageIsVisible, setPageIsVisible] = React.useState(true);
+  const [showPage5, setShowPage5] = React.useState(false);
+
+  React.useEffect(() => {
+    if (pageIsVisible && navigationContext.isActive) {
+      console.log('Page 4 is visible');
+    } else {
+      console.log('Page 4 is not visible');
+    }
+  }, [pageIsVisible, navigationContext.isActive]);
+
+  React.useEffect(() => {
+    if (inertContext) {
+      console.log('Page 4 is inert');
+    } else {
+      console.log('Page 4 is not inert');
+    }
+  }, [inertContext]);
 
   return (
     <ApplicationPage
       title="Page 4"
       onRequestClose={onRequestClose}
+      onInactiveStateChnage={(isVisible) => {
+        setPageIsVisible(isVisible);
+      }}
     >
       <Button
         text="Disclose Modal"
@@ -101,6 +127,12 @@ const Page4 = ({ onRequestClose }) => {
           setShowNotificationDialog(true);
         }}
       />
+      <Button
+        text="Show Page 5"
+        onClick={() => {
+          setShowPage5(true);
+        }}
+      />
       {showNotificationDialog && (
         <NotificationDialog
           variant="hazard-high"
@@ -113,6 +145,9 @@ const Page4 = ({ onRequestClose }) => {
           }}
           emphasizedAction="accept"
         />
+      )}
+      {showPage5 && (
+        <Page5 onRequestClose={() => { setShowPage5(false); }} />
       )}
     </ApplicationPage>
   );

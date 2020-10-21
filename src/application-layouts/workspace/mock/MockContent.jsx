@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
+import classNames from 'classnames/bind';
 import TabContext from '../../../workspace/TabContext';
 import WorkspaceContext from '../../../workspace/WorkspaceContext';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
+import styles from './MockContent.module.scss';
+
+const cx = classNames.bind(styles);
 
 const MockContent = ({initialCount = 0, title = '', id}) => {
   const [waffle, setWaffle] = useState(initialCount);
@@ -22,6 +26,41 @@ const MockContent = ({initialCount = 0, title = '', id}) => {
         />
       )}
       <button onClick={() => updateNotificationCount(tabId, waffle)}>Update Notifications</button>
+      <div className={cx('row')}>
+        <div className={cx('solo')}>
+          <span className={cx('inner')}>
+            Donkey
+          </span>
+        </div>
+        <div className={cx('solo', 'is-active')}>
+          <span className={cx('inner')}>
+            Puppy
+          </span>
+        </div>
+        <div className={cx('solo')}>
+          <span className={cx('inner')}>
+            Wolverine
+          </span>
+        </div>
+        <div className={cx('solo')}>
+          <span className={cx('inner')}>
+            Penguin
+          </span>
+        </div>
+        <div className={cx('solo')}>
+          <span className={cx('inner')}>
+            Potato
+          </span>
+        </div>
+        <div className={cx('solo')}>
+          <span className={cx('inner')}>
+            Wallaby
+          </span>
+        </div>
+      </div>
+      <div className={cx('container')}>
+        stuff
+      </div>
     </div>
   );
 };

@@ -267,10 +267,7 @@ const ApplicationNavigation = ({
         onSelectExtensionItem={onSelectExtensionItem}
         navigationItems={navigationItems}
         onSelectMenuButton={() => updateDrawerIsOpen(true)}
-        onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
-        onSelectMenuButton={() => updateDrawerIsOpen(true)}
-        // onSelectSkipToContent={focusMainContentCallback}
         utilityItems={utilityItems}
         activeNavigationItemKey={activeNavigationItemKey}
         userConfig={userConfig}
@@ -296,7 +293,6 @@ const ApplicationNavigation = ({
         activeNavigationItemKey={activeNavigationItemKey}
         onSelectNavigationItem={onSelectNavigationItem}
         userConfig={userConfig}
-        // onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
         utilityButtonPopupAnchorRef={utilityButtonPopupAnchorRef}
         onSelectUtilityButton={() => setPopupMenuIsOpen(true)}

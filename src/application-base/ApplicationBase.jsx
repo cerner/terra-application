@@ -50,9 +50,7 @@ const ApplicationBase = ({
   }), [themeName]);
 
   return (
-    <ThemeProvider
-      themeName={themeName}
-    >
+    <ThemeProvider themeName={themeName}>
       <ThemeContextProvider theme={theme}>
         <Base locale={localeOverride || locale || browserLocale}>
           <ApplicationIntlProvider>

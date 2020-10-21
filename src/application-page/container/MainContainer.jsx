@@ -1,6 +1,6 @@
 import React, { forwardRef } from 'react';
 
-import SkipToLink from '../../application-container/private/skip-to/SkipToLink';
+import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
 
 const propTypes = {};
 
@@ -13,10 +13,10 @@ const MainContainer = forwardRef(({ isVisible, ...props }, ref) => {
 
   return (
     <>
-      <SkipToLink
+      <SkipToButton
         isMain
-        description="Skip to Main Content" // TODO INTL
-        callback={() => {
+        description="Main Content" // TODO INTL
+        onSelect={() => {
           deferAction(() => mainElementRef.current?.focus());
         }}
       />

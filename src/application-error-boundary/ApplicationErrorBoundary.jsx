@@ -10,7 +10,10 @@ const propTypes = {
    * by these components during their render lifecycle will be caught by the ApplicationErrorBoundary.
    */
   children: PropTypes.node,
-  errorViewActions: PropTypes.array,
+  /**
+   * An array of Button attribute objects defining Buttons to render within the presented error view.
+   */
+  errorViewButtonAttrs: PropTypes.array,
   /**
    * @private
    * Intl object for translations.
@@ -18,17 +21,6 @@ const propTypes = {
   intl: intlShape,
 };
 
-/**
- * The ApplicationErrorBoundary is designed to catch exceptions that are thrown
- * by its children during render lifecycle. In the event an exception is thrown,
- * a styled status component will be rendered to communicate the exception to the
- * user.
- *
- * Unlike a standard error boundary, the error is not persisted within the
- * ApplicationErrorBoundary's state. The ApplicationErrorBoundary will attempt to
- * render its children each time it is updated. Resetting the ApplicationErrorBoundary
- * by using a key is not necessary.
- */
 class ApplicationErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -45,19 +37,19 @@ class ApplicationErrorBoundary extends React.Component {
   }
 
   render() {
-    const { children, errorViewActions, intl } = this.props;
-    const activeError = this.state.error;
+    const { children, errorViewButtonAttrs, intl } = this.props;
+    const { error } = this.state;
 
-    if (activeError) {
-      const errorDetails = activeError.message.toString();
+    if (error) {
+      const errorDetails = error.message.toString();
 
-      const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
       return (
         <StatusView
           variant="error"
-          message={errorText}
+          message={intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails })} // TODO intl
+          buttonAttrs={errorViewButtonAttrs}
           role="alert"
-          buttonAttrs={errorViewActions}
+          aria-live="assertive"
         />
       );
     }

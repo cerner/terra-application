@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
+import ApplicationConceptBannerContext from '../application-container/private/ApplicationConceptBannerContext';
 // import PageContainer from '../application-page/container/PageContainer';
 import MainPageContainer from '../application-page/container/MainPageContainer';
 
@@ -18,12 +18,12 @@ const propTypes = {
 const HeadlessLayout = ({
   children, renderPage,
 }) => {
-  const conceptContext = React.useContext(ApplicationConceptContext);
+  const conceptBannerContext = React.useContext(ApplicationConceptBannerContext);
 
   return (
     <div className={cx('embedded-layout')}>
       <div className={cx('concept-banner-container')}>
-        {conceptContext?.layoutBanner}
+        {conceptBannerContext?.layoutBanner}
       </div>
       <div className={cx('content-container')}>
         {renderPage ? (

@@ -75,7 +75,7 @@ const SessionProvider = ({ children }) => {
     return (
       <SessionUserContext.Provider value={userContextValue}>
         <SessionActionsContext.Provider value={sessionActionsContextValue}>
-          <ApplicationErrorBoundary errorViewActions={[{
+          <ApplicationErrorBoundary errorViewButtonAttrs={[{
             text: 'Reload',
             onClick: () => { window.location.reload(); },
           }, {

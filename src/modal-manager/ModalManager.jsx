@@ -1,13 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import ActionHeader from 'terra-action-header';
-import styles from 'terra-modal-manager/lib/ModalManager.module.scss';
 
 import ApplicationModal from '../application-modal/ApplicationModal';
-// import ContentContainer from 'terra-content-container';
 
 import DisclosureManager, { availableDisclosureSizes } from '../disclosure-manager';
 import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
@@ -16,8 +12,6 @@ import ModalDisclosureContainer from './ModalDisclosureContainer';
 
 const disclosureType = 'modal';
 export { disclosureType };
-
-const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   /**
@@ -57,29 +51,8 @@ class ModalManager extends React.Component {
 
   renderModals(manager) {
     const {
-      children, disclosureAccessory, ...customProps
+      children, disclosureAccessory,
     } = this.props;
-    const theme = this.context;
-
-    const containerClassNames = classNames(cx(
-      'container',
-      theme.className,
-    ),
-    customProps.className);
-
-    // const classArray = ['modal-manager'];
-    // const isFullscreen = manager.disclosure.isMaximized || manager.disclosure.size === availableDisclosureSizes.FULLSCREEN;
-    // if (!isFullscreen) {
-    //   if (manager.disclosure.dimensions) {
-    //     classArray.push(`height-${manager.disclosure.dimensions.height}`, `width-${manager.disclosure.dimensions.width}`);
-    //   } else if (manager.disclosure.size) {
-    //     classArray.push(`height-${heightFromSize[manager.disclosure.size]}`, `width-${widthFromSize[manager.disclosure.size]}`);
-    //   }
-    // }
-
-    // const presentedDisclosureComponentKey = manager.disclosureComponentKeys[manager.disclosureComponentKeys.length - 1];
-    // const presentedDisclosureComponentData = manager.disclosureComponentData[presentedDisclosureComponentKey] || {};
-    // const headerDataForPresentedComponent = presentedDisclosureComponentData.headerAdapterData;
 
     function renderModalsForKeys(keys) {
       if (!keys || !keys.length) {
@@ -108,10 +81,10 @@ class ModalManager extends React.Component {
     }
 
     return (
-      <div {...customProps} className={containerClassNames}>
+      <>
         {manager.children.components}
         {renderModalsForKeys([...manager.disclosureComponentKeys])}
-      </div>
+      </>
     );
   }
 

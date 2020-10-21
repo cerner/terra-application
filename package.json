@@ -133,6 +133,7 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.4.0",
     "terra-theme-provider": "^4.0.0",
+    "terra-visually-hidden-text": "^2.30.0",
     "uuid": "^3.0.0",
     "terra-alert": "^4.35.0",
     "terra-demographics-banner": "^3.40.0",

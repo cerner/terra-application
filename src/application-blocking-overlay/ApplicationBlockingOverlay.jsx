@@ -1,7 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import LayerPortal from '../layers/LayerPortal';
 import NavigationPrompt from '../navigation-prompt';
+
+const propTypes = {
+  /**
+   * The string description for the overlay presentation.
+   */
+  description: PropTypes.string,
+};
 
 const ApplicationBlockingOverlay = ({ description }) => {
   const [isVisible, setIsVisible] = React.useState(false);
@@ -19,6 +27,8 @@ const ApplicationBlockingOverlay = ({ description }) => {
   return (
     <LayerPortal type="blocking-overlay">
       <div
+        aria-label={description}
+        tabIndex="-1"
         style={{
           height: '100%',
           width: '100%',
@@ -29,5 +39,7 @@ const ApplicationBlockingOverlay = ({ description }) => {
     </LayerPortal>
   );
 };
+
+ApplicationBlockingOverlay.propTypes = propTypes;
 
 export default ApplicationBlockingOverlay;

@@ -9,7 +9,7 @@ import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../breakpoints';
-import SkipToLink from '../application-container/private/skip-to/SkipToLink';
+import SkipToButton from '../application-container/private/skip-to/SkipToButton';
 import NavigationContext from '../navigation/NavigationContext';
 // import PageContainer from '../application-page/container/PageContainer';
 import MainPageContainer from '../application-page/container/MainPageContainer';
@@ -331,9 +331,9 @@ const SecondaryNavigationLayout = ({
   return (
     <>
       {hasSidebar && (
-        <SkipToLink
-          description="Skip to Side Navigation"
-          callback={() => {
+        <SkipToButton
+          description="Side Navigation"
+          onSelect={() => {
             if (hasOverlayWorkspace) {
               setWorkspaceIsVisible(false);
             }
@@ -349,9 +349,9 @@ const SecondaryNavigationLayout = ({
         />
       )}
       {enableWorkspace && (
-        <SkipToLink
-          description="Skip to Workspace"
-          callback={() => {
+        <SkipToButton
+          description="Workspace"
+          onSelect={() => {
             if (hasOverlaySidebar) {
               setSideNavOverlayIsVisible(false);
             }

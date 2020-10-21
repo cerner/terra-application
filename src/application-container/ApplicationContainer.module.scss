@@ -1,5 +1,7 @@
-#terra-application-container {
-  height: 100%;
-  overflow: hidden;
-  position: relative;
+:local {
+  .application-container {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
 }

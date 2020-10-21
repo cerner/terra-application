@@ -12,7 +12,7 @@ import Scroll from 'terra-scroll';
 import ModalHeader from './_ModalHeader';
 import styles from './ModalContent.module.scss';
 import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
-import ApplicationConceptContext from '../application-container/private/ApplicationConceptContext';
+import ApplicationConceptBannerContext from '../application-container/private/ApplicationConceptBannerContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 const cx = classNamesBind.bind(styles);
@@ -63,7 +63,7 @@ const ModalContent = (props) => {
     ...customProps
   } = props;
 
-  const applicationConceptBanner = React.useContext(ApplicationConceptContext);
+  const conceptBannerContext = React.useContext(ApplicationConceptBannerContext);
   const theme = React.useContext(ThemeContext);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
@@ -109,7 +109,7 @@ const ModalContent = (props) => {
               onClose={onRequestClose}
             />
             {toolbar}
-            {applicationConceptBanner && applicationConceptBanner.modalBanner}
+            {conceptBannerContext?.modalBanner}
             <NotificationBanners />
           </>
           )}

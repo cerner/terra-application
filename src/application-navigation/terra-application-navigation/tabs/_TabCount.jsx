@@ -31,7 +31,7 @@ const TabCount = ({ value, isRollup, intl }) => {
 
   let validatedValue = value;
   if (isRollup) {
-    validatedValue = intl.formatMessage({ id: 'Terra.applicationNavigation.notifications.new' });
+    validatedValue = intl.formatMessage({ id: 'terraApplication.applicationNavigation.notifications.new' });
   } else if (value > 99) {
     validatedValue = '99+';
   }

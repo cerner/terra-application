@@ -5,5 +5,21 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Deze wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u verder gaan?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Niet opslaan",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Doorgaan met bewerken",
-  "terraApplication.errorBoundary.defaultErrorMessage": "In het systeem is een fout opgetreden: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "In het systeem is een fout opgetreden: {errorDetails}",
+  "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Meer navigatie",
+  "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Meer navigatie",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Gebruikersinstellingen",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Opties",
+  "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigatie-items",
+  "terraApplication.applicationNavigation.drawerMenu.utilities": "Hulp-items",
+  "terraApplication.applicationNavigation.utilityMenu.logout": "Afmelden",
+  "terraApplication.applicationNavigation.utilityMenu.settings": "Instellingen",
+  "terraApplication.applicationNavigation.utilityMenu.help": "Help",
+  "terraApplication.applicationNavigation.utilityMenu.headerTitle": "Hulpprogramma's",
+  "terraApplication.applicationNavigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Meer",
+  "terraApplication.applicationNavigation.notifications.new": "Nieuw",
+  "terraApplication.applicationNavigation.header.skipToContentTitle": "Doorgaan naar content",
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu"
 }

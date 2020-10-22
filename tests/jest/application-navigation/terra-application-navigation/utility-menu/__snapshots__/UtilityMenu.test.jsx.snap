@@ -32,13 +32,13 @@ exports[`UtilityMenu should render default element 1`] = `
   utilityItems={Array []}
 >
   <PopupMenu
-    footerText="Terra.applicationNavigation.utilityMenu.logout"
+    footerText="terraApplication.applicationNavigation.utilityMenu.logout"
     isHeightBounded={false}
     menuItems={Array []}
     onSelectMenuItem={[Function]}
     role="listbox"
     showSelections={false}
-    title="Terra.applicationNavigation.utilityMenu.headerTitle"
+    title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
   >
     <ContentContainer
       className="container"
@@ -48,7 +48,7 @@ exports[`UtilityMenu should render default element 1`] = `
         <ActionHeader
           aria-hidden={true}
           level={1}
-          title="Terra.applicationNavigation.utilityMenu.headerTitle"
+          title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
         />
       }
     >
@@ -61,14 +61,14 @@ exports[`UtilityMenu should render default element 1`] = `
           <ActionHeader
             aria-hidden={true}
             level={1}
-            title="Terra.applicationNavigation.utilityMenu.headerTitle"
+            title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
           >
             <ActionHeaderContainer
               aria-hidden={true}
               endContent={null}
               level={1}
               startContent={null}
-              title="Terra.applicationNavigation.utilityMenu.headerTitle"
+              title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
             >
               <div
                 aria-hidden={true}
@@ -83,7 +83,7 @@ exports[`UtilityMenu should render default element 1`] = `
                     <h1
                       className="title"
                     >
-                      Terra.applicationNavigation.utilityMenu.headerTitle
+                      terraApplication.applicationNavigation.utilityMenu.headerTitle
                     </h1>
                   </div>
                 </div>
@@ -104,7 +104,7 @@ exports[`UtilityMenu should render default element 1`] = `
                 className="content"
               >
                 <ul
-                  aria-label="Terra.applicationNavigation.utilityMenu.headerTitle"
+                  aria-label="terraApplication.applicationNavigation.utilityMenu.headerTitle"
                   className="utility-list"
                   onKeyDown={[Function]}
                   role="listbox"
@@ -197,7 +197,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
         my test hero
       </div>
     }
-    footerText="Terra.applicationNavigation.utilityMenu.logout"
+    footerText="terraApplication.applicationNavigation.utilityMenu.logout"
     isHeightBounded={false}
     menuItems={
       Array [
@@ -218,7 +218,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           />,
           "key": "terra-application-navigation.utility-menu.settings",
-          "text": "Terra.applicationNavigation.utilityMenu.settings",
+          "text": "terraApplication.applicationNavigation.utilityMenu.settings",
         },
         Object {
           "dataAttrs": Object {
@@ -229,7 +229,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
             xmlns="http://www.w3.org/2000/svg"
           />,
           "key": "terra-application-navigation.utility-menu.help",
-          "text": "Terra.applicationNavigation.utilityMenu.help",
+          "text": "terraApplication.applicationNavigation.utilityMenu.help",
         },
       ]
     }
@@ -237,7 +237,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
     onSelectMenuItem={[Function]}
     role="listbox"
     showSelections={false}
-    title="Terra.applicationNavigation.utilityMenu.headerTitle"
+    title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
     userConfig={
       Object {
         "detail": "user-detail",
@@ -263,7 +263,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
               onClick={[MockFunction]}
               onKeyDown={[Function]}
               refCallback={[Function]}
-              text="Terra.applicationNavigation.utilityMenu.logout"
+              text="terraApplication.applicationNavigation.utilityMenu.logout"
               type="button"
               variant="neutral"
             />
@@ -274,7 +274,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
         <ActionHeader
           aria-hidden={true}
           level={1}
-          title="Terra.applicationNavigation.utilityMenu.headerTitle"
+          title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
         />
       }
     >
@@ -287,14 +287,14 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
           <ActionHeader
             aria-hidden={true}
             level={1}
-            title="Terra.applicationNavigation.utilityMenu.headerTitle"
+            title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
           >
             <ActionHeaderContainer
               aria-hidden={true}
               endContent={null}
               level={1}
               startContent={null}
-              title="Terra.applicationNavigation.utilityMenu.headerTitle"
+              title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
             >
               <div
                 aria-hidden={true}
@@ -309,7 +309,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     <h1
                       className="title"
                     >
-                      Terra.applicationNavigation.utilityMenu.headerTitle
+                      terraApplication.applicationNavigation.utilityMenu.headerTitle
                     </h1>
                   </div>
                 </div>
@@ -430,7 +430,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                   </div>
                 </PopupMenuUser>
                 <ul
-                  aria-label="Terra.applicationNavigation.utilityMenu.headerTitle"
+                  aria-label="terraApplication.applicationNavigation.utilityMenu.headerTitle"
                   className="utility-list"
                   onKeyDown={[Function]}
                   role="listbox"
@@ -501,7 +501,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     onSelect={[Function]}
                     parentRole="listbox"
                     showSelections={false}
-                    text="Terra.applicationNavigation.utilityMenu.settings"
+                    text="terraApplication.applicationNavigation.utilityMenu.settings"
                   >
                     <li
                       className="item"
@@ -554,7 +554,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         className="text"
                         role="link"
                       >
-                        Terra.applicationNavigation.utilityMenu.settings
+                        terraApplication.applicationNavigation.utilityMenu.settings
                       </div>
                       <PopupCount
                         className="extension-row-count"
@@ -584,7 +584,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     onSelect={[Function]}
                     parentRole="listbox"
                     showSelections={false}
-                    text="Terra.applicationNavigation.utilityMenu.help"
+                    text="terraApplication.applicationNavigation.utilityMenu.help"
                   >
                     <li
                       className="item"
@@ -634,7 +634,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         className="text"
                         role="link"
                       >
-                        Terra.applicationNavigation.utilityMenu.help
+                        terraApplication.applicationNavigation.utilityMenu.help
                       </div>
                       <PopupCount
                         className="extension-row-count"
@@ -671,7 +671,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                 onClick={[MockFunction]}
                 onKeyDown={[Function]}
                 refCallback={[Function]}
-                text="Terra.applicationNavigation.utilityMenu.logout"
+                text="terraApplication.applicationNavigation.utilityMenu.logout"
                 type="button"
                 variant="neutral"
               />
@@ -696,7 +696,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     onClick={[MockFunction]}
                     onKeyDown={[Function]}
                     refCallback={[Function]}
-                    text="Terra.applicationNavigation.utilityMenu.logout"
+                    text="terraApplication.applicationNavigation.utilityMenu.logout"
                     type="button"
                     variant="neutral"
                   >
@@ -719,7 +719,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         <span
                           className=""
                         >
-                          Terra.applicationNavigation.utilityMenu.logout
+                          terraApplication.applicationNavigation.utilityMenu.logout
                         </span>
                       </span>
                     </button>
@@ -768,14 +768,14 @@ exports[`UtilityMenu should render with skip callback 1`] = `
   utilityItems={Array []}
 >
   <PopupMenu
-    footerText="Terra.applicationNavigation.utilityMenu.logout"
+    footerText="terraApplication.applicationNavigation.utilityMenu.logout"
     isHeightBounded={false}
     menuItems={Array []}
     onSelectFooterItem={[MockFunction]}
     onSelectMenuItem={[Function]}
     role="listbox"
     showSelections={false}
-    title="Terra.applicationNavigation.utilityMenu.headerTitle"
+    title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
   >
     <ContentContainer
       className="container"
@@ -793,7 +793,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
               onClick={[MockFunction]}
               onKeyDown={[Function]}
               refCallback={[Function]}
-              text="Terra.applicationNavigation.utilityMenu.logout"
+              text="terraApplication.applicationNavigation.utilityMenu.logout"
               type="button"
               variant="neutral"
             />
@@ -804,7 +804,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
         <ActionHeader
           aria-hidden={true}
           level={1}
-          title="Terra.applicationNavigation.utilityMenu.headerTitle"
+          title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
         />
       }
     >
@@ -817,14 +817,14 @@ exports[`UtilityMenu should render with skip callback 1`] = `
           <ActionHeader
             aria-hidden={true}
             level={1}
-            title="Terra.applicationNavigation.utilityMenu.headerTitle"
+            title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
           >
             <ActionHeaderContainer
               aria-hidden={true}
               endContent={null}
               level={1}
               startContent={null}
-              title="Terra.applicationNavigation.utilityMenu.headerTitle"
+              title="terraApplication.applicationNavigation.utilityMenu.headerTitle"
             >
               <div
                 aria-hidden={true}
@@ -839,7 +839,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                     <h1
                       className="title"
                     >
-                      Terra.applicationNavigation.utilityMenu.headerTitle
+                      terraApplication.applicationNavigation.utilityMenu.headerTitle
                     </h1>
                   </div>
                 </div>
@@ -860,7 +860,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                 className="content"
               >
                 <ul
-                  aria-label="Terra.applicationNavigation.utilityMenu.headerTitle"
+                  aria-label="terraApplication.applicationNavigation.utilityMenu.headerTitle"
                   className="utility-list"
                   onKeyDown={[Function]}
                   role="listbox"
@@ -885,7 +885,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                 onClick={[MockFunction]}
                 onKeyDown={[Function]}
                 refCallback={[Function]}
-                text="Terra.applicationNavigation.utilityMenu.logout"
+                text="terraApplication.applicationNavigation.utilityMenu.logout"
                 type="button"
                 variant="neutral"
               />
@@ -910,7 +910,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                     onClick={[MockFunction]}
                     onKeyDown={[Function]}
                     refCallback={[Function]}
-                    text="Terra.applicationNavigation.utilityMenu.logout"
+                    text="terraApplication.applicationNavigation.utilityMenu.logout"
                     type="button"
                     variant="neutral"
                   >
@@ -933,7 +933,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                         <span
                           className=""
                         >
-                          Terra.applicationNavigation.utilityMenu.logout
+                          terraApplication.applicationNavigation.utilityMenu.logout
                         </span>
                       </span>
                     </button>

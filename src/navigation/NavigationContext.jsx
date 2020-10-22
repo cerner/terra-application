@@ -6,4 +6,3 @@ const NavigationContext = createContext({
 });
 
 export default NavigationContext;
-

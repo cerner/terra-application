@@ -69,9 +69,9 @@ const TabRollup = ({
   isPulsed,
   intl,
 }) => {
-  let ariaLabel = intl.formatMessage({ id: 'Terra.applicationNavigation.tabs.rollupButtonDescription' });
+  let ariaLabel = intl.formatMessage({ id: 'terraApplication.applicationNavigation.tabs.rollupButtonDescription' });
   if (hasChildNotifications) {
-    ariaLabel = `${ariaLabel} ${intl.formatMessage({ id: 'Terra.applicationNavigation.notifications.new' })}`;
+    ariaLabel = `${ariaLabel} ${intl.formatMessage({ id: 'terraApplication.applicationNavigation.notifications.new' })}`;
   }
 
   return (

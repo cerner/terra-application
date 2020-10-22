@@ -12,7 +12,7 @@ const Page4 = ({ onRequestClose }) => (
     title="Page 4 - iFrame Example"
     onRequestClose={onRequestClose}
   >
-    <iframe src="http://www.tor.com" style={{ height: '100%', width: '100%', position: 'absolute' }} />
+    <iframe src="http://www.tor.com" style={{ height: '1024px', width: '768px' }} />
   </ApplicationPage>
 );
 

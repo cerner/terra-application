@@ -73,7 +73,7 @@ exports[`CompactHeader should render default element 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"
@@ -92,7 +92,7 @@ exports[`CompactHeader should render default element 1`] = `
         className="extensions-container"
       />
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
         className="hidden-utils"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -195,11 +195,11 @@ exports[`CompactHeader should render title element 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         aria-expanded={false}
-        aria-label="Terra.applicationNavigation.header.menuButtonTitle"
+        aria-label="terraApplication.applicationNavigation.header.menuButtonTitle"
         className="menu-button"
         data-compact-header-toggle={true}
         data-focus-styles-enabled={true}
@@ -268,7 +268,7 @@ exports[`CompactHeader should render title element 1`] = `
         className="extensions-container"
       />
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
         className="hidden-utils"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -426,11 +426,11 @@ exports[`CompactHeader should render with function callbacks 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         aria-expanded={false}
-        aria-label="Terra.applicationNavigation.header.menuButtonTitle"
+        aria-label="terraApplication.applicationNavigation.header.menuButtonTitle"
         className="menu-button"
         data-compact-header-toggle={true}
         data-focus-styles-enabled={true}
@@ -652,7 +652,7 @@ exports[`CompactHeader should render with function callbacks 1`] = `
         </InjectIntl(Extensions)>
       </div>
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
         className="hidden-utils"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -749,11 +749,11 @@ exports[`CompactHeader should render with menu callback 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         aria-expanded={false}
-        aria-label="Terra.applicationNavigation.header.menuButtonTitle"
+        aria-label="terraApplication.applicationNavigation.header.menuButtonTitle"
         className="menu-button"
         data-compact-header-toggle={true}
         data-focus-styles-enabled={true}
@@ -821,7 +821,7 @@ exports[`CompactHeader should render with menu callback 1`] = `
         className="extensions-container"
       />
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
         className="hidden-utils"
         onBlur={[Function]}
         onFocus={[Function]}
@@ -909,7 +909,7 @@ exports[`CompactHeader should render with skip callback 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"
@@ -928,7 +928,7 @@ exports[`CompactHeader should render with skip callback 1`] = `
         className="extensions-container"
       />
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
         className="hidden-utils"
         onBlur={[Function]}
         onFocus={[Function]}

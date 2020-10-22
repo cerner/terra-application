@@ -184,7 +184,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 role="link"
                 type="button"
               >
-                Terra.applicationNavigation.header.skipToContentTitle
+                terraApplication.applicationNavigation.header.skipToContentTitle
               </button>
               <div
                 className="title-container"
@@ -203,7 +203,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 className="extensions-container"
               />
               <ul
-                aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+                aria-label="terraApplication.applicationNavigation.drawerMenu.utilities"
                 className="hidden-utils"
                 onBlur={[Function]}
                 onFocus={[Function]}

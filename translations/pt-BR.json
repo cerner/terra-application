@@ -5,5 +5,21 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Se você não as salvar, essas alterações serão perdidas. Deseja continuar?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Não salvar",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Erro no sistema: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Erro no sistema: {errorDetails}",
+  "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Mais navegação",
+  "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Mais navegação",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Configurações do usuário",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Opções",
+  "terraApplication.applicationNavigation.drawerMenu.navigation": "Itens de navegação",
+  "terraApplication.applicationNavigation.drawerMenu.utilities": "Itens de utilitários",
+  "terraApplication.applicationNavigation.utilityMenu.logout": "Logoff",
+  "terraApplication.applicationNavigation.utilityMenu.settings": "Configurações",
+  "terraApplication.applicationNavigation.utilityMenu.help": "Ajuda",
+  "terraApplication.applicationNavigation.utilityMenu.headerTitle": "Utilitários",
+  "terraApplication.applicationNavigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Mais",
+  "terraApplication.applicationNavigation.notifications.new": "Novo",
+  "terraApplication.applicationNavigation.header.skipToContentTitle": "Pular para conteúdo",
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu"
 }

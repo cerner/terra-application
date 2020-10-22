@@ -5,5 +5,21 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
-  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}",
+  "terraApplication.applicationNavigation.utilityMenu.logout": "Logout",
+  "terraApplication.applicationNavigation.utilityMenu.settings": "Settings",
+  "terraApplication.applicationNavigation.utilityMenu.help": "Help",
+  "terraApplication.applicationNavigation.utilityMenu.headerTitle": "Utilities",
+  "terraApplication.applicationNavigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "More",
+  "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "More Navigation",
+  "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "More Navigation",
+  "terraApplication.applicationNavigation.notifications.new": "New",
+  "terraApplication.applicationNavigation.header.skipToContentTitle": "Skip to Content",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "User Settings",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Options",
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
+  "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigation Items",
+  "terraApplication.applicationNavigation.drawerMenu.utilities": "Utility Items"
 }

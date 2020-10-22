@@ -35,44 +35,32 @@ const DemoApplicationNavigationLayout = () => {
     if (conceptContext.data) {
       return [(
         <NavigationItem
-          key="nav-A"
           navigationKey="nav-A"
           text="Nav A"
           renderPage={() => <Page1 />}
         />
       ), (
         <NavigationItem
-          key="nav-B"
           navigationKey="nav-B"
           text="Nav B"
           render={() => <NavBLayout />}
         />
       ), (
         <NavigationItem
-          key="nav-C"
           navigationKey="nav-C"
           text="Nav C"
           render={() => <NavCLayout />}
         />
       ), (
         <NavigationItem
-          key="nav-D"
           navigationKey="nav-D"
           text="Nav D"
           render={() => <NavDLayout />}
         />
       ), (
         <NavigationItem
-          key="nav-E"
           navigationKey="nav-E"
           text="Nav E"
-          renderPage={() => <Page4 />}
-        />
-      ), (
-        <NavigationItem
-          key="nav-F"
-          navigationKey="nav-F"
-          text="Nav F"
           render={() => (
             <NotAPage />
           )}

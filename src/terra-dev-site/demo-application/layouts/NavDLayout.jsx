@@ -8,6 +8,7 @@ import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
+import NotAPage from '../shared/NotAPage';
 
 const NavDLayout = () => {
   const [navigationState, setNavigationState] = useNavigationState(['nav-D-1', 'nav-D-2', 'nav-D-3', 'nav-D-4', 'nav-D-5', 'nav-D-6']);
@@ -65,13 +66,9 @@ const NavDLayout = () => {
         >
           <NavigationItem
             navigationKey="nav-D-6"
-            text="Nav D-6 Page In Nested Group"
-            renderPage={() => (
-              <ApplicationPage title="Page In Nested Group">
-                <div style={{ padding: '1rem' }}>
-                  Page content here...
-                </div>
-              </ApplicationPage>
+            text="Nav D-6 Not A Page"
+            render={() => (
+              <NotAPage />
             )}
           />
         </NavigationGroup>

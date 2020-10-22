@@ -2,6 +2,7 @@
   .card {
     background-color: white;
     border-radius: 5px;
+    border: 1px solid grey;
     overflow: hidden;
     margin-bottom: 1rem;
   }
@@ -9,7 +10,7 @@
   .card-header {
     align-items: center;
     background-color: #fff;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid grey;
 
     display: flex;
     flex-wrap: nowrap;
@@ -29,20 +30,12 @@
     }
   }
 
-  .list-item {
-    padding: 10px;
+  .page-body,
+  .card-body {
+    padding: 1rem;
   }
 
-  .order-action-item {
-    display: flex;
-    align-items: center;
-    
-    .text {
-      flex: 1 1 auto;
-    }
-
-    .action {
-      flex: 0 0 auto;
-    }
+  .list-item {
+    padding: 10px;
   }
 }

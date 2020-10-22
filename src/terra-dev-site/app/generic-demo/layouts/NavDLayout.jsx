@@ -7,6 +7,7 @@ import useNavigationState from '../../../../navigation/useNavigationState';
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
+import Page4 from '../pages/Page4';
 
 const NavDLayout = () => {
   const [navigationState, setNavigationState] = useNavigationState(['nav-D-1', 'nav-D-2', 'nav-D-3', 'nav-D-4', 'nav-D-5', 'nav-D-6']);
@@ -41,27 +42,32 @@ const NavDLayout = () => {
         />
         <NavigationItem
           navigationKey="nav-D-4"
-          text="Nav D-4 Inline Page"
+          text="Nav D-4 Page 4"
+          renderPage={() => <Page4 />}
+        />
+      </NavigationGroup>
+      <NavigationGroup
+        text="Group 3"
+      >
+        <NavigationItem
+          navigationKey="nav-D-5"
+          text="Nav D-5 Page In Group"
           renderPage={() => (
-            <ApplicationPage title="Inline Page">
+            <ApplicationPage title="Page In Group">
               <div style={{ padding: '1rem' }}>
                 Page content here...
               </div>
             </ApplicationPage>
           )}
         />
-      </NavigationGroup>
-      <NavigationGroup
-        text="Group 3"
-      >
         <NavigationGroup
           text="Nested Group"
         >
           <NavigationItem
-            navigationKey="nav-D-5"
-            text="Nav D-5 Inline Page In Nested Group"
+            navigationKey="nav-D-6"
+            text="Nav D-6 Page In Nested Group"
             renderPage={() => (
-              <ApplicationPage title="Inline Page In Nested Group">
+              <ApplicationPage title="Page In Nested Group">
                 <div style={{ padding: '1rem' }}>
                   Page content here...
                 </div>
@@ -71,10 +77,10 @@ const NavDLayout = () => {
         </NavigationGroup>
       </NavigationGroup>
       <NavigationItem
-        navigationKey="nav-D-6"
-        text="Nav D-6 Inline Page Not In Group"
+        navigationKey="nav-D-7"
+        text="Nav D-7 Page Not In Group"
         renderPage={() => (
-          <ApplicationPage title="Inline Page Not In Group">
+          <ApplicationPage title="Page Not In Group">
             <div style={{ padding: '1rem' }}>
               Page content here...
             </div>

@@ -19,6 +19,7 @@ import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
 
 import ConceptBanner from '../shared/ConceptBanner';
+import NotAPage from '../shared/NotAPage';
 
 const DemoApplicationNavigationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
@@ -65,14 +66,16 @@ const DemoApplicationNavigationLayout = () => {
           key="nav-E"
           navigationKey="nav-E"
           text="Nav E"
-          render={() => <h2>Not a Page</h2>}
+          renderPage={() => <Page4 />}
         />
       ), (
         <NavigationItem
           key="nav-F"
           navigationKey="nav-F"
           text="Nav F"
-          renderPage={() => <Page4 />}
+          render={() => (
+            <NotAPage />
+          )}
         />
       )];
     }
@@ -108,10 +111,10 @@ const DemoApplicationNavigationLayout = () => {
                 setShowSearchModal(true);
               }
             }}
-            utilityItems={[{
-              key: 'lock',
-              text: 'Lock Session',
-            }]}
+            // utilityItems={[{
+            //   key: 'lock',
+            //   text: 'Lock Session',
+            // }]}
             onSelectUtilityItem={(key) => {
               if (key === 'lock') {
                 sessionActions.lock();
@@ -120,7 +123,7 @@ const DemoApplicationNavigationLayout = () => {
             onSelectLogout={() => {
               sessionActions.logOut();
             }}
-            onSelectSettings={() => {}}
+            // onSelectSettings={() => {}}
             onSelectHelp={() => {}}
             activeNavigationKey={conceptContext.data ? navigationState : undefined}
             onSelectNavigationItem={(key) => { setNavigationState(key); }}
@@ -129,11 +132,11 @@ const DemoApplicationNavigationLayout = () => {
           </PrimaryNavigationLayout>
         </ModalManager>
         {showDetailsModal && (
-        <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
-          <div style={{ padding: '1rem' }}>
-            <p>Details go here.</p>
-          </div>
-        </ApplicationModal>
+          <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
+            <div style={{ padding: '1rem' }}>
+              <p>Details go here.</p>
+            </div>
+          </ApplicationModal>
         )}
       </ApplicationConceptBannerProvider>
       {showSearchModal && (

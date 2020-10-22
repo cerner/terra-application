@@ -1,69 +1,56 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconModified from 'terra-icon/lib/icon/IconModified';
+import Button from 'terra-button';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
-import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
-import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
 
-import Page2Content from './content/_Page2Content';
 import Page3 from './Page3';
 import AddModal from '../modals/AddModal';
 import PrintModal from '../modals/PrintModal';
-import useDeferredInitializer from '../shared/useDeferredInitializer';
 import HeaderActionPopup from '../shared/HeaderActionPopup';
 
+import DemoPageContent from './content/DemoPageContent';
+import Card from './content/Card';
+import PendingActionsCard from './content/PendingActionsCard';
+import NotificationBannersCard from './content/NotificationBannersCard';
+import ErrorHandlingCard from './content/ErrorHandlingCard';
+import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlayCard';
+import LoadingOverlayCard from './content/LoadingOverlayCard';
+import NotificationDialogCard from './content/NotificationDialogCard';
+import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
+
+const propTypes = {
+  onRequestClose: PropTypes.func,
+};
+
 const Page2 = ({ onRequestClose }) => {
-  const isInitialized = useDeferredInitializer();
-
-  // const [saveOrders, setSaveOrders] = React.useState(false);
-
   const popupActionButtonRef = React.useRef();
 
   const [showPage3, setShowPage3] = React.useState(undefined);
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
   const [showPopup, setShowPopup] = React.useState(false);
-  const [throwError, setThrowError] = React.useState(false);
-  const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
-  // React.useEffect(() => {
-  //   if (!saveOrders) {
-  //     return undefined;
-  //   }
-
-  //   const timeout = setTimeout(() => {
-  //     setSaveOrders(false);
-  //   }, 5000);
-
-  //   return () => {
-  //     clearTimeout(timeout);
-  //   };
-  // }, [saveOrders]);
-
-  if (throwError) {
-    throw new Error('Page2 threw error to test Page-level error handling');
-  }
 
   const pageActions = [{
     key: 'action-add',
     text: 'Add',
     icon: <IconAdd />,
     onSelect: () => { setShowAddModal(true); },
-    isDisabled: !isInitialized,
   }, {
     key: 'action-print',
     text: 'Print',
     icon: <IconPrinter />,
     onSelect: () => { setShowPrintModal(true); },
-    isDisabled: !isInitialized,
+    isDisabled: true,
   }, {
     key: 'action-popup-1',
     text: 'Popup Action',
     icon: <IconModified />,
     onSelect: () => { setShowPopup(true); },
     buttonRefCallback: (ref) => { popupActionButtonRef.current = ref; },
-    isDisabled: !isInitialized,
   }];
 
   return (
@@ -72,13 +59,28 @@ const Page2 = ({ onRequestClose }) => {
       actions={pageActions}
       onRequestClose={onRequestClose}
     >
-      <Page2Content
-        onDisclosePage3={() => { setShowPage3(true); }}
-        onThrowError={() => { setThrowError(true); }}
-        setShowLoadingOverlay={setShowLoadingOverlay}
-      />
-      {(!isInitialized || showLoadingOverlay)
-        && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+      <DemoPageContent>
+        <Card title="Page 2 Details">
+          <p>Page 2 demonstrates the following features:</p>
+          <ul>
+            <li>Page header action that presents a modal workflow</li>
+            <li>Page header action that is disabled</li>
+            <li>Page header action that presents a pop-up</li>
+            <li>Content that triggers Page APIs</li>
+          </ul>
+        </Card>
+        <Card title="Additional Page Disclosure">
+          <p>Page 2 presents Page 3 due changes to its local state.</p>
+          <Button text="Show Page 3" onClick={() => { setShowPage3(true); }} />
+        </Card>
+        <NotificationBannersCard />
+        <NotificationDialogCard />
+        <LoadingOverlayCard />
+        <ErrorHandlingCard pageTitle="Page2" />
+        <InteractionBlockingOverlayCard />
+        <PendingActionsCard />
+        <ModalManagerIntegrationCard />
+      </DemoPageContent>
       {showPage3
         && <Page3 onRequestClose={() => { setShowPage3(false); }} />}
       {showAddModal
@@ -97,5 +99,7 @@ const Page2 = ({ onRequestClose }) => {
     </ApplicationPage>
   );
 };
+
+Page2.propTypes = propTypes;
 
 export default Page2;

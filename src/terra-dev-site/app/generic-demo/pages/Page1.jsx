@@ -1,33 +1,27 @@
 import React from 'react';
-
+import PropTypes from 'prop-types';
 import IconTag from 'terra-icon/lib/icon/IconTag';
+import Button from 'terra-button';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
 
-import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
-import SuspensePage from '../../../../application-page/SuspensePage';
-
 import PagePresentingModal from '../modals/PagePresentingModal';
-import Page1Content from './content/_Page1Content';
-import useDeferredInitializer from '../shared/useDeferredInitializer';
+import DemoPageContent from './content/DemoPageContent';
+import Card from './content/Card';
+import PendingActionsCard from './content/PendingActionsCard';
+import NotificationBannersCard from './content/NotificationBannersCard';
+import ErrorHandlingCard from './content/ErrorHandlingCard';
+import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlayCard';
+import LoadingOverlayCard from './content/LoadingOverlayCard';
+import NotificationDialogCard from './content/NotificationDialogCard';
+import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
+import Page2 from './Page2';
 
-// import Page2 from './Page2';
-
-const Page2 = React.lazy(() => new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(import('./Page2'));
-  }, 1000);
-}));
-
-// const Page2 = React.lazy(() => new Promise((resolve, reject) => {
-//   setTimeout(() => {
-//     reject(new Error('wut'));
-//   }, 1000);
-// }));
+const propTypes = {
+  onRequestClose: PropTypes.func,
+};
 
 const Page1 = ({ onRequestClose }) => {
-  const isInitialized = useDeferredInitializer();
-
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPageModal, setShowPageModal] = React.useState(false);
 
@@ -36,7 +30,6 @@ const Page1 = ({ onRequestClose }) => {
     text: 'Page Modal',
     icon: <IconTag />,
     onSelect: () => { setShowPageModal(true); },
-    isDisabled: !isInitialized,
   }];
 
   return (
@@ -45,18 +38,34 @@ const Page1 = ({ onRequestClose }) => {
       actions={pageActions}
       onRequestClose={onRequestClose}
     >
-      <Page1Content onDisclosePage2={() => { setShowPage2(true); }} />
-      {!isInitialized && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
-      {showPage2 && (
-      <SuspensePage onRequestClose={() => { setShowPage2(false); }}>
-        <Page2 onRequestClose={() => { setShowPage2(false); }} />
-      </SuspensePage>
-      )}
-      {showPageModal && <PagePresentingModal onRequestClose={() => { setShowPageModal(false); }} />}
+      <DemoPageContent>
+        <Card title="Page 1 Details">
+          <p>Page 1 demonstrates the following features:</p>
+          <ul>
+            <li>Page header action that presents a modal workflow</li>
+            <li>Content that triggers Page APIs</li>
+          </ul>
+        </Card>
+        <Card title="Additional Page Disclosure">
+          <p>Page 1 presents Page 2 due changes to its local state.</p>
+          <Button text="Show Page 2" onClick={() => { setShowPage2(true); }} />
+        </Card>
+        <NotificationBannersCard />
+        <NotificationDialogCard />
+        <LoadingOverlayCard />
+        <ErrorHandlingCard pageTitle="Page1" />
+        <InteractionBlockingOverlayCard />
+        <PendingActionsCard />
+        <ModalManagerIntegrationCard />
+      </DemoPageContent>
+      {showPage2
+        && <Page2 onRequestClose={() => { setShowPage2(false); }} />}
+      {showPageModal
+        && <PagePresentingModal onRequestClose={() => { setShowPageModal(false); }} />}
     </ApplicationPage>
   );
 };
 
-Page1.isPage = true;
+Page1.propTypes = propTypes;
 
 export default Page1;

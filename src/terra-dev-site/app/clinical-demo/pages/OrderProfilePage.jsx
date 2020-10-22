@@ -5,7 +5,7 @@ import IconTrash from 'terra-icon/lib/icon/IconTrash';
 import IconModified from 'terra-icon/lib/icon/IconModified';
 
 import ApplicationPage from '../../../../application-page/ApplicationPage';
-import ApplicationBlockingOverlay from '../../../../application-blocking-overlay/ApplicationBlockingOverlay';
+import InteractionBlockOverlay from '../../../../interaction-block-overlay/InteractionBlockOverlay';
 import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
 
 import OrderProfilePageContent from './content/_OrderProfilePageContent';
@@ -86,7 +86,7 @@ const OrderProfilePage = ({ onRequestClose }) => {
       {!isInitialized
         && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
       {saveOrders
-        && <ApplicationBlockingOverlay />}
+        && <InteractionBlockOverlay />}
       {showDetails
         && (
           <ApplicationPage title={`${showDetails} Details`} onRequestClose={() => { setShowDetails(undefined); }}>

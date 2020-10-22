@@ -11,7 +11,7 @@ const propTypes = {
   description: PropTypes.string,
 };
 
-const ApplicationBlockingOverlay = ({ description }) => {
+const InteractionBlockingOverlay = ({ description }) => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useLayoutEffect(() => {
@@ -40,6 +40,6 @@ const ApplicationBlockingOverlay = ({ description }) => {
   );
 };
 
-ApplicationBlockingOverlay.propTypes = propTypes;
+InteractionBlockingOverlay.propTypes = propTypes;
 
-export default ApplicationBlockingOverlay;
+export default InteractionBlockingOverlay;

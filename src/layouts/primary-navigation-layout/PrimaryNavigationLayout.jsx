@@ -107,6 +107,7 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 
   renderPage: PropTypes.func,
+  renderNavigationFallback: PropTypes.func,
 };
 
 const PrimaryNavigationLayout = ({
@@ -128,6 +129,7 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
+  renderNavigationFallback,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
@@ -148,11 +150,11 @@ const PrimaryNavigationLayout = ({
   }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
 
   React.useLayoutEffect(() => {
-    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
-
     if (!contentElementRef.current) {
       return;
     }
+
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
 
     if (contentElementRef.current.contains(pageNodeForActivePage?.element) && contentElementRef.current.getAttribute('data-active-nav-key') === activeNavigationKey) {
       return;
@@ -175,9 +177,9 @@ const PrimaryNavigationLayout = ({
 
     if (pageNodeForActivePage?.element) {
       if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
-        pageNodeForActivePage?.element.style.removeProperty('display');
-        pageNodeForActivePage?.element.removeAttribute('aria-hidden');
-        pageNodeForActivePage?.element.removeAttribute('inert');
+        pageNodeForActivePage.element.style.removeProperty('display');
+        pageNodeForActivePage.element.removeAttribute('aria-hidden');
+        pageNodeForActivePage.element.removeAttribute('inert');
       } else {
         contentElementRef.current.appendChild(pageNodeForActivePage.element);
       }
@@ -195,11 +197,12 @@ const PrimaryNavigationLayout = ({
         document.body.focus();
       }, 0);
     } else {
+      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
       lastActiveNavigationKeyRef.current = undefined;
     }
   }, [activeNavigationKey]);
 
-  let navigationItems;
+  let navigationItems = [];
   const navigationItemChildren = React.Children.toArray(children).filter((child) => child.type === NavigationItem);
   if (navigationItemChildren.length > 0) {
     navigationItems = navigationItemChildren.map(child => ({
@@ -207,6 +210,8 @@ const PrimaryNavigationLayout = ({
       text: child.props.text,
     }));
   }
+
+  const hasActiveNavigationItem = !!navigationItems.find(item => item.key === activeNavigationKey);
 
   function renderNavigationItems() {
     return (
@@ -230,6 +235,7 @@ const PrimaryNavigationLayout = ({
             </NavigationContext.Provider>
           );
         })}
+        {!hasActiveNavigationItem && renderNavigationFallback ? renderNavigationFallback() : undefined}
       </div>
     );
   }
@@ -241,38 +247,36 @@ const PrimaryNavigationLayout = ({
         {renderPage()}
       </MainPageContainer>
     );
-  } else if (navigationItems) {
+  } else if (navigationItems.length) {
     content = renderNavigationItems();
   } else {
     content = children;
   }
 
   return (
-    <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
-      <ApplicationNavigation
-        navigationItems={navigationItems}
-        activeNavigationItemKey={activeNavigationKey}
-        hero={hero}
-        notifications={notifications}
-        titleConfig={titleConfig}
-        onSelectNavigationItem={onSelectNavigationItem}
-        userConfig={userConfig}
-        extensionItems={extensionItems}
-        onSelectExtensionItem={onSelectExtensionItem}
-        utilityItems={utilityItems}
-        onSelectUtilityItem={onSelectUtilityItem}
-        onSelectSettings={onSelectSettings}
-        onSelectHelp={onSelectHelp}
-        onSelectLogout={propOnSelectLogout && onSelectLogout}
-        onDrawerMenuStateChange={onDrawerMenuStateChange}
-      >
-        <HeadlessLayout>
-          <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
-            {content}
-          </NavigationPromptCheckpoint>
-        </HeadlessLayout>
-      </ApplicationNavigation>
-    </div>
+    <ApplicationNavigation
+      navigationItems={navigationItems}
+      activeNavigationItemKey={activeNavigationKey}
+      hero={hero}
+      notifications={notifications}
+      titleConfig={titleConfig}
+      onSelectNavigationItem={onSelectNavigationItem}
+      userConfig={userConfig}
+      extensionItems={extensionItems}
+      onSelectExtensionItem={onSelectExtensionItem}
+      utilityItems={utilityItems}
+      onSelectUtilityItem={onSelectUtilityItem}
+      onSelectSettings={onSelectSettings}
+      onSelectHelp={onSelectHelp}
+      onSelectLogout={propOnSelectLogout && onSelectLogout}
+      onDrawerMenuStateChange={onDrawerMenuStateChange}
+    >
+      <HeadlessLayout>
+        <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+          {content}
+        </NavigationPromptCheckpoint>
+      </HeadlessLayout>
+    </ApplicationNavigation>
   );
 };
 

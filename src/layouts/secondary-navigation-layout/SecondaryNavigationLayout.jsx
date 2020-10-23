@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import classNames from 'classnames/bind';
 import ContentContainer from 'terra-content-container';
 import Button, { ButtonVariants } from 'terra-button';
@@ -77,14 +76,14 @@ const initialSizeForBreakpoint = (breakpoint) => {
 };
 
 const SecondaryNavigationLayout = ({
-  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace, renderPage,
+  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace, renderPage, renderNavigationFallback,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const navigationContextValue = React.useContext(NavigationContext);
 
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
-  const pageBodyRef = React.useRef();
+  const contentElementRef = React.useRef();
   const sideNavPanelRef = React.useRef();
   const workspacePanelRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -101,11 +100,27 @@ const SecondaryNavigationLayout = ({
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
 
-  let hasSidebar = false;
-  if (React.Children.toArray(children).filter((child) => (child.type === NavigationItem || child.type === SecondaryNavigationGroup)).length > 0) {
-    hasSidebar = true;
+  function getNavigationItems(childComponents) {
+    return React.Children.toArray(childComponents).reduce((accumulator, child) => {
+      const items = [...accumulator];
+
+      if (child.type === NavigationItem) {
+        items.push(child);
+      } else if (child.type === SecondaryNavigationGroup) {
+        const groupItems = getNavigationItems(child.props.children);
+        if (groupItems) {
+          items.push(...groupItems);
+        }
+      }
+
+      return items;
+    }, []);
   }
 
+  const navigationItems = getNavigationItems(children);
+  const hasActiveNavigationItem = !!navigationItems.find(item => item.props.navigationKey === activeNavigationKey);
+
+  const hasSidebar = !!navigationItems.length;
   const hasOverlaySidebar = sideNavOverlayBreakpoints.indexOf(activeBreakpoint) !== -1;
   const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
 
@@ -132,13 +147,6 @@ const SecondaryNavigationLayout = ({
     ) : undefined,
   }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
 
-  // const secondaryNavigationLayoutContextValue = React.useMemo(() => ({
-  //   workspaceIsVisible,
-  //   toggleWorkspace: () => { setWorkspaceIsVisible(state => !state); },
-  //   sideNavIsVisible: hasSidebar ? (sideNavOverlayIsVisible && hasOverlaySidebar) : true,
-  //   toggleSideNav: hasSidebar && hasOverlaySidebar ? () => { setSideNavOverlayIsVisible(state => !state); } : undefined,
-  // }), [workspaceIsVisible, hasSidebar, hasOverlaySidebar, sideNavOverlayIsVisible]);
-
   React.useEffect(() => {
     function dismissOverlaySidebars() {
       if (hasOverlaySidebar) {
@@ -158,28 +166,46 @@ const SecondaryNavigationLayout = ({
   }, [hasOverlaySidebar, hasOverlayWorkspace]);
 
   React.useLayoutEffect(() => {
-    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
-
-    if (!pageBodyRef.current) {
+    if (!contentElementRef.current) {
       return;
     }
 
-    if (pageBodyRef.current.contains(pageNodeForActivePage?.element)) {
+    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
+
+    if (contentElementRef.current.contains(pageNodeForActivePage?.element) && contentElementRef.current.getAttribute('data-active-nav-key') === activeNavigationKey) {
       return;
     }
 
     if (lastActiveNavigationKeyRef.current) {
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
-      pageBodyRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+      const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
+
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = elementToRemove.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
+
+      const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
+      if (hasUnsafeElements.length) {
+        elementToRemove.style.display = 'none';
+        elementToRemove.setAttribute('aria-hidden', true);
+        elementToRemove.setAttribute('inert', '');
+      } else {
+        contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
+      }
     }
 
     if (pageNodeForActivePage?.element) {
-      pageBodyRef.current.appendChild(pageNodeForActivePage.element);
+      if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
+        pageNodeForActivePage.element.style.removeProperty('display');
+        pageNodeForActivePage.element.removeAttribute('aria-hidden');
+        pageNodeForActivePage.element.removeAttribute('inert');
+      } else {
+        contentElementRef.current.appendChild(pageNodeForActivePage.element);
+      }
 
       const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
       if (pageMainElement) {
         pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
       }
+
+      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
 
       lastActiveNavigationKeyRef.current = activeNavigationKey;
 
@@ -187,6 +213,7 @@ const SecondaryNavigationLayout = ({
         document.body.focus();
       }, 0);
     } else {
+      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
       lastActiveNavigationKeyRef.current = undefined;
     }
   }, [activeNavigationKey]);
@@ -266,47 +293,27 @@ const SecondaryNavigationLayout = ({
     onSelectNavigationItem(pageKey);
   }
 
-  function renderChildPages(childComponents) {
-    function renderChildPage(page) {
-      let portalElement = pageContainerPortalsRef.current[page.props.navigationKey]?.element;
+  function renderNavigationItems() {
+    return navigationItems.map((item) => {
+      let portalElement = pageContainerPortalsRef.current[item.props.navigationKey]?.element;
       if (!portalElement) {
         portalElement = document.createElement('div');
         portalElement.style.position = 'relative';
         portalElement.style.height = '100%';
         portalElement.style.width = '100%';
-        portalElement.id = `side-nav-${page.props.navigationKey}`;
-        pageContainerPortalsRef.current[page.props.navigationKey] = {
+        portalElement.id = `side-nav-${item.props.navigationKey}`;
+        pageContainerPortalsRef.current[item.props.navigationKey] = {
           element: portalElement,
         };
       }
 
       return (
-        <NavigationContext.Provider value={{ isActive: navigationContextValue.isActive && page.props.navigationKey === activeNavigationKey, navigationIdentifier: page.props.navigationKey }}>
-          {React.cloneElement(page, {
-            isActive: page.props.navigationKey === activeNavigationKey, portalElement, enableWorkspace,
+        <NavigationContext.Provider key={item.props.navigationKey} value={{ isActive: navigationContextValue.isActive && item.props.navigationKey === activeNavigationKey, navigationIdentifier: item.props.navigationKey }}>
+          {React.cloneElement(item, {
+            isActive: item.props.navigationKey === activeNavigationKey, portalElement, enableWorkspace,
           })}
         </NavigationContext.Provider>
       );
-    }
-
-    if (renderPage) {
-      return (
-        <MainPageContainer>
-          {renderPage()}
-        </MainPageContainer>
-      );
-    }
-
-    return React.Children.map(childComponents, (child) => {
-      if (child.type === NavigationItem) {
-        return renderChildPage(child);
-      }
-
-      if (child.type === SecondaryNavigationGroup) {
-        return renderChildPages(child.props.children);
-      }
-
-      return child;
     });
   }
 
@@ -326,6 +333,24 @@ const SecondaryNavigationLayout = ({
 
   function deferAction(callback) {
     setTimeout(callback, 0);
+  }
+
+  let content;
+  if (renderPage) {
+    content = (
+      <MainPageContainer>
+        {renderPage()}
+      </MainPageContainer>
+    );
+  } else if (navigationItems.length) {
+    content = (
+      <>
+        {renderNavigationItems()}
+        {!hasActiveNavigationItem && renderNavigationFallback ? renderNavigationFallback() : undefined}
+      </>
+    );
+  } else {
+    content = children;
   }
 
   return (
@@ -403,13 +428,13 @@ const SecondaryNavigationLayout = ({
         </div>
         <div ref={sideNavBodyRef} className={cx('side-nav-body')}>
           <div
-            ref={pageBodyRef}
+            ref={contentElementRef}
             className={cx('page-body')}
             style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null} // TODO add IE flex styles
             inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
           >
             <PageActionsContext.Provider value={pageActionsContextValue}>
-              {renderChildPages(children)}
+              {content}
             </PageActionsContext.Provider>
           </div>
           {enableWorkspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
@@ -527,7 +552,7 @@ const SecondaryNavigationLayout = ({
                     setWorkspaceIsVisible(false);
 
                     deferAction(() => {
-                      document.querySelector('main')?.focus(); // TODO talk about movinig focus in these scenarios (plus the size dropdown stuff)
+                      document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
                     });
                   } : null}
                 />
@@ -575,7 +600,7 @@ const SecondaryNavigationLayout = ({
 SecondaryNavigationLayout.propTypes = propTypes;
 
 const SecondaryNavigationGroup = ({
-  description, children,
+  text, children,
 }) => null;
 
 export default SecondaryNavigationLayout;

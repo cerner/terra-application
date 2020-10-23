@@ -5,7 +5,6 @@ import Button from 'terra-button';
 import ApplicationModal from '../../../application-modal/ApplicationModal';
 import { PrimaryNavigationLayout, NavigationItem } from '../../../layouts';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
-import useNavigationState from '../../../navigation/useNavigationState';
 import SessionActionsContext from '../../../session/SessionActionsContext';
 import SessionUserContext from '../../../session/SessionUserContext';
 
@@ -26,9 +25,21 @@ const DemoApplicationNavigationLayout = () => {
   const sessionUser = React.useContext(SessionUserContext);
   const sessionActions = React.useContext(SessionActionsContext);
 
-  const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D', 'nav-E', 'nav-F']);
+  const [navigationState, setNavigationState] = React.useState('nav-A');
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
+
+  React.useEffect(() => {
+    function handleEventNavigation(event) {
+      setNavigationState(event.detail);
+    }
+
+    window.addEventListener('terra-application-demo.navigate', handleEventNavigation);
+
+    return () => {
+      window.removeEventListener('terra-application-demo.navigate', handleEventNavigation);
+    };
+  });
 
   return (
     <>
@@ -69,6 +80,7 @@ const DemoApplicationNavigationLayout = () => {
             onSelectHelp={() => {}}
             activeNavigationKey={conceptContext.data ? navigationState : undefined}
             onSelectNavigationItem={(key) => { setNavigationState(key); }}
+            renderNavigationFallback={() => <div>404</div>}
           >
             <NavigationItem
               navigationKey="nav-A"

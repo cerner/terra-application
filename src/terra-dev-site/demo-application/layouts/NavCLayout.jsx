@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { SecondaryNavigationLayout, NavigationItem } from '../../../layouts';
-import useNavigationState from '../../../navigation/useNavigationState';
 
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
@@ -10,12 +9,25 @@ import Page4 from '../pages/Page4';
 import NotAPage from '../shared/NotAPage';
 
 const NavCLayout = () => {
-  const [navigationState, setNavigationState] = useNavigationState(['nav-C-1', 'nav-C-2', 'nav-C-3']);
+  const [navigationState, setNavigationState] = React.useState('nav-C-1');
+
+  React.useEffect(() => {
+    function handleEventNavigation(event) {
+      setNavigationState(event.detail);
+    }
+
+    window.addEventListener('terra-application-demo.nav-c.navigate', handleEventNavigation);
+
+    return () => {
+      window.removeEventListener('terra-application-demo.nav-c.navigate', handleEventNavigation);
+    };
+  });
 
   return (
     <SecondaryNavigationLayout
       activeNavigationKey={navigationState}
       onSelectNavigationItem={(key) => { setNavigationState(key); }}
+      renderNavigationFallback={() => <div>404</div>}
     >
       <NavigationItem
         navigationKey="nav-C-1"

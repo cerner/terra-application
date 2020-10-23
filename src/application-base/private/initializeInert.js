@@ -1,7 +1,7 @@
 import './inertStyles.scss';
 import 'mutationobserver-shim';
-import '../../utils/_contains-polyfill';
-import '../../utils/_matches-polyfill';
+import '../../utils/polyfills/_contains-polyfill';
+import '../../utils/polyfills/_matches-polyfill';
 
 /**
  * Components within the framework utilize the inert property (https://html.spec.whatwg.org/multipage/interaction.html#inert)

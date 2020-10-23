@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added mutation observer-shim to better support inert in IE10.
+
 ## 1.39.0 - (October 20, 2020)
 
 * Changed

@@ -218,16 +218,14 @@ const SecondaryNavigationLayout = ({
     }
   }, [activeNavigationKey]);
 
-  // TODO Fix this to handle navigation groups
-  // React.useEffect(() => {
-  //   const pageKeys = React.Children.map(children, (child) => (child.props.pageKey));
-
-  //   // Cleanup nodes for removed children
-  //   const danglingPageKeys = Object.keys(pageContainerPortalsRef.current).filter((pageKey) => !pageKeys.includes(pageKey));
-  //   danglingPageKeys.forEach((pageKey) => {
-  //     delete pageContainerPortalsRef.current[pageKey];
-  //   });
-  // }, [children]);
+  React.useEffect(() => {
+    const navigationItemKeys = navigationItems.map(item => item.props.navigationKey);
+    // Cleanup nodes for removed children
+    const danglingPortalKeys = Object.keys(pageContainerPortalsRef.current).filter((itemKey) => !navigationItemKeys.includes(itemKey));
+    danglingPortalKeys.forEach((pageKey) => {
+      delete pageContainerPortalsRef.current[pageKey];
+    });
+  }, [navigationItems]);
 
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {

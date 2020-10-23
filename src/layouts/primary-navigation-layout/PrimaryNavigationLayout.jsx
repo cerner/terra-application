@@ -211,6 +211,15 @@ const PrimaryNavigationLayout = ({
     }));
   }
 
+  React.useEffect(() => {
+    const navigationItemKeys = navigationItems.map(item => item.key);
+    // Cleanup nodes for removed children
+    const danglingPortalKeys = Object.keys(pageContainerPortalsRef.current).filter((itemKey) => !navigationItemKeys.includes(itemKey));
+    danglingPortalKeys.forEach((pageKey) => {
+      delete pageContainerPortalsRef.current[pageKey];
+    });
+  }, [navigationItems]);
+
   const hasActiveNavigationItem = !!navigationItems.find(item => item.key === activeNavigationKey);
 
   function renderNavigationItems() {

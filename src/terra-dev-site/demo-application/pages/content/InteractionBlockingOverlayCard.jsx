@@ -21,7 +21,7 @@ const InteractionBlockingOverlayCard = () => {
       <p>Pressing the below button will cause the InteractionBlockingOverlay to be presented for five seconds.</p>
       <Button
         text="Show Interaction Blocking Overlay"
-        icon={showInteractionBlockingOverlay && <IconSpinner />}
+        icon={showInteractionBlockingOverlay ? <IconSpinner /> : undefined}
         onClick={() => {
           setShowInteractionBlockingOverlay(true);
 

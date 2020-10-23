@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import TabContext from '../../../workspace/TabContext';
-import WorkspaceContext from '../../../workspace/WorkspaceContext';
-import NotificationBanner from '../../../notification-banner/NotificationBanner';
+import TabContext from '../../../../workspace/TabContext';
+import WorkspaceContext from '../../../../workspace/WorkspaceContext';
+import NotificationBanner from '../../../../notification-banner/NotificationBanner';
 import styles from './MockContent.module.scss';
 
 const cx = classNames.bind(styles);
 
-const MockContent = ({initialCount = 0, title = '', id}) => {
+const MockContent = ({ initialCount = 0, title = '', id }) => {
   const [waffle, setWaffle] = useState(initialCount);
   const [showAlertBanner, setShowAlertBanner] = useState(false);
   const { tabId } = React.useContext(TabContext);

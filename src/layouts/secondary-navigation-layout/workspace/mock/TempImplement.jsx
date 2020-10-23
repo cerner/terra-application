@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
-import Tabs from '../../../workspace/Tabs';
-import TabPage from '../../../workspace/TabPage';
+import Tabs from '../../../../workspace/Tabs';
+import TabPage from '../../../../workspace/TabPage';
 import Page1 from './Page1';
 import Page2 from './Page2';
 import Page3 from './Page3';

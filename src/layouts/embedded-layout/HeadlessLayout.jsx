@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import ApplicationConceptBannerContext from '../application-container/private/ApplicationConceptBannerContext';
-// import PageContainer from '../application-page/container/PageContainer';
-import MainPageContainer from '../application-page/container/MainPageContainer';
+import ApplicationConceptBannerContext from '../../application-container/private/ApplicationConceptBannerContext';
+import MainPageContainer from '../../application-page/container/MainPageContainer';
 
 import styles from './HeadlessLayout.module.scss';
 

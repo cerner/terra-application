@@ -3,7 +3,7 @@ import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import Button from 'terra-button';
 
 import ApplicationModal from '../../../application-modal/ApplicationModal';
-import PrimaryNavigationLayout, { NavigationItem } from '../../../application-layouts/PrimaryNavigationLayout';
+import { PrimaryNavigationLayout, NavigationItem } from '../../../layouts';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
 import useNavigationState from '../../../navigation/useNavigationState';
 import SessionActionsContext from '../../../session/SessionActionsContext';
@@ -13,7 +13,6 @@ import ModalManager from '../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
 
 import Page1 from '../pages/Page1';
-import Page4 from '../pages/Page4';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
@@ -30,51 +29,6 @@ const DemoApplicationNavigationLayout = () => {
   const [navigationState, setNavigationState] = useNavigationState(['nav-A', 'nav-B', 'nav-C', 'nav-D', 'nav-E', 'nav-F']);
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
-
-  function renderNavigationItems() {
-    if (conceptContext.data) {
-      return [(
-        <NavigationItem
-          navigationKey="nav-A"
-          text="Nav A"
-          renderPage={() => <Page1 />}
-        />
-      ), (
-        <NavigationItem
-          navigationKey="nav-B"
-          text="Nav B"
-          render={() => <NavBLayout />}
-        />
-      ), (
-        <NavigationItem
-          navigationKey="nav-C"
-          text="Nav C"
-          render={() => <NavCLayout />}
-        />
-      ), (
-        <NavigationItem
-          navigationKey="nav-D"
-          text="Nav D"
-          render={() => <NavDLayout />}
-        />
-      ), (
-        <NavigationItem
-          navigationKey="nav-E"
-          text="Nav E"
-          render={() => (
-            <NotAPage />
-          )}
-        />
-      )];
-    }
-
-    return (
-      <main style={{ padding: '0 1.5rem' }}>
-        <h1>No Context</h1>
-        <p>Select a option from the Search modal.</p>
-      </main>
-    );
-  }
 
   return (
     <>
@@ -99,10 +53,10 @@ const DemoApplicationNavigationLayout = () => {
                 setShowSearchModal(true);
               }
             }}
-            // utilityItems={[{
-            //   key: 'lock',
-            //   text: 'Lock Session',
-            // }]}
+            utilityItems={[{
+              key: 'lock',
+              text: 'Lock Session',
+            }]}
             onSelectUtilityItem={(key) => {
               if (key === 'lock') {
                 sessionActions.lock();
@@ -111,12 +65,38 @@ const DemoApplicationNavigationLayout = () => {
             onSelectLogout={() => {
               sessionActions.logOut();
             }}
-            // onSelectSettings={() => {}}
+            onSelectSettings={() => {}}
             onSelectHelp={() => {}}
             activeNavigationKey={conceptContext.data ? navigationState : undefined}
             onSelectNavigationItem={(key) => { setNavigationState(key); }}
           >
-            {renderNavigationItems()}
+            <NavigationItem
+              navigationKey="nav-A"
+              text="Nav A"
+              renderPage={() => <Page1 />}
+            />
+            <NavigationItem
+              navigationKey="nav-B"
+              text="Nav B"
+              render={() => <NavBLayout />}
+            />
+            <NavigationItem
+              navigationKey="nav-C"
+              text="Nav C"
+              render={() => <NavCLayout />}
+            />
+            <NavigationItem
+              navigationKey="nav-D"
+              text="Nav D"
+              render={() => <NavDLayout />}
+            />
+            <NavigationItem
+              navigationKey="nav-E"
+              text="Nav E"
+              render={() => (
+                <NotAPage />
+              )}
+            />
           </PrimaryNavigationLayout>
         </ModalManager>
         {showDetailsModal && (

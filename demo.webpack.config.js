@@ -18,26 +18,6 @@ const demoConfig = () => ({
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-  // plugins: [
-  //   new TerraDevSite({ env }),
-  // ],
-  // resolve: {
-  //   plugins: [
-  //     new DirectorySwitcherPlugin({
-  //       shouldSwitch: hotReloading && !production,
-  //       rootDirectories: [
-  //         processPath,
-  //         path.resolve(processPath, 'packages', '*'),
-  //       ],
-  //     }),
-  //     new LocalPackageAliasPlugin({
-  //       rootDirectories: [
-  //         processPath,
-  //         path.resolve(processPath, 'packages', '*'),
-  //       ],
-  //     }),
-  //   ],
-  // },
 });
 
 const mergedConfig = (env, argv) => (

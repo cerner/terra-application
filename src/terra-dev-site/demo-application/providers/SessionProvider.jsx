@@ -1,9 +1,8 @@
 import React from 'react';
-// import classNames from 'classnames/bind';
 import Button from 'terra-button';
 // import styles from './SessionProvider.module.scss';
 
-import PrimaryNavigationLayout from '../../../application-layouts/PrimaryNavigationLayout';
+import PrimaryNavigationLayout from '../../../layouts/primary-navigation-layout/PrimaryNavigationLayout';
 import SessionUserContext from '../../../session/SessionUserContext';
 import SessionActionsContext from '../../../session/SessionActionsContext';
 import ApplicationErrorBoundary from '../../../application-error-boundary';

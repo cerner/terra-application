@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ApplicationPage from '../../../application-page/ApplicationPage';
-import SecondaryNavigationLayout, { NavigationGroup, NavigationItem } from '../../../application-layouts/SecondaryNavigationLayout';
+import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } from '../../../layouts';
 import useNavigationState from '../../../navigation/useNavigationState';
 
 import Page1 from '../pages/Page1';
@@ -19,7 +19,7 @@ const NavDLayout = () => {
       activeNavigationKey={navigationState}
       onSelectNavigationItem={(key) => { setNavigationState(key); }}
     >
-      <NavigationGroup
+      <SecondaryNavigationGroup
         text="Group 1"
       >
         <NavigationItem
@@ -32,8 +32,8 @@ const NavDLayout = () => {
           text="Nav D-2 Page 2"
           renderPage={() => <Page2 />}
         />
-      </NavigationGroup>
-      <NavigationGroup
+      </SecondaryNavigationGroup>
+      <SecondaryNavigationGroup
         text="Group 2"
       >
         <NavigationItem
@@ -46,8 +46,8 @@ const NavDLayout = () => {
           text="Nav D-4 Page 4"
           renderPage={() => <Page4 />}
         />
-      </NavigationGroup>
-      <NavigationGroup
+      </SecondaryNavigationGroup>
+      <SecondaryNavigationGroup
         text="Group 3"
       >
         <NavigationItem
@@ -61,7 +61,7 @@ const NavDLayout = () => {
             </ApplicationPage>
           )}
         />
-        <NavigationGroup
+        <SecondaryNavigationGroup
           text="Nested Group"
         >
           <NavigationItem
@@ -71,8 +71,8 @@ const NavDLayout = () => {
               <NotAPage />
             )}
           />
-        </NavigationGroup>
-      </NavigationGroup>
+        </SecondaryNavigationGroup>
+      </SecondaryNavigationGroup>
       <NavigationItem
         navigationKey="nav-D-7"
         text="Nav D-7 Page Not In Group"

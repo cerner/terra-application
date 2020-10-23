@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import Panel from '../../../workspace/Panel';
+import Panel from '../../../../workspace/Panel';
 import MockContent from './MockContent';
 
 const Page1 = () => {
-  const [ isReset, setIsReset ] = useState(false);
+  const [isReset, setIsReset] = useState(false);
 
   const actions = [
     {
@@ -52,6 +52,6 @@ const Page1 = () => {
   );
 };
 
-Page1.titleKey = "derp";
+Page1.titleKey = 'derp';
 
 export default Page1;

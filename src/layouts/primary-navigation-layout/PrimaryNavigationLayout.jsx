@@ -2,39 +2,33 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import {
-  titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from '../application-navigation/terra-application-navigation/utils/propTypes';
-import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
-import ApplicationNavigation from '../application-navigation/ApplicationNavigation';
-import NavigationContext from '../navigation/NavigationContext';
-// import PageContainer from '../application-page/container/PageContainer';
-import MainPageContainer from '../application-page/container/MainPageContainer';
+import NavigationContext from '../../navigation/NavigationContext';
+import MainPageContainer from '../../application-page/container/MainPageContainer';
+import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
+import { ApplicationIntlContext } from '../../application-intl';
 
-import HeadlessLayout from './HeadlessLayout';
+import HeadlessLayout from '../embedded-layout/HeadlessLayout';
+import NavigationItem from '../shared/NavigationItem';
+import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import {
+  titleConfigPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
+} from './terra-application-navigation/utils/propTypes';
 
 const propTypes = {
-  /**
-   * A string key representing the currently active navigation item. This value should match one of the item keys provided in the
-   * `navigationItems` array.
-   */
-  activeNavigationKey: PropTypes.string,
   /**
    * A collection of child elements to render within the ApplicationNavigation body.
    */
   children: PropTypes.node,
   /**
-   * By default, the ApplicationNavigation component will resolve any registered NavigationPrompts prior to
+   * A string key representing the currently active navigation item.
+   */
+  activeNavigationKey: PropTypes.string,
+  /**
+   * By default, the PrimaryNavigationLayout will resolve any registered NavigationPrompts prior to
    * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
    * no NavigationPrompts are resolved when logout is selected.
    */
   disablePromptsForLogout: PropTypes.bool,
-  /**
-   * By default, the ApplicationNavigation component will resolve any rendered NavigationPrompts prior to
-   * communicating navigation item selections with `onSelectNavigationItem`. If `disablePromptsForNavigationItems`
-   * is provided, no NavigationPrompts are resolved when navigation items are selected.
-   */
-  disablePromptsForNavigationItems: PropTypes.bool,
   /**
    * A configuration object with information specifying the creation of the Extension buttons rendered within the
    * ApplicationNavigation header.
@@ -44,11 +38,6 @@ const propTypes = {
    * An element to render within the ApplicationNavigation utility menu, shifted to the drawer at the `medium` breakpoint and below.
    */
   hero: PropTypes.element,
-  /**
-   * An array of configuration objects with information specifying the creation of navigation items. These items
-   * are rendered within the ApplicationNavigation header at larger breakpoints and within the drawer menu at smaller breakpoints.
-   */
-  navigationItems: navigationItemsPropType,
   /**
    * The Object (or function that returns an Object) that specifies the messages
    * used to prompt the user when navigation items are selected while NavigationPrompts
@@ -117,19 +106,46 @@ const propTypes = {
    */
   utilityItems: utilityItemsPropType,
 
-  disableApplicationConceptRendering: PropTypes.bool,
+  renderPage: PropTypes.func,
 };
 
 const PrimaryNavigationLayout = ({
   children,
   renderPage,
   activeNavigationKey,
-  disableApplicationConceptRendering,
-  ...props
+  disablePromptsForLogout,
+  extensionItems,
+  hero,
+  navigationPromptResolutionOptions,
+  notifications,
+  onDrawerMenuStateChange,
+  onSelectExtensionItem,
+  onSelectHelp,
+  onSelectLogout: propOnSelectLogout,
+  onSelectNavigationItem,
+  onSelectSettings,
+  onSelectUtilityItem,
+  titleConfig,
+  userConfig,
+  utilityItems,
 }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActiveNavigationKeyRef = React.useRef();
+  const navigationPromptCheckpointRef = React.useRef();
+
+  const onSelectLogout = React.useCallback(() => {
+    if (disablePromptsForLogout) {
+      propOnSelectLogout();
+      return;
+    }
+
+    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      propOnSelectLogout();
+    }).catch((e) => { if (e) throw e; });
+  }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
 
   React.useLayoutEffect(() => {
     const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
@@ -233,9 +249,27 @@ const PrimaryNavigationLayout = ({
 
   return (
     <div style={{ height: '100%', overflow: 'hidden', position: 'relative' }}>
-      <ApplicationNavigation {...props} navigationItems={navigationItems} activeNavigationItemKey={activeNavigationKey} disablePromptsForNavigationItems>
+      <ApplicationNavigation
+        navigationItems={navigationItems}
+        activeNavigationItemKey={activeNavigationKey}
+        hero={hero}
+        notifications={notifications}
+        titleConfig={titleConfig}
+        onSelectNavigationItem={onSelectNavigationItem}
+        userConfig={userConfig}
+        extensionItems={extensionItems}
+        onSelectExtensionItem={onSelectExtensionItem}
+        utilityItems={utilityItems}
+        onSelectUtilityItem={onSelectUtilityItem}
+        onSelectSettings={onSelectSettings}
+        onSelectHelp={onSelectHelp}
+        onSelectLogout={propOnSelectLogout && onSelectLogout}
+        onDrawerMenuStateChange={onDrawerMenuStateChange}
+      >
         <HeadlessLayout>
-          {content}
+          <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+            {content}
+          </NavigationPromptCheckpoint>
         </HeadlessLayout>
       </ApplicationNavigation>
     </div>
@@ -244,25 +278,4 @@ const PrimaryNavigationLayout = ({
 
 PrimaryNavigationLayout.propTypes = propTypes;
 
-const NavigationItem = ({
-  navigationKey, text, isActive, children, render, renderPage, portalElement,
-}) => {
-  let pageContent;
-
-  if (renderPage) {
-    pageContent = (
-      <MainPageContainer>
-        {renderPage()}
-      </MainPageContainer>
-    );
-  } else if (render) {
-    pageContent = render({ isActive });
-  } else {
-    pageContent = children;
-  }
-
-  return ReactDOM.createPortal(pageContent, portalElement);
-};
-
 export default PrimaryNavigationLayout;
-export { NavigationItem };

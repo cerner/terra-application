@@ -8,7 +8,7 @@ import FocusTrap from 'focus-trap-react';
 import Popup from 'terra-popup';
 import ThemeContext from 'terra-theme-context';
 
-import { ActiveBreakpointContext } from '../../breakpoints';
+import { ActiveBreakpointContext } from '../../../breakpoints';
 
 import Header from './header/_Header';
 import CompactHeader from './header/_CompactHeader';

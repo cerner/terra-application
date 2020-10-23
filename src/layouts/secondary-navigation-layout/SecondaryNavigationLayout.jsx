@@ -8,14 +8,14 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
-import { ActiveBreakpointContext } from '../breakpoints';
-import SkipToButton from '../application-container/private/skip-to/SkipToButton';
-import NavigationContext from '../navigation/NavigationContext';
-// import PageContainer from '../application-page/container/PageContainer';
-import MainPageContainer from '../application-page/container/MainPageContainer';
+import { ActiveBreakpointContext } from '../../breakpoints';
+import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
+import NavigationContext from '../../navigation/NavigationContext';
+import MainPageContainer from '../../application-page/container/MainPageContainer';
+import PageActionsContext from '../../application-page/PageActionsContext';
+import EventEmitter from '../../utils/event-emitter';
 
-import PageActionsContext from '../application-page/PageActionsContext';
-import EventEmitter from '../utils/event-emitter';
+import NavigationItem from '../shared/NavigationItem';
 
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
@@ -102,7 +102,7 @@ const SecondaryNavigationLayout = ({
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
 
   let hasSidebar = false;
-  if (React.Children.toArray(children).filter((child) => (child.type === NavigationItem || child.type === NavigationGroup)).length > 0) {
+  if (React.Children.toArray(children).filter((child) => (child.type === NavigationItem || child.type === SecondaryNavigationGroup)).length > 0) {
     hasSidebar = true;
   }
 
@@ -302,7 +302,7 @@ const SecondaryNavigationLayout = ({
         return renderChildPage(child);
       }
 
-      if (child.type === NavigationGroup) {
+      if (child.type === SecondaryNavigationGroup) {
         return renderChildPages(child.props.children);
       }
 
@@ -316,7 +316,7 @@ const SecondaryNavigationLayout = ({
         return { key: child.props.navigationKey, text: child.props.text };
       }
 
-      if (child.type === NavigationGroup) {
+      if (child.type === SecondaryNavigationGroup) {
         return { key: child.props.text, text: child.props.text, childItems: buildSideNavItems(child.props.children) };
       }
 
@@ -574,29 +574,9 @@ const SecondaryNavigationLayout = ({
 
 SecondaryNavigationLayout.propTypes = propTypes;
 
-const NavigationItem = ({
-  isActive, children, render, renderPage, portalElement,
-}) => {
-  let pageContent;
-
-  if (renderPage) {
-    pageContent = (
-      <MainPageContainer>
-        {renderPage()}
-      </MainPageContainer>
-    );
-  } else if (render) {
-    pageContent = render({ isActive });
-  } else {
-    pageContent = children;
-  }
-
-  return ReactDOM.createPortal(pageContent, portalElement);
-};
-
-const NavigationGroup = ({
+const SecondaryNavigationGroup = ({
   description, children,
 }) => null;
 
 export default SecondaryNavigationLayout;
-export { NavigationGroup, NavigationItem };
+export { SecondaryNavigationGroup };

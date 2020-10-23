@@ -1,9 +1,7 @@
 import React from 'react';
-import Button from 'terra-button';
-import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import Menu from 'terra-menu';
 
-import { ActiveBreakpointContext } from '../../breakpoints';
+import { ActiveBreakpointContext } from '../../../breakpoints';
 import Tabs from './mock/TempImplement';
 
 const propTypes = {};

@@ -1,5 +1,5 @@
 import React from 'react';
-import SecondaryNavigationLayout from '../../../application-layouts/SecondaryNavigationLayout';
+import { SecondaryNavigationLayout } from '../../../layouts';
 import Page2 from '../pages/Page1';
 
 const propTypes = {};

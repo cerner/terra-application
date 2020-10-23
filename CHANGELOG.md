@@ -4,7 +4,12 @@
 
 * Added
   * Added mutation observer-shim to better support inert in IE10.
-  
+
+## 1.39.0 - (October 20, 2020)
+
+* Changed
+  * Updated documentation for how to use `EventEmitter` properly.
+
 ## 1.38.0 - (October 13, 2020)
 
 * Changed

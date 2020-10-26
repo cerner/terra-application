@@ -110,7 +110,7 @@
     "intl-locales-supported": "^1.8.4",
     "prop-types": "^15.5.8",
     "terra-alert": "^4.31.0",
-    "terra-application-navigation": "git+https://github.com/cerner/terra-framework.git#react-intl-upgrade",
+    "terra-application-navigation": "^1.11.0",
     "terra-breakpoints": "^2.0.0",
     "terra-button": "^3.42.0",
     "terra-content-container": "^3.14.0",

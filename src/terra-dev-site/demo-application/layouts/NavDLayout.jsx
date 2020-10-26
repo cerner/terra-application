@@ -2,7 +2,6 @@ import React from 'react';
 
 import ApplicationPage from '../../../application-page/ApplicationPage';
 import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } from '../../../layouts';
-import useNavigationState from '../../../navigation/useNavigationState';
 
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
@@ -11,7 +10,7 @@ import Page4 from '../pages/Page4';
 import NotAPage from '../shared/NotAPage';
 
 const NavDLayout = () => {
-  const [navigationState, setNavigationState] = useNavigationState(['nav-D-1', 'nav-D-2', 'nav-D-3', 'nav-D-4', 'nav-D-5', 'nav-D-6']);
+  const [navigationState, setNavigationState] = React.useState('nav-D-1');
 
   return (
     <SecondaryNavigationLayout

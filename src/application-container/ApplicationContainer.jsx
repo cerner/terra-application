@@ -6,7 +6,6 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
-import NavigationRegistrationProvider from '../navigation/NavigationRegistrationProvider';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
 import styles from './ApplicationContainer.module.scss';
@@ -91,11 +90,9 @@ const ApplicationContainer = ({
                 onClick: () => { window.location.reload(); },
               }]}
             >
-              <NavigationRegistrationProvider>
-                <ModalManager>
-                  {children}
-                </ModalManager>
-              </NavigationRegistrationProvider>
+              <ModalManager>
+                {children}
+              </ModalManager>
             </ApplicationErrorBoundary>
           </SkipToButtonsProvider>
         </LayerContainer>

@@ -6,6 +6,7 @@
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuer la modification",
   "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}",
+  
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Liens de navigation supplémentaires",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Liens de navigation supplémentaires",
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Paramètres utilisateur",

@@ -6,6 +6,7 @@
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
   "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}",
+  
   "terraApplication.applicationNavigation.utilityMenu.logout": "Logout",
   "terraApplication.applicationNavigation.utilityMenu.settings": "Settings",
   "terraApplication.applicationNavigation.utilityMenu.help": "Help",

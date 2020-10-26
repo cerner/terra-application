@@ -6,6 +6,7 @@
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Spara inte",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Fortsätt redigera",
   "terraApplication.errorBoundary.defaultErrorMessage": "Ett fel uppstod: {errorDetails}",
+  
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Fler navigeringslänkar",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Fler navigeringslänkar",
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Användarinställningar",

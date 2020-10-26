@@ -9,13 +9,12 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
-import NavigationContext from '../../navigation/NavigationContext';
 import MainPageContainer from '../../application-page/container/MainPageContainer';
 import PageActionsContext from '../../application-page/PageActionsContext';
 import EventEmitter from '../../utils/event-emitter';
 
 import NavigationItem from '../shared/NavigationItem';
-
+import SecondaryNavigationGroup from './SecondaryNavigationGroup';
 import ResizeHandle from './workspace/ResizeHandle';
 import MockWorkspace from './workspace/MockWorkspace';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';
@@ -79,7 +78,6 @@ const SecondaryNavigationLayout = ({
   sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace, renderPage, renderNavigationFallback,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  const navigationContextValue = React.useContext(NavigationContext);
 
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
@@ -305,12 +303,16 @@ const SecondaryNavigationLayout = ({
         };
       }
 
+      /**
+       * The cloned element is wrapped in a keyed fragment to ensure the render order of
+       * the mapped items.
+       */
       return (
-        <NavigationContext.Provider key={item.props.navigationKey} value={{ isActive: navigationContextValue.isActive && item.props.navigationKey === activeNavigationKey, navigationIdentifier: item.props.navigationKey }}>
+        <React.Fragment key={item.props.navigationKey}>
           {React.cloneElement(item, {
-            isActive: item.props.navigationKey === activeNavigationKey, portalElement, enableWorkspace,
+            isActive: item.props.navigationKey === activeNavigationKey, portalElement,
           })}
-        </NavigationContext.Provider>
+        </React.Fragment>
       );
     });
   }
@@ -597,9 +599,4 @@ const SecondaryNavigationLayout = ({
 
 SecondaryNavigationLayout.propTypes = propTypes;
 
-const SecondaryNavigationGroup = ({
-  text, children,
-}) => null;
-
 export default SecondaryNavigationLayout;
-export { SecondaryNavigationGroup };

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
-import NavigationContext from '../../../navigation/NavigationContext';
+import NavigationItemContext from '../../../layouts/shared/NavigationItemContext';
 
 import SkipToButtonsContext from './SkipToButtonsContext';
 
@@ -28,7 +28,7 @@ const SkipToButton = ({
   description, isMain, onSelect,
 }) => {
   const skipToButtonsContext = React.useContext(SkipToButtonsContext);
-  const navigationContextValue = React.useContext(NavigationContext);
+  const navigationItemContext = React.useContext(NavigationItemContext);
 
   /**
    * A unique identifier is generated for each SkipToButton instance for registration purposes.
@@ -45,7 +45,7 @@ const SkipToButton = ({
       throw new Error('A SkipToButton was rendered outside the context of the ApplicationContainer.');
     }
 
-    if (!navigationContextValue.isActive) {
+    if (!navigationItemContext.isActive) {
       /**
        * If the SkipToButton is rendered within an inactive branch of the navigation tree, the SkipToButton
        * should not be registered. SkipToButtons should not be rendered for content that is not visible.
@@ -54,7 +54,7 @@ const SkipToButton = ({
     } else {
       skipToButtonsContext.registerButton(keyRef.current, description, isMain, onSelect);
     }
-  }, [skipToButtonsContext, description, isMain, onSelect, navigationContextValue.isActive]);
+  }, [skipToButtonsContext, description, isMain, onSelect, navigationItemContext.isActive]);
 
   React.useEffect(() => () => {
     /**

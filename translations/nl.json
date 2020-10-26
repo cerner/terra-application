@@ -6,6 +6,7 @@
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Niet opslaan",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Doorgaan met bewerken",
   "terraApplication.errorBoundary.defaultErrorMessage": "In het systeem is een fout opgetreden: {errorDetails}",
+  
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Meer navigatie",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Meer navigatie",
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Gebruikersinstellingen",

@@ -22,6 +22,7 @@ import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlay
 import LoadingOverlayCard from './content/LoadingOverlayCard';
 import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
+import NavigationItemCard from './content/NavigationItemCard';
 
 const propTypes = {
   onRequestClose: PropTypes.func,
@@ -113,6 +114,7 @@ const Page3 = ({ onRequestClose }) => {
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />
         <ModalManagerIntegrationCard />
+        <NavigationItemCard />
       </DemoPageContent>
       {showPage4
         && <Page4 onRequestClose={() => { setShowPage4(false); }} />}

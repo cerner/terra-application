@@ -1,8 +1,6 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import NavigationContext from '../../navigation/NavigationContext';
 import MainPageContainer from '../../application-page/container/MainPageContainer';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
 import { ApplicationIntlContext } from '../../application-intl';
@@ -238,11 +236,7 @@ const PrimaryNavigationLayout = ({
             };
           }
 
-          return (
-            <NavigationContext.Provider value={{ isActive: child.props.navigationKey === activeNavigationKey, navigationIdentifier: child.props.navigationKey }}>
-              {React.cloneElement(child, { isActive: child.props.navigationKey === activeNavigationKey, portalElement })}
-            </NavigationContext.Provider>
-          );
+          return React.cloneElement(child, { isActive: child.props.navigationKey === activeNavigationKey, portalElement });
         })}
         {!hasActiveNavigationItem && renderNavigationFallback ? renderNavigationFallback() : undefined}
       </div>

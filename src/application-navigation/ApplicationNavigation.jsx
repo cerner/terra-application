@@ -6,12 +6,12 @@ import TerraApplicationNavigation from 'terra-application-navigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from 'terra-application-navigation/lib/utils/propTypes';
+import { useIntl } from 'react-intl';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { ApplicationIntlContext } from '../application-intl';
 
 const propTypes = {
   /**
@@ -139,7 +139,7 @@ const ApplicationNavigation = ({
   userConfig,
   utilityItems,
 }) => {
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   const navigationPromptCheckpointRef = useRef();
 

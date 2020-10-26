@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import logger from '../utils/logger';
 
 const propTypes = {
@@ -15,7 +15,7 @@ const propTypes = {
    * @private
    * Intl object for translations.
    */
-  intl: intlShape,
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 /**

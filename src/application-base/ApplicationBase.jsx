@@ -137,29 +137,29 @@ const ApplicationBase = ({
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
       <ThemeProvider themeName={themeName}>
         <ThemeContextProvider theme={theme}>
-          <ApplicationErrorBoundary>
             <IntlProvider
               key={locale}
               locale={locale}
               messages={{ ...customTranslatedMessages, ...messages }}
             >
-              <ActiveBreakpointProvider>
-                <NavigationPromptCheckpoint
-                  onPromptChange={(registeredPrompts) => {
-                    registeredPromptsRef.current = registeredPrompts;
-                  }}
-                >
-                  <ApplicationLoadingOverlayProvider>
-                    <ApplicationStatusOverlayProvider>
-                      <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                        {children}
-                      </Suspense>
-                    </ApplicationStatusOverlayProvider>
-                  </ApplicationLoadingOverlayProvider>
-                </NavigationPromptCheckpoint>
-              </ActiveBreakpointProvider>
+              <ApplicationErrorBoundary>
+                <ActiveBreakpointProvider>
+                  <NavigationPromptCheckpoint
+                    onPromptChange={(registeredPrompts) => {
+                      registeredPromptsRef.current = registeredPrompts;
+                    }}
+                  >
+                    <ApplicationLoadingOverlayProvider>
+                      <ApplicationStatusOverlayProvider>
+                        <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                          {children}
+                        </Suspense>
+                      </ApplicationStatusOverlayProvider>
+                    </ApplicationLoadingOverlayProvider>
+                  </NavigationPromptCheckpoint>
+                </ActiveBreakpointProvider>
+              </ApplicationErrorBoundary>
             </IntlProvider>
-          </ApplicationErrorBoundary>
         </ThemeContextProvider>
       </ThemeProvider>
     </div>

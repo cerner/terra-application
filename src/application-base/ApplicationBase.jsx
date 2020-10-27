@@ -19,6 +19,7 @@ import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
 
 import './private/initializeInert';
+import './baseStyles';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -121,6 +122,7 @@ const ApplicationBase = ({
       } catch (e) {
         // eslint-disable-next-line no-console
         console.error(e);
+        throw e;
       }
     }
   }, [finalLocale]);

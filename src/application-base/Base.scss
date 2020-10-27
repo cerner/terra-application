@@ -1,7 +1,6 @@
-
 // Themes
-@import './clinical-lowlight-theme/ApplicationBase';
-@import './orion-fusion-theme/ApplicationBase';
+@import './clinical-lowlight-theme/Base';
+@import './orion-fusion-theme/Base';
 
 html {
   background-attachment: var(--terra-application-base-background-attachment);
@@ -37,14 +36,4 @@ body {
 *::before,
 *::after {
   box-sizing: inherit;
-}
-
-:local {
-  .application-base {
-    position: relative;
-  }
-
-  .application-base.fill {
-    height: 100%;
-  }
 }

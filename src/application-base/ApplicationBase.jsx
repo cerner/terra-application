@@ -83,7 +83,7 @@ const ApplicationBase = ({
   locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
 }) => {
   const registeredPromptsRef = useRef();
-  const [messages, setMessages] = useState({});
+  const [messages, setMessages] = useState();
 
   useEffect(() => {
     if (unloadPromptIsDisabled) {

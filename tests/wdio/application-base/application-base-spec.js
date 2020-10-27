@@ -22,7 +22,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
       browser.url('/raw/tests/terra-application/application-base/application-base-test');
       browser.refresh();
       browser.click('button#overlay');
-      browser.execute('var animationElement = document.querySelector("#terra-icon-animation"); if (animationElement) { animationElement.parentElement.removeChild(animationElement); }');
+      browser.disableCSSAnimations();
     });
 
     Terra.it.validatesElement('with overlay', { selector: '#root' });

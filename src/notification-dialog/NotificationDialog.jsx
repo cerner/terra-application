@@ -1,16 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-// import AbstractModal from 'terra-abstract-modal';
-// import FocusTrap from 'focus-trap-react';
-import Button from 'terra-button';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
-import { injectIntl, intlShape, FormattedMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
+import Button from 'terra-button';
 
 import LayerPortal from '../layers/LayerPortal';
-import ModalOverlay from '../application-modal/_ModalOverlay';
 import NotificationIcon from './_NotificationIcon';
 import ContentLayoutAsList from './_ContentLayoutAsList';
 
@@ -91,11 +88,6 @@ const propTypes = {
      */
     iconClassName: PropTypes.string,
   }),
-  /**
-   * @private
-   * The intl object containing translations. This is retrieved from the context automatically by injectIntl.
-   */
-  intl: intlShape,
 };
 
 const defaultProps = {
@@ -142,8 +134,9 @@ const NotificationDialog = (props) => {
     buttonOrder,
     emphasizedAction,
     custom,
-    intl,
   } = props;
+
+  const applicationIntl = React.createContext(ApplicationIntlContext);
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -165,7 +158,7 @@ const NotificationDialog = (props) => {
     throw new Error('The variant must be provided to the Notification dialog');
   }
 
-  const signalWord = variant === 'custom' ? custom.signalWord : intl.formatMessage({ id: `Terra.notification.dialog.${variant}` });
+  const signalWord = variant === 'custom' ? custom.signalWord : applicationIntl.formatMessage({ id: `Terra.notification.dialog.${variant}` });
 
   const dialogClassNames = classNames(
     cx('notification-dialog', theme.className),
@@ -238,4 +231,4 @@ NotificationDialog.propTypes = propTypes;
 NotificationDialog.defaultProps = defaultProps;
 
 export { ContentLayoutAsList };
-export default injectIntl(NotificationDialog);
+export default NotificationDialog;

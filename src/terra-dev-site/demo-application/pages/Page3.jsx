@@ -5,9 +5,9 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
-import ApplicationPage from '../../../application-page/ApplicationPage';
-import PageToolbar from '../../../application-page/private/_PageToolbar';
-import PageMenu, { MenuItem, MenuItemDivider } from '../../../application-page/PageMenu';
+import ApplicationPage from '../../../page/ApplicationPage';
+import PageToolbar from '../../../page/private/_PageToolbar';
+import PageMenu, { MenuItem, MenuItemDivider } from '../../../page/PageMenu';
 
 import Page4 from './Page4';
 import AddModal from '../modals/AddModal';

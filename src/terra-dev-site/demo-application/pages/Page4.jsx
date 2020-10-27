@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import ApplicationPage from '../../../application-page/ApplicationPage';
+import ApplicationPage from '../../../page/ApplicationPage';
 
 import DemoPageContent from './content/DemoPageContent';
 import Card from './content/Card';

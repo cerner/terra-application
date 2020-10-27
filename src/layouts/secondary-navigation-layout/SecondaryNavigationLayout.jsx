@@ -9,8 +9,8 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
-import MainPageContainer from '../../application-page/container/MainPageContainer';
-import PageActionsContext from '../../application-page/PageActionsContext';
+import MainPageContainer from '../../page/container/MainPageContainer';
+import PageActionsContext from '../../page/PageActionsContext';
 import EventEmitter from '../../utils/event-emitter';
 
 import NavigationItem from '../shared/NavigationItem';

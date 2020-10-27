@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import Button from 'terra-button';
 
-import ApplicationPage from '../../../application-page/ApplicationPage';
+import ApplicationPage from '../../../page/ApplicationPage';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
 import DemoPageContent from './content/DemoPageContent';
@@ -13,6 +13,7 @@ import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
 import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlayCard';
 import LoadingOverlayCard from './content/LoadingOverlayCard';
+import StatusOverlayCard from './content/StatusOverlayCard';
 import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
@@ -55,6 +56,7 @@ const Page1 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard />
+        <StatusOverlayCard />
         <ErrorHandlingCard pageTitle="Page1" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

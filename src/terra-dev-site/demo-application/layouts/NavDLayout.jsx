@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ApplicationPage from '../../../application-page/ApplicationPage';
+import ApplicationPage from '../../../page/ApplicationPage';
 import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } from '../../../layouts';
 
 import Page1 from '../pages/Page1';

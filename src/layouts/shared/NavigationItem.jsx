@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import MainPageContainer from '../../application-page/container/MainPageContainer';
+import MainPageContainer from '../../page/container/MainPageContainer';
 
 import NavigationItemContext from './NavigationItemContext';
 

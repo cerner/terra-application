@@ -38,6 +38,13 @@ const propTypes = {
   themeName: PropTypes.string,
 };
 
+/**
+ * The ApplicationBase component provides the most fundamental configuration data and settings
+ * that is required by most every component in the application.
+ *
+ * ApplicationBase should be rendered at the root of your Terra application. Only one instance
+ * of ApplicationBase should be rendered for any given application.
+ */
 const ApplicationBase = ({
   locale, themeName, children,
 }) => {

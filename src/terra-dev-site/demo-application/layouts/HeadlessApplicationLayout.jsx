@@ -5,7 +5,6 @@ import Button from 'terra-button';
 import ApplicationModal from '../../../application-modal/ApplicationModal';
 import HeadlessLayout from '../../../application-layouts/HeadlessLayout';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
-import useNavigationState from '../../../navigation/useNavigationState';
 
 import { ConceptContext } from '../providers/ConceptProvider';
 import { SessionContext } from '../providers/SessionProvider';

@@ -1,3 +1,6 @@
+import 'mutationobserver-shim';
+import '../../utils/polyfills/_contains-polyfill';
+import '../../utils/polyfills/_matches-polyfill';
 import './inertStyles.scss';
 
 /**

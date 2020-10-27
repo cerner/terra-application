@@ -5,7 +5,7 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconModified from 'terra-icon/lib/icon/IconModified';
 import Button from 'terra-button';
 
-import ApplicationPage from '../../../application-page/ApplicationPage';
+import ApplicationPage from '../../../page/ApplicationPage';
 
 import Page3 from './Page3';
 import AddModal from '../modals/AddModal';

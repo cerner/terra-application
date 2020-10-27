@@ -38,7 +38,7 @@ const MainPageContainer = ({
 
   return (
     <MainContainer
-      ref={portalContainerRef}
+      refCallback={(ref) => { portalContainerRef.current = ref; }}
       className={cx('main-container')}
     >
       <PagePortalContext.Provider value={pagePortalContextValue}>

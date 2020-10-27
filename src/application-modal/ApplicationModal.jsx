@@ -7,15 +7,11 @@ import { KEY_ESCAPE } from 'keycode-js';
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import ModalPageContainer from '../application-page/container/ModalPageContainer';
-
-import 'mutationobserver-shim';
-import './_contains-polyfill';
-import './_matches-polyfill';
+import ModalPageContainer from '../page/container/ModalPageContainer';
 
 import ModalContent from './_ModalContent';
 import ModalPresentationContext from './ModalPresentationContext';
-import PagePortalContext from '../application-page/private/PagePortalContext';
+import PagePortalContext from '../page/private/PagePortalContext';
 
 const propTypes = {
   title: PropTypes.string,

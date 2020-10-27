@@ -133,14 +133,12 @@ const ApplicationNavigation = ({
 }) => {
   const drawerMenuRef = useRef();
   const contentLayoutRef = useRef();
-  const mainContainerRef = useRef();
   const utilityButtonPopupAnchorRef = useRef();
   // Need to capture the animation life-cycle as opposed to the open/close state.
   const drawerMenuIsVisibleRef = useRef(false);
   // FocusTrap captures the initial value of the onDeactivate callback, so need a persistent ref to the isOpen value.
   const drawerMenuIsOpenRef = useRef(false);
   const closeMenuCallbackRef = useRef();
-  const renderedNavItemKeyRef = useRef(activeNavigationItemKey);
 
   const [drawerMenuIsOpen, setDrawerMenuIsOpen] = useState(false);
   const [popupMenuIsOpen, setPopupMenuIsOpen] = useState(false);
@@ -172,14 +170,6 @@ const ApplicationNavigation = ({
       setPopupMenuIsOpen(false);
     };
   }
-
-  // const focusMainContentCallback = useCallback(() => {
-  //   const mainElements = document.querySelectorAll('main');
-
-  //   if (mainElements) {
-  //     mainElements[mainElements.length - 1].focus();
-  //   }
-  // }, []);
 
   function focusToggle() {
     const toggle = document.querySelector('[data-compact-header-toggle="true"]');
@@ -320,18 +310,6 @@ const ApplicationNavigation = ({
       closeMenuCallbackRef.current = undefined;
     }
   });
-
-  // useLayoutEffect(() => {
-  //   if (activeNavigationItemKey !== renderedNavItemKeyRef.current) {
-  //     // The timeout is necessary due to the AbstractModal's similar focus logic.
-  //     // Without the timeout, this executes too quickly.
-  //     setTimeout(() => {
-  //       focusMainContentCallback();
-  //     }, 0);
-
-  //     renderedNavItemKeyRef.current = activeNavigationItemKey;
-  //   }
-  // }, [activeNavigationItemKey]);
 
   /**
    * This layout effect is used to manage the visibility of the drawer menu during

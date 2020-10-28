@@ -142,7 +142,7 @@ const ApplicationBase = ({
             <IntlProvider
               key={locale}
               locale={locale}
-              messages={{ ...customTranslatedMessages, ...messages, test: 'test' }}
+              messages={{ ...customTranslatedMessages, ...messages }}
             >
               <ApplicationErrorBoundary>
                 <ActiveBreakpointProvider>

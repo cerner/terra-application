@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import Button from 'terra-button';
 
-import ApplicationPage from '../../../page/ApplicationPage';
+import Page from '../../../page';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
 import DemoPageContent from './content/DemoPageContent';
@@ -36,7 +36,7 @@ const Page1 = ({ onRequestClose }) => {
   }];
 
   return (
-    <ApplicationPage
+    <Page
       title="Page 1"
       actions={pageActions}
       onRequestClose={onRequestClose}
@@ -67,7 +67,7 @@ const Page1 = ({ onRequestClose }) => {
         && <Page2 onRequestClose={() => { setShowPage2(false); }} />}
       {showPageModal
         && <PagePresentingModal onRequestClose={() => { setShowPageModal(false); }} />}
-    </ApplicationPage>
+    </Page>
   );
 };
 

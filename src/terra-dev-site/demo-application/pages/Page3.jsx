@@ -5,7 +5,7 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
-import ApplicationPage from '../../../page/ApplicationPage';
+import Page from '../../../page/Page';
 import PageToolbar from '../../../page/private/_PageToolbar';
 import PageMenu, { MenuItem, MenuItemDivider } from '../../../page/PageMenu';
 
@@ -65,7 +65,7 @@ const Page3 = ({ onRequestClose }) => {
   );
 
   return (
-    <ApplicationPage
+    <Page
       title="Page 3"
       actions={pageActions}
       menu={pageMenu}
@@ -122,7 +122,7 @@ const Page3 = ({ onRequestClose }) => {
         && <AddModal onRequestClose={() => { setShowAddModal(false); }} />}
       {showPrintModal
         && <PrintModal onRequestClose={() => { setShowPrintModal(false); }} />}
-    </ApplicationPage>
+    </Page>
   );
 };
 

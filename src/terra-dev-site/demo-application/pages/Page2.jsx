@@ -5,7 +5,7 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconModified from 'terra-icon/lib/icon/IconModified';
 import Button from 'terra-button';
 
-import ApplicationPage from '../../../page/ApplicationPage';
+import Page from '../../../page';
 
 import Page3 from './Page3';
 import AddModal from '../modals/AddModal';
@@ -55,7 +55,7 @@ const Page2 = ({ onRequestClose }) => {
   }];
 
   return (
-    <ApplicationPage
+    <Page
       title="Page 2"
       actions={pageActions}
       onRequestClose={onRequestClose}
@@ -98,7 +98,7 @@ const Page2 = ({ onRequestClose }) => {
           <div>Popup content goes here...</div>
         </HeaderActionPopup>
       )}
-    </ApplicationPage>
+    </Page>
   );
 };
 

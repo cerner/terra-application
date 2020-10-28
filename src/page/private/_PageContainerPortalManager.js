@@ -19,8 +19,6 @@ class PageContainerPortalManager {
     if (this._containerRef.current.contains(nodeData.element)) {
       nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
       this._containerRef.current.removeChild(nodeData.element);
-
-      setTimeout(() => { nodeData.setVisibility(false); }, 0);
     }
 
     if (nodeData.ancestor) {
@@ -28,7 +26,7 @@ class PageContainerPortalManager {
     }
   }
 
-  getNode(pageKey, ancestorPageKey, setVisibility, pageTitleId) {
+  getNode(pageKey, ancestorPageKey, pageTitleId) {
     if (!this._containerRef.current) {
       return;
     }
@@ -53,7 +51,6 @@ class PageContainerPortalManager {
       ancestor: ancestorPageKey,
       element: newPortalElement,
       child: undefined,
-      setVisibility,
       pageTitleId,
     };
 
@@ -95,8 +92,6 @@ class PageContainerPortalManager {
       this._containerRef.current.setAttribute('aria-labelledby', this._nodeMap[page.ancestor].pageTitleId);
 
       this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
-
-      setTimeout(() => { this._nodeMap[page.ancestor].setVisibility(true); }, 0);
     }
 
     if (this._onPageStackChange) {

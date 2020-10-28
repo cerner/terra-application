@@ -17,7 +17,7 @@ function onPageStackChange() {
    */
   setTimeout(() => {
     document.body.focus();
-  }, []);
+  }, 0);
 }
 
 const MainPageContainer = ({
@@ -29,7 +29,6 @@ const MainPageContainer = ({
 
   const pagePortalContextValue = React.useMemo(() => ({
     nodeManager: new PageContainerPortalManager(portalContainerRef, onPageStackChange),
-    isMain: true,
   }), []);
 
   React.useLayoutEffect(() => {

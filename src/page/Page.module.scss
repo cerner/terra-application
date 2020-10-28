@@ -1,0 +1,47 @@
+@import '../breakpoints/media-queries';
+
+:local {
+  .page {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    outline: none;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    > .header {
+      flex: 0 0 auto;
+      z-index: 0;
+    }
+
+    > .content {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 50px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  .overflow-content {
+    display: block; // VERY IMPORTANT FOR IE
+    height: 100%;
+    outline: none;
+    overflow: auto;
+    position: relative;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .width-normalizer {
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+  }
+}

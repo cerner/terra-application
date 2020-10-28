@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ApplicationPage from '../../../page/ApplicationPage';
+import Page from '../../../page';
 import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } from '../../../layouts';
 
 import Page1 from '../pages/Page1';
@@ -53,11 +53,11 @@ const NavDLayout = () => {
           navigationKey="nav-D-5"
           text="Nav D-5 Page In Group"
           renderPage={() => (
-            <ApplicationPage title="Page In Group">
+            <Page title="Page In Group">
               <div style={{ padding: '1rem' }}>
                 Page content here...
               </div>
-            </ApplicationPage>
+            </Page>
           )}
         />
         <SecondaryNavigationGroup
@@ -76,11 +76,11 @@ const NavDLayout = () => {
         navigationKey="nav-D-7"
         text="Nav D-7 Page Not In Group"
         renderPage={() => (
-          <ApplicationPage title="Page Not In Group">
+          <Page title="Page Not In Group">
             <div style={{ padding: '1rem' }}>
               Page content here...
             </div>
-          </ApplicationPage>
+          </Page>
         )}
       />
     </SecondaryNavigationLayout>

@@ -3,6 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import { handleArrows } from './_TabUtils';
+import UnselectedTabLeft from './icons/UnselectedTabLeft';
+// import SelectedTabLeft from './icons/SelectedTabLeft';
+import UnselectedTabRight from './icons/UnselectedTabRight';
+// import SelectedTabRight from './icons/SelectedTabRight';
 
 import styles from './TabContainer.module.scss';
 
@@ -110,6 +114,9 @@ const Tab = ({
   }
   attributes['aria-selected'] = isSelected;
 
+  const left = <UnselectedTabLeft />;
+  const right = <UnselectedTabRight/>;
+
   return (
     <div
       {...customProps}
@@ -120,9 +127,11 @@ const Tab = ({
       className={paneClassNames}
       title={label}
     >
+      {left}
       {icon}
       {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
       {count !== null && count !== undefined ? <span className={cx('count')}>{count}</span> : null}
+      {right}
     </div>
   );
 };

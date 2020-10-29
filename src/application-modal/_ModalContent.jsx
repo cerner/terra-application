@@ -56,6 +56,7 @@ const ModalContent = (props) => {
   const {
     title,
     toolbar,
+    footer,
     size,
     children,
     onRequestClose,
@@ -114,7 +115,7 @@ const ModalContent = (props) => {
           </>
           )}
         footer={(
-          <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
+          footer || <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
           )}
       >
         <NotificationBannerProvider>

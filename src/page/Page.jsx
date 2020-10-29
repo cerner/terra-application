@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
@@ -60,31 +60,68 @@ const Page = ({
   requestClosePromptIsDisabled,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const ancestorPageContext = React.useContext(PageContext);
+
+  /**
+   * The PageContext value is either provided by a parent PageContainer or
+   * a parent Page.
+   */
+  const pageContext = React.useContext(PageContext);
+
+  /**
+   * An unique identifier is generated for each Page to ensure it can be
+   * safely registered with the PageContainerPortalManager.
+   */
   const pageIdRef = React.useRef(uuidv4());
+
+  /**
+   * A NavigationPromptCheckpoint is used to detect unsaved changes within the Page's
+   * content.
+   */
   const navigationPromptCheckpointRef = React.useRef();
+
+  /**
+   * The presentation of loading overlays is tracked by the Page to allow it to
+   * disable page actions while loading is occurring.
+   */
   const [loadingOverlayIsActive, setLoadingOverlayIsActive] = React.useState(false);
+
+  /**
+   * A Provider/Presenter pair is generated for NotificationBanner presentation within in the Page to
+   * limit updates to Page content due to banner presentation.
+   */
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
-  const nodeManager = ancestorPageContext?.nodeManager;
-  const pageContext = React.useMemo(() => ({ ...ancestorPageContext, ancestorPage: pageIdRef.current }), [ancestorPageContext]);
-
-  React.useLayoutEffect(() => () => {
-    if (nodeManager) {
-      nodeManager.releaseNode(pageIdRef.current);
-    }
-  }, [nodeManager]);
-
-  const pageTitleId = `page-title-${pageIdRef.current}`;
-
-  if (!nodeManager) {
+  if (!pageContext) {
     throw new Error(`[Page] ${title} was rendered outside of a PageContainer.`);
   }
 
-  const portalNode = nodeManager.getNode(pageIdRef.current, ancestorPageContext.ancestorPage, pageTitleId);
+  /**
+   * The PageContext value is overridden by the Page to ensure a child Page has
+   * access to this Page's key, which is required for portal element retrieval.
+   */
+  const childPageContextValue = React.useMemo(() => ({
+    ...pageContext,
+    parentPageKey: pageIdRef.current,
+  }), [pageContext]);
+
+  /**
+   * The Page must release the element into which it is portaled when it is unmounted
+   * to prevent memory leaks.
+   */
+  React.useLayoutEffect(() => () => {
+    pageContext.nodeManager.releaseNode(pageIdRef.current);
+  }, [pageContext.nodeManager]);
+
+  /**
+   * A unique id to generated for Page's rendered hidden text. This id is used by the
+   * nodeManager to ensure the container element is properly described by the presented Page.
+   */
+  const pageTitleId = `page-title-${pageIdRef.current}`;
+
+  const portalNode = pageContext.nodeManager.getNode(pageIdRef.current, pageContext.parentPageKey, pageTitleId);
 
   if (!portalNode) {
-    throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation depth.`);
+    throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
   }
 
   function safelyRequestClose() {
@@ -113,7 +150,7 @@ const Page = ({
           <NotificationBanners />
         </div>
         <div className={cx('content')}>
-          <PageContext.Provider value={pageContext}>
+          <PageContext.Provider value={childPageContextValue}>
             <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
               <NotificationBannerProvider>
                 <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>

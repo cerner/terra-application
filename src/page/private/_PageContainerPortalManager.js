@@ -1,44 +1,46 @@
 class PageContainerPortalManager {
   constructor(containerRef) {
-    this._containerRef = containerRef;
-    this._nodeMap = {};
-
-    this.pagePresentationCallback = undefined;
+    this.containerRef = containerRef;
+    this.nodeMap = {};
   }
 
-  hideAncestors(key) {
-    if (!this._containerRef.current) {
-      return;
-    }
-
-    const nodeData = this._nodeMap[key];
-
-    if (!nodeData) {
-      return;
-    }
-
-    if (this._containerRef.current.contains(nodeData.element)) {
-      nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
-      this._containerRef.current.removeChild(nodeData.element);
-    }
-
-    if (nodeData.ancestor) {
-      this.hideAncestors(nodeData.ancestor);
-    }
+  setPagePresentationCallback(callback) {
+    this.pagePresentationCallback = callback;
   }
+
+  // hideAncestors(key) {
+  //   if (!this.containerRef.current) {
+  //     return;
+  //   }
+
+  //   const nodeData = this.nodeMap[key];
+
+  //   if (!nodeData) {
+  //     return;
+  //   }
+
+  //   if (this.containerRef.current.contains(nodeData.element)) {
+  //     nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
+  //     this.containerRef.current.removeChild(nodeData.element);
+  //   }
+
+  //   if (nodeData.ancestor) {
+  //     this.hideAncestors(nodeData.ancestor);
+  //   }
+  // }
 
   getNode(pageKey, ancestorPageKey, pageTitleId) {
-    if (!this._containerRef.current) {
+    if (!this.containerRef.current) {
       return null;
     }
 
-    const existingNode = this._nodeMap[pageKey];
+    const existingNode = this.nodeMap[pageKey];
 
     if (existingNode) {
       return existingNode.element;
     }
 
-    if (this._nodeMap[ancestorPageKey]?.child) {
+    if (this.nodeMap[ancestorPageKey]?.child) {
       // duplicate page request
       return null;
     }
@@ -48,21 +50,25 @@ class PageContainerPortalManager {
     newPortalElement.style.height = '100%';
     newPortalElement.style.width = '100%';
 
-    this._nodeMap[pageKey] = {
+    this.nodeMap[pageKey] = {
       ancestor: ancestorPageKey,
       element: newPortalElement,
       child: undefined,
       pageTitleId,
     };
 
-    if (this._nodeMap[ancestorPageKey]) {
-      this._nodeMap[ancestorPageKey].child = pageKey;
+    if (this.nodeMap[ancestorPageKey]) {
+      this.nodeMap[ancestorPageKey].child = pageKey;
     }
 
-    this._containerRef.current.appendChild(newPortalElement);
-    this._containerRef.current.setAttribute('aria-labelledby', pageTitleId);
+    this.containerRef.current.appendChild(newPortalElement);
+    this.containerRef.current.setAttribute('aria-labelledby', pageTitleId);
 
-    this.hideAncestors(ancestorPageKey);
+    const ancestorNodeData = this.nodeMap[ancestorPageKey];
+    if (ancestorNodeData && this.containerRef.current.contains(ancestorNodeData.element)) {
+      ancestorNodeData.lastScrollPosition = ancestorNodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
+      this.containerRef.current.removeChild(ancestorNodeData.element);
+    }
 
     if (this.pagePresentationCallback) {
       this.pagePresentationCallback(pageKey);
@@ -72,34 +78,34 @@ class PageContainerPortalManager {
   }
 
   releaseNode(pageKey) {
-    if (!this._containerRef.current) {
+    if (!this.containerRef.current) {
       return;
     }
 
-    const page = this._nodeMap[pageKey];
+    const page = this.nodeMap[pageKey];
 
     if (!page) {
       return;
     }
 
-    if (this._containerRef.current.contains(page.element)) {
-      this._containerRef.current.removeChild(page.element);
+    if (this.containerRef.current.contains(page.element)) {
+      this.containerRef.current.removeChild(page.element);
     }
 
-    if (this._nodeMap[page.ancestor]) {
-      this._nodeMap[page.ancestor].child = undefined;
+    if (this.nodeMap[page.ancestor]) {
+      this.nodeMap[page.ancestor].child = undefined;
 
-      this._containerRef.current.appendChild(this._nodeMap[page.ancestor].element);
-      this._containerRef.current.setAttribute('aria-labelledby', this._nodeMap[page.ancestor].pageTitleId);
+      this.containerRef.current.appendChild(this.nodeMap[page.ancestor].element);
+      this.containerRef.current.setAttribute('aria-labelledby', this.nodeMap[page.ancestor].pageTitleId);
 
-      this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
+      this.nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this.nodeMap[page.ancestor].lastScrollPosition;
     }
 
     if (this.pagePresentationCallback) {
       this.pagePresentationCallback(page.ancestor);
     }
 
-    this._nodeMap[pageKey] = undefined;
+    this.nodeMap[pageKey] = undefined;
   }
 }
 

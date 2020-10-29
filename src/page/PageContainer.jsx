@@ -83,6 +83,7 @@ const PageContainer = ({
     nodeManager: portalManagerRef.current,
     containerStartActions: pageContainerActions?.startActions,
     containerEndActions: pageContainerActions?.endActions,
+    parentPageKey: undefined,
   }), [pageContainerActions]);
 
   /**
@@ -120,7 +121,7 @@ const PageContainer = ({
       presentedPageKeyRef.current = newPresentedPageKey;
     }
 
-    portalManagerRef.current.pagePresentationCallback = onPagePresented;
+    portalManagerRef.current.setPagePresentationCallback(onPagePresented);
   }, [navigationItemContext.isActive]);
 
   /**

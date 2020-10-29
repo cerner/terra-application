@@ -33,6 +33,7 @@ const propTypes = {
 const ApplicationModal = ({
   title,
   toolbar,
+  footer,
   size,
   onRequestClose,
   children,
@@ -109,6 +110,7 @@ const ApplicationModal = ({
               refCallback={(ref) => { modalContainerRef.current = ref; }}
               title={title}
               toolbar={toolbar}
+              footer={footer}
               size={size}
               onRequestClose={safeRequestClose}
             >

@@ -3,7 +3,7 @@
 // @import './clinical-lowlight-theme/AbstractModal.module';
 
 :local {
-  .application-modal {
+  .modal-container {
     background-color: var(--terra-modal-manager-background-color, #fff);
     border: var(--terra-modal-manager-border);
     border-radius: var(--terra-modal-manager-border-radius, 5px);
@@ -25,6 +25,32 @@
 
     @media screen and (max-width: 544) {
       height: 100%;
+    }
+  }
+
+  .modal-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    outline: none;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    > .header,
+    > .footer {
+      flex: 0 0 auto;
+      z-index: 0;
+    }
+
+    > .content {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 50px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      z-index: 1;
     }
   }
 

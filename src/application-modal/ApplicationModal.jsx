@@ -1,6 +1,4 @@
-import React, {
-  useRef, useLayoutEffect, useEffect, useContext,
-} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { KEY_ESCAPE } from 'keycode-js';
 
@@ -10,12 +8,12 @@ import { ApplicationIntlContext } from '../application-intl';
 import { PageContainer } from '../page';
 
 import ModalContent from './_ModalContent';
-import ModalPresentationContext from './ModalPresentationContext';
 import PageContext from '../page/private/PageContext';
 
 const propTypes = {
   title: PropTypes.string,
   toolbar: PropTypes.element,
+  footer: PropTypes.element,
   size: PropTypes.oneOfType([
     PropTypes.oneOf(['tiny', 'small', 'medium', 'large', 'huge']),
     PropTypes.shape({
@@ -44,7 +42,7 @@ const ApplicationModal = ({
   const navigationPromptCheckpointRef = React.useRef();
   const modalContainerRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const [inert, setInert] = React.useState(false);
+  const [isInert, setIsInert] = React.useState(false);
 
   const safeRequestClose = React.useCallback(() => {
     if (dangerouslyDisableNavigationPromptHandling) {
@@ -70,7 +68,7 @@ const ApplicationModal = ({
   }, []);
 
   React.useEffect(() => {
-    if (inert) {
+    if (isInert) {
       return undefined;
     }
 
@@ -88,42 +86,40 @@ const ApplicationModal = ({
     return () => {
       document.removeEventListener('keydown', handleKeydown);
     };
-  }, [safeRequestClose, inert]);
+  }, [safeRequestClose, isInert]);
 
   React.useEffect(() => {
     if (onInert) {
-      onInert(inert);
+      onInert(isInert);
     }
-  }, [inert, onInert]);
+  }, [isInert, onInert]);
 
   return (
-    <LayerPortal
-      type="modal"
-      setInert={setInert}
-    >
-      <PageContext.Provider value={undefined}>
-        <ModalPresentationContext.Provider value>
-          <NavigationPromptCheckpoint
-            ref={navigationPromptCheckpointRef}
+    <PageContext.Provider value={undefined}>
+      <LayerPortal
+        type="modal"
+        setInert={setIsInert}
+      >
+        <NavigationPromptCheckpoint
+          ref={navigationPromptCheckpointRef}
+        >
+          <ModalContent
+            refCallback={(ref) => { modalContainerRef.current = ref; }}
+            title={title}
+            toolbar={toolbar}
+            footer={footer}
+            size={size}
+            onRequestClose={safeRequestClose}
           >
-            <ModalContent
-              refCallback={(ref) => { modalContainerRef.current = ref; }}
-              title={title}
-              toolbar={toolbar}
-              footer={footer}
-              size={size}
-              onRequestClose={safeRequestClose}
-            >
-              {renderPage ? (
-                <PageContainer>
-                  {renderPage()}
-                </PageContainer>
-              ) : children}
-            </ModalContent>
-          </NavigationPromptCheckpoint>
-        </ModalPresentationContext.Provider>
-      </PageContext.Provider>
-    </LayerPortal>
+            {renderPage ? (
+              <PageContainer>
+                {renderPage()}
+              </PageContainer>
+            ) : children}
+          </ModalContent>
+        </NavigationPromptCheckpoint>
+      </LayerPortal>
+    </PageContext.Provider>
   );
 };
 

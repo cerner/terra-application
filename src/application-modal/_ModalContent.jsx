@@ -4,16 +4,17 @@ import { FormattedMessage } from 'react-intl';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
-import ContentContainer from 'terra-content-container';
 import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
-import ModalHeader from './_ModalHeader';
-import styles from './ModalContent.module.scss';
-import ApplicationLoadingOverlayProvider from '../application-loading-overlay/ApplicationLoadingOverlayProvider';
+import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
+import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import ApplicationConceptBannerContext from '../application-container/private/ApplicationConceptBannerContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
+
+import ModalHeader from './_ModalHeader';
+import styles from './ModalContent.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
@@ -36,6 +37,7 @@ const widthFromSize = {
 const propTypes = {
   title: PropTypes.string,
   toolbar: PropTypes.element,
+  footer: PropTypes.element,
   children: PropTypes.node,
   refCallback: PropTypes.func,
   onRequestClose: PropTypes.func.isRequired,
@@ -82,7 +84,7 @@ const ModalContent = (props) => {
     modalWidth = 640;
   }
 
-  const modalClassNames = cx('application-modal', `height-${modalHeight}`, `width-${modalWidth}`, theme.className);
+  const modalClassNames = cx('modal-container', `height-${modalHeight}`, `width-${modalWidth}`, theme.className);
 
   const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
@@ -101,31 +103,31 @@ const ModalContent = (props) => {
           <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={text} />
         )}
       </FormattedMessage>
-      <ContentContainer
-        fill
-        header={(
-          <>
-            <ModalHeader
-              title={title}
-              onClose={onRequestClose}
-            />
-            {toolbar}
-            {conceptBannerContext?.modalBanner}
-            <NotificationBanners />
-          </>
-          )}
-        footer={(
-          footer || <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />
-          )}
-      >
-        <NotificationBannerProvider>
-          <ApplicationLoadingOverlayProvider>
-            <Scroll>
-              {children}
-            </Scroll>
-          </ApplicationLoadingOverlayProvider>
-        </NotificationBannerProvider>
-      </ContentContainer>
+      <div className={cx('modal-layout')}>
+        <div className={cx('header')}>
+          <ModalHeader
+            title={title}
+            onClose={onRequestClose}
+          />
+          {toolbar}
+          {conceptBannerContext?.modalBanner}
+          <NotificationBanners />
+        </div>
+        <div className={cx('content')}>
+          <NotificationBannerProvider>
+            <ApplicationLoadingOverlayProvider>
+              <ApplicationStatusOverlayProvider>
+                <Scroll>
+                  {children}
+                </Scroll>
+              </ApplicationStatusOverlayProvider>
+            </ApplicationLoadingOverlayProvider>
+          </NotificationBannerProvider>
+        </div>
+        <div className={cx('footer')}>
+          {footer || <ActionFooter end={<Button text="Close" onClick={() => { onRequestClose(); }} />} />}
+        </div>
+      </div>
       <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
         {text => (
           <VisuallyHiddenText text={text} />

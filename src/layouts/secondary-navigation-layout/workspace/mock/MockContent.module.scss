@@ -3,7 +3,7 @@
 :local {
   .row {
     align-items: flex-end;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #ccc;
     display: flex;
     height: 60px;
     margin-top: 5px;
@@ -12,10 +12,11 @@
   }
 
   .container {
-    background-color: aliceblue;
-    border: 1px solid black;
-    height: 60px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    height: 80px;
     margin-top: -1px;
+    margin-bottom: 50px;
     z-index: -1;
   }
 
@@ -27,14 +28,8 @@
     margin-right: 12px; // TODO: best guess?
 
     .inner {
-      // background-color: pink;
-      // border-bottom: 1px solid black;
-      // border-top: 1px solid black;
       display: inline-block;
       height: 40px; // TODO: fix this?
-      // margin-left: 34px;
-      // padding-left: 10px;
-      // padding-right: 10px;'
       padding-top: 15px;
       
       background-image: inline-svg(
@@ -106,15 +101,6 @@
       position: absolute;
       width: 34px;
       z-index: 1;
-
-      // border-bottom: 50px solid red;
-      // border-left: 10px solid transparent;
-      // content: "";
-      // bottom: 0;
-      // height: 100%;
-      // position: absolute;
-      // width: 0;
-      // z-index: 1;
     }
 
     &::after {
@@ -150,20 +136,11 @@
       content: "";
       bottom: 0;
       height: 40px;
-      // left: -34px;
       padding: 0;
       position: absolute;
       right: -34px;
       width: 34px;
       z-index: 2;
-
-      // border-bottom: 50px solid green;
-      // border-right: 10px solid transparent;
-      // content: "";
-      // height: 100%;
-      // position: absolute;
-      // width: 10px;
-      // z-index: 2;
     }
 
     // TODO: fix this

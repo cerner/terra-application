@@ -62,8 +62,9 @@ const MoreButton = ({
       className={cx('tab-menu', { 'is-active': isActive }, { 'has-notifications': hasNotifications }, theme.className)}
       data-terra-tabs-menu
     >
-      {/* <span>{menuToggleText}</span> */}
-      <IconCaretDown />
+      <div className={cx('inner')}>
+        <IconCaretDown />
+      </div>
     </div>
     /* eslint-enable jsx-ally/no-static-element-interactions */
   );

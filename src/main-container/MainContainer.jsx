@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
+import SkipToButton from '../application-container/private/skip-to/SkipToButton';
 
 function deferAction(callback) {
   setTimeout(callback, 0);

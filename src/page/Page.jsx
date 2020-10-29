@@ -11,7 +11,7 @@ import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../n
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 
-import PagePortalContext from './private/PagePortalContext';
+import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
 
 import styles from './Page.module.scss';
@@ -60,14 +60,14 @@ const Page = ({
   requestClosePromptIsDisabled,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const ancestorPagePortalContext = React.useContext(PagePortalContext);
+  const ancestorPageContext = React.useContext(PageContext);
   const pageIdRef = React.useRef(uuidv4());
   const navigationPromptCheckpointRef = React.useRef();
   const [loadingOverlayIsActive, setLoadingOverlayIsActive] = React.useState(false);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
-  const nodeManager = ancestorPagePortalContext?.nodeManager;
-  const pagePortalContextValue = React.useMemo(() => ({ ...ancestorPagePortalContext, ancestorPage: pageIdRef.current }), [ancestorPagePortalContext]);
+  const nodeManager = ancestorPageContext?.nodeManager;
+  const pageContext = React.useMemo(() => ({ ...ancestorPageContext, ancestorPage: pageIdRef.current }), [ancestorPageContext]);
 
   React.useLayoutEffect(() => () => {
     if (nodeManager) {
@@ -81,7 +81,7 @@ const Page = ({
     throw new Error(`[Page] ${title} was rendered outside of a PageContainer.`);
   }
 
-  const portalNode = nodeManager.getNode(pageIdRef.current, ancestorPagePortalContext.ancestorPage, pageTitleId);
+  const portalNode = nodeManager.getNode(pageIdRef.current, ancestorPageContext.ancestorPage, pageTitleId);
 
   if (!portalNode) {
     throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation depth.`);
@@ -113,7 +113,7 @@ const Page = ({
           <NotificationBanners />
         </div>
         <div className={cx('content')}>
-          <PagePortalContext.Provider value={pagePortalContextValue}>
+          <PageContext.Provider value={pageContext}>
             <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
               <NotificationBannerProvider>
                 <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
@@ -136,7 +136,7 @@ const Page = ({
                 </ApplicationLoadingOverlayProvider>
               </NotificationBannerProvider>
             </NavigationPromptCheckpoint>
-          </PagePortalContext.Provider>
+          </PageContext.Provider>
         </div>
       </div>
     ), portalNode)

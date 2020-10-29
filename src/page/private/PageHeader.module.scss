@@ -56,43 +56,11 @@
     flex: 0 0 auto;
   }
 
-  .breadcrumb-header {
-    min-height: 46px;
-  }
-
   .actions-divider {
     align-self: stretch;
     background-color: grey;
     flex: 0 0 auto;
     margin: 4px 5px;
     width: 1px;
-  }
-
-  .breadcrumbs {
-    align-items: baseline;
-    display: flex;
-    flex: 1 1 auto;
-    padding: 10px 0;
-    // font-size: 1.429rem;
-    // margin-bottom: 0.3571rem;
-    // margin-left: 1.071rem;
-    // margin-right: 1.071rem;
-    // margin-top: 0.3571rem;
-
-    .divider {
-      margin-left: 0.3571rem;
-      margin-right: 0.3571rem;
-    }
-
-    .endpoint {
-      color: #1c1f21;
-      // font-weight: 500;
-    }
-
-    .link-button {      
-      > * {
-        padding: 0;
-      }
-    }
   }
 }

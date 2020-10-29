@@ -1,8 +1,9 @@
 class PageContainerPortalManager {
-  constructor(containerRef, onPageStackChange) {
+  constructor(containerRef) {
     this._containerRef = containerRef;
-    this._onPageStackChange = onPageStackChange;
     this._nodeMap = {};
+
+    this.pagePresentationCallback = undefined;
   }
 
   hideAncestors(key) {
@@ -28,7 +29,7 @@ class PageContainerPortalManager {
 
   getNode(pageKey, ancestorPageKey, pageTitleId) {
     if (!this._containerRef.current) {
-      return;
+      return null;
     }
 
     const existingNode = this._nodeMap[pageKey];
@@ -63,8 +64,8 @@ class PageContainerPortalManager {
 
     this.hideAncestors(ancestorPageKey);
 
-    if (this._onPageStackChange) {
-      this._onPageStackChange();
+    if (this.pagePresentationCallback) {
+      this.pagePresentationCallback(pageKey);
     }
 
     return newPortalElement;
@@ -94,8 +95,8 @@ class PageContainerPortalManager {
       this._nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this._nodeMap[page.ancestor].lastScrollPosition;
     }
 
-    if (this._onPageStackChange) {
-      this._onPageStackChange();
+    if (this.pagePresentationCallback) {
+      this.pagePresentationCallback(page.ancestor);
     }
 
     this._nodeMap[pageKey] = undefined;

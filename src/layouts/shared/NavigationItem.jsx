@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
-import MainPageContainer from '../../page/container/MainPageContainer';
+import { PageContainer } from '../../page';
 
 import NavigationItemContext from './NavigationItemContext';
 
@@ -83,9 +83,9 @@ const NavigationItem = ({
   let pageContent;
   if (renderPage) {
     pageContent = (
-      <MainPageContainer>
+      <PageContainer isMain>
         {renderPage({ isActive })}
-      </MainPageContainer>
+      </PageContainer>
     );
   } else if (render) {
     pageContent = render({ isActive });

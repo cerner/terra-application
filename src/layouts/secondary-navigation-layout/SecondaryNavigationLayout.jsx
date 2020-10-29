@@ -9,8 +9,8 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
-import MainPageContainer from '../../page/container/MainPageContainer';
-import PageActionsContext from '../../page/PageActionsContext';
+import { PageContainer } from '../../page';
+import PageContainerActionsContext from '../../page/PageContainerActionsContext';
 import EventEmitter from '../../utils/event-emitter';
 
 import NavigationItem from '../shared/NavigationItem';
@@ -125,7 +125,7 @@ const SecondaryNavigationLayout = ({
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(enableWorkspace && !hasOverlayWorkspace);
 
-  const pageActionsContextValue = React.useMemo(() => ({
+  const pageContainerActionsContextValue = React.useMemo(() => ({
     startActions: hasSidebar && hasOverlaySidebar ? (
       <Button
         icon={<IconLeftPane />}
@@ -338,9 +338,9 @@ const SecondaryNavigationLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <MainPageContainer>
+      <PageContainer isMain>
         {renderPage()}
-      </MainPageContainer>
+      </PageContainer>
     );
   } else if (navigationItems.length) {
     content = (
@@ -433,9 +433,9 @@ const SecondaryNavigationLayout = ({
             style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null} // TODO add IE flex styles
             inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
           >
-            <PageActionsContext.Provider value={pageActionsContextValue}>
+            <PageContainerActionsContext.Provider value={pageContainerActionsContextValue}>
               {content}
-            </PageActionsContext.Provider>
+            </PageContainerActionsContext.Provider>
           </div>
           {enableWorkspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
             ? (

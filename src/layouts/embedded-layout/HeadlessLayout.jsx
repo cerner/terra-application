@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import ApplicationConceptBannerContext from '../../application-container/private/ApplicationConceptBannerContext';
-import MainPageContainer from '../../page/container/MainPageContainer';
+import { PageContainer } from '../../page';
 
 import styles from './HeadlessLayout.module.scss';
 
@@ -26,9 +26,9 @@ const HeadlessLayout = ({
       </div>
       <div className={cx('content-container')}>
         {renderPage ? (
-          <MainPageContainer>
+          <PageContainer isMain>
             {renderPage()}
-          </MainPageContainer>
+          </PageContainer>
         ) : children}
       </div>
     </div>

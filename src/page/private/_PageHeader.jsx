@@ -5,8 +5,9 @@ import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-import PageActionsContext from '../PageActionsContext';
 import PageMenu, { MenuItem, MenuItemDivider } from '../PageMenu';
+
+import PageContext from './PageContext';
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);
@@ -21,7 +22,7 @@ const PageHeader = ({
   const [showMenu, setShowMenu] = React.useState(false);
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const moreActionsButtonRef = React.useRef();
-  const pageActionsContext = React.useContext(PageActionsContext);
+  const pageContext = React.useContext(PageContext);
 
   const renderActionsInMenu = collapsingActionsBreakpoints.indexOf(activeBreakpoint) !== -1;
 
@@ -99,11 +100,11 @@ const PageHeader = ({
 
   return (
     <div className={cx('page-layout-header')}>
-      {onBack || pageActionsContext?.startActions ? (
+      {onBack || pageContext?.containerStartActions ? (
         <div className={cx('back-button-container')}>
-          {pageActionsContext?.startActions ? (
+          {pageContext?.containerStartActions ? (
             <>
-              {pageActionsContext?.startActions}
+              {pageContext?.containerStartActions}
               <div className={cx('actions-divider')} />
             </>
           ) : null}
@@ -156,10 +157,10 @@ const PageHeader = ({
           />
         ) : undefined}
         {showMenu && buildMenu()}
-        {pageActionsContext?.endActions ? (
+        {pageContext?.containerEndActions ? (
           <>
             <div className={cx('actions-divider')} />
-            {pageActionsContext?.endActions}
+            {pageContext?.containerEndActions}
           </>
         ) : null}
       </div>

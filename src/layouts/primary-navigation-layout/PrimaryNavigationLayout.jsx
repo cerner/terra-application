@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import MainPageContainer from '../../page/container/MainPageContainer';
+import { PageContainer } from '../../page';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
 import { ApplicationIntlContext } from '../../application-intl';
 
@@ -246,9 +246,9 @@ const PrimaryNavigationLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <MainPageContainer>
+      <PageContainer isMain>
         {renderPage()}
-      </MainPageContainer>
+      </PageContainer>
     );
   } else if (navigationItems.length) {
     content = renderNavigationItems();

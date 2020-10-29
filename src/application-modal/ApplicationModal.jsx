@@ -7,11 +7,11 @@ import { KEY_ESCAPE } from 'keycode-js';
 import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
-import ModalPageContainer from '../page/container/ModalPageContainer';
+import { PageContainer } from '../page';
 
 import ModalContent from './_ModalContent';
 import ModalPresentationContext from './ModalPresentationContext';
-import PagePortalContext from '../page/private/PagePortalContext';
+import PageContext from '../page/private/PageContext';
 
 const propTypes = {
   title: PropTypes.string,
@@ -100,7 +100,7 @@ const ApplicationModal = ({
       type="modal"
       setInert={setInert}
     >
-      <PagePortalContext.Provider value={undefined}>
+      <PageContext.Provider value={undefined}>
         <ModalPresentationContext.Provider value>
           <NavigationPromptCheckpoint
             ref={navigationPromptCheckpointRef}
@@ -113,14 +113,14 @@ const ApplicationModal = ({
               onRequestClose={safeRequestClose}
             >
               {renderPage ? (
-                <ModalPageContainer>
+                <PageContainer>
                   {renderPage()}
-                </ModalPageContainer>
+                </PageContainer>
               ) : children}
             </ModalContent>
           </NavigationPromptCheckpoint>
         </ModalPresentationContext.Provider>
-      </PagePortalContext.Provider>
+      </PageContext.Provider>
     </LayerPortal>
   );
 };

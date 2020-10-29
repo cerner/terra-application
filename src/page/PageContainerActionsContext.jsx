@@ -1,7 +1,10 @@
 import { createContext } from 'react';
 import PropTypes from 'prop-types';
 
-const PageActionsContext = createContext();
+const PageContainerActionsContext = createContext({
+  startActions: undefined,
+  endActions: undefined,
+});
 
 const contextShape = {
   startActions: PropTypes.oneOfType([
@@ -14,5 +17,5 @@ const contextShape = {
   ]),
 };
 
-export default PageActionsContext;
+export default PageContainerActionsContext;
 export { contextShape };

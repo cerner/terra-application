@@ -2,6 +2,7 @@ const fs = require('fs');
 
 const path = require('path');
 
+// eslint-disable-next-line import/no-extraneous-dependencies
 let browserslist = require('@cerner/browserslist-config-terra');
 
 const packagePath = path.join(__dirname, '../../');

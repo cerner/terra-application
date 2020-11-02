@@ -6,6 +6,7 @@ import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
+import Page5 from '../pages/Page5';
 import NotAPage from '../shared/NotAPage';
 
 const NavCLayout = () => {
@@ -51,11 +52,15 @@ const NavCLayout = () => {
       />
       <NavigationItem
         navigationKey="nav-C-5"
-        text="Nav C-5 Not A Page"
-        render={() => (
-          <NotAPage />
-        )}
+        text="Nav C-5 Page 5"
+        renderPage={() => <Page5 />}
       />
+      <NavigationItem
+        navigationKey="nav-C-6"
+        text="Nav C-6 Not A Page"
+      >
+        <NotAPage />
+      </NavigationItem>
     </SecondaryNavigationLayout>
   );
 };

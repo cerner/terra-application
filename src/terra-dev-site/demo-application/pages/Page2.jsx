@@ -19,6 +19,7 @@ import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
 import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlayCard';
 import LoadingOverlayCard from './content/LoadingOverlayCard';
+import StatusOverlayCard from './content/StatusOverlayCard';
 import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
@@ -77,7 +78,8 @@ const Page2 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard />
-        <ErrorHandlingCard pageTitle="Page2" />
+        <StatusOverlayCard />
+        <ErrorHandlingCard pageTitle="Page 2" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />
         <ModalManagerIntegrationCard />

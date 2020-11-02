@@ -12,6 +12,7 @@ import ModalManager from '../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
 
 import Page1 from '../pages/Page1';
+import Page5 from '../pages/Page5';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
@@ -90,25 +91,29 @@ const DemoApplicationNavigationLayout = () => {
             <NavigationItem
               navigationKey="nav-B"
               text="Nav B"
-              render={() => <NavBLayout />}
+              renderLayout={() => <NavBLayout />}
             />
             <NavigationItem
               navigationKey="nav-C"
               text="Nav C"
-              render={() => <NavCLayout />}
+              renderLayout={() => <NavCLayout />}
             />
             <NavigationItem
               navigationKey="nav-D"
               text="Nav D"
-              render={() => <NavDLayout />}
+              renderLayout={() => <NavDLayout />}
             />
             <NavigationItem
               navigationKey="nav-E"
               text="Nav E"
-              render={() => (
-                <NotAPage />
-              )}
+              renderPage={() => <Page5 />}
             />
+            <NavigationItem
+              navigationKey="nav-F"
+              text="Nav F"
+            >
+              <NotAPage />
+            </NavigationItem>
           </PrimaryNavigationLayout>
         </ModalManager>
         {showDetailsModal && (

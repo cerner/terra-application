@@ -7,6 +7,7 @@ import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
+import Page5 from '../pages/Page5';
 import NotAPage from '../shared/NotAPage';
 
 const NavDLayout = () => {
@@ -45,13 +46,18 @@ const NavDLayout = () => {
           text="Nav D-4 Page 4"
           renderPage={() => <Page4 />}
         />
+        <NavigationItem
+          navigationKey="nav-D-5"
+          text="Nav D-4 Page 5"
+          renderPage={() => <Page5 />}
+        />
       </SecondaryNavigationGroup>
       <SecondaryNavigationGroup
         text="Group 3"
       >
         <NavigationItem
-          navigationKey="nav-D-5"
-          text="Nav D-5 Page In Group"
+          navigationKey="nav-D-6"
+          text="Nav D-6 Page In Group"
           renderPage={() => (
             <Page title="Page In Group">
               <div style={{ padding: '1rem' }}>
@@ -64,17 +70,16 @@ const NavDLayout = () => {
           text="Nested Group"
         >
           <NavigationItem
-            navigationKey="nav-D-6"
-            text="Nav D-6 Not A Page"
-            render={() => (
-              <NotAPage />
-            )}
-          />
+            navigationKey="nav-D-7"
+            text="Nav D-7 Not A Page"
+          >
+            <NotAPage />
+          </NavigationItem>
         </SecondaryNavigationGroup>
       </SecondaryNavigationGroup>
       <NavigationItem
-        navigationKey="nav-D-7"
-        text="Nav D-7 Page Not In Group"
+        navigationKey="nav-D-8"
+        text="Nav D-8 Page Not In Group"
         renderPage={() => (
           <Page title="Page Not In Group">
             <div style={{ padding: '1rem' }}>

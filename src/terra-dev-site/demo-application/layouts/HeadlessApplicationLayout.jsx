@@ -32,9 +32,9 @@ const HeadlessApplicationLayout = () => {
         layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
         modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
-        <HeadlessLayout>
-          <NavDLayout />
-        </HeadlessLayout>
+        <HeadlessLayout
+          renderLayout={() => <NavDLayout />}
+        />
         {showDetailsModal && (
           <ApplicationModal title="Concept Details" size="small" onRequestClose={() => { setShowDetailsModal(false); }}>
             <div style={{ padding: '1rem' }}>

@@ -34,22 +34,22 @@ const propTypes = {
    * A function called to generate the child content for the NavigationItem. A parameter
    * indicating whether or not the NavigationItem is active is provided.
    *
-   * The `render` prop supports generalized component rendering. If you wish to only render
+   * The `renderLayout` prop supports the rendering of nested Layout components. If you wish to only render
    * a Page as the NavigationItem's content, use the `renderPage` prop instead.
    *
    * If provided, the `children` prop will be ignored. If `renderPage` is provided, this prop
    * will be ignored.
    *
-   * Signature: `renderPage({ isActive })`
+   * Signature: `renderLayout({ isActive })`
    */
-  render: PropTypes.func,
+  renderLayout: PropTypes.func,
   /**
    * The child components to render within the NavigationItem.
    *
    * The `children` prop supports generalized component rendering. If you wish to only render
    * a Page as the NavigationItem's content, use the `renderPage` prop instead.
    *
-   * If `renderPage` or `render` is provided, this prop will be ignored.
+   * If `renderPage` or `renderLayout` props are provided, this prop will be ignored.
    */
   children: PropTypes.node,
   /**
@@ -68,8 +68,8 @@ const propTypes = {
 const NavigationItem = ({
   navigationKey,
   children,
-  render,
   renderPage,
+  renderLayout,
   isActive,
   portalElement,
 }) => {
@@ -87,8 +87,8 @@ const NavigationItem = ({
         {renderPage({ isActive })}
       </PageContainer>
     );
-  } else if (render) {
-    pageContent = render({ isActive });
+  } else if (renderLayout) {
+    pageContent = renderLayout({ isActive });
   } else {
     pageContent = children;
   }

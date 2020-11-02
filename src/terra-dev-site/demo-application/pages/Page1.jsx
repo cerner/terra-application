@@ -57,7 +57,7 @@ const Page1 = ({ onRequestClose }) => {
         <NotificationDialogCard />
         <LoadingOverlayCard />
         <StatusOverlayCard />
-        <ErrorHandlingCard pageTitle="Page1" />
+        <ErrorHandlingCard pageTitle="Page 1" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />
         <ModalManagerIntegrationCard />

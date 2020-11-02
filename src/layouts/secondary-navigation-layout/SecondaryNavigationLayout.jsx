@@ -75,7 +75,14 @@ const initialSizeForBreakpoint = (breakpoint) => {
 };
 
 const SecondaryNavigationLayout = ({
-  sidebar, activeNavigationKey, children, onSelectNavigationItem, enableWorkspace, renderPage, renderNavigationFallback,
+  sidebar,
+  activeNavigationKey,
+  children,
+  onSelectNavigationItem,
+  enableWorkspace,
+  renderPage,
+  renderLayout,
+  renderNavigationFallback,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
@@ -342,6 +349,8 @@ const SecondaryNavigationLayout = ({
         {renderPage()}
       </PageContainer>
     );
+  } else if (renderLayout) {
+    content = renderLayout();
   } else if (navigationItems.length) {
     content = (
       <>

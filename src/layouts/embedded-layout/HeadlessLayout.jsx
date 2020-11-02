@@ -12,12 +12,26 @@ const cx = classNames.bind(styles);
 const propTypes = {
   children: PropTypes.node,
   renderPage: PropTypes.func,
+  renderLayout: PropTypes.func,
 };
 
 const HeadlessLayout = ({
-  children, renderPage,
+  children, renderPage, renderLayout,
 }) => {
   const conceptBannerContext = React.useContext(ApplicationConceptBannerContext);
+
+  let content;
+  if (renderPage) {
+    content = (
+      <PageContainer isMain>
+        {renderPage()}
+      </PageContainer>
+    );
+  } else if (renderLayout) {
+    content = renderLayout();
+  } else {
+    content = children;
+  }
 
   return (
     <div className={cx('embedded-layout')}>
@@ -25,11 +39,7 @@ const HeadlessLayout = ({
         {conceptBannerContext?.layoutBanner}
       </div>
       <div className={cx('content-container')}>
-        {renderPage ? (
-          <PageContainer isMain>
-            {renderPage()}
-          </PageContainer>
-        ) : children}
+        {content}
       </div>
     </div>
   );

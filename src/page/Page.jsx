@@ -13,6 +13,7 @@ import { ApplicationStatusOverlayProvider } from '../application-status-overlay'
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
+import PageMenu from './PageMenu';
 
 import styles from './Page.module.scss';
 
@@ -20,15 +21,21 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * The string description of the Page to present to the user.
+   * The string description of the Page to present to the user. This value is also used to build description
+   * text for screen readers and accessibility tools.
    */
   title: PropTypes.string.isRequired,
   /**
-   * An array of objects defining the Page actions to present to the user.
+   * An array of objects defining the Page actions to present to the user. At smaller breakpoints,
+   * the content provided as `actions` will be presented within the Page's menu to minimize layout space.
    */
   actions: PropTypes.arrayOf(PropTypes.shape({
 
   })),
+  /**
+   * A PageMenu instance defining the contents of the Page's dedicated menu control.
+   */
+  menu: PropTypes.instanceOf(PageMenu),
   /**
    * A component to present additional controls to the Page user. The provided component will be rendered
    * below the Page's header.
@@ -48,6 +55,13 @@ const propTypes = {
    * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
    */
   requestClosePromptIsDisabled: PropTypes.bool,
+  /**
+   * When true, the Page header will not be rendered.
+   *
+   * This prop will be ignored if the `actions`, `menu`, or `onRequestClose` props are provided, or if the
+   * header must present actions due to content within the PageContainerActionsContext.
+   */
+  headerIsHidden: PropTypes.bool,
 };
 
 const Page = ({
@@ -58,6 +72,7 @@ const Page = ({
   onRequestClose,
   children,
   requestClosePromptIsDisabled,
+  headerIsHidden,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
@@ -135,17 +150,25 @@ const Page = ({
     });
   }
 
+  /**
+   * The Page header will not be rendered if the consumer indicates that it should be hidden and no content exists for the header to present.
+   * The title prop is excluded here, as it is required for proper ARIA descriptions and does not necessarily require header presence.
+   */
+  const headerShouldBeRendered = !headerIsHidden || actions || menu || onRequestClose || pageContext.containerStartActions || pageContext.containerEndActions;
+
   return (
     ReactDOM.createPortal((
       <div className={cx('page')}>
         <div className={cx('header')}>
-          <PageHeader
-            onBack={onRequestClose && safelyRequestClose}
-            title={title}
-            actions={actions}
-            menu={menu}
-            hasLoadingOverlay={loadingOverlayIsActive}
-          />
+          {headerShouldBeRendered && (
+            <PageHeader
+              onBack={onRequestClose && safelyRequestClose}
+              title={!headerIsHidden ? title : '\u00a0'} // TODO validate title should be hidden when prop is set
+              actions={actions}
+              menu={menu}
+              hasLoadingOverlay={loadingOverlayIsActive}
+            />
+          )}
           {toolbar}
           <NotificationBanners />
         </div>

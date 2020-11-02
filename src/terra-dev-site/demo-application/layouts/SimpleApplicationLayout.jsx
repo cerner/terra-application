@@ -3,17 +3,14 @@ import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import Button from 'terra-button';
 
 import ApplicationModal from '../../../application-modal/ApplicationModal';
-import PrimaryNavigationLayout, { NavigationItem } from '../../../application-layouts/PrimaryNavigationLayout';
+import PrimaryNavigationLayout from '../../../application-layouts/PrimaryNavigationLayout';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
-import useNavigationState from '../../../navigation/useNavigationState';
+import MainContainer from '../../../main-container';
 
 import { ConceptContext } from '../providers/ConceptProvider';
 import { SessionContext } from '../providers/SessionProvider';
 
 import Page1 from '../pages/Page1';
-import NavBLayout from './NavBLayout';
-import NavCLayout from './NavCLayout';
-import NavDLayout from './NavDLayout';
 
 import ConceptBanner from '../shared/ConceptBanner';
 
@@ -65,10 +62,10 @@ const SimpleApplicationLayout = () => {
           renderPage={conceptContext.data ? () => <Page1 /> : undefined}
         >
           {!conceptContext.data ? (
-            <main style={{ padding: '0 1.5rem' }}>
+            <MainContainer>
               <h1>No Context</h1>
               <p>Select a option from the Search modal.</p>
-            </main>
+            </MainContainer>
           ) : undefined}
         </PrimaryNavigationLayout>
         {showDetailsModal && (

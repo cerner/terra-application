@@ -14,10 +14,6 @@ import {
 
 const propTypes = {
   /**
-   * A collection of child elements to render within the ApplicationNavigation body.
-   */
-  children: PropTypes.node,
-  /**
    * A string key representing the currently active navigation item.
    */
   activeNavigationKey: PropTypes.string,
@@ -105,12 +101,16 @@ const propTypes = {
   utilityItems: utilityItemsPropType,
 
   renderPage: PropTypes.func,
+  renderLayout: PropTypes.func,
   renderNavigationFallback: PropTypes.func,
+  /**
+   * A collection of child elements to render within the ApplicationNavigation body.
+   */
+  children: PropTypes.node,
 };
 
 const PrimaryNavigationLayout = ({
   children,
-  renderPage,
   activeNavigationKey,
   disablePromptsForLogout,
   extensionItems,
@@ -127,6 +127,8 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
+  renderPage,
+  renderLayout,
   renderNavigationFallback,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -250,6 +252,8 @@ const PrimaryNavigationLayout = ({
         {renderPage()}
       </PageContainer>
     );
+  } else if (renderLayout) {
+    content = renderLayout();
   } else if (navigationItems.length) {
     content = renderNavigationItems();
   } else {

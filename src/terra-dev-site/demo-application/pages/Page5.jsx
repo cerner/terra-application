@@ -23,7 +23,7 @@ const Page5 = ({ onRequestClose }) => (
   <Page
     title="Page 5"
     onRequestClose={onRequestClose}
-    perferHeaderIsHidden
+    preferHeaderIsHidden
   >
     <DemoPageContent>
       <h2>Page 5</h2>

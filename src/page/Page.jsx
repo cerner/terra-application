@@ -61,7 +61,7 @@ const propTypes = {
    * This prop will be ignored if the `actions`, `menu`, or `onRequestClose` props are provided, or if the
    * header must present actions due to content within the PageContainerActionsContext.
    */
-  headerIsHidden: PropTypes.bool,
+  perferHeaderIsHidden: PropTypes.bool,
 };
 
 const Page = ({
@@ -72,7 +72,7 @@ const Page = ({
   onRequestClose,
   children,
   requestClosePromptIsDisabled,
-  headerIsHidden,
+  perferHeaderIsHidden,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
@@ -154,7 +154,7 @@ const Page = ({
    * The Page header will not be rendered if the consumer indicates that it should be hidden and no content exists for the header to present.
    * The title prop is excluded here, as it is required for proper ARIA descriptions and does not necessarily require header presence.
    */
-  const headerShouldBeRendered = !headerIsHidden || actions || menu || onRequestClose || pageContext.containerStartActions || pageContext.containerEndActions;
+  const headerShouldBeRendered = !perferHeaderIsHidden || actions || menu || onRequestClose || pageContext.containerStartActions || pageContext.containerEndActions;
 
   return (
     ReactDOM.createPortal((
@@ -163,7 +163,7 @@ const Page = ({
           {headerShouldBeRendered && (
             <PageHeader
               onBack={onRequestClose && safelyRequestClose}
-              title={!headerIsHidden ? title : '\u00a0'} // TODO validate title should be hidden when prop is set
+              title={!perferHeaderIsHidden ? title : '\u00a0'} // TODO validate title should be hidden when prop is set
               actions={actions}
               menu={menu}
               hasLoadingOverlay={loadingOverlayIsActive}

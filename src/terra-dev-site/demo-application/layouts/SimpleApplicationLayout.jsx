@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import Button from 'terra-button';
 
 import ApplicationModal from '../../../application-modal/ApplicationModal';
-import PrimaryNavigationLayout from '../../../application-layouts/PrimaryNavigationLayout';
+import PrimaryNavigationLayout from '../../../layouts/primary-navigation-layout/PrimaryNavigationLayout';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
 import MainContainer from '../../../main-container';
 

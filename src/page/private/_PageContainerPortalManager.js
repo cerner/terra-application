@@ -8,27 +8,6 @@ class PageContainerPortalManager {
     this.pagePresentationCallback = callback;
   }
 
-  // hideAncestors(key) {
-  //   if (!this.containerRef.current) {
-  //     return;
-  //   }
-
-  //   const nodeData = this.nodeMap[key];
-
-  //   if (!nodeData) {
-  //     return;
-  //   }
-
-  //   if (this.containerRef.current.contains(nodeData.element)) {
-  //     nodeData.lastScrollPosition = nodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
-  //     this.containerRef.current.removeChild(nodeData.element);
-  //   }
-
-  //   if (nodeData.ancestor) {
-  //     this.hideAncestors(nodeData.ancestor);
-  //   }
-  // }
-
   getNode(pageKey, ancestorPageKey, pageTitleId) {
     if (!this.containerRef.current) {
       return null;
@@ -67,7 +46,14 @@ class PageContainerPortalManager {
     const ancestorNodeData = this.nodeMap[ancestorPageKey];
     if (ancestorNodeData && this.containerRef.current.contains(ancestorNodeData.element)) {
       ancestorNodeData.lastScrollPosition = ancestorNodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
-      this.containerRef.current.removeChild(ancestorNodeData.element);
+
+      const hasUnsafeElements = ancestorNodeData.element.querySelectorAll('iframe');
+      if (hasUnsafeElements.length) {
+        ancestorNodeData.element.style.display = 'none';
+        ancestorNodeData.element.inert = true;
+      } else {
+        this.containerRef.current.removeChild(ancestorNodeData.element);
+      }
     }
 
     if (this.pagePresentationCallback) {
@@ -92,13 +78,21 @@ class PageContainerPortalManager {
       this.containerRef.current.removeChild(page.element);
     }
 
-    if (this.nodeMap[page.ancestor]) {
-      this.nodeMap[page.ancestor].child = undefined;
+    // debugger;
+    const visiblePageData = this.nodeMap[page.ancestor];
+    if (visiblePageData) {
+      visiblePageData.child = undefined;
 
-      this.containerRef.current.appendChild(this.nodeMap[page.ancestor].element);
-      this.containerRef.current.setAttribute('aria-labelledby', this.nodeMap[page.ancestor].pageTitleId);
+      if (this.containerRef.current.contains(visiblePageData.element)) {
+        visiblePageData.element.style.removeProperty('display');
+        visiblePageData.element.inert = false;
+      } else {
+        this.containerRef.current.appendChild(visiblePageData.element);
+      }
 
-      this.nodeMap[page.ancestor].element.querySelector('[data-page-overflow-container]').scrollTop = this.nodeMap[page.ancestor].lastScrollPosition;
+      this.containerRef.current.setAttribute('aria-labelledby', visiblePageData.pageTitleId);
+
+      visiblePageData.element.querySelector('[data-page-overflow-container]').scrollTop = visiblePageData.lastScrollPosition;
     }
 
     if (this.pagePresentationCallback) {

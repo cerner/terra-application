@@ -168,8 +168,7 @@ const PrimaryNavigationLayout = ({
       const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
       if (hasUnsafeElements.length) {
         elementToRemove.style.display = 'none';
-        elementToRemove.setAttribute('aria-hidden', true);
-        elementToRemove.setAttribute('inert', '');
+        elementToRemove.inert = true;
       } else {
         contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
       }
@@ -178,8 +177,7 @@ const PrimaryNavigationLayout = ({
     if (pageNodeForActivePage?.element) {
       if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
         pageNodeForActivePage.element.style.removeProperty('display');
-        pageNodeForActivePage.element.removeAttribute('aria-hidden');
-        pageNodeForActivePage.element.removeAttribute('inert');
+        pageNodeForActivePage.element.inert = false;
       } else {
         contentElementRef.current.appendChild(pageNodeForActivePage.element);
       }

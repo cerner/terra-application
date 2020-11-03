@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
-import IconSearch from 'terra-icon/lib/icon/IconSearch';
-import Button from 'terra-button';
+// import IconSearch from 'terra-icon/lib/icon/IconSearch';
+// import Button from 'terra-button';
 
 import ApplicationModal from '../../../application-modal/ApplicationModal';
-import HeadlessLayout from '../../../application-layouts/HeadlessLayout';
+import HeadlessLayout from '../../../layouts/embedded-layout/HeadlessLayout';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
 
 import { ConceptContext } from '../providers/ConceptProvider';
-import { SessionContext } from '../providers/SessionProvider';
+// import { SessionContext } from '../providers/SessionProvider';
 
-import Page1 from '../pages/Page1';
-import NavBLayout from './NavBLayout';
-import NavCLayout from './NavCLayout';
+// import Page1 from '../pages/Page1';
+// import NavBLayout from './NavBLayout';
+// import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
 
 import ConceptBanner from '../shared/ConceptBanner';

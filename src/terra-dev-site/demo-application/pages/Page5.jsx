@@ -37,7 +37,7 @@ const Page5 = ({ onRequestClose }) => (
       <Card title="Page Header">
         <p>This Page implementation hides the Page header.</p>
         <p>The Page header can be hidden in scenarios where the framework controls are unnecessary and/or intrusive to the Page design.</p>
-        <p>The presence of Layout-specific actions or Page-level actions like will force the header to be presented.</p>
+        <p>The presence of Layout-specific actions or Page-level actions will force the header to be presented.</p>
       </Card>
       <NotificationBannersCard />
       <NotificationDialogCard />

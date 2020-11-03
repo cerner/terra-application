@@ -4,8 +4,8 @@ import ApplicationBase from '../../application-base';
 import ApplicationContainer from '../../application-container/ApplicationContainer';
 
 import DemoApplicationNavigationLayout from './layouts/DemoApplicationNavigationLayout';
-// import SimpleApplicationLayout from './generic-demo/layouts/SimpleApplicationLayout';
-// import HeadlessApplicationLayout from './generic-demo/layouts/HeadlessApplicationLayout';
+// import SimpleApplicationLayout from './layouts/SimpleApplicationLayout';
+// import HeadlessApplicationLayout from './layouts/HeadlessApplicationLayout';
 
 import ConceptProvider from './providers/ConceptProvider';
 import SessionProvider from './providers/SessionProvider';

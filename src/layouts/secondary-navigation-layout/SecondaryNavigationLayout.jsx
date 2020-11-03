@@ -12,6 +12,7 @@ import SkipToButton from '../../application-container/private/skip-to/SkipToButt
 import { PageContainer } from '../../page';
 import PageContainerActionsContext from '../../page/PageContainerActionsContext';
 import EventEmitter from '../../utils/event-emitter';
+import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -146,7 +147,9 @@ const SecondaryNavigationLayout = ({
         className={cx({ 'active-button': workspaceIsVisible })}
         icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
         text="Toggle Workspace" // TODO INTL
-        onClick={() => { setWorkspaceIsVisible(state => !state); }}
+        onClick={() => {
+          setWorkspaceIsVisible(state => !state);
+        }}
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
@@ -184,7 +187,7 @@ const SecondaryNavigationLayout = ({
     if (lastActiveNavigationKeyRef.current) {
       const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
 
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = elementToRemove.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
 
       const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
       if (hasUnsafeElements.length) {
@@ -203,9 +206,8 @@ const SecondaryNavigationLayout = ({
         contentElementRef.current.appendChild(pageNodeForActivePage.element);
       }
 
-      const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
-      if (pageMainElement) {
-        pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
+      if (pageNodeForActivePage.scrollData) {
+        applyScrollData(pageNodeForActivePage.scrollData, pageNodeForActivePage.element);
       }
 
       contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
@@ -277,12 +279,14 @@ const SecondaryNavigationLayout = ({
     }
   }, [sideNavOverlayIsVisible]);
 
-  const workspaceOverlayIsOpen = workspaceIsVisible && hasOverlayWorkspace;
+  const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
   React.useEffect(() => {
-    if (workspaceOverlayIsOpen) {
+    if (workspaceIsVisible && !lastWorkspaceOpenState.current) {
       workspacePanelRef.current.focus();
     }
-  }, [workspaceOverlayIsOpen]);
+
+    lastWorkspaceOpenState.current = workspaceIsVisible;
+  }, [workspaceIsVisible]);
 
   function activatePage(pageKey) {
     setSideNavOverlayIsVisible(false);

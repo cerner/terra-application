@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { PageContainer } from '../../page';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
 import { ApplicationIntlContext } from '../../application-intl';
+import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 
 import HeadlessLayout from '../embedded-layout/HeadlessLayout';
 import NavigationItem from '../shared/NavigationItem';
@@ -163,7 +164,7 @@ const PrimaryNavigationLayout = ({
     if (lastActiveNavigationKeyRef.current) {
       const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
 
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollOffset = elementToRemove.querySelector('[data-page-overflow-container]')?.scrollTop || 0;
+      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
 
       const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
       if (hasUnsafeElements.length) {
@@ -182,9 +183,8 @@ const PrimaryNavigationLayout = ({
         contentElementRef.current.appendChild(pageNodeForActivePage.element);
       }
 
-      const pageMainElement = pageNodeForActivePage.element.querySelector('[data-page-overflow-container]');
-      if (pageMainElement) {
-        pageMainElement.scrollTop = pageNodeForActivePage.scrollOffset || 0;
+      if (pageNodeForActivePage.scrollData) {
+        applyScrollData(pageNodeForActivePage.scrollData, pageNodeForActivePage.element);
       }
 
       contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);

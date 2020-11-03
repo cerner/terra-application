@@ -1,3 +1,5 @@
+import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
+
 class PageContainerPortalManager {
   constructor(containerRef) {
     this.containerRef = containerRef;
@@ -45,7 +47,7 @@ class PageContainerPortalManager {
 
     const ancestorNodeData = this.nodeMap[ancestorPageKey];
     if (ancestorNodeData && this.containerRef.current.contains(ancestorNodeData.element)) {
-      ancestorNodeData.lastScrollPosition = ancestorNodeData.element.querySelector('[data-page-overflow-container]').scrollTop;
+      ancestorNodeData.overflowData = getPersistentScrollMap(ancestorNodeData.element);
 
       const hasUnsafeElements = ancestorNodeData.element.querySelectorAll('iframe');
       if (hasUnsafeElements.length) {
@@ -78,7 +80,6 @@ class PageContainerPortalManager {
       this.containerRef.current.removeChild(page.element);
     }
 
-    // debugger;
     const visiblePageData = this.nodeMap[page.ancestor];
     if (visiblePageData) {
       visiblePageData.child = undefined;
@@ -92,7 +93,7 @@ class PageContainerPortalManager {
 
       this.containerRef.current.setAttribute('aria-labelledby', visiblePageData.pageTitleId);
 
-      visiblePageData.element.querySelector('[data-page-overflow-container]').scrollTop = visiblePageData.lastScrollPosition;
+      applyScrollData(visiblePageData.overflowData, visiblePageData.element);
     }
 
     if (this.pagePresentationCallback) {

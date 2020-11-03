@@ -179,11 +179,14 @@ const Page = ({
                 <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
                   <ApplicationStatusOverlayProvider>
                     <div
-                      data-page-overflow-container
-                      tabIndex="0"
+                      tabIndex="0" // TODO validate need for this
                       className={cx('overflow-content', 'page-background')}
+                      data-application-overflow-container
                     >
-                      <div className={cx('width-normalizer')}>
+                      <div
+                        className={cx('width-normalizer')}
+                        data-application-overflow-container
+                      >
                         <VisuallyHiddenText
                           aria-hidden
                           id={pageTitleId}

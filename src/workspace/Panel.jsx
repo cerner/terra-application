@@ -5,26 +5,17 @@ import classNames from 'classnames/bind';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
+import { actionsPropType } from './propTypes/propTypes';
 import TabContext from './TabContext';
 import TabTitle from './_TabTitle';
 import styles from './Panel.module.scss';
 
 const cx = classNames.bind(styles);
 
-// TODO: make common
-const itemShape = PropTypes.shape({
-  title: PropTypes.string,
-  onAction: PropTypes.func,
-  icon: PropTypes.element,
-  isSelected: PropTypes.bool,
-});
-const groupShape = PropTypes.shape({
-  items: PropTypes.arrayOf(itemShape),
-});
 const propTypes = {
+  actions: actionsPropType,
   children: PropTypes.node,
   toolBar: PropTypes.element,
-  actions: PropTypes.arrayOf(PropTypes.oneOfType([itemShape, groupShape])),
 };
 
 const Panel = ({

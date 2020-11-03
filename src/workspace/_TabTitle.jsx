@@ -1,12 +1,18 @@
 import React, { useState, useRef } from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Popup from 'terra-popup';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
-
+import { actionsPropType} from './propTypes/propTypes';
 
 import styles from './TabTitle.module.scss';
 
 const cx = classNames.bind(styles);
+
+const propTypes = {
+  actions: actionsPropType,
+  children: PropTypes.node,
+};
 
 const TabTitle = ({ actions, children }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,5 +62,7 @@ const TabTitle = ({ actions, children }) => {
     </div>
   );
 };
+
+TabTitle.propTypes = propTypes;
 
 export default TabTitle;

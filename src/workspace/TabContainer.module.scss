@@ -32,6 +32,7 @@
   .tab,
   .tab-menu {
     color: var(--terra-tabs-structural-color, #007ee0);
+    cursor: pointer;
     display: flex;
     font-size: var(--terra-tabs-font-size, 1rem);
     line-height: var(--terra-tabs-line-height, 1.4);
@@ -167,11 +168,9 @@
     &:focus {
       outline: 2px dashed #000;
       outline-offset: -2px;
-      z-index: 1;
     }
 
     &.is-active {
-      .inner,
       &::before,
       &::after  {
         z-index: 5;

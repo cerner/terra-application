@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import { KEY_ESCAPE } from 'keycode-js';
 import ContentContainer from 'terra-content-container';
 import Button, { ButtonVariants } from 'terra-button';
 import ActionHeader from 'terra-action-header';
@@ -11,8 +12,8 @@ import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
 import { PageContainer } from '../../page';
 import PageContainerActionsContext from '../../page/PageContainerActionsContext';
-import EventEmitter from '../../utils/event-emitter';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
+import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -155,23 +156,15 @@ const SecondaryNavigationLayout = ({
     ) : undefined,
   }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
 
-  React.useEffect(() => {
-    function dismissOverlaySidebars() {
-      if (hasOverlaySidebar) {
-        setSideNavOverlayIsVisible(false);
-      }
-
-      if (hasOverlayWorkspace) {
-        setWorkspaceIsVisible(false);
-      }
+  useDismissTransientPresentationsCallback(() => {
+    if (hasOverlaySidebar) {
+      setSideNavOverlayIsVisible(false);
     }
 
-    EventEmitter.on('terra-application.dismiss-transient-layers', dismissOverlaySidebars);
-
-    return () => {
-      EventEmitter.off('terra-application.dismiss-transient-layers', dismissOverlaySidebars);
-    };
-  }, [hasOverlaySidebar, hasOverlayWorkspace]);
+    if (hasOverlayWorkspace) {
+      setWorkspaceIsVisible(false);
+    }
+  });
 
   React.useLayoutEffect(() => {
     if (!contentElementRef.current) {
@@ -287,6 +280,46 @@ const SecondaryNavigationLayout = ({
 
     lastWorkspaceOpenState.current = workspaceIsVisible;
   }, [workspaceIsVisible]);
+
+  React.useEffect(() => {
+    if (!workspaceIsVisible || !hasOverlayWorkspace) {
+      return undefined;
+    }
+
+    function handleKeydown(e) {
+      if (e.keyCode === KEY_ESCAPE) {
+        if (e.target === pageContainerRef.current || pageContainerRef.current.contains(e.target)) {
+          setWorkspaceIsVisible(false);
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, [workspaceIsVisible, hasOverlayWorkspace]);
+
+  React.useEffect(() => {
+    if (!sideNavOverlayIsVisible) {
+      return undefined;
+    }
+
+    function handleKeydown(e) {
+      if (e.keyCode === KEY_ESCAPE) {
+        if (e.target === pageContainerRef.current || pageContainerRef.current.contains(e.target)) {
+          setSideNavOverlayIsVisible(false);
+        }
+      }
+    }
+
+    document.addEventListener('keydown', handleKeydown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeydown);
+    };
+  }, [sideNavOverlayIsVisible, setSideNavOverlayIsVisible]);
 
   function activatePage(pageKey) {
     setSideNavOverlayIsVisible(false);

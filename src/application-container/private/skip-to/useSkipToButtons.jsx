@@ -1,7 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
-import EventEmitter from '../../../utils/event-emitter';
+import { dismissTransientPresentations } from '../../../utils/transient-presentation';
 
 import SkipToButtonsContext from './SkipToButtonsContext';
 
@@ -82,7 +82,7 @@ const useSkipToButtons = () => {
               type="button"
               role="link" // TODO verify role
               onClick={() => {
-                EventEmitter.emit('terra-application.dismiss-transient-layers');
+                dismissTransientPresentations();
 
                 setTimeout(() => { data.onSelect(); }, 0);
               }}

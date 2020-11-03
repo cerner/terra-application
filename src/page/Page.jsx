@@ -34,8 +34,9 @@ const propTypes = {
   })),
   /**
    * A PageMenu instance defining the contents of the Page's dedicated menu control.
+   * Only the PageMenu component can be provided.
    */
-  menu: PropTypes.instanceOf(PageMenu),
+  menu: PropTypes.element,
   /**
    * A component to present additional controls to the Page user. The provided component will be rendered
    * below the Page's header.

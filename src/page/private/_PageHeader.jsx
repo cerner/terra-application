@@ -5,8 +5,9 @@ import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-import PageMenu, { MenuItem, MenuItemDivider } from '../PageMenu';
+import { useTransientPresentationState } from '../../utils/transient-presentation';
 
+import PageMenu, { MenuItem, MenuItemDivider } from '../PageMenu';
 import PageContext from './PageContext';
 import styles from './PageHeader.module.scss';
 
@@ -19,7 +20,7 @@ const propTypes = {};
 const PageHeader = ({
   actions, menu, onBack, title, hasLoadingOverlay,
 }) => {
-  const [showMenu, setShowMenu] = React.useState(false);
+  const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const moreActionsButtonRef = React.useRef();
   const pageContext = React.useContext(PageContext);

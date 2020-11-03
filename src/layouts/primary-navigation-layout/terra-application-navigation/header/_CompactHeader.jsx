@@ -143,7 +143,6 @@ const CompactHeader = ({
   titleConfig,
   extensionItems,
   onSelectExtensionItem,
-  onSelectSkipToContent,
   navigationItems,
   notifications,
   activeBreakpoint,

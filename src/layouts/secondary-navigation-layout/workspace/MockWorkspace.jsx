@@ -2,6 +2,8 @@ import React from 'react';
 import Menu from 'terra-menu';
 
 import { ActiveBreakpointContext } from '../../../breakpoints';
+import { useDismissTransientPresentationsCallback } from '../../../utils/transient-presentation';
+
 import Tabs from './mock/TempImplement';
 
 const propTypes = {};
@@ -16,6 +18,18 @@ const MockWorkspace = ({
   const callbackRef = React.useRef();
   const [menuIsOpen, setMenuIsOpen] = React.useState(false);
   const menuButtonRef = React.useRef();
+
+  /**
+   * This custom hook will listen for the event indicating that transient
+   * content presentations should be dismissed and execute the provided callback.
+   * MockWorkspace must close its transient presentations when the event
+   * is dispatched.
+   */
+  useDismissTransientPresentationsCallback(() => {
+    if (menuIsOpen) {
+      setMenuIsOpen(false);
+    }
+  });
 
   React.useEffect(() => {
     if (!menuIsOpen && callbackRef.current) {

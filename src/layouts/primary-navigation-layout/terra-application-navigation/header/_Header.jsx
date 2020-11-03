@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { injectIntl, intlShape } from 'react-intl';
 
 import Tabs from '../tabs/_Tabs';
 import Extensions from '../extensions/_Extensions';
@@ -57,10 +56,6 @@ const propTypes = {
    */
   utilityButtonPopupAnchorRef: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
   /**
-   * A function to be executed upon selection of the 'Skip to Content' button.
-   */
-  onSelectSkipToContent: PropTypes.func,
-  /**
    * Key/Value pairs associating a string key entry to a numerical notification count.
    */
   notifications: PropTypes.object,
@@ -69,11 +64,6 @@ const propTypes = {
    * The currently active breakpoint.
    */
   activeBreakpoint: PropTypes.string,
-  /**
-   * @private
-   * Object containing intl APIs.
-   */
-  intl: intlShape,
   /**
    * An element to render within the Header's utility menu.
    */
@@ -115,8 +105,6 @@ const Header = ({
   activeBreakpoint,
   onSelectExtensionItem,
   userConfig,
-  onSelectSkipToContent,
-  intl,
   onSelectUtilityButton,
   utilityButtonPopupAnchorRef,
   hero,
@@ -192,7 +180,6 @@ const Header = ({
 
   return (
     <header role="banner" className={cx('header')}>
-
       <div className={cx('title-container')}>
         {renderTitle()}
       </div>
@@ -210,4 +197,4 @@ const Header = ({
 Header.propTypes = propTypes;
 Header.defaultProps = defaultProps;
 
-export default injectIntl(Header);
+export default Header;

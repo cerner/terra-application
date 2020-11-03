@@ -9,6 +9,7 @@ import Popup from 'terra-popup';
 import ThemeContext from 'terra-theme-context';
 
 import { ActiveBreakpointContext } from '../../../breakpoints';
+import { useDismissTransientPresentationsCallback } from '../../../utils/transient-presentation';
 
 import Header from './header/_Header';
 import CompactHeader from './header/_CompactHeader';
@@ -349,6 +350,22 @@ const ApplicationNavigation = ({
       contentLayoutElement.removeEventListener('transitionend', cleanupContentTransition);
     };
   }, [contentLayoutRef]);
+
+  /**
+   * This custom hook will listen for the event indicating that transient
+   * content presentations should be dismissed and execute the provided callback.
+   * ApplicationNavigation must close its transient presentations when the event
+   * is dispatched.
+   */
+  useDismissTransientPresentationsCallback(() => {
+    if (drawerMenuIsOpen) {
+      setDrawerMenuIsOpen(false);
+    }
+
+    if (popupMenuIsOpen) {
+      setPopupMenuIsOpen(false);
+    }
+  });
 
   /**
    * If the ApplicationNavigation is rendering at non-compact breakpoints, and the drawer menu is still

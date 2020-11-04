@@ -164,7 +164,7 @@ const Page = ({
           {headerShouldBeRendered && (
             <PageHeader
               onBack={onRequestClose && safelyRequestClose}
-              title={!preferHeaderIsHidden ? title : '\u00a0'} // TODO validate title should be hidden when prop is set
+              title={title}
               actions={actions}
               menu={menu}
               hasLoadingOverlay={loadingOverlayIsActive}

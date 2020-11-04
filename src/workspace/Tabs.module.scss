@@ -13,6 +13,11 @@
     top: 0px;
     width: 100%;
 
+    .fill-element {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+
     button {
       flex: 0 0 auto;
       height: 30px;
@@ -44,6 +49,25 @@
       flex: 1 1 auto;
       height: 100%;
       z-index: 10;
+    }
+  }
+
+  .list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    .item {
+      background-color: white;
+
+      &.is-actionable {
+        cursor: pointer;
+        padding: 10px;
+
+        &:hover {
+          background-color: orange;
+        }
+      }
     }
   }
 }

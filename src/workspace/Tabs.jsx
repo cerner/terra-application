@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconChevronLeft from 'terra-icon/lib/icon/IconChevronLeft';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
+import Popup from 'terra-popup';
 import WorkspaceContext from './WorkspaceContext';
 import TabContainer from './_TabContainer';
 import styles from './Tabs.module.scss';
@@ -17,20 +19,41 @@ const propTypes = {
   title: PropTypes.string.isRequired,
 };
 
+const createList = (options, currentSize, onRequestSizeChange, onDismissMenu) => {
+  return (
+    <ul className={cx('list')} key="derpy-list">
+      {options.map(option => (
+        <li
+          className={cx('item', 'is-actionable')}
+          key={option.key}
+          onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
+        >
+          <span style={{ opacity: currentSize !== option.key ? 0 : 1, marginRight: '5px' }}><IconCheckmark /></span>
+          {option.text}
+        </li>
+      ))}
+    </ul>
+  );
+};
+
 const Tabs = ({
   id,
   activeTabKey,
   children,
   onRequestActivate,
   title,
-  menuButtonRef,
-  menuOnClick,
+  currentSize, // new
+  onRequestSizeChange, // new
+  onRequestDismiss, // new
+  sizeOptions, // new
   ...customProps
 }) => {
-  const [notificationCounts, setNotificationCounts] = useState({});
+  // const [notificationCounts, setNotificationCounts] = useState({});
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const workspacePortalsRef = useRef({});
   const workspaceLastKeyRef = useRef();
   const workspaceRef = useRef();
+  const sizeMenuRef = useRef();
 
   React.useLayoutEffect(() => {
     const activeNode = workspacePortalsRef.current[activeTabKey];
@@ -52,12 +75,12 @@ const Tabs = ({
     }
   }, [activeTabKey]);
 
-  const updateNotificationCount = (key, value) => {
-    if (notificationCounts[key] !== value) {
-      notificationCounts[key] = value;
-      setNotificationCounts(Object.assign({}, notificationCounts));
-    }
-  };
+  // const updateNotificationCount = (key, value) => {
+  //   if (notificationCounts[key] !== value) {
+  //     notificationCounts[key] = value;
+  //     setNotificationCounts(Object.assign({}, notificationCounts));
+  //   }
+  // };
 
   const tabData = React.Children.map(children, child => {
     const tabId = `${id}-${child.props.tabKey}`;
@@ -67,7 +90,7 @@ const Tabs = ({
       associatedPanelId: panelId,
       label: child.props.label,
       icon: child.props.icon,
-      count: notificationCounts[tabId],
+      // count: notificationCounts[tabId],
       isSelected: child.props.tabKey == activeTabKey,
       onSelect: onRequestActivate,
       metaData: child.props.metaData,
@@ -78,8 +101,9 @@ const Tabs = ({
   const path = 'currentPath';
   const workspaceContext = React.useMemo(() => (
     {
-      pagePath: path,
-      updateNotificationCount,
+      pagePath: path, // active secondary page key
+      // updateNotificationCount,
+      // metaData, // unless memoized?
     }
   ), [path]);
 
@@ -97,19 +121,36 @@ const Tabs = ({
       role="none"
     >
       <div role="none" className={cx('header')}>
-        <button
-          aria-label="start"
-          className={cx('start-button')}
-        >
-          <IconChevronLeft />
-        </button>
-        <button
-          onClick={menuOnClick}
-          className={cx('end-button')}
-          ref={menuButtonRef}
-        >
-          <IconAdd />
-        </button>
+        {onRequestDismiss ? (
+          <button
+            aria-label="start"
+            className={cx('start-button')}
+            onClick={onRequestDismiss}
+          >
+            <IconChevronLeft />
+          </button>
+        ) : null }
+        <div className={cx('fill-element')} />
+        {sizeOptions ? (
+          <>
+            <button
+              onClick={() => setIsMenuOpen(true)}
+              className={cx('end-button')}
+              ref={sizeMenuRef}
+            >
+              <IconAdd />
+            </button>
+            <Popup
+              isOpen={isMenuOpen}
+              targetRef={() => sizeMenuRef.current}
+              onRequestClose={() => setIsMenuOpen(false)}
+              contentHeight="auto"
+              contentWidth="auto"
+            >
+              {createList(sizeOptions, currentSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+            </Popup>
+          </>
+        ) : null}
       </div>
       <div role="none" className={cx('header2')}>
         <TabContainer title={title} tabData={tabData} />

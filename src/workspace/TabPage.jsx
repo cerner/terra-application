@@ -8,11 +8,8 @@ const TabPage = ({
   associatedPanelId, // private
   isActive,
   label,
-  // icon,
-  // isIconOnly,
-  // metaData,
   render,
-  portalElement,
+  portalElement, // private
 }) => {
   const tabContextValue = React.useMemo(() => (
     {

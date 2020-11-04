@@ -17,8 +17,10 @@ const propTypes = {
 
 const TempImplement = ({
   id,
-  menuOnClick,
-  menuButtonRef,
+  currentSize,
+  sizeOptions,
+  onRequestSizeChange,
+  onRequestDismiss,
 }) => {
   const [activeTabKey, setActiveTabKey] = useState('page-1');
 
@@ -28,13 +30,15 @@ const TempImplement = ({
       activeTabKey={activeTabKey}
       onRequestActivate={metaData => setActiveTabKey(metaData.key)}
       title="work space" // TODO: need proper title setup
-      menuButtonRef={menuButtonRef}
-      menuOnClick={menuOnClick}
+      currentSize={currentSize}
+      sizeOptions={sizeOptions}
+      onRequestSizeChange={onRequestSizeChange}
+      onRequestDismiss={onRequestDismiss}
     >
       <TabPage
         // possible persistent prop?
         tabKey="page-1"
-        // label={IntlProvider.getString(MyTabPage.titleKey)}
+        // label={IntlProvider.getString(Page1.titleKey)}
         label="Page 1"
         metaData={{ key: 'page-1' }}
         render={() => <Page1 />}

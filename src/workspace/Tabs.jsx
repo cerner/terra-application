@@ -48,7 +48,6 @@ const Tabs = ({
   sizeOptions, // new
   ...customProps
 }) => {
-  // const [notificationCounts, setNotificationCounts] = useState({});
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const workspacePortalsRef = useRef({});
   const workspaceLastKeyRef = useRef();
@@ -75,13 +74,6 @@ const Tabs = ({
     }
   }, [activeTabKey]);
 
-  // const updateNotificationCount = (key, value) => {
-  //   if (notificationCounts[key] !== value) {
-  //     notificationCounts[key] = value;
-  //     setNotificationCounts(Object.assign({}, notificationCounts));
-  //   }
-  // };
-
   const tabData = React.Children.map(children, child => {
     const tabId = `${id}-${child.props.tabKey}`;
     const panelId = `${tabId}-panel`
@@ -90,7 +82,6 @@ const Tabs = ({
       associatedPanelId: panelId,
       label: child.props.label,
       icon: child.props.icon,
-      // count: notificationCounts[tabId],
       isSelected: child.props.tabKey == activeTabKey,
       onSelect: onRequestActivate,
       metaData: child.props.metaData,
@@ -107,6 +98,47 @@ const Tabs = ({
     }
   ), [path]);
 
+  const createDismissButton = () => {
+    if (onRequestDismiss) {
+      return (
+        <button
+          aria-label="start"
+          className={cx('start-button')}
+          onClick={onRequestDismiss}
+        >
+          <IconChevronLeft />
+        </button>
+      );
+    }
+    return null;
+  };
+
+  const createSizeButton = () => {
+    if (sizeOptions) {
+      return (
+        <>
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className={cx('end-button')}
+            ref={sizeMenuRef}
+          >
+            <IconAdd />
+          </button>
+          <Popup
+            isOpen={isMenuOpen}
+            targetRef={() => sizeMenuRef.current}
+            onRequestClose={() => setIsMenuOpen(false)}
+            contentHeight="auto"
+            contentWidth="auto"
+          >
+            {createList(sizeOptions, currentSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+          </Popup>
+        </>
+      );
+    }
+    return null;
+  };
+
   const tabsClassNames = cx([
     'tabs',
     { 'body-fill': true },
@@ -121,36 +153,9 @@ const Tabs = ({
       role="none"
     >
       <div role="none" className={cx('header')}>
-        {onRequestDismiss ? (
-          <button
-            aria-label="start"
-            className={cx('start-button')}
-            onClick={onRequestDismiss}
-          >
-            <IconChevronLeft />
-          </button>
-        ) : null }
+        {createDismissButton()}
         <div className={cx('fill-element')} />
-        {sizeOptions ? (
-          <>
-            <button
-              onClick={() => setIsMenuOpen(true)}
-              className={cx('end-button')}
-              ref={sizeMenuRef}
-            >
-              <IconAdd />
-            </button>
-            <Popup
-              isOpen={isMenuOpen}
-              targetRef={() => sizeMenuRef.current}
-              onRequestClose={() => setIsMenuOpen(false)}
-              contentHeight="auto"
-              contentWidth="auto"
-            >
-              {createList(sizeOptions, currentSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-            </Popup>
-          </>
-        ) : null}
+        {createSizeButton()}
       </div>
       <div role="none" className={cx('header2')}>
         <TabContainer title={title} tabData={tabData} />
@@ -165,7 +170,6 @@ const Tabs = ({
               portalElement.style.position = 'relative';
               portalElement.style.height = '100%';
               portalElement.style.width = '100%';
-              // portalElement.id = `${id}-${child.props.tabKey}`;
               workspacePortalsRef.current[child.props.tabKey] = {
                 element: portalElement,
               };

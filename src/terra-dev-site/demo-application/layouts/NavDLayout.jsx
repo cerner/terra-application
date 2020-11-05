@@ -3,7 +3,7 @@ import React from 'react';
 import Page from '../../../page';
 import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } from '../../../layouts';
 
-import Workspace from '../../../layouts/secondary-navigation-layout/workspace/Workspace';
+import SecondaryNavigationLayoutWorkspace from '../../../layouts/secondary-navigation-layout/workspace/SecondaryNavigationLayoutWorkspace';
 import WorkspaceTab from '../../../layouts/secondary-navigation-layout/workspace/WorkspaceTab';
 import Tab1 from '../workspace/Tab1';
 import Tab2 from '../workspace/Tab2';
@@ -20,7 +20,7 @@ const NavDLayout = () => {
   return (
     <SecondaryNavigationLayout
       workspace={(
-        <Workspace
+        <SecondaryNavigationLayoutWorkspace
           initialActiveTabKey="tab-1"
           onSizeChange={(size) => {
             console.log(`Workspace size changed: ${size}`);
@@ -41,7 +41,7 @@ const NavDLayout = () => {
             metaData={{ key: 'tab-2' }}
             render={() => <Tab2 />}
           />
-        </Workspace>
+        </SecondaryNavigationLayoutWorkspace>
       )}
       activeNavigationKey={navigationState}
       onSelectNavigationItem={(key) => { setNavigationState(key); }}

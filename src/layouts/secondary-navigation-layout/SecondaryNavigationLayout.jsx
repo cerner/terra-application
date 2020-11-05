@@ -591,7 +591,8 @@ const SecondaryNavigationLayout = ({
                       document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
                     });
                   } : null,
-                  size: workspaceSize.scale,
+                  sizeScalar: workspaceSize.scale,
+                  activeSize: undefined,
                   sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
                   onRequestSizeChange: (size) => {
                     userSelectedTypeRef.current = undefined;

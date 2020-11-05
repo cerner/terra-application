@@ -1,6 +1,6 @@
 import React from 'react';
 import { SecondaryNavigationLayout } from '../../../layouts';
-import Workspace from '../../../layouts/secondary-navigation-layout/workspace/Workspace';
+import SecondaryNavigationLayoutWorkspace from '../../../layouts/secondary-navigation-layout/workspace/SecondaryNavigationLayoutWorkspace';
 import WorkspaceTab from '../../../layouts/secondary-navigation-layout/workspace/WorkspaceTab';
 import Page2 from '../pages/Page1';
 import Tab1 from '../workspace/Tab1';
@@ -14,10 +14,14 @@ const NavBLayout = () => (
   <SecondaryNavigationLayout
     renderPage={() => <Page2 />}
     workspace={(
-      <Workspace
+      <SecondaryNavigationLayoutWorkspace
+        id="nav-b-workspace"
         initialActiveTabKey="tab-1"
         initialSize={{ scale: 0.75 }}
         initialIsOpen
+        onActiveTabChange={(newActiveTabKey) => {
+          console.log(`Workspace active tab: ${newActiveTabKey}`);
+        }}
         onSizeChange={(size) => {
           console.log(`Workspace size changed: ${size}`);
         }}
@@ -49,7 +53,7 @@ const NavBLayout = () => (
           metaData={{ key: 'tab-4' }}
           render={() => <Tab4 />}
         />
-      </Workspace>
+      </SecondaryNavigationLayoutWorkspace>
     )}
   />
 );

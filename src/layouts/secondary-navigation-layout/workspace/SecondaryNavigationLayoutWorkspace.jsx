@@ -4,10 +4,11 @@ import TabPage from '../../../workspace/TabPage';
 
 const propTypes = {};
 
-const Workspace = ({
+const SecondaryNavigationLayoutWorkspace = ({
   id,
   onSizeChange,
   onPresentationStateChange,
+  onActiveTabChange,
   initialSize,
   initialIsOpen,
   initialActiveTabKey,
@@ -15,17 +16,18 @@ const Workspace = ({
 
   isOpen,
   onRequestClose,
-  size,
+  sizeScalar,
+  activeSize,
   sizeOptions,
   onRequestSizeChange,
 }) => {
   const [activeTabKey, setActiveTabKey] = React.useState(initialActiveTabKey);
 
   React.useEffect(() => {
-    if (onSizeChange && size !== undefined) {
-      onSizeChange(size);
+    if (onSizeChange && sizeScalar !== undefined) {
+      onSizeChange(sizeScalar);
     }
-  }, [size, onSizeChange]);
+  }, [sizeScalar, onSizeChange]);
 
   React.useEffect(() => {
     if (onPresentationStateChange) {
@@ -33,16 +35,25 @@ const Workspace = ({
     }
   }, [isOpen, onPresentationStateChange]);
 
+  React.useEffect(() => {
+    if (onActiveTabChange) {
+      onActiveTabChange(activeTabKey);
+    }
+  }, [activeTabKey, onActiveTabChange]);
+
   return (
     <Tabs
       id={id || 'test-id'}
       activeTabKey={activeTabKey}
       onRequestActivate={metaData => setActiveTabKey(metaData.key)}
       title="work space" // TODO: need proper title setup
-      currentSize={size}
+      activeSize={activeSize}
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}
       onRequestDismiss={onRequestClose}
+      metaData={{
+        mean: 'hi mom',
+      }}
     >
       {React.Children.map(children, (child) => (
         <TabPage
@@ -56,6 +67,6 @@ const Workspace = ({
   );
 };
 
-Workspace.propTypes = propTypes;
+SecondaryNavigationLayoutWorkspace.propTypes = propTypes;
 
-export default Workspace;
+export default SecondaryNavigationLayoutWorkspace;

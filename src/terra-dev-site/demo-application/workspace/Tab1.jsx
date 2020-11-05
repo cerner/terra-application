@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Panel from '../../../workspace/Panel';
+import MockContent from './MockContent';
 
 const Tab1 = () => {
   const [isReset, setIsReset] = useState(false);
@@ -45,7 +46,7 @@ const Tab1 = () => {
         toolBar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
         actions={actions}
       >
-        <p>Tab 1 Content</p>
+        <MockContent title="Tab 1" />
       </Panel>
     </>
   );

@@ -1,11 +1,12 @@
 import React from 'react';
 import Panel from '../../../workspace/Panel';
+import MockContent from './MockContent';
 
 const Tab4 = () => (
   <Panel
     toolBar={<p style={{ backgroundColor: 'lightgreen', padding: '0.5rem', margin: '0' }}>Tab 4 Toolbar</p>}
   >
-    <p>Tab 4 Content</p>
+    <MockContent title="Tab 4" />
   </Panel>
 );
 

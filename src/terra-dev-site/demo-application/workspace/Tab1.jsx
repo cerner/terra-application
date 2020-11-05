@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import Panel from '../../../../workspace/Panel';
-import MockContent from './MockContent';
+import Panel from '../../../workspace/Panel';
 
-const Page1 = () => {
+const Tab1 = () => {
   const [isReset, setIsReset] = useState(false);
 
   const actions = [
@@ -43,15 +42,15 @@ const Page1 = () => {
     <>
       <Panel
         key={isReset ? 'derp1' : 'derp2'}
-        toolBar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Page 1 Toolbar</p>}
+        toolBar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
         actions={actions}
       >
-        <MockContent title="Page 1" initialCount={0} />
+        <p>Tab 1 Content</p>
       </Panel>
     </>
   );
 };
 
-Page1.titleKey = 'derp';
+Tab1.titleKey = 'derp';
 
-export default Page1;
+export default Tab1;

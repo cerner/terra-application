@@ -18,7 +18,6 @@ import { useDismissTransientPresentationsCallback } from '../../utils/transient-
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
 import ResizeHandle from './workspace/ResizeHandle';
-import MockWorkspace from './workspace/MockWorkspace';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';
 
 import styles from './SecondaryNavigationLayout.module.scss';
@@ -76,15 +75,41 @@ const initialSizeForBreakpoint = (breakpoint) => {
   };
 };
 
+const getSizeOptionsForBreakpoint = breakpoint => {
+  let menuOptions;
+  if (breakpoint === 'large' || breakpoint === 'huge' || breakpoint === 'enormous') {
+    menuOptions = [
+      { key: 'small', text: 'Small' },
+      { key: 'medium', text: 'Medium' },
+      { key: 'large', text: 'Large' },
+    ];
+  } else if (breakpoint === 'medium') {
+    menuOptions = [
+      { key: 'split', text: 'Split' },
+      { key: 'overlay', text: 'Overlay' },
+    ];
+  }
+  return menuOptions;
+};
+
+const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
+  if (breakpoint === 'large' || breakpoint === 'huge' || breakpoint === 'enormous') {
+    return true;
+  }
+
+  return false;
+};
+
 const SecondaryNavigationLayout = ({
   sidebar,
   activeNavigationKey,
   children,
   onSelectNavigationItem,
-  enableWorkspace,
+  // enableWorkspace,
   renderPage,
   renderLayout,
   renderNavigationFallback,
+  workspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
@@ -103,7 +128,14 @@ const SecondaryNavigationLayout = ({
 
   const userSelectedTypeRef = React.useRef();
   const userSelectedScaleRef = React.useRef(0);
-  const [workspaceSize, setWorkspaceSize] = React.useState(initialSizeForBreakpoint(activeBreakpoint));
+
+  let initialWorkspaceSize;
+  if (validateInitialWorkspaceSizeForBreakpoint(activeBreakpoint)) {
+    initialWorkspaceSize = (workspace && workspace.props.initialSize) || initialSizeForBreakpoint(activeBreakpoint);
+  } else {
+    initialWorkspaceSize = initialSizeForBreakpoint(activeBreakpoint);
+  }
+  const [workspaceSize, setWorkspaceSize] = React.useState(initialWorkspaceSize);
 
   const [sideNavOverlayIsVisible, setSideNavOverlayIsVisible] = React.useState(false);
 
@@ -132,7 +164,7 @@ const SecondaryNavigationLayout = ({
   const sideNavIsVisible = hasSidebar && (sideNavOverlayIsVisible || sideNavOverlayBreakpoints.indexOf(activeBreakpoint) === -1);
 
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
-  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(enableWorkspace && !hasOverlayWorkspace);
+  const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
 
   const pageContainerActionsContextValue = React.useMemo(() => ({
     startActions: hasSidebar && hasOverlaySidebar ? (
@@ -143,7 +175,7 @@ const SecondaryNavigationLayout = ({
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
-    endActions: enableWorkspace ? (
+    endActions: workspace ? (
       <Button
         className={cx({ 'active-button': workspaceIsVisible })}
         icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
@@ -154,7 +186,7 @@ const SecondaryNavigationLayout = ({
         variant={ButtonVariants.UTILITY}
       />
     ) : undefined,
-  }), [enableWorkspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
+  }), [workspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
 
   useDismissTransientPresentationsCallback(() => {
     if (hasOverlaySidebar) {
@@ -417,7 +449,7 @@ const SecondaryNavigationLayout = ({
           }}
         />
       )}
-      {enableWorkspace && (
+      {workspace && (
         <SkipToButton
           description="Workspace"
           onSelect={() => {
@@ -481,7 +513,7 @@ const SecondaryNavigationLayout = ({
               {content}
             </PageContainerActionsContext.Provider>
           </div>
-          {enableWorkspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
+          {workspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
             ? (
               <div style={{
                 flex: '0 0 0', position: 'relative', height: '100%', width: '0px', zIndex: '3',
@@ -537,7 +569,7 @@ const SecondaryNavigationLayout = ({
                 />
               </div>
             ) : null}
-          {enableWorkspace && (
+          {workspace && (
             <div
               ref={workspacePanelRef}
               className={cx('workspace', { visible: workspaceIsVisible, overlay: activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay' })}
@@ -550,10 +582,18 @@ const SecondaryNavigationLayout = ({
                   height: '100%', overflow: 'hidden', width: '100%', position: 'relative', zIndex: '-1',
                 }}
               >
-                <MockWorkspace
-                  workspaceSize={workspaceSize.type}
-                  workspaceCustomSize={workspaceSize.scale}
-                  onUpdateSize={(size) => {
+                {React.cloneElement(workspace, {
+                  isOpen: workspaceIsVisible,
+                  onRequestClose: hasOverlayWorkspace ? () => {
+                    setWorkspaceIsVisible(false);
+
+                    deferAction(() => {
+                      document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
+                    });
+                  } : null,
+                  size: workspaceSize.scale,
+                  sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
+                  onRequestSizeChange: (size) => {
                     userSelectedTypeRef.current = undefined;
 
                     if (size === 'small') {
@@ -591,15 +631,8 @@ const SecondaryNavigationLayout = ({
                         type: 'overlay',
                       });
                     }
-                  }}
-                  onDismiss={hasOverlayWorkspace ? () => {
-                    setWorkspaceIsVisible(false);
-
-                    deferAction(() => {
-                      document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
-                    });
-                  } : null}
-                />
+                  },
+                })}
               </div>
             </div>
           )}

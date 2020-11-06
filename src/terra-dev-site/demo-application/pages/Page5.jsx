@@ -21,6 +21,7 @@ const propTypes = {
 
 const Page5 = ({ onRequestClose }) => (
   <Page
+    pageKey="page-5"
     title="Page 5"
     onRequestClose={onRequestClose}
     preferHeaderIsHidden

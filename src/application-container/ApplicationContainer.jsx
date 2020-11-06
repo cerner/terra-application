@@ -8,11 +8,16 @@ import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
+import ApplicationContainerContext from './ApplicationContainerContext';
 import styles from './ApplicationContainer.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * A string description for the application used for presentation purposes throughout the application.
+   */
+  applicationName: PropTypes.string,
   /**
    * The components to render within the ApplicationContainer.
    */
@@ -29,7 +34,7 @@ const propTypes = {
 };
 
 const ApplicationContainer = ({
-  children, skipToLinksAreDisabled, unloadPromptIsDisabled,
+  applicationName, children, skipToLinksAreDisabled, unloadPromptIsDisabled,
 }) => {
   /**
    * The NavigationPrompts registered to the ApplicationContainer's checkpoint are stored
@@ -37,6 +42,10 @@ const ApplicationContainer = ({
    * NavigationPrompts are currently registered.
    */
   const registeredPromptsRef = React.useRef();
+
+  const containerContextValue = React.useMemo(() => ({
+    applicationName,
+  }), [applicationName]);
 
   React.useEffect(() => {
     if (unloadPromptIsDisabled) {
@@ -75,29 +84,31 @@ const ApplicationContainer = ({
   const { SkipToButtonsProvider, SkipToButtons } = useSkipToButtons();
 
   return (
-    <NavigationPromptCheckpoint
-      onPromptChange={(registeredPrompts) => {
-        registeredPromptsRef.current = registeredPrompts;
-      }}
-    >
-      <div className={cx('application-container')}>
-        <LayerContainer>
-          {!skipToLinksAreDisabled && <SkipToButtons />}
-          <SkipToButtonsProvider>
-            <ApplicationErrorBoundary
-              errorViewButtonAttrs={[{
-                text: 'Reload', // TODO intl
-                onClick: () => { window.location.reload(); },
-              }]}
-            >
-              <ModalManager>
-                {children}
-              </ModalManager>
-            </ApplicationErrorBoundary>
-          </SkipToButtonsProvider>
-        </LayerContainer>
-      </div>
-    </NavigationPromptCheckpoint>
+    <ApplicationContainerContext.Provider value={containerContextValue}>
+      <NavigationPromptCheckpoint
+        onPromptChange={(registeredPrompts) => {
+          registeredPromptsRef.current = registeredPrompts;
+        }}
+      >
+        <div className={cx('application-container')}>
+          <LayerContainer>
+            {!skipToLinksAreDisabled && <SkipToButtons />}
+            <SkipToButtonsProvider>
+              <ApplicationErrorBoundary
+                errorViewButtonAttrs={[{
+                  text: 'Reload', // TODO intl
+                  onClick: () => { window.location.reload(); },
+                }]}
+              >
+                <ModalManager>
+                  {children}
+                </ModalManager>
+              </ApplicationErrorBoundary>
+            </SkipToButtonsProvider>
+          </LayerContainer>
+        </div>
+      </NavigationPromptCheckpoint>
+    </ApplicationContainerContext.Provider>
   );
 };
 

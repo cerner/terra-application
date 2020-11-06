@@ -25,6 +25,7 @@ const Page4 = ({ onRequestClose }) => {
   const [showPage5, setShowPage5] = React.useState(false);
   return (
     <Page
+      pageKey="page-4"
       title="Page 4"
       onRequestClose={onRequestClose}
     >

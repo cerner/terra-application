@@ -10,7 +10,7 @@ import Scroll from 'terra-scroll';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
-import ApplicationConceptBannerContext from '../application-container/private/ApplicationConceptBannerContext';
+import ApplicationConceptBannerContext from '../application-container/ApplicationConceptBannerContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import ModalHeader from './_ModalHeader';

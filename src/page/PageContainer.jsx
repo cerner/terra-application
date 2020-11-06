@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import MainContainer from '../main-container';
-import { NavigationItemContext } from '../layouts';
 
 import PageContext from './private/PageContext';
 import PageContainerPortalManager from './private/_PageContainerPortalManager';
@@ -50,12 +49,6 @@ const PageContainer = ({
   const isMainRef = React.useRef(isMain);
 
   /**
-   * The identifier of the presented Page stored in the presentedPageRef to ensure the
-   * execution of certain logic can be scoped to a Page's initial presentation.
-   */
-  const presentedPageKeyRef = React.useRef();
-
-  /**
    * The rootContainerRef points to the element within which Page content will be rendered.
    */
   const rootContainerRef = React.useRef();
@@ -77,52 +70,15 @@ const PageContainer = ({
    */
   const pageContainerActions = React.useContext(PageContainerActionsContext);
 
-  const navigationItemContext = React.useContext(NavigationItemContext);
-
   const pageContextValue = React.useMemo(() => ({
+    pageContainerHasMounted: hasMounted,
+    pageContainer: rootContainerRef.current,
     nodeManager: portalManagerRef.current,
     containerStartActions: pageContainerActions?.startActions,
     containerEndActions: pageContainerActions?.endActions,
-    parentPageKey: undefined,
-  }), [pageContainerActions]);
-
-  /**
-   * The PageContainer is responsible for moving focus to the proper elements after an
-   * additional Page is disclosed or if a disclosed Page is dismissed. The behavior of
-   * this focus logic differs based on whether the PageContainer is the main page element.
-   * If the Page presentation is happening in an inactive branch of the navigation
-   * hierarchy, the focus logic is not performed to limit disruptions to the active content.
-   */
-  React.useEffect(() => {
-    function onPagePresented(newPresentedPageKey) {
-      if (newPresentedPageKey === presentedPageKeyRef.current) {
-        return;
-      }
-
-      /**
-       * Manipulation of the focused element is not performed for the initial root Page presentation. This root
-       * Page is seen as static and not as the progressive disclosure of additional content.
-       */
-      if (presentedPageKeyRef.current !== undefined && navigationItemContext.isActive) {
-        /**
-         * Page disclosure within a main PageContainer will reset focus to the root of
-         * the application, replicating the feel of a typical page navigation.
-         *
-         * Outside of a main PageContainer, focus will be placed on the root container
-         * element itself.
-         */
-        if (isMainRef.current) {
-          setTimeout(() => { document.body.focus(); }, 0);
-        } else {
-          setTimeout(() => { rootContainerRef.current.focus(); }, 0);
-        }
-      }
-
-      presentedPageKeyRef.current = newPresentedPageKey;
-    }
-
-    portalManagerRef.current.setPagePresentationCallback(onPagePresented);
-  }, [navigationItemContext.isActive]);
+    parentNodeId: undefined,
+    isMainPage: isMainRef.current,
+  }), [hasMounted, pageContainerActions]);
 
   /**
    * The elements used to portal Page content cannot be generated until the root

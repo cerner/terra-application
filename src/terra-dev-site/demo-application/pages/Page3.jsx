@@ -67,6 +67,7 @@ const Page3 = ({ onRequestClose }) => {
 
   return (
     <Page
+      pageKey="page-3"
       title="Page 3"
       actions={pageActions}
       menu={pageMenu}

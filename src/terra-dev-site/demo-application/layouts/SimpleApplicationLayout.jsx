@@ -29,6 +29,7 @@ const SimpleApplicationLayout = () => {
   return (
     <>
       <ApplicationConceptBannerProvider
+        conceptDescription={`Concept ${conceptContext.data}`}
         layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
         modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >

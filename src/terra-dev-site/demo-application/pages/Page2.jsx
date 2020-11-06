@@ -57,6 +57,7 @@ const Page2 = ({ onRequestClose }) => {
 
   return (
     <Page
+      pageKey="page-2"
       title="Page 2"
       actions={pageActions}
       onRequestClose={onRequestClose}

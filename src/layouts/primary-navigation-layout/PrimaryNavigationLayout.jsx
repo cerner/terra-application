@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import { ApplicationContainerContext } from '../../application-container';
 import { PageContainer } from '../../page';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
 import { ApplicationIntlContext } from '../../application-intl';
@@ -133,6 +134,7 @@ const PrimaryNavigationLayout = ({
   renderNavigationFallback,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationContainer = React.useContext(ApplicationContainerContext);
 
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -264,7 +266,7 @@ const PrimaryNavigationLayout = ({
       activeNavigationItemKey={activeNavigationKey}
       hero={hero}
       notifications={notifications}
-      titleConfig={titleConfig}
+      titleConfig={titleConfig || { title: applicationContainer.applicationName }}
       onSelectNavigationItem={onSelectNavigationItem}
       userConfig={userConfig}
       extensionItems={extensionItems}

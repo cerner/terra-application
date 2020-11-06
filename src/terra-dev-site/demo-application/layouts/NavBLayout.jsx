@@ -2,7 +2,7 @@ import React from 'react';
 import { SecondaryNavigationLayout } from '../../../layouts';
 import SecondaryNavigationLayoutWorkspace from '../../../layouts/secondary-navigation-layout/workspace/SecondaryNavigationLayoutWorkspace';
 import WorkspaceTab from '../../../layouts/secondary-navigation-layout/workspace/WorkspaceTab';
-import Page2 from '../pages/Page1';
+import Page1 from '../pages/Page1';
 import Tab1 from '../workspace/Tab1';
 import Tab2 from '../workspace/Tab2';
 import Tab3 from '../workspace/Tab3';
@@ -12,7 +12,7 @@ const propTypes = {};
 
 const NavBLayout = () => (
   <SecondaryNavigationLayout
-    renderPage={() => <Page2 />}
+    renderPage={() => <Page1 />}
     workspace={(
       <SecondaryNavigationLayoutWorkspace
         id="nav-b-workspace"

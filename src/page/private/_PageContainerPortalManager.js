@@ -10,18 +10,18 @@ class PageContainerPortalManager {
     this.pagePresentationCallback = callback;
   }
 
-  getNode(pageKey, ancestorPageKey, pageTitleId) {
+  getNode({ nodeId, ancestorNodeId, setPageActive }) {
     if (!this.containerRef.current) {
       return null;
     }
 
-    const existingNode = this.nodeMap[pageKey];
+    const existingNode = this.nodeMap[nodeId];
 
     if (existingNode) {
       return existingNode.element;
     }
 
-    if (this.nodeMap[ancestorPageKey]?.child) {
+    if (this.nodeMap[ancestorNodeId]?.child) {
       // duplicate page request
       return null;
     }
@@ -31,21 +31,20 @@ class PageContainerPortalManager {
     newPortalElement.style.height = '100%';
     newPortalElement.style.width = '100%';
 
-    this.nodeMap[pageKey] = {
-      ancestor: ancestorPageKey,
+    this.nodeMap[nodeId] = {
+      ancestor: ancestorNodeId,
       element: newPortalElement,
       child: undefined,
-      pageTitleId,
+      setPageActive,
     };
 
-    if (this.nodeMap[ancestorPageKey]) {
-      this.nodeMap[ancestorPageKey].child = pageKey;
+    if (this.nodeMap[ancestorNodeId]) {
+      this.nodeMap[ancestorNodeId].child = nodeId;
     }
 
     this.containerRef.current.appendChild(newPortalElement);
-    this.containerRef.current.setAttribute('aria-labelledby', pageTitleId);
 
-    const ancestorNodeData = this.nodeMap[ancestorPageKey];
+    const ancestorNodeData = this.nodeMap[ancestorNodeId];
     if (ancestorNodeData && this.containerRef.current.contains(ancestorNodeData.element)) {
       ancestorNodeData.overflowData = getPersistentScrollMap(ancestorNodeData.element);
 
@@ -56,21 +55,29 @@ class PageContainerPortalManager {
       } else {
         this.containerRef.current.removeChild(ancestorNodeData.element);
       }
+
+      if (ancestorNodeData.setPageActive) {
+        ancestorNodeData.setPageActive(false);
+      }
     }
 
     if (this.pagePresentationCallback) {
-      this.pagePresentationCallback(pageKey);
+      this.pagePresentationCallback(nodeId);
+    }
+
+    if (setPageActive) {
+      setPageActive(true);
     }
 
     return newPortalElement;
   }
 
-  releaseNode(pageKey) {
+  releaseNode({ nodeId }) {
     if (!this.containerRef.current) {
       return;
     }
 
-    const page = this.nodeMap[pageKey];
+    const page = this.nodeMap[nodeId];
 
     if (!page) {
       return;
@@ -91,16 +98,18 @@ class PageContainerPortalManager {
         this.containerRef.current.appendChild(visiblePageData.element);
       }
 
-      this.containerRef.current.setAttribute('aria-labelledby', visiblePageData.pageTitleId);
-
       applyScrollData(visiblePageData.overflowData, visiblePageData.element);
+
+      if (visiblePageData.setPageActive) {
+        visiblePageData.setPageActive(true);
+      }
     }
 
     if (this.pagePresentationCallback) {
       this.pagePresentationCallback(page.ancestor);
     }
 
-    this.nodeMap[pageKey] = undefined;
+    this.nodeMap[nodeId] = undefined;
   }
 }
 

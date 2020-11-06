@@ -45,12 +45,12 @@ const DemoApplicationNavigationLayout = () => {
   return (
     <>
       <ApplicationConceptBannerProvider
+        conceptDescription={`Concept ${conceptContext.data}`}
         layoutBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} onSelectDetails={() => { setShowDetailsModal(true); }} /> : undefined}
         modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
         <ModalManager>
           <PrimaryNavigationLayout
-            titleConfig={{ title: 'Demo Application' }}
             userConfig={{
               name: `${sessionUser.firstName} ${sessionUser.lastName}`,
               initials: `${sessionUser.firstName[0]?.toUpperCase()}${sessionUser.lastName[0]?.toUpperCase()}`,

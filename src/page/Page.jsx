@@ -5,21 +5,28 @@ import classNames from 'classnames/bind';
 import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 
+import { ApplicationContainerContext, ApplicationConceptBannerContext } from '../application-container';
 import { ApplicationIntlContext } from '../application-intl';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
+import { NavigationItemContext } from '../layouts';
+import EventEmitter from '../utils/event-emitter';
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
-import PageMenu from './PageMenu';
 
 import styles from './Page.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The unique string identifying the Page instance. This identifier must be unique among Pages within the same
+   * PageContainer. The pageKey will be accessible by components who are notified of Page presentation changes.
+   */
+  pageKey: PropTypes.string.isRequired,
   /**
    * The string description of the Page to present to the user. This value is also used to build description
    * text for screen readers and accessibility tools.
@@ -63,9 +70,15 @@ const propTypes = {
    * header must present actions due to content within the PageContainerActionsContext.
    */
   preferHeaderIsHidden: PropTypes.bool,
+  /**
+   * An object containing generic data describing the content of the Page. The metaData will be accessible
+   * by components who are notified of Page presentation changes.
+   */
+  metaData: PropTypes.object,
 };
 
 const Page = ({
+  pageKey,
   title,
   actions,
   menu,
@@ -74,8 +87,12 @@ const Page = ({
   children,
   requestClosePromptIsDisabled,
   preferHeaderIsHidden,
+  metaData,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
+  const navigationItem = React.useContext(NavigationItemContext);
+  const applicationContainer = React.useContext(ApplicationContainerContext);
+  const applicationConcept = React.useContext(ApplicationConceptBannerContext);
 
   /**
    * The PageContext value is either provided by a parent PageContainer or
@@ -86,8 +103,11 @@ const Page = ({
   /**
    * An unique identifier is generated for each Page to ensure it can be
    * safely registered with the PageContainerPortalManager.
+   *
+   * While the pageKey _might_ be sufficient, it is safer to create a separate,
+   * guaranteed unique identifier here in case the pageKey prop were to change.
    */
-  const pageIdRef = React.useRef(uuidv4());
+  const nodeIdRef = React.useRef(uuidv4());
 
   /**
    * A NavigationPromptCheckpoint is used to detect unsaved changes within the Page's
@@ -100,6 +120,13 @@ const Page = ({
    * disable page actions while loading is occurring.
    */
   const [loadingOverlayIsActive, setLoadingOverlayIsActive] = React.useState(false);
+
+  /**
+   * Certain logic must be executed upon activation/presentation of a Page. Activation will trigger
+   * an update of the component, where we can appropriately adjust focus or notify page changes based upon
+   * other presentation state.
+   */
+  const [isActive, setIsActive] = React.useState(false);
 
   /**
    * A Provider/Presenter pair is generated for NotificationBanner presentation within in the Page to
@@ -117,7 +144,7 @@ const Page = ({
    */
   const childPageContextValue = React.useMemo(() => ({
     ...pageContext,
-    parentPageKey: pageIdRef.current,
+    parentNodeId: nodeIdRef.current,
   }), [pageContext]);
 
   /**
@@ -125,16 +152,82 @@ const Page = ({
    * to prevent memory leaks.
    */
   React.useLayoutEffect(() => () => {
-    pageContext.nodeManager.releaseNode(pageIdRef.current);
+    pageContext.nodeManager.releaseNode({ nodeId: nodeIdRef.current });
   }, [pageContext.nodeManager]);
 
   /**
    * A unique id to generated for Page's rendered hidden text. This id is used by the
    * nodeManager to ensure the container element is properly described by the presented Page.
    */
-  const pageTitleId = `page-title-${pageIdRef.current}`;
+  const pageTitleId = `page-title-${nodeIdRef.current}`;
 
-  const portalNode = pageContext.nodeManager.getNode(pageIdRef.current, pageContext.parentPageKey, pageTitleId);
+  const portalNode = pageContext.nodeManager.getNode({
+    nodeId: nodeIdRef.current,
+    ancestorNodeId: pageContext.parentNodeId,
+    setPageActive: (isPageActive) => {
+      setTimeout(() => {
+        setIsActive(isPageActive);
+      }, 0);
+    },
+  });
+
+  React.useLayoutEffect(() => {
+    if (isActive && pageContext.pageContainerHasMounted && pageContext.pageContainer) {
+      /**
+       * Update the aria attributes on the root PageContainer element that is described by the current
+       * active Page.
+       */
+      pageContext.pageContainer.setAttribute('aria-labelledby', pageTitleId);
+    }
+  }, [isActive, pageContext.pageContainerHasMounted, pageContext.pageContainer, pageTitleId]);
+
+  React.useEffect(() => {
+    if (!isActive) {
+      /**
+       * If the Page is not active within the PageContainer, we do not want to adjust the focus position.
+       */
+      return;
+    }
+
+    if (pageContext.isMainPage && navigationItem.isActive) {
+      setTimeout(() => {
+        document.body.focus();
+      }, 0);
+    } else if (!pageContext.isMainPage && navigationItem.isActive) {
+      setTimeout(() => { pageContext.pageContainerRef.current.focus(); }, 0);
+    }
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageContext]);
+
+  React.useEffect(() => {
+    /**
+     * If the Page activates while visible and within a main PageContainer, an event is
+     * emitted to notify interested parties of the activation.
+     */
+    if (isActive && pageContext.isMainPage && navigationItem.isActive) {
+      console.log(`dispatching Active Page: ${pageKey}`);
+      setTimeout(() => {
+        EventEmitter.emit('terra-application.main-page-activated', {
+          pageKey,
+          pageDescription: title,
+          pageMetaData: metaData,
+        });
+      }, 0);
+    } else {
+      console.log(`preventing Active Page: ${pageKey}`);
+    }
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData]);
+
+  React.useEffect(() => {
+    if (isActive && pageContext.isMainPage && navigationItem.isActive) {
+      let documentTitle = `${title} | ${applicationContainer.applicationName}`;
+
+      if (applicationConcept.conceptDescription) {
+        documentTitle = `${applicationConcept.conceptDescription}: ${documentTitle}`;
+      }
+
+      document.title = documentTitle;
+    }
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData, pageContext, applicationContainer.applicationName, applicationConcept.conceptDescription]);
 
   if (!portalNode) {
     throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);

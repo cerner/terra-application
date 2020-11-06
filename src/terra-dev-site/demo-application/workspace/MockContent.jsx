@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import classNames from 'classnames/bind';
 import TabContext from '../../../workspace/TabContext';
+import { useActiveMainPage } from '../../../page';
+
 // import WorkspaceContext from '../../../../workspace/WorkspaceContext';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
 // import styles from './MockContent.module.scss';
@@ -8,6 +9,8 @@ import NotificationBanner from '../../../notification-banner/NotificationBanner'
 // const cx = classNames.bind(styles);
 
 const MockContent = ({ initialCount = 0, title = '', id }) => {
+  const activeMainPage = useActiveMainPage();
+
   const [waffle, setWaffle] = useState(initialCount);
   const [showAlertBanner, setShowAlertBanner] = useState(false);
   // const { tabId } = React.useContext(TabContext);
@@ -26,6 +29,25 @@ const MockContent = ({ initialCount = 0, title = '', id }) => {
           id="chart-review-page-alert-banner"
           onRequestClose={() => setShowAlertBanner(false)}
         />
+      )}
+      {activeMainPage && (
+        <>
+          <p>
+            Active Main Page Key:
+            {' '}
+            {activeMainPage.pageKey}
+          </p>
+          <p>
+            Active Main Page Description:
+            {' '}
+            {activeMainPage.pageDescription}
+          </p>
+          <p>
+            Active Main Page MetaData:
+            {' '}
+            {`${JSON.stringify(activeMainPage.pageMetaData)}`}
+          </p>
+        </>
       )}
     </div>
   );

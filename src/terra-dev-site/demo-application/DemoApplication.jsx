@@ -21,7 +21,7 @@ document.addEventListener('terra-application-demo.dismiss-transient-content', ()
 
 const DemoApplication = () => (
   <ApplicationBase locale="en-US">
-    <ApplicationContainer>
+    <ApplicationContainer applicationName="Demo Application">
       <SessionProvider>
         <ConceptProvider>
           <DemoApplicationNavigationLayout />

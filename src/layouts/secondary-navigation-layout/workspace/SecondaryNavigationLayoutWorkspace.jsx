@@ -21,7 +21,7 @@ const SecondaryNavigationLayoutWorkspace = ({
   sizeOptions,
   onRequestSizeChange,
 }) => {
-  const [activeTabKey, setActiveTabKey] = React.useState(initialActiveTabKey);
+  const [activeTabKey, setActiveTabKey] = React.useState(initialActiveTabKey); // TODO do we need to externalize this for manipulation
 
   React.useEffect(() => {
     if (onSizeChange && sizeScalar !== undefined) {

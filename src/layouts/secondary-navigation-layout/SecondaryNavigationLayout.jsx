@@ -38,13 +38,14 @@ function mapChildItem(item) {
 }
 
 const DefaultSideNavPanel = ({
-  activeNavigationKey, onSelectNavigationItem, items, onDismiss,
+  id, activeNavigationKey, onSelectNavigationItem, items, onDismiss,
 }) => (
   <ContentContainer
     header={<ActionHeader title="Side Nav" onBack={onDismiss} />}
     fill
   >
     <CollapsingNavigationMenu
+      id={id}
       selectedPath={activeNavigationKey}
       onSelect={(key) => { onSelectNavigationItem(key); }}
       menuItems={[{
@@ -101,6 +102,7 @@ const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
 };
 
 const SecondaryNavigationLayout = ({
+  id,
   sidebar,
   activeNavigationKey,
   children,
@@ -489,6 +491,7 @@ const SecondaryNavigationLayout = ({
         >
           {sidebar || (hasSidebar && (
             <DefaultSideNavPanel
+              id={`${id}-side-nav`}
               onDismiss={sideNavOverlayIsVisible ? () => {
                 setSideNavOverlayIsVisible(false);
 
@@ -583,6 +586,7 @@ const SecondaryNavigationLayout = ({
                 }}
               >
                 {React.cloneElement(workspace, {
+                  id: `${id}-workspace`,
                   isOpen: workspaceIsVisible,
                   onRequestClose: hasOverlayWorkspace ? () => {
                     setWorkspaceIsVisible(false);

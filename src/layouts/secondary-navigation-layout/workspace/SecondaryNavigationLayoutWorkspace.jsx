@@ -5,7 +5,7 @@ import TabPage from '../../../workspace/TabPage';
 const propTypes = {};
 
 const SecondaryNavigationLayoutWorkspace = ({
-  id,
+  // consumer props
   onSizeChange,
   onPresentationStateChange,
   onActiveTabChange,
@@ -14,6 +14,8 @@ const SecondaryNavigationLayoutWorkspace = ({
   initialActiveTabKey,
   children,
 
+  // private injected props
+  id,
   isOpen,
   onRequestClose,
   sizeScalar,

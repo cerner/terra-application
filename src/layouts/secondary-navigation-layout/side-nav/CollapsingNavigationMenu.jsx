@@ -66,7 +66,9 @@ const openKeysToItem = (menuItems, selectedPath) => keysToItem(menuItems, select
   return acc;
 }, {});
 
-const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelect }) => {
+const CollapsingNavigationMenu = ({
+  id, selectedPath = undefined, menuItems, onSelect,
+}) => {
   const containerRef = React.useRef();
   const [openKeys, setOpenKeys] = useState(openKeysToItem(menuItems[0], selectedPath));
   const currentNodeId = useRef();
@@ -294,7 +296,7 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
     }
   };
 
-  const renderMenuItems = (currentMenuItem, parent = undefined, firstLevel = false, indexPath) => {
+  const renderMenuItems = (currentMenuItem, parentId = undefined, firstLevel = false, indexPath) => {
     if (!currentMenuItem) {
       return undefined;
     }
@@ -306,20 +308,20 @@ const CollapsingNavigationMenu = ({ selectedPath = undefined, menuItems, onSelec
       } else {
         currentPath = `${indexPath}-${index}`;
       }
-      const id = `${item.name.split(' ').join('-')}-${currentPath}`;
+      const itemId = `${id}-${currentPath}`;
       const itemIsOpen = !!openKeys[item.path];
       const isSelected = selectedPath === item.path;
 
-      visibleNodes.push({ id, parent });
+      visibleNodes.push({ id, parentId });
 
       return (
         <CollapsingNavigationMenuItem
-          id={id}
-          key={id}
+          id={itemId}
+          key={itemId}
           item={item}
           itemIsOpen={itemIsOpen}
           isSelected={isSelected}
-          childItems={itemIsOpen ? renderMenuItems(item.childItems, id, false, currentPath) : null}
+          childItems={itemIsOpen ? renderMenuItems(item.childItems, itemId, false, currentPath) : null}
           firstLevel={firstLevel}
           handleKeyDown={handleKeyDown}
           handleOnClick={handleOnClick}

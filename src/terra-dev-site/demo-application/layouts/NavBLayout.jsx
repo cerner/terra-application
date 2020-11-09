@@ -12,10 +12,10 @@ const propTypes = {};
 
 const NavBLayout = () => (
   <SecondaryNavigationLayout
+    id="nav-b-layout"
     renderPage={() => <Page1 />}
     workspace={(
       <SecondaryNavigationLayoutWorkspace
-        id="nav-b-workspace"
         initialActiveTabKey="tab-1"
         initialSize={{ scale: 0.75 }}
         initialIsOpen

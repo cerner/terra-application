@@ -26,6 +26,7 @@ const NavCLayout = () => {
 
   return (
     <SecondaryNavigationLayout
+      id="nav-c-layout"
       activeNavigationKey={navigationState}
       onSelectNavigationItem={(key) => { setNavigationState(key); }}
       renderNavigationFallback={() => <div>404</div>}

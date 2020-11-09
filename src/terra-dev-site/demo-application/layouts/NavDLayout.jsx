@@ -87,7 +87,7 @@ const NavDLayout = () => {
           navigationKey="nav-D-6"
           text="Nav D-6 Page In Group"
           renderPage={() => (
-            <Page title="Page In Group">
+            <Page pageKey="page-in-group" title="Page In Group">
               <div style={{ padding: '1rem' }}>
                 Page content here...
               </div>
@@ -109,7 +109,7 @@ const NavDLayout = () => {
         navigationKey="nav-D-8"
         text="Nav D-8 Page Not In Group"
         renderPage={() => (
-          <Page title="Page Not In Group">
+          <Page pageKey="page-not-in-group" title="Page Not In Group">
             <div style={{ padding: '1rem' }}>
               Page content here...
             </div>

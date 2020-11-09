@@ -13,6 +13,7 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
 import EventEmitter from '../utils/event-emitter';
+import ActiveMainPageContext from '../application-container/ActiveMainPageContext';
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
@@ -93,7 +94,7 @@ const Page = ({
   const navigationItem = React.useContext(NavigationItemContext);
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const applicationConcept = React.useContext(ApplicationConceptBannerContext);
-
+  const activeMainPage = React.useContext(ActiveMainPageContext);
   /**
    * The PageContext value is either provided by a parent PageContainer or
    * a parent Page.
@@ -204,15 +205,16 @@ const Page = ({
      * emitted to notify interested parties of the activation.
      */
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      setTimeout(() => {
-        EventEmitter.emit('terra-application.main-page-activated', {
-          pageKey,
-          pageDescription: title,
-          pageMetaData: metaData,
-        });
-      }, 0);
+      activeMainPage.setActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
+      // setTimeout(() => {
+      //   EventEmitter.emit('terra-application.main-page-activated', {
+      //     pageKey,
+      //     pageDescription: title,
+      //     pageMetaData: metaData,
+      //   });
+      // }, 0);
     }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData]);
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPage.setActiveMainPage]);
 
   React.useEffect(() => {
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {

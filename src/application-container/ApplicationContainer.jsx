@@ -9,6 +9,8 @@ import LayerContainer from '../layers/LayerContainer';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
 import ApplicationContainerContext from './ApplicationContainerContext';
+import ActiveMainPageProvider from './ActiveMainPageProvider';
+
 import styles from './ApplicationContainer.module.scss';
 
 const cx = classNames.bind(styles);
@@ -85,30 +87,32 @@ const ApplicationContainer = ({
 
   return (
     <ApplicationContainerContext.Provider value={containerContextValue}>
-      <NavigationPromptCheckpoint
-        onPromptChange={(registeredPrompts) => {
-          registeredPromptsRef.current = registeredPrompts;
-        }}
-      >
-        <div className={cx('application-container')}>
-          <LayerContainer>
-            {!skipToLinksAreDisabled && <SkipToButtons />}
-            <SkipToButtonsProvider>
-              <ApplicationErrorBoundary
-                errorViewButtonAttrs={[{
-                  key: 'reload',
-                  text: 'Reload', // TODO intl
-                  onClick: () => { window.location.reload(); },
-                }]}
-              >
-                <ModalManager>
-                  {children}
-                </ModalManager>
-              </ApplicationErrorBoundary>
-            </SkipToButtonsProvider>
-          </LayerContainer>
-        </div>
-      </NavigationPromptCheckpoint>
+      <ActiveMainPageProvider>
+        <NavigationPromptCheckpoint
+          onPromptChange={(registeredPrompts) => {
+            registeredPromptsRef.current = registeredPrompts;
+          }}
+        >
+          <div className={cx('application-container')}>
+            <LayerContainer>
+              {!skipToLinksAreDisabled && <SkipToButtons />}
+              <SkipToButtonsProvider>
+                <ApplicationErrorBoundary
+                  errorViewButtonAttrs={[{
+                    key: 'reload',
+                    text: 'Reload', // TODO intl
+                    onClick: () => { window.location.reload(); },
+                  }]}
+                >
+                  <ModalManager>
+                    {children}
+                  </ModalManager>
+                </ApplicationErrorBoundary>
+              </SkipToButtonsProvider>
+            </LayerContainer>
+          </div>
+        </NavigationPromptCheckpoint>
+      </ActiveMainPageProvider>
     </ApplicationContainerContext.Provider>
   );
 };

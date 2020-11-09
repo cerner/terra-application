@@ -2,12 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SkipToButton from '../application-container/private/skip-to/SkipToButton';
+import NavigationItemContext from '../layouts/shared/NavigationItemContext';
 
 function deferAction(callback) {
   setTimeout(callback, 0);
 }
 
 const propTypes = {
+  /**
+   * A string to be set as the title of the document when the MainContainer is active.
+   * If no value is provided, the document's title will not be changed.
+   */
+  documentTitle: PropTypes.string,
   /**
    * A function to be called when a ref has been assigned for the created
    * `<main>` element.
@@ -25,8 +31,15 @@ const propTypes = {
  * framework-provided Layout to render Pages. Layouts that feature a `renderPage` prop will render
  * a MainContainer automatically when the `renderPage` prop is used.
  */
-const MainContainer = ({ refCallback, ...otherProps }) => {
+const MainContainer = ({ documentTitle, refCallback, ...otherProps }) => {
   const mainElementRef = React.useRef();
+  const navigationItem = React.useContext(NavigationItemContext);
+
+  React.useEffect(() => {
+    if (documentTitle && navigationItem.isActive) {
+      document.title = documentTitle;
+    }
+  }, [documentTitle, navigationItem.isActive]);
 
   return (
     <>

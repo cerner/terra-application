@@ -194,9 +194,9 @@ const Page = ({
         document.body.focus();
       }, 0);
     } else if (!pageContext.isMainPage && navigationItem.isActive) {
-      setTimeout(() => { pageContext.pageContainerRef.current.focus(); }, 0);
+      setTimeout(() => { pageContext.pageContainer.focus(); }, 0);
     }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageContext]);
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageContext.pageContainer]);
 
   React.useEffect(() => {
     /**
@@ -204,7 +204,6 @@ const Page = ({
      * emitted to notify interested parties of the activation.
      */
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      console.log(`dispatching Active Page: ${pageKey}`);
       setTimeout(() => {
         EventEmitter.emit('terra-application.main-page-activated', {
           pageKey,
@@ -212,8 +211,6 @@ const Page = ({
           pageMetaData: metaData,
         });
       }, 0);
-    } else {
-      console.log(`preventing Active Page: ${pageKey}`);
     }
   }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData]);
 
@@ -221,13 +218,13 @@ const Page = ({
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
       let documentTitle = `${title} | ${applicationContainer.applicationName}`;
 
-      if (applicationConcept.conceptDescription) {
+      if (applicationConcept?.conceptDescription) {
         documentTitle = `${applicationConcept.conceptDescription}: ${documentTitle}`;
       }
 
       document.title = documentTitle;
     }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData, pageContext, applicationContainer.applicationName, applicationConcept.conceptDescription]);
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData, pageContext, applicationContainer.applicationName, applicationConcept]);
 
   if (!portalNode) {
     throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);

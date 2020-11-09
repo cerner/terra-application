@@ -96,6 +96,7 @@ const ApplicationContainer = ({
             <SkipToButtonsProvider>
               <ApplicationErrorBoundary
                 errorViewButtonAttrs={[{
+                  key: 'reload',
                   text: 'Reload', // TODO intl
                   onClick: () => { window.location.reload(); },
                 }]}

@@ -51,9 +51,6 @@ const SecondaryNavigationLayoutWorkspace = ({
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}
       onRequestDismiss={onRequestClose}
-      metaData={{
-        mean: 'hi mom',
-      }}
     >
       {React.Children.map(children, (child) => (
         <TabPage

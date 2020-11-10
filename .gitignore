@@ -11,6 +11,7 @@
 *.pid.lock
 *.rbc
 *.seed
+.browserslistrc
 .dat*
 .grunt
 .lock-wscript

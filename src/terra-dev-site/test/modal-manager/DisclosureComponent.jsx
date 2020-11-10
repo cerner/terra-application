@@ -51,11 +51,6 @@ class DisclosureComponent extends React.Component {
       disclosureCount: null,
     };
   }
-
-  handleSelectChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
-  }
-
   componentDidMount() {
     // Get active disclosure count will not reflect this content until the parent (DiclosureContainer) is mounted.
     setTimeout(() => {
@@ -65,6 +60,10 @@ class DisclosureComponent extends React.Component {
     if (this.props.useCustomDismissCheck && this.props.disclosureManager.registerDismissCheck) {
       this.props.disclosureManager.registerDismissCheck(() => Promise.reject()).then(() => { /* registerDismissCheck should return a Promise, so this should not throw an exception */ });
     }
+  }
+
+  handleSelectChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
   }
 
   getId(name) {

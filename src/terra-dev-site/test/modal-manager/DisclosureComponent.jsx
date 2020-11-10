@@ -51,6 +51,7 @@ class DisclosureComponent extends React.Component {
       disclosureCount: null,
     };
   }
+
   componentDidMount() {
     // Get active disclosure count will not reflect this content until the parent (DiclosureContainer) is mounted.
     setTimeout(() => {

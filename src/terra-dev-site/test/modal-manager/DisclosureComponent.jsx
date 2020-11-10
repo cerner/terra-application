@@ -52,6 +52,10 @@ class DisclosureComponent extends React.Component {
     };
   }
 
+  handleSelectChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   componentDidMount() {
     // Get active disclosure count will not reflect this content until the parent (DiclosureContainer) is mounted.
     setTimeout(() => {
@@ -72,10 +76,6 @@ class DisclosureComponent extends React.Component {
       const keyValue = index;
       return <option id={`${name}-${currentValue}-${this.props.nestedIndex}`} key={keyValue} value={currentValue}>{currentValue}</option>;
     });
-  }
-
-  handleSelectChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   disclose(size, dimensions) {

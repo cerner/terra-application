@@ -117,7 +117,9 @@ class TabContainer extends React.Component {
     if (this.isCalculating || !this.dropdownRef.current.children.length) {
       return;
     }
-    const left = this.moreButtonRef.current.offsetLeft + this.moreButtonRef.current.offsetWidth - this.dropdownRef.current.getBoundingClientRect().width;
+    const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
+    const left = this.moreButtonRef.current.offsetLeft + this.moreButtonRef.current.offsetWidth + moreMarginRight - this.dropdownRef.current.getBoundingClientRect().width;
     this.dropdownRef.current.style.left = `${left < 0 ? 0 : left}px`;
     this.dropdownRef.current.style.top = `${50}px`; // TODO: Needs theme value
   }
@@ -147,10 +149,9 @@ class TabContainer extends React.Component {
     this.setIsOpen(false);
   }
 
-  renderMoreButton(isHiddenActive, hasNotifications) {
+  renderMoreButton(isHiddenActive) {
     return this.showMoreButton ? (
       <MoreButton
-        hasNotifications={hasNotifications}
         isActive={isHiddenActive}
         onSelect={this.handleOnMoreButtonSelect}
         refCallback={node => this.moreButtonRef.current = node}
@@ -182,7 +183,6 @@ class TabContainer extends React.Component {
     const visibleTabs = [];
     const hiddenTabs = [];
     let isHiddenSelected = false;
-    let hasHiddenNotifications = false;
 
     tabData.forEach((tab, index) => {
       if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
@@ -212,9 +212,6 @@ class TabContainer extends React.Component {
         if (tab.isSelected) {
           isHiddenSelected = true;
         }
-        if (tab.count !== null && tab.count !== undefined && tab.count >= 0) {
-          hasHiddenNotifications = true;
-        }
       }
     });
 
@@ -222,9 +219,17 @@ class TabContainer extends React.Component {
       this.positionDropDown();
     }
 
+    let attrs;
+    if (this.isCalculating) {
+      attrs = {
+        'data-tab-is-calculating': 'true',
+      };
+    }
+
     return (
       <div
-        className={cx('tab-container', { 'is-calculating': this.isCalculating }, theme.className)}
+        {...attrs}
+        className={cx('tab-container', theme.className)}
         ref={this.containerRef}
         role="tablist"
         aria-owns={hiddenIds.join(' ')}
@@ -240,7 +245,7 @@ class TabContainer extends React.Component {
         >
           {hiddenTabs}
         </TabDropDown>
-        {this.renderMoreButton(isHiddenSelected, hasHiddenNotifications)}
+        {this.renderMoreButton(isHiddenSelected)}
       </div>
     );
   }

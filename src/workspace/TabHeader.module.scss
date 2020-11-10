@@ -1,42 +1,25 @@
 :local {
-  .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .item {
-      background-color: white;
-
-      &.is-actionable {
-        cursor: pointer;
-        padding: 10px;
-
-        &:hover {
-          background-color: orange;
-        }
-      }
-    }
-  }
-
   .header-bar {
+    align-items: center;
     background-color: #ccc;
     border-bottom: 1px solid #a5a3a3;
     color: #000;
     display: flex;
     flex-direction: row;
     overflow: hidden;
-    padding: 0.643rem 1.071rem;
+    padding: 7px 0;
     position: relative;
     width: 100%;
   }
 
   .header {
     flex: 1 1 auto;
+    padding: 0 7px;
     width: 100;
   }
 
   .actions {
     flex: 0 0 auto;
-    max-width: 20%;
+    margin-right: 5px;
   }
 }

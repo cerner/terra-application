@@ -7,7 +7,7 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 
 import { actionsPropType } from './propTypes/propTypes';
 import TabContext from './TabContext';
-import _TabHeader from './_TabHeader';
+import TabHeader from './_TabHeader';
 import styles from './Panel.module.scss';
 
 const cx = classNames.bind(styles);

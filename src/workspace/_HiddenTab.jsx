@@ -19,10 +19,6 @@ const propTypes = {
    */
   associatedPanelId: PropTypes.string.isRequired,
   /**
-   * The notification count to display.
-   */
-  count: PropTypes.number,
-  /**
    * Icon to be displayed on the tab.
    */
   icon: PropTypes.element,
@@ -64,7 +60,6 @@ const defaultProps = {
 const Tab = ({
   id,
   associatedPanelId,
-  count,
   icon,
   index,
   isIconOnly,
@@ -125,7 +120,6 @@ const Tab = ({
       {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
       {icon ? <span className={cx('icon')}>{icon}</span> : null}
       {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
-      {count !== null && count !== undefined ? <span className={cx('count')}>{count}</span> : null}
     </div>
   );
 };

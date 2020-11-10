@@ -8,34 +8,23 @@ const Tab1 = () => {
   const actions = [
     {
       key: 'item-1',
-      title: 'Item 1',
+      label: 'Item 1',
       isSelected: true,
+      isDisabled: false,
       onAction: () => setIsReset(!isReset),
     },
     {
       key: 'item-2',
-      title: 'Item 2',
-      isSelected: true,
+      label: 'Item 2',
+      isSelected: false,
+      isDisabled: true,
       onAction: () => setIsReset(!isReset),
     },
     {
       key: 'item-3',
-      title: 'Item 3',
-      isSelected: true,
+      label: 'Item 3',
+      isSelected: false,
       onAction: () => setIsReset(!isReset),
-      items: [
-        {
-          key: 'item-4',
-          title: 'Item 4',
-          onAction: () => setIsReset(!isReset),
-        },
-        {
-          key: 'item-5',
-          title: 'Item 5',
-          isSelected: true,
-          onAction: () => setIsReset(!isReset),
-        },
-      ],
     },
   ];
 

@@ -1,15 +1,20 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import IconAdd from 'terra-icon/lib/icon/IconAdd';
-import IconChevronLeft from 'terra-icon/lib/icon/IconChevronLeft';
-import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
-import Popup from 'terra-popup';
-import WorkspaceContext from './WorkspaceContext';
+import Button from 'terra-button';
+import IconRollup from 'terra-icon/lib/icon/IconRollup';
+import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
+import Menu from 'terra-menu';
 import TabContainer from './_TabContainer';
 import styles from './Tabs.module.scss';
 
 const cx = classNames.bind(styles);
+
+const sizeOptionShape = PropTypes.shape({
+  key: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  isDisabled: PropTypes.bool,
+});
 
 const propTypes = {
   id: PropTypes.string.isRequired,
@@ -17,23 +22,23 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   onRequestActivate: PropTypes.func.isRequired,
   ariaLabel: PropTypes.string.isRequired,
+  activeSize: PropTypes.string,
+  onRequestSizeChange: PropTypes.func,
+  onRequestDismiss: PropTypes.func,
+  sizeOptions: PropTypes.arrayOf(sizeOptionShape),
 };
 
-const createList = (options, currentSize, onRequestSizeChange, onDismissMenu) => {
-  return (
-    <ul className={cx('list')} key="derpy-list">
-      {options.map(option => (
-        <li
-          className={cx('item', 'is-actionable')}
-          key={option.key}
-          onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
-        >
-          <span style={{ opacity: currentSize !== option.key ? 0 : 1, marginRight: '5px' }}><IconCheckmark /></span>
-          {option.text}
-        </li>
-      ))}
-    </ul>
-  );
+const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => {
+  return options.map(option => (
+    <Menu.Item
+      key={option.key}
+      text={option.text}
+      isSelected={option.key === size}
+      isSelectable
+      isSelected={option.isDisabled}
+      onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
+    />
+  ));
 };
 
 const Tabs = ({
@@ -42,7 +47,7 @@ const Tabs = ({
   children,
   onRequestActivate,
   ariaLabel,
-  currentSize, // new
+  activeSize, // new
   onRequestSizeChange, // new
   onRequestDismiss, // new
   sizeOptions, // new
@@ -88,26 +93,16 @@ const Tabs = ({
     };
   });
 
-  // TODO: event emitter listener?
-  const path = 'currentPath';
-  const workspaceContext = React.useMemo(() => (
-    {
-      pagePath: path, // active secondary page key
-      // updateNotificationCount,
-      // metaData, // unless memoized?
-    }
-  ), [path]);
-
   const createDismissButton = () => {
     if (onRequestDismiss) {
       return (
-        <button
-          aria-label="start"
-          className={cx('start-button')}
+        <Button
+          className={cx('active-button')}
+          icon={<IconPanelRight />}
+          text="Toggle Workspace" // TODO INTL
           onClick={onRequestDismiss}
-        >
-          <IconChevronLeft />
-        </button>
+          variant={'utility'}
+        />
       );
     }
     return null;
@@ -117,22 +112,22 @@ const Tabs = ({
     if (sizeOptions) {
       return (
         <>
-          <button
+          <Button
+            className={cx('menu-button')}
+            icon={<IconRollup />}
+            text="Workspace Size Menu" // TODO INTL
             onClick={() => setIsMenuOpen(true)}
-            className={cx('end-button')}
-            ref={sizeMenuRef}
-          >
-            <IconAdd />
-          </button>
-          <Popup
+            variant={'utility'}
+            refCallback={node => sizeMenuRef.current = node}
+          />
+          <Menu
             isOpen={isMenuOpen}
             targetRef={() => sizeMenuRef.current}
-            onRequestClose={() => setIsMenuOpen(false)}
-            contentHeight="auto"
-            contentWidth="auto"
+            onRequestClose={() => { setIsMenuOpen(false); }}
+            contentWidth="240"
           >
-            {createList(sizeOptions, currentSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-          </Popup>
+            {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+          </Menu>
         </>
       );
     }
@@ -161,31 +156,29 @@ const Tabs = ({
         <TabContainer ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>
-        <WorkspaceContext.Provider value={workspaceContext}>
-          {React.Children.map(children, child => {
-            let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
-            if (!portalElement) {
-              portalElement = document.createElement('div');
-              portalElement.setAttribute("role", "none"); 
-              portalElement.style.position = 'relative';
-              portalElement.style.height = '100%';
-              portalElement.style.width = '100%';
-              workspacePortalsRef.current[child.props.tabKey] = {
-                element: portalElement,
-              };
-            }
+        {React.Children.map(children, child => {
+          let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
+          if (!portalElement) {
+            portalElement = document.createElement('div');
+            portalElement.setAttribute("role", "none"); 
+            portalElement.style.position = 'relative';
+            portalElement.style.height = '100%';
+            portalElement.style.width = '100%';
+            workspacePortalsRef.current[child.props.tabKey] = {
+              element: portalElement,
+            };
+          }
 
-            return (
-              React.cloneElement(child, {
-                key: child.props.tabKey,
-                id: `${id}-${child.props.tabKey}`,
-                associatedPanelId: `${id}-${child.props.tabKey}-panel`,
-                isActive: child.props.tabKey === activeTabKey,
-                portalElement,
-              })
-            );
-          })}
-        </WorkspaceContext.Provider>
+          return (
+            React.cloneElement(child, {
+              key: child.props.tabKey,
+              id: `${id}-${child.props.tabKey}`,
+              associatedPanelId: `${id}-${child.props.tabKey}-panel`,
+              isActive: child.props.tabKey === activeTabKey,
+              portalElement,
+            })
+          );
+        })}
       </div>
     </div>
   );

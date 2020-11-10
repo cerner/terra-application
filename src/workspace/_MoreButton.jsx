@@ -5,14 +5,13 @@ import { injectIntl, intlShape } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
-import styles from './TabContainer.module.scss';
+import styles from './Tab.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  hasNotifications: PropTypes.bool,
   /**
-   * Whether or not the 
+   * Whether or not a hidden tab is active.
    */
   isActive: PropTypes.bool,
   /**
@@ -35,7 +34,6 @@ const MoreButton = ({
   isActive,
   onSelect,
   refCallback,
-  hasNotifications,
 }) => {
   const theme = React.useContext(ThemeContext);
   const menuToggleText = 'More Tabs'; // TODO: translate
@@ -59,7 +57,7 @@ const MoreButton = ({
       ref={refCallback}
       onClick={handleOnClick}
       onKeyDown={handleOnKeyDown}
-      className={cx('tab-menu', { 'is-active': isActive }, { 'has-notifications': hasNotifications }, theme.className)}
+      className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
       data-terra-tabs-menu
     >
       <div className={cx('inner')}>

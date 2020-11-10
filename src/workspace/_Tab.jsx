@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import { handleArrows } from './_TabUtils';
 
-import styles from './TabContainer.module.scss';
+import styles from './Tab.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -17,10 +17,6 @@ const propTypes = {
    * The id of the tab pane element associated to this tab.
    */
   associatedPanelId: PropTypes.string.isRequired,
-  /**
-   * The notification count to display.
-   */
-  count: PropTypes.number,
   /**
    * Icon to be displayed on the tab.
    */
@@ -63,7 +59,6 @@ const defaultProps = {
 const Tab = ({
   id,
   associatedPanelId,
-  count,
   icon,
   index,
   isIconOnly,
@@ -77,7 +72,7 @@ const Tab = ({
   ...customProps
 }) => {
   const attributes = {};
-  const paneClassNames = cx([
+  const tabClassNames = cx([
     'tab',
     { 'is-icon-only': isIconOnly },
     { 'is-text-only': !icon },
@@ -117,13 +112,12 @@ const Tab = ({
       id={id}
       aria-controls={associatedPanelId}
       role="tab"
-      className={paneClassNames}
+      className={tabClassNames}
       title={label}
     >
       <div className={cx('inner')}>
         {icon}
         {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
-        {count !== null && count !== undefined ? <span className={cx('count')}>{count}</span> : null}
       </div>
     </div>
   );

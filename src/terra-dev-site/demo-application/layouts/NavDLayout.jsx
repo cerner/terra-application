@@ -5,6 +5,8 @@ import { SecondaryNavigationLayout, SecondaryNavigationGroup, NavigationItem } f
 
 import SecondaryNavigationLayoutWorkspace from '../../../layouts/secondary-navigation-layout/workspace/SecondaryNavigationLayoutWorkspace';
 import WorkspaceTab from '../../../layouts/secondary-navigation-layout/workspace/WorkspaceTab';
+import MainContainer from '../../../main-container';
+
 import Tab1 from '../workspace/Tab1';
 import Tab2 from '../workspace/Tab2';
 import Page1 from '../pages/Page1';
@@ -101,7 +103,9 @@ const NavDLayout = () => {
             navigationKey="nav-D-7"
             text="Nav D-7 Not A Page"
           >
-            <NotAPage />
+            <MainContainer documentTitle="Not A Page">
+              <NotAPage />
+            </MainContainer>
           </NavigationItem>
         </SecondaryNavigationGroup>
       </SecondaryNavigationGroup>

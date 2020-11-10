@@ -25,6 +25,7 @@ const Page5 = ({ onRequestClose }) => (
     title="Page 5"
     onRequestClose={onRequestClose}
     preferHeaderIsHidden
+    metaData={{ data: 'page-5' }}
   >
     <DemoPageContent>
       <h2>Page 5</h2>

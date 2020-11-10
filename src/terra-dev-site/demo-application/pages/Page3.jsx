@@ -46,22 +46,21 @@ const Page3 = ({ onRequestClose }) => {
     onSelect: () => { setShowPrintModal(true); },
   }];
 
+  // const pageActions = (
+  //   <PageActions>
+  //     <Action />
+  //     <Action />
+  //   </PageActions>
+  // );
+
   const pageMenu = (
     <PageMenu>
-      <MenuItem text="Item 1" onSelect={() => {}} />
+      <MenuItem text="Item 1" onSelect={() => { }} />
       <MenuItem text="Item 2" onSelect={() => {}} />
       <MenuItem text="Item 3" onSelect={() => {}} />
       <MenuItemDivider />
-      <MenuItem text="Item 4">
-        <MenuItem text="Sub Item 1" onSelect={() => {}} />
-        <MenuItem text="Sub Item 2" onSelect={() => {}} />
-        <MenuItem text="Sub Item 3" onSelect={() => {}} />
-      </MenuItem>
-      <MenuItem text="Item 5">
-        <MenuItem text="Sub Item 4" onSelect={() => {}} />
-        <MenuItem text="Sub Item 5" onSelect={() => {}} />
-        <MenuItem text="Sub Item 6" onSelect={() => {}} />
-      </MenuItem>
+      <MenuItem text="Item 4" />
+      <MenuItem text="Item 5" />
     </PageMenu>
   );
 
@@ -94,6 +93,7 @@ const Page3 = ({ onRequestClose }) => {
         </PageToolbar>
         )}
       onRequestClose={onRequestClose}
+      metaData={{ data: 'page-3' }}
     >
       <DemoPageContent>
         <Card title="Page 3 Details">

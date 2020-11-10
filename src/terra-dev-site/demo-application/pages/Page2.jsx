@@ -61,6 +61,7 @@ const Page2 = ({ onRequestClose }) => {
       title="Page 2"
       actions={pageActions}
       onRequestClose={onRequestClose}
+      metaData={{ data: 'page-2' }}
     >
       <DemoPageContent>
         <Card title="Page 2 Details">

@@ -12,8 +12,7 @@ import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../n
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
-import EventEmitter from '../utils/event-emitter';
-import ActiveMainPageContext from '../application-container/ActiveMainPageContext';
+import ActiveMainPageRegistrationContext from '../application-container/private/active-main-page/ActiveMainPageRegistrationContext';
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
@@ -94,7 +93,7 @@ const Page = ({
   const navigationItem = React.useContext(NavigationItemContext);
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const applicationConcept = React.useContext(ApplicationConceptBannerContext);
-  const activeMainPage = React.useContext(ActiveMainPageContext);
+  const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);
   /**
    * The PageContext value is either provided by a parent PageContainer or
    * a parent Page.
@@ -205,16 +204,9 @@ const Page = ({
      * emitted to notify interested parties of the activation.
      */
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      activeMainPage.setActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
-      // setTimeout(() => {
-      //   EventEmitter.emit('terra-application.main-page-activated', {
-      //     pageKey,
-      //     pageDescription: title,
-      //     pageMetaData: metaData,
-      //   });
-      // }, 0);
+      activeMainPageRegistration.setActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
     }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPage.setActiveMainPage]);
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPageRegistration]);
 
   React.useEffect(() => {
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {

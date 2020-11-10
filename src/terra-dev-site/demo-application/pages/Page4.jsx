@@ -28,6 +28,7 @@ const Page4 = ({ onRequestClose }) => {
       pageKey="page-4"
       title="Page 4"
       onRequestClose={onRequestClose}
+      metaData={{ data: 'page-4' }}
     >
       <DemoPageContent>
         <Card title="Page 4 Details">

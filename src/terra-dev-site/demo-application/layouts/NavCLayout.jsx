@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { SecondaryNavigationLayout, NavigationItem } from '../../../layouts';
+import MainContainer from '../../../main-container';
 
 import Page1 from '../pages/Page1';
 import Page2 from '../pages/Page2';
@@ -60,7 +61,9 @@ const NavCLayout = () => {
         navigationKey="nav-C-6"
         text="Nav C-6 Not A Page"
       >
-        <NotAPage />
+        <MainContainer documentTitle="Not A Page">
+          <NotAPage />
+        </MainContainer>
       </NavigationItem>
     </SecondaryNavigationLayout>
   );

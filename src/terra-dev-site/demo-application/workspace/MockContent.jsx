@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import TabContext from '../../../workspace/TabContext';
-import useActiveMainPage from '../../../application-container/useActiveMainPage';
+import { useActiveMainPage } from '../../../application-container';
 
 // import WorkspaceContext from '../../../../workspace/WorkspaceContext';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';

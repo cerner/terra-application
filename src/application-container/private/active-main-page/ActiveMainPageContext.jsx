@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 const ActiveMainPageContext = createContext();
 
 const contextShape = {
-  setActiveMainPage: PropTypes.func,
   pageKey: PropTypes.string,
   pageTitle: PropTypes.string,
   pageMetaData: PropTypes.string,

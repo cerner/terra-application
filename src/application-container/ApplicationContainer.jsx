@@ -8,8 +8,8 @@ import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
+import ActiveMainPageProvider from './private/active-main-page/ActiveMainPageProvider';
 import ApplicationContainerContext from './ApplicationContainerContext';
-import ActiveMainPageProvider from './ActiveMainPageProvider';
 
 import styles from './ApplicationContainer.module.scss';
 

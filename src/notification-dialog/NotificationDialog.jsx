@@ -8,6 +8,8 @@ import VisuallyHiddenText from 'terra-visually-hidden-text';
 import Button from 'terra-button';
 
 import LayerPortal from '../layers/LayerPortal';
+import { ApplicationIntlContext } from '../application-intl';
+
 import NotificationIcon from './_NotificationIcon';
 import ContentLayoutAsList from './_ContentLayoutAsList';
 
@@ -136,7 +138,7 @@ const NotificationDialog = (props) => {
     custom,
   } = props;
 
-  const applicationIntl = React.createContext(ApplicationIntlContext);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
 
   React.useEffect(() => {
     setTimeout(() => {

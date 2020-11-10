@@ -5,7 +5,7 @@ import Popup from 'terra-popup';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { actionsPropType} from './propTypes/propTypes';
 
-import styles from './TabTitle.module.scss';
+import styles from './TabHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -14,7 +14,7 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const TabTitle = ({ actions, children }) => {
+const TabHeader = ({ actions, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef();
 
@@ -30,7 +30,7 @@ const TabTitle = ({ actions, children }) => {
               onClick={item.onAction}
             >
               {!isRoot ? <span style={{ opacity: !item.isSelected ? 0 : 1, marginRight: '5px' }}><IconCheckmark /></span> : null}
-              {item.items && item.items.length ? createList(item) : item.title}
+              {item.items && item.items.length ? createList(item) : item.label}
             </li>
           ))}
         </ul>
@@ -39,8 +39,8 @@ const TabTitle = ({ actions, children }) => {
   };
 
   return (
-    <div className={cx('title-bar')}>
-      <div className={cx('title')}>
+    <div className={cx('header-bar')}>
+      <div className={cx('header')}>
         {children}
       </div>
       <div className={cx('actions')}>
@@ -63,6 +63,6 @@ const TabTitle = ({ actions, children }) => {
   );
 };
 
-TabTitle.propTypes = propTypes;
+TabHeader.propTypes = propTypes;
 
-export default TabTitle;
+export default TabHeader;

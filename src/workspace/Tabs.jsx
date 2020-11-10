@@ -16,7 +16,7 @@ const propTypes = {
   activeTabKey: PropTypes.string.isRequired,
   children: PropTypes.node.isRequired,
   onRequestActivate: PropTypes.func.isRequired,
-  title: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string.isRequired,
 };
 
 const createList = (options, currentSize, onRequestSizeChange, onDismissMenu) => {
@@ -41,7 +41,7 @@ const Tabs = ({
   activeTabKey,
   children,
   onRequestActivate,
-  title,
+  ariaLabel,
   currentSize, // new
   onRequestSizeChange, // new
   onRequestDismiss, // new
@@ -158,7 +158,7 @@ const Tabs = ({
         {createSizeButton()}
       </div>
       <div role="none" className={cx('header2')}>
-        <TabContainer title={title} tabData={tabData} />
+        <TabContainer ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>
         <WorkspaceContext.Provider value={workspaceContext}>

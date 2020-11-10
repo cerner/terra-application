@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 const actionItemPropType = PropTypes.arrayOf(PropTypes.shape({
-  title: PropTypes.string,
+  label: PropTypes.string,
   onAction: PropTypes.func,
   icon: PropTypes.element,
   isSelected: PropTypes.bool,

@@ -15,7 +15,7 @@ const TabPage = ({
     {
       tabId: id,
       panelId: associatedPanelId,
-      title: label,
+      label: label,
       isActive,
     }
   ), [associatedPanelId, id, label, isActive]);

@@ -7,7 +7,7 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 
 import { actionsPropType } from './propTypes/propTypes';
 import TabContext from './TabContext';
-import TabTitle from './_TabTitle';
+import _TabHeader from './_TabHeader';
 import styles from './Panel.module.scss';
 
 const cx = classNames.bind(styles);
@@ -24,7 +24,7 @@ const Panel = ({
   toolBar,
   ...customProps
 }) => {
-  const { panelId, tabId, title } = React.useContext(TabContext);
+  const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (
@@ -36,7 +36,7 @@ const Panel = ({
         className={cx('page-header')}
         role="none"
       >
-        <TabTitle actions={actions}>{title}</TabTitle>
+        <TabHeader actions={actions}>{label}</TabHeader>
         <NotificationBanners />
         {toolBar}
       </div>

@@ -9,7 +9,7 @@ import styles from './TabDropDown.module.scss';
 const cx = classNames.bind(styles);
 
 const itemShape = PropTypes.shape({
-  title: PropTypes.string,
+  label: PropTypes.string,
   onAction: PropTypes.func,
   icon: PropTypes.element,
   isSelected: PropTypes.bool,

@@ -5,6 +5,9 @@
 * Added
   * Added new file `browserslistrc` for Browserslist.
 
+* Fixed
+  * Fixed build failures due to the react/sort-comp rule
+
 ## 1.40.0 - (October 27, 2020)
 
 * Added

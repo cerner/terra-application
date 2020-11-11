@@ -30,25 +30,21 @@ const MockContent = ({ initialCount = 0, title = '', id }) => {
           onRequestClose={() => setShowAlertBanner(false)}
         />
       )}
-      {activeMainPage && (
-        <>
-          <p>
-            Active Main Page Key:
-            {' '}
-            {activeMainPage.pageKey}
-          </p>
-          <p>
-            Active Main Page Description:
-            {' '}
-            {activeMainPage.pageDescription}
-          </p>
-          <p>
-            Active Main Page MetaData:
-            {' '}
-            {`${JSON.stringify(activeMainPage.pageMetaData)}`}
-          </p>
-        </>
-      )}
+      <p>
+        Active Main Page Key:
+        {' '}
+        {activeMainPage?.pageKey}
+      </p>
+      <p>
+        Active Main Page Description:
+        {' '}
+        {activeMainPage?.pageDescription}
+      </p>
+      <p>
+        Active Main Page MetaData:
+        {' '}
+        {`${JSON.stringify(activeMainPage?.pageMetaData)}`}
+      </p>
     </div>
   );
 };

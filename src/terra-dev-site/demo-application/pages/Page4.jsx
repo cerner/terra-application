@@ -21,6 +21,8 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
+const page4MetaData = { data: 'page-4' };
+
 const Page4 = ({ onRequestClose }) => {
   const [showPage5, setShowPage5] = React.useState(false);
   return (
@@ -28,7 +30,7 @@ const Page4 = ({ onRequestClose }) => {
       pageKey="page-4"
       title="Page 4"
       onRequestClose={onRequestClose}
-      metaData={{ data: 'page-4' }}
+      metaData={page4MetaData}
     >
       <DemoPageContent>
         <Card title="Page 4 Details">

@@ -7,7 +7,6 @@ import { PrimaryNavigationLayout, NavigationItem } from '../../../layouts';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
 import SessionActionsContext from '../../../session/SessionActionsContext';
 import SessionUserContext from '../../../session/SessionUserContext';
-import MainContainer from '../../../main-container';
 import ModalManager from '../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
 
@@ -112,9 +111,7 @@ const DemoApplicationNavigationLayout = () => {
               navigationKey="nav-F"
               text="Nav F"
             >
-              <MainContainer documentTitle="Not A Page">
-                <NotAPage />
-              </MainContainer>
+              <NotAPage />
             </NavigationItem>
           </PrimaryNavigationLayout>
         </ModalManager>

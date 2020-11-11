@@ -94,6 +94,7 @@ const Page = ({
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const applicationConcept = React.useContext(ApplicationConceptBannerContext);
   const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);
+
   /**
    * The PageContext value is either provided by a parent PageContainer or
    * a parent Page.
@@ -164,11 +165,7 @@ const Page = ({
   const portalNode = pageContext.nodeManager.getNode({
     nodeId: nodeIdRef.current,
     ancestorNodeId: pageContext.parentNodeId,
-    setPageActive: (isPageActive) => {
-      setTimeout(() => {
-        setIsActive(isPageActive);
-      }, 0);
-    },
+    setPageActive: setIsActive,
   });
 
   React.useLayoutEffect(() => {
@@ -204,8 +201,12 @@ const Page = ({
      * emitted to notify interested parties of the activation.
      */
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      activeMainPageRegistration.setActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
+      const unregisterPage = activeMainPageRegistration.registerActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
+
+      return unregisterPage;
     }
+
+    return undefined;
   }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPageRegistration]);
 
   React.useEffect(() => {

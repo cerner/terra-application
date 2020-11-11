@@ -29,6 +29,8 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
+const page3MetaData = { data: 'page-3' };
+
 const Page3 = ({ onRequestClose }) => {
   const [showPage4, setShowPage4] = React.useState(false);
   const [showAddModal, setShowAddModal] = React.useState(false);
@@ -93,7 +95,7 @@ const Page3 = ({ onRequestClose }) => {
         </PageToolbar>
         )}
       onRequestClose={onRequestClose}
-      metaData={{ data: 'page-3' }}
+      metaData={page3MetaData}
     >
       <DemoPageContent>
         <Card title="Page 3 Details">

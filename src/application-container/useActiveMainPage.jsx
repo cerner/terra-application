@@ -10,19 +10,29 @@ const useActiveMainPage = () => {
 
   const [lastActiveMainPage, setLastActiveMainPage] = React.useState();
 
-  if (!activeMainPage) {
-    throw new Error('[terra-application] useActiveMainPage cannot be used outside of the ApplicationContainer');
-  }
-
   React.useEffect(() => {
-    const matchingNavigationKeyPath = navigationItem.navigationKeys.filter((hookKey, index) => (activeMainPage.parentNavigationKeys || [])[index] === hookKey);
+    /**
+     * Updates to the active page will only be communicated when the consumer of the hook is
+     * part of an active navigation branch.
+     */
+    if (!navigationItem.isActive) {
+      return;
+    }
+
+    if (!activeMainPage) {
+      setLastActiveMainPage(undefined);
+      return;
+    }
+
+    const matchingNavigationKeyPath = navigationItem.navigationKeys.filter((hookKey, index) => (activeMainPage?.parentNavigationKeys || [])[index] === hookKey);
 
     if (matchingNavigationKeyPath.length !== navigationItem.navigationKeys.length) {
+      setLastActiveMainPage(undefined);
       return;
     }
 
     setLastActiveMainPage(activeMainPage);
-  }, [navigationItem.navigationKeys, activeMainPage, lastActiveMainPage]);
+  }, [navigationItem.isActive, navigationItem.navigationKeys, activeMainPage, lastActiveMainPage]);
 
   return lastActiveMainPage;
 };

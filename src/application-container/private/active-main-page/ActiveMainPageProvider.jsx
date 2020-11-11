@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uuidv4 from 'uuid/v4';
 
 import ActiveMainPageContext from './ActiveMainPageContext';
 import ActiveMainPageRegistrationContext from './ActiveMainPageRegistrationContext';
@@ -12,30 +13,53 @@ const ActiveMainPageProvider = ({ children }) => {
   /**
    * useReducer is used here to allow us to more cleanly bail out of state updates should the same page be registered multiple times.
    */
-  const [activeMainPage, setActiveMainPage] = React.useReducer((state, action) => {
-    if (action.pageKey === state.pageKey && action.pageDescription === state.pageDescription && action.pageMetaData === state.pageMetaData && action.parentNavigationKeys === state.parentNavigationKeys) {
-      return state;
+  const [state, dispatch] = React.useReducer((currentState, action) => {
+    if (action.type === 'register') {
+      return {
+        registrationId: action.registrationId,
+        activeMainPage: {
+          parentNavigationKeys: action.parentNavigationKeys,
+          pageKey: action.pageKey,
+          pageDescription: action.pageDescription,
+          pageMetaData: action.pageMetaData,
+        },
+      };
     }
 
-    return {
-      parentNavigationKeys: action.parentNavigationKeys,
-      pageKey: action.pageKey,
-      pageDescription: action.pageDescription,
-      pageMetaData: action.pageMetaData,
-    };
-  }, {});
+    if (action.type === 'unregister') {
+      if (currentState.registrationId === action.registrationId) {
+        return {
+          registrationId: undefined,
+          activeMainPage: undefined,
+        };
+      }
+    }
+
+    return currentState;
+  }, { registrationId: undefined, activeMainPage: undefined });
 
   const activeMainPageRegistrationContextValue = React.useMemo(() => ({
-    setActiveMainPage: (pageKey, pageDescription, pageMetaData, parentNavigationKeys) => {
-      setActiveMainPage({
-        pageKey, pageDescription, pageMetaData, parentNavigationKeys,
+    registerActiveMainPage: (pageKey, pageDescription, pageMetaData, parentNavigationKeys) => {
+      const registrationId = uuidv4();
+
+      dispatch({
+        type: 'register',
+        registrationId,
+        pageKey,
+        pageDescription,
+        pageMetaData,
+        parentNavigationKeys,
       });
+
+      return () => {
+        dispatch({ type: 'unregister', registrationId });
+      };
     },
   }), []);
 
   return (
     <ActiveMainPageRegistrationContext.Provider value={activeMainPageRegistrationContextValue}>
-      <ActiveMainPageContext.Provider value={activeMainPage}>
+      <ActiveMainPageContext.Provider value={state.activeMainPage}>
         {children}
       </ActiveMainPageContext.Provider>
     </ActiveMainPageRegistrationContext.Provider>

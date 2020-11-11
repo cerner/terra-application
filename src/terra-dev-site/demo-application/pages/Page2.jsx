@@ -28,6 +28,8 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
+const page2MetaData = { data: 'page-2' };
+
 const Page2 = ({ onRequestClose }) => {
   const popupActionButtonRef = React.useRef();
 
@@ -61,7 +63,7 @@ const Page2 = ({ onRequestClose }) => {
       title="Page 2"
       actions={pageActions}
       onRequestClose={onRequestClose}
-      metaData={{ data: 'page-2' }}
+      metaData={page2MetaData}
     >
       <DemoPageContent>
         <Card title="Page 2 Details">

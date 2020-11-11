@@ -24,7 +24,7 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
-const metaData = { my: 'data' };
+const page1MetaData = { data: 'page-1' };
 
 const Page1 = ({ onRequestClose }) => {
   const [showPage2, setShowPage2] = React.useState(false);
@@ -43,7 +43,7 @@ const Page1 = ({ onRequestClose }) => {
       title="Page 1"
       actions={pageActions}
       onRequestClose={onRequestClose}
-      metaData={{ data: 'page-1' }}
+      metaData={page1MetaData}
     >
       <DemoPageContent>
         <Card title="Page 1 Details">

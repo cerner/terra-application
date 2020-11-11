@@ -19,13 +19,15 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
+const page5MetaData = { data: 'page-5' };
+
 const Page5 = ({ onRequestClose }) => (
   <Page
     pageKey="page-5"
     title="Page 5"
     onRequestClose={onRequestClose}
     preferHeaderIsHidden
-    metaData={{ data: 'page-5' }}
+    metaData={page5MetaData}
   >
     <DemoPageContent>
       <h2>Page 5</h2>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ActiveMainPageRegistrationContext = createContext();
 
 const contextShape = {
-  setActiveMainPage: PropTypes.func,
+  registerActiveMainPage: PropTypes.func,
 };
 
 export default ActiveMainPageRegistrationContext;

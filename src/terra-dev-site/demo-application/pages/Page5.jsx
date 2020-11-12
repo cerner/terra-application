@@ -14,6 +14,7 @@ import StatusOverlayCard from './content/StatusOverlayCard';
 import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
+import ApplicationInfoCard from './content/ApplicationInfoCard';
 
 const propTypes = {
   onRequestClose: PropTypes.func,
@@ -52,6 +53,7 @@ const Page5 = ({ onRequestClose }) => (
       <PendingActionsCard />
       <ModalManagerIntegrationCard />
       <NavigationItemCard />
+      <ApplicationInfoCard />
     </DemoPageContent>
   </Page>
 );

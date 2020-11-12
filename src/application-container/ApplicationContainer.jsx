@@ -18,8 +18,20 @@ const cx = classNames.bind(styles);
 const propTypes = {
   /**
    * A string description for the application used for presentation purposes throughout the application.
+   * Provided to the application's contents through the ApplicationContainerContext.
    */
   applicationName: PropTypes.string,
+  /**
+   * A string representing the current version of the application. Provided to the application's contents through
+   * the ApplicationContainerContext.
+   */
+  applicationVersion: PropTypes.string,
+  /**
+   * An object containing unstructured data pertaining to the application. Provided to the application's
+   * contents through the ApplicationContainerContext. This prop should be memoized or statically defined to
+   * limit updates to consumers of the ApplicationContainerContext.
+   */
+  applicationMetaData: PropTypes.object,
   /**
    * The components to render within the ApplicationContainer.
    */
@@ -36,7 +48,7 @@ const propTypes = {
 };
 
 const ApplicationContainer = ({
-  applicationName, children, skipToLinksAreDisabled, unloadPromptIsDisabled,
+  applicationName, applicationVersion, applicationMetaData, children, skipToLinksAreDisabled, unloadPromptIsDisabled,
 }) => {
   /**
    * The NavigationPrompts registered to the ApplicationContainer's checkpoint are stored
@@ -47,7 +59,9 @@ const ApplicationContainer = ({
 
   const containerContextValue = React.useMemo(() => ({
     applicationName,
-  }), [applicationName]);
+    applicationVersion,
+    applicationMetaData,
+  }), [applicationName, applicationVersion, applicationMetaData]);
 
   React.useEffect(() => {
     if (unloadPromptIsDisabled) {

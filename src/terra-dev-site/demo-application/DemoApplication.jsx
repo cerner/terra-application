@@ -19,9 +19,17 @@ document.addEventListener('terra-application-demo.dismiss-transient-content', ()
   dismissTransientPresentations();
 });
 
+const applicationMetaData = {
+  data: 'Demo Application data',
+};
+
 const DemoApplication = () => (
   <ApplicationBase locale="en-US">
-    <ApplicationContainer applicationName="Demo Application">
+    <ApplicationContainer
+      applicationName="Demo Application"
+      applicationVersion="0.0.0.beta"
+      applicationMetaData={applicationMetaData}
+    >
       <SessionProvider>
         <ConceptProvider>
           <DemoApplicationNavigationLayout />

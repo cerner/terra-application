@@ -11,19 +11,6 @@ const useActiveMainPage = () => {
   const [lastActiveMainPage, setLastActiveMainPage] = React.useState();
 
   React.useEffect(() => {
-    /**
-     * Updates to the active page will only be communicated when the consumer of the hook is
-     * part of an active navigation branch.
-     */
-    if (!navigationItem.isActive) {
-      return;
-    }
-
-    if (!activeMainPage) {
-      setLastActiveMainPage(undefined);
-      return;
-    }
-
     const matchingNavigationKeyPath = navigationItem.navigationKeys.filter((hookKey, index) => (activeMainPage?.parentNavigationKeys || [])[index] === hookKey);
 
     if (matchingNavigationKeyPath.length !== navigationItem.navigationKeys.length) {
@@ -32,7 +19,7 @@ const useActiveMainPage = () => {
     }
 
     setLastActiveMainPage(activeMainPage);
-  }, [navigationItem.isActive, navigationItem.navigationKeys, activeMainPage, lastActiveMainPage]);
+  }, [navigationItem.navigationKeys, activeMainPage, lastActiveMainPage]);
 
   return lastActiveMainPage;
 };

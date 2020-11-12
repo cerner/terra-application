@@ -209,18 +209,6 @@ const Page = ({
     return undefined;
   }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPageRegistration]);
 
-  React.useEffect(() => {
-    if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      let documentTitle = `${title} | ${applicationContainer.applicationName}`;
-
-      if (applicationConcept?.conceptDescription) {
-        documentTitle = `${applicationConcept.conceptDescription}: ${documentTitle}`;
-      }
-
-      document.title = documentTitle;
-    }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageKey, title, metaData, pageContext, applicationContainer.applicationName, applicationConcept]);
-
   if (!portalNode) {
     throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
   }

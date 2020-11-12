@@ -6,7 +6,7 @@ const NotAPage = () => {
   const pageContainerActions = React.useContext(PageContainerActionsContext);
 
   return (
-    <MainContainer documentTitle="Not A Page">
+    <MainContainer>
       <div style={{ padding: '1rem' }}>
         <h2>Not A Page</h2>
         <p>This component does not use a Page to render its content. While usage of Pages is recommended, it is not outright required.</p>

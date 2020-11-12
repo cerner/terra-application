@@ -28,6 +28,14 @@ const propTypes = {
   sizeOptions: PropTypes.arrayOf(sizeOptionShape),
 };
 
+const getTabId = (id, tabKey) => {
+  return `${id}-${tabKey}`;
+};
+
+const getAssociatedPanelId = (id, tabKey) => {
+  return `${getTabId(id, tabKey)}-panel`;
+};
+
 const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => {
   return options.map(option => (
     <Menu.Item
@@ -47,10 +55,10 @@ const Tabs = ({
   children,
   onRequestActivate,
   ariaLabel,
-  activeSize, // new
-  onRequestSizeChange, // new
-  onRequestDismiss, // new
-  sizeOptions, // new
+  activeSize,
+  onRequestSizeChange,
+  onRequestDismiss,
+  sizeOptions,
   ...customProps
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -80,13 +88,12 @@ const Tabs = ({
   }, [activeTabKey]);
 
   const tabData = React.Children.map(children, child => {
-    const tabId = `${id}-${child.props.tabKey}`;
-    const panelId = `${tabId}-panel`
     return {
-      id: tabId,
-      associatedPanelId: panelId,
+      id: getTabId(id, child.props.tabKey),
+      associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
       label: child.props.label,
       icon: child.props.icon,
+      isIconOnly: child.props.isIconOnly,
       isSelected: child.props.tabKey == activeTabKey,
       onSelect: onRequestActivate,
       metaData: child.props.metaData,
@@ -109,34 +116,40 @@ const Tabs = ({
   };
 
   const createSizeButton = () => {
+    let sizeButton;
     if (sizeOptions) {
-      return (
-        <>
-          <Button
-            className={cx('menu-button')}
-            icon={<IconRollup />}
-            text="Workspace Size Menu" // TODO INTL
-            onClick={() => setIsMenuOpen(true)}
-            variant={'utility'}
-            refCallback={node => sizeMenuRef.current = node}
-          />
-          <Menu
-            isOpen={isMenuOpen}
-            targetRef={() => sizeMenuRef.current}
-            onRequestClose={() => { setIsMenuOpen(false); }}
-            contentWidth="240"
-          >
-            {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-          </Menu>
-        </>
+      sizeButton = (
+        <Button
+          className={cx('menu-button')}
+          icon={<IconRollup />}
+          text="Workspace Size Menu" // TODO INTL
+          onClick={() => setIsMenuOpen(true)}
+          variant={'utility'}
+          refCallback={node => sizeMenuRef.current = node}
+        />
       );
+
+      if (isMenuOpen) {
+        sizeButton = (
+          <>
+            {button}
+            <Menu
+              isOpen
+              targetRef={() => sizeMenuRef.current}
+              onRequestClose={() => { setIsMenuOpen(false); }}
+              contentWidth="240"
+            >
+              {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+            </Menu>
+          </>
+        );
+      }
     }
-    return null;
+    return sizeButton;
   };
 
   const tabsClassNames = cx([
     'tabs',
-    { 'body-fill': true },
     customProps.className,
   ]);
 
@@ -172,8 +185,8 @@ const Tabs = ({
           return (
             React.cloneElement(child, {
               key: child.props.tabKey,
-              id: `${id}-${child.props.tabKey}`,
-              associatedPanelId: `${id}-${child.props.tabKey}-panel`,
+              id: getTabId(id, child.props.tabKey),
+              associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
               isActive: child.props.tabKey === activeTabKey,
               portalElement,
             })

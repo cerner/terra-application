@@ -47,8 +47,8 @@ const SecondaryNavigationLayoutWorkspace = ({
     <Tabs
       id={id || 'test-id'}
       activeTabKey={activeTabKey}
+      ariaLabel="work space"
       onRequestActivate={metaData => setActiveTabKey(metaData.key)}
-      title="work space" // TODO: need proper title setup
       activeSize={activeSize}
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}

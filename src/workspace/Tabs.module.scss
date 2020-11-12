@@ -1,9 +1,23 @@
 :local {
   .tabs {
-    background-color: var(--terra-tabs-structural-container-background-color, #fff);
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
     position: relative;
     user-select: none;
     width: 100%;
+
+    > .header {
+      flex: 0 0 auto;
+      z-index: 20;
+    }
+
+    > .body {
+      flex: 1 1 auto;
+      height: 100%;
+      z-index: 10;
+    }
   }
 
   .header {
@@ -43,41 +57,5 @@
     margin-right: 50px;
     width: calc(100% - 100px);
     z-index: 50;
-  }
-
-  .body-fill {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    > .header {
-      flex: 0 0 auto;
-      z-index: 20;
-    }
-
-    > .body {
-      flex: 1 1 auto;
-      height: 100%;
-      z-index: 10;
-    }
-  }
-
-  .list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-
-    .item {
-      background-color: white;
-
-      &.is-actionable {
-        cursor: pointer;
-        padding: 10px;
-
-        &:hover {
-          background-color: orange;
-        }
-      }
-    }
   }
 }

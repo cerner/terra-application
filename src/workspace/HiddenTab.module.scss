@@ -1,14 +1,14 @@
 :local {
   .hidden {
-    background-color: var(--terra-tabs-structural-background-color, #fff);
-    color: var(--terra-tabs-structural-color, #007ee0);
+    background-color: #fff;
+    color: #007ee0;
     cursor: pointer;
     display: flex;
-    font-size: var(--terra-tabs-font-size, 1rem);
-    line-height: var(--terra-tabs-line-height, 1.4);
-    font-weight: var(--terra-tabs-font-weight, normal);
-    margin-left: var(--terra-tabs-structural-between-tabs-margin-left, 0);
-    padding: var(--terra-tabs-padding, 0.643rem 1.071rem);
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: normal;
+    margin-left: 0;
+    padding: 0.643rem 1.071rem;
     min-width: 8.357rem;
 
     span {
@@ -21,26 +21,25 @@
 
     &:hover {
       background-color: aliceblue;
-      background-image: var(--terra-tabs-structural-hover-background-image, linear-gradient(to bottom, #c8cacb, #c8cacb));
-      background-size: var(--terra-tabs-structural-hover-background-size, 100% 4px);
-      color: var(--terra-tabs-structural-hover-color, #000);
+      background-image: linear-gradient(to bottom, #c8cacb, #c8cacb);
+      background-size: 100% 4px;
+      color:  #000;
     }
 
     &:focus {
-      color: var(--terra-tabs-structural-focus-color, inherit);
+      color: inherit;
       outline: 2px dashed #000;
       outline-offset: -2px;
       z-index: 1;
     }
 
     &.is-active {
-      background-size: var(--terra-tabs-structural-active-background-size, 100% 4px);
-      box-shadow: var(--terra-tabs-structural-active-box-shadow, none);
-      color: var(--terra-tabs-structural-active-color, #000);
-      font-weight: var(--terra-tabs-structural-active-font-weight, normal);
+      background-size: 100% 4px;
+      box-shadow: none;
+      color: #000;
+      font-weight: normal;
       overflow: hidden; //forces :before background-image to honor border-radius clipping.
       position: relative;
-      z-index: var(--terra-tabs-structural-active-z-index);
   
       &:hover {
         background-color: aliceblue;
@@ -55,13 +54,13 @@
       }
   
       &:last-child {
-        border-width: var(--terra-tabs-structural-last-tab-border-width, 0);
+        border-width: 0;
       }
     }
 
     &.is-text-only {
       min-width: 7.143rem;
-      padding: var(--terra-tabs-text-only-padding, 0.643rem 1.071rem);
+      padding: 0.643rem 1.071rem;
     }
   }
 

@@ -6,7 +6,7 @@ import { ApplicationLoadingOverlayProvider } from '../application-loading-overla
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import { actionsPropType } from './propTypes/propTypes';
-import TabContext from './TabContext';
+import TabDataContext from './_TabDataContext';
 import TabHeader from './_TabHeader';
 import styles from './Panel.module.scss';
 
@@ -24,7 +24,7 @@ const Panel = ({
   toolBar,
   ...customProps
 }) => {
-  const { panelId, tabId, label } = React.useContext(TabContext);
+  const { panelId, tabId, label } = React.useContext(TabDataContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (

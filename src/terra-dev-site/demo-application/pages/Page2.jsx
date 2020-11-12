@@ -40,18 +40,18 @@ const Page2 = ({ onRequestClose }) => {
 
   const pageActions = [{
     key: 'action-add',
-    text: 'Add',
+    label: 'Add',
     icon: <IconAdd />,
     onSelect: () => { setShowAddModal(true); },
   }, {
     key: 'action-print',
-    text: 'Print',
+    label: 'Print',
     icon: <IconPrinter />,
     onSelect: () => { setShowPrintModal(true); },
     isDisabled: true,
   }, {
     key: 'action-popup-1',
-    text: 'Popup Action',
+    label: 'Popup Action',
     icon: <IconModified />,
     onSelect: () => { setShowPopup(true); },
     buttonRefCallback: (ref) => { popupActionButtonRef.current = ref; },
@@ -60,7 +60,7 @@ const Page2 = ({ onRequestClose }) => {
   return (
     <Page
       pageKey="page-2"
-      title="Page 2"
+      label="Page 2"
       actions={pageActions}
       onRequestClose={onRequestClose}
       metaData={page2MetaData}

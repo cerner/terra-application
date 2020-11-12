@@ -207,7 +207,7 @@ const PrimaryNavigationLayout = ({
   if (navigationItemChildren.length > 0) {
     navigationItems = navigationItemChildren.map(child => ({
       key: child.props.navigationKey,
-      text: child.props.text,
+      text: child.props.label,
     }));
   }
 

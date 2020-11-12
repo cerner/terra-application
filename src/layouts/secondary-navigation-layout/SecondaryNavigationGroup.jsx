@@ -5,7 +5,7 @@ const propTypes = {
   /**
    * The string description of the SecondaryNavigationGroup to display to the user.
    */
-  text: PropTypes.string,
+  label: PropTypes.string,
   /**
    * The child components to render within the SecondaryNavigationGroup.
    */
@@ -22,7 +22,7 @@ const propTypes = {
  * secondary navigation list.
  */
 const SecondaryNavigationGroup = ({
-  text, // eslint-disable-line no-unused-vars
+  label, // eslint-disable-line no-unused-vars
   children, // eslint-disable-line no-unused-vars
 }) => <div />;
 

@@ -20,7 +20,7 @@ const ActiveMainPageProvider = ({ children }) => {
         activeMainPage: {
           parentNavigationKeys: action.parentNavigationKeys,
           pageKey: action.pageKey,
-          pageDescription: action.pageDescription,
+          pageLabel: action.pageLabel,
           pageMetaData: action.pageMetaData,
         },
       };
@@ -39,14 +39,14 @@ const ActiveMainPageProvider = ({ children }) => {
   }, { registrationId: undefined, activeMainPage: undefined });
 
   const activeMainPageRegistrationContextValue = React.useMemo(() => ({
-    registerActiveMainPage: (pageKey, pageDescription, pageMetaData, parentNavigationKeys) => {
+    registerActiveMainPage: (pageKey, pageLabel, pageMetaData, parentNavigationKeys) => {
       const registrationId = uuidv4();
 
       dispatch({
         type: 'register',
         registrationId,
         pageKey,
-        pageDescription,
+        pageLabel,
         pageMetaData,
         parentNavigationKeys,
       });

@@ -36,9 +36,9 @@ const MockContent = ({ initialCount = 0, title = '', id }) => {
         {activeMainPage?.pageKey}
       </p>
       <p>
-        Active Main Page Description:
+        Active Main Page Label:
         {' '}
-        {activeMainPage?.pageDescription}
+        {activeMainPage?.pageLabel}
       </p>
       <p>
         Active Main Page MetaData:

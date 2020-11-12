@@ -31,7 +31,7 @@ const propTypes = {
    * The string description of the Page to present to the user. This value is also used to build description
    * text for screen readers and accessibility tools.
    */
-  title: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * An array of objects defining the Page actions to present to the user. At smaller breakpoints,
    * the content provided as `actions` will be presented within the Page's menu to minimize layout space.
@@ -79,7 +79,7 @@ const propTypes = {
 
 const Page = ({
   pageKey,
-  title,
+  label,
   actions,
   menu,
   toolbar,
@@ -91,8 +91,6 @@ const Page = ({
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const navigationItem = React.useContext(NavigationItemContext);
-  const applicationContainer = React.useContext(ApplicationContainerContext);
-  const applicationConcept = React.useContext(ApplicationConceptBannerContext);
   const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);
 
   /**
@@ -136,7 +134,7 @@ const Page = ({
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   if (!pageContext) {
-    throw new Error(`[Page] ${title} was rendered outside of a PageContainer.`);
+    throw new Error(`[terra-application] Page ${label} was rendered outside of a PageContainer.`);
   }
 
   /**
@@ -160,7 +158,7 @@ const Page = ({
    * A unique id to generated for Page's rendered hidden text. This id is used by the
    * nodeManager to ensure the container element is properly described by the presented Page.
    */
-  const pageTitleId = `page-title-${nodeIdRef.current}`;
+  const pageLabelId = `page-label-${nodeIdRef.current}`;
 
   const portalNode = pageContext.nodeManager.getNode({
     nodeId: nodeIdRef.current,
@@ -174,9 +172,9 @@ const Page = ({
        * Update the aria attributes on the root PageContainer element that is described by the current
        * active Page.
        */
-      pageContext.pageContainer.setAttribute('aria-labelledby', pageTitleId);
+      pageContext.pageContainer.setAttribute('aria-labelledby', pageLabelId);
     }
-  }, [isActive, pageContext.pageContainerHasMounted, pageContext.pageContainer, pageTitleId]);
+  }, [isActive, pageContext.pageContainerHasMounted, pageContext.pageContainer, pageLabelId]);
 
   React.useEffect(() => {
     if (!isActive) {
@@ -201,16 +199,16 @@ const Page = ({
      * emitted to notify interested parties of the activation.
      */
     if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      const unregisterPage = activeMainPageRegistration.registerActiveMainPage(pageKey, title, metaData, navigationItem.navigationKeys);
+      const unregisterPage = activeMainPageRegistration.registerActiveMainPage(pageKey, label, metaData, navigationItem.navigationKeys);
 
       return unregisterPage;
     }
 
     return undefined;
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, title, metaData, activeMainPageRegistration]);
+  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, label, metaData, activeMainPageRegistration]);
 
   if (!portalNode) {
-    throw new Error(`[Page] ${title} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
+    throw new Error(`[terra-application] Page ${label} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
   }
 
   function safelyRequestClose() {
@@ -226,7 +224,7 @@ const Page = ({
 
   /**
    * The Page header will not be rendered if the consumer indicates that it should be hidden and no content exists for the header to present.
-   * The title prop is excluded here, as it is required for proper ARIA descriptions and does not necessarily require header presence.
+   * The label prop is excluded here, as it is required for proper ARIA descriptions and does not necessarily require header presence.
    */
   const headerShouldBeRendered = !preferHeaderIsHidden || actions || menu || onRequestClose || pageContext.containerStartActions || pageContext.containerEndActions;
 
@@ -237,7 +235,7 @@ const Page = ({
           {headerShouldBeRendered && (
             <PageHeader
               onBack={onRequestClose && safelyRequestClose}
-              title={title}
+              label={label}
               actions={actions}
               menu={menu}
               hasLoadingOverlay={loadingOverlayIsActive}
@@ -263,8 +261,8 @@ const Page = ({
                       >
                         <VisuallyHiddenText
                           aria-hidden
-                          id={pageTitleId}
-                          text={title}
+                          id={pageLabelId}
+                          text={label}
                         />
                         {children}
                       </div>

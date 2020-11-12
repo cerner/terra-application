@@ -28,7 +28,7 @@ const Page4 = ({ onRequestClose }) => {
   return (
     <Page
       pageKey="page-4"
-      title="Page 4"
+      label="Page 4"
       onRequestClose={onRequestClose}
       metaData={page4MetaData}
     >

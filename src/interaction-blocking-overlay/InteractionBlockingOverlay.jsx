@@ -8,10 +8,10 @@ const propTypes = {
   /**
    * The string description for the overlay presentation.
    */
-  description: PropTypes.string,
+  label: PropTypes.string,
 };
 
-const InteractionBlockingOverlay = ({ description }) => {
+const InteractionBlockingOverlay = ({ label }) => {
   const [isVisible, setIsVisible] = React.useState(false);
 
   React.useLayoutEffect(() => {
@@ -27,7 +27,7 @@ const InteractionBlockingOverlay = ({ description }) => {
   return (
     <LayerPortal type="blocking-overlay">
       <div
-        aria-label={description}
+        aria-label={label}
         tabIndex="-1"
         style={{
           height: '100%',
@@ -35,7 +35,7 @@ const InteractionBlockingOverlay = ({ description }) => {
           backgroundColor: isVisible ? 'rgba(255,255,255,0.5)' : 'clear',
         }}
       />
-      <NavigationPrompt description={description} />
+      <NavigationPrompt description={label} />
     </LayerPortal>
   );
 };

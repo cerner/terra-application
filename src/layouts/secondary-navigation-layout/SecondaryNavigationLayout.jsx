@@ -30,8 +30,8 @@ const propTypes = {};
 
 function mapChildItem(item) {
   return {
-    text: item.text,
-    name: item.text,
+    text: item.label,
+    name: item.label,
     path: item.key,
     childItems: item.childItems ? item.childItems.map(mapChildItem) : undefined,
   };
@@ -396,11 +396,11 @@ const SecondaryNavigationLayout = ({
   function buildSideNavItems(childComponents) {
     return React.Children.map(childComponents, (child) => {
       if (child.type === NavigationItem) {
-        return { key: child.props.navigationKey, text: child.props.text };
+        return { key: child.props.navigationKey, label: child.props.label };
       }
 
       if (child.type === SecondaryNavigationGroup) {
-        return { key: child.props.text, text: child.props.text, childItems: buildSideNavItems(child.props.children) };
+        return { key: child.props.label, label: child.props.label, childItems: buildSideNavItems(child.props.children) };
       }
 
       return null;

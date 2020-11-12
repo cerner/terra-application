@@ -24,7 +24,7 @@ const page5MetaData = { data: 'page-5' };
 const Page5 = ({ onRequestClose }) => (
   <Page
     pageKey="page-5"
-    title="Page 5"
+    label="Page 5"
     onRequestClose={onRequestClose}
     preferHeaderIsHidden
     metaData={page5MetaData}

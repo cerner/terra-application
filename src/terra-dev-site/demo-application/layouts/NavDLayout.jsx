@@ -52,46 +52,46 @@ const NavDLayout = () => {
       onSelectNavigationItem={(key) => { setNavigationState(key); }}
     >
       <SecondaryNavigationGroup
-        text="Group 1"
+        label="Group 1"
       >
         <NavigationItem
           navigationKey="nav-D-1"
-          text="Nav D-1 Page 1"
+          label="Nav D-1 Page 1"
           renderPage={() => <Page1 />}
         />
         <NavigationItem
           navigationKey="nav-D-2"
-          text="Nav D-2 Page 2"
+          label="Nav D-2 Page 2"
           renderPage={() => <Page2 />}
         />
       </SecondaryNavigationGroup>
       <SecondaryNavigationGroup
-        text="Group 2"
+        label="Group 2"
       >
         <NavigationItem
           navigationKey="nav-D-3"
-          text="Nav D-3 Page 3"
+          label="Nav D-3 Page 3"
           renderPage={() => <Page3 />}
         />
         <NavigationItem
           navigationKey="nav-D-4"
-          text="Nav D-4 Page 4"
+          label="Nav D-4 Page 4"
           renderPage={() => <Page4 />}
         />
         <NavigationItem
           navigationKey="nav-D-5"
-          text="Nav D-4 Page 5"
+          label="Nav D-4 Page 5"
           renderPage={() => <Page5 />}
         />
       </SecondaryNavigationGroup>
       <SecondaryNavigationGroup
-        text="Group 3"
+        label="Group 3"
       >
         <NavigationItem
           navigationKey="nav-D-6"
-          text="Nav D-6 Page In Group"
+          label="Nav D-6 Page In Group"
           renderPage={() => (
-            <Page pageKey="page-in-group" title="Page In Group">
+            <Page pageKey="page-in-group" label="Page In Group">
               <div style={{ padding: '1rem' }}>
                 Page content here...
               </div>
@@ -99,11 +99,11 @@ const NavDLayout = () => {
           )}
         />
         <SecondaryNavigationGroup
-          text="Nested Group"
+          label="Nested Group"
         >
           <NavigationItem
             navigationKey="nav-D-7"
-            text="Nav D-7 Not A Page"
+            label="Nav D-7 Not A Page"
           >
             <NotAPage />
           </NavigationItem>
@@ -111,9 +111,9 @@ const NavDLayout = () => {
       </SecondaryNavigationGroup>
       <NavigationItem
         navigationKey="nav-D-8"
-        text="Nav D-8 Page Not In Group"
+        label="Nav D-8 Page Not In Group"
         renderPage={() => (
-          <Page pageKey="page-not-in-group" title="Page Not In Group">
+          <Page pageKey="page-not-in-group" label="Page Not In Group">
             <div style={{ padding: '1rem' }}>
               Page content here...
             </div>

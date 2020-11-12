@@ -18,7 +18,7 @@ const collapsingActionsBreakpoints = ['tiny', 'small', 'medium'];
 const propTypes = {};
 
 const PageHeader = ({
-  actions, menu, onBack, title, hasLoadingOverlay,
+  actions, menu, onBack, label, hasLoadingOverlay,
 }) => {
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -40,7 +40,7 @@ const PageHeader = ({
       return actions.map(action => (
         <Menu.Item
           key={action.key}
-          text={action.text}
+          text={action.label}
           onClick={() => {
             setShowMenu(false);
 
@@ -55,7 +55,7 @@ const PageHeader = ({
         return (
           <Menu.Item
             key={child.key}
-            text={child.props.text}
+            text={child.props.label}
             subMenuItems={child.props.children ? renderMenuItems(child.props.children) : undefined}
             isSelected={child.props.isChecked}
             isSelectable={!!child.props.isDisabled}
@@ -92,7 +92,7 @@ const PageHeader = ({
         targetRef={() => moreActionsButtonRef.current}
         onRequestClose={() => { setShowMenu(false); }}
         contentWidth="240"
-        headerTitle={`${title} Menu`} // TODO INTL
+        headerTitle={`${label} Menu`} // TODO INTL
       >
         {menuItems}
       </Menu>
@@ -120,8 +120,8 @@ const PageHeader = ({
           ) : null}
         </div>
       ) : null}
-      <div className={cx('title-container')}>
-        {title}
+      <div className={cx('label-container')}>
+        {label}
       </div>
       <div className={cx('actions-container')}>
         {!renderActionsInMenu && actions && actions.map((action) => (
@@ -131,7 +131,7 @@ const PageHeader = ({
             className={cx(['header-button'])}
             isIconOnly
             icon={action.icon}
-            text={action.text}
+            text={action.label}
             variant={ButtonVariants.UTILITY}
             onClick={(event) => { event.preventDefault(); action.onSelect(); }}
             isDisabled={hasLoadingOverlay || action.isDisabled}

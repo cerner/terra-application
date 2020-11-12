@@ -16,7 +16,7 @@ const propTypes = {
   /**
    * The string description of the NavigationItem to display to the user.
    */
-  text: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * A function called to generate the child content for the NavigationItem. A parameter
    * indicating whether or not the NavigationItem is active is provided.

@@ -84,32 +84,32 @@ const DemoApplicationNavigationLayout = () => {
           >
             <NavigationItem
               navigationKey="nav-A"
-              text="Nav A"
+              label="Nav A"
               renderPage={() => <Page1 />}
             />
             <NavigationItem
               navigationKey="nav-B"
-              text="Nav B"
+              label="Nav B"
               renderLayout={() => <NavBLayout />}
             />
             <NavigationItem
               navigationKey="nav-C"
-              text="Nav C"
+              label="Nav C"
               renderLayout={() => <NavCLayout />}
             />
             <NavigationItem
               navigationKey="nav-D"
-              text="Nav D"
+              label="Nav D"
               renderLayout={() => <NavDLayout />}
             />
             <NavigationItem
               navigationKey="nav-E"
-              text="Nav E"
+              label="Nav E"
               renderPage={() => <Page5 />}
             />
             <NavigationItem
               navigationKey="nav-F"
-              text="Nav F"
+              label="Nav F"
             >
               <NotAPage />
             </NavigationItem>

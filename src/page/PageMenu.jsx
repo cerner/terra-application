@@ -4,7 +4,7 @@ const propTypes = {};
 
 const PageMenu = ({ children }) => {};
 const MenuItem = ({
-  key, text, isChecked, isDisabled, onSelect,
+  key, label, isChecked, isDisabled, onSelect,
 }) => {};
 const MenuItemDivider = () => {};
 

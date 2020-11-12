@@ -38,12 +38,12 @@ const Page3 = ({ onRequestClose }) => {
 
   const pageActions = [{
     key: 'action-add',
-    text: 'Add',
+    label: 'Add',
     icon: <IconAdd />,
     onSelect: () => { setShowAddModal(true); },
   }, {
     key: 'action-print',
-    text: 'Print',
+    label: 'Print',
     icon: <IconPrinter />,
     onSelect: () => { setShowPrintModal(true); },
   }];
@@ -57,19 +57,19 @@ const Page3 = ({ onRequestClose }) => {
 
   const pageMenu = (
     <PageMenu>
-      <MenuItem text="Item 1" onSelect={() => { }} />
-      <MenuItem text="Item 2" onSelect={() => {}} />
-      <MenuItem text="Item 3" onSelect={() => {}} />
+      <MenuItem label="Item 1" onSelect={() => { }} />
+      <MenuItem label="Item 2" onSelect={() => {}} />
+      <MenuItem label="Item 3" onSelect={() => {}} />
       <MenuItemDivider />
-      <MenuItem text="Item 4" />
-      <MenuItem text="Item 5" />
+      <MenuItem label="Item 4" />
+      <MenuItem label="Item 5" />
     </PageMenu>
   );
 
   return (
     <Page
       pageKey="page-3"
-      title="Page 3"
+      label="Page 3"
       actions={pageActions}
       menu={pageMenu}
       toolbar={(

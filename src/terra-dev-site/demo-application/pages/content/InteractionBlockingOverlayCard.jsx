@@ -31,7 +31,7 @@ const InteractionBlockingOverlayCard = () => {
         }}
       />
       {showInteractionBlockingOverlay
-        && <InteractionBlockingOverlay description="InteractionBlockingOverlay Demo" />}
+        && <InteractionBlockingOverlay label="InteractionBlockingOverlay Demo" />}
     </Card>
   );
 };

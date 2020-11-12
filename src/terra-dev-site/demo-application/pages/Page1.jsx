@@ -32,7 +32,7 @@ const Page1 = ({ onRequestClose }) => {
 
   const pageActions = [{
     key: 'action-tag',
-    text: 'Page Modal',
+    label: 'Page Modal',
     icon: <IconTag />,
     onSelect: () => { setShowPageModal(true); },
   }];
@@ -40,7 +40,7 @@ const Page1 = ({ onRequestClose }) => {
   return (
     <Page
       pageKey="page-1"
-      title="Page 1"
+      label="Page 1"
       actions={pageActions}
       onRequestClose={onRequestClose}
       metaData={page1MetaData}

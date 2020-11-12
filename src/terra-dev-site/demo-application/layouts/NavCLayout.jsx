@@ -33,32 +33,32 @@ const NavCLayout = () => {
     >
       <NavigationItem
         navigationKey="nav-C-1"
-        text="Nav C-1 Page 1"
+        label="Nav C-1 Page 1"
         renderPage={() => (<Page1 />)}
       />
       <NavigationItem
         navigationKey="nav-C-2"
-        text="Nav C-2 Page 2"
+        label="Nav C-2 Page 2"
         renderPage={() => (<Page2 />)}
       />
       <NavigationItem
         navigationKey="nav-C-3"
-        text="Nav C-3 Page 3"
+        label="Nav C-3 Page 3"
         renderPage={() => (<Page3 />)}
       />
       <NavigationItem
         navigationKey="nav-C-4"
-        text="Nav C-4 Page 4"
+        label="Nav C-4 Page 4"
         renderPage={() => <Page4 />}
       />
       <NavigationItem
         navigationKey="nav-C-5"
-        text="Nav C-5 Page 5"
+        label="Nav C-5 Page 5"
         renderPage={() => <Page5 />}
       />
       <NavigationItem
         navigationKey="nav-C-6"
-        text="Nav C-6 Not A Page"
+        label="Nav C-6 Not A Page"
       >
         <NotAPage />
       </NavigationItem>

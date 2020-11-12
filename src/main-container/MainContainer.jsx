@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import SkipToButton from '../application-container/private/skip-to/SkipToButton';
-import NavigationItemContext from '../layouts/shared/NavigationItemContext';
 
 function deferAction(callback) {
   setTimeout(callback, 0);

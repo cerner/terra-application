@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added new file `browserslistrc` for Browserslist.
+
 * Fixed
   * Fixed build failures due to the react/sort-comp rule
 

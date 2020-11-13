@@ -215,7 +215,7 @@ class DisclosureComponent extends React.Component {
         {disclosureManager && disclosureManager.minimize ? <button type="button" className="minimize" onClick={this.minimize}>Minimize</button> : null}
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
         {hasPendingAction && <NavigationPrompt description="Test Action" />}
-        {hasLoadingOverlay && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+        {hasLoadingOverlay && <ApplicationLoadingOverlay backgroundStyle="light" />}
         <NotificationBannerExample isInitiallyClosed id={identifier} />
         {hasStatusOverlay && <ApplicationStatusOverlay message="Test status view" variant="no-data" />}
       </ContentContainer>

@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 const ActiveMainPageContext = createContext();
 
 const contextShape = {
+  parentNavigationKeys: PropTypes.array,
   pageKey: PropTypes.string,
-  pageTitle: PropTypes.string,
-  pageMetaData: PropTypes.string,
+  pageLabel: PropTypes.string,
+  pageMetaData: PropTypes.object,
 };
 
 export default ActiveMainPageContext;

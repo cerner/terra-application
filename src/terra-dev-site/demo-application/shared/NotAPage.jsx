@@ -11,7 +11,7 @@ const NotAPage = () => {
         <h2>Not A Page</h2>
         <p>This component does not use a Page to render its content. While usage of Pages is recommended, it is not outright required.</p>
         <p>However, when a Page is not used, additional steps must be taken to ensure the application will be accessible and function correctly.</p>
-        <p>This component utilizes the provided MainContainer to ensure a main element is present and accessible. A title for the document is also provided to ensure it is representative of the current content.</p>
+        <p>This component utilizes the provided MainContainer to ensure a main element is present and accessible.</p>
         <p>This component also renders action controls provided by any parent layouts, if present.</p>
         <p>Layout Actions:</p>
         <div>

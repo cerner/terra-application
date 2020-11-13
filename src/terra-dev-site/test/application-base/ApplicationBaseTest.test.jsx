@@ -50,7 +50,7 @@ const ApplicationContentTest = () => {
         {' '}
         <button id="overlay" type="button" onClick={() => { setIsLoading(true); }}>Show</button>
       </p>
-      <ApplicationLoadingOverlay isOpen={isLoading} message="Testing ApplicationBase's loading overlay" />
+      {isLoading && <ApplicationLoadingOverlay message="Testing ApplicationBase's loading overlay" />}
     </>
   );
 

@@ -48,7 +48,7 @@ const ApplicationContentExample = () => {
         {' '}
         <button type="button" onClick={() => { setIsLoading(true); setTimeout(() => { setIsLoading(false); }, 3000); }}>Show</button>
       </p>
-      <ApplicationLoadingOverlay isOpen={isLoading} message="Testing ApplicationBase's loading overlay" backgroundStyle="light" />
+      {isLoading && <ApplicationLoadingOverlay message="Testing ApplicationBase's loading overlay" backgroundStyle="light" />}
     </>
   );
 

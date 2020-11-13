@@ -23,7 +23,7 @@ const ExampleComponent = () => {
           Start Loading
         </button>
       </p>
-      <ApplicationLoadingOverlay isOpen={isLoading} />
+      {isLoading && <ApplicationLoadingOverlay />}
     </div>
   );
 };

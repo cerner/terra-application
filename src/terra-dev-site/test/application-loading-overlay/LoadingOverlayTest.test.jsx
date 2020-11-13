@@ -48,9 +48,9 @@ const ApplicationLoadingOverlayTest = () => {
         Show Dark Loading Overlay
       </button>
       <ApplicationLoadingOverlayProvider>
-        <ApplicationLoadingOverlay isOpen={showClearOverlay} />
-        <ApplicationLoadingOverlay isOpen={showLightOverlay} backgroundStyle="light" />
-        <ApplicationLoadingOverlay isOpen={showDarkOverlay} backgroundStyle="dark" />
+        {showClearOverlay && <ApplicationLoadingOverlay />}
+        {showLightOverlay && <ApplicationLoadingOverlay backgroundStyle="light" />}
+        {showDarkOverlay && <ApplicationLoadingOverlay backgroundStyle="dark" />}
       </ApplicationLoadingOverlayProvider>
     </>
   );

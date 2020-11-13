@@ -26,7 +26,7 @@ const LoadingOverlayCard = () => {
         }}
       />
       {showLoadingOverlay
-        && <ApplicationLoadingOverlay isOpen backgroundStyle="light" />}
+        && <ApplicationLoadingOverlay backgroundStyle="light" />}
     </Card>
   );
 };

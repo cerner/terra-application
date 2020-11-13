@@ -8,7 +8,9 @@ import { ActiveBreakpointContext } from '../../breakpoints';
 import { useTransientPresentationState } from '../../utils/transient-presentation';
 
 import PageMenu, { MenuItem, MenuItemDivider } from '../PageMenu';
+import PageActions, { Action } from '../PageActions';
 import PageContext from './PageContext';
+
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);
@@ -27,24 +29,69 @@ const PageHeader = ({
 
   const renderActionsInMenu = collapsingActionsBreakpoints.indexOf(activeBreakpoint) !== -1;
 
-  function buildMenu() {
-    if (menu && menu.type !== PageMenu) {
-      throw new Error('[terra-application] Page: `menu` prop must be instance of PageMenu component');
+  function renderActionButtons() {
+    if (renderActionsInMenu || !actions) {
+      return undefined;
     }
 
-    const renderActions = () => {
+    return React.Children.map(actions.props.children, (childAction) => (
+      <Button
+        refCallback={childAction.props.refCallback}
+        key={childAction.props.actionKey}
+        className={cx(['header-button'])}
+        isIconOnly
+        icon={childAction.props.icon}
+        text={childAction.props.label}
+        variant={ButtonVariants.UTILITY}
+        onClick={(event) => { event.preventDefault(); childAction.props.onSelect(); }}
+        isDisabled={hasLoadingOverlay || childAction.props.isDisabled}
+      />
+    ));
+  }
+
+  function renderMenuButton() {
+    if (!menu && (!renderActionsInMenu || !actions)) {
+      return undefined;
+    }
+
+    return (
+      <Button
+        refCallback={(ref) => {
+          moreActionsButtonRef.current = ref;
+
+          if (renderActionsInMenu && actions) {
+            React.Children.forEach(actions.props.children, (childAction) => {
+              if (childAction.props.refCallback) {
+                childAction.props.refCallback(ref);
+              }
+            });
+          }
+        }}
+        className={cx('header-button')}
+        isIconOnly
+        icon={<IconRollup />}
+        text="More Actions"
+        variant={ButtonVariants.UTILITY}
+        onClick={(event) => { event.preventDefault(); setShowMenu(true); }}
+        isDisabled={hasLoadingOverlay}
+      />
+    );
+  }
+
+  function renderMenu() {
+    const renderActionMenuItems = () => {
       if (!renderActionsInMenu || !actions) {
         return [];
       }
 
-      return actions.map(action => (
+      return React.Children.map(actions.props.children, (childAction) => (
         <Menu.Item
-          key={action.key}
-          text={action.label}
+          key={childAction.props.actionKey}
+          text={childAction.props.label}
           onClick={() => {
             setShowMenu(false);
 
-            action.onSelect();
+            childAction.props.onSelect();
           }}
         />
       ));
@@ -52,20 +99,21 @@ const PageHeader = ({
 
     const renderMenuItems = (children) => React.Children.toArray(children).map((child) => {
       if (child.type === MenuItem) {
+        console.log(`${child.props.itemKey} Is Checked: ${child.props.isChecked}`);
+
         return (
           <Menu.Item
-            key={child.key}
+            key={child.props.itemKey}
             text={child.props.label}
-            subMenuItems={child.props.children ? renderMenuItems(child.props.children) : undefined}
             isSelected={child.props.isChecked}
-            isSelectable={!!child.props.isDisabled}
-            onClick={() => {
-              if (!child.props.persistMenuOnClick && !child.props.children) {
+            isSelectable={!child.props.isDisabled}
+            onClick={!child.props.isDisabled ? () => {
+              if (!child.props.persistMenuAfterSelect) {
                 setShowMenu(false);
               }
 
               child.props.onSelect();
-            }}
+            } : undefined}
           />
         );
       }
@@ -77,7 +125,7 @@ const PageHeader = ({
       }
     });
 
-    let menuItems = renderActions();
+    let menuItems = renderActionMenuItems();
     if (menu) {
       if (menuItems.length) {
         menuItems.push(<Menu.Divider key="page-menu-actions-divider" />);
@@ -124,40 +172,9 @@ const PageHeader = ({
         {label}
       </div>
       <div className={cx('actions-container')}>
-        {!renderActionsInMenu && actions && actions.map((action) => (
-          <Button
-            refCallback={action.buttonRefCallback}
-            key={action.key}
-            className={cx(['header-button'])}
-            isIconOnly
-            icon={action.icon}
-            text={action.label}
-            variant={ButtonVariants.UTILITY}
-            onClick={(event) => { event.preventDefault(); action.onSelect(); }}
-            isDisabled={hasLoadingOverlay || action.isDisabled}
-          />
-        ))}
-        {menu || (renderActionsInMenu && actions) ? (
-          <Button
-            refCallback={(ref) => {
-              moreActionsButtonRef.current = ref;
-
-              actions.forEach((action) => {
-                if (action.buttonRefCallback) {
-                  action.buttonRefCallback(ref);
-                }
-              });
-            }}
-            className={cx('header-button')}
-            isIconOnly
-            icon={<IconRollup />}
-            text="More Actions"
-            variant={ButtonVariants.UTILITY}
-            onClick={(event) => { event.preventDefault(); setShowMenu(true); }}
-            isDisabled={hasLoadingOverlay}
-          />
-        ) : undefined}
-        {showMenu && buildMenu()}
+        {renderActionButtons()}
+        {renderMenuButton()}
+        {showMenu && renderMenu()}
         {pageContext?.containerEndActions ? (
           <>
             <div className={cx('actions-divider')} />

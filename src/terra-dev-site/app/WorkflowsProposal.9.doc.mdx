@@ -544,7 +544,9 @@ TODO 10/21
   * need add unique key to each page (required or not)
   * need to trigger event every time Page becomes visible (through side nav or progressive disclosure)
   * only needs to happen within layout, not within modal
-
+* (X) Remove isOpen prop from loading overlay
+* (X) PageHeader actions final API
+  * actions + menu (one page, no drill-in)
 
 * Investigate Close and Escape implementation for modals
   * need to validate dropdowns/select 
@@ -552,7 +554,7 @@ TODO 10/21
 * Move over orion-application Features
 * InteractionBlockOverlay styles/accessibility
   * Loading indicator? fade-in styles? Focusable? 
-* PageHeader actions final API
-  * actions + menu (one page, no drill-in)
 * "Can Navigate"/"Is Modal Open" API (perhaps scope out)
-* Remove isOpen prop from loading overlay
+* think about scroll persistance with unmounting navigation content
+  * would need to be more eager about caching scroll positions
+* Menu API is busted for checkmarks

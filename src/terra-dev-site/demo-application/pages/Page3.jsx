@@ -5,14 +5,15 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
-import Page from '../../../page/Page';
-import PageToolbar from '../../../page/private/_PageToolbar';
-import PageMenu, { MenuItem, MenuItemDivider } from '../../../page/PageMenu';
+import Page, {
+  PageActions, Action, PageMenu, MenuItem, MenuItemDivider,
+} from '../../../page';
 
 import Page4 from './Page4';
 import AddModal from '../modals/AddModal';
 import PrintModal from '../modals/PrintModal';
 
+import PageToolbar from './content/PageToolbar';
 import DemoPageContent from './content/DemoPageContent';
 import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
@@ -36,67 +37,96 @@ const Page3 = ({ onRequestClose }) => {
   const [showPage4, setShowPage4] = React.useState(false);
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
+  const [checkedMenuItem, setCheckedMenuItem] = React.useState('item-4');
 
-  const pageActions = [{
-    key: 'action-add',
-    label: 'Add',
-    icon: <IconAdd />,
-    onSelect: () => { setShowAddModal(true); },
-  }, {
-    key: 'action-print',
-    label: 'Print',
-    icon: <IconPrinter />,
-    onSelect: () => { setShowPrintModal(true); },
-  }];
-
-  // const pageActions = (
-  //   <PageActions>
-  //     <Action />
-  //     <Action />
-  //   </PageActions>
-  // );
+  const pageActions = (
+    <PageActions>
+      <Action
+        actionKey="action-add"
+        label="Add"
+        icon={<IconAdd />}
+        onSelect={() => { setShowAddModal(true); }}
+      />
+      <Action
+        actionKey="action-print"
+        label="Print"
+        icon={<IconPrinter />}
+        onSelect={() => { setShowPrintModal(true); }}
+      />
+    </PageActions>
+  );
 
   const pageMenu = (
     <PageMenu>
-      <MenuItem label="Item 1" onSelect={() => { }} />
-      <MenuItem label="Item 2" onSelect={() => {}} />
-      <MenuItem label="Item 3" onSelect={() => {}} />
+      <MenuItem
+        itemKey="item-1"
+        label="Item 1"
+        onSelect={() => { console.log('Item 1 selected'); }}
+      />
+      <MenuItem
+        itemKey="item-2"
+        label="Item 2"
+        onSelect={() => { console.log('Item 2 selected'); }}
+      />
+      <MenuItem
+        itemKey="item-3"
+        label="Item 3"
+        onSelect={() => { console.log('Item 3 selected'); }}
+      />
       <MenuItemDivider />
-      <MenuItem label="Item 4" />
-      <MenuItem label="Item 5" />
+      <MenuItem
+        itemKey="item-4"
+        label="Item 4"
+        isChecked={checkedMenuItem === 'item-4'}
+        onSelect={() => {
+          setCheckedMenuItem((state) => (state !== 'item-4' ? 'item-4' : undefined));
+        }}
+        persistMenuAfterSelect
+      />
+      <MenuItem
+        itemKey="item-5"
+        label="Item 5"
+        isChecked={checkedMenuItem === 'item-5'}
+        onSelect={() => {
+          setCheckedMenuItem((state) => (state !== 'item-5' ? 'item-5' : undefined));
+        }}
+        persistMenuAfterSelect
+      />
     </PageMenu>
+  );
+
+  const pageToolbar = (
+    <PageToolbar title="Page 3 Toolbar">
+      <DropdownButton
+        label="Dropdown 1"
+        variant="ghost"
+      >
+        <Item label="1st Option" onSelect={() => {}} />
+        <Item label="2nd Option" onSelect={() => {}} />
+        <Item label="3rd Option" onSelect={() => {}} />
+        <Item label="4th Option" onSelect={() => {}} />
+      </DropdownButton>
+      <DropdownButton
+        label="Dropdown 2"
+        variant={Variants.EMPHASIS}
+      >
+        <Item label="1st Option" onSelect={() => {}} />
+        <Item label="2nd Option" onSelect={() => {}} />
+        <Item label="3rd Option" onSelect={() => {}} />
+        <Item label="4th Option" onSelect={() => {}} />
+      </DropdownButton>
+    </PageToolbar>
   );
 
   return (
     <Page
       pageKey="page-3"
       label="Page 3"
+      metaData={page3MetaData}
       actions={pageActions}
       menu={pageMenu}
-      toolbar={(
-        <PageToolbar title="Page 3 Toolbar">
-          <DropdownButton
-            label="Dropdown 1"
-            variant="ghost"
-          >
-            <Item label="1st Option" onSelect={() => {}} />
-            <Item label="2nd Option" onSelect={() => {}} />
-            <Item label="3rd Option" onSelect={() => {}} />
-            <Item label="4th Option" onSelect={() => {}} />
-          </DropdownButton>
-          <DropdownButton
-            label="Dropdown 2"
-            variant={Variants.EMPHASIS}
-          >
-            <Item label="1st Option" onSelect={() => {}} />
-            <Item label="2nd Option" onSelect={() => {}} />
-            <Item label="3rd Option" onSelect={() => {}} />
-            <Item label="4th Option" onSelect={() => {}} />
-          </DropdownButton>
-        </PageToolbar>
-        )}
+      toolbar={pageToolbar}
       onRequestClose={onRequestClose}
-      metaData={page3MetaData}
     >
       <DemoPageContent>
         <Card title="Page 3 Details">

@@ -5,7 +5,7 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconModified from 'terra-icon/lib/icon/IconModified';
 import Button from 'terra-button';
 
-import Page from '../../../page';
+import Page, { PageActions, Action } from '../../../page';
 
 import Page3 from './Page3';
 import AddModal from '../modals/AddModal';
@@ -39,32 +39,38 @@ const Page2 = ({ onRequestClose }) => {
   const [showPrintModal, setShowPrintModal] = React.useState(false);
   const [showPopup, setShowPopup] = React.useState(false);
 
-  const pageActions = [{
-    key: 'action-add',
-    label: 'Add',
-    icon: <IconAdd />,
-    onSelect: () => { setShowAddModal(true); },
-  }, {
-    key: 'action-print',
-    label: 'Print',
-    icon: <IconPrinter />,
-    onSelect: () => { setShowPrintModal(true); },
-    isDisabled: true,
-  }, {
-    key: 'action-popup-1',
-    label: 'Popup Action',
-    icon: <IconModified />,
-    onSelect: () => { setShowPopup(true); },
-    buttonRefCallback: (ref) => { popupActionButtonRef.current = ref; },
-  }];
+  const pageActions = (
+    <PageActions>
+      <Action
+        actionKey="action-add"
+        label="Add"
+        icon={<IconAdd />}
+        onSelect={() => { setShowAddModal(true); }}
+      />
+      <Action
+        actionKey="action-print"
+        label="Print"
+        icon={<IconPrinter />}
+        onSelect={() => { setShowPrintModal(true); }}
+        isDisabled
+      />
+      <Action
+        actionKey="action-popup-1"
+        label="Popup Action"
+        icon={<IconModified />}
+        onSelect={() => { setShowPopup(true); }}
+        refCallback={(ref) => { popupActionButtonRef.current = ref; }}
+      />
+    </PageActions>
+  );
 
   return (
     <Page
       pageKey="page-2"
       label="Page 2"
+      metaData={page2MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
-      metaData={page2MetaData}
     >
       <DemoPageContent>
         <Card title="Page 2 Details">

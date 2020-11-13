@@ -26,9 +26,9 @@ const Page5 = ({ onRequestClose }) => (
   <Page
     pageKey="page-5"
     label="Page 5"
+    metaData={page5MetaData}
     onRequestClose={onRequestClose}
     preferHeaderIsHidden
-    metaData={page5MetaData}
   >
     <DemoPageContent>
       <h2>Page 5</h2>

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import Button from 'terra-button';
 
-import Page from '../../../page';
+import Page, { PageActions, Action } from '../../../page';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
 import DemoPageContent from './content/DemoPageContent';
@@ -31,20 +31,24 @@ const Page1 = ({ onRequestClose }) => {
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPageModal, setShowPageModal] = React.useState(false);
 
-  const pageActions = [{
-    key: 'action-tag',
-    label: 'Page Modal',
-    icon: <IconTag />,
-    onSelect: () => { setShowPageModal(true); },
-  }];
+  const pageActions = (
+    <PageActions>
+      <Action
+        actionKey="action-page-modal"
+        label="Page Modal"
+        icon={<IconTag />}
+        onSelect={() => { setShowPageModal(true); }}
+      />
+    </PageActions>
+  );
 
   return (
     <Page
       pageKey="page-1"
       label="Page 1"
+      metaData={page1MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
-      metaData={page1MetaData}
     >
       <DemoPageContent>
         <Card title="Page 1 Details">

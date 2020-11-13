@@ -31,8 +31,8 @@ const Page4 = ({ onRequestClose }) => {
     <Page
       pageKey="page-4"
       label="Page 4"
-      onRequestClose={onRequestClose}
       metaData={page4MetaData}
+      onRequestClose={onRequestClose}
     >
       <DemoPageContent>
         <Card title="Page 4 Details">

@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import uuidv4 from 'uuid/v4';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 
-import { ApplicationContainerContext, ApplicationConceptBannerContext } from '../application-container';
 import { ApplicationIntlContext } from '../application-intl';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
@@ -16,6 +15,8 @@ import ActiveMainPageRegistrationContext from '../application-container/private/
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
+import PageActions from './PageActions';
+import PageMenu from './PageMenu';
 
 import styles from './Page.module.scss';
 
@@ -33,12 +34,15 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * An array of objects defining the Page actions to present to the user. At smaller breakpoints,
-   * the content provided as `actions` will be presented within the Page's menu to minimize layout space.
+   * An object containing generic data describing the content of the Page. The metaData will be accessible
+   * by components who are notified of Page presentation changes.
    */
-  actions: PropTypes.arrayOf(PropTypes.shape({
-
-  })),
+  metaData: PropTypes.object,
+  /**
+   * A PageActions instance defining the Actions to present within the Page's header. Only the PageActions
+   * component can be provided.
+   */
+  actions: PropTypes.element,
   /**
    * A PageMenu instance defining the contents of the Page's dedicated menu control.
    * Only the PageMenu component can be provided.
@@ -55,10 +59,6 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * The components to render within the context of the Page.
-   */
-  children: PropTypes.node,
-  /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
    */
@@ -71,24 +71,31 @@ const propTypes = {
    */
   preferHeaderIsHidden: PropTypes.bool,
   /**
-   * An object containing generic data describing the content of the Page. The metaData will be accessible
-   * by components who are notified of Page presentation changes.
+   * The components to render within the context of the Page.
    */
-  metaData: PropTypes.object,
+  children: PropTypes.node,
 };
 
 const Page = ({
   pageKey,
   label,
+  metaData,
   actions,
   menu,
   toolbar,
   onRequestClose,
-  children,
   requestClosePromptIsDisabled,
   preferHeaderIsHidden,
-  metaData,
+  children,
 }) => {
+  if (actions && actions.type !== PageActions) {
+    throw new Error(`[terra-application] Page ${label} provided with invalid actions prop. Only PageActions is supported.`);
+  }
+
+  if (menu && menu.type !== PageMenu) {
+    throw new Error(`[terra-application] Page ${label} provided with invalid menu prop. Only PageMenu is supported.`);
+  }
+
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const navigationItem = React.useContext(NavigationItemContext);
   const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);

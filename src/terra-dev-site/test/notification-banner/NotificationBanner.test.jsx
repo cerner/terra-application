@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ApplicationBase from '../../../application-base';
 import useNotificationBanners from '../../../notification-banner/private/useNotificationBanners';
 import NotificationBannerExample from './NotificationBannerExample';
 
@@ -7,10 +8,12 @@ const Example = ({ isInitiallyClosed }) => {
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (
-    <NotificationBannerProvider>
-      <NotificationBanners />
-      <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
-    </NotificationBannerProvider>
+    <ApplicationBase>
+      <NotificationBannerProvider>
+        <NotificationBanners />
+        <NotificationBannerExample isInitiallyClosed={isInitiallyClosed} />
+      </NotificationBannerProvider>
+    </ApplicationBase>
   );
 };
 

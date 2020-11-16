@@ -1,4 +1,5 @@
 import React from 'react';
+import ApplicationBase from '../../../application-base';
 import ApplicationStatusOverlay from '../../../../lib/application-status-overlay/ApplicationStatusOverlay';
 import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
@@ -14,9 +15,11 @@ const ApplicationStatusOverlayAllProps = () => {
   ];
 
   return (
-    <ApplicationStatusOverlayProvider>
-      <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" variant="no-data" />
-    </ApplicationStatusOverlayProvider>
+    <ApplicationBase>
+      <ApplicationStatusOverlayProvider>
+        <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" variant="no-data" />
+      </ApplicationStatusOverlayProvider>
+    </ApplicationBase>
   );
 };
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ApplicationBase from '../../../application-base';
 import ApplicationErrorBoundary from '../../../../lib/application-error-boundary/ApplicationErrorBoundary';
 
 const ErrorComponent = () => {
@@ -22,9 +23,11 @@ const ErrorComponent = () => {
 };
 
 const ErrorBoundaryTest = () => (
-  <ApplicationErrorBoundary>
-    <ErrorComponent />
-  </ApplicationErrorBoundary>
+  <ApplicationBase>
+    <ApplicationErrorBoundary>
+      <ErrorComponent />
+    </ApplicationErrorBoundary>
+  </ApplicationBase>
 );
 
 export default ErrorBoundaryTest;

@@ -1,16 +1,16 @@
 import React, { useState, useContext } from 'react';
 import { ActiveBreakpointContext } from '../../../breakpoints';
-import ApplicationLoadingOverlay from '../../../application-loading-overlay';
-import ApplicationStatusOverlay from '../../../application-status-overlay';
+// import ApplicationLoadingOverlay from '../../../application-loading-overlay';
+// import ApplicationStatusOverlay from '../../../application-status-overlay';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 
 const ApplicationContentTest = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  // const [isLoading, setIsLoading] = useState(false);
   const [throwError, setThrowError] = useState(false);
   const [blockUnload, setBlockUnload] = useState(false);
-  const [showStatusOverlay, setShowStatusOverlay] = useState(false);
+  // const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
@@ -43,27 +43,27 @@ const ApplicationContentTest = () => {
     </p>
   );
 
-  const loadingOverlayTest = (
-    <>
-      <p>
-        Show Loading Overlay:
-        {' '}
-        <button id="overlay" type="button" onClick={() => { setIsLoading(true); }}>Show</button>
-      </p>
-      <ApplicationLoadingOverlay isOpen={isLoading} message="Testing ApplicationBase's loading overlay" />
-    </>
-  );
+  // const loadingOverlayTest = (
+  //   <>
+  //     <p>
+  //       Show Loading Overlay:
+  //       {' '}
+  //       <button id="overlay" type="button" onClick={() => { setIsLoading(true); }}>Show</button>
+  //     </p>
+  //     <ApplicationLoadingOverlay isOpen={isLoading} message="Testing ApplicationBase's loading overlay" />
+  //   </>
+  // );
 
-  const statusOverlayTest = (
-    <>
-      <p>
-        Show Status View:
-        {' '}
-        <button id="statusView" type="button" onClick={() => { setShowStatusOverlay(true); }}>Show</button>
-      </p>
-      {showStatusOverlay && <ApplicationStatusOverlay message="Testing ApplicationBase's status view" variant="no-matching-results" />}
-    </>
-  );
+  // const statusOverlayTest = (
+  //   <>
+  //     <p>
+  //       Show Status View:
+  //       {' '}
+  //       <button id="statusView" type="button" onClick={() => { setShowStatusOverlay(true); }}>Show</button>
+  //     </p>
+  //     {showStatusOverlay && <ApplicationStatusOverlay message="Testing ApplicationBase's status view" variant="no-matching-results" />}
+  //   </>
+  // );
 
   const navigationPromptTest = (
     <>
@@ -89,8 +89,8 @@ const ApplicationContentTest = () => {
       {activeBreakpointTest}
       {intlTest}
       {errorBoundaryTest}
-      {loadingOverlayTest}
-      {statusOverlayTest}
+      {/* {loadingOverlayTest} */}
+      {/* {statusOverlayTest} */}
       {navigationPromptTest}
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ApplicationBase from '../../../application-base';
 import ApplicationStatusOverlay from '../../../../lib/application-status-overlay/ApplicationStatusOverlay';
 import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
@@ -57,9 +58,11 @@ const ApplicationStatusOverlayVariant = () => {
       >
         Show Not Authorized Status View
       </button>
-      <ApplicationStatusOverlayProvider id="test-status-view-container">
-        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType} />}
-      </ApplicationStatusOverlayProvider>
+      <ApplicationBase>
+        <ApplicationStatusOverlayProvider id="test-status-view-container">
+          {showStatusOverlay && <ApplicationStatusOverlay variant={variantType} />}
+        </ApplicationStatusOverlayProvider>
+      </ApplicationBase>
     </>
   );
 };

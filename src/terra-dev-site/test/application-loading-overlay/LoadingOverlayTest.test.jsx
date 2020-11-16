@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ApplicationBase from '../../../application-base';
 import ApplicationLoadingOverlay from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlay';
 import ApplicationLoadingOverlayProvider from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlayProvider';
 
@@ -47,11 +48,13 @@ const ApplicationLoadingOverlayTest = () => {
       >
         Show Dark Loading Overlay
       </button>
-      <ApplicationLoadingOverlayProvider>
-        <ApplicationLoadingOverlay isOpen={showClearOverlay} />
-        <ApplicationLoadingOverlay isOpen={showLightOverlay} backgroundStyle="light" />
-        <ApplicationLoadingOverlay isOpen={showDarkOverlay} backgroundStyle="dark" />
-      </ApplicationLoadingOverlayProvider>
+      <ApplicationBase>
+        <ApplicationLoadingOverlayProvider>
+          <ApplicationLoadingOverlay isOpen={showClearOverlay} />
+          <ApplicationLoadingOverlay isOpen={showLightOverlay} backgroundStyle="light" />
+          <ApplicationLoadingOverlay isOpen={showDarkOverlay} backgroundStyle="dark" />
+        </ApplicationLoadingOverlayProvider>
+      </ApplicationBase>
     </>
   );
 };

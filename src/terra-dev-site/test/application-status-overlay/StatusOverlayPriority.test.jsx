@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ApplicationBase from '../../../application-base';
 import ApplicationStatusOverlay from '../../../../lib/application-status-overlay/ApplicationStatusOverlay';
 import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
@@ -46,11 +47,13 @@ const ApplicationStatusOverlayVariant = () => {
       >
         Change Status View 1
       </button>
-      <ApplicationStatusOverlayProvider>
-        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType1} />}
-        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType2} />}
-        {showStatusOverlay && <ApplicationStatusOverlay variant={variantType3} />}
-      </ApplicationStatusOverlayProvider>
+      <ApplicationBase>
+        <ApplicationStatusOverlayProvider>
+          {showStatusOverlay && <ApplicationStatusOverlay variant={variantType1} />}
+          {showStatusOverlay && <ApplicationStatusOverlay variant={variantType2} />}
+          {showStatusOverlay && <ApplicationStatusOverlay variant={variantType3} />}
+        </ApplicationStatusOverlayProvider>
+      </ApplicationBase>
     </>
   );
 };

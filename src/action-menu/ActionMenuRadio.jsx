@@ -7,17 +7,19 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  children: PropTypes.node,
+  actionKey: PropTypes.string.isRequired,
+  icon: PropTypes.element,
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
-  onArrow: PropTypes.func,
+  onArrow: PropTypes.func, // private
 };
 
 const ActionMenu = ({
-  children,
   isDisabled,
   isChecked,
+  label,
   onAction,
   onArrow,
 }) => {
@@ -46,8 +48,9 @@ const ActionMenu = ({
       data-focus-styles-enabled
     >
       <div className={cx('checkbox')} />
+      <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
-        {children}
+        {label}
       </div>
     </li>
   );

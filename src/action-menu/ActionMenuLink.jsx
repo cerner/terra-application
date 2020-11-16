@@ -7,15 +7,19 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  children: PropTypes.node,
+  actionKey: PropTypes.string.isRequired,
+  icon: PropTypes.element,
   isDisabled: PropTypes.bool,
+  label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
   onArrow: PropTypes.func,
 };
 
 const ActionMenuLink = ({
-  children,
+  actionKey,
+  icon,
   isDisabled,
+  label,
   onAction,
   onArrow,
 }) => {
@@ -45,7 +49,10 @@ const ActionMenuLink = ({
         onMouseDown={disableFocusStyles}
         data-focus-styles-enabled
       >
-        {children}
+        <div className={cx('icon')}>{icon}</div>
+        <div className={cx('content')}>
+          {label}
+        </div>
       </a>
     </li>
   );

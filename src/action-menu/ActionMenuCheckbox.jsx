@@ -7,6 +7,8 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  actionKey: PropTypes.string.isRequired,
+  icon: PropTypes.element,
   children: PropTypes.node,
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
@@ -15,9 +17,11 @@ const propTypes = {
 };
 
 const ActionMenu = ({
-  children,
+  actionKey,
+  icon,
   isDisabled,
   isChecked,
+  label,
   onAction,
   onArrow,
 }) => {
@@ -41,8 +45,9 @@ const ActionMenu = ({
       aria-checked={isChecked}
     >
       <div className={cx('checkbox')} />
+      <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
-        {children}
+        {label}
       </div>
     </li>
   );

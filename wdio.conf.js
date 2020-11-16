@@ -9,6 +9,10 @@ if (travis) {
   wdioConfig.host = 'localhost';
 }
 
+wdioConfig.specs = [
+  '/Users/se028266/Github/terra/terra-application/tests/wdio/application-base/application-base-spec.js',
+];
+
 const defaultBefore = wdioConfig.before;
 wdioConfig.before = () => {
   if (defaultBefore) {

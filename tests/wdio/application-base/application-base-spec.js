@@ -1,51 +1,39 @@
 Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
-  describe('breakpoint', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
-    });
+  it('should display the active breakpoint', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.it.validatesElement('with breakpoint', { selector: '#root' });
+    Terra.validates.element('active breakpoint', { selector: '#root' });
   });
 
-  describe('intl', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
-    });
+  it('should display the active locale', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.it.validatesElement('with intl', { selector: '#root' });
+    Terra.validates.element('active locale', { selector: '#root' });
   });
 
-  describe('loading overlay', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
-      browser.click('button#overlay');
-      browser.disableCSSAnimations();
-    });
+  it('should display the application loading overlay', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.it.validatesElement('with overlay', { selector: '#root' });
+    browser.click('button#overlay');
+    browser.disableCSSAnimations();
+
+    Terra.validates.element('loading overlay', { selector: '#root' });
   });
 
-  describe('status view', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
-      browser.click('button#statusView');
-    });
+  it('should display the application status view overlay', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.it.validatesElement('with status view', { selector: '#root' });
+    browser.click('button#statusView');
+
+    Terra.validates.element('status view', { selector: '#root' });
   });
 
-  describe('with error', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
-      browser.click('button#error');
-    });
+  it('should display an error view when the application error boundary is triggered', () => {
+    browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.it.validatesElement('with error', { selector: '#root' });
+    browser.click('button#error');
+
+    Terra.validates.element('error view', { selector: '#root' });
   });
 
   describe('with navigation prompt', () => {
@@ -62,7 +50,6 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
 
     before(() => {
       browser.url('/raw/tests/terra-application/application-base/application-base-test');
-      browser.refresh();
     });
 
     it('presents prompt on unload', () => {

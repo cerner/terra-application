@@ -5,8 +5,6 @@ import Button from 'terra-button';
 import ApplicationModal from '../../../application-modal/ApplicationModal';
 import { PrimaryNavigationLayout, NavigationItem } from '../../../layouts';
 import ApplicationConceptBannerProvider from '../../../application-container/ApplicationConceptBannerProvider';
-import SessionActionsContext from '../../../session/SessionActionsContext';
-import SessionUserContext from '../../../session/SessionUserContext';
 import ModalManager from '../../../modal-manager';
 import { ConceptContext } from '../providers/ConceptProvider';
 
@@ -22,24 +20,9 @@ import NotAPage from '../shared/NotAPage';
 const DemoApplicationNavigationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
 
-  const sessionUser = React.useContext(SessionUserContext);
-  const sessionActions = React.useContext(SessionActionsContext);
-
   const [navigationState, setNavigationState] = React.useState('nav-A');
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
-
-  React.useEffect(() => {
-    function handleEventNavigation(event) {
-      setNavigationState(event.detail);
-    }
-
-    window.addEventListener('terra-application-demo.navigate', handleEventNavigation);
-
-    return () => {
-      window.removeEventListener('terra-application-demo.navigate', handleEventNavigation);
-    };
-  });
 
   return (
     <>
@@ -61,18 +44,12 @@ const DemoApplicationNavigationLayout = () => {
               }
             }}
             utilityItems={[{
-              key: 'lock',
-              text: 'Lock Session',
+              key: 'custom-utility-item',
+              text: 'Custom Utility Item',
+              onSelect: () => {
+                console.log('Custom Utility Item selected');
+              },
             }]}
-            onSelectUtilityItem={(key) => {
-              if (key === 'lock') {
-                sessionActions.lock();
-              }
-            }}
-            onSelectLogout={() => {
-              sessionActions.logOut();
-            }}
-            onSelectSettings={() => {}}
             onSelectHelp={() => {}}
             activeNavigationKey={conceptContext.data ? navigationState : undefined}
             onSelectNavigationItem={(key) => { setNavigationState(key); }}

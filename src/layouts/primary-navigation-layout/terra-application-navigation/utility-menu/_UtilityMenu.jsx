@@ -100,7 +100,9 @@ const UtilityMenu = ({
         } else if (itemKey === utilityMenuHelpKey) {
           onSelectHelp();
         } else {
-          onSelectUtilityItem(itemKey, metaData);
+          const selectedItem = menuItems.filter((item) => item.key === itemKey);
+
+          onSelectUtilityItem(selectedItem[0]);
         }
       }}
       isHeightBounded={isHeightBounded}

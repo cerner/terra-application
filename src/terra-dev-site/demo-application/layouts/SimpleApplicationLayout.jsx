@@ -14,11 +14,6 @@ import Page1 from '../pages/Page1';
 
 import ConceptBanner from '../shared/ConceptBanner';
 
-const userConfig = {
-  name: 'Demo User',
-  initials: 'DU',
-};
-
 const SimpleApplicationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
   const sessionContext = React.useContext(SessionContext);
@@ -34,8 +29,6 @@ const SimpleApplicationLayout = () => {
         modalBanner={conceptContext.data ? <ConceptBanner data={conceptContext.data} isModal /> : undefined}
       >
         <PrimaryNavigationLayout
-          titleConfig={{ title: 'Demo Application' }}
-          userConfig={userConfig}
           extensionItems={[{
             key: 'search',
             icon: <IconSearch />,

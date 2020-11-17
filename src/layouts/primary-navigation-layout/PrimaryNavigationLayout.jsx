@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import IconPadlock from 'terra-icon/lib/icon/IconPadlock';
 
 import { ApplicationContainerContext } from '../../application-container';
 import { PageContainer } from '../../page';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
-import { ApplicationIntlContext } from '../../application-intl';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import SessionUserContext from '../../session/SessionUserContext';
+import SessionActionsContext from '../../session/SessionActionsContext';
 
 import HeadlessLayout from '../embedded-layout/HeadlessLayout';
 import NavigationItem from '../shared/NavigationItem';
@@ -15,17 +15,13 @@ import {
   titleConfigPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
 } from './terra-application-navigation/utils/propTypes';
 
+const UTILITY_ITEM_LOCK = 'terraApplication.primaryNavigationLayout.lock';
+
 const propTypes = {
   /**
    * A string key representing the currently active navigation item.
    */
   activeNavigationKey: PropTypes.string,
-  /**
-   * By default, the PrimaryNavigationLayout will resolve any registered NavigationPrompts prior to
-   * communicating logout selection with `onSelectLogout`. If `disablePromptsForLogout` is provided,
-   * no NavigationPrompts are resolved when logout is selected.
-   */
-  disablePromptsForLogout: PropTypes.bool,
   /**
    * A configuration object with information specifying the creation of the Extension buttons rendered within the
    * ApplicationNavigation header.
@@ -35,12 +31,6 @@ const propTypes = {
    * An element to render within the ApplicationNavigation utility menu, shifted to the drawer at the `medium` breakpoint and below.
    */
   hero: PropTypes.element,
-  /**
-   * The Object (or function that returns an Object) that specifies the messages
-   * used to prompt the user when navigation items are selected while NavigationPrompts
-   * are rendered by the ApplicationNavigation content.
-   */
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
   /**
    * Key/Value pairs associating a string key entry to a Number notification count. The keys must correspond to a
    * navigationItem or extensionItem key provided through their associated props.
@@ -106,6 +96,7 @@ const propTypes = {
   renderPage: PropTypes.func,
   renderLayout: PropTypes.func,
   renderNavigationFallback: PropTypes.func,
+  onSelectLock: PropTypes.func,
   /**
    * A collection of child elements to render within the ApplicationNavigation body.
    */
@@ -115,17 +106,16 @@ const propTypes = {
 const PrimaryNavigationLayout = ({
   children,
   activeNavigationKey,
-  disablePromptsForLogout,
   extensionItems,
   hero,
-  navigationPromptResolutionOptions,
   notifications,
   onDrawerMenuStateChange,
   onSelectExtensionItem,
   onSelectHelp,
-  onSelectLogout: propOnSelectLogout,
+  onSelectLogout,
   onSelectNavigationItem,
   onSelectSettings,
+  onSelectLock,
   onSelectUtilityItem,
   titleConfig,
   userConfig,
@@ -134,25 +124,13 @@ const PrimaryNavigationLayout = ({
   renderLayout,
   renderNavigationFallback,
 }) => {
-  const applicationIntl = React.useContext(ApplicationIntlContext);
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const sessionUser = React.useContext(SessionUserContext);
+  const sessionActions = React.useContext(SessionActionsContext);
 
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
   const lastActiveNavigationKeyRef = React.useRef();
-  const navigationPromptCheckpointRef = React.useRef();
-
-  const onSelectLogout = React.useCallback(() => {
-    if (disablePromptsForLogout) {
-      propOnSelectLogout();
-      return;
-    }
-
-    navigationPromptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
-      propOnSelectLogout();
-    }).catch((e) => { if (e) throw e; });
-  }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
 
   const derivedTitleConfig = React.useMemo(() => {
     if (titleConfig) {
@@ -192,6 +170,28 @@ const PrimaryNavigationLayout = ({
       };
     }
   }, [userConfig, sessionUser]);
+
+  const derivedOnSelectLogout = React.useMemo(() => onSelectLogout || sessionActions?.logOut, [onSelectLogout, sessionActions]);
+  const derivedOnSelectLock = React.useMemo(() => onSelectLock || sessionActions?.lock, [onSelectLock, sessionActions]);
+
+  const derivedUtilityItems = React.useMemo(() => {
+    let updatedUtilityItems = [];
+
+    if (utilityItems) {
+      updatedUtilityItems = updatedUtilityItems.concat(utilityItems);
+    }
+
+    if (derivedOnSelectLock) {
+      updatedUtilityItems.push({
+        key: UTILITY_ITEM_LOCK,
+        icon: <IconPadlock />,
+        text: 'Lock', // TODO intl (from orion-application)
+        onSelect: derivedOnSelectLock,
+      });
+    }
+
+    return updatedUtilityItems;
+  }, [utilityItems, derivedOnSelectLock]);
 
   React.useLayoutEffect(() => {
     if (!contentElementRef.current) {
@@ -312,17 +312,15 @@ const PrimaryNavigationLayout = ({
       onSelectNavigationItem={onSelectNavigationItem}
       extensionItems={extensionItems}
       onSelectExtensionItem={onSelectExtensionItem}
-      utilityItems={utilityItems}
+      utilityItems={derivedUtilityItems}
       onSelectUtilityItem={onSelectUtilityItem}
       onSelectSettings={onSelectSettings}
       onSelectHelp={onSelectHelp}
-      onSelectLogout={propOnSelectLogout && onSelectLogout}
+      onSelectLogout={derivedOnSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
       <HeadlessLayout>
-        <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
-          {content}
-        </NavigationPromptCheckpoint>
+        {content}
       </HeadlessLayout>
     </ApplicationNavigation>
   );

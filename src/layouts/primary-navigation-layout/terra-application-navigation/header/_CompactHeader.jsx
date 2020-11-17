@@ -49,10 +49,6 @@ const propTypes = {
    */
   onSelectExtensionItem: PropTypes.func,
   /**
-   * A function to be executed upon selection of the 'Skip to Content' button.
-   */
-  onSelectSkipToContent: PropTypes.func,
-  /**
    * Array of navigation items used to determine whether or not the Menu button should render with notifications.
    */
   navigationItems: navigationItemsPropType,
@@ -302,7 +298,16 @@ const CompactHeader = ({
         onBlur={() => setUtilitiesIsOpen(false)}
       >
         {utilityItems.map((item) => {
-          const onSelect = onSelectUtilityItem && generateCloseUtilsFunc(onSelectUtilityItem.bind(null, item.key, item.metaData));
+          const onSelect = generateCloseUtilsFunc(() => {
+            if (item.onSelect) {
+              item.onSelect();
+            }
+
+            if (onSelectUtilityItem) {
+              onSelectUtilityItem(item.key, item.metaData);
+            }
+          });
+
           return buildUtilityItem(item.text, item.key, onSelect, utilitiesIsOpen);
         })}
         {onSelectSettings ? (

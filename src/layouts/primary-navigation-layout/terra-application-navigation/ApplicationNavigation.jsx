@@ -214,7 +214,15 @@ const ApplicationNavigation = ({
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}
           utilityItems={utilityItems}
-          onSelectUtilityItem={onSelectUtilityItem ? generateMenuClosingCallback(onSelectUtilityItem) : undefined}
+          onSelectUtilityItem={generateMenuClosingCallback((item) => {
+            if (item.onSelect) {
+              item.onSelect();
+            }
+
+            if (onSelectUtilityItem) {
+              onSelectUtilityItem(item.key, item.metaData);
+            }
+          })}
           notifications={notifications}
         />
       </FocusTrap>
@@ -243,7 +251,15 @@ const ApplicationNavigation = ({
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}
           utilityItems={utilityItems}
-          onSelectUtilityItem={onSelectUtilityItem ? generateMenuClosingCallback(onSelectUtilityItem) : undefined}
+          onSelectUtilityItem={generateMenuClosingCallback((item) => {
+            if (item.onSelect) {
+              item.onSelect();
+            }
+
+            if (onSelectUtilityItem) {
+              onSelectUtilityItem(item.key, item.metaData);
+            }
+          })}
         />
       </Popup>
     );

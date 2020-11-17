@@ -16,14 +16,6 @@ const sessionUserContextShape = PropTypes.shape({
    * The user's last name.
    */
   lastName: PropTypes.string,
-  /**
-   * An object representing the enabled/disabled feature functionality of the application.
-   */
-  features: PropTypes.object.isRequired,
-  /**
-   * An object representing the client capability configurations.
-   */
-  capabilities: PropTypes.object.isRequired,
 });
 
 export default SessionUserContext;

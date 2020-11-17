@@ -31,7 +31,7 @@ const SessionProvider = ({ children }) => {
   });
 
   const sessionActionsContextValue = React.useMemo(() => ({
-    logOut: () => {
+    logout: () => {
       checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
         setState({ isLoggedIn: false, isLoggedOut: true, isLocked: false });
       });
@@ -70,7 +70,7 @@ const SessionProvider = ({ children }) => {
             <Button text="Unlock Session" onClick={() => { setState({ isLoggedIn: true, isLocked: false, isLoggedOut: false }); }} />
             <Button
               text="Log Out"
-              onClick={sessionActionsContextValue.logOut}
+              onClick={sessionActionsContextValue.logout}
             />
           </main>
         </PrimaryNavigationLayout>
@@ -87,7 +87,7 @@ const SessionProvider = ({ children }) => {
             onClick: () => { window.location.reload(); },
           }, {
             text: 'Logout',
-            onClick: () => { sessionActionsContextValue.logOut(); },
+            onClick: () => { sessionActionsContextValue.logout(); },
           }]}
           >
             {children}

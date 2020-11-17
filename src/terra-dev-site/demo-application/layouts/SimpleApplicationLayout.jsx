@@ -49,7 +49,7 @@ const SimpleApplicationLayout = () => {
             }
           }}
           onSelectLogout={() => {
-            sessionContext.logOut();
+            sessionContext.logout();
           }}
           onSelectSettings={() => {}}
           onSelectHelp={() => {}}

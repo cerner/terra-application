@@ -171,7 +171,7 @@ const PrimaryNavigationLayout = ({
     }
   }, [userConfig, sessionUser]);
 
-  const derivedOnSelectLogout = React.useMemo(() => onSelectLogout || sessionActions?.logOut, [onSelectLogout, sessionActions]);
+  const derivedOnSelectLogout = React.useMemo(() => onSelectLogout || sessionActions?.logout, [onSelectLogout, sessionActions]);
   const derivedOnSelectLock = React.useMemo(() => onSelectLock || sessionActions?.lock, [onSelectLock, sessionActions]);
 
   const derivedUtilityItems = React.useMemo(() => {

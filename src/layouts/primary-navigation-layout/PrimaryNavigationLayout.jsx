@@ -6,6 +6,7 @@ import { PageContainer } from '../../page';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../../navigation-prompt';
 import { ApplicationIntlContext } from '../../application-intl';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
+import SessionUserContext from '../../session/SessionUserContext';
 
 import HeadlessLayout from '../embedded-layout/HeadlessLayout';
 import NavigationItem from '../shared/NavigationItem';
@@ -135,6 +136,7 @@ const PrimaryNavigationLayout = ({
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const applicationContainer = React.useContext(ApplicationContainerContext);
+  const sessionUser = React.useContext(SessionUserContext);
 
   const contentElementRef = React.useRef();
   const pageContainerPortalsRef = React.useRef({});
@@ -151,6 +153,45 @@ const PrimaryNavigationLayout = ({
       propOnSelectLogout();
     }).catch((e) => { if (e) throw e; });
   }, [applicationIntl, disablePromptsForLogout, navigationPromptResolutionOptions, propOnSelectLogout]);
+
+  const derivedTitleConfig = React.useMemo(() => {
+    if (titleConfig) {
+      return titleConfig;
+    }
+
+    return {
+      title: applicationContainer.applicationName,
+    };
+  }, [titleConfig, applicationContainer.applicationName]);
+
+  const derivedUserConfig = React.useMemo(() => {
+    if (userConfig) {
+      return userConfig;
+    }
+
+    if (sessionUser) {
+      let name = [];
+      let initials = [];
+      if (sessionUser.firstName && sessionUser.firstName.length) {
+        initials.push(sessionUser.firstName[0]);
+        name.push(sessionUser.firstName);
+      }
+
+      if (sessionUser.lastName && sessionUser.lastName.length) {
+        initials.push(sessionUser.lastName[0]);
+        name.push(sessionUser.lastName);
+      }
+
+      initials = initials.join('');
+      name = name.join(' ');
+
+      return {
+        name,
+        initials,
+        detail: sessionUser.username,
+      };
+    }
+  }, [userConfig, sessionUser]);
 
   React.useLayoutEffect(() => {
     if (!contentElementRef.current) {
@@ -266,9 +307,9 @@ const PrimaryNavigationLayout = ({
       activeNavigationItemKey={activeNavigationKey}
       hero={hero}
       notifications={notifications}
-      titleConfig={titleConfig || { title: applicationContainer.applicationName }}
+      titleConfig={derivedTitleConfig}
+      userConfig={derivedUserConfig}
       onSelectNavigationItem={onSelectNavigationItem}
-      userConfig={userConfig}
       extensionItems={extensionItems}
       onSelectExtensionItem={onSelectExtensionItem}
       utilityItems={utilityItems}

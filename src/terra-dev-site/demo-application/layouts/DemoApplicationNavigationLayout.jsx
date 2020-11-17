@@ -50,10 +50,6 @@ const DemoApplicationNavigationLayout = () => {
       >
         <ModalManager>
           <PrimaryNavigationLayout
-            userConfig={{
-              name: `${sessionUser.firstName} ${sessionUser.lastName}`,
-              initials: `${sessionUser.firstName[0]?.toUpperCase()}${sessionUser.lastName[0]?.toUpperCase()}`,
-            }}
             extensionItems={[{
               key: 'search',
               icon: <IconSearch />,

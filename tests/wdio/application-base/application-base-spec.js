@@ -20,7 +20,7 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     Terra.validates.element('loading overlay', { selector: '#root' });
   });
 
-  it('should render the application status view overlay', () => {
+  it('should render the application status overlay', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     browser.click('button#statusView');

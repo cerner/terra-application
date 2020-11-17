@@ -1,10 +1,10 @@
 Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
   describe('Status View', () => {
-    it('renders with all props', () => {
+    it('should render a status overlay with all props', () => {
       browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-all-props');
-    });
 
-    Terra.it.validatesElement('all props', { selector: '#root' });
+      Terra.validates.element('all props', { selector: '#root' });
+    });
   });
 
   describe('Status View variant', () => {
@@ -12,34 +12,36 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
       browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-variant');
     });
 
-    Terra.it.validatesElement('initial', { selector: '#root' });
-
-    it('renders with no-data variant', () => {
-      browser.click('#no-data-button');
+    it('should render the initial view', () => {
+      Terra.validates.element('initial', { selector: '#root' });
     });
 
-    Terra.it.validatesElement('no-data', { selector: '#root' });
+    it('should render with no-data variant', () => {
+      browser.click('#no-data-button');
 
-    it('renders with error variant', () => {
+      Terra.validates.element('no-data', { selector: '#root' });
+    });
+
+    it('should render with error variant', () => {
       browser.click('#reset-button');
       browser.click('#error-button');
+
+      Terra.validates.element('error', { selector: '#root' });
     });
 
-    Terra.it.validatesElement('error', { selector: '#root' });
-
-    it('renders with no-matching-results variant', () => {
+    it('should render with no-matching-results variant', () => {
       browser.click('#reset-button');
       browser.click('#no-matching-results-button');
+
+      Terra.validates.element('no-matching-results', { selector: '#root' });
     });
 
-    Terra.it.validatesElement('no-matching-results', { selector: '#root' });
-
-    it('renders with not-authorized variant', () => {
+    it('should render with not-authorized variant', () => {
       browser.click('#reset-button');
       browser.click('#not-authorized-button');
-    });
 
-    Terra.it.validatesElement('not-authorized', { selector: '#root' });
+      Terra.validates.element('not-authorized', { selector: '#root' });
+    });
 
     it('should make background elements inert when status view is overlaid', () => {
       browser.click('#reset-button');
@@ -60,23 +62,23 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
       browser.url('/raw/tests/terra-application/application-status-overlay/status-overlay-priority');
     });
 
-    it('renders with last registered status view', () => {
+    it('should render with last registered status view', () => {
       browser.click('#show-status');
+
+      Terra.validates.element('initial', { selector: '#root' });
     });
 
-    Terra.it.validatesElement('initial', { selector: '#root' });
-
-    it('renders with same last registered status view even after updates to other status views', () => {
+    it('should render with same last registered status view even after updates to other status views', () => {
       browser.click('#button1');
       browser.click('#button2');
+
+      Terra.validates.element('other status view updates', { selector: '#root' });
     });
 
-    Terra.it.validatesElement('other status view updates', { selector: '#root' });
-
-    it('renders with updated last registered status view', () => {
+    it('render with updated last registered status view', () => {
       browser.click('#button3');
-    });
 
-    Terra.it.validatesElement('updated last registered status view', { selector: '#root' });
+      Terra.validates.element('updated last registered status view', { selector: '#root' });
+    });
   });
 });

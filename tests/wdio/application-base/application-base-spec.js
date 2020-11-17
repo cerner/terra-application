@@ -1,17 +1,17 @@
 Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
-  it('should display the active breakpoint', () => {
+  it('should render the active breakpoint', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     Terra.validates.element('active breakpoint', { selector: '#root' });
   });
 
-  it('should display the active locale', () => {
+  it('should render the active locale', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     Terra.validates.element('active locale', { selector: '#root' });
   });
 
-  it('should display the application loading overlay', () => {
+  it('should render the application loading overlay', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     browser.click('button#overlay');
@@ -20,20 +20,20 @@ Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
     Terra.validates.element('loading overlay', { selector: '#root' });
   });
 
-  it('should display the application status view overlay', () => {
+  it('should render the application status view overlay', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     browser.click('button#statusView');
 
-    Terra.validates.element('status view', { selector: '#root' });
+    Terra.validates.element('status overlay', { selector: '#root' });
   });
 
-  it('should display an error view when the application error boundary is triggered', () => {
+  it('should render the application error boundary', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
     browser.click('button#error');
 
-    Terra.validates.element('error view', { selector: '#root' });
+    Terra.validates.element('error boundary', { selector: '#root' });
   });
 
   describe('with navigation prompt', () => {

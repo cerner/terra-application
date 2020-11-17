@@ -1,16 +1,13 @@
 Terra.describeViewports('ApplicationErrorBoundary', ['large'], () => {
-  describe('Status view management', () => {
-    before(() => {
-      browser.url('/raw/tests/terra-application/application-error-boundary/error-boundary-test');
-      browser.moveToObject('#root', 0, 0);
-    });
+  it('should render the application error boundary', () => {
+    browser.url('/raw/tests/terra-application/application-error-boundary/error-boundary-test');
 
-    Terra.it.validatesElement('initial', { selector: '#root' });
+    browser.moveToObject('#root', 0, 0);
 
-    it('shows the status view when error occurs', () => {
-      browser.click('button');
-    });
+    Terra.validates.element('initial', { selector: '#root' });
 
-    Terra.it.validatesElement('with error', { selector: '#root' });
+    browser.click('button');
+
+    Terra.validates.element('error boundary', { selector: '#root' });
   });
 });

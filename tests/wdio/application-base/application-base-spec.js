@@ -1,14 +1,8 @@
 Terra.describeViewports('ApplicationBase', ['small', 'large'], () => {
-  it('should render the active breakpoint', () => {
+  it('should render the active breakpoint and locale', () => {
     browser.url('/raw/tests/terra-application/application-base/application-base-test');
 
-    Terra.validates.element('active breakpoint', { selector: '#root' });
-  });
-
-  it('should render the active locale', () => {
-    browser.url('/raw/tests/terra-application/application-base/application-base-test');
-
-    Terra.validates.element('active locale', { selector: '#root' });
+    Terra.validates.element('active breakpoint and locale', { selector: '#root' });
   });
 
   it('should render the application loading overlay', () => {

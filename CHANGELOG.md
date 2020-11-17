@@ -8,6 +8,9 @@
 * Fixed
   * Fixed build failures due to the react/sort-comp rule
 
+* Changed
+  * Removed deprecated Terra.it assertions and replaced with Terra.validates assertions
+
 ## 1.40.0 - (October 27, 2020)
 
 * Added

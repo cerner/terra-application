@@ -75,7 +75,7 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
       Terra.validates.element('other status view updates', { selector: '#root' });
     });
 
-    it('render with updated last registered status view', () => {
+    it('should render with updated last registered status view', () => {
       browser.click('#button3');
 
       Terra.validates.element('updated last registered status view', { selector: '#root' });

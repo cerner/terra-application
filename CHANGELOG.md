@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.41.0 - (November 17, 2020)
+
 * Added
   * Added new file `browserslistrc` for Browserslist.
 

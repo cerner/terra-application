@@ -1,0 +1,70 @@
+:local {
+  .hidden {
+    background-color: #fff;
+    color: #007ee0;
+    cursor: pointer;
+    display: flex;
+    font-size: 1rem;
+    line-height: 1.4;
+    font-weight: normal;
+    margin-left: 0;
+    padding: 0.643rem 1.071rem;
+    min-width: 8.357rem;
+
+    span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      word-break: normal;
+      word-wrap: normal;
+    }
+
+    &:hover {
+      background-color: aliceblue;
+      background-image: linear-gradient(to bottom, #c8cacb, #c8cacb);
+      background-size: 100% 4px;
+      color:  #000;
+    }
+
+    &:focus {
+      color: inherit;
+      outline: 2px dashed #000;
+      outline-offset: -2px;
+      z-index: 1;
+    }
+
+    &.is-active {
+      background-size: 100% 4px;
+      box-shadow: none;
+      color: #000;
+      font-weight: normal;
+      overflow: hidden; //forces :before background-image to honor border-radius clipping.
+      position: relative;
+  
+      &:hover {
+        background-color: aliceblue;
+
+        &:focus {
+          background-color: aliceblue;
+        }
+      }
+
+      &:first-child {
+        margin-left: 0;
+      }
+  
+      &:last-child {
+        border-width: 0;
+      }
+    }
+
+    &.is-text-only {
+      min-width: 7.143rem;
+      padding: 0.643rem 1.071rem;
+    }
+  }
+
+  .check {
+    margin-right: 5px;
+  }
+}

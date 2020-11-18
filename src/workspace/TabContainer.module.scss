@@ -1,0 +1,21 @@
+:local {
+  .tab-container {
+    border-bottom-color: #dddedf;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    display: flex;
+    flex: 1 1 auto;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 0;
+    width: 100%;
+
+    &:focus {
+      outline: none;
+    }
+
+    &[data-tab-is-calculating="true"] {
+      visibility: hidden;
+    }
+  }
+}

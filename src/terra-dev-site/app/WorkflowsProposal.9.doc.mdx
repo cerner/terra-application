@@ -551,12 +551,18 @@ TODO 10/21
 * Investigate Close and Escape implementation for modals
   * need to validate dropdowns/select 
 * Sync up on F6 functionality
-* Move over orion-application Features
 * InteractionBlockOverlay styles/accessibility
   * Loading indicator? fade-in styles? Focusable? 
 * "Can Navigate"/"Is Modal Open" API (perhaps scope out)
 * think about scroll persistance with unmounting navigation content
   * would need to be more eager about caching scroll positions
+  * might add checks to layouts to cache prior to active nav item changing
+  * Pages might need something similar but it'll be trickier
 * Menu API is busted for checkmarks
+  * Dave is fixing this, will need to consume new ActionMenu
 * check nested PageContainer behavior
   * simplify PageContext API for Page/PageContainer interaction (onPageActivate?)
+* Move over orion-application Features
+  * About Box / OrionSessionProviderContext stuff
+  * OrionRequestor mocking
+* Splash Screen

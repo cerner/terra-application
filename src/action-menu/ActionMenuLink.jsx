@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './utils';
+import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
@@ -13,6 +13,7 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
   onArrow: PropTypes.func,
+  onChar: PropTypes.func,
 };
 
 const ActionMenuLink = ({
@@ -22,6 +23,7 @@ const ActionMenuLink = ({
   label,
   onAction,
   onArrow,
+  onChar,
 }) => {
   const attrs = {};
   if (isDisabled) {
@@ -29,7 +31,7 @@ const ActionMenuLink = ({
   } else {
     attrs.tabIndex = '-1';
     attrs.onClick = onAction;
-    attrs.onKeyDown = generateOnKeyDown('derp', onAction, onArrow);
+    attrs.onKeyDown = generateOnKeyDown(actionKey, onAction, onArrow, onChar);
     attrs.onBlur = enableFocusStyles;
     attrs.onMouseDown = disableFocusStyles;
     attrs['data-focus-styles-enabled'] = true;
@@ -43,11 +45,7 @@ const ActionMenuLink = ({
       <a
         {...attrs}
         role="menuitem"
-        onClick={onAction}
-        onKeyDown={generateOnKeyDown('derp', onAction, onArrow)}
-        onBlur={enableFocusStyles}
-        onMouseDown={disableFocusStyles}
-        data-focus-styles-enabled
+        data-action-menu-key={actionKey}
       >
         <div className={cx('icon')}>{icon}</div>
         <div className={cx('content')}>

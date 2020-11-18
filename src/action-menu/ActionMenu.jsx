@@ -1,6 +1,12 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import {
+  itemFromArrowKey,
+  itemFromChar,
+  flattenActionItems,
+} from './_ActionUtils';
+
 import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
@@ -11,47 +17,35 @@ const propTypes = {
   children: PropTypes.node,
 };
 
-const unpackKeys = children => {
-  const newKeys = [];
-  const newData = {};
-  React.Children.forEach(children, child => {
-    if (child.props.actionKey) {
-      newData[child.props.actionKey] = newKeys.length;
-      newKeys.push({
-        actionKey: child.props.actionKey,
-        isDisabled: child.props.isDisabled,
-      });
-    } else if (child.props.children)  {
-      newKeys.push(...getKeys(child.props.children));
-    }
-  });
-  return { keys: newKeys, keyData: newData };
-}
-
-// const getNextKey = (key, direction) => {
-//   const currentKey = keys[data[key]];
-// };
-
 const ActionMenu = ({
   children,
 }) => {
   const menuRef = useRef();
-  const { keys, keyData } = unpackKeys(children);
+  const items = flattenActionItems(children);
 
-  const getNextKey = (key, direction) => {
-    const currentKey = keys[keyData[key]];
-  };
+  const focusItem = item => {
+    if (!item || !menuRef.current) {
+      return;
+    }
 
-  const onArrow = (key, direction) => {
-    const nextKey = getNextKey(key, direction);
-    const element = menuRef.current ? menuRef.current.getElementById(nextKey) : undefined;
+    const element = menuRef.current.querySelector(`[data-action-menu-key="${item.actionKey}"]`);
     if (element) {
       element.focus();
     }
   };
+
+  const onArrow = (key, direction) => {
+    const item = itemFromArrowKey(key, items, direction);
+    if (item) {
+      focusItem(item);
+    }
+  };
   
   const onChar = (key, char) => {
-    //
+    const item = itemFromChar(key, items, char);
+    if (item) {
+      focusItem(item);
+    }
   };
 
   return (

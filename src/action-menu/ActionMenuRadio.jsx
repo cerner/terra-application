@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './utils';
+import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
@@ -14,14 +14,17 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
   onArrow: PropTypes.func, // private
+  onChar: PropTypes.func, // private
 };
 
-const ActionMenu = ({
+const ActionMenuRadio = ({
+  actionKey,
   isDisabled,
   isChecked,
   label,
   onAction,
   onArrow,
+  onChar,
 }) => {
   const attrs = {};
   if (isDisabled) {
@@ -29,7 +32,7 @@ const ActionMenu = ({
   } else {
     attrs.tabIndex = '-1';
     attrs.onClick = onAction;
-    attrs.onKeyDown = generateOnKeyDown('derp', onAction, onArrow);
+    attrs.onKeyDown = generateOnKeyDown(actionKey, onAction, onArrow, onChar);
     attrs.onBlur = enableFocusStyles;
     attrs.onMouseDown = disableFocusStyles;
     attrs['data-focus-styles-enabled'] = true;
@@ -41,11 +44,7 @@ const ActionMenu = ({
       className={cx('action-radio', 'is-checked', 'is-disabled')}
       role="menuitemradio"
       aria-checked={isChecked}
-      onClick={onSelect}
-      onKeyDown={generateKeyDownSelection(onSelect)}
-      onBlur={enableFocusStyles}
-      onMouseDown={disableFocusStyles}
-      data-focus-styles-enabled
+      data-action-menu-key={actionKey}
     >
       <div className={cx('checkbox')} />
       <div className={cx('icon')}>{icon}</div>
@@ -56,6 +55,6 @@ const ActionMenu = ({
   );
 };
 
-ActionMenu.propTypes = propTypes;
+ActionMenuRadio.propTypes = propTypes;
 
-export default ActionMenu;
+export default ActionMenuRadio;

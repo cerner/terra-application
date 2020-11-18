@@ -16,7 +16,6 @@ const ActionMenuGroup = ({
     <li
       role="menuitem"
       className={cx('action-item')}
-      tabIndex="0"
     >
       <ul
         className={cx('action-sub-menu')}

@@ -2,8 +2,10 @@
 
 :local {
   .page-header-container {
-    border-bottom: 1px solid #c7cacb;
-    box-shadow: 0 1px 0 0 #fefffe;
+    // border-bottom: 2px solid #c7cacb;
+    // box-shadow: inset -3px -5px 0px -3px #C7CACB, inset -3px -4px 0px -3px #fefffe;
+    box-shadow: inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB;
+
     padding: 5px 0;
 
     > *:nth-child(n+2) {
@@ -62,6 +64,7 @@
   .actions-container {
     display: flex;
     flex: 0 0 auto;
+    min-height: 30px;
   }
 
   .actions-divider {

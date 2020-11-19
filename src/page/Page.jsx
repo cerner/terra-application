@@ -239,39 +239,39 @@ const Page = ({
 
   return (
     ReactDOM.createPortal((
-      <div style={{ height: '100%', width: '100%', overflowX: 'auto' }}>
-        <div className={cx('page')} data-application-overflow-container>
-          <div className={cx('header')}>
-            {headerShouldBeRendered ? (
-              <PageHeader
-                onBack={onRequestClose && safelyRequestClose}
-                label={label}
-                actions={actions}
-                menu={menu}
-                hasLoadingOverlay={loadingOverlayIsActive}
-              >
-                {toolbar}
-                <NotificationBanners />
-              </PageHeader>
-            ) : (
-              <>
-                {toolbar}
-                <NotificationBanners />
-              </>
-            )}
-          </div>
-          <div className={cx('content')}>
-            <PageContext.Provider value={childPageContextValue}>
-              <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
-                <NotificationBannerProvider>
-                  <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
-                    <ApplicationStatusOverlayProvider>
-                      <div
-                        tabIndex="0" // TODO validate need for this
-                        className={cx('overflow-content', 'page-background')}
-                        data-application-overflow-container
-                        ref={(ref) => { if (overflowElementRefCallback) { overflowElementRefCallback(ref); } }}
-                      >
+      <div className={cx('page')}>
+        <div className={cx('header')}>
+          {headerShouldBeRendered ? (
+            <PageHeader
+              onBack={onRequestClose && safelyRequestClose}
+              label={label}
+              actions={actions}
+              menu={menu}
+              hasLoadingOverlay={loadingOverlayIsActive}
+            >
+              {toolbar}
+              <NotificationBanners />
+            </PageHeader>
+          ) : (
+            <>
+              {toolbar}
+              <NotificationBanners />
+            </>
+          )}
+        </div>
+        <div className={cx('content')}>
+          <PageContext.Provider value={childPageContextValue}>
+            <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+              <NotificationBannerProvider>
+                <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
+                  <ApplicationStatusOverlayProvider>
+                    <div
+                      tabIndex="0" // TODO validate need for this
+                      className={cx('overflow-content', 'page-background')}
+                      data-application-overflow-container
+                      ref={(ref) => { if (overflowElementRefCallback) { overflowElementRefCallback(ref); } }}
+                    >
+                      <div className={cx('width-normalizer')}>
                         <VisuallyHiddenText
                           aria-hidden
                           id={pageLabelId}
@@ -279,12 +279,12 @@ const Page = ({
                         />
                         {children}
                       </div>
-                    </ApplicationStatusOverlayProvider>
-                  </ApplicationLoadingOverlayProvider>
-                </NotificationBannerProvider>
-              </NavigationPromptCheckpoint>
-            </PageContext.Provider>
-          </div>
+                    </div>
+                  </ApplicationStatusOverlayProvider>
+                </ApplicationLoadingOverlayProvider>
+              </NotificationBannerProvider>
+            </NavigationPromptCheckpoint>
+          </PageContext.Provider>
         </div>
       </div>
     ), portalNode)

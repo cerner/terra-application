@@ -10,18 +10,16 @@ const propTypes = {
   actionKey: PropTypes.string.isRequired,
   icon: PropTypes.element,
   isDisabled: PropTypes.bool,
-  isChecked: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
-  onArrow: PropTypes.func, // private
-  onChar: PropTypes.func, // private
+  onArrow: PropTypes.func,
+  onChar: PropTypes.func,
 };
 
-const ActionMenuRadio = ({
+const ActionMenuItem = ({
   actionKey,
   icon,
   isDisabled,
-  isChecked,
   label,
   onAction,
   onArrow,
@@ -42,12 +40,10 @@ const ActionMenuRadio = ({
   return (
     <li
       {...attrs}
-      className={cx('action-radio', 'is-checked', 'is-disabled')}
-      role="menuitemradio"
-      aria-checked={isChecked}
+      className={cx('action-checkbox', 'is-checked', 'is-disabled')}
+      role="menuitem"
       data-action-menu-key={actionKey}
     >
-      <div className={cx('checkbox')} />
       <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
         {label}
@@ -56,6 +52,6 @@ const ActionMenuRadio = ({
   );
 };
 
-ActionMenuRadio.propTypes = propTypes;
+ActionMenuItem.propTypes = propTypes;
 
-export default ActionMenuRadio;
+export default ActionMenuItem;

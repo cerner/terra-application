@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import {
+  generateOnKeyDown,
   itemFromArrowKey,
   itemFromChar,
   flattenActionItems,
@@ -12,13 +13,15 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  ariaLabel: PropTypes.string,isRequired,
-  id: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string.isRequired,
   children: PropTypes.node,
+  id: PropTypes.string.isRequired,
 };
 
 const ActionMenu = ({
+  ariaLabel,
   children,
+  id,
 }) => {
   const menuRef = useRef();
   const items = flattenActionItems(children);
@@ -55,6 +58,7 @@ const ActionMenu = ({
       tabIndex="0"
       aria-label={ariaLabel}
       ref={menuRef}
+      onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
     >
       {React.Children.map(children, child => React.cloneElement(
         child,
@@ -65,6 +69,5 @@ const ActionMenu = ({
 };
 
 ActionMenu.propTypes = propTypes;
-ActionMenu.defaultProps = defaultProps;
 
 export default ActionMenu;

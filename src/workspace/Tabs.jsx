@@ -4,8 +4,14 @@ import classNames from 'classnames/bind';
 import Button from 'terra-button';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
-import Menu from 'terra-menu';
+// import Menu from 'terra-menu';
+import Popup from 'terra-popup';
 import TabContainer from './_TabContainer';
+import {
+  ActionMenu,
+  ActionMenuRadio,
+} from '../action-menu';
+
 import styles from './Tabs.module.scss';
 
 const cx = classNames.bind(styles);
@@ -38,13 +44,21 @@ const getAssociatedPanelId = (id, tabKey) => {
 
 const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => {
   return options.map(option => (
-    <Menu.Item
+    // <Menu.Item
+    //   key={option.key}
+    //   text={option.text}
+    //   isSelected={option.key === size}
+    //   isSelectable
+    //   isSelected={option.isDisabled}
+    //   onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
+    // />
+    <ActionMenuRadio
       key={option.key}
-      text={option.text}
-      isSelected={option.key === size}
-      isSelectable
-      isSelected={option.isDisabled}
-      onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
+      actionKey={option.key}
+      label={option.text}
+      isChecked={option.key === size}
+      isDisabled={option.isDisabled}
+      onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
     />
   ));
 };
@@ -132,15 +146,30 @@ const Tabs = ({
       if (isMenuOpen) {
         sizeButton = (
           <>
-            {button}
-            <Menu
+            {sizeButton}
+            {/* <Menu
               isOpen
               targetRef={() => sizeMenuRef.current}
               onRequestClose={() => { setIsMenuOpen(false); }}
               contentWidth="240"
             >
               {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-            </Menu>
+            </Menu> */}
+            <Popup
+              isOpen
+              targetRef={() => sizeMenuRef.current}
+              onRequestClose={() => { setIsMenuOpen(false); }}
+              contentHeight="auto"
+              contentWidth="240"
+              isContentFocusDisabled
+            >
+              <ActionMenu
+                id="monkey-derp"
+                ariaLabel="Pick A Size!!"
+              >
+                {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+              </ActionMenu>
+            </Popup>
           </>
         );
       }

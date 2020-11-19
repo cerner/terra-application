@@ -1,5 +1,14 @@
 import React from 'react';
-import { KEY_RIGHT, KEY_LEFT, KEY_HOME } from "keycode-js";
+import {
+  KEY_RETURN,
+  KEY_SPACE,
+  KEY_RIGHT,
+  KEY_LEFT,
+  KEY_UP,
+  KEY_DOWN,
+  KEY_HOME,
+  KEY_END,
+} from "keycode-js";
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
@@ -31,33 +40,40 @@ const generateOnKeyDown = (key, onAction, onArrow, onChar)  => (
       return;
     }
 
+    let shouldPrevent = false;
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
-      event.preventDefault();
+      shouldPrevent = true;
       onAction(key);
     } else if (event.nativeEvent.keyCode === KEY_UP || event.nativeEvent.keyCode === KEY_LEFT) {
-      event.preventDefault();
+      shouldPrevent = true;
       onArrow(key, 'previous');
     } else if (event.nativeEvent.keyCode === KEY_DOWN || event.nativeEvent.keyCode === KEY_RIGHT) {
-      event.preventDefault();
+      shouldPrevent = true;
       onArrow(key, 'next');
     } else if (event.nativeEvent.keyCode === KEY_HOME) {
-      event.preventDefault();
+      shouldPrevent = true;
       onArrow(key, 'first');
     } else if (event.nativeEvent.keyCode === KEY_END) {
-      event.preventDefault();
+      shouldPrevent = true;
       onArrow(key, 'last');
     } else {
       const char = event.key;
       if (isValidChar(char)) {
-        onChar(char);
+        shouldPrevent = true;
+        onChar(key, char);
       }
+    }
+
+    if (shouldPrevent) {
+      event.preventDefault();
+      event.stopPropagation();
     }
   }
 );
 
 
 const itemsByChar = (char, items) => {
-  return items.filter(item => item.label.charAt(0).toLowerCase === char.toLowerCase());
+  return items.filter(item => item.label.charAt(0).toLowerCase() === char.toLowerCase());
 };
 
 const indexByKey = (key, items) => {
@@ -74,13 +90,13 @@ const itemFromArrowKey = (key, items, direction) => {
   } else if (direction === 'last') {
     newIndex = maxIndex;
   } else if (direction === 'next') {
-    if (currentIndex === maxIndex) {
+    if (currentIndex === maxIndex || currentIndex < 0) {
       newIndex = 0;
     } else {
       newIndex = currentIndex + 1;
     }
   } else if (direction === 'previous') {
-    if (currentIndex === 0) {
+    if (currentIndex <= 0) {
       newIndex = maxIndex;
     } else {
       newIndex = currentIndex - 1;
@@ -92,7 +108,7 @@ const itemFromArrowKey = (key, items, direction) => {
 
 const itemFromChar = (key, items, char) => {
   const charMatches = itemsByChar(char, items);
-  const matchCount = charItems.length;
+  const matchCount = charMatches.length;
   if (!matchCount) {
     return;
   }
@@ -103,7 +119,7 @@ const itemFromChar = (key, items, char) => {
     newIndex = currentIndex + 1;
   }
 
-  return charItems[newIndex];
+  return charMatches[newIndex];
 };
 
 const flattenActionItems = children => {

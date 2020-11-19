@@ -9,12 +9,12 @@ const cx = classNames.bind(styles);
 const propTypes = {
   actionKey: PropTypes.string.isRequired,
   icon: PropTypes.element,
-  children: PropTypes.node,
   isDisabled: PropTypes.bool,
   isChecked: PropTypes.bool,
-  onAction: PropTypes.func,
-  onArrow: PropTypes.func,
-  onChar: PropTypes.func,
+  label: PropTypes.string.isRequired,
+  onAction: PropTypes.func, // private
+  onArrow: PropTypes.func, // private
+  onChar: PropTypes.func, // private
 };
 
 const ActionMenuCheckbox = ({
@@ -57,6 +57,5 @@ const ActionMenuCheckbox = ({
 };
 
 ActionMenuCheckbox.propTypes = propTypes;
-ActionMenuCheckbox.defaultProps = defaultProps;
 
 export default ActionMenuCheckbox;

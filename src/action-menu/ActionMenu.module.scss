@@ -1,6 +1,7 @@
 :local {
   .action-menu {
     background-color: #fff;
+    outline: none;
     padding: 5px;
   }
 
@@ -20,13 +21,17 @@
     color: #000;
     display: flex;
     flex-direction: row;
-    margin-top: 5px;
+    // margin-top: 5px;
   }
 
   .action-checkbox,
   .action-radio,
   .action-link {
     border-bottom: 1px solid #000;
+
+    &:last-child {
+      border-bottom: 0;
+    }
   }
 
   .checkbox {

@@ -94,7 +94,7 @@ const UtilityMenu = ({
       userConfig={userConfig}
       customContent={hero}
       menuItems={menuItems}
-      onSelectMenuItem={(itemKey, metaData) => {
+      onSelectMenuItem={(itemKey) => {
         if (itemKey === utilityMenuSettingsKey) {
           onSelectSettings();
         } else if (itemKey === utilityMenuHelpKey) {

@@ -1,17 +1,25 @@
 @import '~terra-mixins/lib/Mixins';
 
 :local {
+  .page-header-container {
+    border-bottom: 1px solid #c7cacb;
+    box-shadow: 0 1px 0 0 #fefffe;
+    padding: 5px 0;
+
+    > *:nth-child(n+2) {
+      margin-top: 5px;
+      border-radius: 3px;
+      overflow: hidden;
+    }
+  }
+
   .page-layout-header {
     align-items: center;
-    background-color: #fff;
-    border-bottom: 1px solid black;
 
     display: flex;
     flex-wrap: nowrap;
 
-
     overflow: hidden;
-    padding: 0 5px;
     width: 100%;
   }
 
@@ -44,11 +52,11 @@
 
   .label-container {
     flex: 1 1 auto;
-    padding: 10px 0;
+    // padding: 10px 0;
   }
 
   .label-container:first-child {
-    padding-left: 5px;
+    // padding-left: 5px;
   }
 
   .actions-container {

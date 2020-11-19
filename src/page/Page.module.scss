@@ -2,6 +2,7 @@
 
 :local {
   .page {
+    background-color: #f3f4f3;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -9,13 +10,20 @@
     position: relative;
     width: 100%;
     z-index: 0;
+    overflow-x: auto;
 
-    > .header {
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+
+    .header {
       flex: 0 0 auto;
+      overflow-y: scroll;
+      padding: 0 10px;
       z-index: 0;
     }
 
-    > .content {
+    .content {
       flex: 1 1 auto;
       height: 100%;
       min-height: 50px;
@@ -30,18 +38,14 @@
     display: block; // VERY IMPORTANT FOR IE
     height: 100%;
     outline: none;
-    overflow: auto;
+    overflow-x: auto;
+    overflow-y: scroll;
+    padding: 10px;
     position: relative;
     width: 100%;
 
     &:focus {
       outline: none;
-    }
-  }
-
-  .width-normalizer {
-    @include terra-mq-medium-up {
-      min-width: 768px;
     }
   }
 }

@@ -58,6 +58,7 @@ const propTypes = {
    * will not be rendered.
    */
   onRequestClose: PropTypes.func,
+  overflowElementRefCallback: PropTypes.func,
   /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
@@ -84,6 +85,7 @@ const Page = ({
   menu,
   toolbar,
   onRequestClose,
+  overflowElementRefCallback,
   requestClosePromptIsDisabled,
   preferHeaderIsHidden,
   children,
@@ -237,34 +239,38 @@ const Page = ({
 
   return (
     ReactDOM.createPortal((
-      <div className={cx('page')}>
-        <div className={cx('header')}>
-          {headerShouldBeRendered && (
-            <PageHeader
-              onBack={onRequestClose && safelyRequestClose}
-              label={label}
-              actions={actions}
-              menu={menu}
-              hasLoadingOverlay={loadingOverlayIsActive}
-            />
-          )}
-          {toolbar}
-          <NotificationBanners />
-        </div>
-        <div className={cx('content')}>
-          <PageContext.Provider value={childPageContextValue}>
-            <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
-              <NotificationBannerProvider>
-                <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
-                  <ApplicationStatusOverlayProvider>
-                    <div
-                      tabIndex="0" // TODO validate need for this
-                      className={cx('overflow-content', 'page-background')}
-                      data-application-overflow-container
-                    >
+      <div style={{ height: '100%', width: '100%', overflowX: 'auto' }}>
+        <div className={cx('page')} data-application-overflow-container>
+          <div className={cx('header')}>
+            {headerShouldBeRendered ? (
+              <PageHeader
+                onBack={onRequestClose && safelyRequestClose}
+                label={label}
+                actions={actions}
+                menu={menu}
+                hasLoadingOverlay={loadingOverlayIsActive}
+              >
+                {toolbar}
+                <NotificationBanners />
+              </PageHeader>
+            ) : (
+              <>
+                {toolbar}
+                <NotificationBanners />
+              </>
+            )}
+          </div>
+          <div className={cx('content')}>
+            <PageContext.Provider value={childPageContextValue}>
+              <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+                <NotificationBannerProvider>
+                  <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
+                    <ApplicationStatusOverlayProvider>
                       <div
-                        className={cx('width-normalizer')}
+                        tabIndex="0" // TODO validate need for this
+                        className={cx('overflow-content', 'page-background')}
                         data-application-overflow-container
+                        ref={(ref) => { if (overflowElementRefCallback) { overflowElementRefCallback(ref); } }}
                       >
                         <VisuallyHiddenText
                           aria-hidden
@@ -273,12 +279,12 @@ const Page = ({
                         />
                         {children}
                       </div>
-                    </div>
-                  </ApplicationStatusOverlayProvider>
-                </ApplicationLoadingOverlayProvider>
-              </NotificationBannerProvider>
-            </NavigationPromptCheckpoint>
-          </PageContext.Provider>
+                    </ApplicationStatusOverlayProvider>
+                  </ApplicationLoadingOverlayProvider>
+                </NotificationBannerProvider>
+              </NavigationPromptCheckpoint>
+            </PageContext.Provider>
+          </div>
         </div>
       </div>
     ), portalNode)

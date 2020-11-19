@@ -20,7 +20,7 @@ const collapsingActionsBreakpoints = ['tiny', 'small', 'medium'];
 const propTypes = {};
 
 const PageHeader = ({
-  actions, menu, onBack, label, hasLoadingOverlay,
+  actions, menu, onBack, label, hasLoadingOverlay, children,
 }) => {
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -148,40 +148,43 @@ const PageHeader = ({
   }
 
   return (
-    <div className={cx('page-layout-header')}>
-      {onBack || pageContext?.containerStartActions ? (
-        <div className={cx('back-button-container')}>
-          {pageContext?.containerStartActions ? (
-            <>
-              {pageContext?.containerStartActions}
-              <div className={cx('actions-divider')} />
-            </>
+    <div className={cx('page-header-container')}>
+      <div className={cx('page-layout-header')}>
+        {onBack || pageContext?.containerStartActions ? (
+          <div className={cx('back-button-container')}>
+            {pageContext?.containerStartActions ? (
+              <>
+                {pageContext?.containerStartActions}
+                <div className={cx('actions-divider')} />
+              </>
           ) : null}
-          {onBack ? (
-            <Button
-              className={cx(['header-button', 'back-button'])}
-              icon={<span className={cx('back')} />}
-              text="Back"
-              onClick={onBack}
-              variant={ButtonVariants.UTILITY}
-            />
-          ) : null}
-        </div>
-      ) : null}
-      <div className={cx('label-container')}>
-        {label}
-      </div>
-      <div className={cx('actions-container')}>
-        {renderActionButtons()}
-        {renderMenuButton()}
-        {showMenu && renderMenu()}
-        {pageContext?.containerEndActions ? (
-          <>
-            <div className={cx('actions-divider')} />
-            {pageContext?.containerEndActions}
-          </>
+            {onBack ? (
+              <Button
+                className={cx(['header-button', 'back-button'])}
+                icon={<span className={cx('back')} />}
+                text="Back"
+                onClick={onBack}
+                variant={ButtonVariants.UTILITY}
+              />
+            ) : null}
+          </div>
         ) : null}
+        <div className={cx('label-container')}>
+          {label}
+        </div>
+        <div className={cx('actions-container')}>
+          {renderActionButtons()}
+          {renderMenuButton()}
+          {showMenu && renderMenu()}
+          {pageContext?.containerEndActions ? (
+            <>
+              <div className={cx('actions-divider')} />
+              {pageContext?.containerEndActions}
+            </>
+        ) : null}
+        </div>
       </div>
+      {children}
     </div>
   );
 };

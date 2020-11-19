@@ -1,9 +1,7 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
-import ContentContainer from 'terra-content-container';
 import Button, { ButtonVariants } from 'terra-button';
-import ActionHeader from 'terra-action-header';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
@@ -14,6 +12,7 @@ import { PageContainer } from '../../page';
 import PageContainerActionsContext from '../../page/PageContainerActionsContext';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
+import PageHeader from '../../page/private/_PageHeader';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -40,19 +39,21 @@ function mapChildItem(item) {
 const DefaultSideNavPanel = ({
   id, activeNavigationKey, onSelectNavigationItem, items, onDismiss,
 }) => (
-  <ContentContainer
-    header={<ActionHeader title="Side Nav" onBack={onDismiss} />}
-    fill
-  >
-    <CollapsingNavigationMenu
-      id={id}
-      selectedPath={activeNavigationKey}
-      onSelect={(key) => { onSelectNavigationItem(key); }}
-      menuItems={[{
-        childItems: items.map(mapChildItem),
-      }]}
-    />
-  </ContentContainer>
+  <div className={cx('sidebar-container')}>
+    <div className={cx('header')}>
+      <PageHeader label="Side Nav" onRequestClose={onDismiss} />
+    </div>
+    <div className={cx('content')}>
+      <CollapsingNavigationMenu
+        id={id}
+        selectedPath={activeNavigationKey}
+        onSelect={(key) => { onSelectNavigationItem(key); }}
+        menuItems={[{
+          childItems: items.map(mapChildItem),
+        }]}
+      />
+    </div>
+  </div>
 );
 
 const initialSizeForBreakpoint = (breakpoint) => {

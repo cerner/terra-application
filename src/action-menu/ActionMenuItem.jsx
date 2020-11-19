@@ -40,7 +40,7 @@ const ActionMenuItem = ({
   return (
     <li
       {...attrs}
-      className={cx('action-checkbox', 'is-checked', 'is-disabled')}
+      className={cx('action-checkbox', { 'is-disabled': isDisabled })}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

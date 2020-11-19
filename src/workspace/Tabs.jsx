@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import Button from 'terra-button';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
-// import Menu from 'terra-menu';
 import Popup from 'terra-popup';
 import TabContainer from './_TabContainer';
 import {
@@ -44,14 +43,6 @@ const getAssociatedPanelId = (id, tabKey) => {
 
 const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => {
   return options.map(option => (
-    // <Menu.Item
-    //   key={option.key}
-    //   text={option.text}
-    //   isSelected={option.key === size}
-    //   isSelectable
-    //   isSelected={option.isDisabled}
-    //   onClick={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
-    // />
     <ActionMenuRadio
       key={option.key}
       actionKey={option.key}
@@ -130,9 +121,11 @@ const Tabs = ({
   };
 
   const createSizeButton = () => {
-    let sizeButton;
-    if (sizeOptions) {
-      sizeButton = (
+    if (!sizeOptions || !sizeOptions.length) {
+      return undefined;
+    }
+    return (
+      <>
         <Button
           className={cx('menu-button')}
           icon={<IconRollup />}
@@ -141,40 +134,23 @@ const Tabs = ({
           variant={'utility'}
           refCallback={node => sizeMenuRef.current = node}
         />
-      );
-
-      if (isMenuOpen) {
-        sizeButton = (
-          <>
-            {sizeButton}
-            {/* <Menu
-              isOpen
-              targetRef={() => sizeMenuRef.current}
-              onRequestClose={() => { setIsMenuOpen(false); }}
-              contentWidth="240"
-            >
-              {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-            </Menu> */}
-            <Popup
-              isOpen
-              targetRef={() => sizeMenuRef.current}
-              onRequestClose={() => { setIsMenuOpen(false); }}
-              contentHeight="auto"
-              contentWidth="240"
-              isContentFocusDisabled
-            >
-              <ActionMenu
-                id="monkey-derp"
-                ariaLabel="Pick A Size!!"
-              >
-                {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
-              </ActionMenu>
-            </Popup>
-          </>
-        );
-      }
-    }
-    return sizeButton;
+        <Popup
+          isOpen={isMenuOpen}
+          targetRef={() => sizeMenuRef.current}
+          onRequestClose={() => { setIsMenuOpen(false); }}
+          contentHeight="auto"
+          contentWidth="240"
+          isContentFocusDisabled
+        >
+          <ActionMenu
+            id="monkey-derp"
+            ariaLabel="Pick A Size!!"
+          >
+            {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+          </ActionMenu>
+        </Popup>
+      </>
+    );
   };
 
   const tabsClassNames = cx([

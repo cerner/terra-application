@@ -2,7 +2,6 @@
   .action-menu {
     background-color: #fff;
     outline: none;
-    padding: 5px;
   }
 
   .action-menu,
@@ -21,7 +20,7 @@
     color: #000;
     display: flex;
     flex-direction: row;
-    // margin-top: 5px;
+    padding: 5px;
   }
 
   .action-checkbox,

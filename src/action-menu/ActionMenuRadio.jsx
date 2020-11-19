@@ -42,7 +42,7 @@ const ActionMenuRadio = ({
   return (
     <li
       {...attrs}
-      className={cx('action-radio', 'is-checked', 'is-disabled')}
+      className={cx('action-radio', { 'is-checked': isChecked }, { 'is-disabled': isDisabled })}
       role="menuitemradio"
       aria-checked={isChecked}
       data-action-menu-key={actionKey}

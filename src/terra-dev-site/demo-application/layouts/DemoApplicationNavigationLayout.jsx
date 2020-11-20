@@ -10,6 +10,7 @@ import { ConceptContext } from '../providers/ConceptProvider';
 
 import Page1 from '../pages/Page1';
 import Page5 from '../pages/Page5';
+import Page6 from '../pages/Page6';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
@@ -86,6 +87,11 @@ const DemoApplicationNavigationLayout = () => {
             >
               <NotAPage />
             </NavigationItem>
+            <NavigationItem
+              navigationKey="nav-G"
+              label="Nav G"
+              renderPage={() => <Page6 />}
+            />
           </PrimaryNavigationLayout>
         </ModalManager>
         {showDetailsModal && (

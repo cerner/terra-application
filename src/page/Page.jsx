@@ -71,6 +71,7 @@ const propTypes = {
    * header must present actions due to content within the PageContainerActionsContext.
    */
   preferHeaderIsHidden: PropTypes.bool,
+  disablePageScrolling: PropTypes.bool,
   /**
    * The components to render within the context of the Page.
    */
@@ -88,6 +89,7 @@ const Page = ({
   overflowElementRefCallback,
   requestClosePromptIsDisabled,
   preferHeaderIsHidden,
+  disablePageScrolling,
   children,
 }) => {
   if (actions && actions.type !== PageActions) {
@@ -239,7 +241,7 @@ const Page = ({
 
   return (
     ReactDOM.createPortal((
-      <div className={cx('page')}>
+      <div className={cx('page', { 'disable-scroll': disablePageScrolling })}>
         <div className={cx('header')}>
           {headerShouldBeRendered ? (
             <PageHeader

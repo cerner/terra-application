@@ -9,16 +9,17 @@ const cx = classNames.bind(styles);
 const propTypes = {
   title: PropTypes.string,
   children: PropTypes.node,
+  fill: PropTypes.bool,
 };
 
-const Card = ({ title, children }) => (
-  <div className={cx('card')}>
+const Card = ({ title, children, fill }) => (
+  <div className={cx('card', { fill })}>
     <div className={cx('card-header')}>
       <div className={cx('title-container')}>
         {title}
       </div>
     </div>
-    <div className={cx('card-body')}>
+    <div className={cx('card-body')} data-application-overflow-container="true">
       {children}
     </div>
   </div>

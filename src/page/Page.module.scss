@@ -51,4 +51,16 @@
       min-width: 768px;
     }
   }
+
+  .disable-scroll .width-normalizer {
+    height: 100%;
+  }
+
+  .disable-scroll .header {
+    overflow-y: inherit;
+  }
+
+  .disable-scroll .overflow-content {
+    overflow-y: inherit;
+  }
 }

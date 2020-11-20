@@ -1,23 +1,38 @@
 :local {
   .card {
-    background-color: white;
+    background-color: #fefffe;
     border-radius: 5px;
-    border: 1px solid grey;
+
+    border-top: 1px solid #eeefee;
+    border-left: 1px solid #dfe0df;
+    border-right: 1px solid #dfe0df;
+    border-bottom: 1px solid #c6c8c7;
+
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+
     overflow: hidden;
+    padding: 0 10px 10px;
     margin-bottom: 1rem;
+  }
+
+  .card.fill {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: auto;
+    margin-bottom: initial;
   }
 
   .card-header {
     align-items: center;
-    background-color: #fff;
-    border-bottom: 1px solid grey;
+    box-shadow: inset -3px -4px 0px -3px #f3f4f3, inset -3px -5px 0px -3px #c7cacb;
 
     display: flex;
     flex-wrap: nowrap;
 
 
     overflow: hidden;
-    padding: 0 10px;
+    // padding: 0 10px;
     width: 100%;
 
     .title-container {
@@ -30,9 +45,18 @@
     }
   }
 
-
   .card-body {
-    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .fill .card-header {
+    flex: 0 0 auto;
+  }
+
+  .fill .card-body {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: auto;
   }
 
   .list-item {

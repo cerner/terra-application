@@ -88,7 +88,6 @@
   }
 
   .page-body {
-    border-right: 1px solid rgba(0, 0, 0, 0.75);
     flex: 1 1 320px;
     height: 100%;
     overflow: hidden;
@@ -99,7 +98,8 @@
   }
 
   .workspace {
-    background-color: white;
+    background-color: #f0f1f0;
+    box-shadow: inset 3px -3px 0px -2px#fefffe, inset 4px 0px 0px -2px #C7CACB;
     display: none;
     flex: 1 1 320px;
     height: 100%;

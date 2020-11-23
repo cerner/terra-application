@@ -22,6 +22,7 @@ const NavDLayout = () => {
   return (
     <SecondaryNavigationLayout
       id="nav-d-layout"
+      label="Nav D"
       workspace={(
         <SecondaryNavigationLayoutWorkspace
           initialActiveTabKey="tab-1"

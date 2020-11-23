@@ -13,6 +13,7 @@ const propTypes = {};
 const NavBLayout = () => (
   <SecondaryNavigationLayout
     id="nav-b-layout"
+    label="Nav B"
     renderPage={() => <Page1 />}
     workspace={(
       <SecondaryNavigationLayoutWorkspace

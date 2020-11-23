@@ -12,12 +12,12 @@ import { PageContainer } from '../../page';
 import PageContainerActionsContext from '../../page/PageContainerActionsContext';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
-import PageHeader from '../../page/private/_PageHeader';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
 import ResizeHandle from './workspace/ResizeHandle';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';
+import SideNavHeader from './side-nav/SideNavHeader';
 
 import styles from './SecondaryNavigationLayout.module.scss';
 
@@ -37,11 +37,11 @@ function mapChildItem(item) {
 }
 
 const DefaultSideNavPanel = ({
-  id, activeNavigationKey, onSelectNavigationItem, items, onDismiss,
+  id, label, activeNavigationKey, onSelectNavigationItem, items, onDismiss,
 }) => (
   <div className={cx('sidebar-container')}>
-    <div className={cx('header')}>
-      <PageHeader label="Side Nav" onRequestClose={onDismiss} />
+    <div className={cx('header-container')}>
+      <SideNavHeader label={label} onRequestClose={onDismiss} />
     </div>
     <div className={cx('content')}>
       <CollapsingNavigationMenu
@@ -104,6 +104,7 @@ const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
 
 const SecondaryNavigationLayout = ({
   id,
+  label,
   sidebar,
   activeNavigationKey,
   children,
@@ -172,6 +173,7 @@ const SecondaryNavigationLayout = ({
   const pageContainerActionsContextValue = React.useMemo(() => ({
     startActions: hasSidebar && hasOverlaySidebar ? (
       <Button
+        className={cx('header-button')}
         icon={<IconLeftPane />}
         text="Toggle Side Nav" // TODO INTL
         onClick={() => { setSideNavOverlayIsVisible((state) => !state); }}
@@ -180,7 +182,7 @@ const SecondaryNavigationLayout = ({
     ) : undefined,
     endActions: workspace ? (
       <Button
-        className={cx({ 'active-button': workspaceIsVisible })}
+        className={cx('header-button', { 'active-button': workspaceIsVisible })}
         icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
         text="Toggle Workspace" // TODO INTL
         onClick={() => {
@@ -493,6 +495,7 @@ const SecondaryNavigationLayout = ({
           {sidebar || (hasSidebar && (
             <DefaultSideNavPanel
               id={`${id}-side-nav`}
+              label={label}
               onDismiss={sideNavOverlayIsVisible ? () => {
                 setSideNavOverlayIsVisible(false);
 

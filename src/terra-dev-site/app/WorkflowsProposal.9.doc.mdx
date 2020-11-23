@@ -569,3 +569,7 @@ TODO 10/21
 * Rethink PageContainerActionsContext
   * It seems weird to have layouts implement Page-specific contexts, might make more sense the other way around
   * Layout-provided PageContainers might make this injection easier.
+  * LayoutActionsContext
+    * Object-based API, with key for custom classNames/data-attributes
+    * still have separate start/end entries
+    * allows PageContainer/Page to own action styles, and allows non-Pages to implement action as it sees fit to do so

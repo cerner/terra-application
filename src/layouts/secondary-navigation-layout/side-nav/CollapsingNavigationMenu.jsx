@@ -312,7 +312,7 @@ const CollapsingNavigationMenu = ({
       const itemIsOpen = !!openKeys[item.path];
       const isSelected = selectedPath === item.path;
 
-      visibleNodes.push({ id, parentId });
+      visibleNodes.push({ id: itemId, parentId });
 
       return (
         <CollapsingNavigationMenuItem

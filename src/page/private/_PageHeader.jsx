@@ -3,6 +3,7 @@ import classNames from 'classnames/bind';
 import Button, { ButtonVariants } from 'terra-button';
 import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
+import IconLeft from 'terra-icon/lib/icon/IconLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import { useTransientPresentationState } from '../../utils/transient-presentation';
@@ -38,7 +39,7 @@ const PageHeader = ({
       <Button
         refCallback={childAction.props.refCallback}
         key={childAction.props.actionKey}
-        className={cx(['header-button'])}
+        className={cx('header-button', { disabled: hasLoadingOverlay || childAction.props.isDisabled })}
         isIconOnly
         icon={childAction.props.icon}
         text={childAction.props.label}
@@ -67,7 +68,7 @@ const PageHeader = ({
             });
           }
         }}
-        className={cx('header-button')}
+        className={cx('header-button', { disabled: hasLoadingOverlay })}
         isIconOnly
         icon={<IconRollup />}
         text="More Actions"
@@ -161,8 +162,8 @@ const PageHeader = ({
             {onBack ? (
               <Button
                 className={cx(['header-button', 'back-button'])}
-                icon={<span className={cx('back')} />}
-                text="Back"
+                icon={<IconLeft />}
+                text="Back" // TODO intl
                 onClick={onBack}
                 variant={ButtonVariants.UTILITY}
               />

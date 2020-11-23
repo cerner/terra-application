@@ -30,26 +30,34 @@
     flex: 0 0 auto;
     padding-right: 5px;
 
-    .back {
-      background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
-      background-repeat: no-repeat;
-      background-size: auto;
-      display: inline-block;
-      height: 1rem;
-      position: relative;
-      top: 0;
-      vertical-align: -0.14285rem;
-      width: 1rem;
+    // .back {
+    //   background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
+    //   background-repeat: no-repeat;
+    //   background-size: auto;
+    //   display: inline-block;
+    //   height: 1rem;
+    //   position: relative;
+    //   top: 0;
+    //   vertical-align: -0.14285rem;
+    //   width: 1rem;
   
-      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
-        height: 1rem;
-        vertical-align: -0.17285rem;
-      }  
+    //   @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+    //     height: 1rem;
+    //     vertical-align: -0.17285rem;
+    //   }  
 
-      &:hover {
-        background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
-      }
-    }
+    //   &:hover {
+    //     background-image: inline-svg('<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M48 21H10.6L27.3 3.9 23.5.1 0 24l23.5 23.9 3.8-3.8L10.6 27H48z"></path></svg>');
+    //   }
+    // }
+  }
+
+  .header-button {
+    color: #027cc3;
+  }
+
+  .header-button.disabled {
+    color: rgba(2, 124, 195, .85) !important;
   }
 
   .label-container {
@@ -70,9 +78,9 @@
 
   .actions-divider {
     align-self: stretch;
-    background-color: grey;
+    box-shadow: inset -3px 0px 0px -2px#fefffe, inset -4px 0px 0px -2px #C7CACB;
     flex: 0 0 auto;
     margin: 4px 5px;
-    width: 1px;
+    width: 2px;
   }
 }

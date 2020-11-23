@@ -13,6 +13,7 @@ import Page2 from '../pages/Page2';
 import Page3 from '../pages/Page3';
 import Page4 from '../pages/Page4';
 import Page5 from '../pages/Page5';
+import Page6 from '../pages/Page6';
 import NotAPage from '../shared/NotAPage';
 
 const NavDLayout = () => {
@@ -80,7 +81,7 @@ const NavDLayout = () => {
         />
         <NavigationItem
           navigationKey="nav-D-5"
-          label="Nav D-4 Page 5"
+          label="Nav D-5 Page 5"
           renderPage={() => <Page5 />}
         />
       </SecondaryNavigationGroup>
@@ -119,6 +120,11 @@ const NavDLayout = () => {
             </div>
           </Page>
         )}
+      />
+      <NavigationItem
+        navigationKey="nav-D-9"
+        label="Nav D-9 Page 6"
+        renderPage={() => <Page6 />}
       />
     </SecondaryNavigationLayout>
   );

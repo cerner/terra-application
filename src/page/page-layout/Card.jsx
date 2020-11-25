@@ -18,11 +18,13 @@ const Card = ({
 }) => (
   <>
     <div className={cx('card', { fill, 'min-height-fill': minHeightFill })}>
-      <div className={cx('card-header')}>
-        <div className={cx('title-container')}>
-          {title}
+      { title && (
+        <div className={cx('card-header')}>
+          <div className={cx('title-container')}>
+            {title}
+          </div>
         </div>
-      </div>
+      )}
       <div className={cx('card-body')} data-application-overflow-container="true">
         {children}
       </div>

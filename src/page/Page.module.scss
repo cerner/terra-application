@@ -45,8 +45,9 @@
   }
 
   .width-normalizer {
+    height: 100%;
+    padding: 0 15px;
     width: 100%;
-    padding: 10px 15px;
     @include terra-mq-medium-up {
       min-width: 768px;
     }
@@ -61,6 +62,6 @@
   }
 
   .disable-scroll .overflow-content {
-    overflow-y: inherit;
+    overflow-y: hidden;
   }
 }

@@ -3,7 +3,7 @@ import Button from 'terra-button';
 
 import ApplicationStatusOverlay from '../../../../application-status-overlay';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const StatusOverlayCard = () => {
   const statusOverlayTimeoutRef = React.useRef();

@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import IconTag from 'terra-icon/lib/icon/IconTag';
 import Button from 'terra-button';
 
-import Page, { PageActions, Action } from '../../../page';
+import Page, {
+  PageActions, Action, CardLayout, Card,
+} from '../../../page';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
-import DemoPageContent from './content/DemoPageContent';
-import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -50,7 +50,7 @@ const Page1 = ({ onRequestClose }) => {
       actions={pageActions}
       onRequestClose={onRequestClose}
     >
-      <DemoPageContent>
+      <CardLayout>
         <Card title="Page 1 Details">
           <p>Page 1 demonstrates the following features:</p>
           <ul>
@@ -72,7 +72,7 @@ const Page1 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
-      </DemoPageContent>
+      </CardLayout>
       {showPage2
         && <Page2 onRequestClose={() => { setShowPage2(false); }} />}
       {showPageModal

@@ -3,7 +3,7 @@ import Button from 'terra-button';
 
 import ApplicationLoadingOverlay from '../../../../application-loading-overlay';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const LoadingOverlayCard = () => {
   const loadingOverlayTimeoutRef = React.useRef();

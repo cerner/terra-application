@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavigationItemContext } from '../../../../layouts';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const NavigationItemCard = () => {
   const navigationItemContext = React.useContext(NavigationItemContext);

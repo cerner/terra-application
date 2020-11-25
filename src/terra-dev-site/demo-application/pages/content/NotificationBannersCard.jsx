@@ -3,7 +3,7 @@ import Button from 'terra-button';
 
 import NotificationBanner from '../../../../notification-banner/NotificationBanner';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const NotificationBannersCard = () => {
   const [showAlertBanner, setShowAlertBanner] = React.useState(false);

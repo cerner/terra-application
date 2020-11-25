@@ -6,7 +6,7 @@ import CollapsibleMenuView from 'terra-collapsible-menu-view';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '../../../../disclosure-manager';
 import NavigationPrompt from '../../../../navigation-prompt';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const DisclosedComponent = ({ index }) => {
   const disclosureManager = React.useContext(DisclosureManagerContext);

@@ -6,7 +6,7 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
 import Page, {
-  PageActions, Action, PageMenu, MenuItem, MenuItemDivider,
+  PageActions, Action, PageMenu, MenuItem, MenuItemDivider, CardLayout, Card,
 } from '../../../page';
 
 import Page4 from './Page4';
@@ -14,8 +14,6 @@ import AddModal from '../modals/AddModal';
 import PrintModal from '../modals/PrintModal';
 
 import PageToolbar from './content/PageToolbar';
-import DemoPageContent from './content/DemoPageContent';
-import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -128,7 +126,7 @@ const Page3 = ({ onRequestClose }) => {
       toolbar={pageToolbar}
       onRequestClose={onRequestClose}
     >
-      <DemoPageContent>
+      <CardLayout>
         <Card title="Page 3 Details">
           <p>Page 3 demonstrates the following features:</p>
           <ul>
@@ -152,7 +150,7 @@ const Page3 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
-      </DemoPageContent>
+      </CardLayout>
       {showPage4
         && <Page4 onRequestClose={() => { setShowPage4(false); }} />}
       {showAddModal

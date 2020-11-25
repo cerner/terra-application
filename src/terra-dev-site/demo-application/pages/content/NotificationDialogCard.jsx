@@ -3,7 +3,7 @@ import Button from 'terra-button';
 
 import NotificationDialog from '../../../../notification-dialog/NotificationDialog';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const NotificationDialogCard = () => {
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);

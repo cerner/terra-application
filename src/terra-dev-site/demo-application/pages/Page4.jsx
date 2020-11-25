@@ -2,10 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import Page from '../../../page/Page';
+import Page, { CardLayout, Card } from '../../../page';
 
-import DemoPageContent from './content/DemoPageContent';
-import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -34,7 +32,7 @@ const Page4 = ({ onRequestClose }) => {
       metaData={page4MetaData}
       onRequestClose={onRequestClose}
     >
-      <DemoPageContent>
+      <CardLayout>
         <Card title="Page 4 Details">
           <p>Page 4 demonstrates the following features:</p>
           <ul>
@@ -61,7 +59,7 @@ const Page4 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
-      </DemoPageContent>
+      </CardLayout>
       {showPage5 && <Page5 onRequestClose={() => { setShowPage5(false); }} />}
     </Page>
   );

@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
-import Page from '../../../page/Page';
+import Page, { CardLayout, Card } from '../../../page';
 
-import DemoPageContent from './content/DemoPageContent';
-import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -35,7 +33,7 @@ const Page5 = ({ onRequestClose }) => {
       onRequestClose={onRequestClose}
       preferHeaderIsHidden
     >
-      <DemoPageContent>
+      <CardLayout>
         <h2>Page 5</h2>
         <Card title="Page 5 Details">
           <p>Page 5 demonstrates the following features:</p>
@@ -63,7 +61,7 @@ const Page5 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
-      </DemoPageContent>
+      </CardLayout>
       {showPage6 && <Page6 onRequestClose={() => { setShowPage6(false); }} />}
     </Page>
   );

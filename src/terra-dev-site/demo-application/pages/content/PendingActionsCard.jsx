@@ -4,7 +4,7 @@ import IconWarning from 'terra-icon/lib/icon/IconWarning';
 
 import NavigationPrompt from '../../../../navigation-prompt';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const PendingActionsCard = () => {
   const [hasPendingAction1, setHasPendingAction1] = React.useState(false);

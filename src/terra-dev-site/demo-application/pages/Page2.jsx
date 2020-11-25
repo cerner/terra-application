@@ -5,15 +5,15 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconModified from 'terra-icon/lib/icon/IconModified';
 import Button from 'terra-button';
 
-import Page, { PageActions, Action } from '../../../page';
+import Page, {
+  PageActions, Action, CardLayout, Card,
+} from '../../../page';
 
 import Page3 from './Page3';
 import AddModal from '../modals/AddModal';
 import PrintModal from '../modals/PrintModal';
 import HeaderActionPopup from '../shared/HeaderActionPopup';
 
-import DemoPageContent from './content/DemoPageContent';
-import Card from './content/Card';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -72,7 +72,7 @@ const Page2 = ({ onRequestClose }) => {
       actions={pageActions}
       onRequestClose={onRequestClose}
     >
-      <DemoPageContent>
+      <CardLayout>
         <Card title="Page 2 Details">
           <p>Page 2 demonstrates the following features:</p>
           <ul>
@@ -96,7 +96,7 @@ const Page2 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
-      </DemoPageContent>
+      </CardLayout>
       {showPage3
         && <Page3 onRequestClose={() => { setShowPage3(false); }} />}
       {showAddModal

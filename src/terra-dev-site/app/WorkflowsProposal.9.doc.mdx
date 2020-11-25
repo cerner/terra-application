@@ -558,6 +558,7 @@ TODO 10/21
   * would need to be more eager about caching scroll positions
   * might add checks to layouts to cache prior to active nav item changing
   * Pages might need something similar but it'll be trickier
+  * this might be impossible to ensure when content is unmounted, validate expectations with functional team
 * Menu API is busted for checkmarks
   * Dave is fixing this, will need to consume new ActionMenu
 * check nested PageContainer behavior
@@ -573,3 +574,123 @@ TODO 10/21
     * Object-based API, with key for custom classNames/data-attributes
     * still have separate start/end entries
     * allows PageContainer/Page to own action styles, and allows non-Pages to implement action as it sees fit to do so
+* Page Layout APIs
+  * Implicit vs Explicit Frames
+
+  Page must have 0/1 Frames child
+  Frame must have 0/n FrameSection children
+
+  // 2 separate frames with Page overflow
+
+  <Page>
+    <Frames type="stack">
+      <Frame>
+        <FrameSection label="Frame 1" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+      <Frame>
+        <FrameSection label="Frame 2" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  // 1 frame with Page overflow and subsections
+
+  <Page>
+    <Frames type="stack">
+      <Frame>
+        <FrameSection label="Section 1" actions={}>
+          <Content />
+        </FrameSection>
+        <FrameSection label="Section 2" actions={}>
+          <Content />
+        </FrameSection>
+        <FrameSection label="Section 3" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  // 1 frame with Frame overflow
+
+  <Page>
+    <Frames type="fixed">  // Page does prop inspection and infers presentation styles from type being fixed
+      <Frame>
+        <FrameSection label="Frame 1" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+      // Additional frames provided beyond the first will not be rendered, warning will be logged.
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  // 4 frames with Page overflow and grid layout
+
+  <Page>
+    <Frames type="grid">
+      <Frame stylesForGridLayout={...}>
+        <FrameSection label="Section 1" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+      <Frame stylesForGridLayout={...}>
+        <FrameSection label="Section 2" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+      <Frame stylesForGridLayout={...}>
+        <FrameSection label="Section 3" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+      <Frame stylesForGridLayout={...}>
+        <FrameSection label="Section 4" actions={}>
+          <Content />
+        </FrameSection>
+      </Frame>
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  // 1 frame with frame-level tabs, 4 tab sections
+
+  <Page>
+    <Frames type="fixed">
+      <TabsFrame>
+        <Tab label="Tab 1" actions={}>
+          <Content />
+        </Tab>
+        <Tab label="Tab 2" actions={}>
+          <Content />
+        </Tab>
+        <Tab label="Tab 3" actions={}>
+          <Content />
+        </Tab>
+      </TabsFrame>
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  // 1 frame with custom content
+
+  <Page>
+    <Frames type="fixed">
+      <Frame>
+        <Content />
+      </Frame>
+    </Frames>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>

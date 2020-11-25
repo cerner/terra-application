@@ -4,7 +4,7 @@ import IconSpinner from 'terra-icon/lib/icon/IconSpinner';
 
 import InteractionBlockingOverlay from '../../../../interaction-blocking-overlay';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const InteractionBlockingOverlayCard = () => {
   const blockingOverlayTimeoutRef = React.useRef();

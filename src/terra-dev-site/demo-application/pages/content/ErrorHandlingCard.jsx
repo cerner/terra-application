@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const propTypes = {
   pageTitle: PropTypes.string,

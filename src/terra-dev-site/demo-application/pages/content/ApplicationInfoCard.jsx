@@ -2,7 +2,7 @@ import React from 'react';
 
 import { ApplicationContainerContext } from '../../../../application-container';
 
-import Card from './Card';
+import { Card } from '../../../../page';
 
 const ApplicationInfoCard = () => {
   const applicationContainer = React.useContext(ApplicationContainerContext);

@@ -105,7 +105,7 @@ const Page6 = ({ onRequestClose }) => {
         </PageActions>
       )}
       onRequestClose={onRequestClose}
-      // disablePageScrolling={layoutStyleFill}
+      disablePageScrolling={layoutStyleFill}
     >
       {content}
     </Page>

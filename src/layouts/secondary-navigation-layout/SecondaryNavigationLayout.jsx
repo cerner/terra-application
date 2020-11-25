@@ -586,7 +586,7 @@ const SecondaryNavigationLayout = ({
             >
               <div
                 style={{
-                  height: '100%', overflow: 'hidden', width: '100%', position: 'relative', zIndex: '-1',
+                  height: '100%', overflow: 'hidden', width: '100%', position: 'relative', zIndex: '-1', borderRadius: '5px',
                 }}
               >
                 {React.cloneElement(workspace, {

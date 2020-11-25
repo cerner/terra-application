@@ -33,26 +33,20 @@ const propTypes = {
   sizeOptions: PropTypes.arrayOf(sizeOptionShape),
 };
 
-const getTabId = (id, tabKey) => {
-  return `${id}-${tabKey}`;
-};
+const getTabId = (id, tabKey) => `${id}-${tabKey}`;
 
-const getAssociatedPanelId = (id, tabKey) => {
-  return `${getTabId(id, tabKey)}-panel`;
-};
+const getAssociatedPanelId = (id, tabKey) => `${getTabId(id, tabKey)}-panel`;
 
-const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => {
-  return options.map(option => (
-    <ActionMenuRadio
-      key={option.key}
-      actionKey={option.key}
-      label={option.text}
-      isChecked={option.key === size}
-      isDisabled={option.isDisabled}
-      onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
-    />
-  ));
-};
+const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => options.map(option => (
+  <ActionMenuRadio
+    key={option.key}
+    actionKey={option.key}
+    label={option.text}
+    isChecked={option.key === size}
+    isDisabled={option.isDisabled}
+    onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
+  />
+));
 
 const Tabs = ({
   id,
@@ -92,18 +86,16 @@ const Tabs = ({
     }
   }, [activeTabKey]);
 
-  const tabData = React.Children.map(children, child => {
-    return {
-      id: getTabId(id, child.props.tabKey),
-      associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
-      label: child.props.label,
-      icon: child.props.icon,
-      isIconOnly: child.props.isIconOnly,
-      isSelected: child.props.tabKey == activeTabKey,
-      onSelect: onRequestActivate,
-      metaData: child.props.metaData,
-    };
-  });
+  const tabData = React.Children.map(children, child => ({
+    id: getTabId(id, child.props.tabKey),
+    associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
+    label: child.props.label,
+    icon: child.props.icon,
+    isIconOnly: child.props.isIconOnly,
+    isSelected: child.props.tabKey == activeTabKey,
+    onSelect: onRequestActivate,
+    metaData: child.props.metaData,
+  }));
 
   const createDismissButton = () => {
     if (onRequestDismiss) {
@@ -113,7 +105,7 @@ const Tabs = ({
           icon={<IconPanelRight />}
           text="Toggle Workspace" // TODO INTL
           onClick={onRequestDismiss}
-          variant={'utility'}
+          variant="utility"
         />
       );
     }
@@ -131,7 +123,7 @@ const Tabs = ({
           icon={<IconRollup />}
           text="Workspace Size Menu" // TODO INTL
           onClick={() => setIsMenuOpen(true)}
-          variant={'utility'}
+          variant="utility"
           refCallback={node => sizeMenuRef.current = node}
         />
         <Popup
@@ -162,7 +154,7 @@ const Tabs = ({
     <div
       {...customProps}
       id={id}
-      className={tabsClassNames} 
+      className={tabsClassNames}
       role="none"
     >
       <div role="none" className={cx('header')}>
@@ -178,7 +170,7 @@ const Tabs = ({
           let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
           if (!portalElement) {
             portalElement = document.createElement('div');
-            portalElement.setAttribute("role", "none"); 
+            portalElement.setAttribute('role', 'none');
             portalElement.style.position = 'relative';
             portalElement.style.height = '100%';
             portalElement.style.width = '100%';

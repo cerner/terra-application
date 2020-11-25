@@ -9,7 +9,9 @@
     width: 100%;
 
     > .header {
+      background-image: linear-gradient(to bottom, #007cc3, #0065a3);
       flex: 0 0 auto;
+      padding-bottom: 10px; // matching header2 margin-top
       z-index: 20;
     }
 

@@ -13,7 +13,6 @@
 
     .header-container {
       flex: 0 0 auto;
-      overflow-y: scroll;
       z-index: 0;
     }
 
@@ -172,12 +171,13 @@
   }
 
   .workspace {
-    background-color: #f0f1f0;
+    background-color: #f0f0f2;
     box-shadow: inset 3px -3px 0px -2px#fefffe, inset 4px 0px 0px -2px #C7CACB;
     display: none;
     flex: 1 1 320px;
     height: 100%;
     overflow: hidden;
+    padding: 5px 10px;
     position: relative;
     width: 100%;
     z-index: 2;

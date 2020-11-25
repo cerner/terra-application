@@ -482,7 +482,7 @@ const SecondaryNavigationLayout = ({
             right: '0',
             top: '0',
             bottom: '0',
-            zIndex: '3', // 3 is very important for safari
+            zIndex: '5', // TODO 5 is very important for safari, validate final value for this
             display: 'none',
             cursor: 'col-resize',
           }}
@@ -523,7 +523,7 @@ const SecondaryNavigationLayout = ({
           {workspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
             ? (
               <div style={{
-                flex: '0 0 0', position: 'relative', height: '100%', width: '0px', zIndex: '3',
+                flex: '0 0 auto', position: 'relative', height: '100%', width: '0px', zIndex: '3',
               }}
               >
                 <ResizeHandle

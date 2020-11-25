@@ -51,7 +51,7 @@ const Page1 = ({ onRequestClose }) => {
       onRequestClose={onRequestClose}
     >
       <CardLayout>
-        <Card title="Page 1 Details">
+        <Card>
           <p>Page 1 demonstrates the following features:</p>
           <ul>
             <li>Page header action that presents a modal workflow</li>

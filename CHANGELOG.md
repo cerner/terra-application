@@ -6,7 +6,7 @@
   * Updated application-base to initialize `inert`.
   * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.
   * Updated browserlist config.
-  * Use terra-cli for releasing.
+  * Use terra-cli for releasing and change log updating.
 
 ## 1.35.0 - (September 22, 2020)
 

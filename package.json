@@ -25,9 +25,6 @@
   "bugs": {
     "url": "https://github.com/cerner/terra-application/issues"
   },
-  "browserslist": [
-    "extends browserslist-config-terra"
-  ],
   "eslintConfig": {
     "extends": "@cerner/terra",
     "overrides": [
@@ -89,20 +86,17 @@
     "lint:scss": "stylelint src/**/*.scss",
     "precompile": "rm -rf lib",
     "prepare": "npm run compile",
-    "start": "tt-serve",
-    "start-prod": "tt-serve -p",
-    "start-heroku": "tt-serve-static --port $PORT --site './build' ",
-    "start-static": "npm run compile:prod && tt-serve-static --site ./build",
+    "prepare-for-release": "terra prepare-for-release",
+    "start": "webpack-dev-server",
+    "start-prod": "webpack-dev-server -p",
+    "start-heroku": "terra express-server --port $PORT --site './build' ",
+    "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest",
     "wdio-default": "wdio",
     "wdio-locale": "LOCALE=de wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
-    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion",
-    "version:major": "npm --no-git-tag-version version major",
-    "version:minor": "npm --no-git-tag-version version minor",
-    "version:patch": "npm --no-git-tag-version version patch",
-    "postversion": "node ./scripts/changelog-updater/index.js"
+    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
     "classnames": "^2.2.5",
@@ -153,11 +147,13 @@
     "@babel/plugin-transform-runtime": "^7.9.0",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.1",
+    "@cerner/browserslist-config-terra": "^3.1.0",
     "@cerner/eslint-config-terra": "^4.0.0",
+    "@cerner/terra-cli": "^1.1.0",
+    "@cerner/terra-open-source-scripts": "^1.1.0",
     "@testing-library/react": "^10.0.4",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.8.0",
-    "browserslist-config-terra": "^1.2.0",
     "check-installed-dependencies": "^1.0.0",
     "core-js": "^3.6.4",
     "enzyme": "^3.11.0",

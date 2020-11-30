@@ -1,8 +1,9 @@
 :local {
-  .page {
+  .panel {
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
     width: 100%;
 
     background-color: #fefffe;
@@ -19,13 +20,28 @@
     padding: 0 10px 10px;
   }
 
-  .page-header {
+  .panel-header {
+    box-shadow: inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB;
     flex: 0 0 auto;
-    z-index: 10
+    padding-bottom: 5px;
+    padding-top: 5px;
+    z-index: 10;
+
+    // TODO: revise this with a container?
+    > *:not(:first-child) {
+      border-radius: 3px !important;
+      margin-top: 5px !important;
+      overflow: hidden;
+    }
   }
 
-  .panel {
+  .panel-content {
     flex: 1 1 auto;
+    height: 100%;
     outline: none;
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
   }
 }

@@ -1,13 +1,13 @@
 :local {
   .header-bar {
     align-items: center;
-    background-color: #ccc;
-    border-bottom: 1px solid #a5a3a3;
+    // border-bottom: 1px solid #a5a3a3;
     color: #000;
     display: flex;
     flex-direction: row;
+    min-height: 30px;
     overflow: hidden;
-    padding: 7px 0;
+    // padding: 7px 0;
     position: relative;
     width: 100%;
   }

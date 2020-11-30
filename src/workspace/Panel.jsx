@@ -29,11 +29,11 @@ const Panel = ({
 
   return (
     <div
-      className={cx('page')}
+      className={cx('panel')}
       role="none"
     >
       <div
-        className={cx('page-header')}
+        className={cx('panel-header')}
         role="none"
       >
         <TabHeader actions={actions}>{label}</TabHeader>
@@ -43,7 +43,7 @@ const Panel = ({
       <div
         {...customProps}
         role="tabpanel"
-        className={cx('panel')}
+        className={cx('panel-content')}
         tabIndex="0"
         id={panelId}
         aria-labelledby={tabId}

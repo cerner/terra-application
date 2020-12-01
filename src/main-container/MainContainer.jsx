@@ -1,7 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
 
 import SkipToButton from '../application-container/private/skip-to/SkipToButton';
+import styles from './MainContainer.module.scss';
+
+const cx = classNamesBind.bind(styles);
 
 function deferAction(callback) {
   setTimeout(callback, 0);
@@ -28,6 +33,8 @@ const propTypes = {
 const MainContainer = ({ refCallback, ...otherProps }) => {
   const mainElementRef = React.useRef();
 
+  const mainElementClasses = classNames(cx('main-container'), otherProps.className);
+
   return (
     <>
       <SkipToButton
@@ -47,6 +54,7 @@ const MainContainer = ({ refCallback, ...otherProps }) => {
           }
         }}
         {...otherProps}
+        className={mainElementClasses}
       />
     </>
   );

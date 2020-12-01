@@ -582,6 +582,37 @@ TODO 10/21
 
   // 2 separate frames with Page overflow
 
+    <StackedPageLayout>
+    <FixedPageLayout>
+    <GridPageLayout> // FUTURE
+    
+  <Page pageOverflowIsDisabled>
+    <PageLayout>
+      <CardLayout>
+        <FrameSection label="Frame 1" actions={}>
+          <Content />
+        </FrameSection>
+      </CardLayout>
+    </PageLayout>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+  <Page>
+    <PageLayout>
+      <CardLayout>
+        <FrameSection label="Frame 1" actions={}>
+          <Content />
+        </FrameSection>
+      </CardLayout>
+    </PageLayout>
+    {showAnotherPage && <AnotherPage />}
+    {showModal && <Modal />}
+  </Page>
+
+
+  // 2 separate frames with Page overflow
+
   <Page>
     <Frames type="stack">
       <Frame>
@@ -660,7 +691,6 @@ TODO 10/21
       </Frame>
     </Frames>
     {showAnotherPage && <AnotherPage />}
-    {showModal && <Modal />}
   </Page>
 
   // 1 frame with frame-level tabs, 4 tab sections

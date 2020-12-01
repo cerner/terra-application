@@ -132,6 +132,7 @@ const Tabs = ({
           onRequestClose={() => { setIsMenuOpen(false); }}
           contentHeight="auto"
           contentWidth="240"
+          contentAttachment="top right"
           isContentFocusDisabled
         >
           <ActionMenu

@@ -13,6 +13,10 @@
     margin-left: 25px; // TODO: best guess?
     margin-right: 12px; // TODO: best guess?
     position: relative;
+    
+    &:last-child {
+      margin-right: 25px; // TODO: best guess?
+    }
 
     .inner {
       display: inline-block;

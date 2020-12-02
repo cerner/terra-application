@@ -4,6 +4,9 @@ import classNames from 'classnames/bind';
 
 import MainContainer from '../main-container';
 import LayoutActionsContext from '../layouts/shared/LayoutActionsContext';
+import NavigationItemContext from '../layouts/shared/NavigationItemContext';
+
+import { deferExecution } from '../utils/lifecycle-utils';
 
 import PageContext from './private/PageContext';
 import PageContainerPortalManager from './private/_PageContainerPortalManager';
@@ -45,6 +48,8 @@ const PageContainer = ({
   children,
   isMain,
 }) => {
+  const navigationItem = React.useContext(NavigationItemContext);
+
   /**
    * The value of the isMain prop is stored in a ref immediately, effectively
    * locking the `isMain` prop into its initial value throughout the life of
@@ -76,21 +81,44 @@ const PageContainer = ({
   const layoutActions = React.useContext(LayoutActionsContext);
 
   const pageContextValue = React.useMemo(() => ({
-    pageContainerHasMounted: hasMounted,
-    pageContainer: rootContainerRef.current,
     nodeManager: portalManagerRef.current,
     containerStartActions: layoutActions.startActions,
     containerEndActions: layoutActions.endActions,
     parentNodeId: undefined,
     isMainPage: isMainRef.current,
-  }), [hasMounted, layoutActions.startActions, layoutActions.endActions]);
+    onPageActivate: ({ pageLabelId }) => {
+      /**
+       * Update the aria attributes on the root PageContainer element that is described by the current
+       * active Page.
+       */
+      if (rootContainerRef.current) {
+        rootContainerRef.current.setAttribute('aria-labelledby', pageLabelId);
+      }
+
+      /**
+       * If a Page is activating within the visible navigation hierarchy, focus is adjusted
+       * to account for the new activation.
+       */
+      if (navigationItem.isActive) {
+        if (isMainRef.current) {
+          deferExecution(() => {
+            document.body.focus();
+          });
+        } else {
+          deferExecution(() => {
+            rootContainerRef.current.focus();
+          });
+        }
+      }
+    },
+  }), [navigationItem.isActive, layoutActions.startActions, layoutActions.endActions]);
 
   /**
    * The elements used to portal Page content cannot be generated until the root
    * container element is defined. We defer the rendering of children until after
    * the container element has been created.
    */
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     setHasMounted(true);
   }, []);
 
@@ -105,7 +133,9 @@ const PageContainer = ({
   if (isMainRef.current) {
     return (
       <MainContainer
-        refCallback={(ref) => { rootContainerRef.current = ref; }}
+        refCallback={(ref) => {
+          rootContainerRef.current = ref;
+        }}
         className={cx('page-container')}
       >
         {content}

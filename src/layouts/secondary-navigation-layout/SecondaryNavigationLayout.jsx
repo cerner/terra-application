@@ -523,7 +523,7 @@ const SecondaryNavigationLayout = ({
           <div
             ref={contentElementRef}
             className={cx('page-body')}
-            style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, '-ms-flex-positive': `${1 - workspaceSize.scale}` } : null}
+            style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null}
             inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
           >
             <LayoutActionsContext.Provider value={layoutActionsContextValue}>
@@ -610,7 +610,21 @@ const SecondaryNavigationLayout = ({
                     });
                   } : null,
                   sizeScalar: workspaceSize.scale,
-                  activeSize: workspaceSize.type || mapSize[`${workspaceSize.scale}`], // TODO: comeback to this
+                  activeSize: (() => {
+                    if (workspaceSize.scale === 0) {
+                      return 'small';
+                    } if (workspaceSize.scale === 0.5) {
+                      return 'medium';
+                    } if (workspaceSize.scale === 1) {
+                      return 'large';
+                    } if (workspaceSize.type === 'split') {
+                      return 'split';
+                    } if (workspaceSize.type === 'overlay') {
+                      return 'overlay';
+                    }
+
+                    return undefined;
+                  })(),
                   sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
                   onRequestSizeChange: (size) => {
                     userSelectedTypeRef.current = undefined;

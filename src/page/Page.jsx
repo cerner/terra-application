@@ -12,7 +12,6 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
 import ActiveMainPageRegistrationContext from '../application-container/private/active-main-page/ActiveMainPageRegistrationContext';
-import { deferExecution } from '../utils/lifecycle-utils';
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
@@ -137,6 +136,12 @@ const Page = ({
    */
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
+  /**
+   * A unique id to generated for Page's rendered hidden text. This id is used by the
+   * nodeManager to ensure the container element is properly described by the presented Page.
+   */
+  const pageLabelIdRef = React.useRef(`page-label-${nodeIdRef.current}`);
+
   if (!pageContext) {
     throw new Error(`[terra-application] Page ${label} was rendered outside of a PageContainer.`);
   }
@@ -158,46 +163,20 @@ const Page = ({
     pageContext.nodeManager.releaseNode({ nodeId: nodeIdRef.current });
   }, [pageContext.nodeManager]);
 
-  /**
-   * A unique id to generated for Page's rendered hidden text. This id is used by the
-   * nodeManager to ensure the container element is properly described by the presented Page.
-   */
-  const pageLabelId = `page-label-${nodeIdRef.current}`;
-
   const portalNode = pageContext.nodeManager.getNode({
     nodeId: nodeIdRef.current,
     ancestorNodeId: pageContext.parentNodeId,
     setPageActive: setIsActive,
   });
 
-  React.useLayoutEffect(() => {
-    if (isActive && pageContext.pageContainerHasMounted && pageContext.pageContainer) {
-      /**
-       * Update the aria attributes on the root PageContainer element that is described by the current
-       * active Page.
-       */
-      pageContext.pageContainer.setAttribute('aria-labelledby', pageLabelId);
-    }
-  }, [isActive, pageContext.pageContainerHasMounted, pageContext.pageContainer, pageLabelId]);
-
+  /**
+   * When the Page becomes active within the PageContainer, the container is notified.
+   */
   React.useEffect(() => {
-    if (!isActive) {
-      /**
-       * If the Page is not active within the PageContainer, we do not want to adjust the focus position.
-       */
-      return;
+    if (isActive) {
+      pageContext.onPageActivate({ pageLabelId: pageLabelIdRef.current });
     }
-
-    if (pageContext.isMainPage && navigationItem.isActive) {
-      deferExecution(() => {
-        document.body.focus();
-      });
-    } else if (!pageContext.isMainPage && navigationItem.isActive) {
-      deferExecution(() => {
-        pageContext.pageContainer.focus();
-      });
-    }
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageContext.pageContainer]);
+  }, [isActive, pageContext]);
 
   React.useEffect(() => {
     /**
@@ -258,7 +237,7 @@ const Page = ({
                       <div className={cx('width-normalizer')}>
                         <VisuallyHiddenText
                           aria-hidden
-                          id={pageLabelId}
+                          id={pageLabelIdRef.current}
                           text={label}
                         />
                         {children}

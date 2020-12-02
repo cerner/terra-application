@@ -25,11 +25,17 @@
 
   .action-checkbox,
   .action-radio,
-  .action-link {
+  .action-link,
+  .action-item {
     border-bottom: 1px solid #000;
+    cursor: pointer;
 
     &:last-child {
       border-bottom: 0;
+    }
+
+    &:not(.is-disabled):hover {
+      background-color: aliceblue;
     }
   }
 
@@ -43,6 +49,7 @@
 
   .is-disabled {
     color: #ccc;
+    cursor: default;
   }
 
   .is-checked {

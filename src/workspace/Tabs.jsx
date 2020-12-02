@@ -23,13 +23,41 @@ const sizeOptionShape = PropTypes.shape({
 
 const propTypes = {
   id: PropTypes.string.isRequired,
-  activeTabKey: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  onRequestActivate: PropTypes.func.isRequired,
-  ariaLabel: PropTypes.string.isRequired,
+  /**
+   * The size string value matching the active size option.
+   */
   activeSize: PropTypes.string,
-  onRequestSizeChange: PropTypes.func,
+  /**
+   * The tabKey associated to the active tabPage.
+   */
+  activeTabKey: PropTypes.string.isRequired,
+  /**
+   * The accessible label of the tab list.
+   */
+  ariaLabel: PropTypes.string.isRequired,
+  /**
+   * The child tab pages.
+   */
+  children: PropTypes.node.isRequired,
+  /**
+   * The function callback triggering when a tab is selected.
+   * Returns the associated metaData. e.g. onRequestActivate(event, metaData)
+   */
+  onRequestActivate: PropTypes.func.isRequired,
+  /**
+   * The function callback triggering when the close toggle button is selected..
+   * The presence of this callback indicates the visibility of the close toggle button.
+   * Returns the event e.g. onRequestActivate(event)
+   */
   onRequestDismiss: PropTypes.func,
+  /**
+   * The function callback triggering when a size is selected from the size menu.
+   * Returns the size key e.g. onRequestSizeChange(option.key)
+   */
+  onRequestSizeChange: PropTypes.func,
+  /**
+   * The array containing size objects to map in the size menu.
+   */
   sizeOptions: PropTypes.arrayOf(sizeOptionShape),
 };
 
@@ -50,11 +78,11 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
 
 const Tabs = ({
   id,
+  activeSize,
   activeTabKey,
+  ariaLabel,
   children,
   onRequestActivate,
-  ariaLabel,
-  activeSize,
   onRequestSizeChange,
   onRequestDismiss,
   sizeOptions,

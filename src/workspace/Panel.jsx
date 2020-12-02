@@ -37,8 +37,8 @@ const Panel = ({
         role="none"
       >
         <TabHeader actions={actions}>{label}</TabHeader>
-        <NotificationBanners />
         {toolBar}
+        <NotificationBanners />
       </div>
       <div
         {...customProps}

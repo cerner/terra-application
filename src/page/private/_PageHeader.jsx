@@ -153,17 +153,27 @@ const PageHeader = ({
       <div className={cx('page-layout-header')}>
         {onBack || pageContext?.containerStartActions ? (
           <div className={cx('back-button-container')}>
-            {pageContext?.containerStartActions ? (
+            {pageContext.containerStartActions.length ? (
               <>
-                {pageContext?.containerStartActions}
+                {pageContext.containerStartActions.map(({ icon: Icon, ...action }) => (
+                  <Button
+                    className={cx('header-button')}
+                    key={action.key}
+                    text={action.label}
+                    icon={<Icon />}
+                    onClick={action.onSelect}
+                    isDisabled={!action.onSelect}
+                    variant="utility"
+                  />
+                ))}
                 <div className={cx('actions-divider')} />
               </>
-          ) : null}
+            ) : null}
             {onBack ? (
               <Button
                 className={cx(['header-button', 'back-button'])}
                 icon={<IconLeft />}
-                text="Back" // TODO intl
+                text="Back" // TODO intl and need for more explicit "return to [BLAH]" text
                 onClick={onBack}
                 variant={ButtonVariants.UTILITY}
               />
@@ -177,12 +187,22 @@ const PageHeader = ({
           {renderActionButtons()}
           {renderMenuButton()}
           {showMenu && renderMenu()}
-          {pageContext?.containerEndActions ? (
+          {pageContext.containerEndActions.length ? (
             <>
               <div className={cx('actions-divider')} />
-              {pageContext?.containerEndActions}
+              {pageContext.containerEndActions.map(({ icon: Icon, ...action }) => (
+                <Button
+                  className={cx('header-button')}
+                  key={action.key}
+                  text={action.label}
+                  icon={<Icon />}
+                  onClick={action.onSelect}
+                  isDisabled={!action.onSelect}
+                  variant="utility"
+                />
+              ))}
             </>
-        ) : null}
+          ) : null}
         </div>
       </div>
       {children}

@@ -1,9 +1,10 @@
 import React from 'react';
-import PageContainerActionsContext from '../../../page/PageContainerActionsContext';
+import Button from 'terra-button';
+import LayoutActionsContext from '../../../layouts/shared/LayoutActionsContext';
 import MainContainer from '../../../main-container';
 
 const NotAPage = () => {
-  const pageContainerActions = React.useContext(PageContainerActionsContext);
+  const layoutActions = React.useContext(LayoutActionsContext);
 
   return (
     <MainContainer>
@@ -15,8 +16,22 @@ const NotAPage = () => {
         <p>This component also renders action controls provided by any parent layouts, if present.</p>
         <p>Layout Actions:</p>
         <div>
-          {pageContainerActions?.startActions}
-          {pageContainerActions?.endActions}
+          {layoutActions.startActions.map(({ icon: Icon, ...action }) => (
+            <Button
+              key={action.key}
+              text={action.label}
+              icon={<Icon />}
+              onClick={action.onSelect}
+            />
+          ))}
+          {layoutActions.endActions.map(({ icon: Icon, ...action }) => (
+            <Button
+              key={action.key}
+              text={action.label}
+              icon={<Icon />}
+              onClick={action.onSelect}
+            />
+          ))}
         </div>
       </div>
     </MainContainer>

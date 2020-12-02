@@ -4,29 +4,6 @@ import uuidv4 from 'uuid/v4';
 
 import LayerContext from './LayerContext';
 
-// const Dismissable = ({ onRequestClose, children }) => {
-//   const parentLayerManager = React.useContext(LayerManagerContext);
-
-//   React.useEffect(() => {
-//     if (!parentLayerManager.isActive) {
-//       console.log('not active layer, not adding listener');
-
-//       return undefined;
-//     }
-
-//     const handleDismiss = () => {
-//       onRequestClose();
-//     };
-
-//     document.addEventListener('TerraApplication.FrameworkDismiss', handleDismiss);
-//     return () => {
-//       document.removeEventListener('TerraApplication.FrameworkDismiss', handleDismiss);
-//     };
-//   });
-
-//   return children;
-// };
-
 const LayerPortal = ({
   type, setInert, children,
 }) => {

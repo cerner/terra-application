@@ -4,9 +4,10 @@ import Button from 'terra-button';
 import PrimaryNavigationLayout from '../../../layouts/primary-navigation-layout/PrimaryNavigationLayout';
 import SessionUserContext from '../../../session/SessionUserContext';
 import SessionActionsContext from '../../../session/SessionActionsContext';
-import ApplicationErrorBoundary from '../../../application-error-boundary';
+import { ApplicationContainerErrorBoundary } from '../../../application-container';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../../../navigation-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
+import WindowManager from '../../../utils/window-manager/window-manager';
 
 const propTypes = {};
 
@@ -82,16 +83,16 @@ const SessionProvider = ({ children }) => {
     content = (
       <SessionUserContext.Provider value={userContextValue}>
         <SessionActionsContext.Provider value={sessionActionsContextValue}>
-          <ApplicationErrorBoundary errorViewButtonAttrs={[{
+          <ApplicationContainerErrorBoundary errorViewButtonAttrs={[{
             text: 'Reload',
-            onClick: () => { window.location.reload(); },
+            onClick: () => { WindowManager.forceLocationReload(); },
           }, {
             text: 'Logout',
             onClick: () => { sessionActionsContextValue.logout(); },
           }]}
           >
             {children}
-          </ApplicationErrorBoundary>
+          </ApplicationContainerErrorBoundary>
         </SessionActionsContext.Provider>
       </SessionUserContext.Provider>
     );

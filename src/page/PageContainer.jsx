@@ -3,14 +3,19 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import MainContainer from '../main-container';
+import LayoutActionsContext from '../layouts/shared/LayoutActionsContext';
 
 import PageContext from './private/PageContext';
 import PageContainerPortalManager from './private/_PageContainerPortalManager';
-import PageContainerActionsContext from './PageContainerActionsContext';
 
 import styles from './PageContainer.module.scss';
 
 const cx = classNames.bind(styles);
+
+const defaultLayoutActionsOverrideValue = {
+  startActions: [],
+  endActions: [],
+};
 
 const propTypes = {
   /**
@@ -64,21 +69,21 @@ const PageContainer = ({
   const [hasMounted, setHasMounted] = React.useState();
 
   /**
-   * The PageContainerActionsContext value is read, and its value is provided to the individual Pages
+   * The LayoutActionsContext value is read, and its value is provided to the individual Pages
    * through the PageContext. This allows the PageContainer to override the actions context value and
    * ensure the previous value does not bleed into any nested PageContainers.
    */
-  const pageContainerActions = React.useContext(PageContainerActionsContext);
+  const layoutActions = React.useContext(LayoutActionsContext);
 
   const pageContextValue = React.useMemo(() => ({
     pageContainerHasMounted: hasMounted,
     pageContainer: rootContainerRef.current,
     nodeManager: portalManagerRef.current,
-    containerStartActions: pageContainerActions?.startActions,
-    containerEndActions: pageContainerActions?.endActions,
+    containerStartActions: layoutActions.startActions,
+    containerEndActions: layoutActions.endActions,
     parentNodeId: undefined,
     isMainPage: isMainRef.current,
-  }), [hasMounted, pageContainerActions]);
+  }), [hasMounted, layoutActions.startActions, layoutActions.endActions]);
 
   /**
    * The elements used to portal Page content cannot be generated until the root
@@ -90,11 +95,11 @@ const PageContainer = ({
   }, []);
 
   const content = (
-    <PageContainerActionsContext.Provider value={undefined}>
+    <LayoutActionsContext.Provider value={defaultLayoutActionsOverrideValue}>
       <PageContext.Provider value={pageContextValue}>
         {hasMounted && children}
       </PageContext.Provider>
-    </PageContainerActionsContext.Provider>
+    </LayoutActionsContext.Provider>
   );
 
   if (isMainRef.current) {

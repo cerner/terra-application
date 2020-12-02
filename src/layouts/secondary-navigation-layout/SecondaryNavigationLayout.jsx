@@ -1,7 +1,6 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
-import Button, { ButtonVariants } from 'terra-button';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
@@ -9,9 +8,10 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
 import { PageContainer } from '../../page';
-import PageContainerActionsContext from '../../page/PageContainerActionsContext';
+import LayoutActionsContext from '../shared/LayoutActionsContext';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
+import { deferExecution } from '../../utils/lifecycle-utils';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -116,6 +116,7 @@ const SecondaryNavigationLayout = ({
   workspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
+  const parentLayoutActions = React.useContext(LayoutActionsContext);
 
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
@@ -170,28 +171,34 @@ const SecondaryNavigationLayout = ({
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
 
-  const pageContainerActionsContextValue = React.useMemo(() => ({
-    startActions: hasSidebar && hasOverlaySidebar ? (
-      <Button
-        className={cx('header-button')}
-        icon={<IconLeftPane />}
-        text="Toggle Side Nav" // TODO INTL
-        onClick={() => { setSideNavOverlayIsVisible((state) => !state); }}
-        variant={ButtonVariants.UTILITY}
-      />
-    ) : undefined,
-    endActions: workspace ? (
-      <Button
-        className={cx('header-button', { 'active-button': workspaceIsVisible })}
-        icon={workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />}
-        text="Toggle Workspace" // TODO INTL
-        onClick={() => {
-          setWorkspaceIsVisible(state => !state);
-        }}
-        variant={ButtonVariants.UTILITY}
-      />
-    ) : undefined,
-  }), [workspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar]);
+  const layoutActionsContextValue = React.useMemo(() => {
+    let newStartActions = parentLayoutActions.startActions;
+    let newEndActions = parentLayoutActions.endActions;
+
+    if (hasSidebar && hasOverlaySidebar) {
+      newStartActions = [...newStartActions, {
+        key: 'secondary-navigation-layout-toggle-navigation-panel',
+        label: `Toggle Navigation Panel ${sideNavOverlayIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
+        icon: IconLeftPane,
+        onSelect: () => { setSideNavOverlayIsVisible((state) => !state); },
+      }];
+    }
+
+    if (workspace) {
+      newEndActions = [...newEndActions, {
+        key: 'secondary-navigation-layout-toggle-workspace-panel',
+        label: `Toggle Workspace Panel ${workspaceIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
+        icon: workspaceIsVisible ? IconPanelRight : IconPanelLeft,
+        onSelect: () => { setWorkspaceIsVisible(state => !state); },
+        isActive: workspaceIsVisible,
+      }];
+    }
+
+    return ({
+      startActions: newStartActions,
+      endActions: newEndActions,
+    });
+  }, [parentLayoutActions.startActions, parentLayoutActions.endActions, workspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar, sideNavOverlayIsVisible]);
 
   useDismissTransientPresentationsCallback(() => {
     if (hasOverlaySidebar) {
@@ -244,9 +251,9 @@ const SecondaryNavigationLayout = ({
 
       lastActiveNavigationKeyRef.current = activeNavigationKey;
 
-      setTimeout(() => {
+      deferExecution(() => {
         document.body.focus();
-      }, 0);
+      });
     } else {
       contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
       lastActiveNavigationKeyRef.current = undefined;
@@ -410,10 +417,6 @@ const SecondaryNavigationLayout = ({
     });
   }
 
-  function deferAction(callback) {
-    setTimeout(callback, 0);
-  }
-
   let content;
   if (renderPage) {
     content = (
@@ -448,7 +451,7 @@ const SecondaryNavigationLayout = ({
               setSideNavOverlayIsVisible(true);
             }
 
-            deferAction(() => {
+            deferExecution(() => {
               sideNavPanelRef.current.focus();
             });
           }}
@@ -464,7 +467,7 @@ const SecondaryNavigationLayout = ({
 
             setWorkspaceIsVisible(true);
 
-            deferAction(() => {
+            deferExecution(() => {
               workspacePanelRef.current.focus();
             });
           }}
@@ -499,7 +502,7 @@ const SecondaryNavigationLayout = ({
               onDismiss={sideNavOverlayIsVisible ? () => {
                 setSideNavOverlayIsVisible(false);
 
-                deferAction(() => {
+                deferExecution(() => {
                   document.querySelector('main')?.focus();
                 });
               } : undefined}
@@ -513,12 +516,12 @@ const SecondaryNavigationLayout = ({
           <div
             ref={contentElementRef}
             className={cx('page-body')}
-            style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}` } : null} // TODO add IE flex styles
+            style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, '-ms-flex-positive': `${1 - workspaceSize.scale}` } : null}
             inert={sideNavOverlayIsVisible || (hasOverlayWorkspace && workspaceIsVisible) ? 'true' : null}
           >
-            <PageContainerActionsContext.Provider value={pageContainerActionsContextValue}>
+            <LayoutActionsContext.Provider value={layoutActionsContextValue}>
               {content}
-            </PageContainerActionsContext.Provider>
+            </LayoutActionsContext.Provider>
           </div>
           {workspace && (activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous')
             ? (
@@ -595,7 +598,7 @@ const SecondaryNavigationLayout = ({
                   onRequestClose: hasOverlayWorkspace ? () => {
                     setWorkspaceIsVisible(false);
 
-                    deferAction(() => {
+                    deferExecution(() => {
                       document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
                     });
                   } : null,

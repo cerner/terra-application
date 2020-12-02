@@ -12,6 +12,7 @@ import useNotificationBanners from '../notification-banner/private/useNotificati
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
 import ActiveMainPageRegistrationContext from '../application-container/private/active-main-page/ActiveMainPageRegistrationContext';
+import { deferExecution } from '../utils/lifecycle-utils';
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
@@ -64,13 +65,6 @@ const propTypes = {
    * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
    */
   requestClosePromptIsDisabled: PropTypes.bool,
-  /**
-   * When true, the Page header will not be rendered.
-   *
-   * This prop will be ignored if the `actions`, `menu`, or `onRequestClose` props are provided, or if the
-   * header must present actions due to content within the PageContainerActionsContext.
-   */
-  preferHeaderIsHidden: PropTypes.bool,
   disablePageScrolling: PropTypes.bool,
   /**
    * The components to render within the context of the Page.
@@ -88,7 +82,6 @@ const Page = ({
   onRequestClose,
   overflowElementRefCallback,
   requestClosePromptIsDisabled,
-  preferHeaderIsHidden,
   disablePageScrolling,
   children,
 }) => {
@@ -196,11 +189,13 @@ const Page = ({
     }
 
     if (pageContext.isMainPage && navigationItem.isActive) {
-      setTimeout(() => {
+      deferExecution(() => {
         document.body.focus();
-      }, 0);
+      });
     } else if (!pageContext.isMainPage && navigationItem.isActive) {
-      setTimeout(() => { pageContext.pageContainer.focus(); }, 0);
+      deferExecution(() => {
+        pageContext.pageContainer.focus();
+      });
     }
   }, [isActive, pageContext.isMainPage, navigationItem.isActive, pageContext.pageContainer]);
 
@@ -233,33 +228,20 @@ const Page = ({
     });
   }
 
-  /**
-   * The Page header will not be rendered if the consumer indicates that it should be hidden and no content exists for the header to present.
-   * The label prop is excluded here, as it is required for proper ARIA descriptions and does not necessarily require header presence.
-   */
-  const headerShouldBeRendered = !preferHeaderIsHidden || actions || menu || onRequestClose || pageContext.containerStartActions || pageContext.containerEndActions;
-
   return (
     ReactDOM.createPortal((
       <div className={cx('page', { 'disable-scroll': disablePageScrolling })}>
         <div className={cx('header')}>
-          {headerShouldBeRendered ? (
-            <PageHeader
-              onBack={onRequestClose && safelyRequestClose}
-              label={label}
-              actions={actions}
-              menu={menu}
-              hasLoadingOverlay={loadingOverlayIsActive}
-            >
-              {toolbar}
-              <NotificationBanners />
-            </PageHeader>
-          ) : (
-            <>
-              {toolbar}
-              <NotificationBanners />
-            </>
-          )}
+          <PageHeader
+            onBack={onRequestClose && safelyRequestClose}
+            label={label}
+            actions={actions}
+            menu={menu}
+            hasLoadingOverlay={loadingOverlayIsActive}
+          >
+            {toolbar}
+            <NotificationBanners />
+          </PageHeader>
         </div>
         <div className={cx('content')}>
           <PageContext.Provider value={childPageContextValue}>

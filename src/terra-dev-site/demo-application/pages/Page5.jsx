@@ -31,14 +31,13 @@ const Page5 = ({ onRequestClose }) => {
       label="Page 5"
       metaData={page5MetaData}
       onRequestClose={onRequestClose}
-      preferHeaderIsHidden
     >
       <CardLayout>
         <h2>Page 5</h2>
         <Card title="Page 5 Details">
           <p>Page 5 demonstrates the following features:</p>
           <ul>
-            <li>Hiding of the Page header</li>
+            <li>Hiding of the Page header (not anymore)</li>
             <li>Content that triggers Page APIs</li>
           </ul>
         </Card>

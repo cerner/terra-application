@@ -9,8 +9,6 @@ const SecondaryNavigationLayoutWorkspace = ({
   onSizeChange,
   onPresentationStateChange,
   onActiveTabChange,
-  initialSize,
-  initialIsOpen,
   initialActiveTabKey,
   children,
 

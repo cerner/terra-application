@@ -19,7 +19,7 @@ const SideNavHeader = ({
           <Button
             className={cx(['header-button', 'back-button'])}
             icon={<IconLeft />}
-            text="Back" // TODO intl
+            text="Back" // TODO validate icon/text and intl
             onClick={onRequestClose}
             variant={ButtonVariants.UTILITY}
           />

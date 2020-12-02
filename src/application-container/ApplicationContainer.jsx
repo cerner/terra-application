@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import ApplicationErrorBoundary from '../application-error-boundary';
+import { ApplicationIntlContext } from '../application-intl';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
+import WindowManager from '../utils/window-manager/window-manager';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
 import ActiveMainPageProvider from './private/active-main-page/ActiveMainPageProvider';
+import ApplicationContainerErrorBoundary from './ApplicationContainerErrorBoundary';
 import ApplicationContainerContext from './ApplicationContainerContext';
 
 import styles from './ApplicationContainer.module.scss';
@@ -50,6 +52,7 @@ const propTypes = {
 const ApplicationContainer = ({
   applicationName, applicationVersion, applicationMetaData, children, skipToLinksAreDisabled, unloadPromptIsDisabled,
 }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
   /**
    * The NavigationPrompts registered to the ApplicationContainer's checkpoint are stored
    * in this ref. This ref is then queried during the unload event to determine whether
@@ -68,28 +71,10 @@ const ApplicationContainer = ({
       return undefined;
     }
 
-    function onBeforeUnload(event) {
-      if (registeredPromptsRef.current && registeredPromptsRef.current.length) {
-        event.preventDefault();
-
-        /**
-         * Chrome requires returnValue to be set to present the confirmation dialog
-         */
-        event.returnValue = ''; // eslint-disable-line no-param-reassign
-
-        /**
-         * For this prompt, ApplicationBase is limited to browser-defaulted messaging.
-         */
-        return '';
-      }
-
-      return undefined;
-    }
-
-    window.addEventListener('beforeunload', onBeforeUnload);
+    const unregisterUnloadPromptTrigger = WindowManager.registerUnloadPromptTrigger(() => registeredPromptsRef.current && registeredPromptsRef.current.length);
 
     return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
+      unregisterUnloadPromptTrigger();
     };
   }, [unloadPromptIsDisabled]);
 
@@ -111,17 +96,17 @@ const ApplicationContainer = ({
             <LayerContainer>
               {!skipToLinksAreDisabled && <SkipToButtons />}
               <SkipToButtonsProvider>
-                <ApplicationErrorBoundary
+                <ApplicationContainerErrorBoundary
                   errorViewButtonAttrs={[{
                     key: 'reload',
-                    text: 'Reload', // TODO intl
-                    onClick: () => { window.location.reload(); },
+                    text: applicationIntl.formatMessage({ id: 'terraApplication.applicationContainerErrorBoundary.reload' }),
+                    onClick: () => { WindowManager.forceLocationReload(); },
                   }]}
                 >
                   <ModalManager>
                     {children}
                   </ModalManager>
-                </ApplicationErrorBoundary>
+                </ApplicationContainerErrorBoundary>
               </SkipToButtonsProvider>
             </LayerContainer>
           </div>

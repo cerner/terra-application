@@ -1,7 +1,9 @@
 import React from 'react';
 import classNames from 'classnames/bind';
 
+import { ApplicationIntlContext } from '../../../application-intl';
 import { dismissTransientPresentations } from '../../../utils/transient-presentation';
+import { deferExecution } from '../../../utils/lifecycle-utils';
 
 import SkipToButtonsContext from './SkipToButtonsContext';
 
@@ -10,6 +12,8 @@ import styles from './SkipToButton.module.scss';
 const cx = classNames.bind(styles);
 
 const useSkipToButtons = () => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+
   /**
    * The registered SkipToButton entries are stored in a ref to limit updates to the hook consumer.
    * Any updates to the rendered buttons are performed with the updateButtonsStateRef.
@@ -83,13 +87,10 @@ const useSkipToButtons = () => {
               role="link" // TODO verify role
               onClick={() => {
                 dismissTransientPresentations();
-
-                setTimeout(() => { data.onSelect(); }, 0);
+                deferExecution(() => { data.onSelect(); });
               }}
             >
-              Skip to
-              {' '}
-              {data.description}
+              {applicationIntl.formatMessage({ id: 'terraApplication.skipToButton.prefix' }, { target: data.description })}
             </button>
           );
         }
@@ -118,7 +119,7 @@ const useSkipToButtons = () => {
         );
       },
     };
-  }, []);
+  }, [applicationIntl]);
 
   return useSkipToButtonsExports;
 };

@@ -6,6 +6,7 @@ import LayerPortal from '../layers/LayerPortal';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 import { PageContainer } from '../page';
+import { deferExecution } from '../utils/lifecycle-utils';
 
 import ModalContent from './_ModalContent';
 import PageContext from '../page/private/PageContext';
@@ -56,7 +57,7 @@ const ApplicationModal = ({
   }, [dangerouslyDisableNavigationPromptHandling, onRequestClose, applicationIntl]);
 
   React.useLayoutEffect(() => {
-    setTimeout(() => {
+    deferExecution(() => {
       // Handle focus shift for VoiceOver on iOS
       if ('ontouchstart' in window) {
         modalContainerRef.current.querySelector('[data-terra-abstract-modal-begin]').focus();
@@ -64,7 +65,7 @@ const ApplicationModal = ({
         // Shift focus to modal dialog
         modalContainerRef.current.focus();
       }
-    }, 0);
+    });
   }, []);
 
   React.useEffect(() => {

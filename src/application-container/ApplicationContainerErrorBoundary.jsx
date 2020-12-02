@@ -6,8 +6,8 @@ import logger from '../utils/logger';
 
 const propTypes = {
   /**
-   * Components to render within the context of the ApplicationErrorBoundary. Exceptions thrown
-   * by these components during their render lifecycle will be caught by the ApplicationErrorBoundary.
+   * Components to render within the context of the ApplicationContainerErrorBoundary. Exceptions thrown
+   * by these components during their render lifecycle will be caught by the ApplicationContainerErrorBoundary.
    */
   children: PropTypes.node,
   /**
@@ -21,7 +21,7 @@ const propTypes = {
   intl: intlShape,
 };
 
-class ApplicationErrorBoundary extends React.Component {
+class ApplicationContainerErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
 
@@ -46,7 +46,7 @@ class ApplicationErrorBoundary extends React.Component {
       return (
         <StatusView
           variant="error"
-          message={intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails })} // TODO intl
+          message={intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails })}
           buttonAttrs={errorViewButtonAttrs}
           role="alert"
           aria-live="assertive"
@@ -58,6 +58,6 @@ class ApplicationErrorBoundary extends React.Component {
   }
 }
 
-ApplicationErrorBoundary.propTypes = propTypes;
+ApplicationContainerErrorBoundary.propTypes = propTypes;
 
-export default injectIntl(ApplicationErrorBoundary);
+export default injectIntl(ApplicationContainerErrorBoundary);

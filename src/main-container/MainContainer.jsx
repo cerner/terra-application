@@ -3,14 +3,13 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 
+import { ApplicationIntlContext } from '../application-intl';
 import SkipToButton from '../application-container/private/skip-to/SkipToButton';
+import { deferExecution } from '../utils/lifecycle-utils';
+
 import styles from './MainContainer.module.scss';
 
 const cx = classNamesBind.bind(styles);
-
-function deferAction(callback) {
-  setTimeout(callback, 0);
-}
 
 const propTypes = {
   /**
@@ -31,6 +30,7 @@ const propTypes = {
  * a MainContainer automatically when the `renderPage` prop is used.
  */
 const MainContainer = ({ refCallback, ...otherProps }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
   const mainElementRef = React.useRef();
 
   const mainElementClasses = classNames(cx('main-container'), otherProps.className);
@@ -39,9 +39,9 @@ const MainContainer = ({ refCallback, ...otherProps }) => {
     <>
       <SkipToButton
         isMain
-        description="Main Content" // TODO INTL
+        description={applicationIntl.formatMessage({ id: 'terraApplication.mainContainer.skipToLabel' })}
         onSelect={() => {
-          deferAction(() => mainElementRef.current?.focus());
+          deferExecution(() => mainElementRef.current?.focus());
         }}
       />
       <main

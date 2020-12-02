@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import IconPadlock from 'terra-icon/lib/icon/IconPadlock';
 
+import { ApplicationIntlContext } from '../../application-intl';
 import { ApplicationContainerContext } from '../../application-container';
 import { PageContainer } from '../../page';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import SessionUserContext from '../../session/SessionUserContext';
 import SessionActionsContext from '../../session/SessionActionsContext';
+import { deferExecution } from '../../utils/lifecycle-utils';
 
 import HeadlessLayout from '../embedded-layout/HeadlessLayout';
 import NavigationItem from '../shared/NavigationItem';
@@ -124,6 +126,7 @@ const PrimaryNavigationLayout = ({
   renderLayout,
   renderNavigationFallback,
 }) => {
+  const applicationIntl = React.useContext(ApplicationIntlContext);
   const applicationContainer = React.useContext(ApplicationContainerContext);
   const sessionUser = React.useContext(SessionUserContext);
   const sessionActions = React.useContext(SessionActionsContext);
@@ -185,13 +188,13 @@ const PrimaryNavigationLayout = ({
       updatedUtilityItems.push({
         key: UTILITY_ITEM_LOCK,
         icon: <IconPadlock />,
-        text: 'Lock', // TODO intl (from orion-application)
+        text: applicationIntl.formatMessage({ id: 'terraApplication.primaryNavigationLayout.utilityMenu.lock' }),
         onSelect: derivedOnSelectLock,
       });
     }
 
     return updatedUtilityItems;
-  }, [utilityItems, derivedOnSelectLock]);
+  }, [applicationIntl, utilityItems, derivedOnSelectLock]);
 
   React.useLayoutEffect(() => {
     if (!contentElementRef.current) {
@@ -234,9 +237,9 @@ const PrimaryNavigationLayout = ({
 
       lastActiveNavigationKeyRef.current = activeNavigationKey;
 
-      setTimeout(() => {
+      deferExecution(() => {
         document.body.focus();
-      }, 0);
+      });
     } else {
       contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
       lastActiveNavigationKeyRef.current = undefined;

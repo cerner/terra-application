@@ -9,6 +9,7 @@ import Button from 'terra-button';
 
 import LayerPortal from '../layers/LayerPortal';
 import { ApplicationIntlContext } from '../application-intl';
+import { deferExecution } from '../utils/lifecycle-utils';
 
 import NotificationIcon from './_NotificationIcon';
 import ContentLayoutAsList from './_ContentLayoutAsList';
@@ -141,7 +142,7 @@ const NotificationDialog = (props) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
   React.useEffect(() => {
-    setTimeout(() => {
+    deferExecution(() => {
       // Handle focus shift for VoiceOver on iOS
       if ('ontouchstart' in window) {
         modalContainerRef.current.querySelector('[data-terra-abstract-modal-begin]').focus();

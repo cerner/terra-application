@@ -437,6 +437,13 @@ const SecondaryNavigationLayout = ({
     content = children;
   }
 
+   // TODO: comeback to this
+  const mapSize = {
+    '0': 'small',
+    '0.5': 'medium',
+    '1': 'large',
+  };
+
   return (
     <>
       {hasSidebar && (
@@ -603,7 +610,7 @@ const SecondaryNavigationLayout = ({
                     });
                   } : null,
                   sizeScalar: workspaceSize.scale,
-                  activeSize: undefined,
+                  activeSize: workspaceSize.type || mapSize[`${workspaceSize.scale}`], // TODO: comeback to this
                   sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
                   onRequestSizeChange: (size) => {
                     userSelectedTypeRef.current = undefined;

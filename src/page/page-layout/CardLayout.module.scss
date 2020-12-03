@@ -1,6 +1,27 @@
+@import '../../breakpoints/media-queries';
+
 :local {
   .card-layout {
     height: 100%;
-    padding: 10px 0;
+    margin: 0 10px;
+    outline: none;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 10px 5px 15px;
+  }
+
+  .card-layout:not(.overflow-disabled) {
+    overflow-y: auto;
+  }
+
+  .width-normalizer {
+    width: 100%;
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+  }
+
+  .overflow-disabled .width-normalizer {
+    height: 100%;
   }
 }

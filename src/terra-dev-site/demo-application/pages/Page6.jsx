@@ -19,7 +19,7 @@ const Page6 = ({ onRequestClose }) => {
   let content;
   if (renderCard) {
     content = (
-      <CardLayout>
+      <CardLayout overflowIsDisabled={layoutStyleFill}>
         <Card title="Page 6 Details" fill={layoutStyleFill}>
           <p>Page 6 demonstrates the following features:</p>
           <ul>

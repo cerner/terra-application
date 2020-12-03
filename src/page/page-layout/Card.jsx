@@ -16,21 +16,18 @@ const propTypes = {
 const Card = ({
   title, children, fill, minHeightFill,
 }) => (
-  <>
-    <div className={cx('card', { fill, 'min-height-fill': minHeightFill })}>
-      { title && (
-        <div className={cx('card-header')}>
-          <div className={cx('title-container')}>
-            {title}
-          </div>
-        </div>
-      )}
-      <div className={cx('card-body')} data-application-overflow-container="true">
-        {children}
+  <div className={cx('card', { fill, 'min-height-fill': minHeightFill })}>
+    { title && (
+    <div className={cx('card-header')}>
+      <div className={cx('title-container')}>
+        {title}
       </div>
     </div>
-    <div style={{ height: '10px', visibility: 'hidden' }} />
-  </>
+    )}
+    <div className={cx('card-body')} data-application-overflow-container="true">
+      {children}
+    </div>
+  </div>
 );
 
 Card.propTypes = propTypes;

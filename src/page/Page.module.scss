@@ -14,7 +14,7 @@
 
     .header {
       flex: 0 0 auto;
-      overflow-y: scroll;
+      overflow: hidden;
       padding: 0 10px;
       z-index: 0;
     }
@@ -28,41 +28,5 @@
       width: 100%;
       z-index: 1;
     }
-  }
-
-  .overflow-content {
-    display: block; // VERY IMPORTANT FOR IE
-    height: 100%;
-    outline: none;
-    overflow-x: auto;
-    overflow-y: scroll;
-    // padding: 10px;
-    position: relative;
-    width: 100%;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  .width-normalizer {
-    height: 100%;
-    padding: 0 15px;
-    width: 100%;
-    @include terra-mq-medium-up {
-      min-width: 768px;
-    }
-  }
-
-  .disable-scroll .width-normalizer {
-    height: 100%;
-  }
-
-  .disable-scroll .header {
-    overflow-y: inherit;
-  }
-
-  .disable-scroll .overflow-content {
-    overflow-y: hidden;
   }
 }

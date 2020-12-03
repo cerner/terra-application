@@ -727,9 +727,12 @@ TODO 10/21
   * Pages
     * Scrolling
       * How do we expect the scrollbar to render?
+        **ANSWER** below header, in alignment with inset header divider
       * Do we need the page header to be inset to match page body scrollbar?
+        **ANSWER** no, if it's in alignment with the header divider
       * Do we need to account for extremely large header scenarios by setting a min-height on the page content?
         * resulting in vertical scroll in scroll in the worst case
+        **ANSWER** yes, rough estimate is scroll on <40% available screen space
 
     * Header Content
       * Do we want to enforce the rounded edges within the Page itself or is that a component concern?

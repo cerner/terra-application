@@ -58,13 +58,11 @@ const propTypes = {
    * will not be rendered.
    */
   onRequestClose: PropTypes.func,
-  overflowElementRefCallback: PropTypes.func,
   /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
    */
   requestClosePromptIsDisabled: PropTypes.bool,
-  disablePageScrolling: PropTypes.bool,
   /**
    * The components to render within the context of the Page.
    */
@@ -79,9 +77,7 @@ const Page = ({
   menu,
   toolbar,
   onRequestClose,
-  overflowElementRefCallback,
   requestClosePromptIsDisabled,
-  disablePageScrolling,
   children,
 }) => {
   if (actions && actions.type !== PageActions) {
@@ -209,7 +205,7 @@ const Page = ({
 
   return (
     ReactDOM.createPortal((
-      <div className={cx('page', { 'disable-scroll': disablePageScrolling })}>
+      <div className={cx('page')}>
         <div className={cx('header')}>
           <PageHeader
             onBack={onRequestClose && safelyRequestClose}
@@ -228,21 +224,12 @@ const Page = ({
               <NotificationBannerProvider>
                 <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
                   <ApplicationStatusOverlayProvider>
-                    <div
-                      tabIndex="0" // TODO validate need for this
-                      className={cx('overflow-content', 'page-background')}
-                      data-application-overflow-container
-                      ref={(ref) => { if (overflowElementRefCallback) { overflowElementRefCallback(ref); } }}
-                    >
-                      <div className={cx('width-normalizer')}>
-                        <VisuallyHiddenText
-                          aria-hidden
-                          id={pageLabelIdRef.current}
-                          text={label}
-                        />
-                        {children}
-                      </div>
-                    </div>
+                    <VisuallyHiddenText
+                      aria-hidden
+                      id={pageLabelIdRef.current}
+                      text={label}
+                    />
+                    {children}
                   </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </NotificationBannerProvider>

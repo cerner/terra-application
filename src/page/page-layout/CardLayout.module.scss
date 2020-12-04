@@ -3,11 +3,13 @@
 :local {
   .card-layout {
     height: 100%;
+    
     margin: 0 10px;
+    padding: 10px 5px 15px;
+
     outline: none;
     overflow-x: auto;
     overflow-y: hidden;
-    padding: 10px 5px 15px;
   }
 
   .card-layout:not(.overflow-disabled) {
@@ -15,6 +17,8 @@
   }
 
   .width-normalizer {
+    // padding: 10px 15px 15px;
+
     width: 100%;
     @include terra-mq-medium-up {
       min-width: 768px;

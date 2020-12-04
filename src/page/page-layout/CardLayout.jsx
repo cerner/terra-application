@@ -6,21 +6,17 @@ const cx = classNames.bind(styles);
 
 const propTypes = {};
 
-const CardLayout = ({ children, overflowIsDisabled }) => {
-  const [state, setState] = React.useState();
-
-  return (
-    <div
-      className={cx('card-layout', { 'overflow-disabled': overflowIsDisabled })}
-      data-application-overflow-container
-      tabIndex="0"
-    >
-      <div className={cx('width-normalizer')}>
-        {children}
-      </div>
+const CardLayout = ({ children, overflowIsDisabled }) => (
+  <div
+    className={cx('card-layout', { 'overflow-disabled': overflowIsDisabled })}
+    data-application-overflow-container
+    tabIndex="0"
+  >
+    <div className={cx('width-normalizer')}>
+      {children}
     </div>
-  );
-};
+  </div>
+);
 
 CardLayout.propTypes = propTypes;
 

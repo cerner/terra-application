@@ -60,7 +60,6 @@ const Page6 = ({ onRequestClose }) => {
           height: layoutStyleFill ? '100%' : 'auto',
           border: '5px solid blue',
           overflow: layoutStyleFill ? 'auto' : 'inherit',
-          backgroundColor: 'green',
         }}
       >
         <p>Page 6 demonstrates the following features:</p>

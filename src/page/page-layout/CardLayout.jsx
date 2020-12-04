@@ -12,9 +12,9 @@ const CardLayout = ({ children, overflowIsDisabled }) => (
     data-application-overflow-container
     tabIndex="0"
   >
-    <div className={cx('width-normalizer')}>
-      {children}
-    </div>
+    {/* <div className={cx('width-normalizer')}> */}
+    {children}
+    {/* </div> */}
   </div>
 );
 

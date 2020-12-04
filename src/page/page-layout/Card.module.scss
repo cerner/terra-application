@@ -1,3 +1,5 @@
+@import '../../breakpoints/media-queries';
+
 :local {
   .card {
     background-color: #fefffe;
@@ -12,6 +14,10 @@
 
     overflow: hidden;
     padding: 0 10px 10px;
+
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
   }
 
   .card:not(:first-child) {

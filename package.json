@@ -103,7 +103,7 @@
   },
   "dependencies": {
     "@cerner/terra-docs": "^1.0.0",
-    "@formatjs/intl-relativetimeformat": "^7.2.7",
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "intl": "^1.2.5",

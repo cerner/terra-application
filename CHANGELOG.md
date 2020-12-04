@@ -2,6 +2,22 @@
 
 ## Unreleased
 
+## 1.41.0 - (November 17, 2020)
+
+* Added
+  * Added new file `browserslistrc` for Browserslist.
+
+* Fixed
+  * Fixed build failures due to the react/sort-comp rule
+
+* Changed
+  * Removed deprecated Terra.it assertions and replaced with Terra.validates assertions
+
+## 1.40.0 - (October 27, 2020)
+
+* Added
+  * Added mutation observer-shim to better support inert in IE10.
+
 ## 1.39.0 - (October 20, 2020)
 
 * Changed

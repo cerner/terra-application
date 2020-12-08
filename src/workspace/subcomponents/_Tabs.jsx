@@ -16,7 +16,7 @@ const propTypes = {
   ariaLabel: PropTypes.string,
 };
 
-class TabContainer extends React.Component {
+class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
@@ -251,7 +251,7 @@ class TabContainer extends React.Component {
   }
 }
 
-TabContainer.propTypes = propTypes;
-TabContainer.contextType = ThemeContext;
+Tabs.propTypes = propTypes;
+Tabs.contextType = ThemeContext;
 
-export default TabContainer;
+export default Tabs;

@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Button from 'terra-button';
-import IconRollup from 'terra-icon/lib/icon/IconRollup';
+import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
 import Tabs from './subcomponents/_Tabs';
@@ -149,13 +149,14 @@ const Workspace = ({
       <>
         <Button
           className={cx('menu-button')}
-          icon={<IconRollup />}
+          icon={<IconSettings />}
           text="Workspace Size Menu" // TODO INTL
           onClick={() => setIsMenuOpen(true)}
           variant="utility"
           refCallback={node => sizeMenuRef.current = node}
         />
         <Popup
+          isArrowDisplayed
           isOpen={isMenuOpen}
           targetRef={() => sizeMenuRef.current}
           onRequestClose={() => { setIsMenuOpen(false); }}
@@ -192,7 +193,7 @@ const Workspace = ({
         <div className={cx('fill-element')} />
         {createSizeButton()}
       </div>
-      <div role="none" className={cx('header2')}>
+      <div role="none" className={cx('header2', { 'has-dismiss-button': !!onRequestDismiss })}>{/* TODO: update to prop  */}
         <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>

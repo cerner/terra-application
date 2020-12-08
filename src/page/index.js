@@ -2,8 +2,8 @@ import Page from './Page';
 import PageActions, { Action } from './PageActions';
 import PageMenu, { MenuItem, MenuItemDivider } from './PageMenu';
 import PageContainer from './PageContainer';
-import CardLayout from './page-layout/CardLayout';
-import Card from './page-layout/Card';
+import CardLayout from './layouts/CardLayout';
+import Card from './layouts/Card';
 
 export default Page;
 export {

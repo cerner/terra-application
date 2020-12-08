@@ -4,6 +4,7 @@
   .card {
     background-color: #fefffe;
     border-radius: 5px;
+    display: block;
 
     border-top: 1px solid #eeefee;
     border-left: 1px solid #dfe0df;
@@ -12,27 +13,9 @@
 
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
 
+    min-height: calc(100% - 30px);
     overflow: hidden;
     padding: 0 10px 10px;
-
-    @include terra-mq-medium-up {
-      min-width: 768px;
-    }
-  }
-
-  .card:not(:first-child) {
-    margin-top: 10px;
-  }
-
-  .card.fill {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    overflow: auto;
-  }
-
-  .card.min-height-fill {
-    min-height: 100%;
   }
 
   .card-header {
@@ -46,7 +29,7 @@
     overflow: hidden;
     width: 100%;
 
-    .title-container {
+    .label-container {
       flex: 1 1 auto;
       padding: 10px 0;
     }  
@@ -58,15 +41,5 @@
 
   .card-body {
     padding-top: 1rem;
-  }
-
-  .fill .card-header {
-    flex: 0 0 auto;
-  }
-
-  .fill .card-body {
-    flex: 1 1 auto;
-    height: 100%;
-    overflow: auto;
   }
 }

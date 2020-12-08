@@ -728,26 +728,39 @@ TODO 10/21
     * Scrolling
       * How do we expect the scrollbar to render?
         **ANSWER** below header, in alignment with inset header divider
+        * ^ this ain't gonna work, wait for input
       * Do we need the page header to be inset to match page body scrollbar?
         **ANSWER** no, if it's in alignment with the header divider
       * Do we need to account for extremely large header scenarios by setting a min-height on the page content?
         * resulting in vertical scroll in scroll in the worst case
         **ANSWER** yes, rough estimate is scroll on <40% available screen space
 
+      Try putting overflow on PageLayout itself
+        remove padding from width normalizer
+        put min-width on cards themselves
+
     * Header Content
       * Do we want to enforce the rounded edges within the Page itself or is that a component concern?
+        * **ANSWER** yes round toolbar, more specific toolbar APIs to come in the future
       * Do we anticipate more content going inside the header? label/actions/menu/toolbar/notification banners/?
+        * **ANSWER** no, not reasonably anyway
       * notification banners
         * Are we cool with current design for initial release?
+          * **ANSWER** No, pull in terra-alert, update to designs to come
         * Do we need to consider rollup patterns for alerts to mitigate min-height issue above?
+          * **ANSWER** in the future, vertical overflow for now
         * If these notification banners are specifically for presentation at the Page-level, should we align API names to be Page-specific? (PageNotificationBanner?)
+          * **ANSWER** No, NotificationBanner is agnostic, useNotificationBanners will need to change.
       * Do we care to scope out "Menu" presentation from the header for initial release until a better menu control can be created?
+        * **ANSWER** scope out menu, leave roll-up, investigate dynamic page action roll-up
 
     * Page layouts
       * How important is the concept of the Card(?) to the overall Page design? Are there designs without Cards?
+        * **ANSWER** likely yes to designs without cards
       * If Cards _are_ essential, how rigid to do we want/need to make the Page APIs? And how much do we want do now vs. later?
-      * Current designs show a lot of duplicated concepts for things like header/notification/toolbar/tabs presentation within Cards. What of these are known needs vs. concept exploration?
+        * **ANSWER** layouts need to be mostly self-contained
       * Do we expect Cards to ever scroll internally? Do we expect content within a Card to ever remain fixed?
+        * **ANSWER** cards will scroll internally, layout will need to support 100% height layouts
 
     * Headerless Pages
       * Do these exist?
@@ -763,8 +776,11 @@ TODO 10/21
   * Modals
     * Touch base on Modal API
       * label/size/toolbar/onRequestClose are pretty solid
+      * **ANSWER** no toolbar
     * Should modals be able to render Pages? Do the designs for the Page make sense within the Modal? Would we expect something different?
+      * 
     * Same questions regarding loading/status overlays as with Pages
+      * 
 
   * Workspace
     * Tabs Control

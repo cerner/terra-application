@@ -1,0 +1,28 @@
+@import '../../breakpoints/media-queries';
+
+:local {
+  .card-layout {
+    display: block;
+    height: 100%;
+    outline: none;
+    overflow-x: auto;
+    overflow-y: auto;
+    padding: 0 15px;
+    position: relative;
+  }
+
+  // Firefox bug with overflow content and padding-bottom.
+  // Without this ::after content, the card will not have appropriate
+  // bottom padding when it overflows.
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=1517825
+  .card-layout::before,
+  .card-layout::after {
+    content: '';
+    display: block;
+    height: 15px;
+  }
+
+  .card-container:not(:first-child) {
+    margin-top: 15px;
+  }
+}

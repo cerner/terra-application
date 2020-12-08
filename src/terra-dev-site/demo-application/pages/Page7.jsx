@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import Page, { CardLayout, Card } from '../../../page';
+import Page from '../../../page';
+import CardLayout from '../../../page/layouts/CardLayout';
+import Card from '../../../page/layouts/Card';
 
 const propTypes = {
   onRequestClose: PropTypes.func,
@@ -16,10 +18,13 @@ const Page7 = ({ onRequestClose }) => {
       pageKey="page-7"
       label="Page 7"
       onRequestClose={onRequestClose}
-      // disablePageScrolling
     >
       <CardLayout>
-        <Card title="Page 7 Details" minHeightFill>
+        <Card label="Page 7 Details">
+          <p>Page 7 demonstrates the following features:</p>
+          <ul>
+            <li>CardLayout with container fill and dynamic overflow</li>
+          </ul>
           <Button text="Increase Content Size" onClick={() => { setIncrementer(state => state + 1); }} />
           {(Array(incrementer).fill(incrementer)).map(() => (
             <>

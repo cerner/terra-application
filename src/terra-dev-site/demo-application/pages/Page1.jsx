@@ -18,6 +18,7 @@ import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
 import ApplicationInfoCard from './content/ApplicationInfoCard';
+import InputCard from './content/InputCard';
 
 import Page2 from './Page2';
 
@@ -72,6 +73,7 @@ const Page1 = ({ onRequestClose }) => {
         <ModalManagerIntegrationCard />
         <NavigationItemCard />
         <ApplicationInfoCard />
+        <InputCard />
       </CardLayout>
       {showPage2
         && <Page2 onRequestClose={() => { setShowPage2(false); }} />}

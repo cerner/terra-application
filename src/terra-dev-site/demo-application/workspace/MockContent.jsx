@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import TabContext from '../../../workspace/TabContext';
+// import WorkspaceContext from '../../../workspace/WorkspaceContext';
 import { useActiveMainPage } from '../../../application-container';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
 
@@ -8,7 +8,7 @@ const MockContent = ({ initialCount = 0, title = '', id }) => {
 
   const [clickCount, setClickCount] = useState(initialCount);
   const [showAlertBanner, setShowAlertBanner] = useState(false);
-  // const { isActive } = React.useContext(TabContext);
+  // const { isActive } = React.useContext(WorkspaceContext);
 
   return (
     <div style={{ padding: '1rem' }}>

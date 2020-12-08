@@ -7,7 +7,7 @@ import MoreButton from './_MoreButton';
 import TabDropDown from './_TabDropDown';
 import Tab from './_Tab';
 import HiddenTab from './_HiddenTab';
-import styles from './TabContainer.module.scss';
+import styles from './Tabs.module.scss';
 
 const cx = classNames.bind(styles);
 

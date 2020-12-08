@@ -8,8 +8,8 @@
     line-height: 1.4;
     font-weight: normal;
     margin-left: 0;
+    min-width: 7.143rem;
     padding: 0.643rem 1.071rem;
-    min-width: 8.357rem;
 
     span {
       overflow: hidden;
@@ -56,11 +56,6 @@
       &:last-child {
         border-width: 0;
       }
-    }
-
-    &.is-text-only {
-      min-width: 7.143rem;
-      padding: 0.643rem 1.071rem;
     }
   }
 

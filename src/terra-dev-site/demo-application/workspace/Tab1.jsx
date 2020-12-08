@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Panel from '../../../workspace/Panel';
+import WorkspaceContent from '../../../workspace/WorkspaceContent';
 import MockContent from './MockContent';
 
 const Tab1 = () => {
@@ -30,13 +30,13 @@ const Tab1 = () => {
 
   return (
     <>
-      <Panel
+      <WorkspaceContent
         key={isReset ? 'derp1' : 'derp2'}
         toolBar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
         actions={actions}
       >
         <MockContent title="Tab 1" />
-      </Panel>
+      </WorkspaceContent>
     </>
   );
 };

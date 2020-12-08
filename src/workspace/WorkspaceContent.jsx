@@ -6,9 +6,9 @@ import { ApplicationLoadingOverlayProvider } from '../application-loading-overla
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import { actionsPropType } from './propTypes/propTypes';
-import TabDataContext from './_TabDataContext';
-import TabHeader from './_TabHeader';
-import styles from './Panel.module.scss';
+import TabContext from './subcomponents/_TabContext';
+import TabHeader from './subcomponents/_TabHeader';
+import styles from './WorkspaceContent.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -18,13 +18,13 @@ const propTypes = {
   toolBar: PropTypes.element,
 };
 
-const Panel = ({
+const WorkspacePanel = ({
   actions,
   children,
   toolBar,
   ...customProps
 }) => {
-  const { panelId, tabId, label } = React.useContext(TabDataContext);
+  const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (
@@ -59,6 +59,6 @@ const Panel = ({
   );
 };
 
-Panel.propTypes = propTypes;
+WorkspacePanel.propTypes = propTypes;
 
-export default Panel;
+export default WorkspacePanel;

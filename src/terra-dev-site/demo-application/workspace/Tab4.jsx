@@ -1,13 +1,13 @@
 import React from 'react';
-import Panel from '../../../workspace/Panel';
+import WorkspaceContent from '../../../workspace/WorkspaceContent';
 import MockContent from './MockContent';
 
 const Tab4 = () => (
-  <Panel
+  <WorkspaceContent
     // toolBar={<p style={{ backgroundColor: 'lightgreen', padding: '0.5rem', margin: '0' }}>Tab 4 Toolbar</p>}
   >
     <MockContent title="Tab 4" />
-  </Panel>
+  </WorkspaceContent>
 );
 
 Tab4.titleKey = 'derp';

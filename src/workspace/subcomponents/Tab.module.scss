@@ -84,7 +84,7 @@
       content: "";
       bottom: 0;
       height: 40px;
-      left: -34px;
+      left: -33px;
       padding: 0;
       position: absolute;
       width: 34px;
@@ -228,26 +228,12 @@
     flex: 0 1 auto;
 
     .inner {
-      min-width: 8.357rem;
+      min-width: 7.143rem;
       text-align: center;
     }
 
     .label:nth-child(2) {
       margin-left: 0.357rem;
-    }
-  }
-
-  .is-icon-only {
-    flex: 0 0 auto;
-
-    .inner {
-      min-width: 2.571rem;
-    }
-  }
-
-  .is-text-only {
-    .inner {
-      min-width: 7.143rem;
     }
   }
 

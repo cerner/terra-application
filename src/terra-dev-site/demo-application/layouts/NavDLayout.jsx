@@ -25,9 +25,9 @@ const NavDLayout = () => {
       label="Nav D"
       workspace={(
         <SecondaryNavigationLayoutWorkspace
-          initialActiveTabKey="tab-1"
-          onActiveTabChange={(newActiveTabKey) => {
-            console.log(`Workspace active tab: ${newActiveTabKey}`);
+          initialActiveItemKey="tab-1"
+          onActiveItemChange={(newActiveItemKey) => {
+            console.log(`Workspace active item: ${newActiveItemKey}`);
           }}
           onSizeChange={(size) => {
             console.log(`Workspace size changed: ${size}`);
@@ -37,13 +37,13 @@ const NavDLayout = () => {
           }}
         >
           <WorkspaceTab
-            tabKey="tab-1"
+            itemKey="tab-1"
             label="Tab 1"
             metaData={{ key: 'tab-1' }}
             render={() => <Tab1 />}
           />
           <WorkspaceTab
-            tabKey="tab-2"
+            itemKey="tab-2"
             label="Tab 2"
             metaData={{ key: 'tab-2' }}
             render={() => <Tab2 />}

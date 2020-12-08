@@ -1,6 +1,6 @@
 import React from 'react';
-import Tabs from '../../../workspace/Tabs';
-import TabPage from '../../../workspace/TabPage';
+import Workspace from '../../../workspace/Workspace';
+import WorkspaceItem from '../../../workspace/WorkspaceItem';
 
 const propTypes = {};
 
@@ -8,8 +8,8 @@ const SecondaryNavigationLayoutWorkspace = ({
   // consumer props
   onSizeChange,
   onPresentationStateChange,
-  onActiveTabChange,
-  initialActiveTabKey,
+  onActiveItemChange,
+  initialActiveItemKey,
   children,
 
   // private injected props
@@ -21,7 +21,7 @@ const SecondaryNavigationLayoutWorkspace = ({
   sizeOptions,
   onRequestSizeChange,
 }) => {
-  const [activeTabKey, setActiveTabKey] = React.useState(initialActiveTabKey); // TODO do we need to externalize this for manipulation
+  const [activeItemKey, setActiveItemKey] = React.useState(initialActiveItemKey); // TODO do we need to externalize this for manipulation
 
   React.useEffect(() => {
     if (onSizeChange && sizeScalar !== undefined) {
@@ -36,31 +36,31 @@ const SecondaryNavigationLayoutWorkspace = ({
   }, [isOpen, onPresentationStateChange]);
 
   React.useEffect(() => {
-    if (onActiveTabChange) {
-      onActiveTabChange(activeTabKey);
+    if (onActiveItemChange) {
+      onActiveItemChange(activeItemKey);
     }
-  }, [activeTabKey, onActiveTabChange]);
+  }, [activeItemKey, onActiveItemChange]);
 
   return (
-    <Tabs
+    <Workspace
       id={id || 'test-id'}
-      activeTabKey={activeTabKey}
+      activeItemKey={activeItemKey}
       ariaLabel="work space"
-      onRequestActivate={metaData => setActiveTabKey(metaData.key)}
+      onRequestActivate={metaData => setActiveItemKey(metaData.key)}
       activeSize={activeSize}
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}
       onRequestDismiss={onRequestClose}
     >
       {React.Children.map(children, (child) => (
-        <TabPage
-          tabKey={child.props.tabKey}
+        <WorkspaceItem
+          itemKey={child.props.itemKey}
           label={child.props.label}
           metaData={child.props.metaData}
           render={child.props.render}
         />
       ))}
-    </Tabs>
+    </Workspace>
   );
 };
 

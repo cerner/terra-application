@@ -1,18 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
-import TabContext from './TabContext';
-import TabDataContext from './_TabDataContext';
+import WorkspaceContext from './WorkspaceContext';
+import TabContext from './subcomponents/_TabContext';
 
 const propTypes = {
   /**
-   * Icon to be displayed on the tab.
+   * Key to match with the activeItemKey to handle the display of selection.
    */
-  icon: PropTypes.element,
-  /**
-   * Indicates if the panel label should only display the icon. When tab collapses into menu the label text will be used.
-   */
-  isIconOnly: PropTypes.bool,
+  itemKey: PropTypes.string.isRequired,
   /**
    * Text to be displayed on the tab or as it's aria-label.
    */
@@ -21,10 +17,6 @@ const propTypes = {
    * Object to be returned in the onRequestActive.
    */
   metaData: PropTypes.object,
-  /**
-   * Key to match with the activeTabKey to handle the display of selection.
-   */
-  tabKey: PropTypes.string.isRequired,
   /**
    * @private
    * The id of the tab.
@@ -42,12 +34,12 @@ const propTypes = {
   isActive: PropTypes.bool,
   /**
    * @private
-   * The html element to be portal'd to.x
+   * The html element to be portal'd to.
    */
   portalElement: PropTypes.instanceOf(HTMLElement),
 };
 
-const TabPage = ({
+const WorkspaceItem = ({
   // possible persistent prop?
   id,
   associatedPanelId,
@@ -56,7 +48,7 @@ const TabPage = ({
   render,
   portalElement,
 }) => {
-  const tabDataContextValue = React.useMemo(() => (
+  const tabContextValue = React.useMemo(() => (
     {
       tabId: id,
       panelId: associatedPanelId,
@@ -64,7 +56,7 @@ const TabPage = ({
     }
   ), [associatedPanelId, id, label]);
 
-  const tabContextValue = React.useMemo(() => (
+  const workspaceContextValue = React.useMemo(() => (
     {
       isActive,
     }
@@ -72,15 +64,15 @@ const TabPage = ({
 
   return (
     ReactDOM.createPortal((
-      <TabDataContext.Provider value={tabDataContextValue}>
-        <TabContext.Provider value={tabContextValue}>
+      <TabContext.Provider value={tabContextValue}>
+        <WorkspaceContext.Provider value={workspaceContextValue}>
           {render()}
-        </TabContext.Provider>
-      </TabDataContext.Provider>
+        </WorkspaceContext.Provider>
+      </TabContext.Provider>
     ), portalElement)
   );
 };
 
-TabPage.propTypes = propTypes;
+WorkspaceItem.propTypes = propTypes;
 
-export default TabPage;
+export default WorkspaceItem;

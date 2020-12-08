@@ -5,13 +5,13 @@ import Button from 'terra-button';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
-import TabContainer from './_TabContainer';
+import Tabs from './subcomponents/_Tabs';
 import {
   ActionMenu,
   ActionMenuRadio,
 } from '../action-menu';
 
-import styles from './Tabs.module.scss';
+import styles from './Workspace.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -22,25 +22,28 @@ const sizeOptionShape = PropTypes.shape({
 });
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
+  /**
+   * The itemKey associated to the active WorkspaceItem.
+   */
+  activeItemKey: PropTypes.string.isRequired,
   /**
    * The size string value matching the active size option.
    */
   activeSize: PropTypes.string,
   /**
-   * The tabKey associated to the active tabPage.
-   */
-  activeTabKey: PropTypes.string.isRequired,
-  /**
-   * The accessible label of the tab list.
+   * The accessible label of the workspace.
    */
   ariaLabel: PropTypes.string.isRequired,
   /**
-   * The child tab pages.
+   * The child WorkspaceItems.
    */
   children: PropTypes.node.isRequired,
   /**
-   * The function callback triggering when a tab is selected.
+   * The unique identifier used of accessibility mappings.
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * The function callback triggering when a item is selected.
    * Returns the associated metaData. e.g. onRequestActivate(event, metaData)
    */
   onRequestActivate: PropTypes.func.isRequired,
@@ -61,9 +64,9 @@ const propTypes = {
   sizeOptions: PropTypes.arrayOf(sizeOptionShape),
 };
 
-const getTabId = (id, tabKey) => `${id}-${tabKey}`;
+const getTabId = (id, itemKey) => `${id}-${itemKey}`;
 
-const getAssociatedPanelId = (id, tabKey) => `${getTabId(id, tabKey)}-panel`;
+const getAssociatedPanelId = (id, itemKey) => `${getTabId(id, itemKey)}-panel`;
 
 const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => options.map(option => (
   <ActionMenuRadio
@@ -76,11 +79,11 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
   />
 ));
 
-const Tabs = ({
+const Workspace = ({
   id,
-  activeSize,
-  activeTabKey,
+  activeItemKey,
   ariaLabel,
+  activeSize,
   children,
   onRequestActivate,
   onRequestSizeChange,
@@ -95,7 +98,7 @@ const Tabs = ({
   const sizeMenuRef = useRef();
 
   React.useLayoutEffect(() => {
-    const activeNode = workspacePortalsRef.current[activeTabKey];
+    const activeNode = workspacePortalsRef.current[activeItemKey];
     if (!workspaceRef.current || workspaceRef.current.contains(activeNode?.element)) {
       return;
     }
@@ -108,19 +111,17 @@ const Tabs = ({
 
     if (activeNode?.element) {
       workspaceRef.current.appendChild(activeNode.element);
-      workspaceLastKeyRef.current = activeTabKey;
+      workspaceLastKeyRef.current = activeItemKey;
     } else {
       workspaceLastKeyRef.current = undefined;
     }
-  }, [activeTabKey]);
+  }, [activeItemKey]);
 
   const tabData = React.Children.map(children, child => ({
-    id: getTabId(id, child.props.tabKey),
-    associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
+    id: getTabId(id, child.props.itemKey),
+    associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
     label: child.props.label,
-    icon: child.props.icon,
-    isIconOnly: child.props.isIconOnly,
-    isSelected: child.props.tabKey == activeTabKey,
+    isSelected: child.props.itemKey == activeItemKey,
     onSelect: onRequestActivate,
     metaData: child.props.metaData,
   }));
@@ -174,8 +175,8 @@ const Tabs = ({
     );
   };
 
-  const tabsClassNames = cx([
-    'tabs',
+  const workspaceClassNames = cx([
+    'workspace',
     customProps.className,
   ]);
 
@@ -183,7 +184,7 @@ const Tabs = ({
     <div
       {...customProps}
       id={id}
-      className={tabsClassNames}
+      className={workspaceClassNames}
       role="none"
     >
       <div role="none" className={cx('header')}>
@@ -192,28 +193,28 @@ const Tabs = ({
         {createSizeButton()}
       </div>
       <div role="none" className={cx('header2')}>
-        <TabContainer ariaLabel={ariaLabel} tabData={tabData} />
+        <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>
         {React.Children.map(children, child => {
-          let portalElement = workspacePortalsRef.current[child.props.tabKey]?.element;
+          let portalElement = workspacePortalsRef.current[child.props.itemKey]?.element;
           if (!portalElement) {
             portalElement = document.createElement('div');
             portalElement.setAttribute('role', 'none');
             portalElement.style.position = 'relative';
             portalElement.style.height = '100%';
             portalElement.style.width = '100%';
-            workspacePortalsRef.current[child.props.tabKey] = {
+            workspacePortalsRef.current[child.props.itemKey] = {
               element: portalElement,
             };
           }
 
           return (
             React.cloneElement(child, {
-              key: child.props.tabKey,
-              id: getTabId(id, child.props.tabKey),
-              associatedPanelId: getAssociatedPanelId(id, child.props.tabKey),
-              isActive: child.props.tabKey === activeTabKey,
+              key: child.props.itemKey,
+              id: getTabId(id, child.props.itemKey),
+              associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
+              isActive: child.props.itemKey === activeItemKey,
               portalElement,
             })
           );
@@ -223,6 +224,6 @@ const Tabs = ({
   );
 };
 
-Tabs.propTypes = propTypes;
+Workspace.propTypes = propTypes;
 
-export default Tabs;
+export default Workspace;

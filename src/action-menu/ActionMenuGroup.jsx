@@ -7,21 +7,32 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   children: PropTypes.node,
+  onArrow: PropTypes.func,
+  onChar: PropTypes.func,
 };
 
 const ActionMenuGroup = ({
   children,
+  onArrow,
+  onChar,
 }) => {
   return (
     <li
       role="menuitem"
-      className={cx('action-item')}
     >
       <ul
         className={cx('action-sub-menu')}
         role="menu"
       >
-        {children}
+        {React.Children.map(children, child => {
+          if (!child) {
+            return;
+          }
+          return React.cloneElement(
+            child,
+            { onArrow, onChar }
+          );
+        })}
       </ul>
     </li>
   );

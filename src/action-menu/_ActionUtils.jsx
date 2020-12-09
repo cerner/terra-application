@@ -125,6 +125,10 @@ const itemFromChar = (key, items, char) => {
 const flattenActionItems = children => {
   const actionItems = [];
   React.Children.forEach(children, child => {
+    if (!child) {
+      return;
+    }
+
     if (child.props.actionKey) {
       if (!child.props.isDisabled) {
         actionItems.push({
@@ -133,7 +137,7 @@ const flattenActionItems = children => {
         });
       }
     } else if (child.props.children)  {
-      newKeys.push(...flattenActionItems(child.props.children));
+      actionItems.push(...flattenActionItems(child.props.children));
     }
   });
   return actionItems;

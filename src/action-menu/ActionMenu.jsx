@@ -60,10 +60,15 @@ const ActionMenu = ({
       ref={menuRef}
       onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
     >
-      {React.Children.map(children, child => React.cloneElement(
-        child,
-        { onArrow, onChar }
-      ))}
+      {React.Children.map(children, child => {
+        if (!child) {
+          return;
+        }
+        return React.cloneElement(
+          child,
+          { onArrow, onChar }
+        );
+      })}
     </ul>
   );
 };

@@ -8,6 +8,9 @@ import Popup from 'terra-popup';
 import Tabs from './subcomponents/_Tabs';
 import {
   ActionMenu,
+  ActionMenuDivider,
+  ActionMenuItem,
+  ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
 
@@ -42,6 +45,11 @@ const propTypes = {
    * The unique identifier used of accessibility mappings.
    */
   id: PropTypes.string.isRequired,
+  /**
+   * Whether or not the face up dismiss button should be displayed.
+   * Also requires the onRequestDismiss prop.
+   */
+  isDismissButtonVisible: PropTypes.bool,
   /**
    * The function callback triggering when a item is selected.
    * Returns the associated metaData. e.g. onRequestActivate(event, metaData)
@@ -85,6 +93,7 @@ const Workspace = ({
   ariaLabel,
   activeSize,
   children,
+  isDismissButtonVisible,
   onRequestActivate,
   onRequestSizeChange,
   onRequestDismiss,
@@ -127,7 +136,7 @@ const Workspace = ({
   }));
 
   const createDismissButton = () => {
-    if (onRequestDismiss) {
+    if (isDismissButtonVisible && onRequestDismiss) {
       return (
         <Button
           className={cx('active-button')}
@@ -138,13 +147,41 @@ const Workspace = ({
         />
       );
     }
-    return null;
+    return undefined;
   };
 
   const createSizeButton = () => {
-    if (!sizeOptions || !sizeOptions.length) {
-      return undefined;
+    let dismissItem;
+    let sizeItems;
+    let dividerItem;
+
+    if (sizeOptions && sizeOptions.length) {
+      sizeItems = createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false));
     }
+
+    if (onRequestDismiss) {
+      dismissItem = (
+        <ActionMenuItem
+          actionKey="workspace-dimiss-action"
+          label="Dismiss Workspace"
+          onAction={() => { setIsMenuOpen(false); onRequestDismiss(); }}
+        />
+      );
+    }
+
+    if (!sizeItems && !dismissItem) {
+      return;
+    }
+
+    if (sizeOptions && dismissItem) {
+      sizeItems = (
+        <ActionMenuGroup>
+          {sizeItems}
+        </ActionMenuGroup>
+      );
+      dividerItem = <ActionMenuDivider />;
+    }
+
     return (
       <>
         <Button
@@ -169,7 +206,9 @@ const Workspace = ({
             id="monkey-derp"
             ariaLabel="Pick A Size!!"
           >
-            {createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false))}
+            {sizeItems}
+            {dividerItem}
+            {dismissItem}
           </ActionMenu>
         </Popup>
       </>
@@ -193,7 +232,7 @@ const Workspace = ({
         <div className={cx('fill-element')} />
         {createSizeButton()}
       </div>
-      <div role="none" className={cx('header2', { 'has-dismiss-button': !!onRequestDismiss })}>{/* TODO: update to prop  */}
+      <div role="none" className={cx('header2', { 'has-dismiss-button': onRequestDismiss && isDismissButtonVisible })}>
         <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceRef}>

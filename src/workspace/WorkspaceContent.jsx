@@ -5,7 +5,6 @@ import classNames from 'classnames/bind';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
-import { actionsPropType } from './propTypes/propTypes';
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
 import styles from './WorkspaceContent.module.scss';
@@ -13,13 +12,17 @@ import styles from './WorkspaceContent.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  actions: actionsPropType,
+  /**
+   * Child node content to be displayed within the content region.
+   */
   children: PropTypes.node,
+  /**
+   * Optional toolbar to be displayed outside of the content region.
+   */
   toolBar: PropTypes.element,
 };
 
-const WorkspacePanel = ({
-  actions,
+const WorkspaceContent = ({
   children,
   toolBar,
   ...customProps
@@ -36,7 +39,7 @@ const WorkspacePanel = ({
         className={cx('panel-header')}
         role="none"
       >
-        <TabHeader actions={actions}>{label}</TabHeader>
+        <TabHeader>{label}</TabHeader>
         {toolBar}
         <NotificationBanners />
       </div>
@@ -59,6 +62,6 @@ const WorkspacePanel = ({
   );
 };
 
-WorkspacePanel.propTypes = propTypes;
+WorkspaceContent.propTypes = propTypes;
 
-export default WorkspacePanel;
+export default WorkspaceContent;

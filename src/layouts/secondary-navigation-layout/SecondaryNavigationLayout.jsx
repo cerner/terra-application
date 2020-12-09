@@ -437,13 +437,6 @@ const SecondaryNavigationLayout = ({
     content = children;
   }
 
-   // TODO: comeback to this
-  const mapSize = {
-    '0': 'small',
-    '0.5': 'medium',
-    '1': 'large',
-  };
-
   return (
     <>
       {hasSidebar && (

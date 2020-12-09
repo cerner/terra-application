@@ -44,11 +44,6 @@ const propTypes = {
    */
   actions: PropTypes.element,
   /**
-   * A PageMenu instance defining the contents of the Page's dedicated menu control.
-   * Only the PageMenu component can be provided.
-   */
-  menu: PropTypes.element,
-  /**
    * A component to present additional controls to the Page user. The provided component will be rendered
    * below the Page's header.
    */
@@ -74,7 +69,6 @@ const Page = ({
   label,
   metaData,
   actions,
-  menu,
   toolbar,
   onRequestClose,
   requestClosePromptIsDisabled,
@@ -82,10 +76,6 @@ const Page = ({
 }) => {
   if (actions && actions.type !== PageActions) {
     throw new Error(`[terra-application] Page ${label} provided with invalid actions prop. Only PageActions is supported.`);
-  }
-
-  if (menu && menu.type !== PageMenu) {
-    throw new Error(`[terra-application] Page ${label} provided with invalid menu prop. Only PageMenu is supported.`);
   }
 
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -211,12 +201,10 @@ const Page = ({
             onBack={onRequestClose && safelyRequestClose}
             label={label}
             actions={actions}
-            menu={menu}
+            toolbar={toolbar}
+            notificationBanners={<NotificationBanners />}
             hasLoadingOverlay={loadingOverlayIsActive}
-          >
-            {toolbar}
-            <NotificationBanners />
-          </PageHeader>
+          />
         </div>
         <div className={cx('content')}>
           <PageContext.Provider value={childPageContextValue}>

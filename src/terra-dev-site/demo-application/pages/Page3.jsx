@@ -6,7 +6,7 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
 import Page, {
-  PageActions, Action, PageMenu, MenuItem, MenuItemDivider, CardLayout, Card,
+  PageActions, Action, CardLayout, Card,
 } from '../../../page';
 
 import Page4 from './Page4';
@@ -35,7 +35,6 @@ const Page3 = ({ onRequestClose }) => {
   const [showPage4, setShowPage4] = React.useState(false);
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
-  const [checkedMenuItem, setCheckedMenuItem] = React.useState('item-4');
 
   const pageActions = (
     <PageActions>
@@ -52,45 +51,6 @@ const Page3 = ({ onRequestClose }) => {
         onSelect={() => { setShowPrintModal(true); }}
       />
     </PageActions>
-  );
-
-  const pageMenu = (
-    <PageMenu>
-      <MenuItem
-        itemKey="item-1"
-        label="Item 1"
-        onSelect={() => { console.log('Item 1 selected'); }}
-      />
-      <MenuItem
-        itemKey="item-2"
-        label="Item 2"
-        onSelect={() => { console.log('Item 2 selected'); }}
-      />
-      <MenuItem
-        itemKey="item-3"
-        label="Item 3"
-        onSelect={() => { console.log('Item 3 selected'); }}
-      />
-      <MenuItemDivider />
-      <MenuItem
-        itemKey="item-4"
-        label="Item 4"
-        isChecked={checkedMenuItem === 'item-4'}
-        onSelect={() => {
-          setCheckedMenuItem((state) => (state !== 'item-4' ? 'item-4' : undefined));
-        }}
-        persistMenuAfterSelect
-      />
-      <MenuItem
-        itemKey="item-5"
-        label="Item 5"
-        isChecked={checkedMenuItem === 'item-5'}
-        onSelect={() => {
-          setCheckedMenuItem((state) => (state !== 'item-5' ? 'item-5' : undefined));
-        }}
-        persistMenuAfterSelect
-      />
-    </PageMenu>
   );
 
   const pageToolbar = (
@@ -122,7 +82,6 @@ const Page3 = ({ onRequestClose }) => {
       label="Page 3"
       metaData={page3MetaData}
       actions={pageActions}
-      menu={pageMenu}
       toolbar={pageToolbar}
       onRequestClose={onRequestClose}
     >

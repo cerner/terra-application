@@ -67,7 +67,7 @@ const Page2 = ({ onRequestClose }) => {
   return (
     <Page
       pageKey="page-2"
-      label="Page 2"
+      label="Page 2 - Adventures in Long Label-Having - Time to Wrap"
       metaData={page2MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}

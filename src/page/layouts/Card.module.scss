@@ -16,6 +16,10 @@
     min-height: calc(100% - 30px);
     overflow: hidden;
     padding: 0 10px 10px;
+
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
   }
 
   .card-header {

@@ -13,7 +13,7 @@ const NotificationBannersCard = () => {
   const hideWarningBanner = React.useCallback(() => { setShowWarningBanner(false); }, []);
 
   return (
-    <Card title="Notification Banners">
+    <Card label="Notification Banners">
       <p>Notification banners are presented by the Page to guarantee their presentation order and visibility.</p>
       <p>
         <Button

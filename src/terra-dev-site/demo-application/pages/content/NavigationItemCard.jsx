@@ -15,7 +15,7 @@ const NavigationItemCard = () => {
   }, [navigationItemContext.isActive]);
 
   return (
-    <Card title="Navigation">
+    <Card label="Navigation">
       <p>The NavigationItemContext can be used to react to changes to the navigation state of the application.</p>
       {navigationItemContext.isActive && <p>Page is now active.</p>}
       <p>

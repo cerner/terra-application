@@ -9,7 +9,7 @@ const NotificationDialogCard = () => {
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
 
   return (
-    <Card title="Notification Dialogs">
+    <Card label="Notification Dialogs">
       <p>NotificationDialogs can be presented due to changes to local state.</p>
       <p>Pressing the below button will cause an example NotificationDialog to be presented.</p>
       <Button

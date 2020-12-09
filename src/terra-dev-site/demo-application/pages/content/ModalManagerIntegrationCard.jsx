@@ -78,7 +78,7 @@ const ModalManagerIntegrationCard = () => {
   const disclosureManager = React.useContext(DisclosureManagerContext);
 
   return (
-    <Card title="ModalManager Integration">
+    <Card label="ModalManager Integration">
       <p>Existing implementations that utilize the ModalManager and DisclosureManagerHeaderAdapter are supported by the new Modal presentation styles.</p>
       <p>Pressing the below button will cause a modal to be presented using the ModalManager.</p>
       <Button

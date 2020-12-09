@@ -127,7 +127,7 @@ const Page3 = ({ onRequestClose }) => {
       onRequestClose={onRequestClose}
     >
       <CardLayout>
-        <Card title="Page 3 Details">
+        <Card label="Page 3 Details">
           <p>Page 3 demonstrates the following features:</p>
           <ul>
             <li>Page header action that presents a modal workflow</li>
@@ -136,7 +136,7 @@ const Page3 = ({ onRequestClose }) => {
             <li>Content that triggers Page APIs</li>
           </ul>
         </Card>
-        <Card title="Additional Page Disclosure">
+        <Card label="Additional Page Disclosure">
           <p>Page 3 presents Page 4 due changes to its local state.</p>
           <Button text="Show Page 4" onClick={() => { setShowPage4(true); }} />
         </Card>

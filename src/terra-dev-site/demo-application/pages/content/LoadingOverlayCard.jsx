@@ -14,7 +14,7 @@ const LoadingOverlayCard = () => {
   }, []);
 
   return (
-    <Card title="Loading Overlay">
+    <Card label="Loading Overlay">
       <p>The ApplicationLoadingOverlay can be rendered to present a loading overlay over the Page content.</p>
       <p>While rendered, the Page actions will be automatically disabled.</p>
       <p>Pressing the below button will cause the ApplicationLoadingOverlay to be presented for five seconds.</p>

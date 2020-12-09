@@ -16,7 +16,7 @@ const ErrorHandlingCard = ({ pageTitle }) => {
   }
 
   return (
-    <Card title="Error Handling">
+    <Card label="Error Handling">
       <p>Errors thrown during the React render lifecycle will be caught by the error boundary rendered by the ApplicationContainer, if not otherwise intercepted.</p>
       <Button text="Throw Error" onClick={() => { setThrowError(true); }} />
     </Card>

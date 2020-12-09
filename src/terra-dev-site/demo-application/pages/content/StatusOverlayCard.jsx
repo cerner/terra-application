@@ -14,7 +14,7 @@ const StatusOverlayCard = () => {
   }, []);
 
   return (
-    <Card title="Status Overlay">
+    <Card label="Status Overlay">
       <p>The ApplicationStatusOverlay can be rendered to present a status view over the Page content.</p>
       <p>Pressing the below button will cause an ApplicationStatusOverlay ('no-data' variant) to be presented for five seconds.</p>
       <Button

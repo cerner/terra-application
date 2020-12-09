@@ -11,7 +11,7 @@ const PendingActionsCard = () => {
   const [hasPendingAction2, setHasPendingAction2] = React.useState(false);
 
   return (
-    <Card title="Pending Actions">
+    <Card label="Pending Actions">
       <p>NavigationPrompts are used to register unsaved state with framework. Multiple NavigationPrompts can be rendered at the same time.</p>
       <p>Performing destructive actions (like logging out) while NavigationPrompts are activated will result in the user being prompted to confirm or deny the action.</p>
       <p>

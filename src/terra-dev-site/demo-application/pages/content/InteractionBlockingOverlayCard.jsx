@@ -15,7 +15,7 @@ const InteractionBlockingOverlayCard = () => {
   }, []);
 
   return (
-    <Card title="Interaction Blocking Overlay">
+    <Card label="Interaction Blocking Overlay">
       <p>The InteractionBlockingOverlay can be rendered to prevent user interaction with the entire application.</p>
       <p>This can be useful for preventing user interaction while saving changes or during other workflows that should not be interrupted.</p>
       <p>Pressing the below button will cause the InteractionBlockingOverlay to be presented for five seconds.</p>

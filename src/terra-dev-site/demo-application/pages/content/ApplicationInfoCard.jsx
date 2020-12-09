@@ -8,7 +8,7 @@ const ApplicationInfoCard = () => {
   const applicationContainer = React.useContext(ApplicationContainerContext);
 
   return (
-    <Card title="Application Info">
+    <Card label="Application Info">
       <p>Pages can access information about the application through the ApplicationContainerContext.</p>
       <p>
         Application Name:

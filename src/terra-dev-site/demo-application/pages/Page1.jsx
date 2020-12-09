@@ -52,14 +52,14 @@ const Page1 = ({ onRequestClose }) => {
       onRequestClose={onRequestClose}
     >
       <CardLayout>
-        <Card>
+        <Card label="Page 1 Details">
           <p>Page 1 demonstrates the following features:</p>
           <ul>
             <li>Page header action that presents a modal workflow</li>
             <li>Content that triggers Page APIs</li>
           </ul>
         </Card>
-        <Card title="Additional Page Disclosure">
+        <Card label="Additional Page Disclosure">
           <p>Page 1 presents Page 2 due changes to its local state.</p>
           <Button text="Show Page 2" onClick={() => { setShowPage2(true); }} />
         </Card>

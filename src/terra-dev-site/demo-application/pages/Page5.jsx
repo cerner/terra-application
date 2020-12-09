@@ -34,19 +34,19 @@ const Page5 = ({ onRequestClose }) => {
     >
       <CardLayout>
         <h2>Page 5</h2>
-        <Card title="Page 5 Details">
+        <Card label="Page 5 Details">
           <p>Page 5 demonstrates the following features:</p>
           <ul>
             <li>Hiding of the Page header (not anymore)</li>
             <li>Content that triggers Page APIs</li>
           </ul>
         </Card>
-        <Card title="Page Header">
+        <Card label="Page Header">
           <p>This Page implementation hides the Page header.</p>
           <p>The Page header can be hidden in scenarios where the framework controls are unnecessary and/or intrusive to the Page design.</p>
           <p>The presence of Layout-specific actions or Page-level actions will force the header to be presented.</p>
         </Card>
-        <Card title="Additional Page Disclosure">
+        <Card label="Additional Page Disclosure">
           <p>Page 5 presents Page 6 due changes to its local state.</p>
           <Button text="Show Page 6" onClick={() => { setShowPage6(true); }} />
         </Card>

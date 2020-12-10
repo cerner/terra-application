@@ -27,6 +27,10 @@ const propTypes = {
    * Object containing intl APIs.
    */
   intl: intlShape.isRequired,
+  /**
+   * The z-index style to apply to the button based upon order and state.
+   */
+  zIndex: PropTypes.number,
 };
 
 const MoreButton = ({
@@ -34,6 +38,7 @@ const MoreButton = ({
   isActive,
   onSelect,
   refCallback,
+  zIndex,
 }) => {
   const theme = React.useContext(ThemeContext);
   const menuToggleText = 'More Tabs'; // TODO: translate
@@ -59,6 +64,7 @@ const MoreButton = ({
       onKeyDown={handleOnKeyDown}
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
       data-terra-tabs-menu
+      style={{ zIndex }}
     >
       <div className={cx('inner')}>
         <IconCaretDown />

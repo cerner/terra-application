@@ -149,10 +149,11 @@ class Tabs extends React.Component {
     this.setIsOpen(false);
   }
 
-  renderMoreButton(isHiddenActive) {
+  renderMoreButton(isHiddenActive, zIndex) {
     return this.showMoreButton ? (
       <MoreButton
         isActive={isHiddenActive}
+        zIndex={zIndex}
         onSelect={this.handleOnMoreButtonSelect}
         refCallback={node => this.moreButtonRef.current = node}
       />
@@ -193,6 +194,7 @@ class Tabs extends React.Component {
             index={index}
             tabIds={ids}
             onSelect={this.wrapOnSelect(tab.onSelect)}
+            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
           />
         );
       } else {
@@ -245,7 +247,7 @@ class Tabs extends React.Component {
         >
           {hiddenTabs}
         </TabDropDown>
-        {this.renderMoreButton(isHiddenSelected)}
+        {this.renderMoreButton(isHiddenSelected, isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex)}
       </div>
     );
   }

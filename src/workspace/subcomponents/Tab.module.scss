@@ -88,7 +88,6 @@
       padding: 0;
       position: absolute;
       width: 34px;
-      z-index: 1;
     }
 
     &::after {
@@ -128,7 +127,6 @@
       position: absolute;
       right: -33px;
       width: 34px;
-      z-index: 2;
     }
 
     &:focus {
@@ -137,11 +135,6 @@
     }
 
     &.is-active {
-      &::before,
-      &::after  {
-        z-index: 5;
-      }
-
       .inner {
         background-image: inline-svg(
           '<svg width="1px" height="41px" viewBox="0 0 1 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">

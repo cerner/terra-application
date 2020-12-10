@@ -41,6 +41,10 @@ const propTypes = {
    * Array of id strings,
    */
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * The z-index style to apply to the tab based upon order and state.
+   */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
@@ -58,6 +62,7 @@ const Tab = ({
   onFocus,
   onSelect,
   tabIds,
+  zIndex,
   ...customProps
 }) => {
   const attributes = {};
@@ -87,6 +92,7 @@ const Tab = ({
     attributes.onKeyDown = onKeyDown;
   }
   attributes['aria-selected'] = isSelected;
+  attributes.style = { zIndex };
 
   return (
     <div

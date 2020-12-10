@@ -1,10 +1,10 @@
 # Workspace Content Guide
 
-Welcome to the Terra workspce content guide. This guide will walk through the recommended approach for creating a component to be consumed and presented within a workspaces content area.
+Welcome to the Terra Workspce content guide. This guide will walk through the recommended approach for creating a component to be consumed and presented within a workspaces content area.
 
 ## Summary
 
-Workspace is composed of a Workspace component and child WorkspaceItems. The WorkspaceItem is comprised on the necessary labels, identifiers, and a render block. Within the render block a WorkspaceContent component should be yielded.
+The overall construction a workspace region is composed of a higher order `Workspace` component and child `WorkspaceItem`'s. The `WorkspaceItem` is comprised of labels, identifiers, and a render block. Within the render block a `WorkspaceContent` component should be yielded.
 
 ## Getting Started
 
@@ -15,28 +15,32 @@ This guide will walk through structure, exports, and contruction of a stand alon
 An application and it's associated page navigation will have the resposibility of constructing the workspace itself similar to the example below.
 
 ```jsx
-  import React from 'react';
-  import { Workspace, WorkspaceItem } from 'terra-application/lib/workspace';
+import React from 'react';
+import { Workspace, WorkspaceItem } from 'terra-application/lib/workspace';
 
-  ...
-  <Workspace
-    activeItemKey={activeKey}
-    onRequestActivate={(event, metaData) => setActiveKey(metaData.key)}
-  >
-    <WorkspaceItem
-      itemKey="item-1"
-      label={intl.formatMessage({ id: MyContent1.labelTranslationId })}
-      metaData={{ key: 'item-1' }}
-      render={() => <MyContent1 />}
-    />
-    <WorkspaceItem
-      itemKey="item-2"
-      label={intl.formatMessage({ id: MyContent2.labelTranslationId })}
-      metaData={{ key: 'item-2' }}
-      render={() => <MyContent2 />}
-    />
-  </Workspace>
-  ...
+const MyWorkspace = () => {
+  return (
+    <Workspace
+      activeItemKey={activeKey}
+      onRequestActivate={(event, metaData) => setActiveKey(metaData.key)}
+    >
+      <WorkspaceItem
+        itemKey="item-1"
+        label={intl.formatMessage({ id: MyContent1.labelTranslationId })}
+        metaData={{ key: 'item-1' }}
+        render={() => <MyContent1 />}
+      />
+      <WorkspaceItem
+        itemKey="item-2"
+        label={intl.formatMessage({ id: MyContent2.labelTranslationId })}
+        metaData={{ key: 'item-2' }}
+        render={() => <MyContent2 />}
+      />
+    </Workspace>
+  );
+};
+
+export default MyWorkspace;
 ```
 
 We will be focusing on the cotent within the renders, in this example as shown by `MyContent1` and `MyContent2`.
@@ -50,6 +54,9 @@ A WorkspaceContent element takes the toolbar and children props.
 The toolbar will be prop will be injected into the layout by the WorkspaceContent itself. This pattern is similiar to the terra-content-container and header/footer nodes.
 
 The child component will be placed within a scrollable region.
+
+*Best Practice*
+As applications will be pulling in multiple workspaces and multiple components to keep things isolated the best practice is export a translation id. In this example we are exporting a entry for `labelTranslationId`.
 
 ```jsx
 import React from 'react';
@@ -72,7 +79,7 @@ export default MyContent1;
 
 ## Workspace - Managing Active Display
 
-WorkspaceContent components is not the currently active display will remain mounted, but will be removed from the DOM. So any dependent logic or listeners that expect to be on the DOM need to be disabled or provided for when no longer on the dom. In order to facilitate this the WorkspaceContext is explosed, providing and `isActive` value to key off of.
+WorkspaceContent components that are not the currently active display will remain mounted, but will be removed from the DOM. So any dependent logic or listeners that expect to be on the DOM need to be disabled or provided for when no longer on the dom. In order to facilitate this the WorkspaceContext is explosed, providing and `isActive` value to key off of.
 
 Below is an example using hooks to retrieve the `isActive` value.
 
@@ -119,7 +126,7 @@ export default MyComponent;
 
 The workspace provides an overlay out of the box. In order to place a loading overlay above your content import and render the terra-application provided `application-loading-overlay`.
 
-If any of your components content will be displayed underneath the overlay ensure that it they are set as disabled, both visually and for asssitive technology.
+If content will be displayed underneath the overlay ensure that it's elements are set as disabled, for both visuals and assitive technology.
 
 ```jsx
 import React from 'react';
@@ -146,8 +153,3 @@ Yes! Content that is not actively displayed on the DOM remains mounted, so any s
 ### Can I provide my own scrolling via terra-scroll or terra-content-container?
 
 No. The workspace provides the scrollable region and the location to render fixed header elements. This region is provided and controlled in order to handle the various keyboard/accessibility concerns associated with the presentation.
-
-### Can my component rely on cross-communication or state from other areas within an application?
-
-No. Content should be designed with the expectation that its fully standalone and any cross information/communication is done through back-end services not front-end messaging.
-

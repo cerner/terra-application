@@ -143,11 +143,11 @@ export default MyComponent;
 
 Yes! Content that is not actively displayed on the DOM remains mounted, so any state captured by your component is maintained.
 
-### Should I provide my own scrolling via terra-scroll or terra-content-container?
+### Can I provide my own scrolling via terra-scroll or terra-content-container?
 
-No, the workspace provides the scrollable region and the location to render fixed header elements. This region is provided and controlled in order to handle the various keyboard/accessibility concerns associated with the presentation.
+No. The workspace provides the scrollable region and the location to render fixed header elements. This region is provided and controlled in order to handle the various keyboard/accessibility concerns associated with the presentation.
 
 ### Can my component rely on cross-communication or state from other areas within an application?
 
-No, content should be designed with the expectation that its fully standalone and any cross information/communication is done through back-end services not front-end messaging.
+No. Content should be designed with the expectation that its fully standalone and any cross information/communication is done through back-end services not front-end messaging.
 

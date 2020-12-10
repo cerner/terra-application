@@ -180,7 +180,9 @@ const SecondaryNavigationLayout = ({
         key: 'secondary-navigation-layout-toggle-navigation-panel',
         label: `Toggle Navigation Panel ${sideNavOverlayIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
         icon: IconLeftPane,
-        onSelect: () => { setSideNavOverlayIsVisible((state) => !state); },
+        onSelect: () => {
+          setSideNavOverlayIsVisible((state) => !state);
+        },
       }];
     }
 
@@ -189,7 +191,9 @@ const SecondaryNavigationLayout = ({
         key: 'secondary-navigation-layout-toggle-workspace-panel',
         label: `Toggle Workspace Panel ${workspaceIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
         icon: workspaceIsVisible ? IconPanelRight : IconPanelLeft,
-        onSelect: () => { setWorkspaceIsVisible(state => !state); },
+        onSelect: () => {
+          setWorkspaceIsVisible(state => !state);
+        },
         isActive: workspaceIsVisible,
       }];
     }
@@ -310,16 +314,33 @@ const SecondaryNavigationLayout = ({
     setSideNavOverlayIsVisible(false);
   }, [workspaceSize, activeBreakpoint]);
 
+  const lastNavigationPanelOpenState = React.useRef(sideNavOverlayIsVisible);
   React.useEffect(() => {
-    if (sideNavOverlayIsVisible) {
-      sideNavPanelRef.current.focus();
+    if (sideNavOverlayIsVisible && !lastNavigationPanelOpenState.current) {
+      deferExecution(() => { sideNavPanelRef.current.focus(); });
+    } else if (!sideNavOverlayIsVisible && lastNavigationPanelOpenState.current) {
+      deferExecution(() => {
+        const mainElement = document.querySelector('main');
+        if (mainElement) {
+          mainElement.focus();
+        }
+      });
     }
+
+    lastNavigationPanelOpenState.current = sideNavOverlayIsVisible;
   }, [sideNavOverlayIsVisible]);
 
   const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
   React.useEffect(() => {
     if (workspaceIsVisible && !lastWorkspaceOpenState.current) {
-      workspacePanelRef.current.focus();
+      deferExecution(() => { workspacePanelRef.current.focus(); });
+    } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
+      deferExecution(() => {
+        const mainElement = document.querySelector('main');
+        if (mainElement) {
+          mainElement.focus();
+        }
+      });
     }
 
     lastWorkspaceOpenState.current = workspaceIsVisible;
@@ -456,11 +477,11 @@ const SecondaryNavigationLayout = ({
 
             if (hasOverlaySidebar) {
               setSideNavOverlayIsVisible(true);
+            } else {
+              deferExecution(() => {
+                sideNavPanelRef.current.focus();
+              });
             }
-
-            deferExecution(() => {
-              sideNavPanelRef.current.focus();
-            });
           }}
         />
       )}
@@ -472,11 +493,13 @@ const SecondaryNavigationLayout = ({
               setSideNavOverlayIsVisible(false);
             }
 
-            setWorkspaceIsVisible(true);
-
-            deferExecution(() => {
-              workspacePanelRef.current.focus();
-            });
+            if (!workspaceIsVisible) {
+              setWorkspaceIsVisible(true);
+            } else {
+              deferExecution(() => {
+                workspacePanelRef.current.focus();
+              });
+            }
           }}
         />
       )}
@@ -508,10 +531,6 @@ const SecondaryNavigationLayout = ({
               label={label}
               onDismiss={sideNavOverlayIsVisible ? () => {
                 setSideNavOverlayIsVisible(false);
-
-                deferExecution(() => {
-                  document.querySelector('main')?.focus();
-                });
               } : undefined}
               activeNavigationKey={activeNavigationKey}
               onSelectNavigationItem={activatePage}
@@ -602,13 +621,10 @@ const SecondaryNavigationLayout = ({
                 {React.cloneElement(workspace, {
                   id: `${id}-workspace`,
                   isOpen: workspaceIsVisible,
-                  onRequestClose: hasOverlayWorkspace ? () => {
+                  onRequestClose: () => {
                     setWorkspaceIsVisible(false);
-
-                    deferExecution(() => {
-                      document.querySelector('main')?.focus(); // TODO talk about moving focus in these scenarios (plus the size dropdown stuff)
-                    });
-                  } : null,
+                  },
+                  isPresentedAsOverlay: hasOverlayWorkspace,
                   sizeScalar: workspaceSize.scale,
                   activeSize: (() => {
                     if (workspaceSize.scale === 0) {

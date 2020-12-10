@@ -16,6 +16,7 @@ const SecondaryNavigationLayoutWorkspace = ({
   id,
   isOpen,
   onRequestClose,
+  isPresentedAsOverlay,
   sizeScalar,
   activeSize,
   sizeOptions,
@@ -51,6 +52,7 @@ const SecondaryNavigationLayoutWorkspace = ({
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}
       onRequestDismiss={onRequestClose}
+      isDismissButtonVisible={isPresentedAsOverlay}
     >
       {React.Children.map(children, (child) => (
         <WorkspaceItem

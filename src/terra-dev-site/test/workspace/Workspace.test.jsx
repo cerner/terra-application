@@ -5,12 +5,19 @@ import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
 
+const sizeMap = {
+  tiny: '250px',
+  small: '500px',
+  large: '1000px',
+};
+
 const WorkspaceTest = () => {
-  const [activeTabKey, setActiveTabKey] = React.useState('tab-1'); // TODO do we need to externalize this for manipulation
-  const [workspaceWidth, setWorkspaceWidth] = React.useState('500px'); // TODO do we need to externalize this for manipulation
+  const [activeItemKey, setActiveItemKey] = React.useState('tab-1'); // TODO do we need to externalize this for manipulation
+  const [workspaceSize, setWorkspaceSize] = React.useState('small'); // TODO do we need to externalize this for manipulation
 
   const onRequestSizeChange = (size) => {
     console.log('onRequestSizeChange', size);
+    setWorkspaceSize(size);
   };
 
   const onRequestClose = () => {
@@ -18,24 +25,22 @@ const WorkspaceTest = () => {
   };
 
   return (
-    <div style={{ width: workspaceWidth }}>
-       <button onClick={() => setWorkspaceWidth('1000px')}>Large</button>
-       <button onClick={() => setWorkspaceWidth('500px')}>Small</button>
-       <button onClick={() => setWorkspaceWidth('250px')}>Tiny</button>
+    <div style={{ width: sizeMap[workspaceSize] }}>
       <Workspace
         id="test-id"
-        activeItemKey={activeTabKey}
+        activeItemKey={activeItemKey}
         ariaLabel="work space"
-        onRequestActivate={metaData => setActiveTabKey(metaData.key)}
-        activeSize="Large"
+        onRequestActivate={metaData => setActiveItemKey(metaData.key)}
+        activeSize={workspaceSize}
         sizeOptions={[{
-          key: 'Large',
-          text: 'Large',
-          metaData: {},
+          key: 'tiny',
+          text: 'Tiny',
         }, {
-          key: 'Small',
-          text: 'small',
-          metaData: {},
+          key: 'small',
+          text: 'Small',
+        }, {
+          key: 'large',
+          text: 'Large',
         }]}
         onRequestSizeChange={onRequestSizeChange}
         onRequestDismiss={onRequestClose}

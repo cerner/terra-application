@@ -3,11 +3,11 @@ import { WorkspaceContent } from '../../../workspace/';
 import MockContent from './MockContent';
 
 const Tab2 = () => (
-  <Panel
+  <WorkspaceContent
     toolBar={<p style={{ backgroundColor: 'yellow', padding: '0.5rem', margin: '0' }}>Tab 2 Toolbar</p>}
   >
     <MockContent title="Tab 2" />
-  </Panel>
+  </WorkspaceContent>
 );
 
 Tab2.titleKey = 'derp2';

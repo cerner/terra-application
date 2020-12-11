@@ -1,5 +1,5 @@
 import React from 'react';
-import Panel from '../../../workspace/Panel';
+import { WorkspaceContent } from '../../../workspace/';
 import MockContent from './MockContent';
 
 const Tab4 = () => (

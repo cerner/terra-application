@@ -7,7 +7,7 @@ import MoreButton from './_MoreButton';
 import TabDropDown from './_TabDropDown';
 import Tab from './_Tab';
 import HiddenTab from './_HiddenTab';
-import styles from './TabContainer.module.scss';
+import styles from './Tabs.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -16,7 +16,7 @@ const propTypes = {
   ariaLabel: PropTypes.string,
 };
 
-class TabContainer extends React.Component {
+class Tabs extends React.Component {
   constructor(props) {
     super(props);
     this.containerRef = React.createRef();
@@ -95,9 +95,9 @@ class TabContainer extends React.Component {
       const tabStyle = window.getComputedStyle(tab, null);
       const tabMarginLeft = parseFloat(tabStyle.getPropertyValue('margin-left'));
       const tabMarginRight = parseFloat(tabStyle.getPropertyValue('margin-right'));
-      // const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better 
-      const tabChildStyle = window.getComputedStyle(tab.children[0], null);
-      const tabMinWidth = parseFloat(tabChildStyle.getPropertyValue('min-width')); // TODO: come up with better 
+      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better 
+      // const tabChildStyle = window.getComputedStyle(tab.children[1], null);
+      // const tabMinWidth = parseFloat(tabChildStyle.getPropertyValue('min-width')); // TODO: come up with better 
       calcMinWidth += (tabMinWidth + tabMarginLeft + tabMarginRight);
       if (calcMinWidth > availableWidth && !(i === tabCount - 1 && calcMinWidth <= width)) {
         newHideIndex = i;
@@ -149,10 +149,11 @@ class TabContainer extends React.Component {
     this.setIsOpen(false);
   }
 
-  renderMoreButton(isHiddenActive) {
+  renderMoreButton(isHiddenActive, zIndex) {
     return this.showMoreButton ? (
       <MoreButton
         isActive={isHiddenActive}
+        zIndex={zIndex}
         onSelect={this.handleOnMoreButtonSelect}
         refCallback={node => this.moreButtonRef.current = node}
       />
@@ -193,6 +194,7 @@ class TabContainer extends React.Component {
             index={index}
             tabIds={ids}
             onSelect={this.wrapOnSelect(tab.onSelect)}
+            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
           />
         );
       } else {
@@ -245,13 +247,13 @@ class TabContainer extends React.Component {
         >
           {hiddenTabs}
         </TabDropDown>
-        {this.renderMoreButton(isHiddenSelected)}
+        {this.renderMoreButton(isHiddenSelected, isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex)}
       </div>
     );
   }
 }
 
-TabContainer.propTypes = propTypes;
-TabContainer.contextType = ThemeContext;
+Tabs.propTypes = propTypes;
+Tabs.contextType = ThemeContext;
 
-export default TabContainer;
+export default Tabs;

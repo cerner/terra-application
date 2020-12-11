@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
-import { handleArrows } from './_TabUtils';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+  handleArrows
+} from './_TabUtils';
 
-import styles from './HiddenTab.module.scss';
+import styles from './Tab.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -19,17 +22,9 @@ const propTypes = {
    */
   associatedPanelId: PropTypes.string.isRequired,
   /**
-   * Icon to be displayed on the tab.
-   */
-  icon: PropTypes.element,
-  /**
    * Index value to use for navigation.
    */
   index: PropTypes.number.isRequired,
-  /**
-   * Indicates if the pane label should only display the icon. When tab collapses into menu the label text will be used.
-   */
-  isIconOnly: PropTypes.bool,
   /**
    * Indicates if the tab is currently selected.
    */
@@ -39,30 +34,31 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Object to be returned in the onSelect.
-   */
-  metaData: PropTypes.object,
-  /**
    * Callback function triggering on selection.
    */
   onSelect: PropTypes.func.isRequired,
   /**
+   * Object to be returned in the onSelect.
+   */
+  metaData: PropTypes.object,
+  /**
    * Array of id strings,
    */
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * The z-index style to apply to the tab based upon order and state.
+   */
+  zIndex: PropTypes.number,
 };
 
 const defaultProps = {
-  isIconOnly: false,
   isSelected: false,
 };
 
 const Tab = ({
   id,
   associatedPanelId,
-  icon,
   index,
-  isIconOnly,
   isSelected,
   label,
   metaData,
@@ -70,13 +66,12 @@ const Tab = ({
   onFocus,
   onSelect,
   tabIds,
+  zIndex,
   ...customProps
 }) => {
   const attributes = {};
-  const paneClassNames = cx([
-    'hidden',
-    { 'is-icon-only': isIconOnly },
-    { 'is-text-only': !icon },
+  const tabClassNames = cx([
+    'tab',
     { 'is-active': isSelected },
     attributes.className,
   ]);
@@ -95,18 +90,16 @@ const Tab = ({
     onSelect(event, metaData);
   }
 
-  if (isIconOnly) {
-    attributes['aria-label'] = label;
-  }
-
   if (onSelect) {
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = onBlur;
-    attributes.onFocus = onFocus;
+    attributes.onBlur = enableFocusStyles;
+    attributes.onMouseDown = disableFocusStyles;
+    attributes['data-focus-styles-enabled'] = true;
   }
   attributes['aria-selected'] = isSelected;
+  attributes.style = { zIndex };
 
   return (
     <div
@@ -115,11 +108,14 @@ const Tab = ({
       id={id}
       aria-controls={associatedPanelId}
       role="tab"
-      className={paneClassNames}
+      className={tabClassNames}
+      title={label}
     >
-      {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
-      {icon ? <span className={cx('icon')}>{icon}</span> : null}
-      {!isIconOnly ? <span className={cx('label')}>{label}</span> : null}
+      <div className={cx('before')} />
+      <div className={cx('inner')}>
+        <span className={cx('label')}>{label}</span>
+      </div>
+      <div className={cx('after')} />
     </div>
   );
 };

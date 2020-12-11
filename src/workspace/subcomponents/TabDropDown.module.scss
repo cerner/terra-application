@@ -1,6 +1,6 @@
 :local {
   .drop-down {
-    background-color: #fff;
+    border: 1px solid transparent;
     height: 1px;
     left: 0;
     margin: -1px;
@@ -13,8 +13,8 @@
   }
 
   .is-open {
+    border-color: #ccc;
     background-color: #fff;
-    border: 1px solid #ccc;
     height: auto;
     margin: 0;
     opacity: 1;

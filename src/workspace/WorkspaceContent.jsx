@@ -5,45 +5,48 @@ import classNames from 'classnames/bind';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
-import { actionsPropType } from './propTypes/propTypes';
-import TabDataContext from './_TabDataContext';
-import TabHeader from './_TabHeader';
-import styles from './Panel.module.scss';
+import TabContext from './subcomponents/_TabContext';
+import TabHeader from './subcomponents/_TabHeader';
+import styles from './WorkspaceContent.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  actions: actionsPropType,
+  /**
+   * Child node content to be displayed within the content region.
+   */
   children: PropTypes.node,
+  /**
+   * Optional toolbar to be displayed outside of the content region.
+   */
   toolBar: PropTypes.element,
 };
 
-const Panel = ({
-  actions,
+const WorkspaceContent = ({
   children,
   toolBar,
   ...customProps
 }) => {
-  const { panelId, tabId, label } = React.useContext(TabDataContext);
+  const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   return (
     <div
-      className={cx('page')}
+      className={cx('panel')}
       role="none"
     >
       <div
-        className={cx('page-header')}
+        className={cx('panel-header')}
         role="none"
       >
-        <TabHeader actions={actions}>{label}</TabHeader>
-        <NotificationBanners />
+        <TabHeader>{label}</TabHeader>
         {toolBar}
+        <NotificationBanners />
       </div>
       <div
         {...customProps}
         role="tabpanel"
-        className={cx('panel')}
+        className={cx('panel-content')}
         tabIndex="0"
         id={panelId}
         aria-labelledby={tabId}
@@ -59,6 +62,6 @@ const Panel = ({
   );
 };
 
-Panel.propTypes = propTypes;
+WorkspaceContent.propTypes = propTypes;
 
-export default Panel;
+export default WorkspaceContent;

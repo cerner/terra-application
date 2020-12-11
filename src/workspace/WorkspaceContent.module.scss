@@ -1,0 +1,47 @@
+:local {
+  .panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%;
+
+    background-color: #fefffe;
+    border-radius: 0 0 5px 5px;
+
+    border-top: 1px solid #eeefee;
+    border-left: 1px solid #dfe0df;
+    border-right: 1px solid #dfe0df;
+    border-bottom: 1px solid #c6c8c7;
+
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+
+    overflow: hidden;
+    padding: 0 10px 10px;
+  }
+
+  .panel-header {
+    box-shadow: inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB;
+    flex: 0 0 auto;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    z-index: 10;
+
+    // TODO: revise this with a container?
+    > *:not(:first-child) {
+      border-radius: 3px !important;
+      margin-top: 5px !important;
+      overflow: hidden;
+    }
+  }
+
+  .panel-content {
+    flex: 1 1 auto;
+    height: 100%;
+    outline: none;
+    overflow: auto;
+    position: relative;
+    -webkit-overflow-scrolling: touch;
+    width: 100%;
+  }
+}

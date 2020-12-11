@@ -1,21 +1,25 @@
 :local {
-  .tabs {
-    background-color: #fff;
+  .workspace {
+    // background-color: #fff;
     display: flex;
     flex-direction: column;
     height: 100%;
     position: relative;
     user-select: none;
     width: 100%;
+    z-index: 1;
 
     > .header {
+      background-image: linear-gradient(to bottom, #007cc3, #0065a3);
       flex: 0 0 auto;
-      z-index: 20;
+      padding-bottom: 10px; // matching header2 margin-top
+      z-index: -1;
     }
 
     > .body {
       flex: 1 1 auto;
       height: 100%;
+      overflow: hidden;
       z-index: 10;
     }
   }
@@ -24,6 +28,7 @@
     display: flex;
     left: 0px;
     justify-content: space-between;
+    min-height: 50px;
     position: absolute;
     top: 0px;
     width: 100%;
@@ -35,6 +40,7 @@
 
     .active-button,
     .menu-button {
+      color: #fff;
       flex: 0 0 auto;
       margin: 5px;
     }
@@ -42,7 +48,6 @@
     .active-button,
     .active-button:hover {
       background-color:rgba(25, 127, 229, 0.2);
-      border: solid 1px #4a90e2;
   
       &:active {
         background-color:rgba(25, 127, 229, 0.5);
@@ -53,9 +58,13 @@
   .header2 {
     margin-bottom: 0;
     margin-top: 10px;
-    margin-left: 50px;
+    margin-left: 10px;
     margin-right: 50px;
     width: calc(100% - 100px);
     z-index: 50;
+
+    &.has-dismiss-button {
+      margin-left: 50px;
+    }
   }
 }

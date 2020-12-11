@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import Button from 'terra-button';
 import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
-import { actionsPropType } from './propTypes/propTypes';
+import { actionsPropType } from '../propTypes/propTypes';
 
 import styles from './TabHeader.module.scss';
 

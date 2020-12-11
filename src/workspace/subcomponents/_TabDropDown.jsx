@@ -11,7 +11,6 @@ const cx = classNames.bind(styles);
 const itemShape = PropTypes.shape({
   label: PropTypes.string,
   onAction: PropTypes.func,
-  icon: PropTypes.element,
   isSelected: PropTypes.bool,
 });
 const groupShape = PropTypes.shape({
@@ -67,7 +66,7 @@ const TabDropDown = ({
 
   TabDropDown.handleClickOutside = event => onRequestClose(event);
 
-  const panelClassNames = cx([
+  const dropDownClassNames = cx([
     'drop-down',
     { 'is-open': isOpen },
   ]);
@@ -76,7 +75,7 @@ const TabDropDown = ({
     <div
       ref={refCallback}
       role="none"
-      className={panelClassNames}
+      className={dropDownClassNames}
     >
       {children}
     </div>

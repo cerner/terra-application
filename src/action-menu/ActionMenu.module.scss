@@ -79,6 +79,7 @@
 
   .is-actionable {
     cursor: pointer;
+    outline: none;
 
     &:hover {
       background-color: #ccc;

@@ -95,9 +95,9 @@ class Tabs extends React.Component {
       const tabStyle = window.getComputedStyle(tab, null);
       const tabMarginLeft = parseFloat(tabStyle.getPropertyValue('margin-left'));
       const tabMarginRight = parseFloat(tabStyle.getPropertyValue('margin-right'));
-      // const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better 
-      const tabChildStyle = window.getComputedStyle(tab.children[0], null);
-      const tabMinWidth = parseFloat(tabChildStyle.getPropertyValue('min-width')); // TODO: come up with better 
+      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better 
+      // const tabChildStyle = window.getComputedStyle(tab.children[1], null);
+      // const tabMinWidth = parseFloat(tabChildStyle.getPropertyValue('min-width')); // TODO: come up with better 
       calcMinWidth += (tabMinWidth + tabMarginLeft + tabMarginRight);
       if (calcMinWidth > availableWidth && !(i === tabCount - 1 && calcMinWidth <= width)) {
         newHideIndex = i;

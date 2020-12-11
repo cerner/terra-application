@@ -7,6 +7,20 @@ import {
   KEY_END,
 } from 'keycode-js';
 
+/**
+ * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
+ */
+const enableFocusStyles = (event) => {
+  event.currentTarget.setAttribute('data-focus-styles-enabled', 'true');
+};
+
+/**
+ * Disables focus styles for the target of the given event. Typically used as an onMouseDown callback on selectable elements.
+ */
+const disableFocusStyles = (event) => {
+  event.currentTarget.setAttribute('data-focus-styles-enabled', 'false');
+};
+
 const nextFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
@@ -85,9 +99,13 @@ const handleArrows = (event, index, ids) => {
 };
 
 export default {
+  enableFocusStyles,
+  disableFocusStyles,
   handleArrows,
 };
 
 export {
+  enableFocusStyles,
+  disableFocusStyles,
   handleArrows,
 };

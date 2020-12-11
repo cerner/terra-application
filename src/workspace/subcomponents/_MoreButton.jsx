@@ -5,6 +5,11 @@ import { injectIntl, intlShape } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+} from './_TabUtils';
+
 import styles from './Tab.module.scss';
 
 const cx = classNames.bind(styles);
@@ -62,13 +67,18 @@ const MoreButton = ({
       ref={refCallback}
       onClick={handleOnClick}
       onKeyDown={handleOnKeyDown}
+      onBlur={enableFocusStyles}
+      onMouseDown={disableFocusStyles}
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
+      data-focus-styles-enabled
       data-terra-tabs-menu
       style={{ zIndex }}
     >
+      <div className={cx('before')} />
       <div className={cx('inner')}>
         <IconCaretDown />
       </div>
+      <div className={cx('after')} />
     </div>
     /* eslint-enable jsx-ally/no-static-element-interactions */
   );

@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
-import { handleArrows } from './_TabUtils';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+  handleArrows
+} from './_TabUtils';
 
 import styles from './Tab.module.scss';
 
@@ -90,6 +94,9 @@ const Tab = ({
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
+    attributes.onBlur = enableFocusStyles;
+    attributes.onMouseDown = disableFocusStyles;
+    attributes['data-focus-styles-enabled'] = true;
   }
   attributes['aria-selected'] = isSelected;
   attributes.style = { zIndex };
@@ -104,9 +111,11 @@ const Tab = ({
       className={tabClassNames}
       title={label}
     >
+      <div className={cx('before')} />
       <div className={cx('inner')}>
         <span className={cx('label')}>{label}</span>
       </div>
+      <div className={cx('after')} />
     </div>
   );
 };

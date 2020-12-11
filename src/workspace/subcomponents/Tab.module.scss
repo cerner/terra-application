@@ -10,12 +10,20 @@
     line-height: 1.4;
     height: 40px; // TODO: best guess?
     margin-bottom: -1px;
-    margin-left: 25px; // TODO: best guess?
-    margin-right: 12px; // TODO: best guess?
+    outline: none;
     position: relative;
     
-    &:last-child {
-      margin-right: 25px; // TODO: best guess?
+    margin-left: -5px; // TODO: best guess?
+    &:first-child {
+      margin-left: 0;
+    }
+
+    > .before {
+      background-position: right;
+    }
+
+    > .after {
+      background-position: left;
     }
 
     .inner {
@@ -51,7 +59,7 @@
       word-wrap: normal;
     }
 
-    &::before {
+    > .before {
       background-image: inline-svg(
         '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <defs>
@@ -81,16 +89,10 @@
         </svg>'
       );
 
-      content: "";
-      bottom: 0;
-      height: 40px;
-      left: -33px;
-      padding: 0;
-      position: absolute;
-      width: 34px;
+      width: 26px;
     }
 
-    &::after {
+    > .after {
       background-image: inline-svg(
         '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <defs>
@@ -120,18 +122,12 @@
         </svg>'
       );
 
-      content: "";
-      bottom: 0;
-      height: 40px;
-      padding: 0;
-      position: absolute;
-      right: -33px;
-      width: 34px;
+      width: 26px;
     }
 
-    &:focus {
+    &[data-focus-styles-enabled='true']:focus {
       outline: 2px dashed #000;
-      outline-offset: -2px;
+      outline-offset: -4px;
     }
 
     &.is-active {
@@ -155,7 +151,7 @@
         );
       }
 
-      &::before {
+      > .before {
         background-image: inline-svg(
           '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -185,7 +181,7 @@
         );
       }
 
-      &::after {
+      > .after {
         background-image: inline-svg(
           '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
@@ -219,19 +215,15 @@
 
   .tab {
     flex: 0 1 auto;
+    min-width: 152px;
 
     .inner {
-      min-width: 7.143rem;
       text-align: center;
-    }
-
-    .label:nth-child(2) {
-      margin-left: 0.357rem;
+      min-width: 7.143rem;
     }
   }
 
   .tab-menu {
-    align-items: baseline;
     display: flex;
     flex: 0 0 auto;
     justify-content: center;

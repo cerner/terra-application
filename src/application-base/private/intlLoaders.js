@@ -1,6 +1,5 @@
-/* eslint-disable import/no-unresolved, compat/compat, no-console */
-import intlLoaders from 'intlLoaders';
 import hasIntlData from 'intl-locales-supported';
+import loadLocaleData from './loadLocaleData';
 
 const supportedIntlConstructors = (polyfill) => {
   /**
@@ -46,44 +45,32 @@ const supportedIntlConstructors = (polyfill) => {
   return constructors;
 };
 
-const loadFallbackIntl = (localeContext, polyfill) => {
-  try {
-    if (!hasIntlData(['en'], supportedIntlConstructors())) {
-      intlLoaders.en[polyfill]();
-    }
-
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`Locale data was not supplied for the ${localeContext}. Using en data as the fallback locale data.`);
-    }
-  } catch (e) {
-    throw new Error(`Locale data was not supplied for the ${localeContext}, or the en fallback locale.`);
-  }
-};
-
 const loadIntl = (locale, polyfill) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
-  try {
-    intlLoaders[locale][polyfill]();
-  } catch (e) {
-    if (fallbackLocale) {
-      try {
-        if (!hasIntlData([fallbackLocale], supportedIntlConstructors())) {
-          intlLoaders[fallbackLocale][polyfill]();
-        }
 
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn(`Locale data for ${polyfill} was not supplied for the ${locale} locale. Using ${fallbackLocale} data as the fallback locale data.`);
-        }
-      } catch (error) {
-        const localeContext = `${locale} or ${fallbackLocale} locales`;
-        loadFallbackIntl(localeContext, polyfill);
-      }
-    } else {
-      const localeContext = `${locale} locale`;
-      loadFallbackIntl(localeContext, polyfill);
+  loadLocaleData(locale, polyfill).catch((error) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
     }
-  }
+
+    if (fallbackLocale) {
+      if (!hasIntlData([fallbackLocale], supportedIntlConstructors())) {
+        return loadLocaleData(fallbackLocale, polyfill);
+      }
+    }
+
+    return Promise.resolve();
+  }).catch((error) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`${error.message} Using en data as the fallback locale data.`);
+    }
+
+    if (!hasIntlData(['en'], supportedIntlConstructors())) {
+      return loadLocaleData('en', polyfill);
+    }
+
+    return Promise.resolve();
+  });
 };
 
 export default loadIntl;
-/* eslint-enable import/no-unresolved, compat/compat, no-console */

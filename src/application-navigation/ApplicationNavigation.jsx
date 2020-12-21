@@ -2,12 +2,12 @@ import React, {
   useRef, useCallback, Suspense,
 } from 'react';
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { ApplicationIntlContext } from '../application-intl';
 
 import TerraApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
 import {
@@ -140,7 +140,7 @@ const ApplicationNavigation = ({
   userConfig,
   utilityItems,
 }) => {
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   const navigationPromptCheckpointRef = useRef();
 

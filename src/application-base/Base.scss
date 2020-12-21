@@ -1,0 +1,39 @@
+// Themes
+@import './clinical-lowlight-theme/Base';
+@import './orion-fusion-theme/Base';
+
+html {
+  background-attachment: var(--terra-application-base-background-attachment);
+  background-color: var(--terra-application-base-background-color, #fff);
+  background-image: var(--terra-application-base-background-image);
+  background-position: var(--terra-application-base-background-position);
+  background-repeat: var(--terra-application-base-background-repeat);
+  background-size: var(--terra-application-base-background-size);
+  // Normalize box-sizing.
+  // More info: https://css-tricks.com/box-sizing/#article-header-id-6
+  box-sizing: border-box;
+  font-family: var(--terra-application-base-font-family, 'Helvetica Neue', Helvetica, Arial, sans-serif);
+  font-size: var(--terra-application-base-font-size, 87.5%);
+  height: var(--terra-application-base-html-height, 100%);
+  margin: var(--terra-application-base-html-margin, 0);
+  text-size-adjust: 100%;
+}
+
+body {
+  color: var(--terra-application-base-color, #1c1f21);
+  font-size: 1rem;
+  height: var(--terra-application-base-body-height, 100%);
+  line-height: var(--terra-application-base-line-height, 1.4285714285714286);
+  margin: var(--terra-application-base-body-margin, 0);
+
+  @media print {
+    background-color: transparent !important;
+    color: #000 !important;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}

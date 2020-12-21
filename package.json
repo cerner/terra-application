@@ -99,11 +99,15 @@
     "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
+    "@cerner/terra-docs": "^1.0.0",
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "focus-trap-react": "^6.0.0",
     "keycode-js": "^2.0.1",
     "lodash.debounce": "^4.0.8",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.8.4",
     "prop-types": "^15.5.8",
     "react-onclickoutside": "^6.7.1",
     "resize-observer-polyfill": "^1.5.1",
@@ -134,7 +138,7 @@
   "peerDependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-intl": "^2.9.0"
+    "react-intl": "^5.8.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.4",
@@ -167,7 +171,7 @@
     "raf": "^3.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-intl": "^2.9.0",
+    "react-intl": "^5.8.2",
     "regenerator-runtime": "^0.13.5",
     "stylelint": "^10.0.1",
     "stylelint-config-terra": "^3.3.0",

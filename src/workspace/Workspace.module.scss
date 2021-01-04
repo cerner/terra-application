@@ -60,11 +60,12 @@
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 50px;
-    width: calc(100% - 100px);
+    width: calc(100% - 10px - 50px);
     z-index: 50;
 
     &.has-dismiss-button {
       margin-left: 50px;
+      width: calc(100% - 100px);
     }
   }
 }

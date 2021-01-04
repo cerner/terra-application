@@ -215,11 +215,11 @@
 
   .tab {
     flex: 0 1 auto;
-    min-width: 152px;
+    min-width: calc(5.357rem + 52px);
 
     .inner {
       text-align: center;
-      min-width: 7.143rem;
+      min-width: 5.357rem;
     }
   }
 

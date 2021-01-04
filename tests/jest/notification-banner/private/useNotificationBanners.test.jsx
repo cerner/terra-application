@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { act } from 'react-dom/test-utils';
 import { render, fireEvent } from '@testing-library/react';
-import 'terra-base';
 import { IntlProvider } from 'react-intl';
 
 import BannerRegistrationContext from '../../../../src/notification-banner/private/BannerRegistrationContext';
@@ -10,7 +9,6 @@ import useNotificationBanners from '../../../../src/notification-banner/private/
 // eslint-disable-next-line import/no-unresolved, import/extensions
 import { messages } from '../../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
-jest.mock('terra-base');
 global.console.warn = jest.fn();
 
 let keyValue = 0;

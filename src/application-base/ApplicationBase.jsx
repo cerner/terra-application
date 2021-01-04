@@ -1,10 +1,9 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, Suspense, useMemo, useState,
+  useRef, useEffect, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
@@ -18,10 +17,6 @@ import useTestOverrides from './private/useTestOverrides';
 
 import './private/initializeInert';
 import './baseStyles';
-
-import styles from './ApplicationBase.module.scss';
-
-const cx = classNames.bind(styles);
 
 const browserLocale = getBrowserLocale();
 
@@ -59,6 +54,20 @@ const ApplicationBase = ({
 
   const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
+  const finalLocale = localeOverride || locale || browserLocale;
+
+  useEffect(() => {
+    if (finalLocale !== undefined) {
+      try {
+        i18nLoader(finalLocale).then(loadedMessages => setMessages(loadedMessages));
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        throw e;
+      }
+    }
+  }, [finalLocale]);
+
   const theme = useMemo(() => ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
     name: themeName || rootThemeName,
@@ -91,52 +100,28 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
-  const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
-
-  const finalLocale = localeOverride || locale || browserLocale;
-
-  useEffect(() => {
-    if (finalLocale !== undefined) {
-      try {
-        i18nLoader(finalLocale, setMessages);
-      } catch (e) {
-        // eslint-disable-next-line no-console
-        console.error(e);
-        throw e;
-      }
-    }
-  }, [finalLocale]);
-
-  const theme = useMemo(() => ({
-    // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
-    name: themeName || rootThemeName,
-    className: themeName,
-  }), [themeName]);
-
-  if (messages === undefined) return <div>{translationsLoadingPlaceholder}</div>;
+  if (messages === undefined) return null;
 
   return (
-    <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider themeName={themeName}>
-        <ThemeContextProvider theme={theme}>
-          <IntlProvider
-            key={finalLocale}
-            locale={finalLocale}
-            messages={messages}
-          >
-            <ActiveBreakpointProvider>
-              <NavigationPromptCheckpoint
-                onPromptChange={(registeredPrompts) => {
-                  registeredPromptsRef.current = registeredPrompts;
-                }}
-              >
-                {children}
-              </NavigationPromptCheckpoint>
-            </ActiveBreakpointProvider>
-          </IntlProvider>
-        </ThemeContextProvider>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider themeName={themeName}>
+      <ThemeContextProvider theme={theme}>
+        <IntlProvider
+          key={finalLocale}
+          locale={finalLocale}
+          messages={messages}
+        >
+          <ActiveBreakpointProvider>
+            <NavigationPromptCheckpoint
+              onPromptChange={(registeredPrompts) => {
+                registeredPromptsRef.current = registeredPrompts;
+              }}
+            >
+              {children}
+            </NavigationPromptCheckpoint>
+          </ActiveBreakpointProvider>
+        </IntlProvider>
+      </ThemeContextProvider>
+    </ThemeProvider>
   );
 };
 

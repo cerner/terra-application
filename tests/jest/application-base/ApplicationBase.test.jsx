@@ -1,6 +1,8 @@
 import React from 'react';
-
+import i18nLoader from '../../../src/application-base/private/i18nLoader';
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
+
+jest.mock('../../../src/application-base/private/i18nLoader');
 
 describe('ApplicationBase', () => {
   it('should render with minimal props', () => {
@@ -16,11 +18,8 @@ describe('ApplicationBase', () => {
     const wrapper = shallow((
       <ApplicationBase
         locale="en"
-        customTranslatedMessages={{ custom: 'messages' }}
-        translationsLoadingPlaceholder={<div>placeholder</div>}
         themeName="test-theme"
-        themeIsGlobal
-        fitToParentIsDisabled
+        unloadPromptIsDisabled
       >
         <div>content</div>
       </ApplicationBase>
@@ -28,12 +27,52 @@ describe('ApplicationBase', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render with the preferred browser local', () => {
+  it('should render with the preferred browser locale', () => {
     const wrapper = shallow((
       <ApplicationBase>
         <div>content</div>
       </ApplicationBase>
     ));
     expect(wrapper).toMatchSnapshot();
+  });
+
+  describe('base handles i18n data loading', () => {
+    beforeAll(() => {
+      // eslint-disable-next-line no-console
+      console.error = jest.fn();
+    });
+
+    beforeEach(() => {
+      // eslint-disable-next-line no-console
+      console.error.mockClear();
+    });
+
+    it('renders as expected when i18n data loads successfully', () => {
+      i18nLoader.mockImplementationOnce(() => Promise.resolve());
+      expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).not.toThrowError();
+      expect(i18nLoader).toHaveBeenCalled();
+      // eslint-disable-next-line no-console
+      expect(console.error).not.toHaveBeenCalled();
+    });
+
+    it('logs error when i18n data fails to load', () => {
+      i18nLoader.mockImplementationOnce(() => {
+        Promise.reject(new Error('failed to load data.'));
+      });
+      expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).not.toThrowError();
+      expect(i18nLoader).toHaveBeenCalled();
+      // eslint-disable-next-line no-console
+      expect(console.error).toHaveBeenCalled();
+    });
+
+    it('throws error when i18n data fails to load', () => {
+      i18nLoader.mockImplementationOnce(() => {
+        Promise.reject(new Error('failed to load data.'));
+      });
+      expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).toThrowError();
+      expect(i18nLoader).toHaveBeenCalled();
+      // eslint-disable-next-line no-console
+      expect(console.error).toHaveBeenCalled();
+    });
   });
 });

@@ -1,10 +1,22 @@
 import React from 'react';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
+import { mountWithIntl } from '@cerner/terra-enzyme-intl';
 
 import { ActiveBreakpointContext } from '../../../../src/breakpoints';
 import ApplicationNavigation from '../../../../src/application-navigation/terra-application-navigation/ApplicationNavigation';
+
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
 
 describe('ApplicationNavigation', () => {
   let reactUseContext;

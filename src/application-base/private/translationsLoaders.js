@@ -1,38 +1,62 @@
-/* eslint-disable import/no-unresolved, no-console */
-import translationLoaders from 'translationsLoaders';
-
-const loadFallbackLocale = (localeContext, callback) => {
-  try {
-    translationLoaders.en(callback);
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`Translations were not supplied for the ${localeContext}. Using en as the fallback locale.`);
-    }
-  } catch (e) {
-    throw new Error(`Translations were not supplied for the ${localeContext}, or the en fallback locale.`);
+const loadTranslationsFile = (locale) => new Promise((resolve, reject) => {
+  switch (locale) {
+    case 'en':
+      return import(/* webpackChunkName: "en-translations" */ 'en.js');
+    case 'en-AU':
+      return import(/* webpackChunkName: "en-AU-translations" */ 'en-AU.js');
+    case 'en-CA':
+      return import(/* webpackChunkName: "en-CA-translations" */ 'en-CA.js');
+    case 'en-US':
+      return import(/* webpackChunkName: "en-US-translations" */ 'en-US.js');
+    case 'en-GB':
+      return import(/* webpackChunkName: "en-GB-translations" */ 'en-GB.js');
+    case 'es':
+      return import(/* webpackChunkName: "es-translations" */ 'es.js');
+    case 'es-ES':
+      return import(/* webpackChunkName: "es-ES-translations" */ 'es-ES.js');
+    case 'de':
+      return import(/* webpackChunkName: "de-translations" */ 'de.js');
+    case 'fr':
+      return import(/* webpackChunkName: "fr-translations" */ 'fr.js');
+    case 'fr-FR':
+      return import(/* webpackChunkName: "fr-FR-translations" */ 'fr-FR.js');
+    case 'nl':
+      return import(/* webpackChunkName: "nl-translations" */ 'nl.js');
+    case 'nl-BE':
+      return import(/* webpackChunkName: "nl-BE-translations" */ 'nl-BE.js');
+    case 'pt':
+      return import(/* webpackChunkName: "pt-translations" */ 'pt.js');
+    case 'pt-BR':
+      return import(/* webpackChunkName: "pt-BR-translations" */ 'pt-BR.js');
+    case 'sv':
+      return import(/* webpackChunkName: "sv-translations" */ 'sv.js');
+    case 'sv-SE':
+      return import(/* webpackChunkName: "sv-SE-translations" */ 'sv-SE.js');
+    default:
+      return reject(Error(`Translations were not supplied for the ${locale} locale.`));
   }
-};
+});
 
-const loadTranslations = (locale, callback) => {
+const loadTranslations = (locale) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
-  try {
-    translationLoaders[locale](callback);
-  } catch (e) {
-    if (fallbackLocale) {
-      try {
-        translationLoaders[fallbackLocale](callback);
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn(`Translations were not supplied for the ${locale} locale. Using ${fallbackLocale} as the fallback locale.`);
-        }
-      } catch (error) {
-        const localeContext = `${locale} or ${fallbackLocale} locales`;
-        loadFallbackLocale(localeContext, callback);
-      }
-    } else {
-      const localeContext = `${locale} locale`;
-      loadFallbackLocale(localeContext, callback);
+
+  loadTranslationsFile(locale).catch((error) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
     }
-  }
+
+    if (fallbackLocale) {
+      return loadTranslationsFile(fallbackLocale);
+    }
+
+    return Promise.resolve();
+  }).catch((error) => {
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(`${error.message} Using en data as the fallback locale data.`);
+    }
+
+    return loadTranslationsFile('en');
+  });
 };
 
 export default loadTranslations;
-/* eslint-enable import/no-unresolved, no-console */

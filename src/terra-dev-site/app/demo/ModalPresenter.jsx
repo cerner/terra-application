@@ -8,7 +8,7 @@ import Scroll from 'terra-scroll';
 import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
 import ApplicationStatusOverlay from '@cerner/terra-application/lib/application-status-overlay';
-import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '@cerner/terra-application/lib/disclosure-manager';
 
 import PendingActionToggle from './PendingActionToggle';
@@ -18,7 +18,7 @@ const cx = classNames.bind(styles);
 
 const ModalContent = ({ name, onSubmit }) => {
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const disclosureManager = useContext(DisclosureManagerContext);
 
   const [hasError, setHasError] = useState(false);

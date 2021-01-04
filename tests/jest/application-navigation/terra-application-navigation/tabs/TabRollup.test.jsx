@@ -1,6 +1,6 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mockIntl } from 'terra-enzyme-intl';
+import { mockIntl } from '@cerner/terra-enzyme-intl';
 
 import TabRollup from '../../../../../src/application-navigation/terra-application-navigation/tabs/_TabRollup';
 

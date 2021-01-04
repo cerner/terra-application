@@ -62,9 +62,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>
@@ -130,9 +128,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>
@@ -184,9 +180,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Terra.alert.error
             </strong>
           </div>
         </div>
@@ -245,9 +239,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>
@@ -299,9 +291,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Terra.alert.error
             </strong>
           </div>
         </div>
@@ -370,9 +360,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Terra.alert.error
             </strong>
           </div>
         </div>
@@ -471,9 +459,7 @@ exports[`useNotificationBanners NotificationBannerProvider.registerNotificationB
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>
@@ -531,9 +517,7 @@ exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificatio
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>
@@ -617,9 +601,7 @@ exports[`useNotificationBanners renders with children that has a an banner 1`] =
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Terra.alert.error
           </strong>
         </div>
       </div>

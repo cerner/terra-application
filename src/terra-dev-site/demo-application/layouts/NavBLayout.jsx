@@ -18,7 +18,7 @@ const NavBLayout = () => (
     workspace={(
       <SecondaryNavigationLayoutWorkspace
         initialActiveItemKey="tab-1"
-        initialSize={{ scale: 0.75 }}
+        initialSize={{ scale: 0.50 }}
         initialIsOpen
         onActiveItemChange={(newActiveItemKey) => {
           console.log(`Workspace active item: ${newActiveItemKey}`);

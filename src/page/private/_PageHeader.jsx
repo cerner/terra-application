@@ -25,6 +25,10 @@ const PageHeader = ({
   const headerContainerRef = React.useRef();
   const moreActionsButtonRef = React.useRef();
 
+  if (actions && React.Children.count(actions.props.children) > 3) {
+    throw new Error(`[terra-application] Page ${label} cannot render more than three actions.`);
+  }
+
   React.useLayoutEffect(() => {
     const containerElement = headerContainerRef.current;
 

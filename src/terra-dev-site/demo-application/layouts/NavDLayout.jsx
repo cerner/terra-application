@@ -26,6 +26,7 @@ const NavDLayout = () => {
       workspace={(
         <SecondaryNavigationLayoutWorkspace
           initialActiveItemKey="tab-1"
+          initialIsOpen
           onActiveItemChange={(newActiveItemKey) => {
             console.log(`Workspace active item: ${newActiveItemKey}`);
           }}

@@ -773,7 +773,7 @@ TODO 10/21
       * Do we need to change the loading indicator styles?
       * Do we need tighter integration with the Page to allow easier disabling of non-navigation actions?
       * Do status overlays/views make sense to be presented within a Page, enough so to have a first-class API for their presentation?
-
+        * **ANSWER** YES
   * Modals
     * Touch base on Modal API
       * label/size/toolbar/onRequestClose are pretty solid
@@ -792,6 +792,12 @@ TODO 10/21
         * **ANSWER** content scrolls under header, scrolling bound to workspace tab container
       * What sort of content restrictions/expectations do we need to know about to define the final API? Do we take anything or have a more rigid content API?
         * Decisions here will impact things like default padding/margin placement.
-        * **ANSWER** no content restrictions, no "cards", punting thus frame
+        * **ANSWER** no content restrictions, no "cards", punting thus far
       * Actions Menu for WorkspaceTab - Can we punt? If not, what sort of control are we needing? terra-menu has issues.
+
       
+      * PageHeader uplift to use new ActionsMenu for rollup
+      * Think about adding ActiveMainPage handling to MainContainer
+        * Making the "active main" concept not Page-specific, which I think makes more sense.
+      * NavigationPrompt -> UnsavedChangesPrompt
+      * Remove iframe handling from portal logic (Pages/Navigation)

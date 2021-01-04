@@ -12,7 +12,7 @@ const MockContent = ({ initialCount = 0, title = '', id }) => {
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h1>{`${title}'s Numer of Clicks: ${clickCount}`}</h1>
+      <h1>{`${title}'s Number of Clicks: ${clickCount}`}</h1>
       <button onClick={() => setClickCount(clickCount + 1)}>Click Me</button>
       <button onClick={() => setShowAlertBanner(true)}>Show Banner</button>
       {showAlertBanner && (

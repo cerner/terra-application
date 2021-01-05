@@ -48,13 +48,7 @@ class PageContainerPortalManager {
     if (ancestorNodeData && this.containerRef.current.contains(ancestorNodeData.element)) {
       ancestorNodeData.overflowData = getPersistentScrollMap(ancestorNodeData.element);
 
-      const hasUnsafeElements = ancestorNodeData.element.querySelectorAll('iframe');
-      if (hasUnsafeElements.length) {
-        ancestorNodeData.element.style.display = 'none';
-        ancestorNodeData.element.inert = true;
-      } else {
-        this.containerRef.current.removeChild(ancestorNodeData.element);
-      }
+      this.containerRef.current.removeChild(ancestorNodeData.element);
 
       if (ancestorNodeData.setPageActive) {
         ancestorNodeData.setPageActive(false);

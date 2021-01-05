@@ -212,13 +212,7 @@ const PrimaryNavigationLayout = ({
 
       pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
 
-      const hasUnsafeElements = elementToRemove.querySelectorAll('iframe');
-      if (hasUnsafeElements.length) {
-        elementToRemove.style.display = 'none';
-        elementToRemove.inert = true;
-      } else {
-        contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
-      }
+      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
     }
 
     if (pageNodeForActivePage?.element) {

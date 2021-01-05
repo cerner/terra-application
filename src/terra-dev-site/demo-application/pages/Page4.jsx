@@ -36,7 +36,7 @@ const Page4 = ({ onRequestClose }) => {
         <Card label="Page 4 Details">
           <p>Page 4 demonstrates the following features:</p>
           <ul>
-            <li>iframe rendering/persistence</li>
+            <li>iframe rendering</li>
             <li>Content that triggers Page APIs</li>
           </ul>
         </Card>
@@ -45,8 +45,7 @@ const Page4 = ({ onRequestClose }) => {
           <Button text="Show Page 5" onClick={() => { setShowPage5(true); }} />
         </Card>
         <Card label="iframe Rendering">
-          <p>The presence of `iframe` elements within navigation content will cause the content to be persisted on the DOM when inactivated.</p>
-          <p>This ensures that the `iframe` element is persisted and does not reload upon subsequent activation.</p>
+          <p>iframe elements will reload after leaving and reappearing on the DOM.</p>
           <iframe src="https://www.tor.com" style={{ height: '300px', width: '100%' }} />
         </Card>
         <NotificationBannersCard />

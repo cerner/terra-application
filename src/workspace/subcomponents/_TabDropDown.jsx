@@ -1,24 +1,15 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import onClickOutside from 'react-onclickoutside';
-import * as KeyCode from 'keycode-js';
+import { KEY_ESCAPE } from 'keycode-js';
 
 import styles from './TabDropDown.module.scss';
 
 const cx = classNames.bind(styles);
 
-const itemShape = PropTypes.shape({
-  label: PropTypes.string,
-  onAction: PropTypes.func,
-  isSelected: PropTypes.bool,
-});
-const groupShape = PropTypes.shape({
-  items: PropTypes.arrayOf(itemShape),
-});
-
 const propTypes = {
-  items: PropTypes.arrayOf(PropTypes.oneOfType([itemShape, groupShape])),
   /**
    * Currently active Tabs.Pane content to be displayed.
    */
@@ -32,6 +23,9 @@ const propTypes = {
    * The function callback when a click outside event occurs.
    */
   onRequestClose: PropTypes.func,
+  /**
+   * The function returning the html node.
+   */
   refCallback: PropTypes.func,
 };
 
@@ -44,7 +38,7 @@ const TabDropDown = ({
   enableOnClickOutside,
 }) => {
   const handleKeyDown = event => {
-    if (event.keyCode === KeyCode.KEY_ESCAPE && onRequestClose) {
+    if (event.keyCode === KEY_ESCAPE && onRequestClose) {
       onRequestClose(event);
     }
   }
@@ -66,10 +60,12 @@ const TabDropDown = ({
 
   TabDropDown.handleClickOutside = event => onRequestClose(event);
 
-  const dropDownClassNames = cx([
+  const theme = React.useContext(ThemeContext);
+  const dropDownClassNames = cx(
     'drop-down',
     { 'is-open': isOpen },
-  ]);
+    theme.className,
+  );
 
   return (
     <div

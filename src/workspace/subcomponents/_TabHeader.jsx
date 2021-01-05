@@ -1,6 +1,7 @@
 import React, { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import Menu from 'terra-menu';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
@@ -13,7 +14,6 @@ const cx = classNames.bind(styles);
 const propTypes = {
   actions: actionsPropType,
   children: PropTypes.node,
-  // isLoading?
 };
 
 const createOptions = (options, onDismissMenu) => {
@@ -30,11 +30,12 @@ const createOptions = (options, onDismissMenu) => {
 };
 
 const TabHeader = ({ actions, children }) => {
+  const theme = React.useContext(ThemeContext);
   const [isOpen, setIsOpen] = useState(false);
   const buttonRef = useRef();
 
   return (
-    <div className={cx('header-bar')}>
+    <div className={cx('header-bar', theme.className)}>
       <div className={cx('header')}>
         {children}
       </div>

@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import {
   enableFocusStyles,
   disableFocusStyles,
-  handleArrows
+  handleArrows,
 } from './_TabUtils';
 
 import styles from './Tab.module.scss';
@@ -62,19 +63,17 @@ const Tab = ({
   isSelected,
   label,
   metaData,
-  onBlur,
-  onFocus,
   onSelect,
   tabIds,
   zIndex,
-  ...customProps
 }) => {
   const attributes = {};
-  const tabClassNames = cx([
+  const theme = React.useContext(ThemeContext);
+  const tabClassNames = cx(
     'tab',
     { 'is-active': isSelected },
-    attributes.className,
-  ]);
+    theme.className,
+  );
 
   function onKeyDown(event) {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
@@ -103,7 +102,6 @@ const Tab = ({
 
   return (
     <div
-      {...customProps}
       {...attributes}
       id={id}
       aria-controls={associatedPanelId}

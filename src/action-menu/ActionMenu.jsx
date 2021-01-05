@@ -1,27 +1,28 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import {
   generateOnKeyDown,
-  itemFromArrowKey,
-  itemFromChar,
+  itemByDirection,
+  itemByChar,
   flattenActionItems,
 } from './_ActionUtils';
 
 import styles from './ActionMenu.module.scss';
 
-const cx = classNames.bind(styles);
+const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   ariaLabel: PropTypes.string.isRequired,
   children: PropTypes.node,
-  id: PropTypes.string.isRequired,
 };
 
 const ActionMenu = ({
   ariaLabel,
   children,
-  id,
+  ...customProps
 }) => {
   const menuRef = useRef();
   const items = flattenActionItems(children);
@@ -38,22 +39,32 @@ const ActionMenu = ({
   };
 
   const onArrow = (key, direction) => {
-    const item = itemFromArrowKey(key, items, direction);
-    if (item) {
-      focusItem(item);
-    }
-  };
-  
-  const onChar = (key, char) => {
-    const item = itemFromChar(key, items, char);
+    const item = itemByDirection(key, items, direction);
     if (item) {
       focusItem(item);
     }
   };
 
+  const onChar = (key, char) => {
+    const item = itemByChar(key, items, char);
+    if (item) {
+      focusItem(item);
+    }
+  };
+
+  const theme = React.useContext(ThemeContext);
+  const menuClassNames = classNames(
+    cx(
+      'action-menu',
+      theme.className,
+    ),
+    customProps.className,
+  );
+
   return (
     <ul
-      className={cx('action-menu')}
+      {...customProps}
+      className={menuClassNames}
       role="menu"
       tabIndex="0"
       aria-label={ariaLabel}
@@ -62,11 +73,11 @@ const ActionMenu = ({
     >
       {React.Children.map(children, child => {
         if (!child) {
-          return;
+          return undefined;
         }
         return React.cloneElement(
           child,
-          { onArrow, onChar }
+          { onArrow, onChar },
         );
       })}
     </ul>

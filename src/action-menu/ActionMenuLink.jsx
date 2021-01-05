@@ -12,7 +12,15 @@ const propTypes = {
   isDisabled: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
   onArrow: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
   onChar: PropTypes.func,
 };
 

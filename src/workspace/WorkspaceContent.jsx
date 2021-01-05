@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -9,7 +11,7 @@ import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
 import styles from './WorkspaceContent.module.scss';
 
-const cx = classNames.bind(styles);
+const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   /**
@@ -27,12 +29,21 @@ const WorkspaceContent = ({
   toolBar,
   ...customProps
 }) => {
+  const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
+  const contentClassNames = classNames(
+    cx(
+      'panel',
+      theme.className,
+    ),
+    customProps.className,
+  );
+
   return (
     <div
-      className={cx('panel')}
+      className={contentClassNames}
       role="none"
     >
       <div

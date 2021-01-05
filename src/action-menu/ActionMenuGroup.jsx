@@ -7,7 +7,15 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   children: PropTypes.node,
+  /**
+   * @private
+   * Callback function for event.
+   */
   onArrow: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
   onChar: PropTypes.func,
 };
 

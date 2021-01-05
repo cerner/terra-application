@@ -13,8 +13,16 @@ const propTypes = {
   isChecked: PropTypes.bool,
   label: PropTypes.string.isRequired,
   onAction: PropTypes.func,
-  onArrow: PropTypes.func, // private
-  onChar: PropTypes.func, // private
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onArrow: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onChar: PropTypes.func,
 };
 
 const ActionMenuRadio = ({

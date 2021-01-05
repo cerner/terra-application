@@ -1,6 +1,8 @@
+// @import '../../themes/clinical-lowlight-theme/Workspace.module';
+// @import '../../themes/orion-fusion-theme/Workspace.module';
+
 :local {
   .workspace {
-    // background-color: #fff;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -12,7 +14,7 @@
     > .header {
       background-image: linear-gradient(to bottom, #007cc3, #0065a3);
       flex: 0 0 auto;
-      padding-bottom: 10px; // matching header2 margin-top
+      padding-bottom: 10px; // TODO: matching header2 margin-top
       z-index: -1;
     }
 

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { injectIntl, intlShape } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
@@ -28,25 +27,18 @@ const propTypes = {
    */
   refCallback: PropTypes.func,
   /**
-   * @private
-   * Object containing intl APIs.
-   */
-  intl: intlShape.isRequired,
-  /**
    * The z-index style to apply to the button based upon order and state.
    */
   zIndex: PropTypes.number,
 };
 
 const MoreButton = ({
-  intl,
   isActive,
   onSelect,
   refCallback,
   zIndex,
 }) => {
   const theme = React.useContext(ThemeContext);
-  const menuToggleText = 'More Tabs'; // TODO: translate
 
   const handleOnClick = (event) => {
     onSelect(event);
@@ -86,4 +78,4 @@ const MoreButton = ({
 
 MoreButton.propTypes = propTypes;
 
-export default injectIntl(MoreButton);
+export default MoreButton;

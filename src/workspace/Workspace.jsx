@@ -1,6 +1,8 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
@@ -16,7 +18,7 @@ import {
 
 import styles from './Workspace.module.scss';
 
-const cx = classNames.bind(styles);
+const cx = classNamesBind.bind(styles);
 
 const sizeOptionShape = PropTypes.shape({
   key: PropTypes.string.isRequired,
@@ -101,6 +103,7 @@ const Workspace = ({
   ...customProps
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const theme = React.useContext(ThemeContext);
   const workspacePortalsRef = useRef({});
   const workspaceLastKeyRef = useRef();
   const workspaceRef = useRef();
@@ -187,7 +190,7 @@ const Workspace = ({
         <Button
           className={cx('menu-button')}
           icon={<IconSettings />}
-          text="Workspace Size Menu" // TODO INTL
+          text="Workspace Size Menu" // TODO: i18n needed
           onClick={() => setIsMenuOpen(true)}
           variant="utility"
           refCallback={node => sizeMenuRef.current = node}
@@ -203,8 +206,7 @@ const Workspace = ({
           isContentFocusDisabled
         >
           <ActionMenu
-            id="monkey-derp"
-            ariaLabel="Pick A Size!!"
+            ariaLabel="Pick A Size!!" // TODO: i18n needed
           >
             {sizeItems}
             {dividerItem}
@@ -215,10 +217,13 @@ const Workspace = ({
     );
   };
 
-  const workspaceClassNames = cx([
-    'workspace',
+  const workspaceClassNames = classNames(
+    cx(
+      'workspace',
+      theme.className,
+    ),
     customProps.className,
-  ]);
+  );
 
   return (
     <div

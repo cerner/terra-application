@@ -4,7 +4,7 @@ import Button from 'terra-button';
 import CollapsibleMenuView from 'terra-collapsible-menu-view';
 
 import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '../../../../disclosure-manager';
-import NavigationPrompt from '../../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../../unsaved-changes-prompt';
 
 import { Card } from '../../../../page';
 
@@ -65,7 +65,7 @@ const DisclosedComponent = ({ index }) => {
           onClick={() => { setHasUnsavedChanges(state => !state); }}
         />
       </p>
-      {hasUnsavedChanges && <NavigationPrompt description={`Disclosed Modal ${index}`} />}
+      {hasUnsavedChanges && <UnsavedChangesPrompt description={`Disclosed Modal ${index}`} />}
     </div>
   );
 };

@@ -5,7 +5,7 @@ import PrimaryNavigationLayout from '../../../layouts/primary-navigation-layout/
 import SessionUserContext from '../../../session/SessionUserContext';
 import SessionActionsContext from '../../../session/SessionActionsContext';
 import { ApplicationContainerErrorBoundary } from '../../../application-container';
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../../../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../../../unsaved-changes-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 import WindowManager from '../../../utils/window-manager/window-manager';
 
@@ -99,7 +99,7 @@ const SessionProvider = ({ children }) => {
   }
 
   return (
-    <NavigationPromptCheckpoint ref={(ref) => { checkpointRef.current = ref; }}>
+    <UnsavedChangesPromptCheckpoint ref={(ref) => { checkpointRef.current = ref; }}>
       {content || (
         <PrimaryNavigationLayout>
           <main style={style}>
@@ -109,7 +109,7 @@ const SessionProvider = ({ children }) => {
           </main>
         </PrimaryNavigationLayout>
       )}
-    </NavigationPromptCheckpoint>
+    </UnsavedChangesPromptCheckpoint>
   );
 };
 

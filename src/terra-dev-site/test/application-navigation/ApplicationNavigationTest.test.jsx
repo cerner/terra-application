@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import NavigationPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../navigation-prompt';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
   <p>
@@ -46,8 +46,8 @@ const PageContent = ({ title }) => {
           setHasPendingAction2(!hasPendingAction2);
         }}
       />
-      {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
-      {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
+      {hasPendingAction1 ? <UnsavedChangesPrompt description="Pending Action 1" /> : undefined}
+      {hasPendingAction2 ? <UnsavedChangesPrompt description="Pending Action 2" /> : undefined}
     </div>
   );
 };

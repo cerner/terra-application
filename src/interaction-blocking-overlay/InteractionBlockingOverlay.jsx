@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import LayerPortal from '../layers/LayerPortal';
-import NavigationPrompt from '../navigation-prompt';
+import UnsavedChangesPrompt from '../unsaved-changes-prompt';
 
 const propTypes = {
   /**
@@ -35,7 +35,7 @@ const InteractionBlockingOverlay = ({ label }) => {
           backgroundColor: isVisible ? 'rgba(255,255,255,0.5)' : 'clear',
         }}
       />
-      <NavigationPrompt description={label} />
+      <UnsavedChangesPrompt description={label} />
     </LayerPortal>
   );
 };

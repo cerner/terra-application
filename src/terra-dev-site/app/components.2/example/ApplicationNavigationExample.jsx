@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ApplicationNavigation from '@cerner/terra-application/lib/application-navigation';
-import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/navigation-prompt';
 
 import styles from './ApplicationNavigationExample.module.scss';
 
@@ -27,7 +27,7 @@ const ExamplePageContent = ({ title }) => {
           {hasPendingAction ? 'Disable' : 'Enable'}
         </button>
       </p>
-      {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
+      {hasPendingAction ? <UnsavedChangesPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
     </div>
   );
 };

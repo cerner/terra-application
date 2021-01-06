@@ -3,7 +3,7 @@ import { ApplicationIntlContext } from '@cerner/terra-application/lib/applicatio
 import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
-import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/navigation-prompt';
 
 const ApplicationContentExample = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -65,7 +65,7 @@ const ApplicationContentExample = () => {
           }}
         />
       </p>
-      {blockUnload ? <NavigationPrompt description="Testing ApplicationBase's navigation prompt handling" /> : undefined}
+      {blockUnload ? <UnsavedChangesPrompt description="Testing ApplicationBase's navigation prompt handling" /> : undefined}
     </>
   );
 

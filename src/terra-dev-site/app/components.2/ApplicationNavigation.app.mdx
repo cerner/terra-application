@@ -270,12 +270,12 @@ The status view will render below ApplicationNavigation's header, leaving the us
 
 ### Unsaved Changes
 
-ApplicationNavigation monitors its children for the presence of rendered [NavigationPrompts](/application/cerner-terra-application/components/navigation-prompt)
-by rendering a [NavigationPromptCheckpoint](/application/cerner-terra-application/components/navigation-prompt-checkpoint) around its children.
-ApplicationNavigation will ensure that the user is prompted when a primary navigation or 'Logout' utility selection is made if any NavigationPrompts have
+ApplicationNavigation monitors its children for the presence of rendered [UnsavedChangesPrompts](/application/cerner-terra-application/components/navigation-prompt)
+by rendering a [UnsavedChangesPromptCheckpoint](/application/cerner-terra-application/components/navigation-prompt-checkpoint) around its children.
+ApplicationNavigation will ensure that the user is prompted when a primary navigation or 'Logout' utility selection is made if any UnsavedChangesPrompts have
 been rendered by children at the time of the selection.
 
-If the children within ApplicationNavigation can be changed by a mechanism other than navigation item selection, a NavigationPromptCheckpoint should be used directly to
+If the children within ApplicationNavigation can be changed by a mechanism other than navigation item selection, a UnsavedChangesPromptCheckpoint should be used directly to
 check for unsaved changes prior to the pending child's removal.
 
 > Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` and `disablePromptsForLogout` props if a custom implementation is required.

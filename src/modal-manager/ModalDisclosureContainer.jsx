@@ -7,7 +7,7 @@ import { injectIntl } from 'react-intl';
 import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureManagerContext';
 import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureManagerDelegate';
 
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, unsavedChangesPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
 import { addCallback, removeCallback } from '../disclosure-manager/_disclosureCallbacks';
 
 const propTypes = {
@@ -20,7 +20,7 @@ const propTypes = {
    * used to prompt the user when disclosure dismissal occurs when pending state
    * is present.
    */
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  unsavedChangesPromptResolutionOptions: unsavedChangesPromptResolutionOptionsShape,
 };
 
 /**
@@ -28,7 +28,7 @@ const propTypes = {
  * passive with previous v1.x versions. ApplicationIntlContext cannot be used here without a version bump.
  */
 
-const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
+const DisclosureContainer = injectIntl(({ intl, children, unsavedChangesPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const promptCheckpointRef = useRef();
   const customRegisterDismissCheckRef = useRef();
@@ -67,18 +67,18 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
           return;
         }
 
-        promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
+        promptCheckpointRef.current.resolvePrompts(unsavedChangesPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
       });
     });
-  }, [defaultPromptOptions, disclosureManager, navigationPromptResolutionOptions]);
+  }, [defaultPromptOptions, disclosureManager, unsavedChangesPromptResolutionOptions]);
 
   return (
     <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
-      <NavigationPromptCheckpoint
+      <UnsavedChangesPromptCheckpoint
         ref={promptCheckpointRef}
       >
         {children}
-      </NavigationPromptCheckpoint>
+      </UnsavedChangesPromptCheckpoint>
     </DisclosureManagerContext.Provider>
   );
 });

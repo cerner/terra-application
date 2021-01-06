@@ -6,7 +6,7 @@ import ActionHeader from 'terra-action-header';
 import ApplicationModal from '../application-modal/ApplicationModal';
 
 import DisclosureManager, { availableDisclosureSizes } from '../disclosure-manager';
-import { navigationPromptResolutionOptionsShape } from '../navigation-prompt';
+import { unsavedChangesPromptResolutionOptionsShape } from '../unsaved-changes-prompt';
 
 import ModalDisclosureContainer from './ModalDisclosureContainer';
 
@@ -23,7 +23,7 @@ const propTypes = {
    * The component to render within the Modal above the disclosed content.
    */
   disclosureAccessory: PropTypes.element,
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  unsavedChangesPromptResolutionOptions: unsavedChangesPromptResolutionOptionsShape,
 };
 
 const heightFromSize = {
@@ -72,7 +72,7 @@ class ModalManager extends React.Component {
           ) : undefined}
           size={manager.disclosure.size}
           onRequestClose={manager.dismissPresentedComponent}
-          dangerouslyDisableNavigationPromptHandling
+          dangerouslyDisableUnsavedChangesPromptHandling
         >
           {modalData.component}
           {keys.length ? renderModalsForKeys(keys) : undefined}
@@ -89,14 +89,14 @@ class ModalManager extends React.Component {
   }
 
   render() {
-    const { navigationPromptResolutionOptions, children } = this.props;
+    const { unsavedChangesPromptResolutionOptions, children } = this.props;
 
     return (
       <DisclosureManager
         supportedDisclosureTypes={[disclosureType]}
         render={this.renderModals}
         withDisclosureContainer={disclosureContent => (
-          <ModalDisclosureContainer navigationPromptResolutionOptions={navigationPromptResolutionOptions}>
+          <ModalDisclosureContainer unsavedChangesPromptResolutionOptions={unsavedChangesPromptResolutionOptions}>
             {disclosureContent}
           </ModalDisclosureContainer>
         )}

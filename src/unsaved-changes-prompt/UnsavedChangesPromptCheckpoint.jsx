@@ -6,14 +6,14 @@ import withPromptRegistration from './_withPromptRegistration';
 
 const propTypes = {
   /**
-   * Components to render within the context of the NavigationPromptCheckpoint. Any NavigationPrompts rendered within
-   * these child components will be registered to this NavigationPromptCheckpoint instance.
+   * Components to render within the context of the UnsavedChangesPromptCheckpoint. Any UnsavedChangesPrompts rendered within
+   * these child components will be registered to this UnsavedChangesPromptCheckpoint instance.
    */
   children: PropTypes.node,
   /**
-   * A function that will be executed when NavigationPrompts are registered to or unregistered from the NavigationPromptCheckpoint instance.
-   * This can be used to track registered prompts outside of a NavigationPromptCheckpoint and handle prompt resolution directly, if necessary.
-   * The function will be provided with an array of data objects representing the registered NavigationPrompts as the sole argument. An empty
+   * A function that will be executed when UnsavedChangesPrompts are registered to or unregistered from the UnsavedChangesPromptCheckpoint instance.
+   * This can be used to track registered prompts outside of a UnsavedChangesPromptCheckpoint and handle prompt resolution directly, if necessary.
+   * The function will be provided with an array of data objects representing the registered UnsavedChangesPrompts as the sole argument. An empty
    * Array will be provided when no prompts are registered.
    *
    * Function Example:
@@ -36,7 +36,7 @@ const propTypes = {
   promptRegistration: promptRegistrationContextValueShape.isRequired,
 };
 
-class NavigationPromptCheckpoint extends React.Component {
+class UnsavedChangesPromptCheckpoint extends React.Component {
   static getPromptArray(prompts) {
     return Object.keys(prompts).map(id => prompts[id]);
   }
@@ -76,7 +76,7 @@ class NavigationPromptCheckpoint extends React.Component {
 
     if (!promptId && process.env.NODE_ENV !== 'production') {
       /* eslint-disable no-console */
-      console.warn('A NavigationPrompt cannot be registered without an identifier.');
+      console.warn('A UnsavedChangesPrompt cannot be registered without an identifier.');
       /* eslint-enable no-console */
       return;
     }
@@ -84,7 +84,7 @@ class NavigationPromptCheckpoint extends React.Component {
     this.registeredPrompts[promptId] = { description, metaData };
 
     if (onPromptChange) {
-      onPromptChange(NavigationPromptCheckpoint.getPromptArray(this.registeredPrompts));
+      onPromptChange(UnsavedChangesPromptCheckpoint.getPromptArray(this.registeredPrompts));
     }
 
     promptRegistration.registerPrompt(promptId, description, metaData);
@@ -100,7 +100,7 @@ class NavigationPromptCheckpoint extends React.Component {
     delete this.registeredPrompts[promptId];
 
     if (onPromptChange) {
-      onPromptChange(NavigationPromptCheckpoint.getPromptArray(this.registeredPrompts));
+      onPromptChange(UnsavedChangesPromptCheckpoint.getPromptArray(this.registeredPrompts));
     }
 
     promptRegistration.unregisterPrompt(promptId);
@@ -110,7 +110,7 @@ class NavigationPromptCheckpoint extends React.Component {
    * `resolvePrompts` returns a Promise that will be resolved or rejected based upon the presence of child prompts and
    * the the actions taken by a user from the checkpoint's NotificationDialog.
    *
-   * This function is part of the NavigationPromptCheckpoint's public API. Changes to this function name or overall functionality
+   * This function is part of the UnsavedChangesPromptCheckpoint's public API. Changes to this function name or overall functionality
    * will impact the package's version.
    */
   resolvePrompts(options = {}) {
@@ -123,7 +123,7 @@ class NavigationPromptCheckpoint extends React.Component {
 
     let showDialogOptions = options;
     if (typeof showDialogOptions === 'function') {
-      showDialogOptions = showDialogOptions(NavigationPromptCheckpoint.getPromptArray(this.registeredPrompts));
+      showDialogOptions = showDialogOptions(UnsavedChangesPromptCheckpoint.getPromptArray(this.registeredPrompts));
     }
 
     /**
@@ -207,6 +207,6 @@ class NavigationPromptCheckpoint extends React.Component {
   }
 }
 
-NavigationPromptCheckpoint.propTypes = propTypes;
+UnsavedChangesPromptCheckpoint.propTypes = propTypes;
 
-export default withPromptRegistration(NavigationPromptCheckpoint);
+export default withPromptRegistration(UnsavedChangesPromptCheckpoint);

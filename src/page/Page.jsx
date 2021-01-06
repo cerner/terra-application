@@ -7,7 +7,7 @@ import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ApplicationIntlContext } from '../application-intl';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
@@ -55,7 +55,7 @@ const propTypes = {
   onRequestClose: PropTypes.func,
   /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
-   * rendered NavigationPrompts. Use this prop to customize NavigationPrompt handling prior to Page closure.
+   * rendered UnsavedChangesPrompts. Use this prop to customize UnsavedChangesPrompt handling prior to Page closure.
    */
   requestClosePromptIsDisabled: PropTypes.bool,
   /**
@@ -98,10 +98,10 @@ const Page = ({
   const nodeIdRef = React.useRef(uuidv4());
 
   /**
-   * A NavigationPromptCheckpoint is used to detect unsaved changes within the Page's
+   * A UnsavedChangesPromptCheckpoint is used to detect unsaved changes within the Page's
    * content.
    */
-  const navigationPromptCheckpointRef = React.useRef();
+  const unsavedChangesCheckpointRef = React.useRef();
 
   /**
    * The presentation of loading overlays is tracked by the Page to allow it to
@@ -188,7 +188,7 @@ const Page = ({
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+    unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       onRequestClose();
     });
   }
@@ -208,7 +208,7 @@ const Page = ({
         </div>
         <div className={cx('content')}>
           <PageContext.Provider value={childPageContextValue}>
-            <NavigationPromptCheckpoint ref={navigationPromptCheckpointRef}>
+            <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
               <NotificationBannerProvider>
                 <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
                   <ApplicationStatusOverlayProvider>
@@ -221,7 +221,7 @@ const Page = ({
                   </ApplicationStatusOverlayProvider>
                 </ApplicationLoadingOverlayProvider>
               </NotificationBannerProvider>
-            </NavigationPromptCheckpoint>
+            </UnsavedChangesPromptCheckpoint>
           </PageContext.Provider>
         </div>
       </div>

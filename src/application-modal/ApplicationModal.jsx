@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { KEY_ESCAPE } from 'keycode-js';
 
 import LayerPortal from '../layers/LayerPortal';
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 import { PageContainer } from '../page';
 import { deferExecution } from '../utils/lifecycle-utils';
@@ -25,7 +25,7 @@ const propTypes = {
   onRequestClose: PropTypes.func.isRequired,
   children: PropTypes.node,
   renderPage: PropTypes.func,
-  dangerouslyDisableNavigationPromptHandling: PropTypes.bool,
+  dangerouslyDisableUnsavedChangesPromptHandling: PropTypes.bool,
   onInert: PropTypes.func,
 };
 
@@ -37,24 +37,24 @@ const ApplicationModal = ({
   onRequestClose,
   children,
   renderPage,
-  dangerouslyDisableNavigationPromptHandling,
+  dangerouslyDisableUnsavedChangesPromptHandling,
   onInert,
 }) => {
-  const navigationPromptCheckpointRef = React.useRef();
+  const unsavedChangesCheckpointRef = React.useRef();
   const modalContainerRef = React.useRef();
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const [isInert, setIsInert] = React.useState(false);
 
   const safeRequestClose = React.useCallback(() => {
-    if (dangerouslyDisableNavigationPromptHandling) {
+    if (dangerouslyDisableUnsavedChangesPromptHandling) {
       onRequestClose();
       return;
     }
 
-    navigationPromptCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+    unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
       onRequestClose();
     });
-  }, [dangerouslyDisableNavigationPromptHandling, onRequestClose, applicationIntl]);
+  }, [dangerouslyDisableUnsavedChangesPromptHandling, onRequestClose, applicationIntl]);
 
   React.useLayoutEffect(() => {
     deferExecution(() => {
@@ -101,8 +101,8 @@ const ApplicationModal = ({
         type="modal"
         setInert={setIsInert}
       >
-        <NavigationPromptCheckpoint
-          ref={navigationPromptCheckpointRef}
+        <UnsavedChangesPromptCheckpoint
+          ref={unsavedChangesCheckpointRef}
         >
           <ModalContent
             refCallback={(ref) => { modalContainerRef.current = ref; }}
@@ -118,7 +118,7 @@ const ApplicationModal = ({
               </PageContainer>
             ) : children}
           </ModalContent>
-        </NavigationPromptCheckpoint>
+        </UnsavedChangesPromptCheckpoint>
       </LayerPortal>
     </PageContext.Provider>
   );

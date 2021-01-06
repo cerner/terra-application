@@ -1,10 +1,10 @@
 import PropTypes from 'prop-types';
-import NavigationPrompt from './NavigationPrompt';
-import NavigationPromptCheckpoint from './NavigationPromptCheckpoint';
+import UnsavedChangesPrompt from './UnsavedChangesPrompt';
+import UnsavedChangesPromptCheckpoint from './UnsavedChangesPromptCheckpoint';
 import PromptRegistrationContext from './PromptRegistrationContext';
 import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
-const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
+const unsavedChangesPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
   /**
    * The title string for the NotificationDialog.
    */
@@ -39,6 +39,6 @@ const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.sh
   buttonOrder: PropTypes.oneOf(['acceptFirst', 'rejectFirst']),
 }), PropTypes.func]);
 
-export default NavigationPrompt;
-export { NavigationPromptCheckpoint, PromptRegistrationContext };
-export { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };
+export default UnsavedChangesPrompt;
+export { UnsavedChangesPromptCheckpoint, PromptRegistrationContext };
+export { unsavedChangesPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };

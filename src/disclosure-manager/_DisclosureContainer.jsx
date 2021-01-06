@@ -9,7 +9,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureManagerDelegate';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, unsavedChangesPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
 
@@ -23,7 +23,7 @@ const propTypes = {
    * used to prompt the user when disclosure dismissal occurs when pending state
    * is present.
    */
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  unsavedChangesPromptResolutionOptions: unsavedChangesPromptResolutionOptionsShape,
 };
 
 /**
@@ -31,7 +31,7 @@ const propTypes = {
  * passive with previous v1.x versions. ApplicationIntlContext cannot be used here without a version bump.
  */
 
-const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolutionOptions }) => {
+const DisclosureContainer = injectIntl(({ intl, children, unsavedChangesPromptResolutionOptions }) => {
   const disclosureManager = useContext(DisclosureManagerContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
   const promptCheckpointRef = useRef();
@@ -71,15 +71,15 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
           return;
         }
 
-        promptCheckpointRef.current.resolvePrompts(navigationPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
+        promptCheckpointRef.current.resolvePrompts(unsavedChangesPromptResolutionOptions || defaultPromptOptions).then(resolve, reject);
       });
     });
-  }, [defaultPromptOptions, disclosureManager, navigationPromptResolutionOptions]);
+  }, [defaultPromptOptions, disclosureManager, unsavedChangesPromptResolutionOptions]);
 
   return (
     <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
       <ApplicationLoadingOverlayProvider>
-        <NavigationPromptCheckpoint
+        <UnsavedChangesPromptCheckpoint
           ref={promptCheckpointRef}
         >
           <ContentContainer header={<NotificationBanners />} fill>
@@ -87,7 +87,7 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
               {children}
             </NotificationBannerProvider>
           </ContentContainer>
-        </NavigationPromptCheckpoint>
+        </UnsavedChangesPromptCheckpoint>
       </ApplicationLoadingOverlayProvider>
     </DisclosureManagerContext.Provider>
   );

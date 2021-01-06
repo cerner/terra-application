@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import { ApplicationIntlContext } from '../application-intl';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
 import WindowManager from '../utils/window-manager/window-manager';
@@ -54,9 +54,9 @@ const ApplicationContainer = ({
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   /**
-   * The NavigationPrompts registered to the ApplicationContainer's checkpoint are stored
+   * The UnsavedChangesPrompts registered to the ApplicationContainer's checkpoint are stored
    * in this ref. This ref is then queried during the unload event to determine whether
-   * NavigationPrompts are currently registered.
+   * UnsavedChangesPrompts are currently registered.
    */
   const registeredPromptsRef = React.useRef();
 
@@ -87,7 +87,7 @@ const ApplicationContainer = ({
   return (
     <ApplicationContainerContext.Provider value={containerContextValue}>
       <ActiveMainPageProvider>
-        <NavigationPromptCheckpoint
+        <UnsavedChangesPromptCheckpoint
           onPromptChange={(registeredPrompts) => {
             registeredPromptsRef.current = registeredPrompts;
           }}
@@ -110,7 +110,7 @@ const ApplicationContainer = ({
               </SkipToButtonsProvider>
             </LayerContainer>
           </div>
-        </NavigationPromptCheckpoint>
+        </UnsavedChangesPromptCheckpoint>
       </ActiveMainPageProvider>
     </ApplicationContainerContext.Provider>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'terra-button';
 import IconWarning from 'terra-icon/lib/icon/IconWarning';
 
-import NavigationPrompt from '../../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../../unsaved-changes-prompt';
 
 import { Card } from '../../../../page';
 
@@ -12,8 +12,8 @@ const PendingActionsCard = () => {
 
   return (
     <Card label="Pending Actions">
-      <p>NavigationPrompts are used to register unsaved state with framework. Multiple NavigationPrompts can be rendered at the same time.</p>
-      <p>Performing destructive actions (like logging out) while NavigationPrompts are activated will result in the user being prompted to confirm or deny the action.</p>
+      <p>UnsavedChangesPrompts are used to register unsaved state with framework. Multiple UnsavedChangesPrompts can be rendered at the same time.</p>
+      <p>Performing destructive actions (like logging out) while UnsavedChangesPrompts are activated will result in the user being prompted to confirm or deny the action.</p>
       <p>
         <Button
           icon={hasPendingAction1 ? <IconWarning /> : undefined}
@@ -28,8 +28,8 @@ const PendingActionsCard = () => {
           onClick={() => { setHasPendingAction2(!hasPendingAction2); }}
         />
       </p>
-      {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
-      {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
+      {hasPendingAction1 ? <UnsavedChangesPrompt description="Pending Action 1" /> : undefined}
+      {hasPendingAction2 ? <UnsavedChangesPrompt description="Pending Action 2" /> : undefined}
     </Card>
   );
 };

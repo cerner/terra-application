@@ -7,11 +7,11 @@ import { promptRegistrationContextValueShape } from './PromptRegistrationContext
 
 const propTypes = {
   /**
-   * A string describing the content or concept for which the NavigationPrompt is being rendered.
+   * A string describing the content or concept for which the UnsavedChangesPrompt is being rendered.
    */
   description: PropTypes.string,
   /**
-   * An object containing any other pertinent information related to the NavigationPrompt.
+   * An object containing any other pertinent information related to the UnsavedChangesPrompt.
    */
   metaData: PropTypes.object,
   /**
@@ -21,12 +21,12 @@ const propTypes = {
   promptRegistration: promptRegistrationContextValueShape.isRequired,
 };
 
-class NavigationPrompt extends React.Component {
+class UnsavedChangesPrompt extends React.Component {
   constructor(props) {
     super(props);
 
     /**
-     * A unique identifier is generated for each NavigationPrompt during construction. This will be used to
+     * A unique identifier is generated for each UnsavedChangesPrompt during construction. This will be used to
      * uniquely register/unregister the prompt with ancestor checkpoints without requiring consumers to
      * define unique identifiers themselves.
      */
@@ -38,12 +38,12 @@ class NavigationPrompt extends React.Component {
 
     /**
      * If the promptRegistration value is the ProviderRegistrationContext's default value,
-     * then there is not a matching NavigationPromptCheckpoint above it in the hierarchy.
+     * then there is not a matching UnsavedChangesPromptCheckpoint above it in the hierarchy.
      * This is possible but likely not intentional, so the component warns.
      */
     if (promptRegistration.isDefaultContextValue && process.env.NODE_ENV !== 'production') {
       /* eslint-disable no-console */
-      console.warn('A NavigationPrompt was not rendered within the context of a NavigationPromptCheckpoint. If this is unexpected, validate that the expected version of the terra-application package is installed.');
+      console.warn('A UnsavedChangesPrompt was not rendered within the context of a UnsavedChangesPromptCheckpoint. If this is unexpected, validate that the expected version of the terra-application package is installed.');
       /* eslint-enable no-console */
     }
 
@@ -74,6 +74,6 @@ class NavigationPrompt extends React.Component {
   }
 }
 
-NavigationPrompt.propTypes = propTypes;
+UnsavedChangesPrompt.propTypes = propTypes;
 
-export default withPromptRegistration(NavigationPrompt);
+export default withPromptRegistration(UnsavedChangesPrompt);

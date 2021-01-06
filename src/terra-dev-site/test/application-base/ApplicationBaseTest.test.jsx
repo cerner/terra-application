@@ -3,7 +3,7 @@ import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
 import ApplicationBase from '../../../application-base';
-import NavigationPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../navigation-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 
 const ApplicationContentTest = () => {
@@ -80,7 +80,7 @@ const ApplicationContentTest = () => {
           Enable navigation prompt
         </button>
       </p>
-      {blockUnload ? <NavigationPrompt description="Testing ApplicationBase's navigation prompt handling" /> : undefined}
+      {blockUnload ? <UnsavedChangesPrompt description="Testing ApplicationBase's navigation prompt handling" /> : undefined}
     </>
   );
 

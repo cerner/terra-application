@@ -13,7 +13,7 @@ import {
   closeMostRecentDisclosure,
   getActiveDisclosureCount,
 } from '../../../disclosure-manager';
-import NavigationPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
@@ -216,7 +216,7 @@ class DisclosureComponent extends React.Component {
         {disclosureManager && disclosureManager.maximize ? <button type="button" className="maximize" onClick={this.maximize}>Maximize</button> : null}
         {disclosureManager && disclosureManager.minimize ? <button type="button" className="minimize" onClick={this.minimize}>Minimize</button> : null}
         <button type="button" className="global-close-disclosure" onClick={closeMostRecentDisclosure}>{`Global Close (${disclosureCount})`}</button>
-        {hasPendingAction && <NavigationPrompt description="Test Action" />}
+        {hasPendingAction && <UnsavedChangesPrompt description="Test Action" />}
         {hasLoadingOverlay && <ApplicationLoadingOverlay backgroundStyle="light" />}
         <NotificationBannerExample isInitiallyClosed id={identifier} />
         {hasStatusOverlay && <ApplicationStatusOverlay message="Test status view" variant="no-data" />}

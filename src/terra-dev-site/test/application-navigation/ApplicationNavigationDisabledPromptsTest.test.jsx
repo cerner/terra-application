@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import NavigationPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../navigation-prompt';
 
 const PageContent = ({ title }) => {
   const [hasPendingAction, setHasPendingAction] = useState(false);
@@ -24,7 +24,7 @@ const PageContent = ({ title }) => {
           {hasPendingAction ? 'Disable' : 'Enable'}
         </button>
       </p>
-      {hasPendingAction ? <NavigationPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
+      {hasPendingAction ? <UnsavedChangesPrompt description="Testing ApplicationNavigation's navigation prompt handling" /> : undefined}
     </div>
   );
 };

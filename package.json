@@ -99,7 +99,6 @@
     "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
-    "@cerner/terra-docs": "^1.0.0",
     "@formatjs/intl-relativetimeformat": "^8.0.0",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
@@ -112,7 +111,7 @@
     "react-onclickoutside": "^6.7.1",
     "resize-observer-polyfill": "^1.5.1",
     "terra-action-footer": "^2.52.0",
-    "terra-action-header": "https://github.cerner.com/terra/terra-snapshots/blob/master/terra-core/react-intl-upgrade/terra-action-header.tgz?raw=true",
+    "terra-action-header": "^2.62.0",
     "terra-alert": "^4.31.0",
     "terra-avatar": "^3.8.0",
     "terra-breakpoints": "^2.0.0",

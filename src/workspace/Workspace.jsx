@@ -144,7 +144,7 @@ const Workspace = ({
         <Button
           className={cx('active-button')}
           icon={<IconPanelRight />}
-          text="Toggle Workspace" // TODO INTL
+          text="Toggle Workspace" // TODO: i18n needed
           onClick={onRequestDismiss}
           variant="utility"
         />

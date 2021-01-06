@@ -54,7 +54,7 @@ const loadIntl = (locale, polyfill) => {
     }
 
     if (fallbackLocale) {
-      if (!hasIntlData([fallbackLocale], supportedIntlConstructors())) {
+      if (!hasIntlData([fallbackLocale], supportedIntlConstructors(polyfill))) {
         return loadLocaleData(fallbackLocale, polyfill);
       }
     }
@@ -65,7 +65,7 @@ const loadIntl = (locale, polyfill) => {
       console.warn(`${error.message} Using en data as the fallback locale data.`);
     }
 
-    if (!hasIntlData(['en'], supportedIntlConstructors())) {
+    if (!hasIntlData(['en'], supportedIntlConstructors(polyfill))) {
       return loadLocaleData('en', polyfill);
     }
 

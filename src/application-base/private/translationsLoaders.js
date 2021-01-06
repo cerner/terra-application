@@ -1,4 +1,4 @@
-const loadTranslationsFile = (locale) => new Promise((resolve, reject) => {
+const loadTranslationsFile = (locale) => {
   switch (locale) {
     case 'en':
       return import(/* webpackChunkName: "en-translations" */ 'en.js');
@@ -33,9 +33,9 @@ const loadTranslationsFile = (locale) => new Promise((resolve, reject) => {
     case 'sv-SE':
       return import(/* webpackChunkName: "sv-SE-translations" */ 'sv-SE.js');
     default:
-      return reject(Error(`Translations were not supplied for the ${locale} locale.`));
+      return Promise.reject(Error(`Translations were not supplied for the ${locale} locale.`));
   }
-});
+};
 
 const loadTranslations = (locale) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;

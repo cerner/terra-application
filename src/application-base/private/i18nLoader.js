@@ -43,7 +43,7 @@ const i18nLoader = (locale) => {
 
   if (global.Intl && Intl.RelativeTimeFormat && Intl.RelativeTimeFormat.polyfilled) {
     loadIntl(locale, 'relativetimeformat');
-  };
+  }
 
   return loadTranslations(locale);
 };

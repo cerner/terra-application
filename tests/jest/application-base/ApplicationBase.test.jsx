@@ -2,8 +2,6 @@ import React from 'react';
 import i18nLoader from '../../../src/application-base/private/i18nLoader';
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
 
-jest.mock('../../../src/application-base/private/i18nLoader');
-
 describe('ApplicationBase', () => {
   it('should render with minimal props', () => {
     const wrapper = shallow((
@@ -45,10 +43,11 @@ describe('ApplicationBase', () => {
     beforeEach(() => {
       // eslint-disable-next-line no-console
       console.error.mockClear();
+      jest.resetModules();
     });
 
     it('renders as expected when i18n data loads successfully', () => {
-      i18nLoader.mockImplementationOnce(() => Promise.resolve());
+      jest.doMock(i18nLoader, () => Promise.resolve({}));
       expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).not.toThrowError();
       expect(i18nLoader).toHaveBeenCalled();
       // eslint-disable-next-line no-console
@@ -56,9 +55,7 @@ describe('ApplicationBase', () => {
     });
 
     it('logs error when i18n data fails to load', () => {
-      i18nLoader.mockImplementationOnce(() => {
-        Promise.reject(new Error('failed to load data.'));
-      });
+      jest.doMock(i18nLoader, () => Promise.reject(new Error('failed to load data.')));
       expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).not.toThrowError();
       expect(i18nLoader).toHaveBeenCalled();
       // eslint-disable-next-line no-console
@@ -66,9 +63,7 @@ describe('ApplicationBase', () => {
     });
 
     it('throws error when i18n data fails to load', () => {
-      i18nLoader.mockImplementationOnce(() => {
-        Promise.reject(new Error('failed to load data.'));
-      });
+      sjest.doMock(i18nLoader, () => Promise.reject(new Error('failed to load data.')));
       expect(() => mount(<ApplicationBase locale="en">String</ApplicationBase>)).toThrowError();
       expect(i18nLoader).toHaveBeenCalled();
       // eslint-disable-next-line no-console

@@ -1,8 +1,8 @@
 /* eslint-disable no-console, import/no-unresolved */
+import * as relativetimeformatPolyfill from '@formatjs/intl-relativetimeformat/should-polyfill';
 import i18nLoader from '../../../../src/application-base/private/i18nLoader';
 import defaultLoadIntl from '../../../../src/application-base/private/intlLoaders';
 import loadTranslations from '../../../../src/application-base/private/translationsLoaders';
-import * as relativetimeformatPolyfill from '@formatjs/intl-relativetimeformat/should-polyfill';
 
 jest.mock('../../../../src/application-base/private/intlLoaders');
 jest.mock('../../../../src/application-base/private/translationsLoaders');

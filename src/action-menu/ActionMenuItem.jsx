@@ -32,6 +32,7 @@ const ActionMenuItem = ({
   onAction,
   onArrow,
   onChar,
+  indentChildren,
 }) => {
   const attrs = {};
   if (isDisabled) {
@@ -48,7 +49,7 @@ const ActionMenuItem = ({
   return (
     <li
       {...attrs}
-      className={cx('action-checkbox', { 'is-disabled': isDisabled })}
+      className={cx('action-item', { 'is-disabled': isDisabled }, { 'indent': indentChildren } )}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

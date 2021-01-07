@@ -218,7 +218,7 @@
 
   .tab {
     flex: 0 1 auto;
-    min-width: calc(5.357rem + 52px);
+    min-width: calc(5.357rem + 52px); // TODO: alter logic to avoid this type mismatch
 
     .inner {
       text-align: center;

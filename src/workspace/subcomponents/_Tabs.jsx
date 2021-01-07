@@ -139,6 +139,7 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
     const element = this.dropdownRef.current.children[0];
     if (element) {
+      element.setAttribute('data-focus-styles-enabled', 'false'); // hides initial mouse nav
       element.focus();
     }
   }

@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
+import ActionHeader from 'terra-action-header';
+import ContentContainer from 'terra-content-container';
 import {
   generateOnKeyDown,
   itemByDirection,
@@ -17,15 +19,19 @@ const cx = classNamesBind.bind(styles);
 const propTypes = {
   ariaLabel: PropTypes.string.isRequired,
   children: PropTypes.node,
+  isHeightBounded: PropTypes.bool,
+  isHeaderDisplayed: PropTypes.bool,
 };
 
 const ActionMenu = ({
   ariaLabel,
   children,
+  isHeightBounded,
+  isHeaderDisplayed,
   ...customProps
 }) => {
   const menuRef = useRef();
-  const items = flattenActionItems(children);
+  const { items , indentChildren } = flattenActionItems(children);
 
   const focusItem = item => {
     if (!item || !menuRef.current) {
@@ -61,7 +67,7 @@ const ActionMenu = ({
     customProps.className,
   );
 
-  return (
+  let content = (
     <ul
       {...customProps}
       className={menuClassNames}
@@ -77,11 +83,24 @@ const ActionMenu = ({
         }
         return React.cloneElement(
           child,
-          { onArrow, onChar },
+          { onArrow, onChar, indentChildren },
         );
       })}
     </ul>
   );
+
+  if (isHeaderDisplayed) {
+    content = (
+      <ContentContainer
+        header={<ActionHeader title={ariaLabel} />}
+        fill={isHeightBounded}
+      >
+        {content}
+      </ContentContainer>
+    );
+  }
+
+  return content;
 };
 
 ActionMenu.propTypes = propTypes;

@@ -29,10 +29,9 @@
   .action-radio,
   .action-link {
     align-items: center;
-    color: #000;
+    color: #222a2e; // TODO: theme this
     display: flex;
     flex-direction: row;
-    padding: 5px;
   }
 
   .action-checkbox,
@@ -40,6 +39,10 @@
   .action-link,
   .action-item {
     cursor: pointer;
+    padding-bottom: 0.643rem;
+    padding-left: 8px; // TODO: theme this
+    padding-right: 10px; // TODO: theme this
+    padding-top: 0.643rem;
 
     &:last-child {
       border-bottom: 0;
@@ -50,11 +53,23 @@
     }
   }
 
+  .action-link,
+  .action-item {
+    &.indent {
+      // TODO: covert to all rem value, not calc
+      padding-left: calc(1rem + 6px + 8px); // TODO: theme this
+    }
+  }
+
   .checkbox {
     flex: 0 0 auto;
-    height: 10px;
-    margin-right: 5px;
-    width: 10px;
+    height: 1rem;
+    margin-right: 6px;
+    width: 1rem;
+
+    & > * {
+      position: absolute;
+    }
   }
 
   .content {
@@ -67,15 +82,13 @@
   }
 
   .is-checked {
-    // background-image: none;
     .checkbox {
-      background-color: #000;
+      color: #007cc3;
     }
 
     .is-disabled {
-      // background-image: none;
       .checkbox {
-        background: #ccc;
+        color: #ccc;
       }
     }
   }

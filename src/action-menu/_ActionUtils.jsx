@@ -153,7 +153,8 @@ const itemByChar = (key, items, char) => {
  * Returns a flattened array of enabled items in the order they are visible.
  * @param {node} children The child node to strip the items from.
  */
-const flattenActionItems = children => {
+const flattenActionItems = (children, showSelection = false) => {
+  let tempSelection = showSelection;
   const actionItems = [];
   React.Children.forEach(children, child => {
     if (!child) {
@@ -161,6 +162,10 @@ const flattenActionItems = children => {
     }
 
     if (child.props.actionKey) {
+      if (child.type.interactiveType) {
+        tempSelection = true;
+      }
+
       if (!child.props.isDisabled) {
         actionItems.push({
           actionKey: child.props.actionKey,
@@ -168,10 +173,12 @@ const flattenActionItems = children => {
         });
       }
     } else if (child.props.children)  {
-      actionItems.push(...flattenActionItems(child.props.children));
+      const { items, indentChildren } = flattenActionItems(child.props.children, tempSelection);
+      actionItems.push(...items);
+      tempSelection = indentChildren || tempSelection;
     }
   });
-  return actionItems;
+  return { items: actionItems, indentChildren: tempSelection };
 }
 
 export default {

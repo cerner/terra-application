@@ -32,6 +32,7 @@ const ActionMenuLink = ({
   onAction,
   onArrow,
   onChar,
+  indentChildren,
 }) => {
   const attrs = {};
   if (isDisabled) {
@@ -48,7 +49,7 @@ const ActionMenuLink = ({
   return (
     <li
       role="none"
-      className={cx('action-link', { 'is-disabled': isDisabled })}
+      className={cx('action-link', { 'is-disabled': isDisabled }, { 'indent': indentChildren })}
     >
       <a
         {...attrs}

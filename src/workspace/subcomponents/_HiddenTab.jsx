@@ -4,7 +4,11 @@ import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
-import { handleArrows } from './_TabUtils';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+  handleArrows,
+} from './_TabUtils';
 
 import styles from './HiddenTab.module.scss';
 
@@ -87,8 +91,10 @@ const HiddenTab = ({
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = onBlur;
+    attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
     attributes.onFocus = onFocus;
+    attributes.onMouseDown = disableFocusStyles;
+    attributes['data-focus-styles-enabled'] = true;
   }
   attributes['aria-selected'] = isSelected;
 
@@ -100,7 +106,7 @@ const HiddenTab = ({
       role="tab"
       className={hiddenClassNames}
     >
-      {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
+      <span className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</span>
       <span className={cx('label')}>{label}</span>
     </div>
   );

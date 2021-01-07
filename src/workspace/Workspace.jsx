@@ -166,7 +166,7 @@ const Workspace = ({
       dismissItem = (
         <ActionMenuItem
           actionKey="workspace-dimiss-action"
-          label="Dismiss Workspace"
+          label="Close Workspace Pane" // TODO: i18n needed
           onAction={() => { setIsMenuOpen(false); onRequestDismiss(); }}
         />
       );
@@ -196,7 +196,6 @@ const Workspace = ({
           refCallback={node => sizeMenuRef.current = node}
         />
         <Popup
-          isArrowDisplayed
           isOpen={isMenuOpen}
           targetRef={() => sizeMenuRef.current}
           onRequestClose={() => { setIsMenuOpen(false); }}
@@ -206,7 +205,8 @@ const Workspace = ({
           isContentFocusDisabled
         >
           <ActionMenu
-            ariaLabel="Pick A Size!!" // TODO: i18n needed
+            isHeaderDisplayed
+            ariaLabel="Workspace Settings" // TODO: i18n needed
           >
             {sizeItems}
             {dividerItem}

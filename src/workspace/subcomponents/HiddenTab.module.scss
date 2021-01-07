@@ -4,14 +4,15 @@
 :local {
   .hidden {
     background-color: #fff;
-    color: #007ee0;
+    color: #222a2e; // TODO: theme this
     cursor: pointer;
     display: flex;
     font-size: 1rem;
     line-height: 1.4;
     font-weight: normal;
     margin-left: 0;
-    min-width: 7.143rem;
+    min-width: 240px; // TODO: theme this
+    outline: none;
     padding: 0.643rem 1.071rem;
 
     span {
@@ -24,15 +25,12 @@
 
     &:hover {
       background-color: aliceblue;
-      background-image: linear-gradient(to bottom, #c8cacb, #c8cacb);
       background-size: 100% 4px;
-      color:  #000;
     }
 
-    &:focus {
-      color: inherit;
+    &[data-focus-styles-enabled='true']:focus {
       outline: 2px dashed #000;
-      outline-offset: -2px;
+      outline-offset: -4px;
       z-index: 1;
     }
 
@@ -62,7 +60,10 @@
     }
   }
 
-  .check {
-    margin-right: 5px;
+  .checkbox {
+    color: #007cc3; // TODO: theme this
+    margin-right: 6px; // TODO: theme this
+    height: 1rem;
+    width: 1rem;
   }
 }

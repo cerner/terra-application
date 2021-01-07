@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
@@ -60,7 +61,7 @@ const ActionMenuCheckbox = ({
       aria-checked={isChecked}
       data-action-menu-key={actionKey}
     >
-      <div className={cx('checkbox')} />
+      <span className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</span>
       <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
         {label}
@@ -71,5 +72,6 @@ const ActionMenuCheckbox = ({
 };
 
 ActionMenuCheckbox.propTypes = propTypes;
+ActionMenuCheckbox.interactiveType = true;
 
 export default ActionMenuCheckbox;

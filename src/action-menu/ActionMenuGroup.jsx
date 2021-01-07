@@ -17,12 +17,14 @@ const propTypes = {
    * Callback function for event.
    */
   onChar: PropTypes.func,
+  indentChildren: PropTypes.bool,
 };
 
 const ActionMenuGroup = ({
   children,
   onArrow,
   onChar,
+  indentChildren,
 }) => {
   return (
     <li
@@ -38,7 +40,7 @@ const ActionMenuGroup = ({
           }
           return React.cloneElement(
             child,
-            { onArrow, onChar }
+            { onArrow, onChar, indentChildren },
           );
         })}
       </ul>

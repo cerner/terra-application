@@ -13,7 +13,7 @@ import {
   closeMostRecentDisclosure,
   getActiveDisclosureCount,
 } from '../../../disclosure-manager';
-import UnsavedChangesPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../unsaved-changes-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 import ApplicationStatusOverlay from '../../../application-status-overlay';

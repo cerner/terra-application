@@ -3,7 +3,7 @@ import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
 import ApplicationBase from '../../../application-base';
-import UnsavedChangesPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../unsaved-changes-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 
 const ApplicationContentTest = () => {

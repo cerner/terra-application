@@ -1,8 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+
+import { ApplicationIntlContext } from '../application-intl';
 import NotificationDialog from '../notification-dialog/NotificationDialog';
 import PromptRegistrationContext, { promptRegistrationContextValueShape } from './PromptRegistrationContext';
 import withPromptRegistration from './_withPromptRegistration';
+import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
 const propTypes = {
   /**
@@ -113,7 +116,7 @@ class UnsavedChangesPromptCheckpoint extends React.Component {
    * This function is part of the UnsavedChangesPromptCheckpoint's public API. Changes to this function name or overall functionality
    * will impact the package's version.
    */
-  resolvePrompts(options = {}) {
+  resolvePrompts(options) {
     /**
       * If no prompts are registered, then no prompts must be rendered.
       */
@@ -121,7 +124,7 @@ class UnsavedChangesPromptCheckpoint extends React.Component {
       return Promise.resolve();
     }
 
-    let showDialogOptions = options;
+    let showDialogOptions = options || getUnsavedChangesPromptOptions(this.context);
     if (typeof showDialogOptions === 'function') {
       showDialogOptions = showDialogOptions(UnsavedChangesPromptCheckpoint.getPromptArray(this.registeredPrompts));
     }
@@ -208,5 +211,7 @@ class UnsavedChangesPromptCheckpoint extends React.Component {
 }
 
 UnsavedChangesPromptCheckpoint.propTypes = propTypes;
+
+UnsavedChangesPromptCheckpoint.contextType = ApplicationIntlContext;
 
 export default withPromptRegistration(UnsavedChangesPromptCheckpoint);

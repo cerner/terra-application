@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
-import UnsavedChangesPrompt from '../../../navigation-prompt';
+import UnsavedChangesPrompt from '../../../unsaved-changes-prompt';
 
 const PageContent = ({ title }) => {
   const [hasPendingAction, setHasPendingAction] = useState(false);

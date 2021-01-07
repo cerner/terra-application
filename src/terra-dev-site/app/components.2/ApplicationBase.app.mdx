@@ -50,7 +50,7 @@ ApplicationBase renders an [ApplicationStatusOverlayProvider](/application/cerne
 
 ### Unsaved Changes
 
-ApplicationBase monitors its children for the presence of rendered [UnsavedChangesPrompts](/application/cerner-terra-application/components/navigation-prompt). ApplicationBase will prompt the user, if possible, using a browser-native confirmation dialog prior to any window unload event if any [UnsavedChangesPrompts](/application/cerner-terra-application/components/navigation-prompt) are rendered at the time of the unload request.
+ApplicationBase monitors its children for the presence of rendered [UnsavedChangesPrompts](/application/cerner-terra-application/components/unsaved-changes-prompt). ApplicationBase will prompt the user, if possible, using a browser-native confirmation dialog prior to any window unload event if any [UnsavedChangesPrompts](/application/cerner-terra-application/components/unsaved-changes-prompt) are rendered at the time of the unload request.
 
 > Note that support for the `beforeunload` event used to implement this functionality varies across terra-application's supported browsers. Some browsers, namely those running on iOS and Android, do not support the `beforeunload` event and do not allow the framework to prevent the application's dismissal, even if unsaved changes are present. Other browsers allow their users to explicitly disable this event to avoid malicious or otherwise obtrusive implementations.
 Please review the [event's documentation](https://developer.mozilla.org/en-US/docs/Web/API/WindowEventHandlers/onbeforeunload#Browser_compatibility) for more information.

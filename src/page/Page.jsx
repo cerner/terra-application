@@ -7,7 +7,7 @@ import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ApplicationIntlContext } from '../application-intl';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
@@ -57,7 +57,7 @@ const propTypes = {
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered UnsavedChangesPrompts. Use this prop to customize UnsavedChangesPrompt handling prior to Page closure.
    */
-  requestClosePromptIsDisabled: PropTypes.bool,
+  dangerouslyDisableUnsavedChangesPromptHandling: PropTypes.bool,
   /**
    * The components to render within the context of the Page.
    */
@@ -71,14 +71,13 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
-  requestClosePromptIsDisabled,
+  dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
   if (actions && actions.type !== PageActions) {
     throw new Error(`[terra-application] Page ${label} provided with invalid actions prop. Only PageActions is supported.`);
   }
 
-  const applicationIntl = React.useContext(ApplicationIntlContext);
   const navigationItem = React.useContext(NavigationItemContext);
   const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);
 
@@ -183,12 +182,12 @@ const Page = ({
   }
 
   function safelyRequestClose() {
-    if (requestClosePromptIsDisabled) {
+    if (dangerouslyDisableUnsavedChangesPromptHandling) {
       onRequestClose();
       return;
     }
 
-    unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+    unsavedChangesCheckpointRef.current.resolvePrompts().then(() => {
       onRequestClose();
     });
   }

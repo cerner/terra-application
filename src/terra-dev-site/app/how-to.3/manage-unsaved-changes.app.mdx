@@ -2,11 +2,11 @@
 
 A typical application allows its users to navigate between different components to complete different workflows. However, sometimes the user has not completed their current work before attempting to navigate elsewhere in the application. In these cases, it makes sense to prevent that navigation until the user explicitly accepts that they are leaving the current workflow and may lose unsaved changes.
 
-Components that want to communicate the presence of their unsaved state to the framework can do so by rendering a [UnsavedChangesPrompt](/application/cerner-terra-application/components/navigation-prompt) component. When mounted, the UnsavedChangesPrompt will register itself with any and all [NavigationPromptCheckpoints](/application/cerner-terra-application/components/navigation-prompt-checkpoint) that are ancestors to it.
+Components that want to communicate the presence of their unsaved state to the framework can do so by rendering a [UnsavedChangesPrompt](/application/cerner-terra-application/components/unsaved-changes-prompt) component. When mounted, the UnsavedChangesPrompt will register itself with any and all [NavigationPromptCheckpoints](/application/cerner-terra-application/components/unsaved-changes-prompt-checkpoint) that are ancestors to it.
 
 ```jsx
 import React, { useState } from 'react';
-import UnsavedChangesPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 const ExampleComponent = () => {
   const [hasPendingState, setHasPendingState] = useState(false);
@@ -33,4 +33,4 @@ Within `terra-application`, the following components respond to the presence of 
 * [ModalManager](/application/cerner-terra-application/components/modal-manager)/[SlidePanelManager](/application/cerner-terra-application/components/slide-panel-manager) - The user will be prompted to accept or reject disclosure dismissal if UnsavedChangesPrompts have been rendered within the disclosed component.
 * [ApplicationNavigation](/application/cerner-terra-application/components/application-navigation) - The user will be prompted to accept or reject primary navigation and Logout selections if UnsavedChangesPrompts have been rendered within the ApplicationNavigation's children.
 
-While these are the provided integrations, any component that navigates between stateful components can implement a [UnsavedChangesPromptCheckpoint](/application/cerner-terra-application/components/navigation-prompt-checkpoint) to utilize the same registration and prompting logic.
+While these are the provided integrations, any component that navigates between stateful components can implement a [UnsavedChangesPromptCheckpoint](/application/cerner-terra-application/components/unsaved-changes-prompt-checkpoint) to utilize the same registration and prompting logic.

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TerraSlidePanelManager from 'terra-slide-panel-manager';
 
-import { unsavedChangesPromptResolutionOptionsShape } from '../navigation-prompt';
+import { unsavedChangesPromptResolutionOptionsShape } from '../unsaved-changes-prompt';
 import DisclosureContainer from '../disclosure-manager/_DisclosureContainer';
 
 const propTypes = {

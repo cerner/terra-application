@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ApplicationNavigation from '@cerner/terra-application/lib/application-navigation';
-import UnsavedChangesPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 import styles from './ApplicationNavigationExample.module.scss';
 

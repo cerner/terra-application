@@ -5,7 +5,7 @@ import PrimaryNavigationLayout from '../../../layouts/primary-navigation-layout/
 import SessionUserContext from '../../../session/SessionUserContext';
 import SessionActionsContext from '../../../session/SessionActionsContext';
 import { ApplicationContainerErrorBoundary } from '../../../application-container';
-import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../../../unsaved-changes-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../../../unsaved-changes-prompt';
 import { ApplicationIntlContext } from '../../../application-intl';
 import WindowManager from '../../../utils/window-manager/window-manager';
 
@@ -33,12 +33,12 @@ const SessionProvider = ({ children }) => {
 
   const sessionActionsContextValue = React.useMemo(() => ({
     logout: () => {
-      checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      checkpointRef.current.resolvePrompts().then(() => {
         setState({ isLoggedIn: false, isLoggedOut: true, isLocked: false });
       });
     },
     lock: () => {
-      checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+      checkpointRef.current.resolvePrompts().then(() => {
         setState({ isLoggedIn: false, isLoggedOut: false, isLocked: true });
       });
     },

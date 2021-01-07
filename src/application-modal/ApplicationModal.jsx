@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { KEY_ESCAPE } from 'keycode-js';
 
 import LayerPortal from '../layers/LayerPortal';
-import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import { ApplicationIntlContext } from '../application-intl';
 import { PageContainer } from '../page';
 import { deferExecution } from '../utils/lifecycle-utils';
@@ -42,7 +42,6 @@ const ApplicationModal = ({
 }) => {
   const unsavedChangesCheckpointRef = React.useRef();
   const modalContainerRef = React.useRef();
-  const applicationIntl = React.useContext(ApplicationIntlContext);
   const [isInert, setIsInert] = React.useState(false);
 
   const safeRequestClose = React.useCallback(() => {
@@ -51,10 +50,10 @@ const ApplicationModal = ({
       return;
     }
 
-    unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => {
+    unsavedChangesCheckpointRef.current.resolvePrompts().then(() => {
       onRequestClose();
     });
-  }, [dangerouslyDisableUnsavedChangesPromptHandling, onRequestClose, applicationIntl]);
+  }, [dangerouslyDisableUnsavedChangesPromptHandling, onRequestClose]);
 
   React.useLayoutEffect(() => {
     deferExecution(() => {

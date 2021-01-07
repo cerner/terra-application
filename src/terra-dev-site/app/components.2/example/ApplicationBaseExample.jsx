@@ -3,7 +3,7 @@ import { ApplicationIntlContext } from '@cerner/terra-application/lib/applicatio
 import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
-import UnsavedChangesPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 const ApplicationContentExample = () => {
   const [isLoading, setIsLoading] = useState(false);

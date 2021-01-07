@@ -1,8 +1,8 @@
-import NavigationPromptCheckpointProps from '../../../navigation-prompt/UnsavedChangesPromptCheckpoint?dev-site-props-table';
+import NavigationPromptCheckpointProps from '../../../unsaved-changes-prompt/UnsavedChangesPromptCheckpoint?dev-site-props-table';
 
 # UnsavedChangesPromptCheckpoint
 
-The UnsavedChangesPromptCheckpoint serves as a registration gateway for [UnsavedChangesPrompts](/application/cerner-terra-application/components/navigation-prompt)
+The UnsavedChangesPromptCheckpoint serves as a registration gateway for [UnsavedChangesPrompts](/application/cerner-terra-application/components/unsaved-changes-prompt)
 rendered within it. Any UnsavedChangesPrompt rendered within the context of a UnsavedChangesPromptCheckpoint will register itself with the UnsavedChangesPromptCheckpoint
 (and any other anscestor checkpoints). The component that implements the UnsavedChangesPromptCheckpoint can use the presence of registered UnsavedChangesPrompts to
 influence its navigational workflows as necessary.
@@ -10,7 +10,7 @@ influence its navigational workflows as necessary.
 ## Usage
 
 ```jsx
-import { UnsavedChangesPromptCheckpoint } from '@cerner/terra-application/lib/navigation-prompt';
+import { UnsavedChangesPromptCheckpoint } from '@cerner/terra-application/lib/unsaved-changes-prompt';
 ```
 
 ## Props
@@ -63,7 +63,7 @@ to match the prompt messaging provided by the components within `terra-applicati
 ```jsx
 import React, { useContext, useRef } from 'react';
 import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
-import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '@cerner/terra-application/lib/navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 const ExampleComponent = () => {
   const checkpointRef = useRef();

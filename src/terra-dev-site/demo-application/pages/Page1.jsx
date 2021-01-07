@@ -31,6 +31,7 @@ const page1MetaData = { data: 'page-1' };
 const Page1 = ({ onRequestClose }) => {
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPageModal, setShowPageModal] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const pageActions = (
     <PageActions>
@@ -50,6 +51,7 @@ const Page1 = ({ onRequestClose }) => {
       metaData={page1MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
+      isLoading={isLoading}
     >
       <CardLayout>
         <Card label="Page 1 Details">
@@ -65,7 +67,7 @@ const Page1 = ({ onRequestClose }) => {
         </Card>
         <NotificationBannersCard />
         <NotificationDialogCard />
-        <LoadingOverlayCard />
+        <LoadingOverlayCard onSetLoading={setIsLoading} />
         <StatusOverlayCard />
         <ErrorHandlingCard pageTitle="Page 1" />
         <InteractionBlockingOverlayCard />

@@ -1,0 +1,29 @@
+:local {
+  .loading-overlay {
+    align-items: center;
+    background: var(--terra-application-page-loading-overlay-background, rgba(245, 245, 245, 0.7));
+    background-image: var(--terra-application-page-loading-overlay-background-image, none);
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    outline: none;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    width: 100%;
+
+    .content {
+      color: var(--terra-application-page-loading-overlay-content-color, #1c1f21);
+      text-shadow: var(--terra-application-page-loading-overlay--content-text-shadow, none);
+    }
+
+    .icon {
+      display: block !important;
+      margin: auto;
+    }
+  
+    .message {
+      padding: 5px;
+    }  
+  }
+}

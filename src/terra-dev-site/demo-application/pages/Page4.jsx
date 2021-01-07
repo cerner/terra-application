@@ -25,12 +25,15 @@ const page4MetaData = { data: 'page-4' };
 
 const Page4 = ({ onRequestClose }) => {
   const [showPage5, setShowPage5] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
+
   return (
     <Page
       pageKey="page-4"
       label="Page 4"
       metaData={page4MetaData}
       onRequestClose={onRequestClose}
+      isLoading={isLoading}
     >
       <CardLayout>
         <Card label="Page 4 Details">
@@ -50,7 +53,7 @@ const Page4 = ({ onRequestClose }) => {
         </Card>
         <NotificationBannersCard />
         <NotificationDialogCard />
-        <LoadingOverlayCard />
+        <LoadingOverlayCard onSetLoading={setIsLoading} />
         <StatusOverlayCard />
         <ErrorHandlingCard pageTitle="Page 4" />
         <InteractionBlockingOverlayCard />

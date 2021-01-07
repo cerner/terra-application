@@ -3,9 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import uuidv4 from 'uuid/v4';
+import LoadingOverlay from 'terra-overlay/lib/LoadingOverlay';
+import OverlayContainer from 'terra-overlay/lib/OverlayContainer';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 
-import { ApplicationIntlContext } from '../application-intl';
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -15,8 +16,8 @@ import ActiveMainPageRegistrationContext from '../application-container/private/
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
+import PageOverlayContainer from './private/PageOverlayContainer';
 import PageActions from './PageActions';
-import PageMenu from './PageMenu';
 
 import styles from './Page.module.scss';
 
@@ -54,6 +55,12 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
+   * A boolean indicating whether the Page is in a loading state. When true, the Page will render with a
+   * visible loading indicator overlaying the Page's content and render that content inaccessible to users.
+   * The Page's header will remain accessible and interactive.
+   */
+  isLoading: PropTypes.bool,
+  /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered UnsavedChangesPrompts. Use this prop to customize UnsavedChangesPrompt handling prior to Page closure.
    */
@@ -71,6 +78,7 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
+  isLoading,
   dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
@@ -101,12 +109,6 @@ const Page = ({
    * content.
    */
   const unsavedChangesCheckpointRef = React.useRef();
-
-  /**
-   * The presentation of loading overlays is tracked by the Page to allow it to
-   * disable page actions while loading is occurring.
-   */
-  const [loadingOverlayIsActive, setLoadingOverlayIsActive] = React.useState(false);
 
   /**
    * Certain logic must be executed upon activation/presentation of a Page. Activation will trigger
@@ -202,26 +204,25 @@ const Page = ({
             actions={actions}
             toolbar={toolbar}
             notificationBanners={<NotificationBanners />}
-            hasLoadingOverlay={loadingOverlayIsActive}
           />
         </div>
         <div className={cx('content')}>
-          <PageContext.Provider value={childPageContextValue}>
-            <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-              <NotificationBannerProvider>
-                <ApplicationLoadingOverlayProvider onStateChange={(loadingOverlayIsPresented) => { setLoadingOverlayIsActive(loadingOverlayIsPresented); }}>
-                  <ApplicationStatusOverlayProvider>
-                    <VisuallyHiddenText
-                      aria-hidden
-                      id={pageLabelIdRef.current}
-                      text={label}
-                    />
-                    {children}
-                  </ApplicationStatusOverlayProvider>
-                </ApplicationLoadingOverlayProvider>
-              </NotificationBannerProvider>
-            </UnsavedChangesPromptCheckpoint>
-          </PageContext.Provider>
+          <PageOverlayContainer
+            isLoading={isLoading}
+          >
+            <PageContext.Provider value={childPageContextValue}>
+              <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+                <NotificationBannerProvider>
+                  <VisuallyHiddenText
+                    aria-hidden
+                    id={pageLabelIdRef.current}
+                    text={label}
+                  />
+                  {children}
+                </NotificationBannerProvider>
+              </UnsavedChangesPromptCheckpoint>
+            </PageContext.Provider>
+          </PageOverlayContainer>
         </div>
       </div>
     ), portalNode)

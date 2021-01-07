@@ -26,5 +26,7 @@
   "terraApplication.applicationContainerErrorBoundary.reload": "Reload",
   "terraApplication.primaryNavigationLayout.utilityMenu.lock": "Lock",
   "terraApplication.mainContainer.skipToLabel": "Content",
-  "terraApplication.skipToButton.prefix": "Skip to {target}"
+  "terraApplication.skipToButton.prefix": "Skip to {target}",
+
+  "terraApplication.PageOverlayContainer.loading": "Loading..."
 }

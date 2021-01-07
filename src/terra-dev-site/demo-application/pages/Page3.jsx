@@ -35,6 +35,7 @@ const Page3 = ({ onRequestClose }) => {
   const [showPage4, setShowPage4] = React.useState(false);
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const pageActions = (
     <PageActions>
@@ -84,6 +85,7 @@ const Page3 = ({ onRequestClose }) => {
       actions={pageActions}
       toolbar={pageToolbar}
       onRequestClose={onRequestClose}
+      isLoading={isLoading}
     >
       <CardLayout>
         <Card label="Page 3 Details">
@@ -101,7 +103,7 @@ const Page3 = ({ onRequestClose }) => {
         </Card>
         <NotificationBannersCard />
         <NotificationDialogCard />
-        <LoadingOverlayCard />
+        <LoadingOverlayCard onSetLoading={setIsLoading} />
         <StatusOverlayCard />
         <ErrorHandlingCard pageTitle="Page 3" />
         <InteractionBlockingOverlayCard />

@@ -212,6 +212,11 @@ class UnsavedChangesPromptCheckpoint extends React.Component {
 
 UnsavedChangesPromptCheckpoint.propTypes = propTypes;
 
+/**
+ * contextType must be used to access intl through context.
+ * Usage of injectIntl prevents the exposure of the UnsavedChangesPromptCheckpoint ref
+ * necessary to call the resolvePrompts function.
+ */
 UnsavedChangesPromptCheckpoint.contextType = ApplicationIntlContext;
 
 export default withPromptRegistration(UnsavedChangesPromptCheckpoint);

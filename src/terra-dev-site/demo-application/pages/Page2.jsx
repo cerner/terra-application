@@ -38,6 +38,7 @@ const Page2 = ({ onRequestClose }) => {
   const [showAddModal, setShowAddModal] = React.useState(false);
   const [showPrintModal, setShowPrintModal] = React.useState(false);
   const [showPopup, setShowPopup] = React.useState(false);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const pageActions = (
     <PageActions>
@@ -67,10 +68,11 @@ const Page2 = ({ onRequestClose }) => {
   return (
     <Page
       pageKey="page-2"
-      label="Page 2 - Adventures in Long Label-Having - Time to Wrap"
+      label="Page 2 - Adventures in Long Label-Having - Time to Wrap "
       metaData={page2MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
+      isLoading={isLoading}
     >
       <CardLayout>
         <Card label="Page 2 Details">
@@ -88,7 +90,7 @@ const Page2 = ({ onRequestClose }) => {
         </Card>
         <NotificationBannersCard />
         <NotificationDialogCard />
-        <LoadingOverlayCard />
+        <LoadingOverlayCard onSetLoading={setIsLoading} />
         <StatusOverlayCard />
         <ErrorHandlingCard pageTitle="Page 2" />
         <InteractionBlockingOverlayCard />

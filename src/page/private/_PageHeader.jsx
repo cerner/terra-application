@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageHeader = ({
-  actions, toolbar, notificationBanners, onBack, label, hasLoadingOverlay,
+  actions, toolbar, notificationBanners, onBack, label,
 }) => {
   const pageContext = React.useContext(PageContext);
   const [actionsAreCollapsed, setActionsAreCollapsed] = React.useState(false);
@@ -64,13 +64,13 @@ const PageHeader = ({
       <Button
         refCallback={childAction.props.refCallback}
         key={childAction.props.actionKey}
-        className={cx('header-button', { disabled: hasLoadingOverlay || childAction.props.isDisabled })}
+        className={cx('header-button', { disabled: childAction.props.isDisabled })}
         isIconOnly
         icon={childAction.props.icon}
         text={childAction.props.label}
         variant={ButtonVariants.UTILITY}
         onClick={(event) => { event.preventDefault(); childAction.props.onSelect(); }}
-        isDisabled={hasLoadingOverlay || childAction.props.isDisabled}
+        isDisabled={childAction.props.isDisabled}
       />
     ));
   }
@@ -91,13 +91,12 @@ const PageHeader = ({
             }
           });
         }}
-        className={cx('header-button', { disabled: hasLoadingOverlay })}
+        className={cx('header-button')}
         isIconOnly
         icon={<IconRollup />}
         text="More Actions"
         variant={ButtonVariants.UTILITY}
         onClick={(event) => { event.preventDefault(); setShowMenu(true); }}
-        isDisabled={hasLoadingOverlay}
       />
     );
   }

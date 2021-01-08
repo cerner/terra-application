@@ -52,7 +52,7 @@ const ActionMenuCheckbox = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
-  /* eslint-disable jsx-a11y/no-static-element-interactions */
+  /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
   return (
     <li
       {...attrs}
@@ -68,7 +68,7 @@ const ActionMenuCheckbox = ({
       </div>
     </li>
   );
-  /* eslint-enable jsx-a11y/no-static-element-interactions */
+  /* eslint-enable jsx-a11y/no-noninteractive-element-to-interactive-role */
 };
 
 ActionMenuCheckbox.propTypes = propTypes;

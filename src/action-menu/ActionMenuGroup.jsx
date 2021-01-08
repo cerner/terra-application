@@ -17,6 +17,10 @@ const propTypes = {
    * Callback function for event.
    */
   onChar: PropTypes.func,
+  /**
+   * @private
+   * Whether or not indent children based on presence of a selectable item.
+   */
   indentChildren: PropTypes.bool,
 };
 
@@ -25,28 +29,26 @@ const ActionMenuGroup = ({
   onArrow,
   onChar,
   indentChildren,
-}) => {
-  return (
-    <li
-      role="menuitem"
+}) => (
+  <li
+    role="menuitem"
+  >
+    <ul
+      className={cx('action-sub-menu')}
+      role="menu"
     >
-      <ul
-        className={cx('action-sub-menu')}
-        role="menu"
-      >
-        {React.Children.map(children, child => {
-          if (!child) {
-            return;
-          }
-          return React.cloneElement(
-            child,
-            { onArrow, onChar, indentChildren },
-          );
-        })}
-      </ul>
-    </li>
-  );
-};
+      {React.Children.map(children, child => {
+        if (!child) {
+          return undefined;
+        }
+        return React.cloneElement(
+          child,
+          { onArrow, onChar, indentChildren },
+        );
+      })}
+    </ul>
+  </li>
+);
 
 ActionMenuGroup.propTypes = propTypes;
 

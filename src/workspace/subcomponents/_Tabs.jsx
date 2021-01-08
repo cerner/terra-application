@@ -66,14 +66,6 @@ class Tabs extends React.Component {
     this.resizeObserver.disconnect(this.containerRef.current);
   }
 
-  resetCache() {
-    this.animationFrameID = null;
-    this.hiddenStartIndex = -1;
-    this.isCalculating = true;
-    this.showMoreButton = true;
-    this.isOpen = false;
-  }
-
   handleResize(width) {
     if (!this.moreButtonRef.current || !this.containerRef.current) {
       return;
@@ -95,7 +87,7 @@ class Tabs extends React.Component {
       const tabStyle = window.getComputedStyle(tab, null);
       const tabMarginLeft = parseFloat(tabStyle.getPropertyValue('margin-left'));
       const tabMarginRight = parseFloat(tabStyle.getPropertyValue('margin-right'));
-      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better 
+      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better
       calcMinWidth += (tabMinWidth + tabMarginLeft + tabMarginRight);
       if (calcMinWidth > availableWidth && !(i === tabCount - 1 && calcMinWidth <= width)) {
         newHideIndex = i;
@@ -111,6 +103,35 @@ class Tabs extends React.Component {
     }
   }
 
+  handleHiddenFocus() {
+    this.setIsOpen(true);
+  }
+
+  handleHiddenBlur() {
+    this.setIsOpen(false);
+  }
+
+  handleOnMoreButtonSelect() {
+    this.setIsOpen(true);
+  }
+
+  handleOutsideClick() {
+    this.setIsOpen(false);
+  }
+
+  setIsOpen(value) {
+    this.isOpen = value;
+    this.forceUpdate();
+  }
+
+  resetCache() {
+    this.animationFrameID = null;
+    this.hiddenStartIndex = -1;
+    this.isCalculating = true;
+    this.showMoreButton = true;
+    this.isOpen = false;
+  }
+
   positionDropDown() {
     if (this.isCalculating || !this.dropdownRef.current.children.length) {
       return;
@@ -120,43 +141,6 @@ class Tabs extends React.Component {
     const left = this.moreButtonRef.current.offsetLeft + this.moreButtonRef.current.offsetWidth + moreMarginRight - this.dropdownRef.current.getBoundingClientRect().width;
     this.dropdownRef.current.style.left = `${left < 0 ? 0 : left}px`;
     this.dropdownRef.current.style.top = `${50}px`; // TODO: Needs theme value
-  }
-
-  setIsOpen(value) {
-    this.isOpen = value;
-    this.forceUpdate();
-  }
-
-  handleHiddenFocus(e) {
-    this.setIsOpen(true);
-  }
-
-  handleHiddenBlur(e) {
-    this.setIsOpen(false);
-  }
-
-  handleOnMoreButtonSelect() {
-    this.setIsOpen(true);
-    const element = this.dropdownRef.current.children[0];
-    if (element) {
-      element.setAttribute('data-focus-styles-enabled', 'false'); // hides initial mouse nav
-      element.focus();
-    }
-  }
-
-  handleOutsideClick() {
-    this.setIsOpen(false);
-  }
-
-  renderMoreButton(isHiddenActive, zIndex) {
-    return this.showMoreButton ? (
-      <MoreButton
-        isActive={isHiddenActive}
-        zIndex={zIndex}
-        onSelect={this.handleOnMoreButtonSelect}
-        refCallback={node => this.moreButtonRef.current = node}
-      />
-    ) : undefined;
   }
 
   wrapOnSelect(onSelect) {
@@ -194,7 +178,7 @@ class Tabs extends React.Component {
             tabIds={ids}
             onSelect={this.wrapOnSelect(tab.onSelect)}
             zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
+          />,
         );
       } else {
         hiddenTabs.push(
@@ -206,7 +190,7 @@ class Tabs extends React.Component {
             onSelect={this.wrapOnSelectHidden(tab.onSelect)}
             onFocus={this.handleHiddenFocus}
             onBlur={this.handleHiddenBlur}
-          />
+          />,
         );
         hiddenIds.push(tab.id);
 
@@ -242,11 +226,21 @@ class Tabs extends React.Component {
           onBlur={this.handleHiddenBlur}
           isOpen={this.isOpen}
           onRequestClose={this.handleOutsideClick}
-          refCallback={node => this.dropdownRef.current = node}
+          refCallback={node => { this.dropdownRef.current = node; }}
         >
           {hiddenTabs}
         </TabDropDown>
-        {this.renderMoreButton(isHiddenSelected, isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex)}
+        {this.showMoreButton ? (
+          <MoreButton
+            hiddenIndex={this.hiddenStartIndex}
+            isActive={isHiddenSelected}
+            zIndex={isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex}
+            onBlur={this.handleHiddenBlur}
+            onSelect={this.handleOnMoreButtonSelect}
+            refCallback={node => { this.moreButtonRef.current = node; }}
+            tabIds={ids}
+          />
+        ) : undefined}
       </div>
     );
   }

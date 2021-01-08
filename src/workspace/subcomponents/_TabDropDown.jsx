@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
@@ -19,14 +19,24 @@ const propTypes = {
    */
   isOpen: PropTypes.bool,
   /**
+   * The function returning the html node.
+   */
+  refCallback: PropTypes.func,
+  /**
    * @private
    * The function callback when a click outside event occurs.
    */
   onRequestClose: PropTypes.func,
   /**
-   * The function returning the html node.
+   * @private
+   * The function callback for disable.
    */
-  refCallback: PropTypes.func,
+  disableOnClickOutside: PropTypes.func,
+  /**
+   * @private
+   * The function callback for enable.
+   */
+  enableOnClickOutside: PropTypes.func,
 };
 
 const TabDropDown = ({
@@ -37,11 +47,11 @@ const TabDropDown = ({
   disableOnClickOutside,
   enableOnClickOutside,
 }) => {
-  const handleKeyDown = event => {
+  const handleKeyDown = useCallback(event => {
     if (event.keyCode === KEY_ESCAPE && onRequestClose) {
       onRequestClose(event);
     }
-  }
+  }, [onRequestClose]);
 
   useEffect(() => {
     if (isOpen) {
@@ -56,7 +66,7 @@ const TabDropDown = ({
       disableOnClickOutside();
       document.removeEventListener('keydown', handleKeyDown);
     });
-  }, [isOpen]); 
+  }, [isOpen, enableOnClickOutside, disableOnClickOutside, handleKeyDown]);
 
   TabDropDown.handleClickOutside = event => onRequestClose(event);
 

@@ -3,10 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
-import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
 import {
-  enableFocusStyles,
-  disableFocusStyles,
+  handleMoreButtonArrows,
 } from './_TabUtils';
 
 import styles from './Tab.module.scss';
@@ -15,9 +13,17 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
+   * The index of the first hidden item in the dropdown.
+   */
+  hiddenIndex: PropTypes.number.isRequired,
+  /**
    * Whether or not a hidden tab is active.
    */
   isActive: PropTypes.bool,
+  /**
+   * Blur callback function.
+   */
+  onBlur: PropTypes.func,
   /**
    * Selection callback function.
    */
@@ -27,42 +33,53 @@ const propTypes = {
    */
   refCallback: PropTypes.func,
   /**
+   * Array of id strings,
+   */
+  tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
    * The z-index style to apply to the button based upon order and state.
    */
   zIndex: PropTypes.number,
 };
 
 const MoreButton = ({
+  hiddenIndex,
   isActive,
+  onBlur,
   onSelect,
   refCallback,
+  tabIds,
   zIndex,
 }) => {
   const theme = React.useContext(ThemeContext);
 
-  const handleOnClick = (event) => {
-    onSelect(event);
+  function onKeyDown(event) {
+    handleMoreButtonArrows(event, hiddenIndex, tabIds);
+  }
+
+  const handleOnMouseDown = event => {
+    event.currentTarget.setAttribute('tabindex', '-1');
+    // event.currentTarget.tabIndex = -1;
   };
 
-  const handleOnKeyDown = (event) => {
-    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
-      event.preventDefault();
-      onSelect(event);
+  const handleOnBlur = event => {
+    event.currentTarget.removeAttribute('tabindex');
+    if (onBlur) {
+      onBlur(event);
     }
   };
 
+  /* eslint-disable react/forbid-dom-props */
   return (
-    /* eslint-disable jsx-a11y/no-static-element-interactions */
     <div
       aria-hidden
       role="button"
       ref={refCallback}
-      onClick={handleOnClick}
-      onKeyDown={handleOnKeyDown}
-      onBlur={enableFocusStyles}
-      onMouseDown={disableFocusStyles}
+      onClick={onSelect}
+      onKeyDown={onKeyDown}
+      onBlur={handleOnBlur}
+      onMouseDown={handleOnMouseDown}
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
-      data-focus-styles-enabled
       data-terra-tabs-menu
       style={{ zIndex }}
     >
@@ -72,8 +89,8 @@ const MoreButton = ({
       </div>
       <div className={cx('after')} />
     </div>
-    /* eslint-enable jsx-ally/no-static-element-interactions */
   );
+  /* eslint-disable react/forbid-dom-props */
 };
 
 MoreButton.propTypes = propTypes;

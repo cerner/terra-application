@@ -8,7 +8,7 @@ import {
   KEY_DOWN,
   KEY_HOME,
   KEY_END,
-} from "keycode-js";
+} from 'keycode-js';
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
@@ -28,9 +28,7 @@ const disableFocusStyles = (event) => {
  * Validates whether or not the char is acceptable for use in a first char search,
  * @param {string} char The char to validate.
  */
-const isValidChar = char => {
-  return char.length === 1 && char.match(/\S/);
-};
+const isValidChar = char => char.length === 1 && char.match(/\S/);
 
 /**
  * Returns a function that will execute the provided function upon detection of a KEY_RETURN or KEY_SPACE keydown event.
@@ -39,7 +37,7 @@ const isValidChar = char => {
  * @param {Function} onArrow The function to be executed after event detection.
  * @param {Function} onChar The function to be executed after event detection.
  */
-const generateOnKeyDown = (key, onAction, onArrow, onChar)  => (
+const generateOnKeyDown = (key, onAction, onArrow, onChar) => (
   event => {
     if (event.altKey || event.ctrlKey || event.metaKey) {
       return;
@@ -76,24 +74,19 @@ const generateOnKeyDown = (key, onAction, onArrow, onChar)  => (
   }
 );
 
-
 /**
  * Returns the items with their first character matching the char parameter.
  * @param {string} char The char to search upon.
  * @param {array} items The flattened array of child items.
  */
-const itemsByChar = (char, items) => {
-  return items.filter(item => item.label.charAt(0).toLowerCase() === char.toLowerCase());
-};
+const itemsByChar = (char, items) => items.filter(item => item.label.charAt(0).toLowerCase() === char.toLowerCase());
 
 /**
  * Disables focus styles for the target of the given event. Typically used as an onMouseDown callback on selectable elements.
  * @param {string} key The action key to search by.
  * @param {array} items The flattened array of child items.
  */
-const indexOfKey = (key, items) => {
-  return items.findIndex(item => item.actionKey === key);
-}
+const indexOfKey = (key, items) => items.findIndex(item => item.actionKey === key);
 
 /**
  * Returns a flattened array of enabled items in the order they are visible.
@@ -179,7 +172,7 @@ const flattenActionItems = (children, showSelection = false) => {
     }
   });
   return { items: actionItems, indentChildren: tempSelection };
-}
+};
 
 export default {
   enableFocusStyles,

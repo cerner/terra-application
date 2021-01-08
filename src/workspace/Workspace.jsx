@@ -21,8 +21,17 @@ import styles from './Workspace.module.scss';
 const cx = classNamesBind.bind(styles);
 
 const sizeOptionShape = PropTypes.shape({
+  /**
+   * The key associated to the given size.
+   */
   key: PropTypes.string.isRequired,
+  /**
+   * The text display associated to the given size.
+   */
   text: PropTypes.string.isRequired,
+  /**
+   * Whether or not the size option should be disabled.
+   */
   isDisabled: PropTypes.bool,
 });
 
@@ -133,7 +142,7 @@ const Workspace = ({
     id: getTabId(id, child.props.itemKey),
     associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
     label: child.props.label,
-    isSelected: child.props.itemKey == activeItemKey,
+    isSelected: child.props.itemKey === activeItemKey,
     onSelect: onRequestActivate,
     metaData: child.props.metaData,
   }));
@@ -173,7 +182,7 @@ const Workspace = ({
     }
 
     if (!sizeItems && !dismissItem) {
-      return;
+      return undefined;
     }
 
     if (sizeOptions && dismissItem) {
@@ -193,7 +202,7 @@ const Workspace = ({
           text="Workspace Size Menu" // TODO: i18n needed
           onClick={() => setIsMenuOpen(true)}
           variant="utility"
-          refCallback={node => sizeMenuRef.current = node}
+          refCallback={node => { sizeMenuRef.current = node; }}
         />
         <Popup
           isOpen={isMenuOpen}

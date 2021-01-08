@@ -197,6 +197,7 @@ const DrawerMenu = ({
       </div>
     </div>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 };
 
 DrawerMenu.propTypes = propTypes;

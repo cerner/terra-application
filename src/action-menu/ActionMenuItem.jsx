@@ -14,6 +14,11 @@ const propTypes = {
   onAction: PropTypes.func,
   /**
    * @private
+   * Whether or not indent children based on presence of a selectable item.
+   */
+  indentChildren: PropTypes.bool,
+  /**
+   * @private
    * Callback function for event.
    */
   onArrow: PropTypes.func,
@@ -49,7 +54,7 @@ const ActionMenuItem = ({
   return (
     <li
       {...attrs}
-      className={cx('action-item', { 'is-disabled': isDisabled }, { 'indent': indentChildren } )}
+      className={cx('action-item', { 'is-disabled': isDisabled }, { indent: indentChildren })}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

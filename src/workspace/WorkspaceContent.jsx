@@ -61,7 +61,6 @@ const WorkspaceContent = ({
         tabIndex="0"
         id={panelId}
         aria-labelledby={tabId}
-        aria-expanded="true"
       >
         <NotificationBannerProvider>
           <ApplicationLoadingOverlayProvider>

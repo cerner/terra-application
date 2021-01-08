@@ -98,14 +98,36 @@ const handleArrows = (event, index, ids) => {
   }
 };
 
+const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
+  const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
+  const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
+  const previousKey = !isRTL ? KEY_LEFT : KEY_RIGHT;
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  if (event.nativeEvent.keyCode === nextKey || event.nativeEvent.keyCode === KEY_DOWN) {
+    const element = document.getElementById(ids[hiddenIndex]);
+    if (element) {
+      element.focus();
+    }
+  } else if (event.nativeEvent.keyCode === KEY_HOME) {
+    firstFocus(event, -1, ids);
+  } else if (event.nativeEvent.keyCode === previousKey || event.nativeEvent.keyCode === KEY_UP || event.nativeEvent.keyCode === KEY_END) {
+    endFocus(event, -1, ids);
+  }
+};
+
 export default {
   enableFocusStyles,
   disableFocusStyles,
   handleArrows,
+  handleMoreButtonArrows,
 };
 
 export {
   enableFocusStyles,
   disableFocusStyles,
   handleArrows,
+  handleMoreButtonArrows,
 };

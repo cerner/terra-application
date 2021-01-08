@@ -47,6 +47,16 @@ const propTypes = {
    * Array of id strings,
    */
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * @private
+   * The function callback when an event occurs..
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @private
+   * The function callback when an event occurs..
+   */
+  onFocus: PropTypes.func,
 };
 
 const defaultProps = {

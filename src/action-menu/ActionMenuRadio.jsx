@@ -48,6 +48,7 @@ const ActionMenuRadio = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
   return (
     <li
       {...attrs}
@@ -63,6 +64,7 @@ const ActionMenuRadio = ({
       </div>
     </li>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-element-to-interactive-role */
 };
 
 ActionMenuRadio.propTypes = propTypes;

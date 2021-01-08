@@ -52,7 +52,7 @@ const WorkspaceItem = ({
     {
       tabId: id,
       panelId: associatedPanelId,
-      label: label,
+      label,
     }
   ), [associatedPanelId, id, label]);
 

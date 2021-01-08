@@ -4,15 +4,13 @@ import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
 
-const ActionMenuDivider = () => {
-  return (
-    <li
-      className={cx('action-divider')}
-      role="none"
-    >
-      <hr className={cx('line')} />
-    </li>
-  );
-};
+const ActionMenuDivider = () => (
+  <li
+    className={cx('action-divider')}
+    role="none"
+  >
+    <hr className={cx('line')} />
+  </li>
+);
 
 export default ActionMenuDivider;

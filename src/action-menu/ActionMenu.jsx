@@ -31,7 +31,7 @@ const ActionMenu = ({
   ...customProps
 }) => {
   const menuRef = useRef();
-  const { items , indentChildren } = flattenActionItems(children);
+  const { items, indentChildren } = flattenActionItems(children);
 
   const focusItem = item => {
     if (!item || !menuRef.current) {

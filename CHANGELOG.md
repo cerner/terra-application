@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.41.1 - (January 8, 2021)
+
 * Changed
   * Updated to use terra-open-source-scripts to release the project
 

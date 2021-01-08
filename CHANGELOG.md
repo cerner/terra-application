@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated to use terra-open-source-scripts to release the project
+
 ## 1.41.0 - (November 17, 2020)
 
 * Added

@@ -8,11 +8,30 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The string used as an identifier for keyboard navigation.
+   */
   actionKey: PropTypes.string.isRequired,
+  /**
+   * Optional icon to place with the radio.
+   */
   icon: PropTypes.element,
+  /**
+   * Whether or not the radio is disabled.
+   */
   isDisabled: PropTypes.bool,
+  /**
+   * Whether or not the radio is checked.
+   */
   isChecked: PropTypes.bool,
+  /**
+   * The label text to display for the radio.
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * Callback function for action element selection.
+   * Returns the event e.e. onAction(event).
+   */
   onAction: PropTypes.func,
   /**
    * @private

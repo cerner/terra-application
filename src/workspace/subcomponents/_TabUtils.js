@@ -21,6 +21,12 @@ const disableFocusStyles = (event) => {
   event.currentTarget.setAttribute('data-focus-styles-enabled', 'false');
 };
 
+/**
+ * Sets focus to the 'next' tab element.
+ * @param {object} event The triggering event.
+ * @param {number} index The index of the current element.
+ * @param {array} ids The array of id strings.
+ */
 const nextFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
@@ -40,6 +46,12 @@ const nextFocus = (event, index, ids) => {
   }
 };
 
+/**
+ * Sets focus to the 'previous' tab element.
+ * @param {object} event The triggering event.
+ * @param {number} index The index of the current element.
+ * @param {array} ids The array of id strings.
+ */
 const previousFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
@@ -59,6 +71,12 @@ const previousFocus = (event, index, ids) => {
   }
 };
 
+/**
+ * Sets focus to the 'first' tab element.
+ * @param {object} event The triggering event.
+ * @param {number} index The index of the current element.
+ * @param {array} ids The array of id strings.
+ */
 const firstFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
@@ -71,6 +89,12 @@ const firstFocus = (event, index, ids) => {
   }
 };
 
+/**
+ * Sets focus to the 'end' tab element.
+ * @param {object} event The triggering event.
+ * @param {number} index The index of the current element.
+ * @param {array} ids The array of id strings.
+ */
 const endFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
@@ -83,6 +107,12 @@ const endFocus = (event, index, ids) => {
   }
 };
 
+/**
+ * The default event handler for navigational arrow keys.
+ * @param {object} event The triggering event.
+ * @param {number} index The index of the current element.
+ * @param {array} ids The array of id strings.
+ */
 const handleArrows = (event, index, ids) => {
   const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
@@ -98,6 +128,12 @@ const handleArrows = (event, index, ids) => {
   }
 };
 
+/**
+ * The more button's event handler for navigational arrow keys.
+ * @param {object} event The triggering event.
+ * @param {number} hiddenIndex The index of the first hidden index.
+ * @param {array} ids The array of id strings.
+ */
 const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
   const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;

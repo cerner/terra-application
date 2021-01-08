@@ -12,8 +12,40 @@ import styles from './Tabs.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  tabData: PropTypes.array,
-  ariaLabel: PropTypes.string,
+  /**
+   * The label to set on the tablist element.
+   */
+  ariaLabel: PropTypes.string.isRequired,
+  /**
+   * Currently active Tabs.Pane content to be displayed.
+   */
+  tabData: PropTypes.arrayOf(PropTypes.shape({
+    /**
+     * The id string to associate to the 'tab'.
+     */
+    id: PropTypes.string.isRequired,
+    /**
+     * The id string to associate to the 'tabpanel'.
+     */
+    associatedPanelId: PropTypes.string.isRequired,
+    /**
+     * The label to display for the tab.
+     */
+    label: PropTypes.string.isRequired,
+    /**
+     * Whether or not the tab is selected.
+     */
+    isSelected: PropTypes.object,
+    /**
+     * The function callback for selection of a tab.
+     * Returns the event and metaData e.g. onSelect(event, metaData).
+     */
+    onSelect: PropTypes.func,
+    /**
+     * The metaData to return with the onSelect callback.
+     */
+    metaData: PropTypes.object,
+  })),
 };
 
 class Tabs extends React.Component {

@@ -130,7 +130,7 @@ const itemByChar = (key, items, char) => {
   const charMatches = itemsByChar(char, items);
   const matchCount = charMatches.length;
   if (!matchCount) {
-    return;
+    return undefined;
   }
 
   let newIndex = 0;
@@ -165,7 +165,7 @@ const flattenActionItems = (children, showSelection = false) => {
           label: child.props.label,
         });
       }
-    } else if (child.props.children)  {
+    } else if (child.props.children) {
       const { items, indentChildren } = flattenActionItems(child.props.children, tempSelection);
       actionItems.push(...items);
       tempSelection = indentChildren || tempSelection;

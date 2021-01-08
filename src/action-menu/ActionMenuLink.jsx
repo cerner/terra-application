@@ -7,10 +7,26 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The string used as an identifier for keyboard navigation.
+   */
   actionKey: PropTypes.string.isRequired,
+  /**
+   * Optional icon to place with the link.
+   */
   icon: PropTypes.element,
+  /**
+   * Whether or not the link is disabled.
+   */
   isDisabled: PropTypes.bool,
+  /**
+   * The label text to display for the link.
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * Callback function for action element selection.
+   * Returns the event e.e. onAction(event).
+   */
   onAction: PropTypes.func,
   /**
    * @private

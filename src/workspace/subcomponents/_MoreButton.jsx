@@ -59,7 +59,6 @@ const MoreButton = ({
 
   const handleOnMouseDown = event => {
     event.currentTarget.setAttribute('tabindex', '-1');
-    // event.currentTarget.tabIndex = -1;
   };
 
   const handleOnBlur = event => {

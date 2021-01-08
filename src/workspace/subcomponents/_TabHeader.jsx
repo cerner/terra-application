@@ -8,6 +8,9 @@ import styles from './TabHeader.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The child content to display within the title area
+   */
   children: PropTypes.node,
 };
 

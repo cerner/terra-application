@@ -17,10 +17,23 @@ import styles from './ActionMenu.module.scss';
 const cx = classNamesBind.bind(styles);
 
 const propTypes = {
+  /**
+   * Label for the ActionMenu.
+   */
   ariaLabel: PropTypes.string.isRequired,
+  /**
+   * The child ActionMenu elements.
+   */
   children: PropTypes.node,
-  isHeightBounded: PropTypes.bool,
+  /**
+   * Whether or not a header should be displayed using the ariaLabel.
+   */
   isHeaderDisplayed: PropTypes.bool,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  isHeightBounded: PropTypes.bool,
 };
 
 const ActionMenu = ({

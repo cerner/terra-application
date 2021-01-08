@@ -69,7 +69,7 @@ const propTypes = {
   /**
    * The function callback triggering when the close toggle button is selected..
    * The presence of this callback indicates the visibility of the close toggle button.
-   * Returns the event e.g. onRequestActivate(event)
+   * Returns the event e.g. onRequestDismiss(event)
    */
   onRequestDismiss: PropTypes.func,
   /**

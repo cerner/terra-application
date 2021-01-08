@@ -8,14 +8,29 @@ import styles from './ActionMenu.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The string used as an identifier for keyboard navigation.
+   */
   actionKey: PropTypes.string.isRequired,
+  /**
+   * Optional icon to place with the checkbox.
+   */
   icon: PropTypes.element,
+  /**
+   * Whether or not the checkbox is disabled.
+   */
   isDisabled: PropTypes.bool,
+  /**
+   * Whether or not the checkbox is checked.
+   */
   isChecked: PropTypes.bool,
+  /**
+   * The label text to display for the checkbox.
+   */
   label: PropTypes.string.isRequired,
   /**
-   * @private
-   * Callback function for event.
+   * Callback function for action element selection.
+   * Returns the event e.e. onAction(event).
    */
   onAction: PropTypes.func,
   /**

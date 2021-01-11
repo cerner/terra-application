@@ -6,7 +6,7 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
 
 import Page, {
-  PageActions, Action, CardLayout, Card,
+  PageActions, Action, CardLayout, Card, PageActivityOverlay,
 } from '../../../page';
 
 import Page4 from './Page4';
@@ -85,7 +85,7 @@ const Page3 = ({ onRequestClose }) => {
       actions={pageActions}
       toolbar={pageToolbar}
       onRequestClose={onRequestClose}
-      isLoading={isLoading}
+      activityOverlay={isLoading && <PageActivityOverlay variant="loading" />}
     >
       <CardLayout>
         <Card label="Page 3 Details">
@@ -104,7 +104,7 @@ const Page3 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />
-        <StatusOverlayCard />
+        {/* <StatusOverlayCard /> */}
         <ErrorHandlingCard pageTitle="Page 3" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

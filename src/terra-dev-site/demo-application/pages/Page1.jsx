@@ -4,7 +4,7 @@ import IconTag from 'terra-icon/lib/icon/IconTag';
 import Button from 'terra-button';
 
 import Page, {
-  PageActions, Action, CardLayout, Card,
+  PageActions, Action, CardLayout, Card, PageActivityOverlay,
 } from '../../../page';
 
 import PagePresentingModal from '../modals/PagePresentingModal';
@@ -40,6 +40,7 @@ const Page1 = ({ onRequestClose }) => {
         label="Page Modal"
         icon={<IconTag />}
         onSelect={() => { setShowPageModal(true); }}
+        isDisabled={isLoading}
       />
     </PageActions>
   );
@@ -51,7 +52,7 @@ const Page1 = ({ onRequestClose }) => {
       metaData={page1MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
-      isLoading={isLoading}
+      activityOverlay={isLoading && <PageActivityOverlay variant="loading" />}
     >
       <CardLayout>
         <Card label="Page 1 Details">
@@ -68,7 +69,7 @@ const Page1 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />
-        <StatusOverlayCard />
+        {/* <StatusOverlayCard /> */}
         <ErrorHandlingCard pageTitle="Page 1" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

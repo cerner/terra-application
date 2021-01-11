@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Page, {
-  CardLayout, Card,
+  CardLayout, Card, StatusLayout,
 } from '../../../page';
 
 const propTypes = {
@@ -15,14 +15,7 @@ const Page6 = ({ onRequestClose }) => (
     label="Page 6"
     onRequestClose={onRequestClose}
   >
-    <CardLayout>
-      <Card label="Page 6 Details">
-        <p>Page 6 demonstrates the following features:</p>
-        <ul>
-          <li>Single card in CardLayout</li>
-        </ul>
-      </Card>
-    </CardLayout>
+    <StatusLayout variant="no-data" message="There is nothing here. Do something to make this not the case. I do not know what to do." />
   </Page>
 );
 

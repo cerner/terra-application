@@ -32,6 +32,7 @@ const NotAPage = () => {
               onClick={action.onSelect}
             />
           ))}
+          {!layoutActions.startActions.length && !layoutActions.endActions.length && <div>No actions for this layout at this breakpoint</div>}
         </div>
       </div>
     </MainContainer>

@@ -16,7 +16,7 @@ import ActiveMainPageRegistrationContext from '../application-container/private/
 
 import PageContext from './private/PageContext';
 import PageHeader from './private/_PageHeader';
-import PageOverlayContainer from './private/PageOverlayContainer';
+import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 import PageActions from './PageActions';
 
 import styles from './Page.module.scss';
@@ -55,11 +55,9 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   * A boolean indicating whether the Page is in a loading state. When true, the Page will render with a
-   * visible loading indicator overlaying the Page's content and render that content inaccessible to users.
-   * The Page's header will remain accessible and interactive.
+   *
    */
-  isLoading: PropTypes.bool,
+  activityOverlay: PropTypes.element,
   /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered UnsavedChangesPrompts. Use this prop to customize UnsavedChangesPrompt handling prior to Page closure.
@@ -78,7 +76,7 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
-  isLoading,
+  activityOverlay,
   dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
@@ -194,6 +192,14 @@ const Page = ({
     });
   }
 
+  const overlays = [];
+  if (activityOverlay) {
+    overlays.push({
+      key: 'page-activity-overlay',
+      component: activityOverlay,
+    });
+  }
+
   return (
     ReactDOM.createPortal((
       <div className={cx('page')}>
@@ -207,8 +213,8 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
-          <PageOverlayContainer
-            isLoading={isLoading}
+          <DynamicOverlayContainer
+            overlays={overlays}
           >
             <PageContext.Provider value={childPageContextValue}>
               <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
@@ -222,7 +228,7 @@ const Page = ({
                 </NotificationBannerProvider>
               </UnsavedChangesPromptCheckpoint>
             </PageContext.Provider>
-          </PageOverlayContainer>
+          </DynamicOverlayContainer>
         </div>
       </div>
     ), portalNode)

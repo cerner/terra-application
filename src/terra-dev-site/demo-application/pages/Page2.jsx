@@ -6,7 +6,7 @@ import IconModified from 'terra-icon/lib/icon/IconModified';
 import Button from 'terra-button';
 
 import Page, {
-  PageActions, Action, CardLayout, Card,
+  PageActions, Action, CardLayout, Card, PageActivityOverlay,
 } from '../../../page';
 
 import Page3 from './Page3';
@@ -72,7 +72,7 @@ const Page2 = ({ onRequestClose }) => {
       metaData={page2MetaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
-      isLoading={isLoading}
+      activityOverlay={isLoading && <PageActivityOverlay variant="loading" />}
     >
       <CardLayout>
         <Card label="Page 2 Details">
@@ -91,7 +91,7 @@ const Page2 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />
-        <StatusOverlayCard />
+        {/* <StatusOverlayCard /> */}
         <ErrorHandlingCard pageTitle="Page 2" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

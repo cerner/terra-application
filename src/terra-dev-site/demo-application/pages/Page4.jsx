@@ -2,7 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import Page, { CardLayout, Card } from '../../../page';
+import Page, {
+  CardLayout, Card, PageActivityOverlay,
+} from '../../../page';
 
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
@@ -33,7 +35,7 @@ const Page4 = ({ onRequestClose }) => {
       label="Page 4"
       metaData={page4MetaData}
       onRequestClose={onRequestClose}
-      isLoading={isLoading}
+      activityOverlay={isLoading && <PageActivityOverlay variant="loading" />}
     >
       <CardLayout>
         <Card label="Page 4 Details">
@@ -54,7 +56,7 @@ const Page4 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />
-        <StatusOverlayCard />
+        {/* <StatusOverlayCard /> */}
         <ErrorHandlingCard pageTitle="Page 4" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

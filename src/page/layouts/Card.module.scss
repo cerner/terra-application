@@ -4,7 +4,8 @@
   .card {
     background-color: #fefffe;
     border-radius: 5px;
-    display: block;
+    display: flex;
+    flex-direction: column;
 
     border-top: 1px solid #eeefee;
     border-left: 1px solid #dfe0df;
@@ -23,6 +24,8 @@
   }
 
   .card-header {
+    flex: 0 0 auto;
+
     align-items: center;
     box-shadow: inset -3px -4px 0px -3px #f3f4f3, inset -3px -5px 0px -3px #c7cacb;
 
@@ -44,6 +47,7 @@
   }
 
   .card-body {
+    flex: 1 1 auto;
     padding-top: 1rem;
   }
 }

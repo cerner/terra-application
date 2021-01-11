@@ -20,32 +20,39 @@ const defaultProps = {
 
 const DynamicOverlayContainer = ({ overlays, children }) => {
   const contentRef = React.useRef();
-  const overlayRefs = React.useRef([]);
 
+  /**
+   * The refs for each overlay are kept in a local variable to ensure
+   * it expires after each render to ensure that removed overlays do not
+   * persist in memory.
+   */
+  const overlayRefs = [];
+
+  /**
+   * This layout effect ensures that the proper layers are rendered
+   * as inert prior to painting to the DOM. This effect will execute
+   * after every update of the DynamicOverlayContainer; however, the
+   * inner inert logic will abort early if the element is already in
+   * its assigned state.
+   */
   React.useLayoutEffect(() => {
-    if (overlays.length === 0) {
-      contentRef.current.inert = false;
-    } else {
-      contentRef.current.inert = true;
+    contentRef.current.inert = overlays.length !== 0;
 
-      const overlayKeys = overlays.map(overlay => overlay.key);
-
-      for (let i = overlayKeys.length - 1; i > 0; i -= 1) {
-        overlayRefs.current[overlayKeys[i]].inert = i !== overlayKeys.length - 1;
-      }
+    for (let i = overlays.length - 1; i > 0; i -= 1) {
+      overlayRefs[i].inert = i !== overlays.length - 1;
     }
-  }, [overlays]);
+  }, [overlayRefs, overlays]);
 
   return (
     <div className={cx('outer-container')}>
       <div ref={contentRef} className={cx('content-container')}>
         {children}
       </div>
-      {overlays.map((overlay) => (
+      {overlays.map((overlay, index) => (
         <div
           key={overlay.key}
           ref={(overlayRef) => {
-            overlayRefs.current[overlay.key] = overlayRef;
+            overlayRefs[index] = overlayRef;
           }}
           className={cx('overlay-container')}
         >

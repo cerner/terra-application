@@ -22,7 +22,7 @@ import NotAPage from '../shared/NotAPage';
 const DemoApplicationNavigationLayout = () => {
   const conceptContext = React.useContext(ConceptContext);
 
-  const [navigationState, setNavigationState] = React.useState('nav-A');
+  const [navigationState, setNavigationState] = React.useState('nav-B');
   const [showSearchModal, setShowSearchModal] = React.useState(false);
   const [showDetailsModal, setShowDetailsModal] = React.useState(false);
 

@@ -59,6 +59,10 @@ const propTypes = {
    */
   activityOverlay: PropTypes.element,
   /**
+   *
+   */
+  statusOverlay: PropTypes.element,
+  /**
    * When true, the Page will not prompt the user prior to executing `onRequestClose` in the presence of
    * rendered UnsavedChangesPrompts. Use this prop to customize UnsavedChangesPrompt handling prior to Page closure.
    */
@@ -76,6 +80,7 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
+  statusOverlay,
   activityOverlay,
   dangerouslyDisableUnsavedChangesPromptHandling,
   children,
@@ -192,13 +197,25 @@ const Page = ({
     });
   }
 
-  const overlays = [];
-  if (activityOverlay) {
-    overlays.push({
-      key: 'page-activity-overlay',
-      component: activityOverlay,
-    });
-  }
+  const overlays = React.useMemo(() => {
+    const overlaysToRender = [];
+
+    if (statusOverlay) {
+      overlaysToRender.push({
+        key: 'status-overlay',
+        component: statusOverlay,
+      });
+    }
+
+    if (activityOverlay) {
+      overlaysToRender.push({
+        key: 'activity-overlay',
+        component: activityOverlay,
+      });
+    }
+
+    return overlaysToRender;
+  }, [statusOverlay, activityOverlay]);
 
   return (
     ReactDOM.createPortal((
@@ -213,17 +230,17 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
+          <VisuallyHiddenText
+            aria-hidden
+            id={pageLabelIdRef.current}
+            text={label}
+          />
           <DynamicOverlayContainer
             overlays={overlays}
           >
             <PageContext.Provider value={childPageContextValue}>
               <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
                 <NotificationBannerProvider>
-                  <VisuallyHiddenText
-                    aria-hidden
-                    id={pageLabelIdRef.current}
-                    text={label}
-                  />
                   {children}
                 </NotificationBannerProvider>
               </UnsavedChangesPromptCheckpoint>

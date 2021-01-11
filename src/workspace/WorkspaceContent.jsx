@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
-import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
+import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
@@ -22,11 +22,15 @@ const propTypes = {
    * Optional toolbar to be displayed outside of the content region.
    */
   toolBar: PropTypes.element,
+  statusOverlay: PropTypes.element,
+  activityOverlay: PropTypes.element,
 };
 
 const WorkspaceContent = ({
   children,
   toolBar,
+  statusOverlay,
+  activityOverlay,
   ...customProps
 }) => {
   const theme = React.useContext(ThemeContext);
@@ -40,6 +44,26 @@ const WorkspaceContent = ({
     ),
     customProps.className,
   );
+
+  const overlays = React.useMemo(() => {
+    const overlaysToRender = [];
+
+    if (statusOverlay) {
+      overlaysToRender.push({
+        key: 'status-overlay',
+        component: statusOverlay,
+      });
+    }
+
+    if (activityOverlay) {
+      overlaysToRender.push({
+        key: 'activity-overlay',
+        component: activityOverlay,
+      });
+    }
+
+    return overlaysToRender;
+  }, [statusOverlay, activityOverlay]);
 
   return (
     <div
@@ -61,11 +85,12 @@ const WorkspaceContent = ({
         tabIndex="0"
         id={panelId}
         aria-labelledby={tabId}
+        data-application-overflow-container
       >
         <NotificationBannerProvider>
-          <ApplicationLoadingOverlayProvider>
+          <DynamicOverlayContainer overlays={overlays}>
             {children}
-          </ApplicationLoadingOverlayProvider>
+          </DynamicOverlayContainer>
         </NotificationBannerProvider>
       </div>
     </div>

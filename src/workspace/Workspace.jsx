@@ -7,7 +7,7 @@ import Button from 'terra-button';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
-import Tabs from './subcomponents/_Tabs';
+
 import {
   ActionMenu,
   ActionMenuDivider,
@@ -15,6 +15,9 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
+import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
+
+import Tabs from './subcomponents/_Tabs';
 
 import styles from './Workspace.module.scss';
 

@@ -18,25 +18,29 @@ const MockContent = ({
       <button onClick={() => setShowAlertBanner(true)}>Show Banner</button>
       <button
         onClick={() => {
+          // setTimeout(() => {
           onShowActivityOverlay(true);
+          // }, 5000);
 
           setTimeout(() => {
             onShowActivityOverlay(false);
-          }, 5000);
+          }, 10000);
         }}
       >
         Show Activity Overlay
       </button>
       <button
         onClick={() => {
+          // setTimeout(() => {
           onShowStatusOverlay(true);
+          // }, 5000);
 
           setTimeout(() => {
             onShowStatusOverlay(false);
           }, 5000);
         }}
       >
-        Show Activity Overlay
+        Show Status Overlay
       </button>
       {showAlertBanner && (
         <NotificationBanner

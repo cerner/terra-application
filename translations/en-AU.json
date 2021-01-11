@@ -28,5 +28,6 @@
   "terraApplication.mainContainer.skipToLabel": "Content",
   "terraApplication.skipToButton.prefix": "Skip to {target}",
 
-  "terraApplication.PageOverlayContainer.loading": "Loading..."
+  "terraApplication.PageOverlayContainer.loading": "Loading...",
+  "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading..."
 }

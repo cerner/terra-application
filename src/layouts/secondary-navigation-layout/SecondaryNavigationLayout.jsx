@@ -234,12 +234,7 @@ const SecondaryNavigationLayout = ({
     }
 
     if (pageNodeForActivePage?.element) {
-      if (contentElementRef.current.contains(pageNodeForActivePage?.element)) {
-        pageNodeForActivePage.element.style.removeProperty('display');
-        pageNodeForActivePage.element.inert = false;
-      } else {
-        contentElementRef.current.appendChild(pageNodeForActivePage.element);
-      }
+      contentElementRef.current.appendChild(pageNodeForActivePage.element);
 
       if (pageNodeForActivePage.scrollData) {
         applyScrollData(pageNodeForActivePage.scrollData, pageNodeForActivePage.element);

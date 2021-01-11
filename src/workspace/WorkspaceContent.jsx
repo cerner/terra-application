@@ -78,20 +78,22 @@ const WorkspaceContent = ({
         {toolBar}
         <NotificationBanners />
       </div>
-      <div
-        {...customProps}
-        role="tabpanel"
-        className={cx('panel-content')}
-        tabIndex="0"
-        id={panelId}
-        aria-labelledby={tabId}
-        data-application-overflow-container
-      >
-        <NotificationBannerProvider>
-          <DynamicOverlayContainer overlays={overlays}>
-            {children}
-          </DynamicOverlayContainer>
-        </NotificationBannerProvider>
+      <div role="none" className={cx('panel-content')}>
+        <DynamicOverlayContainer overlays={overlays}>
+          <div
+            {...customProps}
+            className={cx('panel-overflow')}
+            role="tabpanel"
+            tabIndex="0"
+            id={panelId}
+            aria-labelledby={tabId}
+            data-application-overflow-container
+          >
+            <NotificationBannerProvider>
+              {children}
+            </NotificationBannerProvider>
+          </div>
+        </DynamicOverlayContainer>
       </div>
     </div>
   );

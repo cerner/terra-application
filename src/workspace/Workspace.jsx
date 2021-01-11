@@ -16,6 +16,7 @@ import {
   ActionMenuRadio,
 } from '../action-menu';
 import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
+import { deferExecution } from '../utils/lifecycle-utils';
 
 import Tabs from './subcomponents/_Tabs';
 
@@ -117,27 +118,39 @@ const Workspace = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = React.useContext(ThemeContext);
   const workspacePortalsRef = useRef({});
-  const workspaceLastKeyRef = useRef();
+  const lastActiveItemKeyRef = useRef();
   const workspaceRef = useRef();
   const sizeMenuRef = useRef();
 
   React.useLayoutEffect(() => {
-    const activeNode = workspacePortalsRef.current[activeItemKey];
-    if (!workspaceRef.current || workspaceRef.current.contains(activeNode?.element)) {
+    if (!workspaceRef.current) {
       return;
     }
-    if (workspaceLastKeyRef.current) {
-      const lastNode = workspacePortalsRef.current[workspaceLastKeyRef.current].element;
-      if (lastNode) {
-        workspaceRef.current.removeChild(lastNode);
-      }
+
+    const dataForActiveItem = workspacePortalsRef.current[activeItemKey];
+
+    if (workspaceRef.current.contains(dataForActiveItem?.element)) {
+      return;
     }
 
-    if (activeNode?.element) {
-      workspaceRef.current.appendChild(activeNode.element);
-      workspaceLastKeyRef.current = activeItemKey;
+    if (lastActiveItemKeyRef.current) {
+      const elementToRemove = workspacePortalsRef.current[lastActiveItemKeyRef.current].element;
+
+      workspacePortalsRef.current[lastActiveItemKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
+
+      workspaceRef.current.removeChild(workspacePortalsRef.current[lastActiveItemKeyRef.current].element);
+    }
+
+    if (dataForActiveItem?.element) {
+      workspaceRef.current.appendChild(dataForActiveItem.element);
+
+      if (dataForActiveItem.scrollData) {
+        applyScrollData(dataForActiveItem.scrollData, dataForActiveItem.element);
+      }
+
+      lastActiveItemKeyRef.current = activeItemKey;
     } else {
-      workspaceLastKeyRef.current = undefined;
+      lastActiveItemKeyRef.current = undefined;
     }
   }, [activeItemKey]);
 

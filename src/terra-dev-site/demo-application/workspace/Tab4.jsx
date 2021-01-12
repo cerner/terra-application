@@ -1,13 +1,10 @@
 import React from 'react';
-import WorkspaceContent from '../../../workspace/WorkspaceContent';
-import MockContent from './MockContent';
+import { WorkspaceContent, WorkspaceContentStatusOverlay } from '../../../workspace';
 
 const Tab4 = () => (
   <WorkspaceContent
-    // toolBar={<p style={{ backgroundColor: 'lightgreen', padding: '0.5rem', margin: '0' }}>Tab 4 Toolbar</p>}
-  >
-    <MockContent title="Tab 4" />
-  </WorkspaceContent>
+    statusOverlay={<WorkspaceContentStatusOverlay />}
+  />
 );
 
 Tab4.titleKey = 'derp';

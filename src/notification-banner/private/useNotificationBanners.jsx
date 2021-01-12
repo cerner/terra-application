@@ -77,6 +77,10 @@ const useNotificationBanners = () => {
 
       delete registeredBanners.current[bannerVariant][bannerId];
 
+      if (!registeredBanners.current[bannerVariant].length) {
+        delete registeredBanners.current[bannerVariant];
+      }
+
       if (updateBannerState.current) {
         updateBannerState.current({ ...registeredBanners.current });
       }

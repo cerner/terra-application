@@ -1,26 +1,22 @@
+// @import '../../../themes/clinical-lowlight-theme/TabHeader.module';
+// @import '../../../themes/orion-fusion-theme/TabHeader.module';
+
 :local {
-  .header-bar {
+  .header {
     align-items: center;
-    // border-bottom: 1px solid #a5a3a3;
     color: #000;
     display: flex;
     flex-direction: row;
     font-weight: 500;
     min-height: 30px;
     overflow: hidden;
-    // padding: 7px 0;
     position: relative;
     width: 100%;
   }
 
-  .header {
+  .title {
     flex: 1 1 auto;
     padding: 0 7px;
     width: 100;
-  }
-
-  .actions {
-    flex: 0 0 auto;
-    margin-right: 5px;
   }
 }

@@ -1,11 +1,13 @@
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
-import Tabs from './subcomponents/_Tabs';
+
 import {
   ActionMenu,
   ActionMenuDivider,
@@ -13,14 +15,27 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
+import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
+import { deferExecution } from '../utils/lifecycle-utils';
+
+import Tabs from './subcomponents/_Tabs';
 
 import styles from './Workspace.module.scss';
 
-const cx = classNames.bind(styles);
+const cx = classNamesBind.bind(styles);
 
 const sizeOptionShape = PropTypes.shape({
+  /**
+   * The key associated to the given size.
+   */
   key: PropTypes.string.isRequired,
+  /**
+   * The text display associated to the given size.
+   */
   text: PropTypes.string.isRequired,
+  /**
+   * Whether or not the size option should be disabled.
+   */
   isDisabled: PropTypes.bool,
 });
 
@@ -58,7 +73,7 @@ const propTypes = {
   /**
    * The function callback triggering when the close toggle button is selected..
    * The presence of this callback indicates the visibility of the close toggle button.
-   * Returns the event e.g. onRequestActivate(event)
+   * Returns the event e.g. onRequestDismiss(event)
    */
   onRequestDismiss: PropTypes.func,
   /**
@@ -101,28 +116,41 @@ const Workspace = ({
   ...customProps
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const theme = React.useContext(ThemeContext);
   const workspacePortalsRef = useRef({});
-  const workspaceLastKeyRef = useRef();
+  const lastActiveItemKeyRef = useRef();
   const workspaceRef = useRef();
   const sizeMenuRef = useRef();
 
   React.useLayoutEffect(() => {
-    const activeNode = workspacePortalsRef.current[activeItemKey];
-    if (!workspaceRef.current || workspaceRef.current.contains(activeNode?.element)) {
+    if (!workspaceRef.current) {
       return;
     }
-    if (workspaceLastKeyRef.current) {
-      const lastNode = workspacePortalsRef.current[workspaceLastKeyRef.current].element;
-      if (lastNode) {
-        workspaceRef.current.removeChild(lastNode);
-      }
+
+    const dataForActiveItem = workspacePortalsRef.current[activeItemKey];
+
+    if (workspaceRef.current.contains(dataForActiveItem?.element)) {
+      return;
     }
 
-    if (activeNode?.element) {
-      workspaceRef.current.appendChild(activeNode.element);
-      workspaceLastKeyRef.current = activeItemKey;
+    if (lastActiveItemKeyRef.current) {
+      const elementToRemove = workspacePortalsRef.current[lastActiveItemKeyRef.current].element;
+
+      workspacePortalsRef.current[lastActiveItemKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
+
+      workspaceRef.current.removeChild(workspacePortalsRef.current[lastActiveItemKeyRef.current].element);
+    }
+
+    if (dataForActiveItem?.element) {
+      workspaceRef.current.appendChild(dataForActiveItem.element);
+
+      if (dataForActiveItem.scrollData) {
+        applyScrollData(dataForActiveItem.scrollData, dataForActiveItem.element);
+      }
+
+      lastActiveItemKeyRef.current = activeItemKey;
     } else {
-      workspaceLastKeyRef.current = undefined;
+      lastActiveItemKeyRef.current = undefined;
     }
   }, [activeItemKey]);
 
@@ -130,7 +158,7 @@ const Workspace = ({
     id: getTabId(id, child.props.itemKey),
     associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
     label: child.props.label,
-    isSelected: child.props.itemKey == activeItemKey,
+    isSelected: child.props.itemKey === activeItemKey,
     onSelect: onRequestActivate,
     metaData: child.props.metaData,
   }));
@@ -141,7 +169,7 @@ const Workspace = ({
         <Button
           className={cx('active-button')}
           icon={<IconPanelRight />}
-          text="Toggle Workspace" // TODO INTL
+          text="Toggle Workspace" // TODO: i18n needed
           onClick={onRequestDismiss}
           variant="utility"
         />
@@ -163,14 +191,14 @@ const Workspace = ({
       dismissItem = (
         <ActionMenuItem
           actionKey="workspace-dimiss-action"
-          label="Dismiss Workspace"
+          label="Close Workspace Pane" // TODO: i18n needed
           onAction={() => { setIsMenuOpen(false); onRequestDismiss(); }}
         />
       );
     }
 
     if (!sizeItems && !dismissItem) {
-      return;
+      return undefined;
     }
 
     if (sizeOptions && dismissItem) {
@@ -187,13 +215,12 @@ const Workspace = ({
         <Button
           className={cx('menu-button')}
           icon={<IconSettings />}
-          text="Workspace Size Menu" // TODO INTL
+          text="Workspace Size Menu" // TODO: i18n needed
           onClick={() => setIsMenuOpen(true)}
           variant="utility"
-          refCallback={node => sizeMenuRef.current = node}
+          refCallback={node => { sizeMenuRef.current = node; }}
         />
         <Popup
-          isArrowDisplayed
           isOpen={isMenuOpen}
           targetRef={() => sizeMenuRef.current}
           onRequestClose={() => { setIsMenuOpen(false); }}
@@ -203,8 +230,8 @@ const Workspace = ({
           isContentFocusDisabled
         >
           <ActionMenu
-            id="monkey-derp"
-            ariaLabel="Pick A Size!!"
+            isHeaderDisplayed
+            ariaLabel="Workspace Settings" // TODO: i18n needed
           >
             {sizeItems}
             {dividerItem}
@@ -215,10 +242,13 @@ const Workspace = ({
     );
   };
 
-  const workspaceClassNames = cx([
-    'workspace',
+  const workspaceClassNames = classNames(
+    cx(
+      'workspace',
+      theme.className,
+    ),
     customProps.className,
-  ]);
+  );
 
   return (
     <div

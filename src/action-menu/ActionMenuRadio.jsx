@@ -1,20 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The string used as an identifier for keyboard navigation.
+   */
   actionKey: PropTypes.string.isRequired,
+  /**
+   * Optional icon to place with the radio.
+   */
   icon: PropTypes.element,
+  /**
+   * Whether or not the radio is disabled.
+   */
   isDisabled: PropTypes.bool,
+  /**
+   * Whether or not the radio is checked.
+   */
   isChecked: PropTypes.bool,
+  /**
+   * The label text to display for the radio.
+   */
   label: PropTypes.string.isRequired,
+  /**
+   * Callback function for action element selection.
+   * Returns the event e.e. onAction(event).
+   */
   onAction: PropTypes.func,
-  onArrow: PropTypes.func, // private
-  onChar: PropTypes.func, // private
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onArrow: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onChar: PropTypes.func,
 };
 
 const ActionMenuRadio = ({
@@ -39,6 +67,7 @@ const ActionMenuRadio = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
   return (
     <li
       {...attrs}
@@ -47,15 +76,17 @@ const ActionMenuRadio = ({
       aria-checked={isChecked}
       data-action-menu-key={actionKey}
     >
-      <div className={cx('checkbox')} />
+      <span className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</span>
       <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
         {label}
       </div>
     </li>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-element-to-interactive-role */
 };
 
 ActionMenuRadio.propTypes = propTypes;
+ActionMenuRadio.interactiveType = true;
 
 export default ActionMenuRadio;

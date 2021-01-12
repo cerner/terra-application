@@ -1,3 +1,6 @@
+// @import '../../themes/clinical-lowlight-theme/WorkspaceContent.module';
+// @import '../../themes/orion-fusion-theme/WorkspaceContent.module';
+
 :local {
   .panel {
     display: flex;
@@ -38,10 +41,15 @@
   .panel-content {
     flex: 1 1 auto;
     height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+  }
+
+  .panel-overflow {
+    height: 100%;
     outline: none;
     overflow: auto;
-    position: relative;
     -webkit-overflow-scrolling: touch;
-    width: 100%;
   }
 }

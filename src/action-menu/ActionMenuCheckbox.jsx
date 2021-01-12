@@ -1,20 +1,48 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The string used as an identifier for keyboard navigation.
+   */
   actionKey: PropTypes.string.isRequired,
+  /**
+   * Optional icon to place with the checkbox.
+   */
   icon: PropTypes.element,
+  /**
+   * Whether or not the checkbox is disabled.
+   */
   isDisabled: PropTypes.bool,
+  /**
+   * Whether or not the checkbox is checked.
+   */
   isChecked: PropTypes.bool,
+  /**
+   * The label text to display for the checkbox.
+   */
   label: PropTypes.string.isRequired,
-  onAction: PropTypes.func, // private
-  onArrow: PropTypes.func, // private
-  onChar: PropTypes.func, // private
+  /**
+   * Callback function for action element selection.
+   * Returns the event e.e. onAction(event).
+   */
+  onAction: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onArrow: PropTypes.func,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  onChar: PropTypes.func,
 };
 
 const ActionMenuCheckbox = ({
@@ -39,6 +67,7 @@ const ActionMenuCheckbox = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
   return (
     <li
       {...attrs}
@@ -47,15 +76,17 @@ const ActionMenuCheckbox = ({
       aria-checked={isChecked}
       data-action-menu-key={actionKey}
     >
-      <div className={cx('checkbox')} />
+      <span className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</span>
       <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
         {label}
       </div>
     </li>
   );
+  /* eslint-enable jsx-a11y/no-noninteractive-element-to-interactive-role */
 };
 
 ActionMenuCheckbox.propTypes = propTypes;
+ActionMenuCheckbox.interactiveType = true;
 
 export default ActionMenuCheckbox;

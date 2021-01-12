@@ -1,4 +1,6 @@
 @import '~terra-mixins/lib/Mixins';
+// @import '../../../themes/clinical-lowlight-theme/Tab.module';
+// @import '../../../themes/orion-fusion-theme/Tab.module';
 
 :local {
   .tab,
@@ -24,6 +26,7 @@
 
     > .after {
       background-position: left;
+      margin-left: -1px;
     }
 
     .inner {
@@ -215,11 +218,11 @@
 
   .tab {
     flex: 0 1 auto;
-    min-width: 152px;
+    min-width: calc(5.357rem + 52px); // TODO: alter logic to avoid this type mismatch
 
     .inner {
       text-align: center;
-      min-width: 7.143rem;
+      min-width: 5.357rem;
     }
   }
 

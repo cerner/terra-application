@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
-import { handleArrows } from './_TabUtils';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+  handleArrows,
+} from './_TabUtils';
 
 import styles from './HiddenTab.module.scss';
 
@@ -42,6 +47,16 @@ const propTypes = {
    * Array of id strings,
    */
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
+  /**
+   * @private
+   * The function callback when an event occurs..
+   */
+  onBlur: PropTypes.func,
+  /**
+   * @private
+   * The function callback when an event occurs..
+   */
+  onFocus: PropTypes.func,
 };
 
 const defaultProps = {
@@ -59,14 +74,14 @@ const HiddenTab = ({
   onFocus,
   onSelect,
   tabIds,
-  ...customProps
 }) => {
   const attributes = {};
-  const paneClassNames = cx([
+  const theme = React.useContext(ThemeContext);
+  const hiddenClassNames = cx(
     'hidden',
     { 'is-active': isSelected },
-    attributes.className,
-  ]);
+    theme.className,
+  );
 
   function onKeyDown(event) {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
@@ -86,21 +101,22 @@ const HiddenTab = ({
     attributes.tabIndex = isSelected ? 0 : -1;
     attributes.onClick = onClick;
     attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = onBlur;
+    attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
     attributes.onFocus = onFocus;
+    attributes.onMouseDown = disableFocusStyles;
+    attributes['data-focus-styles-enabled'] = true;
   }
   attributes['aria-selected'] = isSelected;
 
   return (
     <div
-      {...customProps}
       {...attributes}
       id={id}
       aria-controls={associatedPanelId}
       role="tab"
-      className={paneClassNames}
+      className={hiddenClassNames}
     >
-      {isSelected ? <span className={cx('check')}><IconCheckmark /></span> : null}
+      <span className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</span>
       <span className={cx('label')}>{label}</span>
     </div>
   );

@@ -8,7 +8,7 @@ import {
   KEY_DOWN,
   KEY_HOME,
   KEY_END,
-} from "keycode-js";
+} from 'keycode-js';
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
@@ -24,17 +24,20 @@ const disableFocusStyles = (event) => {
   event.currentTarget.setAttribute('data-focus-styles-enabled', 'false');
 };
 
-const isValidChar = str => {
-  return str.length === 1 && str.match(/\S/);
-};
+/**
+ * Validates whether or not the char is acceptable for use in a first char search,
+ * @param {string} char The char to validate.
+ */
+const isValidChar = char => char.length === 1 && char.match(/\S/);
 
 /**
  * Returns a function that will execute the provided function upon detection of a KEY_RETURN or KEY_SPACE keydown event.
  * @param {string} key The uniquely identifiable key.
  * @param {Function} onAction The function to be executed after event detection.
  * @param {Function} onArrow The function to be executed after event detection.
+ * @param {Function} onChar The function to be executed after event detection.
  */
-const generateOnKeyDown = (key, onAction, onArrow, onChar)  => (
+const generateOnKeyDown = (key, onAction, onArrow, onChar) => (
   event => {
     if (event.altKey || event.ctrlKey || event.metaKey) {
       return;
@@ -71,17 +74,28 @@ const generateOnKeyDown = (key, onAction, onArrow, onChar)  => (
   }
 );
 
+/**
+ * Returns the items with their first character matching the char parameter.
+ * @param {string} char The char to search upon.
+ * @param {array} items The flattened array of child items.
+ */
+const itemsByChar = (char, items) => items.filter(item => item.label.charAt(0).toLowerCase() === char.toLowerCase());
 
-const itemsByChar = (char, items) => {
-  return items.filter(item => item.label.charAt(0).toLowerCase() === char.toLowerCase());
-};
+/**
+ * Disables focus styles for the target of the given event. Typically used as an onMouseDown callback on selectable elements.
+ * @param {string} key The action key to search by.
+ * @param {array} items The flattened array of child items.
+ */
+const indexOfKey = (key, items) => items.findIndex(item => item.actionKey === key);
 
-const indexByKey = (key, items) => {
-  return items.findIndex(item => item.actionKey === key);
-}
-
-const itemFromArrowKey = (key, items, direction) => {
-  const currentIndex = indexByKey(key, items);
+/**
+ * Returns a flattened array of enabled items in the order they are visible.
+ * @param {string} key The currently active item key.
+ * @param {array} items The flattened array of child items.
+ * @param {string} direction The child node to strip the items from.
+ */
+const itemByDirection = (key, items, direction) => {
+  const currentIndex = indexOfKey(key, items);
   const maxIndex = items.length - 1;
 
   let newIndex;
@@ -106,15 +120,21 @@ const itemFromArrowKey = (key, items, direction) => {
   return items[newIndex];
 };
 
-const itemFromChar = (key, items, char) => {
+/**
+ * Returns the next matching item for the char and currently active key.
+ * @param {string} key The currently active item key.
+ * @param {array} items The flattened array of child items.
+ * @param {string} char The current char from keystroke.
+ */
+const itemByChar = (key, items, char) => {
   const charMatches = itemsByChar(char, items);
   const matchCount = charMatches.length;
   if (!matchCount) {
-    return;
+    return undefined;
   }
 
   let newIndex = 0;
-  const currentIndex = indexByKey(key, charMatches);
+  const currentIndex = indexOfKey(key, charMatches);
   if (matchCount > 1 && currentIndex >= 0 && currentIndex < matchCount - 1) {
     newIndex = currentIndex + 1;
   }
@@ -122,7 +142,12 @@ const itemFromChar = (key, items, char) => {
   return charMatches[newIndex];
 };
 
-const flattenActionItems = children => {
+/**
+ * Returns a flattened array of enabled items in the order they are visible.
+ * @param {node} children The child node to strip the items from.
+ */
+const flattenActionItems = (children, showSelection = false) => {
+  let tempSelection = showSelection;
   const actionItems = [];
   React.Children.forEach(children, child => {
     if (!child) {
@@ -130,25 +155,31 @@ const flattenActionItems = children => {
     }
 
     if (child.props.actionKey) {
+      if (child.type.interactiveType) {
+        tempSelection = true;
+      }
+
       if (!child.props.isDisabled) {
         actionItems.push({
           actionKey: child.props.actionKey,
           label: child.props.label,
         });
       }
-    } else if (child.props.children)  {
-      actionItems.push(...flattenActionItems(child.props.children));
+    } else if (child.props.children) {
+      const { items, indentChildren } = flattenActionItems(child.props.children, tempSelection);
+      actionItems.push(...items);
+      tempSelection = indentChildren || tempSelection;
     }
   });
-  return actionItems;
-}
+  return { items: actionItems, indentChildren: tempSelection };
+};
 
 export default {
   enableFocusStyles,
   disableFocusStyles,
   generateOnKeyDown,
-  itemFromArrowKey,
-  itemFromChar,
+  itemByDirection,
+  itemByChar,
   flattenActionItems,
 };
 
@@ -156,7 +187,7 @@ export {
   enableFocusStyles,
   disableFocusStyles,
   generateOnKeyDown,
-  itemFromArrowKey,
-  itemFromChar,
+  itemByDirection,
+  itemByChar,
   flattenActionItems,
 };

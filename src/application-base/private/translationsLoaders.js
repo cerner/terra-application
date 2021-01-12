@@ -40,19 +40,19 @@ const loadTranslationsFile = (locale) => {
 const loadTranslations = (locale) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
 
-  loadTranslationsFile(locale).catch((error) => {
+  return loadTranslationsFile(locale).catch((error) => {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
+      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
     }
 
     if (fallbackLocale) {
       return loadTranslationsFile(fallbackLocale);
     }
 
-    return Promise.resolve();
+    return Promise.reject(error);
   }).catch((error) => {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using en data as the fallback locale data.`);
+      console.warn(`${error.message} Using en as the fallback locale.`);
     }
 
     return loadTranslationsFile('en');

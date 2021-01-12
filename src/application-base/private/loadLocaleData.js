@@ -1,4 +1,4 @@
-const loadLocaleData = (locale, polyfill) => new Promise((resolve, reject) => {
+const loadLocaleData = (locale, polyfill) => {
   if (polyfill === 'intl') {
     switch (locale) {
       case 'en':
@@ -13,6 +13,8 @@ const loadLocaleData = (locale, polyfill) => new Promise((resolve, reject) => {
         return import('intl/locale-data/jsonp/en-GB.js');
       case 'es':
         return import('intl/locale-data/jsonp/es.js');
+      case 'es-US':
+        return import('intl/locale-data/jsonp/es-US.js');
       case 'es-ES':
         return import('intl/locale-data/jsonp/es-ES.js');
       case 'de':
@@ -34,7 +36,7 @@ const loadLocaleData = (locale, polyfill) => new Promise((resolve, reject) => {
       case 'sv-SE':
         return import('intl/locale-data/jsonp/sv-SE.js');
       default:
-        return reject(Error(`Locale data for ${polyfill} was not supplied for the ${locale} locale.`));
+        return Promise.reject(Error(`Locale data for ${polyfill} was not supplied for the ${locale} locale.`));
     }
   } else {
     switch (locale) {
@@ -51,6 +53,8 @@ const loadLocaleData = (locale, polyfill) => new Promise((resolve, reject) => {
       case 'es':
       case 'es-ES':
         return import('@formatjs/intl-relativetimeformat/locale-data/es.js');
+      case 'es-US':
+        return import('@formatjs/intl-relativetimeformat/locale-data/es-US.js');
       case 'de':
         return import('@formatjs/intl-relativetimeformat/locale-data/de.js');
       case 'fr':
@@ -64,12 +68,12 @@ const loadLocaleData = (locale, polyfill) => new Promise((resolve, reject) => {
       case 'pt-BR':
         return import('@formatjs/intl-relativetimeformat/locale-data/pt.js');
       case 'sv':
-      case 'sv-SV':
+      case 'sv-SE':
         return import('@formatjs/intl-relativetimeformat/locale-data/sv.js');
       default:
-        return reject(Error(`Locale data for ${polyfill} was not supplied for the ${locale} locale.`));
+        return Promise.reject(Error(`Locale data for ${polyfill} was not supplied for the ${locale} locale.`));
     }
   }
-});
+};
 
 export default loadLocaleData;

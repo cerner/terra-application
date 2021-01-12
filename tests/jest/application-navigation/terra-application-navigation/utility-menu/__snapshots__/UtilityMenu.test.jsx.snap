@@ -54,9 +54,8 @@ exports[`UtilityMenu should render default element 1`] = `
         fill={false}
         footer={<ActionFooter />}
         header={
-          <ActionHeader
+          <injectIntl(ActionHeader)
             aria-hidden={true}
-            level={1}
             title="Terra.applicationNavigation.utilityMenu.headerTitle"
           />
         }
@@ -67,38 +66,78 @@ exports[`UtilityMenu should render default element 1`] = `
           <div
             className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              level={1}
               title="Terra.applicationNavigation.utilityMenu.headerTitle"
             >
-              <ActionHeaderContainer
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
+                intl={
+                  Object {
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
                 level={1}
-                startContent={null}
                 title="Terra.applicationNavigation.utilityMenu.headerTitle"
               >
-                <div
+                <ActionHeaderContainer
                   aria-hidden={true}
-                  className="flex-header"
+                  endContent={null}
+                  level={1}
+                  startContent={null}
+                  title="Terra.applicationNavigation.utilityMenu.headerTitle"
                 >
                   <div
-                    className="flex-fill"
+                    aria-hidden={true}
+                    className="flex-header"
                   >
                     <div
-                      className="title-container"
+                      className="flex-fill"
                     >
-                      <h1
-                        className="title"
+                      <div
+                        className="title-container"
                       >
-                        Terra.applicationNavigation.utilityMenu.headerTitle
-                      </h1>
+                        <h1
+                          className="title"
+                        >
+                          Terra.applicationNavigation.utilityMenu.headerTitle
+                        </h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ActionHeaderContainer>
-            </ActionHeader>
+                </ActionHeaderContainer>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
           </div>
           <div
             className="main"
@@ -319,9 +358,8 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
           />
         }
         header={
-          <ActionHeader
+          <injectIntl(ActionHeader)
             aria-hidden={true}
-            level={1}
             title="Terra.applicationNavigation.utilityMenu.headerTitle"
           />
         }
@@ -332,38 +370,78 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
           <div
             className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              level={1}
               title="Terra.applicationNavigation.utilityMenu.headerTitle"
             >
-              <ActionHeaderContainer
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
+                intl={
+                  Object {
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
                 level={1}
-                startContent={null}
                 title="Terra.applicationNavigation.utilityMenu.headerTitle"
               >
-                <div
+                <ActionHeaderContainer
                   aria-hidden={true}
-                  className="flex-header"
+                  endContent={null}
+                  level={1}
+                  startContent={null}
+                  title="Terra.applicationNavigation.utilityMenu.headerTitle"
                 >
                   <div
-                    className="flex-fill"
+                    aria-hidden={true}
+                    className="flex-header"
                   >
                     <div
-                      className="title-container"
+                      className="flex-fill"
                     >
-                      <h1
-                        className="title"
+                      <div
+                        className="title-container"
                       >
-                        Terra.applicationNavigation.utilityMenu.headerTitle
-                      </h1>
+                        <h1
+                          className="title"
+                        >
+                          Terra.applicationNavigation.utilityMenu.headerTitle
+                        </h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ActionHeaderContainer>
-            </ActionHeader>
+                </ActionHeaderContainer>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
           </div>
           <div
             className="main"
@@ -861,9 +939,8 @@ exports[`UtilityMenu should render with skip callback 1`] = `
           />
         }
         header={
-          <ActionHeader
+          <injectIntl(ActionHeader)
             aria-hidden={true}
-            level={1}
             title="Terra.applicationNavigation.utilityMenu.headerTitle"
           />
         }
@@ -874,38 +951,78 @@ exports[`UtilityMenu should render with skip callback 1`] = `
           <div
             className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              level={1}
               title="Terra.applicationNavigation.utilityMenu.headerTitle"
             >
-              <ActionHeaderContainer
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
+                intl={
+                  Object {
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
                 level={1}
-                startContent={null}
                 title="Terra.applicationNavigation.utilityMenu.headerTitle"
               >
-                <div
+                <ActionHeaderContainer
                   aria-hidden={true}
-                  className="flex-header"
+                  endContent={null}
+                  level={1}
+                  startContent={null}
+                  title="Terra.applicationNavigation.utilityMenu.headerTitle"
                 >
                   <div
-                    className="flex-fill"
+                    aria-hidden={true}
+                    className="flex-header"
                   >
                     <div
-                      className="title-container"
+                      className="flex-fill"
                     >
-                      <h1
-                        className="title"
+                      <div
+                        className="title-container"
                       >
-                        Terra.applicationNavigation.utilityMenu.headerTitle
-                      </h1>
+                        <h1
+                          className="title"
+                        >
+                          Terra.applicationNavigation.utilityMenu.headerTitle
+                        </h1>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </ActionHeaderContainer>
-            </ActionHeader>
+                </ActionHeaderContainer>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
           </div>
           <div
             className="main"

@@ -48,29 +48,34 @@ const supportedIntlConstructors = (polyfill) => {
 const loadIntl = (locale, polyfill) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
 
-  loadLocaleData(locale, polyfill).catch((error) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
-    }
-
-    if (fallbackLocale) {
-      if (!hasIntlData([fallbackLocale], supportedIntlConstructors(polyfill))) {
-        return loadLocaleData(fallbackLocale, polyfill);
+  if (!hasIntlData([locale], supportedIntlConstructors(polyfill))) {
+    return loadLocaleData(locale, polyfill).catch((error) => {
+      if (fallbackLocale) {
+        if (process.env.NODE_ENV !== 'production') {
+          console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
+        }
+        if (!hasIntlData([fallbackLocale], supportedIntlConstructors(polyfill))) {
+          return loadLocaleData(fallbackLocale, polyfill);
+        }
+      } else {
+        return Promise.reject(error);
       }
-    }
 
-    return Promise.resolve();
-  }).catch((error) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using en data as the fallback locale data.`);
-    }
+      return Promise.resolve();
+    }).catch((error) => {
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(`${error.message} Using en data as the fallback locale data.`);
+      }
 
-    if (!hasIntlData(['en'], supportedIntlConstructors(polyfill))) {
-      return loadLocaleData('en', polyfill);
-    }
+      if (!hasIntlData(['en'], supportedIntlConstructors(polyfill))) {
+        return loadLocaleData('en', polyfill);
+      }
 
-    return Promise.resolve();
-  });
+      return Promise.resolve();
+    });
+  }
+
+  return Promise.resolve();
 };
 
 export default loadIntl;

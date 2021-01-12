@@ -58,13 +58,11 @@ const ApplicationBase = ({
 
   useEffect(() => {
     if (finalLocale !== undefined) {
-      try {
-        i18nLoader(finalLocale).then(loadedMessages => setMessages(loadedMessages));
-      } catch (e) {
+      i18nLoader(finalLocale).then(translationsModule => setMessages(translationsModule.default)).catch((error) => {
         // eslint-disable-next-line no-console
-        console.error(e);
-        throw e;
-      }
+        console.error(error);
+        throw error;
+      });
     }
   }, [finalLocale]);
 

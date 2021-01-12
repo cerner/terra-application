@@ -4,6 +4,7 @@ import WorkspaceContext from './WorkspaceContext';
 import WorkspaceItem from './WorkspaceItem';
 import WorkspaceContentActivityOverlay from './overlays/WorkspaceContentActivityOverlay';
 import WorkspaceContentStatusOverlay from './overlays/WorkspaceContentStatusOverlay';
+import WorkspaceContentStatusOverlayButton from './overlays/WorkspaceContentStatusOverlayButton';
 
 export {
   Workspace,
@@ -12,4 +13,5 @@ export {
   WorkspaceItem,
   WorkspaceContentActivityOverlay,
   WorkspaceContentStatusOverlay,
+  WorkspaceContentStatusOverlayButton,
 };

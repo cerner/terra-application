@@ -7,6 +7,7 @@ import Tab1 from '../workspace/Tab1';
 import Tab2 from '../workspace/Tab2';
 import Tab3 from '../workspace/Tab3';
 import Tab4 from '../workspace/Tab4';
+import Tab5 from '../workspace/Tab5';
 
 const propTypes = {};
 
@@ -53,6 +54,12 @@ const NavBLayout = () => (
           label="Tab 4"
           metaData={{ key: 'tab-4' }}
           render={() => <Tab4 />}
+        />
+        <WorkspaceTab
+          itemKey="tab-5"
+          label="Tab 5"
+          metaData={{ key: 'tab-5' }}
+          render={() => <Tab5 />}
         />
       </SecondaryNavigationLayoutWorkspace>
     )}

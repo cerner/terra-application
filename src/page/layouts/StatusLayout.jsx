@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import StatusContent from '../../shared/StatusContent';
+import StatusIndicator from '../../shared/StatusIndicator';
 
 import CardLayout from './CardLayout';
 import Card from './Card';
@@ -72,7 +72,7 @@ const StatusLayout = (props) => (
     <Card>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div style={{ maxWidth: '500px' }}>
-          <StatusContent {...props} />
+          <StatusIndicator {...props} />
         </div>
       </div>
     </Card>

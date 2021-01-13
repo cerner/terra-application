@@ -139,10 +139,10 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
   const previousKey = !isRTL ? KEY_LEFT : KEY_RIGHT;
 
-  event.preventDefault();
-  event.stopPropagation();
-
   if (event.nativeEvent.keyCode === nextKey || event.nativeEvent.keyCode === KEY_DOWN) {
+    event.preventDefault();
+    event.stopPropagation();
+
     const element = document.getElementById(ids[hiddenIndex]);
     if (element) {
       element.focus();

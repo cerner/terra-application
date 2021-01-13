@@ -228,6 +228,7 @@ const Workspace = ({
           contentWidth="240"
           contentAttachment="top right"
           isContentFocusDisabled
+          isHeaderDisabled
         >
           <ActionMenu
             isHeaderDisplayed

@@ -35,7 +35,7 @@ const propTypes = {
     /**
      * Whether or not the tab is selected.
      */
-    isSelected: PropTypes.object,
+    isSelected: PropTypes.bool,
     /**
      * The function callback for selection of a tab.
      * Returns the event and metaData e.g. onSelect(event, metaData).
@@ -119,7 +119,21 @@ class Tabs extends React.Component {
       const tabStyle = window.getComputedStyle(tab, null);
       const tabMarginLeft = parseFloat(tabStyle.getPropertyValue('margin-left'));
       const tabMarginRight = parseFloat(tabStyle.getPropertyValue('margin-right'));
-      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better
+      // const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better
+
+      const startSvg = tab.children[0];
+      const innerSvg = tab.children[1];
+      const endSvg = tab.children[2];
+      const startStyle = window.getComputedStyle(startSvg, null);
+      const innerStyle = window.getComputedStyle(innerSvg, null);
+      const endStyle = window.getComputedStyle(endSvg, null);
+
+      const startWidth = parseFloat(startStyle.getPropertyValue('width'));
+      const innerMinWidth = parseFloat(innerStyle.getPropertyValue('min-width')); 
+      const endWidth = parseFloat(endStyle.getPropertyValue('width'));
+
+      const tabMinWidth = startWidth + innerMinWidth + endWidth;
+
       calcMinWidth += (tabMinWidth + tabMarginLeft + tabMarginRight);
       if (calcMinWidth > availableWidth && !(i === tabCount - 1 && calcMinWidth <= width)) {
         newHideIndex = i;
@@ -165,14 +179,15 @@ class Tabs extends React.Component {
   }
 
   positionDropDown() {
-    if (this.isCalculating || !this.dropdownRef.current.children.length) {
+    if (!this.dropdownRef.current || !this.moreButtonRef.current) {
       return;
     }
+
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
-    const left = this.moreButtonRef.current.offsetLeft + this.moreButtonRef.current.offsetWidth + moreMarginRight - this.dropdownRef.current.getBoundingClientRect().width;
-    this.dropdownRef.current.style.left = `${left < 0 ? 0 : left}px`;
-    this.dropdownRef.current.style.top = `${50}px`; // TODO: Needs theme value
+    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
+    const right = (this.containerRef.current.parentNode.getBoundingClientRect().width + moreMarginLeft) - this.moreButtonRef.current.offsetLeft;
+
+    this.dropdownRef.current.style.right = `${right}px`;
   }
 
   wrapOnSelect(onSelect) {
@@ -264,6 +279,7 @@ class Tabs extends React.Component {
         </TabDropDown>
         {this.showMoreButton ? (
           <MoreButton
+            isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
             zIndex={isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex}

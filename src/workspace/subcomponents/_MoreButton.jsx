@@ -21,6 +21,10 @@ const propTypes = {
    */
   isActive: PropTypes.bool,
   /**
+   * Whether or not the associated dropdown is open.
+   */
+  isActive: PropTypes.bool,
+  /**
    * Blur callback function.
    */
   onBlur: PropTypes.func,
@@ -45,6 +49,7 @@ const propTypes = {
 const MoreButton = ({
   hiddenIndex,
   isActive,
+  isOpen,
   onBlur,
   onSelect,
   refCallback,
@@ -80,7 +85,7 @@ const MoreButton = ({
       onMouseDown={handleOnMouseDown}
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
       data-terra-tabs-menu
-      style={{ zIndex }}
+      style={{ zIndex: isOpen ? '100' : zIndex }}
     >
       <div className={cx('before')} />
       <div className={cx('inner')}>

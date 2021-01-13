@@ -54,6 +54,7 @@ const TabDropDown = ({
   }, [onRequestClose]);
 
   useEffect(() => {
+    console.log(`effect: ${isOpen}`);
     if (isOpen) {
       enableOnClickOutside();
       document.addEventListener('keydown', handleKeyDown);
@@ -77,11 +78,14 @@ const TabDropDown = ({
     theme.className,
   );
 
+  console.log(`component render: ${isOpen}`);
+
   return (
     <div
       ref={refCallback}
       role="none"
       className={dropDownClassNames}
+      onMouseDown={e => { event.preventDefault(); }}
     >
       {children}
     </div>

@@ -111,7 +111,9 @@ const Tab = ({
     >
       <div className={cx('before')} />
       <div className={cx('inner')}>
-        <span className={cx('label')}>{label}</span>
+        <div className={cx('label')}>
+          {label}
+        </div>
       </div>
       <div className={cx('after')} />
     </div>

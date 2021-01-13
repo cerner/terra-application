@@ -11,16 +11,14 @@
     line-height: 1.4;
     font-weight: normal;
     margin-left: 0;
-    min-width: 240px; // TODO: theme this
+    // min-width: 210px; // TODO: theme this
     outline: none;
     padding: 0.643rem 1.071rem;
 
-    span {
+    .label {
+      flex: 1 1 auto;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      word-break: normal;
-      word-wrap: normal;
+      text-align: start;
     }
 
     &:hover {
@@ -61,6 +59,7 @@
   }
 
   .checkbox {
+    flex: 0 0 auto;
     color: #007cc3; // TODO: theme this
     margin-right: 6px; // TODO: theme this
     height: 1rem;

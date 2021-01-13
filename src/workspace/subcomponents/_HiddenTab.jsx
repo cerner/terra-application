@@ -116,8 +116,8 @@ const HiddenTab = ({
       role="tab"
       className={hiddenClassNames}
     >
-      <span className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</span>
-      <span className={cx('label')}>{label}</span>
+      <div className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</div>
+      <div className={cx('label')}>{label}</div>
     </div>
   );
 };

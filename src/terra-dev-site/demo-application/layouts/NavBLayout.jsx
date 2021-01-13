@@ -39,7 +39,7 @@ const NavBLayout = () => (
         />
         <WorkspaceTab
           itemKey="tab-2"
-          label="Tab 2"
+          label="Tab 2 Tab 2 Tab 2"
           metaData={{ key: 'tab-2' }}
           render={() => <Tab2 />}
         />
@@ -51,7 +51,7 @@ const NavBLayout = () => (
         />
         <WorkspaceTab
           itemKey="tab-4"
-          label="Tab 4"
+          label="Tab 4 Tab 4 Tab 4 Tab 4 Tab 4 Tab 4 Tab 4 Tab 4 Tab 4"
           metaData={{ key: 'tab-4' }}
           render={() => <Tab4 />}
         />

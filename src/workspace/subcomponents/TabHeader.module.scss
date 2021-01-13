@@ -4,10 +4,11 @@
 :local {
   .header {
     align-items: center;
-    color: #000;
+    color: #2d3539; // TODO: themable variable
     display: flex;
     flex-direction: row;
-    font-weight: 500;
+    font-size: 1.28571rem; // TODO: themeable variable
+    font-weight: normal; // TODO: themeable variable
     min-height: 30px;
     overflow: hidden;
     position: relative;
@@ -15,6 +16,7 @@
   }
 
   .title {
+    text-align: start;
     flex: 1 1 auto;
     padding: 0 7px;
     width: 100;

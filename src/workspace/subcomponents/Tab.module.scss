@@ -5,14 +5,15 @@
 :local {
   .tab,
   .tab-menu {
-    color: rgb(97, 97, 97); // TODO: find correct color
+    color: #4E5558; // TODO: themeable variable
     cursor: pointer;
     display: flex;
-    font-size: 1rem;
+    font-size: 0.8571rem; // TODO: themable variable
     line-height: 1.4;
     height: 40px; // TODO: best guess?
     margin-bottom: -1px;
     outline: none;
+    overflow: hidden;
     position: relative;
     
     margin-left: -5px; // TODO: best guess?
@@ -22,14 +23,21 @@
 
     > .before {
       background-position: right;
+      overflow: hidden;
+      flex: 0 0 auto;
     }
 
     > .after {
       background-position: left;
       margin-left: -1px;
+      overflow: hidden;
+      flex: 0 0 auto;
     }
 
     .inner {
+      flex: 0 1 auto;
+      overflow: hidden;
+
       height: 40px; // TODO: fix this?
       padding-top: 14px;
       background-image: inline-svg(
@@ -54,7 +62,7 @@
       );
     }
 
-    span {
+    .label {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -128,6 +136,12 @@
       width: 26px;
     }
 
+    &:hover {
+      .inner {
+        color: #1C1F21; // TODO: themable variable
+      }
+    }
+
     &[data-focus-styles-enabled='true']:focus {
       outline: 2px dashed #000;
       outline-offset: -4px;
@@ -152,6 +166,7 @@
             </g>
           </svg>'
         );
+        color: #1C1F21;  // TODO: themable variable
       }
 
       > .before {
@@ -218,11 +233,12 @@
 
   .tab {
     flex: 0 1 auto;
-    min-width: calc(5.357rem + 52px); // TODO: alter logic to avoid this type mismatch
+    min-width: calc(2.2857rem + 52px); // TODO: alter logic to avoid this type mismatch
 
     .inner {
       text-align: center;
-      min-width: 5.357rem;
+      // min-width: 5.357rem;
+      min-width: 2.2857rem;
     }
   }
 
@@ -233,14 +249,15 @@
     min-width: 0;
     max-width: 100%;
 
-    span {
-      flex: 0 1 auto;
-      min-width: 0;
-    }
+    // span {
+    //   flex: 0 1 auto;
+    //   min-width: 0;
+    // }
 
     svg {
       flex: 0 0 auto;
       font-size: 1rem;
+      height: 10px;
     }
   }
 

@@ -15,8 +15,8 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
+import usePortalManager from '../shared/usePortalManager';
 import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
-import { deferExecution } from '../utils/lifecycle-utils';
 
 import Tabs from './subcomponents/_Tabs';
 
@@ -117,42 +117,9 @@ const Workspace = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = React.useContext(ThemeContext);
-  const workspacePortalsRef = useRef({});
-  const lastActiveItemKeyRef = useRef();
-  const workspaceRef = useRef();
   const sizeMenuRef = useRef();
 
-  React.useLayoutEffect(() => {
-    if (!workspaceRef.current) {
-      return;
-    }
-
-    const dataForActiveItem = workspacePortalsRef.current[activeItemKey];
-
-    if (workspaceRef.current.contains(dataForActiveItem?.element)) {
-      return;
-    }
-
-    if (lastActiveItemKeyRef.current) {
-      const elementToRemove = workspacePortalsRef.current[lastActiveItemKeyRef.current].element;
-
-      workspacePortalsRef.current[lastActiveItemKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
-
-      workspaceRef.current.removeChild(workspacePortalsRef.current[lastActiveItemKeyRef.current].element);
-    }
-
-    if (dataForActiveItem?.element) {
-      workspaceRef.current.appendChild(dataForActiveItem.element);
-
-      if (dataForActiveItem.scrollData) {
-        applyScrollData(dataForActiveItem.scrollData, dataForActiveItem.element);
-      }
-
-      lastActiveItemKeyRef.current = activeItemKey;
-    } else {
-      lastActiveItemKeyRef.current = undefined;
-    }
-  }, [activeItemKey]);
+  const [workspaceRef, workspacePortalsRef] = usePortalManager({ activePortalKey: activeItemKey });
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),

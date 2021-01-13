@@ -9,6 +9,7 @@ import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-pers
 import SessionUserContext from '../../session/SessionUserContext';
 import SessionActionsContext from '../../session/SessionActionsContext';
 import { deferExecution } from '../../utils/lifecycle-utils';
+import usePortalManager from '../../shared/usePortalManager';
 
 import HeadlessLayout from '../embedded-layout/HeadlessLayout';
 import NavigationItem from '../shared/NavigationItem';
@@ -131,9 +132,14 @@ const PrimaryNavigationLayout = ({
   const sessionUser = React.useContext(SessionUserContext);
   const sessionActions = React.useContext(SessionActionsContext);
 
-  const contentElementRef = React.useRef();
-  const pageContainerPortalsRef = React.useRef({});
-  const lastActiveNavigationKeyRef = React.useRef();
+  const [contentElementRef, pageContainerPortalsRef] = usePortalManager({
+    activePortalKey: activeNavigationKey,
+    onPortalActivate: () => {
+      deferExecution(() => {
+        document.body.focus();
+      });
+    },
+  });
 
   const derivedTitleConfig = React.useMemo(() => {
     if (titleConfig) {
@@ -195,45 +201,6 @@ const PrimaryNavigationLayout = ({
 
     return updatedUtilityItems;
   }, [applicationIntl, utilityItems, derivedOnSelectLock]);
-
-  React.useLayoutEffect(() => {
-    if (!contentElementRef.current) {
-      return;
-    }
-
-    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
-
-    if (contentElementRef.current.contains(pageNodeForActivePage?.element) && contentElementRef.current.getAttribute('data-active-nav-key') === activeNavigationKey) {
-      return;
-    }
-
-    if (lastActiveNavigationKeyRef.current) {
-      const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
-
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
-
-      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
-    }
-
-    if (pageNodeForActivePage?.element) {
-      contentElementRef.current.appendChild(pageNodeForActivePage.element);
-
-      if (pageNodeForActivePage.scrollData) {
-        applyScrollData(pageNodeForActivePage.scrollData, pageNodeForActivePage.element);
-      }
-
-      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
-
-      lastActiveNavigationKeyRef.current = activeNavigationKey;
-
-      deferExecution(() => {
-        document.body.focus();
-      });
-    } else {
-      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
-      lastActiveNavigationKeyRef.current = undefined;
-    }
-  }, [activeNavigationKey]);
 
   let navigationItems = [];
   const navigationItemChildren = React.Children.toArray(children).filter((child) => child.type === NavigationItem);

@@ -12,6 +12,7 @@ import LayoutActionsContext from '../shared/LayoutActionsContext';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
 import { deferExecution } from '../../utils/lifecycle-utils';
+import usePortalManager from '../../shared/usePortalManager';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -120,11 +121,8 @@ const SecondaryNavigationLayout = ({
 
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
-  const contentElementRef = React.useRef();
   const sideNavPanelRef = React.useRef();
   const workspacePanelRef = React.useRef();
-  const pageContainerPortalsRef = React.useRef({});
-  const lastActiveNavigationKeyRef = React.useRef();
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
   const sideNavOverlayRef = React.useRef();
@@ -133,6 +131,15 @@ const SecondaryNavigationLayout = ({
 
   const userSelectedTypeRef = React.useRef();
   const userSelectedScaleRef = React.useRef(0);
+
+  const [contentElementRef, pageContainerPortalsRef] = usePortalManager({
+    activePortalKey: activeNavigationKey,
+    onPortalActivate: () => {
+      deferExecution(() => {
+        document.body.focus();
+      });
+    },
+  });
 
   let initialWorkspaceSize;
   if (validateInitialWorkspaceSizeForBreakpoint(activeBreakpoint)) {
@@ -213,45 +220,6 @@ const SecondaryNavigationLayout = ({
       setWorkspaceIsVisible(false);
     }
   });
-
-  React.useLayoutEffect(() => {
-    if (!contentElementRef.current) {
-      return;
-    }
-
-    const pageNodeForActivePage = pageContainerPortalsRef.current[activeNavigationKey];
-
-    if (contentElementRef.current.contains(pageNodeForActivePage?.element) && contentElementRef.current.getAttribute('data-active-nav-key') === activeNavigationKey) {
-      return;
-    }
-
-    if (lastActiveNavigationKeyRef.current) {
-      const elementToRemove = pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element;
-
-      pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
-
-      contentElementRef.current.removeChild(pageContainerPortalsRef.current[lastActiveNavigationKeyRef.current].element);
-    }
-
-    if (pageNodeForActivePage?.element) {
-      contentElementRef.current.appendChild(pageNodeForActivePage.element);
-
-      if (pageNodeForActivePage.scrollData) {
-        applyScrollData(pageNodeForActivePage.scrollData, pageNodeForActivePage.element);
-      }
-
-      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
-
-      lastActiveNavigationKeyRef.current = activeNavigationKey;
-
-      deferExecution(() => {
-        document.body.focus();
-      });
-    } else {
-      contentElementRef.current.setAttribute('data-active-nav-key', activeNavigationKey);
-      lastActiveNavigationKeyRef.current = undefined;
-    }
-  }, [activeNavigationKey]);
 
   React.useEffect(() => {
     const navigationItemKeys = navigationItems.map(item => item.props.navigationKey);

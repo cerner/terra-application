@@ -9,13 +9,9 @@ import styles from './WorkspaceContentStatusOverlay.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  variant: PropTypes.oneOf(['default', 'loading']),
+  variant: PropTypes.oneOf(['no-data', 'no-matching-results', 'not-authorized', 'error']),
   message: PropTypes.string,
   children: PropTypes.node,
-};
-
-const defaultProps = {
-  variant: 'default',
 };
 
 const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
@@ -30,6 +26,5 @@ const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
 );
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
-WorkspaceContentStatusOverlay.defaultProps = defaultProps;
 
 export default WorkspaceContentStatusOverlay;

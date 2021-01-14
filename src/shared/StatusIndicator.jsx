@@ -32,7 +32,7 @@ const propTypes = {
   /**
    * The actions to render within the StatusIndicator.
    */
-  children: PropTypes.arrayOf(PropTypes.element),
+  children: PropTypes.node,
 };
 
 const StatusIndicator = ({
@@ -79,13 +79,7 @@ const StatusIndicator = ({
   if (children) {
     actionSection = (
       <div className={cx('actions')}>
-        {React.Children.map(children, (child) => {
-          if (child.type !== StatusIndicatorButton) {
-            throw new Error('[terra-application] Unsupported child type detected. Only ');
-          }
-
-          return child;
-        })}
+        {children}
       </div>
     );
   }

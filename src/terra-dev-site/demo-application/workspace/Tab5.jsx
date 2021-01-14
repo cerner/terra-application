@@ -8,7 +8,7 @@ const Tab5 = () => {
 
   return (
     <WorkspaceContent
-      activityOverlay={isLoading && <WorkspaceContentActivityOverlay variant="loading" />}
+      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={(
         <WorkspaceContentStatusOverlay variant="error" message="This is an error message.">
           <WorkspaceContentStatusOverlayButton
@@ -22,7 +22,7 @@ const Tab5 = () => {
             }}
           />
         </WorkspaceContentStatusOverlay>
-    )}
+      )}
     />
   );
 };

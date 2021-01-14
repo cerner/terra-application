@@ -19,7 +19,6 @@ import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
 import InteractionBlockingOverlayCard from './content/InteractionBlockingOverlayCard';
 import LoadingOverlayCard from './content/LoadingOverlayCard';
-import StatusOverlayCard from './content/StatusOverlayCard';
 import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
@@ -85,7 +84,7 @@ const Page3 = ({ onRequestClose }) => {
       actions={pageActions}
       toolbar={pageToolbar}
       onRequestClose={onRequestClose}
-      activityOverlay={isLoading && <PageActivityOverlay variant="loading" />}
+      activityOverlay={isLoading ? <PageActivityOverlay variant="loading" /> : undefined}
     >
       <CardLayout>
         <Card label="Page 3 Details">
@@ -104,7 +103,6 @@ const Page3 = ({ onRequestClose }) => {
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />
-        {/* <StatusOverlayCard /> */}
         <ErrorHandlingCard pageTitle="Page 3" />
         <InteractionBlockingOverlayCard />
         <PendingActionsCard />

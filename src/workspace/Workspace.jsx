@@ -15,8 +15,7 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
-import usePortalManager from '../shared/usePortalManager';
-import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
+import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 
 import Tabs from './subcomponents/_Tabs';
 
@@ -119,7 +118,7 @@ const Workspace = ({
   const theme = React.useContext(ThemeContext);
   const sizeMenuRef = useRef();
 
-  const [workspaceRef, workspacePortalsRef] = usePortalManager({ activePortalKey: activeItemKey });
+  const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),
@@ -130,22 +129,21 @@ const Workspace = ({
     metaData: child.props.metaData,
   }));
 
-  const createDismissButton = () => {
-    if (isDismissButtonVisible && onRequestDismiss) {
-      return (
-        <Button
-          className={cx('active-button')}
-          icon={<IconPanelRight />}
-          text="Toggle Workspace" // TODO: i18n needed
-          onClick={onRequestDismiss}
-          variant="utility"
-        />
-      );
-    }
-    return undefined;
-  };
+  let dismissButton;
+  if (isDismissButtonVisible && onRequestDismiss) {
+    dismissButton = (
+      <Button
+        className={cx('active-button')}
+        icon={<IconPanelRight />}
+        text="Toggle Workspace" // TODO: i18n needed
+        onClick={onRequestDismiss}
+        variant="utility"
+      />
+    );
+  }
 
-  const createSizeButton = () => {
+  let sizeButton;
+  if (sizeOptions || onRequestDismiss) {
     let dismissItem;
     let sizeItems;
     let dividerItem;
@@ -164,10 +162,6 @@ const Workspace = ({
       );
     }
 
-    if (!sizeItems && !dismissItem) {
-      return undefined;
-    }
-
     if (sizeOptions && dismissItem) {
       sizeItems = (
         <ActionMenuGroup>
@@ -177,7 +171,7 @@ const Workspace = ({
       dividerItem = <ActionMenuDivider />;
     }
 
-    return (
+    sizeButton = (
       <>
         <Button
           className={cx('menu-button')}
@@ -208,7 +202,7 @@ const Workspace = ({
         </Popup>
       </>
     );
-  };
+  }
 
   const workspaceClassNames = classNames(
     cx(
@@ -226,22 +220,20 @@ const Workspace = ({
       role="none"
     >
       <div role="none" className={cx('header')}>
-        {createDismissButton()}
+        {dismissButton}
         <div className={cx('fill-element')} />
-        {createSizeButton()}
+        {sizeButton}
       </div>
       <div role="none" className={cx('header2', { 'has-dismiss-button': onRequestDismiss && isDismissButtonVisible })}>
         <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
-      <div role="none" className={cx('body')} ref={workspaceRef}>
+      <div role="none" className={cx('body')} ref={workspaceContainerRef}>
         {React.Children.map(children, child => {
           let portalElement = workspacePortalsRef.current[child.props.itemKey]?.element;
           if (!portalElement) {
-            portalElement = document.createElement('div');
+            portalElement = getPortalElement();
             portalElement.setAttribute('role', 'none');
-            portalElement.style.position = 'relative';
-            portalElement.style.height = '100%';
-            portalElement.style.width = '100%';
+
             workspacePortalsRef.current[child.props.itemKey] = {
               element: portalElement,
             };

@@ -34,33 +34,40 @@ const propTypes = {
   isActive: PropTypes.bool,
   /**
    * @private
-   * The html element to be portal'd to.
+   * The html element to be hold the portaled item content.
    */
   portalElement: PropTypes.instanceOf(HTMLElement),
 };
 
+/**
+ * The WorkspaceItem component represents a tab within the Workspace, defining
+ * its labels and content. The WorkspaceItem component must only be used as an
+ * immediate child of the Workspace component.
+ */
 const WorkspaceItem = ({
-  // possible persistent prop?
   id,
   associatedPanelId,
   isActive,
   label,
   render,
   portalElement,
+  /**
+   * The itemKey and metaData props are not used by the WorkspaceItem component.
+   * However, the Workspace component will read those prop values and use those values to
+   * build its tab structure.
+   */
+  itemKey, // eslint-disable-line no-unused-vars
+  metaData, // eslint-disable-line no-unused-vars
 }) => {
-  const tabContextValue = React.useMemo(() => (
-    {
-      tabId: id,
-      panelId: associatedPanelId,
-      label,
-    }
-  ), [associatedPanelId, id, label]);
+  const tabContextValue = React.useMemo(() => ({
+    tabId: id,
+    panelId: associatedPanelId,
+    label,
+  }), [associatedPanelId, id, label]);
 
-  const workspaceContextValue = React.useMemo(() => (
-    {
-      isActive,
-    }
-  ), [isActive]);
+  const workspaceContextValue = React.useMemo(() => ({
+    isActive,
+  }), [isActive]);
 
   return (
     ReactDOM.createPortal((

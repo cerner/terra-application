@@ -132,13 +132,10 @@ const SecondaryNavigationLayout = ({
   const userSelectedTypeRef = React.useRef();
   const userSelectedScaleRef = React.useRef(0);
 
-  const [contentElementRef, pageContainerPortalsRef] = usePortalManager({
-    activePortalKey: activeNavigationKey,
-    onPortalActivate: () => {
-      deferExecution(() => {
-        document.body.focus();
-      });
-    },
+  const [contentElementRef, pageContainerPortalsRef] = usePortalManager(activeNavigationKey, () => {
+    deferExecution(() => {
+      document.body.focus();
+    });
   });
 
   let initialWorkspaceSize;

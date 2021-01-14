@@ -22,7 +22,13 @@ const propTypes = {
    * Optional toolbar to be displayed outside of the content region.
    */
   toolBar: PropTypes.element,
+  /**
+   * A WorkspaceContentStatusOverlay component instance to be rendered on top of the provided children.
+   */
   statusOverlay: PropTypes.element,
+  /**
+   * A WorkspaceContentActivityOverlay component instance to be rendered on top of the provided children.
+   */
   activityOverlay: PropTypes.element,
 };
 
@@ -31,19 +37,10 @@ const WorkspaceContent = ({
   toolBar,
   statusOverlay,
   activityOverlay,
-  ...customProps
 }) => {
   const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-
-  const contentClassNames = classNames(
-    cx(
-      'panel',
-      theme.className,
-    ),
-    customProps.className,
-  );
 
   const overlays = React.useMemo(() => {
     const overlaysToRender = [];
@@ -67,7 +64,7 @@ const WorkspaceContent = ({
 
   return (
     <div
-      className={contentClassNames}
+      className={cx('panel', theme.className)}
       role="none"
     >
       <div
@@ -81,7 +78,6 @@ const WorkspaceContent = ({
       <div role="none" className={cx('panel-content')}>
         <DynamicOverlayContainer overlays={overlays}>
           <div
-            {...customProps}
             className={cx('panel-overflow')}
             role="tabpanel"
             tabIndex="0"

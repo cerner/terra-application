@@ -132,13 +132,10 @@ const PrimaryNavigationLayout = ({
   const sessionUser = React.useContext(SessionUserContext);
   const sessionActions = React.useContext(SessionActionsContext);
 
-  const [contentElementRef, pageContainerPortalsRef] = usePortalManager({
-    activePortalKey: activeNavigationKey,
-    onPortalActivate: () => {
-      deferExecution(() => {
-        document.body.focus();
-      });
-    },
+  const [contentElementRef, pageContainerPortalsRef] = usePortalManager(activeNavigationKey, () => {
+    deferExecution(() => {
+      document.body.focus();
+    });
   });
 
   const derivedTitleConfig = React.useMemo(() => {

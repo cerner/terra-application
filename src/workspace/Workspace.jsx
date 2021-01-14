@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import Button from 'terra-button';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
@@ -16,6 +15,7 @@ import {
   ActionMenuRadio,
 } from '../action-menu';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
+import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
 import Tabs from './subcomponents/_Tabs';
 
@@ -132,12 +132,10 @@ const Workspace = ({
   let dismissButton;
   if (isDismissButtonVisible && onRequestDismiss) {
     dismissButton = (
-      <Button
-        className={cx('active-button')}
+      <WorkspaceButton
+        ariaLabel="Toggle Workspace" // TODO: i18n needed
         icon={<IconPanelRight />}
-        text="Toggle Workspace" // TODO: i18n needed
-        onClick={onRequestDismiss}
-        variant="utility"
+        onActivate={onRequestDismiss}
       />
     );
   }
@@ -173,12 +171,10 @@ const Workspace = ({
 
     sizeButton = (
       <>
-        <Button
-          className={cx('menu-button')}
+        <WorkspaceButton
+          ariaLabel="Workspace Size Menu" // TODO: i18n needed
           icon={<IconSettings />}
-          text="Workspace Size Menu" // TODO: i18n needed
-          onClick={() => setIsMenuOpen(true)}
-          variant="utility"
+          onActivate={() => setIsMenuOpen(true)}
           refCallback={node => { sizeMenuRef.current = node; }}
         />
         <Popup

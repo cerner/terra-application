@@ -5,7 +5,22 @@ import {
   KEY_DOWN,
   KEY_HOME,
   KEY_END,
+  KEY_RETURN,
+  KEY_SPACE,
 } from 'keycode-js';
+
+/**
+ * Returns a function that will execute the provided function upon detection of a KEY_RETURN or KEY_SPACE keydown event.
+ * @param {Function} onSelect The function to be executed after event detection.
+ */
+const generateKeyDownSelection = onSelect => (
+  onSelect ? (event) => {
+    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
+      event.preventDefault();
+      onSelect();
+    }
+  } : undefined
+);
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
@@ -157,6 +172,7 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
 export default {
   enableFocusStyles,
   disableFocusStyles,
+  generateKeyDownSelection,
   handleArrows,
   handleMoreButtonArrows,
 };
@@ -164,6 +180,7 @@ export default {
 export {
   enableFocusStyles,
   disableFocusStyles,
+  generateKeyDownSelection,
   handleArrows,
   handleMoreButtonArrows,
 };

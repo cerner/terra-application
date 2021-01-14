@@ -19,7 +19,7 @@ describe('SlidePanelManger', () => {
       const wrapper = shallow((
         <SlidePanelManger
           disclosureAccessory={<div>Test Accessory</div>}
-          navigationPromptResolutionOptions={{
+          unsavedChangesPromptResolutionOptions={{
             test: 'options',
           }}
         >
@@ -37,14 +37,14 @@ describe('SlidePanelManger', () => {
 
       const wrapper = shallow((
         <SlidePanelManger
-          navigationPromptResolutionOptions={promptOptions}
+          unsavedChangesPromptResolutionOptions={promptOptions}
         >
           <TestChild />
         </SlidePanelManger>
       ));
 
       const disclosureWrapper = wrapper.props().withDisclosureContainer(<div>Test Disclosure Content</div>);
-      expect(disclosureWrapper.props.navigationPromptResolutionOptions).toBeDefined();
+      expect(disclosureWrapper.props.unsavedChangesPromptResolutionOptions).toBeDefined();
     });
   });
 });

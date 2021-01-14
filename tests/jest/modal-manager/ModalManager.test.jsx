@@ -19,7 +19,7 @@ describe('ModalManager', () => {
       const wrapper = shallow((
         <ModalManager
           disclosureAccessory={<div>Test Accessory</div>}
-          navigationPromptResolutionOptions={{
+          unsavedChangesPromptResolutionOptions={{
             test: 'options',
           }}
         >
@@ -37,14 +37,14 @@ describe('ModalManager', () => {
 
       const wrapper = shallow((
         <ModalManager
-          navigationPromptResolutionOptions={promptOptions}
+          unsavedChangesPromptResolutionOptions={promptOptions}
         >
           <TestChild />
         </ModalManager>
       ));
 
       const disclosureWrapper = wrapper.props().withDisclosureContainer(<div>Test Disclosure Content</div>);
-      expect(disclosureWrapper.props.navigationPromptResolutionOptions).toBeDefined();
+      expect(disclosureWrapper.props.unsavedChangesPromptResolutionOptions).toBeDefined();
     });
   });
 });

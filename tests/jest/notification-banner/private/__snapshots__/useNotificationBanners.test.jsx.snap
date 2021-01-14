@@ -62,9 +62,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>
@@ -130,9 +128,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>
@@ -184,9 +180,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider registers no
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Error.
             </strong>
           </div>
         </div>
@@ -245,9 +239,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>
@@ -299,9 +291,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Error.
             </strong>
           </div>
         </div>
@@ -321,9 +311,6 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
 
 exports[`useNotificationBanners Nested Notification Banner Provider unregisters banner with top-level Banner Provider 2`] = `
 <div>
-  <div
-    aria-live="polite"
-  />
   <div>
     <button
       data-testid="show-banner"
@@ -370,9 +357,7 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
             <strong
               class="title"
             >
-              <span>
-                Error.
-              </span>
+              Error.
             </strong>
           </div>
         </div>
@@ -392,9 +377,6 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
 
 exports[`useNotificationBanners Nested Notification Banner Provider unregisters banner with top-level Banner Provider 3`] = `
 <div>
-  <div
-    aria-live="polite"
-  />
   <div>
     <button
       data-testid="show-banner"
@@ -402,9 +384,6 @@ exports[`useNotificationBanners Nested Notification Banner Provider unregisters 
     >
       Toggle Notification Banner
     </button>
-    <div
-      aria-live="polite"
-    />
     <div>
       <button
         data-testid="show-2nd-banner"
@@ -471,9 +450,7 @@ exports[`useNotificationBanners NotificationBannerProvider.registerNotificationB
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>
@@ -531,9 +508,7 @@ exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificatio
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>
@@ -552,9 +527,6 @@ exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificatio
 
 exports[`useNotificationBanners NotificationBannerProvider.unregisterNotificationBanner unregisters notification banner when id is provided 2`] = `
 <div>
-  <div
-    aria-live="polite"
-  />
   <div>
     <button
       data-testid="show-banner"
@@ -617,9 +589,7 @@ exports[`useNotificationBanners renders with children that has a an banner 1`] =
           <strong
             class="title"
           >
-            <span>
-              Error.
-            </span>
+            Error.
           </strong>
         </div>
       </div>

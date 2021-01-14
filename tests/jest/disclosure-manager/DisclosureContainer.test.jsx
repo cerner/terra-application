@@ -7,11 +7,11 @@ describe('DisclosureContainer', () => {
   // Snapshot Tests
   it('should render the provided children', () => {
     const disclosureContainer = (
-      <DisclosureContainer.WrappedComponent
+      <DisclosureContainer
         intl={mockIntl}
       >
         <div>Test Child</div>
-      </DisclosureContainer.WrappedComponent>
+      </DisclosureContainer>
     );
 
     const wrapper = shallow(disclosureContainer);

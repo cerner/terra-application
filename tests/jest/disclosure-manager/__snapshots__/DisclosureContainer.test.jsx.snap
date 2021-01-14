@@ -8,21 +8,19 @@ exports[`DisclosureContainer should render the provided children 1`] = `
     }
   }
 >
-  <InjectIntl(ApplicationErrorBoundary)>
-    <ApplicationLoadingOverlayProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
-        <ContentContainer
-          fill={true}
-          header={<NotificationBanners />}
-        >
-          <NotificationBannerProvider>
-            <div>
-              Test Child
-            </div>
-          </NotificationBannerProvider>
-        </ContentContainer>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
-    </ApplicationLoadingOverlayProvider>
-  </InjectIntl(ApplicationErrorBoundary)>
+  <ApplicationLoadingOverlayProvider>
+    <withPromptRegistration(UnsavedChangesPromptCheckpoint)>
+      <ContentContainer
+        fill={true}
+        header={<NotificationBanners />}
+      >
+        <NotificationBannerProvider>
+          <div>
+            Test Child
+          </div>
+        </NotificationBannerProvider>
+      </ContentContainer>
+    </withPromptRegistration(UnsavedChangesPromptCheckpoint)>
+  </ApplicationLoadingOverlayProvider>
 </ContextProvider>
 `;

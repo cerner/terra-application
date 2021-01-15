@@ -32,7 +32,7 @@ const propTypes = {
   refCallback: PropTypes.func,
 };
 
-const Extension = ({
+const WorkspaceButton = ({
   ariaLabel,
   icon,
   isActive,
@@ -71,6 +71,6 @@ const Extension = ({
   );
 };
 
-Extension.propTypes = propTypes;
+WorkspaceButton.propTypes = propTypes;
 
-export default Extension;
+export default WorkspaceButton;

@@ -17,4 +17,15 @@ const MockApplication = ({ children }) => (
 );
 /* eslint-enable react/prop-types */
 
+const withMockApplication = (Component) => {
+  const WrappedComponent = (props) => (
+    <MockApplication>
+      <Component {...props} />
+    </MockApplication>
+  );
+
+  return WrappedComponent;
+};
+
 export default MockApplication;
+export { withMockApplication };

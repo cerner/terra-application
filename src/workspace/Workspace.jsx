@@ -63,7 +63,7 @@ const propTypes = {
    * Whether or not the face up dismiss button should be displayed.
    * Also requires the onRequestDismiss prop.
    */
-  isDismissButtonVisible: PropTypes.bool,
+  dismissButtonIsVisible: PropTypes.bool,
   /**
    * The function callback triggering when a item is selected.
    * Returns the associated itemKey and metaData. e.g. onRequestActivate(itemKey, metaData)
@@ -107,7 +107,7 @@ const Workspace = ({
   ariaLabel,
   activeSize,
   children,
-  isDismissButtonVisible,
+  dismissButtonIsVisible,
   onRequestActivate,
   onRequestSizeChange,
   onRequestDismiss,
@@ -131,7 +131,7 @@ const Workspace = ({
   }));
 
   let dismissButton;
-  if (isDismissButtonVisible && onRequestDismiss) {
+  if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
         ariaLabel="Toggle Workspace" // TODO: i18n needed
@@ -228,7 +228,7 @@ const Workspace = ({
         <div className={cx('fill-element')} />
         {sizeButton}
       </div>
-      <div role="none" className={cx('header2', { 'has-dismiss-button': onRequestDismiss && isDismissButtonVisible })}>
+      <div role="none" className={cx('header2', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
         <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceContainerRef}>

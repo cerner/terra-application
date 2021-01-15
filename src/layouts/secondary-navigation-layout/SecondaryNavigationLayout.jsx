@@ -566,6 +566,7 @@ const SecondaryNavigationLayout = ({
               style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
               inert={sideNavOverlayIsVisible ? 'true' : null}
               tabIndex="-1"
+              aria-label="Workspace" // TODO intl
             >
               <div
                 style={{

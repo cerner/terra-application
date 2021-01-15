@@ -12,7 +12,7 @@ import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persist
  */
 const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivated) => {
   const containerRef = React.useRef();
-  const portalRefs = React.useRef({});
+  const portalsRef = React.useRef({});
   const lastActiveItemKeyRef = React.useRef();
 
   React.useLayoutEffect(() => {
@@ -20,7 +20,7 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
       return;
     }
 
-    const dataForActivePortal = portalRefs.current[activePortalKey];
+    const dataForActivePortal = portalsRef.current[activePortalKey];
 
     if (containerRef.current.contains(dataForActivePortal?.element)) {
       /**
@@ -32,20 +32,25 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
 
     if (lastActiveItemKeyRef.current) {
       /**
-       * If a
+       * If a portal was previously active and is becoming inactive, its
+       * scroll positions are recorded and the element is removed from the DOM.
        */
-      const elementToRemove = portalRefs.current[lastActiveItemKeyRef.current].element;
+      const elementToRemove = portalsRef.current[lastActiveItemKeyRef.current].element;
 
-      portalRefs.current[lastActiveItemKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
+      portalsRef.current[lastActiveItemKeyRef.current].scrollData = getPersistentScrollMap(elementToRemove);
 
       containerRef.current.removeChild(elementToRemove);
 
-      if (onPortalActivated) {
-        onPortalActivated(lastActiveItemKeyRef.current, elementToRemove);
+      if (onPortalDeactivated) {
+        onPortalDeactivated(lastActiveItemKeyRef.current, elementToRemove);
       }
     }
 
     if (dataForActivePortal?.element) {
+      /**
+       * If the activePortalKey matches a known element, that element iis appended to the
+       * container and any previously recorded scroll positions are applied.
+       */
       containerRef.current.appendChild(dataForActivePortal.element);
 
       if (dataForActivePortal.scrollData) {
@@ -54,15 +59,15 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
 
       lastActiveItemKeyRef.current = activePortalKey;
 
-      if (onPortalDeactivated) {
-        onPortalDeactivated(activePortalKey, dataForActivePortal.element);
+      if (onPortalActivated) {
+        onPortalActivated(activePortalKey, dataForActivePortal.element);
       }
     } else {
       lastActiveItemKeyRef.current = undefined;
     }
   }, [activePortalKey, onPortalActivated, onPortalDeactivated]);
 
-  return [containerRef, portalRefs];
+  return [containerRef, portalsRef];
 };
 
 /**

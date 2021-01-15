@@ -46,8 +46,10 @@ const SecondaryNavigationLayoutWorkspace = ({
     <Workspace
       id={id || 'test-id'}
       activeItemKey={activeItemKey}
-      ariaLabel="work space"
-      onRequestActivate={metaData => setActiveItemKey(metaData.key)}
+      ariaLabel="Workspace"
+      onRequestActivate={(itemKey, metaData) => {
+        setActiveItemKey(itemKey);
+      }}
       activeSize={activeSize}
       sizeOptions={sizeOptions}
       onRequestSizeChange={onRequestSizeChange}

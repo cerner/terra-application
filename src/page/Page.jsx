@@ -3,14 +3,10 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import uuidv4 from 'uuid/v4';
-import LoadingOverlay from 'terra-overlay/lib/LoadingOverlay';
-import OverlayContainer from 'terra-overlay/lib/OverlayContainer';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 
-import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationItemContext } from '../layouts';
 import ActiveMainPageRegistrationContext from '../application-container/private/active-main-page/ActiveMainPageRegistrationContext';
 

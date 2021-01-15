@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import { FormattedMessage } from 'react-intl';
-import Button from 'terra-button';
 import Divider from 'terra-divider';
-
-import StatusIndicatorButton from './StatusIndicatorButton';
 
 import styles from './StatusIndicator.module.scss';
 

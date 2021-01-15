@@ -129,7 +129,7 @@ class Tabs extends React.Component {
       const endStyle = window.getComputedStyle(endSvg, null);
 
       const startWidth = parseFloat(startStyle.getPropertyValue('width'));
-      const innerMinWidth = parseFloat(innerStyle.getPropertyValue('min-width')); 
+      const innerMinWidth = parseFloat(innerStyle.getPropertyValue('min-width'));
       const endWidth = parseFloat(endStyle.getPropertyValue('width'));
 
       const tabMinWidth = startWidth + innerMinWidth + endWidth;
@@ -191,16 +191,16 @@ class Tabs extends React.Component {
   }
 
   wrapOnSelect(onSelect) {
-    return (event, metaData) => {
+    return (itemKey, metaData) => {
       this.setIsOpen(false);
-      onSelect(metaData);
+      onSelect(itemKey, metaData);
     };
   }
 
   wrapOnSelectHidden(onSelect) {
-    return (event, metaData) => {
+    return (itemKey, metaData) => {
       if (this.isOpen) {
-        onSelect(metaData);
+        onSelect(itemKey, metaData);
       }
       this.setIsOpen(!this.isOpen);
     };

@@ -69,6 +69,7 @@ const HiddenTab = ({
   index,
   isSelected,
   label,
+  itemKey,
   metaData,
   onBlur,
   onFocus,
@@ -87,14 +88,14 @@ const HiddenTab = ({
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
       event.preventDefault();
       event.stopPropagation();
-      onSelect(event, metaData);
+      onSelect(itemKey, metaData);
     } else {
       handleArrows(event, index, tabIds);
     }
   }
 
-  function onClick(event) {
-    onSelect(event, metaData);
+  function onClick() {
+    onSelect(itemKey, metaData);
   }
 
   if (onSelect) {

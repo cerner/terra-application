@@ -66,7 +66,7 @@ const propTypes = {
   isDismissButtonVisible: PropTypes.bool,
   /**
    * The function callback triggering when a item is selected.
-   * Returns the associated metaData. e.g. onRequestActivate(event, metaData)
+   * Returns the associated itemKey and metaData. e.g. onRequestActivate(itemKey, metaData)
    */
   onRequestActivate: PropTypes.func.isRequired,
   /**
@@ -122,6 +122,7 @@ const Workspace = ({
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),
+    itemKey: child.props.itemKey,
     associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
     label: child.props.label,
     isSelected: child.props.itemKey === activeItemKey,
@@ -147,7 +148,9 @@ const Workspace = ({
     let dividerItem;
 
     if (sizeOptions && sizeOptions.length) {
-      sizeItems = createOptions(sizeOptions, activeSize, onRequestSizeChange, () => setIsMenuOpen(false));
+      sizeItems = createOptions(sizeOptions, activeSize, onRequestSizeChange, () => {
+        setIsMenuOpen(false);
+      });
     }
 
     if (onRequestDismiss) {
@@ -155,7 +158,10 @@ const Workspace = ({
         <ActionMenuItem
           actionKey="workspace-dimiss-action"
           label="Close Workspace Pane" // TODO: i18n needed
-          onAction={() => { setIsMenuOpen(false); onRequestDismiss(); }}
+          onAction={() => {
+            setIsMenuOpen(false);
+            onRequestDismiss();
+          }}
         />
       );
     }
@@ -180,7 +186,9 @@ const Workspace = ({
         <Popup
           isOpen={isMenuOpen}
           targetRef={() => sizeMenuRef.current}
-          onRequestClose={() => { setIsMenuOpen(false); }}
+          onRequestClose={() => {
+            setIsMenuOpen(false);
+          }}
           contentHeight="auto"
           contentWidth="240"
           contentAttachment="top right"

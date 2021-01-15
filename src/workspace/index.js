@@ -6,8 +6,8 @@ import WorkspaceContentActivityOverlay from './overlays/WorkspaceContentActivity
 import WorkspaceContentStatusOverlay from './overlays/WorkspaceContentStatusOverlay';
 import WorkspaceContentStatusOverlayButton from './overlays/WorkspaceContentStatusOverlayButton';
 
+export default Workspace;
 export {
-  Workspace,
   WorkspaceContent,
   WorkspaceContext,
   WorkspaceItem,

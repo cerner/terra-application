@@ -29,7 +29,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
   const overlayRefs = [];
 
   /**
-   * This layout effect ensures that the proper layers are rendered
+   * This effect ensures that the proper layers are rendered
    * as inert prior to painting to the DOM. This effect will execute
    * after every update of the DynamicOverlayContainer; however, the
    * inner inert logic will abort early if the element is already in

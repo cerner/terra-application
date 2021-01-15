@@ -8,8 +8,6 @@ import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
-import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import ApplicationConceptBannerContext from '../application-container/ApplicationConceptBannerContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
@@ -115,13 +113,9 @@ const ModalContent = (props) => {
         </div>
         <div className={cx('content')}>
           <NotificationBannerProvider>
-            <ApplicationLoadingOverlayProvider>
-              <ApplicationStatusOverlayProvider>
-                <Scroll>
-                  {children}
-                </Scroll>
-              </ApplicationStatusOverlayProvider>
-            </ApplicationLoadingOverlayProvider>
+            <Scroll>
+              {children}
+            </Scroll>
           </NotificationBannerProvider>
         </div>
         <div className={cx('footer')}>

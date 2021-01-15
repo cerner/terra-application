@@ -1,13 +1,14 @@
 :local {
-  .outer-container, .content-container {
+  .outer-container,
+  .content-container {
     height: 100%;
     position: relative;
     width: 100%;
   }
 
   .overlay-container {
-    left: 0;
     height: 100%;
+    left: 0;
     position: absolute;
     top: 0;
     width: 100%;

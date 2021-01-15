@@ -29,5 +29,10 @@
   "terraApplication.skipToButton.prefix": "Skip to {target}",
 
   "terraApplication.PageOverlayContainer.loading": "Loading...",
-  "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading..."
+  "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading...",
+
+  "terraApplication.statusIndicator.no-data": "No Results",
+  "terraApplication.statusIndicator.no-matching-results": "No Matching Results",
+  "terraApplication.statusIndicator.not-authorized": "Not Authorised",
+  "terraApplication.statusIndicator.error": "Error"
 }

@@ -165,6 +165,7 @@
     "@babel/preset-react": "^7.9.1",
     "@cerner/eslint-config-terra": "^4.0.0",
     "@testing-library/react": "^10.0.4",
+    "@testing-library/jest-dom": "5.11.6",
     "@testing-library/user-event": "^12.6.0",
     "babel-eslint": "^10.1.0",
     "babel-jest": "^24.8.0",

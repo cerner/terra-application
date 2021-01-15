@@ -38,7 +38,7 @@ test('renders WorkspaceItems based upon the activeItemKey prop', () => {
   const view = render(<TestWorkspace />);
 
   // Expect content for Tab 1 to be rendered to DOM, and Tab 2 content to be portaled
-  expect(screen.queryByRole('tabpanel', { name: 'Tab 1' })).toBeDefined();
+  expect(screen.queryByRole('tabpanel', { name: 'Tab 1' })).toBeTruthy();
   expect(screen.queryByRole('tabpanel', { name: 'Tab 2' })).toBe(null);
 
   // Update Workspace to make Tab 2 the active item
@@ -46,7 +46,7 @@ test('renders WorkspaceItems based upon the activeItemKey prop', () => {
 
   // Expect content for Tab 2 to be rendered to DOM, and Tab 1 content to be portaled
   expect(screen.queryByRole('tabpanel', { name: 'Tab 1' })).toBe(null);
-  expect(screen.queryByRole('tabpanel', { name: 'Tab 2' })).toBeDefined();
+  expect(screen.queryByRole('tabpanel', { name: 'Tab 2' })).toBeTruthy();
 });
 
 test('communicates tab selections through the onRequestActivate prop', () => {
@@ -80,16 +80,16 @@ test('presents utility menu with size options and utilizes onRequestSizeChange p
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeDefined();
+  expect(screen.queryByLabelText('Workspace Settings')).toBeTruthy();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
   const hugeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Huge', disabled: true });
 
   // Expect three size menu items are present, matching the provided sizeOptions
-  expect(smallMenuItem).toBeDefined();
-  expect(largeMenuItem).toBeDefined();
-  expect(hugeMenuItem).toBeDefined();
+  expect(smallMenuItem).toBeTruthy();
+  expect(largeMenuItem).toBeTruthy();
+  expect(hugeMenuItem).toBeTruthy();
 
   userEvent.click(largeMenuItem);
 
@@ -115,12 +115,12 @@ test('presents utility menu with item to close workspace if onRequestDismiss cal
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeDefined();
+  expect(screen.queryByLabelText('Workspace Settings')).toBeTruthy();
 
   const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'Close Workspace Pane' });
 
   // Expect the close item to be rendered in the menu
-  expect(closeWorkspaceMenuItem).toBeDefined();
+  expect(closeWorkspaceMenuItem).toBeTruthy();
 
   userEvent.click(closeWorkspaceMenuItem);
 
@@ -147,7 +147,7 @@ test('presents utility menu with combined size and dismiss options if necessary'
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeDefined();
+  expect(screen.queryByLabelText('Workspace Settings')).toBeTruthy();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
@@ -155,10 +155,10 @@ test('presents utility menu with combined size and dismiss options if necessary'
   const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'Close Workspace Pane' });
 
   // Expect all menuItems to be rendered
-  expect(smallMenuItem).toBeDefined();
-  expect(largeMenuItem).toBeDefined();
-  expect(hugeMenuItem).toBeDefined();
-  expect(closeWorkspaceMenuItem).toBeDefined();
+  expect(smallMenuItem).toBeTruthy();
+  expect(largeMenuItem).toBeTruthy();
+  expect(hugeMenuItem).toBeTruthy();
+  expect(closeWorkspaceMenuItem).toBeTruthy();
 });
 
 test('presents explicit dismiss button if enabled by dismissButtonIsVisible', () => {
@@ -197,7 +197,7 @@ test('dismisses the Workspace Settings menu when the popup wants to close', () =
 
   // Expect settings menu to render after button selection
   const settingsPopup = screen.queryByLabelText('Workspace Settings');
-  expect(settingsPopup).toBeDefined();
+  expect(settingsPopup).toBeTruthy();
 
   // Simulate user pressing Escape key to close settings popup
   userEvent.type(settingsPopup, '{esc}');

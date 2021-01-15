@@ -35,11 +35,15 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Callback function triggering on selection.
+   * Callback function triggering on selection. onSelect(itemKey, metaData)
    */
   onSelect: PropTypes.func.isRequired,
   /**
-   * Object to be returned in the onSelect.
+   * Identifier for the workspace item represented by the Tab. Returned with onSelect.
+   */
+  itemKey: PropTypes.string,
+  /**
+   * Data for the workspace item represented by the Tab. Returned with onSelect.
    */
   metaData: PropTypes.object,
   /**

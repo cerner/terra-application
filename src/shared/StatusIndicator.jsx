@@ -50,7 +50,7 @@ const StatusIndicator = ({
 
   let defaultTitle;
   if (variant) {
-    defaultTitle = <FormattedMessage id={`Terra.status-view.${variant}`} />;
+    defaultTitle = <FormattedMessage id={`terraApplication.statusIndicator.${variant}`} />;
   }
 
   // Custom title takes precedence

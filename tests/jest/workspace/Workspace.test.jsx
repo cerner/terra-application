@@ -14,7 +14,7 @@ const TestWorkspace = (props) => (
   <MockApplication>
     <Workspace
       id="test-workspace"
-      aria-label="Test Workspace"
+      ariaLabel="Test Workspace"
       activeItemKey="1"
       onRequestActivate={() => {}}
       {...props}

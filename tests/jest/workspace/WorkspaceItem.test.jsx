@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, prettyDOM } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import { WorkspaceItem, WorkspaceContext } from '../../../src/workspace';

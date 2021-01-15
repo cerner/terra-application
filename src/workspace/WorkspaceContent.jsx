@@ -20,7 +20,7 @@ const propTypes = {
   /**
    * Optional toolbar to be displayed outside of the content region.
    */
-  toolBar: PropTypes.element,
+  toolbar: PropTypes.element,
   /**
    * A WorkspaceContentStatusOverlay component instance to be rendered on top of the provided children.
    */
@@ -33,7 +33,7 @@ const propTypes = {
 
 const WorkspaceContent = ({
   children,
-  toolBar,
+  toolbar,
   statusOverlay,
   activityOverlay,
 }) => {
@@ -69,9 +69,10 @@ const WorkspaceContent = ({
       <div
         className={cx('panel-header')}
         role="none"
+        data-testid="workspace-content-heading"
       >
         <TabHeader>{label}</TabHeader>
-        {toolBar}
+        {toolbar}
         <NotificationBanners />
       </div>
       <div role="none" className={cx('panel-content')}>

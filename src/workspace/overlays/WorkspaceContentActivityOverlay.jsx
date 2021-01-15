@@ -19,7 +19,8 @@ const defaultProps = {
 const WorkspaceContentActivityOverlay = ({ variant }) => (
   <div
     className={cx('activity-overlay')}
-    aria-live="polite"
+    role="status"
+    data-testid="workspace-content-activity"
   >
     <div className={cx('content')}>
       <IconSpinner className={cx('icon')} isSpin height="36" width="36" />

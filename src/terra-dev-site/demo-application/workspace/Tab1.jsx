@@ -9,7 +9,7 @@ const Tab1 = () => {
 
   return (
     <WorkspaceContent
-      toolBar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
+      toolbar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
       activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
     >

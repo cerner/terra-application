@@ -17,7 +17,8 @@ const propTypes = {
 const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
   <div
     className={cx('status-overlay')}
-    aria-live="polite"
+    role="status"
+    data-testid="workspace-content-status"
   >
     <StatusIndicator variant={variant} message={message}>
       {children}

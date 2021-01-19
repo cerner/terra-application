@@ -3,50 +3,58 @@ import PropTypes from 'prop-types';
 
 import ErrorBoundary from './ErrorBoundary';
 
-class FallbackWithCallbacks extends React.Component {
-  componentDidMount() {
-    if (this.props.onLoadStart) {
-      this.props.onLoadStart();
-    }
-  }
+const CallbackFallback = ({ children, onMount }) => {
+  React.useLayoutEffect(() => {
+    onMount(true);
 
-  componentWillUnmount() {
-    if (this.props.onLoadEnd) {
-      this.props.onLoadEnd();
-    }
-  }
+    return () => onMount(false);
+  }, [onMount]);
 
-  render() {
-    return this.props.children || <div />;
-  }
-}
+  return children || <div />;
+};
 
-FallbackWithCallbacks.propTypes = {
-  onLoadStart: PropTypes.func,
-  onLoadEnd: PropTypes.func,
+CallbackFallback.propTypes = {
+  onMount: PropTypes.func,
   children: PropTypes.node,
 };
 
 const Suspense = ({
   onLoadStart, onLoadEnd, onError, fallback, children,
-}) => (
-  <ErrorBoundary
-    onCatchError={(caughtError) => {
-      if (onError) {
-        onError(caughtError);
-      }
-    }}
-  >
-    <React.Suspense
-      fallback={(
-        <FallbackWithCallbacks onLoadStart={onLoadStart} onLoadEnd={onLoadEnd}>
-          {fallback}
-        </FallbackWithCallbacks>
-        )}
-    >
-      {children}
-    </React.Suspense>
-  </ErrorBoundary>
-);
+}) => {
+  const [fallbackIsRendered, setFallbackIsRendered] = React.useState(false);
+  const loadingIndicatorRef = React.useRef(false);
 
+  React.useEffect(() => {
+    if (onLoadStart && fallbackIsRendered && !loadingIndicatorRef.current) {
+      loadingIndicatorRef.current = true;
+      onLoadStart();
+    }
+  }, [onLoadStart, fallbackIsRendered]);
+
+  React.useEffect(() => {
+    if (onLoadEnd && !fallbackIsRendered && loadingIndicatorRef.current) {
+      onLoadEnd();
+    }
+  }, [onLoadEnd, fallbackIsRendered]);
+
+  return (
+    <ErrorBoundary
+      onCatchError={(caughtError) => {
+        if (onError) {
+          onError(caughtError);
+        }
+      }}
+    >
+      <React.Suspense
+        fallback={(
+          <CallbackFallback onMount={setFallbackIsRendered}>
+            {fallback}
+          </CallbackFallback>
+        )}
+      >
+        {children}
+      </React.Suspense>
+    </ErrorBoundary>
+  );
+};
 export default Suspense;

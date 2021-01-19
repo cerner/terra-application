@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
-import { injectIntl, intlShape } from 'react-intl';
-import logger from '../utils/logger';
+
+import ApplicationIntlContext from '../application-intl/ApplicationIntlContext';
+import ErrorBoundary from '../shared/ErrorBoundary';
 
 const propTypes = {
   /**
@@ -14,50 +15,31 @@ const propTypes = {
    * An array of Button attribute objects defining Buttons to render within the presented error view.
    */
   errorViewButtonAttrs: PropTypes.array,
-  /**
-   * @private
-   * Intl object for translations.
-   */
-  intl: intlShape,
 };
 
-class ApplicationContainerErrorBoundary extends React.Component {
-  constructor(props) {
-    super(props);
+const ApplicationContainerErrorBoundary = ({ children, errorViewButtonAttrs }) => {
+  const [error, setError] = React.useState(false);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
 
-    this.state = { error: undefined };
+  if (error) {
+    return (
+      <StatusView
+        variant="error"
+        message={applicationIntl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails: error.message.toString() })}
+        buttonAttrs={errorViewButtonAttrs}
+        role="alert"
+        aria-live="assertive"
+      />
+    );
   }
 
-  static getDerivedStateFromError(error) {
-    return { error };
-  }
-
-  componentDidCatch(error) {
-    logger.error(error);
-  }
-
-  render() {
-    const { children, errorViewButtonAttrs, intl } = this.props;
-    const { error } = this.state;
-
-    if (error) {
-      const errorDetails = error.message.toString();
-
-      return (
-        <StatusView
-          variant="error"
-          message={intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails })}
-          buttonAttrs={errorViewButtonAttrs}
-          role="alert"
-          aria-live="assertive"
-        />
-      );
-    }
-
-    return children;
-  }
-}
+  return (
+    <ErrorBoundary onCatchError={(caughtError) => { setError(caughtError); }}>
+      {children}
+    </ErrorBoundary>
+  );
+};
 
 ApplicationContainerErrorBoundary.propTypes = propTypes;
 
-export default injectIntl(ApplicationContainerErrorBoundary);
+export default ApplicationContainerErrorBoundary;

@@ -12,6 +12,7 @@ import Page1 from '../pages/Page1';
 import Page5 from '../pages/Page5';
 import Page6 from '../pages/Page6';
 import Page7 from '../pages/Page7';
+import Page8 from '../pages/Page8';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
@@ -97,6 +98,11 @@ const DemoApplicationNavigationLayout = () => {
               navigationKey="nav-H"
               label="Nav H"
               renderPage={() => <Page7 />}
+            />
+            <NavigationItem
+              navigationKey="nav-I"
+              label="Nav I"
+              renderPage={() => <Page8 />}
             />
           </PrimaryNavigationLayout>
         </ModalManager>

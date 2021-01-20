@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
@@ -47,6 +47,7 @@ const TabDropDown = ({
   disableOnClickOutside,
   enableOnClickOutside,
 }) => {
+  const dropDownRef = useRef();
   const handleKeyDown = useCallback(event => {
     if (event.keyCode === KEY_ESCAPE && onRequestClose) {
       onRequestClose(event);
@@ -61,6 +62,7 @@ const TabDropDown = ({
     } else {
       disableOnClickOutside();
       document.removeEventListener('keydown', handleKeyDown);
+      dropDownRef.current.scrollTop = 0;
     }
 
     return (() => {
@@ -82,7 +84,7 @@ const TabDropDown = ({
 
   return (
     <div
-      ref={refCallback}
+      ref={node => { dropDownRef.current = node; refCallback(node); }}
       role="none"
       className={dropDownClassNames}
       onMouseDown={e => { event.preventDefault(); }}

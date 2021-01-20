@@ -223,12 +223,12 @@ const Workspace = ({
       className={workspaceClassNames}
       role="none"
     >
-      <div role="none" className={cx('header')}>
+      <div role="none" className={cx('button-header')}>
         {dismissButton}
         <div className={cx('fill-element')} />
         {sizeButton}
       </div>
-      <div role="none" className={cx('header2', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
+      <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
         <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceContainerRef}>

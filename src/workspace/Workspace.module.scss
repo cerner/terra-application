@@ -11,10 +11,10 @@
     width: 100%;
     z-index: 1;
 
-    > .header {
+    > .button-header {
       background-image: linear-gradient(to bottom, #007cc3, #0065a3);
       flex: 0 0 auto;
-      padding-bottom: 10px; // TODO: matching header2 margin-top
+      padding-bottom: 10px; // TODO: matching .tab-header margin-top
       z-index: -1;
     }
 
@@ -26,7 +26,7 @@
     }
   }
 
-  .header {
+  .button-header {
     display: flex;
     left: 0px;
     justify-content: space-between;
@@ -39,25 +39,9 @@
       flex: 1 1 auto;
       width: 100%;
     }
-
-    .active-button,
-    .menu-button {
-      color: #fff;
-      flex: 0 0 auto;
-      margin: 5px;
-    }
-
-    .active-button,
-    .active-button:hover {
-      background-color:rgba(25, 127, 229, 0.2);
-  
-      &:active {
-        background-color:rgba(25, 127, 229, 0.5);
-      }
-    }
   }
 
-  .header2 {
+  .tab-header {
     margin-bottom: 0;
     margin-top: 10px;
     margin-left: 10px;

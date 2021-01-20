@@ -11,7 +11,6 @@
     line-height: 1.4;
     font-weight: normal;
     margin-left: 0;
-    // min-width: 210px; // TODO: theme this
     outline: none;
     padding: 0.643rem 1.071rem;
 
@@ -21,9 +20,10 @@
       text-align: start;
     }
 
-    &:hover {
-      background-color: aliceblue;
-      background-size: 100% 4px;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: aliceblue;
+      }
     }
 
     &[data-focus-styles-enabled='true']:focus {
@@ -40,10 +40,8 @@
       overflow: hidden; //forces :before background-image to honor border-radius clipping.
       position: relative;
   
-      &:hover {
-        background-color: aliceblue;
-
-        &:focus {
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+        &:hover {
           background-color: aliceblue;
         }
       }

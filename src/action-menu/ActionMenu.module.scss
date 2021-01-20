@@ -40,8 +40,8 @@
   .action-item {
     cursor: pointer;
     padding-bottom: 0.643rem;
-    padding-left: 8px; // TODO: theme this
-    padding-right: 10px; // TODO: theme this
+    padding-left: 0.5714rem; // TODO: theme this
+    padding-right: 0.7143rem; // TODO: theme this
     padding-top: 0.643rem;
 
     &:last-child {
@@ -56,15 +56,14 @@
   .action-link,
   .action-item {
     &.indent {
-      // TODO: covert to all rem value, not calc
-      padding-left: calc(1rem + 6px + 8px); // TODO: theme this
+      padding-left: 2rem; // TODO: theme this
     }
   }
 
   .checkbox {
     flex: 0 0 auto;
     height: 1rem;
-    margin-right: 6px;
+    margin-right: 0.4286rem;
     width: 1rem;
 
     & > * {

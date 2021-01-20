@@ -9,7 +9,7 @@
     flex-direction: row;
     font-size: 1.28571rem; // TODO: themeable variable
     font-weight: normal; // TODO: themeable variable
-    min-height: 30px;
+    min-height: 2.143rem;
     outline: none;
     overflow: hidden;
     position: relative;
@@ -19,7 +19,7 @@
   .title {
     text-align: start;
     flex: 1 1 auto;
-    padding: 0 7px;
+    padding: 0 0.5rem;
     width: 100;
   }
 }

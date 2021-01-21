@@ -33,7 +33,7 @@
   
     &:active {
       .button-inner {
-        color: #ccc;
+        color: var(--terra-application-workspace-button-button-inner-active-color, #ccc);
       }
     }
 

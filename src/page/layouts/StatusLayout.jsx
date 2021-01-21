@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 
-import StatusIndicator from '../../shared/StatusIndicator';
+import StatusIndicator from '../../shared/StatusLayout';
 
 import CardLayout from './CardLayout';
 import Card from './Card';

@@ -1,1 +1,1 @@
-export { default } from '../../shared/StatusIndicatorButton';
+export { default } from '../../shared/StatusLayoutButton';

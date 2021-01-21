@@ -38,8 +38,8 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
   React.useLayoutEffect(() => {
     contentRef.current.inert = overlays.length !== 0;
 
-    for (let i = overlays.length - 1; i > 0; i -= 1) {
-      overlayRefs[i].inert = i !== overlays.length - 1;
+    for (let i = 0, count = overlays.length; i < count; i += 1) {
+      overlayRefs[i].inert = i !== count - 1;
     }
   }, [overlayRefs, overlays]);
 

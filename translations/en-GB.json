@@ -31,8 +31,8 @@
   "terraApplication.PageOverlayContainer.loading": "Loading...",
   "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading...",
 
-  "terraApplication.statusIndicator.no-data": "No Results",
-  "terraApplication.statusIndicator.no-matching-results": "No Matching Results",
-  "terraApplication.statusIndicator.not-authorized": "Not Authorised",
-  "terraApplication.statusIndicator.error": "Error"
+  "terraApplication.statusLayout.no-data": "No Results",
+  "terraApplication.statusLayout.no-matching-results": "No Matching Results",
+  "terraApplication.statusLayout.not-authorized": "Not Authorised",
+  "terraApplication.statusLayout.error": "Error"
 }

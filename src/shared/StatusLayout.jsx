@@ -5,16 +5,9 @@ import ThemeContext from 'terra-theme-context';
 import { FormattedMessage } from 'react-intl';
 import Divider from 'terra-divider';
 
-import styles from './StatusIndicator.module.scss';
+import styles from './StatusLayout.module.scss';
 
 const cx = classNamesBind.bind(styles);
-
-const StatusViewVariants = {
-  NODATA: 'no-data',
-  NOMATCHINGRESULTS: 'no-matching-results',
-  NOTAUTHORIZED: 'not-authorized',
-  ERROR: 'error',
-};
 
 const propTypes = {
   /**
@@ -27,12 +20,12 @@ const propTypes = {
    */
   message: PropTypes.string,
   /**
-   * The actions to render within the StatusIndicator.
+   * The actions to render within the StatusLayout.
    */
   children: PropTypes.node,
 };
 
-const StatusIndicator = ({
+const StatusLayout = ({
   message,
   variant,
   children,
@@ -50,7 +43,7 @@ const StatusIndicator = ({
 
   let defaultTitle;
   if (variant) {
-    defaultTitle = <FormattedMessage id={`terraApplication.statusIndicator.${variant}`} />;
+    defaultTitle = <FormattedMessage id={`terraApplication.statusLayout.${variant}`} />;
   }
 
   // Custom title takes precedence
@@ -105,6 +98,6 @@ const StatusIndicator = ({
   );
 };
 
-StatusIndicator.propTypes = propTypes;
-export default StatusIndicator;
-export { StatusViewVariants };
+StatusLayout.propTypes = propTypes;
+
+export default StatusLayout;

@@ -7,10 +7,10 @@ const propTypes = {
   onClick: PropTypes.func,
 };
 
-const StatusIndicatorButton = ({ text, onClick }) => (
+const StatusLayoutButton = ({ text, onClick }) => (
   <Button onClick={onClick} text={text} variant="neutral" />
 );
 
-StatusIndicatorButton.propTypes = propTypes;
+StatusLayoutButton.propTypes = propTypes;
 
-export default StatusIndicatorButton;
+export default StatusLayoutButton;

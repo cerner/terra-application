@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import StatusIndicator from '../../shared/StatusIndicator';
+import StatusLayout from '../../shared/StatusLayout';
 
 import styles from './WorkspaceContentStatusOverlay.module.scss';
 
@@ -20,9 +20,9 @@ const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
     role="status"
     data-testid="workspace-content-status"
   >
-    <StatusIndicator variant={variant} message={message}>
+    <StatusLayout variant={variant} message={message}>
       {children}
-    </StatusIndicator>
+    </StatusLayout>
   </div>
 );
 

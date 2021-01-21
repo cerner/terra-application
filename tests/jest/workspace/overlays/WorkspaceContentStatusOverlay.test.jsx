@@ -27,7 +27,7 @@ test('renders the status indicator', () => {
   ));
 
   expect(screen.getByRole('status')).toBeInTheDocument();
-  expect(screen.getByRole('status')).toHaveTextContent('terraApplication.statusIndicator.error');
+  expect(screen.getByRole('status')).toHaveTextContent('terraApplication.statusLayout.error');
   expect(screen.getByRole('status')).toHaveTextContent('Test Message');
   expect(screen.getByText('Button1')).toBeInTheDocument();
   expect(screen.getByText('Button2')).toBeInTheDocument();

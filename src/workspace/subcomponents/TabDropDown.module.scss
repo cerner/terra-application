@@ -3,23 +3,23 @@
 
 :local {
   .drop-down {
-    border: 1px solid transparent;
+    border: var(--terra-application-workspace-tab-drop-down-border, 1px solid transparent);
     height: 1px;
     margin: -1px;
-    max-height: calc(100% - 3.571rem);
-    max-width: 240px;
-    min-width: 200px;
+    max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 3.571rem));
+    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 240px);
+    min-width: var(--terra-application-workspace-tab-drop-down-min-width, 200px);
     opacity: 0;
     overflow: hidden;
     padding: 0;
     position: absolute;
-    top: 50px;
+    top: var(--terra-application-workspace-tab-drop-down-top, 3.571rem);
     z-index: 100;
   }
 
   .is-open {
-    border-color: #ccc;
-    background-color: #fff;
+    border-color: var(--terra-application-workspace-tab-drop-down-is-open-border-color, #ccc);
+    background-color: var(--terra-application-workspace-tab-drop-down-is-open-background-color, #fff);
     height: auto;
     margin: 0;
     margin-top: -1px;

@@ -10,30 +10,27 @@
     user-select: none;
     width: 100%;
     z-index: 1;
+  }
 
-    > .button-header {
-      background-image: linear-gradient(to bottom, #007cc3, #0065a3);
-      flex: 0 0 auto;
-      padding-bottom: 0.7143rem;
-      z-index: -1;
-    }
-
-    > .body {
-      flex: 1 1 auto;
-      height: 100%;
-      overflow: hidden;
-      z-index: 10;
-    }
+  .body {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: hidden;
+    z-index: 10;
   }
 
   .button-header {
+    background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #0065a3));
     display: flex;
-    left: 0px;
+    flex: 0 0 auto;
+    left: 0;
     justify-content: space-between;
-    min-height: 3.571rem;
+    min-height: var(--terra-application-workspace-button-header-padding-bottom, 3.571rem);
+    padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
     position: absolute;
-    top: 0px;
+    top: 0;
     width: 100%;
+    z-index: -1;
 
     .fill-element {
       flex: 1 1 auto;
@@ -43,15 +40,15 @@
 
   .tab-header {
     margin-bottom: 0;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 3.571rem;
-    width: calc(100% - 4.286rem);
+    margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.7143rem);
+    margin-right: var(--terra-application-workspace-tab-header-margin-right, 3.571rem);
+    margin-top: var(--terra-application-workspace-tab-header-margin-top, 0.7143rem);
+    width: calc(100% - var(--terra-application-workspace-tab-header-margin-top, 4.286rem));
     z-index: 50;
 
     &.has-dismiss-button {
-      margin-left: 3.571rem;
-      width: calc(100% - 7.143rem);
+      margin-left: var(--terra-application-workspace-tab-header-has-dismiss-margin-left, 3.571rem);
+      width: calc(100% - var(--terra-application-workspace-tab-header-has-dismiss-width, 7.143rem));
     }
   }
 }

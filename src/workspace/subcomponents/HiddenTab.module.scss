@@ -3,8 +3,8 @@
 
 :local {
   .hidden {
-    background-color: #fff;
-    color: #222a2e; // TODO: theme this
+    background-color: var(--terra-application-workspace-hidden-tab-hidden-background-color, #fff);
+    color: var(--terra-application-workspace-hidden-tab-hidden-color, #222a2e);
     cursor: pointer;
     display: flex;
     font-size: 1rem;
@@ -58,8 +58,8 @@
 
   .checkbox {
     flex: 0 0 auto;
-    color: #007cc3; // TODO: theme this
-    margin-right: 6px; // TODO: theme this
+    color: var(--terra-application-workspace-hidden-tab-checkbox-color, #007cc3);
+    margin-right: var(--terra-application-workspace-hidden-tab-checkbox-margin-right, 0.4286rem);
     height: 1rem;
     width: 1rem;
   }

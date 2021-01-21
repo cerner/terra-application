@@ -22,7 +22,7 @@ const MyWorkspace = () => {
   return (
     <Workspace
       activeItemKey={activeKey}
-      onRequestActivate={(event, metaData) => setActiveKey(metaData.key)}
+      onRequestActivate={(key, metaData) => setActiveKey(key)}
     >
       <WorkspaceItem
         itemKey="item-1"

@@ -64,7 +64,7 @@ test('communicates tab selections through the onRequestActivate prop', () => {
   mockOnRequestActivate.mockReset();
 });
 
-test('presents utility menu with size options and utilizes onRequestSizeChange prop for callbacks', () => {
+test('should present utility menu with size options and utilizes onRequestSizeChange prop for callbacks', () => {
   const mockOnRequestSizeChange = jest.fn();
 
   render((
@@ -101,7 +101,7 @@ test('presents utility menu with size options and utilizes onRequestSizeChange p
   expect(mockOnRequestSizeChange).toHaveBeenCalledWith('large');
 });
 
-test('presents utility menu with item to close workspace if onRequestDismiss callback is provided', () => {
+test('should present utility menu with item to close workspace if onRequestDismiss callback is provided', () => {
   const mockOnRequestDismiss = jest.fn();
 
   render((
@@ -132,7 +132,7 @@ test('presents utility menu with item to close workspace if onRequestDismiss cal
   expect(mockOnRequestDismiss).toHaveBeenCalled();
 });
 
-test('presents utility menu with combined size and dismiss options if necessary', () => {
+test('should present utility menu with combined size and dismiss options if necessary', () => {
   render((
     <TestWorkspace
       activeSize="small"
@@ -162,7 +162,7 @@ test('presents utility menu with combined size and dismiss options if necessary'
   expect(closeWorkspaceMenuItem).toBeInTheDocument();
 });
 
-test('presents explicit dismiss button if enabled by dismissButtonIsVisible', () => {
+test('should present explicit dismiss button if enabled by dismissButtonIsVisible', () => {
   const mockOnRequestDismiss = jest.fn();
 
   render((
@@ -181,7 +181,7 @@ test('presents explicit dismiss button if enabled by dismissButtonIsVisible', ()
   expect(mockOnRequestDismiss).toHaveBeenCalled();
 });
 
-test('dismisses the Workspace Settings menu when the popup wants to close', () => {
+test('should dismiss the Workspace Settings menu when the popup wants to close', () => {
   render((
     <TestWorkspace
       activeSize="small"

@@ -35,7 +35,7 @@ const StatusLayout = ({
   let glyphSection;
   if (variant) {
     glyphSection = (
-      <div className={cx('glyph')}>
+      <div className={cx('glyph')} data-testid={`status-layout-glyph-${variant}`}>
         <div className={cx(variant, 'glyph-icon')} />
       </div>
     );
@@ -77,7 +77,7 @@ const StatusLayout = ({
   let dividerSection;
   if (titleSection && (messageSection || actionSection)) {
     dividerSection = (
-      <div className={cx('divider')}>
+      <div className={cx('divider')} data-testid="status-layout-divider">
         <Divider />
       </div>
     );

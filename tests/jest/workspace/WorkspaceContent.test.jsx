@@ -18,7 +18,7 @@ const TestWorkspaceContent = (props) => (
   </MockApplication>
 );
 
-test('renders heading with appropriate label', () => {
+test('should render heading with appropriate label', () => {
   render((
     <TestWorkspaceContent>
       <div data-testid="test-content" />
@@ -29,7 +29,7 @@ test('renders heading with appropriate label', () => {
   expect(screen.getByTestId('workspace-content-heading')).toHaveTextContent('Test Label');
 });
 
-test('renders tabpanel with appropriate labeling', () => {
+test('should render tabpanel with appropriate labeling', () => {
   render((
     <TestWorkspaceContent>
       <div data-testid="test-content" />
@@ -44,7 +44,7 @@ test('renders tabpanel with appropriate labeling', () => {
   expect(renderedTabPanel).toHaveAttribute('data-application-overflow-container');
 });
 
-test('renders given childen', () => {
+test('should render given childen', () => {
   render((
     <TestWorkspaceContent>
       <div data-testid="test-content" />
@@ -55,7 +55,7 @@ test('renders given childen', () => {
   expect(screen.queryByTestId('test-content')).toBeInTheDocument();
 });
 
-test('renders given toolbar', () => {
+test('should render given toolbar', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
@@ -68,7 +68,7 @@ test('renders given toolbar', () => {
   expect(screen.queryByTestId('test-toolbar')).toBeInTheDocument();
 });
 
-test('renders given status overlay', () => {
+test('should render given status overlay', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
@@ -82,7 +82,7 @@ test('renders given status overlay', () => {
   expect(screen.getByTestId('workspace-content-status')).toBeInTheDocument();
 });
 
-test('renders given activity overlay', () => {
+test('should render given activity overlay', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
@@ -96,7 +96,7 @@ test('renders given activity overlay', () => {
   expect(screen.getByTestId('workspace-content-activity')).toBeInTheDocument();
 });
 
-test('renders both status and activity overlays if both are provided', () => {
+test('should render both status and activity overlays if both are provided', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
@@ -112,7 +112,7 @@ test('renders both status and activity overlays if both are provided', () => {
   expect(screen.getByTestId('workspace-content-activity')).toBeInTheDocument();
 });
 
-test('renders NotificationBanners when rendered by children', () => {
+test('should render NotificationBanners when rendered by children', () => {
   render((
     <TestWorkspaceContent>
       <div data-testid="test-content" />

@@ -35,7 +35,7 @@ const WorkspaceContextValidator = () => {
   );
 };
 
-test('updates TabContext value when props change', () => {
+test('should update TabContext value when props change', () => {
   const containerElement = document.createElement('div');
   const portalElement = document.createElement('div');
 
@@ -102,7 +102,7 @@ test('updates TabContext value when props change', () => {
   expect(testView.getByTestId('label')).toHaveTextContent('Different Test Item Label');
 });
 
-test('updates WorkspaceContext value when props change', () => {
+test('should update WorkspaceContext value when props change', () => {
   const containerElement = document.createElement('div');
   const portalElement = document.createElement('div');
 

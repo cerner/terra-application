@@ -19,6 +19,7 @@
   .title {
     text-align: start;
     flex: 1 1 auto;
+    outline: none;
     padding: var(--terra-application-workspace-tab-header-title-padding,  0 0.5rem);
     width: 100;
   }

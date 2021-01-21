@@ -84,23 +84,25 @@ const HiddenTab = ({
     theme.className,
   );
 
+  function handleOnSelect(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    enableFocusStyles(event);
+    onSelect(itemKey, metaData);
+  }
+
   function onKeyDown(event) {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
-      event.preventDefault();
-      event.stopPropagation();
-      onSelect(itemKey, metaData);
+      handleOnSelect(event);
     } else {
       handleArrows(event, index, tabIds);
     }
   }
 
-  function onClick() {
-    onSelect(itemKey, metaData);
-  }
-
   if (onSelect) {
     attributes.tabIndex = isSelected ? 0 : -1;
-    attributes.onClick = onClick;
+    attributes.onClick = handleOnSelect;
     attributes.onKeyDown = onKeyDown;
     attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
     attributes.onFocus = onFocus;

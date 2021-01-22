@@ -45,7 +45,7 @@ const propTypes = {
      * The metaData to return with the onSelect callback.
      */
     metaData: PropTypes.object,
-  })),
+  })).isRequired,
 };
 
 class Tabs extends React.Component {

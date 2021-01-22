@@ -94,14 +94,12 @@ const Tab = ({
     onSelect(itemKey, metaData);
   }
 
-  if (onSelect) {
-    attributes.tabIndex = isSelected ? 0 : -1;
-    attributes.onClick = onClick;
-    attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = enableFocusStyles;
-    attributes.onMouseDown = disableFocusStyles;
-    attributes['data-focus-styles-enabled'] = true;
-  }
+  attributes.tabIndex = isSelected ? 0 : -1;
+  attributes.onClick = onClick;
+  attributes.onKeyDown = onKeyDown;
+  attributes.onBlur = enableFocusStyles;
+  attributes.onMouseDown = disableFocusStyles;
+  attributes['data-focus-styles-enabled'] = true;
   attributes['aria-selected'] = isSelected;
   attributes.style = { zIndex };
 

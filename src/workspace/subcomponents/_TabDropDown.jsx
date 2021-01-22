@@ -11,7 +11,7 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * Currently active Tabs.Pane content to be displayed.
+   * Currently active HiddenTabs be displayed.
    */
   children: PropTypes.node,
   /**
@@ -21,7 +21,7 @@ const propTypes = {
   /**
    * The function returning the html node.
    */
-  refCallback: PropTypes.func,
+  refCallback: PropTypes.func.isRequired,
   /**
    * @private
    * The function callback when a click outside event occurs.

@@ -38,7 +38,7 @@ const propTypes = {
   /**
    * Identifer for the Tab to be returned with onSelect.
    */
-  itemKey: PropTypes.string,
+  itemKey: PropTypes.string.isRequired,
   /**
    * Object to be returned in the onSelect.
    */
@@ -53,14 +53,14 @@ const propTypes = {
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   /**
    * @private
-   * The function callback when an event occurs..
+   * The function callback when an event occurs.
    */
-  onBlur: PropTypes.func,
+  onBlur: PropTypes.func.isRequired,
   /**
    * @private
-   * The function callback when an event occurs..
+   * The function callback when an event occurs.
    */
-  onFocus: PropTypes.func,
+  onFocus: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -104,15 +104,13 @@ const HiddenTab = ({
     }
   }
 
-  if (onSelect) {
-    attributes.tabIndex = isSelected ? 0 : -1;
-    attributes.onClick = handleOnSelect;
-    attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
-    attributes.onFocus = onFocus;
-    attributes.onMouseDown = disableFocusStyles;
-    attributes['data-focus-styles-enabled'] = true;
-  }
+  attributes.tabIndex = isSelected ? 0 : -1;
+  attributes.onClick = handleOnSelect;
+  attributes.onKeyDown = onKeyDown;
+  attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
+  attributes.onFocus = onFocus;
+  attributes.onMouseDown = disableFocusStyles;
+  attributes['data-focus-styles-enabled'] = true;
   attributes['aria-selected'] = isSelected;
 
   return (

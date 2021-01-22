@@ -36,11 +36,15 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
+   * Identifer for the Tab to be returned with onSelect.
+   */
+  itemKey: PropTypes.string,
+  /**
    * Object to be returned in the onSelect.
    */
   metaData: PropTypes.object,
   /**
-   * Callback function triggering on selection.
+   * Callback function triggering on selection. onSelect(itemKey, metaData)
    */
   onSelect: PropTypes.func.isRequired,
   /**

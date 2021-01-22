@@ -23,7 +23,7 @@ const propTypes = {
   /**
    * Whether or not the associated dropdown is open.
    */
-  isActive: PropTypes.bool,
+  isOpen: PropTypes.bool,
   /**
    * Blur callback function.
    */

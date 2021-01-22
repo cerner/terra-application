@@ -110,7 +110,7 @@ const firstFocus = (event, index, ids) => {
  * @param {number} index The index of the current element.
  * @param {array} ids The array of id strings.
  */
-const endFocus = (event, index, ids) => {
+const lastFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
 
@@ -139,7 +139,7 @@ const handleArrows = (event, index, ids) => {
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, index, ids);
   } else if (event.nativeEvent.keyCode === KEY_END) {
-    endFocus(event, index, ids);
+    lastFocus(event, index, ids);
   }
 };
 
@@ -165,16 +165,8 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, -1, ids);
   } else if (event.nativeEvent.keyCode === previousKey || event.nativeEvent.keyCode === KEY_UP || event.nativeEvent.keyCode === KEY_END) {
-    endFocus(event, -1, ids);
+    lastFocus(event, -1, ids);
   }
-};
-
-export default {
-  enableFocusStyles,
-  disableFocusStyles,
-  generateKeyDownSelection,
-  handleArrows,
-  handleMoreButtonArrows,
 };
 
 export {
@@ -183,4 +175,8 @@ export {
   generateKeyDownSelection,
   handleArrows,
   handleMoreButtonArrows,
+  nextFocus,
+  previousFocus,
+  firstFocus,
+  lastFocus,
 };

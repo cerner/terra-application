@@ -87,7 +87,7 @@ const TabDropDown = ({
       ref={node => { dropDownRef.current = node; refCallback(node); }}
       role="none"
       className={dropDownClassNames}
-      onMouseDown={e => { event.preventDefault(); }}
+      onMouseDown={e => { e.preventDefault(); }}
     >
       {children}
     </div>

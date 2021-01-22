@@ -55,7 +55,6 @@ const TabDropDown = ({
   }, [onRequestClose]);
 
   useEffect(() => {
-    console.log(`effect: ${isOpen}`);
     if (isOpen) {
       enableOnClickOutside();
       document.addEventListener('keydown', handleKeyDown);
@@ -79,8 +78,6 @@ const TabDropDown = ({
     { 'is-open': isOpen },
     theme.className,
   );
-
-  console.log(`component render: ${isOpen}`);
 
   return (
     <div

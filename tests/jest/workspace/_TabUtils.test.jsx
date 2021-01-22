@@ -20,6 +20,7 @@ import {
   firstFocus,
   lastFocus,
   handleArrows,
+  handleMoreButtonArrows,
 } from '../../../src/workspace/subcomponents/_TabUtils';
 
 describe('generateKeyDownSelection', () => {
@@ -776,6 +777,293 @@ describe('handleArrows', () => {
       });
 
       handleArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+  });
+});
+
+describe('handleMoreButtonArrows', () => {
+  describe('ltr', () => {
+    beforeAll(() => {
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'ltr');
+    });
+
+    afterAll(() => {
+      document.getElementsByTagName('html')[0].removeAttribute('dir');
+    });
+
+    test('should set focus to given index on Next (right) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_RIGHT,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-1') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should set focus to given index on Next (down) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_DOWN,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-1') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should not blow up when desired element could not be found', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_DOWN,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation(() => undefined);
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).not.toHaveBeenCalled();
+    });
+
+    test('should set focus to first index on Home key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_HOME,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-0') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should set focus to last index on Previous (left) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_LEFT,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-2') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should set focus to last index on Previous (up) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_UP,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-2') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should set focus to last index on End key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_END,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-2') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+  });
+
+  describe('rtl', () => {
+    beforeAll(() => {
+      document.getElementsByTagName('html')[0].setAttribute('dir', 'rtl');
+    });
+
+    afterAll(() => {
+      document.getElementsByTagName('html')[0].removeAttribute('dir');
+    });
+
+    test('should set focus to given index on Next (left) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_LEFT,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-1') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
+
+      expect(mockEvent.preventDefault).toHaveBeenCalled();
+      expect(mockEvent.stopPropagation).toHaveBeenCalled();
+      expect(mockElement.focus).toHaveBeenCalled();
+    });
+
+    test('should set focus to last index on Previous (right) key press', () => {
+      const mockEvent = {
+        preventDefault: jest.fn(),
+        stopPropagation: jest.fn(),
+        nativeEvent: {
+          keyCode: KEY_RIGHT,
+        },
+      };
+
+      const testIndex = 1;
+      const testIds = ['id-0', 'id-1', 'id-2'];
+
+      const mockElement = {
+        focus: jest.fn(),
+      };
+
+      jest.spyOn(document, 'getElementById').mockImplementation((id) => {
+        if (id === 'id-2') {
+          return mockElement;
+        }
+        return undefined;
+      });
+
+      handleMoreButtonArrows(mockEvent, testIndex, testIds);
 
       expect(mockEvent.preventDefault).toHaveBeenCalled();
       expect(mockEvent.stopPropagation).toHaveBeenCalled();

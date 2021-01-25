@@ -4,8 +4,8 @@ import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
-import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 
+import DynamicOverlayContainer from './shared/DynamicOverlayContainer';
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
 import styles from './WorkspaceContent.module.scss';

@@ -35,11 +35,15 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * Callback function triggering on selection.
+   * Callback function triggering on selection. onSelect(itemKey, metaData)
    */
   onSelect: PropTypes.func.isRequired,
   /**
-   * Object to be returned in the onSelect.
+   * Identifier for the workspace item represented by the Tab. Returned with onSelect.
+   */
+  itemKey: PropTypes.string,
+  /**
+   * Data for the workspace item represented by the Tab. Returned with onSelect.
    */
   metaData: PropTypes.object,
   /**
@@ -59,6 +63,7 @@ const defaultProps = {
 const Tab = ({
   id,
   associatedPanelId,
+  itemKey,
   index,
   isSelected,
   label,
@@ -79,24 +84,22 @@ const Tab = ({
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
       event.preventDefault();
       event.stopPropagation();
-      onSelect(event, metaData);
+      onSelect(itemKey, metaData);
     } else {
       handleArrows(event, index, tabIds);
     }
   }
 
-  function onClick(event) {
-    onSelect(event, metaData);
+  function onClick() {
+    onSelect(itemKey, metaData);
   }
 
-  if (onSelect) {
-    attributes.tabIndex = isSelected ? 0 : -1;
-    attributes.onClick = onClick;
-    attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = enableFocusStyles;
-    attributes.onMouseDown = disableFocusStyles;
-    attributes['data-focus-styles-enabled'] = true;
-  }
+  attributes.tabIndex = isSelected ? 0 : -1;
+  attributes.onClick = onClick;
+  attributes.onKeyDown = onKeyDown;
+  attributes.onBlur = enableFocusStyles;
+  attributes.onMouseDown = disableFocusStyles;
+  attributes['data-focus-styles-enabled'] = true;
   attributes['aria-selected'] = isSelected;
   attributes.style = { zIndex };
 
@@ -111,7 +114,9 @@ const Tab = ({
     >
       <div className={cx('before')} />
       <div className={cx('inner')}>
-        <span className={cx('label')}>{label}</span>
+        <div className={cx('label')}>
+          {label}
+        </div>
       </div>
       <div className={cx('after')} />
     </div>

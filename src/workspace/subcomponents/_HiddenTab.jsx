@@ -36,11 +36,15 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
+   * Identifer for the Tab to be returned with onSelect.
+   */
+  itemKey: PropTypes.string.isRequired,
+  /**
    * Object to be returned in the onSelect.
    */
   metaData: PropTypes.object,
   /**
-   * Callback function triggering on selection.
+   * Callback function triggering on selection. onSelect(itemKey, metaData)
    */
   onSelect: PropTypes.func.isRequired,
   /**
@@ -49,14 +53,14 @@ const propTypes = {
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   /**
    * @private
-   * The function callback when an event occurs..
+   * The function callback when an event occurs.
    */
-  onBlur: PropTypes.func,
+  onBlur: PropTypes.func.isRequired,
   /**
    * @private
-   * The function callback when an event occurs..
+   * The function callback when an event occurs.
    */
-  onFocus: PropTypes.func,
+  onFocus: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
@@ -69,6 +73,7 @@ const HiddenTab = ({
   index,
   isSelected,
   label,
+  itemKey,
   metaData,
   onBlur,
   onFocus,
@@ -83,29 +88,29 @@ const HiddenTab = ({
     theme.className,
   );
 
+  function handleOnSelect(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    enableFocusStyles(event);
+    onSelect(itemKey, metaData);
+  }
+
   function onKeyDown(event) {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
-      event.preventDefault();
-      event.stopPropagation();
-      onSelect(event, metaData);
+      handleOnSelect(event);
     } else {
       handleArrows(event, index, tabIds);
     }
   }
 
-  function onClick(event) {
-    onSelect(event, metaData);
-  }
-
-  if (onSelect) {
-    attributes.tabIndex = isSelected ? 0 : -1;
-    attributes.onClick = onClick;
-    attributes.onKeyDown = onKeyDown;
-    attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
-    attributes.onFocus = onFocus;
-    attributes.onMouseDown = disableFocusStyles;
-    attributes['data-focus-styles-enabled'] = true;
-  }
+  attributes.tabIndex = isSelected ? 0 : -1;
+  attributes.onClick = handleOnSelect;
+  attributes.onKeyDown = onKeyDown;
+  attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
+  attributes.onFocus = onFocus;
+  attributes.onMouseDown = disableFocusStyles;
+  attributes['data-focus-styles-enabled'] = true;
   attributes['aria-selected'] = isSelected;
 
   return (
@@ -116,8 +121,8 @@ const HiddenTab = ({
       role="tab"
       className={hiddenClassNames}
     >
-      <span className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</span>
-      <span className={cx('label')}>{label}</span>
+      <div className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</div>
+      <div className={cx('label')}>{label}</div>
     </div>
   );
 };

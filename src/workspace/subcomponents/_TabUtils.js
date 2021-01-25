@@ -5,7 +5,22 @@ import {
   KEY_DOWN,
   KEY_HOME,
   KEY_END,
+  KEY_RETURN,
+  KEY_SPACE,
 } from 'keycode-js';
+
+/**
+ * Returns a function that will execute the provided function upon detection of a KEY_RETURN or KEY_SPACE keydown event.
+ * @param {Function} onSelect The function to be executed after event detection.
+ */
+const generateKeyDownSelection = onSelect => (
+  onSelect ? (event) => {
+    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
+      event.preventDefault();
+      onSelect();
+    }
+  } : undefined
+);
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
@@ -95,7 +110,7 @@ const firstFocus = (event, index, ids) => {
  * @param {number} index The index of the current element.
  * @param {array} ids The array of id strings.
  */
-const endFocus = (event, index, ids) => {
+const lastFocus = (event, index, ids) => {
   event.preventDefault();
   event.stopPropagation();
 
@@ -124,7 +139,7 @@ const handleArrows = (event, index, ids) => {
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, index, ids);
   } else if (event.nativeEvent.keyCode === KEY_END) {
-    endFocus(event, index, ids);
+    lastFocus(event, index, ids);
   }
 };
 
@@ -139,10 +154,10 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
   const previousKey = !isRTL ? KEY_LEFT : KEY_RIGHT;
 
-  event.preventDefault();
-  event.stopPropagation();
-
   if (event.nativeEvent.keyCode === nextKey || event.nativeEvent.keyCode === KEY_DOWN) {
+    event.preventDefault();
+    event.stopPropagation();
+
     const element = document.getElementById(ids[hiddenIndex]);
     if (element) {
       element.focus();
@@ -150,20 +165,18 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, -1, ids);
   } else if (event.nativeEvent.keyCode === previousKey || event.nativeEvent.keyCode === KEY_UP || event.nativeEvent.keyCode === KEY_END) {
-    endFocus(event, -1, ids);
+    lastFocus(event, -1, ids);
   }
-};
-
-export default {
-  enableFocusStyles,
-  disableFocusStyles,
-  handleArrows,
-  handleMoreButtonArrows,
 };
 
 export {
   enableFocusStyles,
   disableFocusStyles,
+  generateKeyDownSelection,
   handleArrows,
   handleMoreButtonArrows,
+  nextFocus,
+  previousFocus,
+  firstFocus,
+  lastFocus,
 };

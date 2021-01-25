@@ -2,30 +2,30 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import StatusContent from '../../shared/StatusContent';
+import StatusLayout from '../../shared/StatusLayout';
 
 import styles from './WorkspaceContentStatusOverlay.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  variant: PropTypes.oneOf(['default', 'loading']),
+  variant: PropTypes.oneOf(['no-data', 'no-matching-results', 'not-authorized', 'error']),
+  message: PropTypes.string,
+  children: PropTypes.node,
 };
 
-const defaultProps = {
-  variant: 'default',
-};
-
-const WorkspaceContentStatusOverlay = ({ variant }) => (
+const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
   <div
     className={cx('status-overlay')}
-    aria-live="polite"
+    role="status"
+    data-testid="workspace-content-status"
   >
-    <StatusContent variant="no-data" message="This is a message" />
+    <StatusLayout variant={variant} message={message}>
+      {children}
+    </StatusLayout>
   </div>
 );
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
-WorkspaceContentStatusOverlay.defaultProps = defaultProps;
 
 export default WorkspaceContentStatusOverlay;

@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
@@ -21,29 +20,26 @@ const propTypes = {
   /**
    * Optional toolbar to be displayed outside of the content region.
    */
-  toolBar: PropTypes.element,
+  toolbar: PropTypes.element,
+  /**
+   * A WorkspaceContentStatusOverlay component instance to be rendered on top of the provided children.
+   */
   statusOverlay: PropTypes.element,
+  /**
+   * A WorkspaceContentActivityOverlay component instance to be rendered on top of the provided children.
+   */
   activityOverlay: PropTypes.element,
 };
 
 const WorkspaceContent = ({
   children,
-  toolBar,
+  toolbar,
   statusOverlay,
   activityOverlay,
-  ...customProps
 }) => {
   const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-
-  const contentClassNames = classNames(
-    cx(
-      'panel',
-      theme.className,
-    ),
-    customProps.className,
-  );
 
   const overlays = React.useMemo(() => {
     const overlaysToRender = [];
@@ -67,21 +63,21 @@ const WorkspaceContent = ({
 
   return (
     <div
-      className={contentClassNames}
+      className={cx('panel', theme.className)}
       role="none"
     >
       <div
         className={cx('panel-header')}
         role="none"
+        data-testid="workspace-content-heading"
       >
         <TabHeader>{label}</TabHeader>
-        {toolBar}
+        {toolbar}
         <NotificationBanners />
       </div>
       <div role="none" className={cx('panel-content')}>
         <DynamicOverlayContainer overlays={overlays}>
           <div
-            {...customProps}
             className={cx('panel-overflow')}
             role="tabpanel"
             tabIndex="0"

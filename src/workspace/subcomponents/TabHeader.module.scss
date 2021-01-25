@@ -4,19 +4,23 @@
 :local {
   .header {
     align-items: center;
-    color: #000;
+    color: var(--terra-application-workspace-tab-header-header-color, #2d3539);
     display: flex;
     flex-direction: row;
-    font-weight: 500;
-    min-height: 30px;
+    font-size: var(--terra-application-workspace-tab-header-header-font-size, 1.28571rem);
+    font-weight: var(--terra-application-workspace-tab-header-header-font-weight, normal);
+    min-height: var(--terra-application-workspace-tab-header-header-min-height, 2.143rem);
+    outline: none;
     overflow: hidden;
     position: relative;
     width: 100%;
   }
 
   .title {
+    text-align: start;
     flex: 1 1 auto;
-    padding: 0 7px;
+    outline: none;
+    padding: var(--terra-application-workspace-tab-header-title-padding,  0 0.5rem);
     width: 100;
   }
 }

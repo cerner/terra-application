@@ -3,29 +3,27 @@
 
 :local {
   .hidden {
-    background-color: #fff;
-    color: #222a2e; // TODO: theme this
+    background-color: var(--terra-application-workspace-hidden-tab-hidden-background-color, #fff);
+    color: var(--terra-application-workspace-hidden-tab-hidden-color, #222a2e);
     cursor: pointer;
     display: flex;
-    font-size: 1rem;
-    line-height: 1.4;
+    font-size:  var(--terra-application-workspace-hidden-tab-hidden-font-size, 1rem);
+    line-height:  var(--terra-application-workspace-hidden-tab-hidden-line-height, 1.4);
     font-weight: normal;
     margin-left: 0;
-    min-width: 240px; // TODO: theme this
     outline: none;
-    padding: 0.643rem 1.071rem;
+    padding: var(--terra-application-workspace-hidden-tab-hidden-padding, 0.643rem 1.071rem);
 
-    span {
+    .label {
+      flex: 1 1 auto;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      word-break: normal;
-      word-wrap: normal;
+      text-align: start;
     }
 
-    &:hover {
-      background-color: aliceblue;
-      background-size: 100% 4px;
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+      &:hover {
+        background-color: var(--terra-application-workspace-hidden-tab-hidden-hover-background-color, aliceblue);
+      }
     }
 
     &[data-focus-styles-enabled='true']:focus {
@@ -35,18 +33,15 @@
     }
 
     &.is-active {
-      background-size: 100% 4px;
       box-shadow: none;
       color: #000;
       font-weight: normal;
       overflow: hidden; //forces :before background-image to honor border-radius clipping.
       position: relative;
   
-      &:hover {
-        background-color: aliceblue;
-
-        &:focus {
-          background-color: aliceblue;
+      @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+        &:hover {
+          background-color: var(--terra-application-workspace-hidden-tab-hidden-is-active-hover-background-color, aliceblue);
         }
       }
 
@@ -61,8 +56,9 @@
   }
 
   .checkbox {
-    color: #007cc3; // TODO: theme this
-    margin-right: 6px; // TODO: theme this
+    flex: 0 0 auto;
+    color: var(--terra-application-workspace-hidden-tab-checkbox-color, #007cc3);
+    margin-right: var(--terra-application-workspace-hidden-tab-checkbox-margin-right, 0.4286rem);
     height: 1rem;
     width: 1rem;
   }

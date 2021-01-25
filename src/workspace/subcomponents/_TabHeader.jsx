@@ -19,9 +19,10 @@ const TabHeader = ({
 }) => {
   const theme = React.useContext(ThemeContext);
 
+  // tabIndex of -1 ensure a focus location for the dropdown to navigate to with a screen reader.
   return (
     <div className={cx('header', theme.className)}>
-      <div className={cx('title')}>
+      <div className={cx('title')} aria-level="2" role="heading" tabIndex="-1">
         {children}
       </div>
     </div>

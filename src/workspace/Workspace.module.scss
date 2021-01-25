@@ -10,64 +10,45 @@
     user-select: none;
     width: 100%;
     z-index: 1;
-
-    > .header {
-      background-image: linear-gradient(to bottom, #007cc3, #0065a3);
-      flex: 0 0 auto;
-      padding-bottom: 10px; // TODO: matching header2 margin-top
-      z-index: -1;
-    }
-
-    > .body {
-      flex: 1 1 auto;
-      height: 100%;
-      overflow: hidden;
-      z-index: 10;
-    }
   }
 
-  .header {
+  .body {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .button-header {
+    background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #0065a3));
     display: flex;
-    left: 0px;
+    flex: 0 0 auto;
+    left: 0;
     justify-content: space-between;
-    min-height: 50px;
+    min-height: var(--terra-application-workspace-button-header-padding-bottom, 3.571rem);
+    padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
     position: absolute;
-    top: 0px;
+    top: 0;
     width: 100%;
+    z-index: -1;
 
     .fill-element {
       flex: 1 1 auto;
       width: 100%;
     }
-
-    .active-button,
-    .menu-button {
-      color: #fff;
-      flex: 0 0 auto;
-      margin: 5px;
-    }
-
-    .active-button,
-    .active-button:hover {
-      background-color:rgba(25, 127, 229, 0.2);
-  
-      &:active {
-        background-color:rgba(25, 127, 229, 0.5);
-      }
-    }
   }
 
-  .header2 {
+  .tab-header {
     margin-bottom: 0;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-right: 50px;
-    width: calc(100% - 10px - 50px);
+    margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.7143rem);
+    margin-right: var(--terra-application-workspace-tab-header-margin-right, 3.571rem);
+    margin-top: var(--terra-application-workspace-tab-header-margin-top, 0.7143rem);
+    width: calc(100% - var(--terra-application-workspace-tab-header-margin-top, 4.286rem));
     z-index: 50;
 
     &.has-dismiss-button {
-      margin-left: 50px;
-      width: calc(100% - 100px);
+      margin-left: var(--terra-application-workspace-tab-header-has-dismiss-margin-left, 3.571rem);
+      width: calc(100% - var(--terra-application-workspace-tab-header-has-dismiss-width, 7.143rem));
     }
   }
 }

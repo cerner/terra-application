@@ -1,0 +1,56 @@
+// @import '../../themes/clinical-lowlight-theme/Workspace.module';
+// @import '../../themes/orion-fusion-theme/Wo.module';
+
+:local {
+  .workspace-button {
+    align-items: center;
+    color: var(--terra-application-workspace-workspace-button-color, #fff);
+    cursor: pointer;
+    display: flex;
+    flex: 0 0 auto;
+    height: 100%;
+    justify-content: center;
+    margin: var(--terra-application-workspace-button-workspace-button-margin, 0.3571rem);
+    outline: none;
+    position: relative;
+  
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+      &:hover {
+        /* stylelint-disable-next-line max-nesting-depth */
+        .button-inner {
+          color: #fff;
+        }
+      }
+    }
+  
+    &[data-focus-styles-enabled='true']:focus {
+      .button-inner {
+        color: var(--terra-application-workspace-button-button-inner-focus-color, rgba(255, 255, 255, 0.8));
+        outline: var(--terra-application-workspace-button-button-inner-focus-outline, 2px dashed #fff);
+        outline-offset: -var(--terra-application-workspace-button-button-inner-focus-outline-offset, -2px);
+      }
+    }
+  
+    &:active {
+      .button-inner {
+        color: var(--terra-application-workspace-button-button-inner-active-color, #ccc);
+      }
+    }
+
+    .button-inner {
+      line-height: 0;
+      padding: var(--terra-application-workspace-button-button-inner-padding, 0.5714rem);
+      position: relative;
+    }
+  
+    .button-image {
+      height: 1rem;
+      overflow: hidden;
+      width: 1rem;
+    }
+  
+    .button-image > svg {
+      position: absolute;
+    }
+  }
+}

@@ -6,13 +6,8 @@ import ActiveMainPageContext from './private/active-main-page/ActiveMainPageCont
 
 const useActiveMainPage = () => {
   const activeMainPage = React.useContext(ActiveMainPageContext);
-  const [lastActiveMainPage, setLastActiveMainPage] = React.useState();
-
-  React.useEffect(() => {
-    setLastActiveMainPage(activeMainPage);
-  }, [activeMainPage, lastActiveMainPage]);
-
-  return lastActiveMainPage;
+  
+  return activeMainPage;
 };
 
 export default useActiveMainPage;

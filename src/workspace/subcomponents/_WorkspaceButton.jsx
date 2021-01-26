@@ -30,6 +30,10 @@ const propTypes = {
    * Ref callback for button.
    */
   refCallback: PropTypes.func,
+  /**
+   * Identifier for use during tests
+   */
+  testId: PropTypes.string,
 };
 
 const WorkspaceButton = ({
@@ -38,6 +42,7 @@ const WorkspaceButton = ({
   isActive,
   onActivate,
   refCallback,
+  testId,
 }) => {
   const theme = React.useContext(ThemeContext);
   const buttonClassNames = cx(
@@ -58,6 +63,7 @@ const WorkspaceButton = ({
       data-focus-styles-enabled
       aria-label={ariaLabel}
       ref={refCallback}
+      data-testid={testId}
     >
       <div aria-hidden className={cx('button-inner')}>
         <div

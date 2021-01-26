@@ -6,16 +6,17 @@ import Tab2 from './Tab2';
 import Tab3 from './Tab3';
 import Tab4 from './Tab4';
 import Tab5 from './Tab5';
+import Tab6 from './Tab6';
 
 const sizeMap = {
-  tiny: '250px',
+  tiny: '320px',
   small: '500px',
   large: '1000px',
 };
 
 const WorkspaceTest = () => {
-  const [activeItemKey, setActiveItemKey] = React.useState('tab-1'); // TODO do we need to externalize this for manipulation
-  const [workspaceSize, setWorkspaceSize] = React.useState('small'); // TODO do we need to externalize this for manipulation
+  const [activeItemKey, setActiveItemKey] = React.useState('tab-1');
+  const [workspaceSize, setWorkspaceSize] = React.useState('large');
   const activeMainPageRef = React.useRef({
     pageKey: 'page-1',
     pageLabel: 'Test Page',
@@ -82,6 +83,11 @@ const WorkspaceTest = () => {
             itemKey="tab-5"
             label="Tab 5"
             render={() => <Tab5 />}
+          />
+          <WorkspaceItem
+            itemKey="tab-6"
+            label="Tab 6"
+            render={() => <Tab6 />}
           />
         </Workspace>
       </div>

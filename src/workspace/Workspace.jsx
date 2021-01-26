@@ -182,6 +182,7 @@ const Workspace = ({
           icon={<IconSettings />}
           onActivate={() => setIsMenuOpen(true)}
           refCallback={node => { sizeMenuRef.current = node; }}
+          testId={`workspace-${id}-settings-button`}
         />
         <Popup
           isOpen={isMenuOpen}

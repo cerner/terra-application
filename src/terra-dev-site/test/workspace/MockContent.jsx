@@ -14,7 +14,7 @@ const MockContent = ({
     <div style={{ padding: '1rem' }}>
       <h1>{`${title}'s Number of Clicks: ${clickCount}`}</h1>
       <button type="button" onClick={() => setClickCount(clickCount + 1)}>Click Me</button>
-      <button type="button" onClick={() => setShowAlertBanner(true)}>Show Banner</button>
+      <button type="button" data-testid="test-workspace-banner-button" onClick={() => setShowAlertBanner(true)}>Show Banner</button>
       <button
         type="button"
         onClick={() => {
@@ -22,7 +22,7 @@ const MockContent = ({
 
           setTimeout(() => {
             onShowActivityOverlay(false);
-          }, 10000);
+          }, 5000);
         }}
       >
         Show Activity Overlay

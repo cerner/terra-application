@@ -70,7 +70,7 @@ const ActionMenuItem = ({
   return (
     <li
       {...attrs}
-      className={cx('action-item', { 'is-disabled': isDisabled }, { indent: indentChildren })}
+      className={cx('action-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren })}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

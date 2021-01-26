@@ -9,7 +9,7 @@ const ActionMenuDivider = () => (
     className={cx('action-divider')}
     role="none"
   >
-    <hr className={cx('line')} />
+    <div className={cx('line')} />
   </li>
 );
 

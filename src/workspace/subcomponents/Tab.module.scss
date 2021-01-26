@@ -117,8 +117,8 @@
     }
 
     .label {
-      color: #4E5558; // TODO: themeable variable
-      font-size: 0.8571rem; // TODO: themable variable
+      color: var(--terra-application-workspace-tab-label-color, #434a4d);
+      font-size: var(--terra-application-workspace-tab-label-font-size, 1rem);
       line-height: 1.4;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -240,15 +240,16 @@
 
   .tab {
     flex: 0 1 auto;
-    min-width: calc(2.2857rem + 52px); // TODO: alter logic to avoid this type mismatch
+    min-width: calc(var(--terra-application-workspace-tab-inner-min-width, 7ch) + 52px); // TODO: alter logic to avoid this type mismatch
 
     .inner {
       text-align: center;
-      min-width: 2.2857rem;
+      min-width: var(--terra-application-workspace-tab-inner-min-width, 7ch);
     }
   }
 
   .tab-menu {
+    color: var(--terra-application-workspace-tab-menu-color, #434a4d);
     display: flex;
     flex: 0 0 auto;
     justify-content: center;
@@ -257,7 +258,7 @@
 
     svg {
       flex: 0 0 auto;
-      height: 0.7143rem;
+      height: var(--terra-application-workspace-tab-menu-svg-height, 0.8571rem);
     }
   }
 

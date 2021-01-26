@@ -183,11 +183,22 @@ class Tabs extends React.Component {
       return;
     }
 
+    // more button computed
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
     const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
-    const right = (this.containerRef.current.parentNode.getBoundingClientRect().width + moreMarginLeft) - this.moreButtonRef.current.offsetLeft;
 
-    this.dropdownRef.current.style.right = `${right}px`;
+    // parent computed
+    const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
+    const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
+
+    // more button to parent
+    const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width;
+    const moreButtonOffset = this.moreButtonRef.current.offsetLeft;
+    const moreButtonMargin = moreMarginLeft;
+
+    // calculate right
+    const calcRight = this.contentWidth - moreButtonOffset - moreButtonWidth - moreButtonMargin + parentMarginRight;
+    this.dropdownRef.current.style.right = `${calcRight}px`;
   }
 
   wrapOnSelect(onSelect) {

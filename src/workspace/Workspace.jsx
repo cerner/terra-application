@@ -156,8 +156,8 @@ const Workspace = ({
     if (onRequestDismiss) {
       dismissItem = (
         <ActionMenuItem
-          actionKey="workspace-dimiss-action"
-          label="Close Workspace Pane" // TODO: i18n needed
+          actionKey="workspace-dismiss-action"
+          label="Hide Workspace Pane" // TODO: i18n needed
           onAction={() => {
             setIsMenuOpen(false);
             onRequestDismiss();
@@ -190,7 +190,7 @@ const Workspace = ({
             setIsMenuOpen(false);
           }}
           contentHeight="auto"
-          contentWidth="240"
+          contentWidth="auto"
           contentAttachment="top right"
           isContentFocusDisabled
           isHeaderDisabled

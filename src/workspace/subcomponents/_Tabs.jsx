@@ -187,17 +187,16 @@ class Tabs extends React.Component {
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
     const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
 
-    // parent computed
+    // container's parentNode computed (parent contains relative position)
     const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
     const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
 
-    // more button to parent
+    // more button to container
     const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width;
     const moreButtonOffset = this.moreButtonRef.current.offsetLeft;
-    const moreButtonMargin = moreMarginLeft;
 
     // calculate right
-    const calcRight = this.contentWidth - moreButtonOffset - moreButtonWidth - moreButtonMargin + parentMarginRight;
+    const calcRight = this.contentWidth - moreButtonOffset - moreButtonWidth - moreMarginLeft + parentMarginRight;
     this.dropdownRef.current.style.right = `${calcRight}px`;
   }
 
@@ -275,8 +274,9 @@ class Tabs extends React.Component {
         className={cx('tab-container', theme.className)}
         ref={this.containerRef}
         role="tablist"
-        aria-owns={hiddenIds.join(' ')}
         aria-label={ariaLabel}
+        aria-orientation="horizontal"
+        aria-owns={hiddenIds.join(' ')}
       >
         {visibleTabs}
         <TabDropDown

@@ -5,6 +5,7 @@ exports[`Tabs should render default element 1`] = `
   <Tabs
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -129,6 +130,7 @@ exports[`Tabs should render prop data 1`] = `
     activeTabKey="my-test-key"
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -334,6 +336,7 @@ exports[`Tabs should render with hasCount set to true when notifications are set
     activeTabKey="notification-test"
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,

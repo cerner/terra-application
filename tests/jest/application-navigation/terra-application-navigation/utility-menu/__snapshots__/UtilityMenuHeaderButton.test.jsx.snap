@@ -5,6 +5,7 @@ exports[`UtilityMenuHeaderButton should render default element 1`] = `
   <UtilityMenuHeaderButton
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -97,6 +98,7 @@ exports[`UtilityMenuHeaderButton should render with click callback 1`] = `
   <UtilityMenuHeaderButton
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -206,6 +208,7 @@ exports[`UtilityMenuHeaderButton should render with function callbacks 1`] = `
   <UtilityMenuHeaderButton
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,

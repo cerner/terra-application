@@ -5,6 +5,7 @@ exports[`UtilityMenu should render default element 1`] = `
   <UtilityMenu
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -74,6 +75,7 @@ exports[`UtilityMenu should render default element 1`] = `
                 aria-hidden={true}
                 intl={
                   Object {
+                    "__addMessages": [Function],
                     "defaultFormats": Object {},
                     "defaultLocale": "en",
                     "defaultRichTextElements": undefined,
@@ -221,6 +223,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
     }
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -378,6 +381,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                 aria-hidden={true}
                 intl={
                   Object {
+                    "__addMessages": [Function],
                     "defaultFormats": Object {},
                     "defaultLocale": "en",
                     "defaultRichTextElements": undefined,
@@ -869,6 +873,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
   <UtilityMenu
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -959,6 +964,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                 aria-hidden={true}
                 intl={
                   Object {
+                    "__addMessages": [Function],
                     "defaultFormats": Object {},
                     "defaultLocale": "en",
                     "defaultRichTextElements": undefined,

@@ -5,6 +5,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -51,6 +52,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -149,6 +151,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -194,6 +197,7 @@ exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
 <ApplicationErrorBoundary
   intl={
     Object {
+      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
@@ -238,6 +242,7 @@ exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`]
 <ApplicationErrorBoundary
   intl={
     Object {
+      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,

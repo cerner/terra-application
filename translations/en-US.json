@@ -7,9 +7,14 @@
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
   "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}",
 
-  "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading...",
   "terraApplication.statusLayout.no-data": "No Results",
   "terraApplication.statusLayout.no-matching-results": "No Matching Results",
   "terraApplication.statusLayout.not-authorized": "Not Authorized",
-  "terraApplication.statusLayout.error": "Error"
+  "terraApplication.statusLayout.error": "Error",
+
+  "terraApplication.workspace.activityOverlay.loading": "Loading...",
+  "terraApplication.workspace.dismissButtonLabel": "Toggle Workspace",
+  "terraApplication.workspace.dismissMenuItemLabel": "Close Workspace Pane",
+  "terraApplication.workspace.settingsButtonLabel": "Show Workspace Settings",
+  "terraApplication.workspace.settingsMenuHeading": "Workspace Settings"
 }

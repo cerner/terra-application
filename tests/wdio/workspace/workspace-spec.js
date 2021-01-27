@@ -36,7 +36,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
   });
 
   it('renders tabs rollup after selection', () => {
-    browser.clickWithAttribute('data-terra-tabs-menu', 'true');
+    browser.clickWithTestId('workspace-tabs-more-button');
     Terra.validates.element('6. Workspace renders more tabs dropdown', { selector });
   });
   

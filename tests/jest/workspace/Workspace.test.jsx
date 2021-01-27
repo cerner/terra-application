@@ -76,12 +76,12 @@ test('should present utility menu with size options and utilizes onRequestSizeCh
   ));
 
   // Menu button should be rendered due to the presence of sizeOptions
-  const menuButton = screen.getByLabelText('Workspace Size Menu', { selector: 'div' });
+  const menuButton = screen.getByLabelText('terraApplication.workspace.settingsButtonLabel', { selector: 'div' });
 
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeInTheDocument();
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBeInTheDocument();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
@@ -95,7 +95,7 @@ test('should present utility menu with size options and utilizes onRequestSizeCh
   userEvent.click(largeMenuItem);
 
   // Expect the settings menu to be closed after selecting menu item
-  expect(screen.queryByLabelText('Workspace Settings')).toBe(null);
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBe(null);
 
   // Expect onRequestSizeChange callback to be executed with the key for the selected menu item
   expect(mockOnRequestSizeChange).toHaveBeenCalledWith('large');
@@ -111,14 +111,14 @@ test('should present utility menu with item to close workspace if onRequestDismi
   ));
 
   // Menu button should be rendered due to the presence of onRequestDismiss callback
-  const menuButton = screen.getByLabelText('Workspace Size Menu', { selector: 'div' });
+  const menuButton = screen.getByLabelText('terraApplication.workspace.settingsButtonLabel', { selector: 'div' });
 
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeInTheDocument();
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBeInTheDocument();
 
-  const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'Close Workspace Pane' });
+  const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'terraApplication.workspace.dismissMenuItemLabel' });
 
   // Expect the close item to be rendered in the menu
   expect(closeWorkspaceMenuItem).toBeInTheDocument();
@@ -126,7 +126,7 @@ test('should present utility menu with item to close workspace if onRequestDismi
   userEvent.click(closeWorkspaceMenuItem);
 
   // Expect the settings menu to be closed after selecting menu item
-  expect(screen.queryByLabelText('Workspace Settings')).toBe(null);
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBe(null);
 
   // Expect onRequestDismiss callback to be executed after close menu item selection
   expect(mockOnRequestDismiss).toHaveBeenCalled();
@@ -143,17 +143,17 @@ test('should present utility menu with combined size and dismiss options if nece
   ));
 
   // Menu button should be rendered due to the presence of onRequestDismiss callback
-  const menuButton = screen.getByLabelText('Workspace Size Menu', { selector: 'div' });
+  const menuButton = screen.getByLabelText('terraApplication.workspace.settingsButtonLabel', { selector: 'div' });
 
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('Workspace Settings')).toBeInTheDocument();
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBeInTheDocument();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
   const hugeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Huge', disabled: true });
-  const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'Close Workspace Pane' });
+  const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'terraApplication.workspace.dismissMenuItemLabel' });
 
   // Expect all menuItems to be rendered
   expect(smallMenuItem).toBeInTheDocument();
@@ -173,7 +173,7 @@ test('should present explicit dismiss button if enabled by dismissButtonIsVisibl
   ));
 
   // Dismiss button should be rendered due to the dismissButtonIsVisible prop
-  const dismissButton = screen.getByLabelText('Toggle Workspace');
+  const dismissButton = screen.getByLabelText('terraApplication.workspace.dismissButtonLabel');
 
   userEvent.click(dismissButton);
 
@@ -192,18 +192,18 @@ test('should dismiss the Workspace Settings menu when the popup wants to close',
   ));
 
   // Menu button should be rendered due to the presence of onRequestDismiss callback
-  const menuButton = screen.getByLabelText('Workspace Size Menu', { selector: 'div' });
+  const menuButton = screen.getByLabelText('terraApplication.workspace.settingsButtonLabel', { selector: 'div' });
 
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  const settingsPopup = screen.queryByLabelText('Workspace Settings');
+  const settingsPopup = screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading');
   expect(settingsPopup).toBeInTheDocument();
 
   // Simulate user pressing Escape key to close settings popup
   userEvent.type(settingsPopup, '{esc}');
 
   // Expect the settings menu to be closed after pressing escape
-  expect(screen.queryByLabelText('Workspace Settings')).toBe(null);
+  expect(screen.queryByLabelText('terraApplication.workspace.settingsMenuHeading')).toBe(null);
 });
 

@@ -14,6 +14,7 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
+import { ApplicationIntlContext } from '../application-intl';
 import usePortalManager, { getPortalElement } from './shared/usePortalManager';
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
@@ -116,6 +117,7 @@ const Workspace = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = React.useContext(ThemeContext);
+  const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
@@ -134,7 +136,7 @@ const Workspace = ({
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
-        ariaLabel="Toggle Workspace" // TODO: i18n needed
+        ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.dismissButtonLabel' })}
         icon={<IconPanelRight />}
         onActivate={onRequestDismiss}
       />
@@ -157,7 +159,7 @@ const Workspace = ({
       dismissItem = (
         <ActionMenuItem
           actionKey="workspace-dimiss-action"
-          label="Close Workspace Pane" // TODO: i18n needed
+          label={intl.formatMessage({ id: 'terraApplication.workspace.dismissMenuItemLabel' })}
           onAction={() => {
             setIsMenuOpen(false);
             onRequestDismiss();
@@ -178,7 +180,7 @@ const Workspace = ({
     sizeButton = (
       <>
         <WorkspaceButton
-          ariaLabel="Workspace Size Menu" // TODO: i18n needed
+          ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.settingsButtonLabel' })}
           icon={<IconSettings />}
           onActivate={() => setIsMenuOpen(true)}
           refCallback={node => { sizeMenuRef.current = node; }}
@@ -198,7 +200,7 @@ const Workspace = ({
         >
           <ActionMenu
             isHeaderDisplayed
-            ariaLabel="Workspace Settings" // TODO: i18n needed
+            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.settingsMenuHeading' })}
           >
             {sizeItems}
             {dividerItem}

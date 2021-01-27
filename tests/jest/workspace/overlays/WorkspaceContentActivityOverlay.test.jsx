@@ -21,6 +21,6 @@ test('renders activity status indicator', () => {
 test('renders text for loading variant', () => {
   render(<TestWorkspaceContentActivityOverlay variant="loading" />);
 
-  expect(screen.getByRole('status')).toHaveTextContent('terraApplication.WorkspaceContentActivityOverlay.loading');
+  expect(screen.getByRole('status')).toHaveTextContent('terraApplication.workspace.activityOverlay.loading');
 });
 

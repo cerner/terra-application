@@ -20,12 +20,12 @@ const WorkspaceContentActivityOverlay = ({ variant }) => (
   <div
     className={cx('activity-overlay')}
     role="status"
-    data-testid="workspace-content-activity"
+    data-testid="workspace-content-activity-overlay"
   >
     <div className={cx('content')}>
       <IconSpinner className={cx('icon')} isSpin height="36" width="36" />
       {variant === 'loading' ? (
-        <FormattedMessage id="terraApplication.WorkspaceContentActivityOverlay.loading">
+        <FormattedMessage id="terraApplication.workspace.activityOverlay.loading">
           {loadingMessage => (
             <div className={cx('message')}>{loadingMessage}</div>
           )}

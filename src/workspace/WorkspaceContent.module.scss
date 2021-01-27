@@ -3,6 +3,7 @@
 
 :local {
   .panel {
+    background-color: var(--terra-application-workspace-content-panel-background-color, rgb(255, 255, 255));
     display: flex;
     flex-direction: column;
     height: 100%;

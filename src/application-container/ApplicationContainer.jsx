@@ -92,7 +92,7 @@ const ApplicationContainer = ({
             registeredPromptsRef.current = registeredPrompts;
           }}
         >
-          <div className={cx('application-container')}>
+          <div className={cx('application-container')} aria-label="My Application Title"> {/* TODO:  re-evaluate label */}
             <LayerContainer>
               {!skipToLinksAreDisabled && <SkipToButtons />}
               <SkipToButtonsProvider>

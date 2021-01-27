@@ -194,10 +194,14 @@ const Workspace = ({
           contentAttachment="top right"
           isContentFocusDisabled
           isHeaderDisabled
+          popupContentRole="none"
         >
           <ActionMenu
-            isHeaderDisplayed
             ariaLabel="Workspace Settings" // TODO: i18n needed
+            isHeaderDisplayed
+            onRequestClose={() => {
+              setIsMenuOpen(false);
+            }}
           >
             {sizeItems}
             {dividerItem}

@@ -31,7 +31,7 @@ const ActionMenuGroup = ({
   indentChildren,
 }) => (
   <li
-    role="menuitem"
+    role="none"
   >
     <ul
       className={cx('action-sub-menu')}

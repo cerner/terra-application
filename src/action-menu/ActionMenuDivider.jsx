@@ -8,6 +8,7 @@ const ActionMenuDivider = () => (
   <li
     className={cx('action-divider')}
     role="none"
+    aria-hidden
   >
     <div className={cx('line')} />
   </li>

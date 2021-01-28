@@ -290,6 +290,9 @@ const SecondaryNavigationLayout = ({
       deferExecution(() => { workspacePanelRef.current.focus(); });
     } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
       deferExecution(() => {
+        // TODO flex this based on whether we're overlay or not
+        // if overlay, focus on toggle button(?)
+        // if not overlay, focus stays on button (no action here)
         const mainElement = document.querySelector('main');
         if (mainElement) {
           mainElement.focus();

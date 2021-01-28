@@ -12,9 +12,7 @@
   "terraApplication.statusLayout.not-authorized": "Not Authorized",
   "terraApplication.statusLayout.error": "Error",
 
-  "terraApplication.workspace.activityOverlay.loading": "Loading...",
-  "terraApplication.workspace.dismissButtonLabel": "Toggle Workspace",
-  "terraApplication.workspace.dismissMenuItemLabel": "Close Workspace Pane",
-  "terraApplication.workspace.settingsButtonLabel": "Show Workspace Settings",
-  "terraApplication.workspace.settingsMenuHeading": "Workspace Settings"
+  "terraApplication.workspace.activityOverlay.loading": "Loading...",  
+  "terraApplication.workspace.hideWorkspaceLabel": "Hide Workspace",
+  "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings"
 }

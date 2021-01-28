@@ -136,7 +136,7 @@ const Workspace = ({
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
-        ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.dismissButtonLabel' })}
+        ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
         icon={<IconPanelRight />}
         onActivate={onRequestDismiss}
       />
@@ -159,7 +159,7 @@ const Workspace = ({
       dismissItem = (
         <ActionMenuItem
           actionKey="workspace-dimiss-action"
-          label={intl.formatMessage({ id: 'terraApplication.workspace.dismissMenuItemLabel' })}
+          label={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
           onAction={() => {
             setIsMenuOpen(false);
             onRequestDismiss();
@@ -180,7 +180,7 @@ const Workspace = ({
     sizeButton = (
       <>
         <WorkspaceButton
-          ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.settingsButtonLabel' })}
+          ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
           icon={<IconSettings />}
           onActivate={() => setIsMenuOpen(true)}
           refCallback={node => { sizeMenuRef.current = node; }}
@@ -200,7 +200,7 @@ const Workspace = ({
         >
           <ActionMenu
             isHeaderDisplayed
-            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.settingsMenuHeading' })}
+            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
           >
             {sizeItems}
             {dividerItem}

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import ActionHeader from 'terra-action-header';
 import ContentContainer from 'terra-content-container';
+import Header from './ActionMenuHeader';
 import {
   generateOnKeyDown,
   itemByDirection,
@@ -130,7 +130,7 @@ const ActionMenu = ({
     content = (
       <ContentContainer
         {...attr}
-        header={<ActionHeader title={ariaLabel} onClose={onClose} />}
+        header={<Header label={ariaLabel} onClose={onClose} />}
         fill={isHeightBounded}
       >
         {content}

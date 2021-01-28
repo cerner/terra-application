@@ -29,13 +29,6 @@
     padding-bottom: 5px;
     padding-top: 5px;
     z-index: 10;
-
-    // TODO: revise this with a container?
-    > *:not(:first-child) {
-      border-radius: 3px !important;
-      margin-top: 5px !important;
-      overflow: hidden;
-    }
   }
 
   .panel-content {
@@ -51,5 +44,11 @@
     outline: none;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .rounded {
+    border-radius: var(--terra-application-workspace-content-rounded-border-radius, 3px);
+    margin-top: var(--terra-application-workspace-content-rounded-margin-top, 5px);
+    overflow: hidden;
   }
 }

@@ -136,6 +136,7 @@ const Workspace = ({
       <WorkspaceButton
         ariaLabel="Toggle Workspace" // TODO: i18n needed
         icon={<IconPanelRight />}
+        isActive
         onActivate={onRequestDismiss}
       />
     );

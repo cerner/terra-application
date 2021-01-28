@@ -71,9 +71,13 @@ const WorkspaceContent = ({
         role="none"
         data-testid="workspace-content-heading"
       >
-        <TabHeader>{label}</TabHeader>
-        {toolbar}
-        <NotificationBanners />
+        <TabHeader title={label} />
+        <div className={cx('rounded')}>
+          {toolbar}
+        </div>
+        <div className={cx('rounded')}>
+          <NotificationBanners />
+        </div>
       </div>
       <div role="none" className={cx('panel-content')}>
         <DynamicOverlayContainer overlays={overlays}>

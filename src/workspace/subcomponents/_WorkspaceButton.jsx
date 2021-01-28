@@ -58,6 +58,7 @@ const WorkspaceButton = ({
       data-focus-styles-enabled
       aria-label={ariaLabel}
       ref={refCallback}
+      aria-pressed={isActive}
     >
       <div aria-hidden className={cx('button-inner')}>
         <div

@@ -9,6 +9,7 @@ import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 
 import { IntlProvider } from 'react-intl';
+import { ApplicationIntlProvider } from '../application-intl';
 import i18nLoader from './private/i18nLoader';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 
@@ -108,15 +109,17 @@ const ApplicationBase = ({
           locale={finalLocale}
           messages={messages}
         >
-          <ActiveBreakpointProvider>
-            <NavigationPromptCheckpoint
-              onPromptChange={(registeredPrompts) => {
-                registeredPromptsRef.current = registeredPrompts;
-              }}
-            >
-              {children}
-            </NavigationPromptCheckpoint>
-          </ActiveBreakpointProvider>
+          <ApplicationIntlProvider>
+            <ActiveBreakpointProvider>
+              <NavigationPromptCheckpoint
+                onPromptChange={(registeredPrompts) => {
+                  registeredPromptsRef.current = registeredPrompts;
+                }}
+              >
+                {children}
+              </NavigationPromptCheckpoint>
+            </ActiveBreakpointProvider>
+          </ApplicationIntlProvider>
         </IntlProvider>
       </ThemeContextProvider>
     </ThemeProvider>

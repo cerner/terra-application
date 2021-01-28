@@ -134,9 +134,8 @@ const Workspace = ({
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
-        ariaLabel="Toggle Workspace" // TODO: i18n needed
+        ariaLabel="Hide Workspace Pane" // TODO: i18n needed
         icon={<IconPanelRight />}
-        isActive
         onActivate={onRequestDismiss}
       />
     );

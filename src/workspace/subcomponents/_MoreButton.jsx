@@ -46,6 +46,15 @@ const propTypes = {
   zIndex: PropTypes.number,
 };
 
+const setFocus = event => {
+  event.currentTarget.setAttribute('tabindex', '-1');
+  event.currentTarget.focus();
+};
+
+const removeFocus = event => {
+  event.currentTarget.removeAttribute('tabindex');
+};
+
 const MoreButton = ({
   hiddenIndex,
   isActive,
@@ -58,16 +67,19 @@ const MoreButton = ({
 }) => {
   const theme = React.useContext(ThemeContext);
 
-  function onKeyDown(event) {
-    handleMoreButtonArrows(event, hiddenIndex, tabIds);
-  }
+  const handleOnKeyDown = event => handleMoreButtonArrows(event, hiddenIndex, tabIds);
 
-  const handleOnMouseDown = event => {
-    event.currentTarget.setAttribute('tabindex', '-1');
+  const handleOnMouseDown = event => setFocus(event);
+
+  const handleOnSelect = event => {
+    setFocus(event)
+    if (onSelect) {
+      onSelect(event);
+    }
   };
 
   const handleOnBlur = event => {
-    event.currentTarget.removeAttribute('tabindex');
+    removeFocus(event);
     if (onBlur) {
       onBlur(event);
     }
@@ -79,8 +91,8 @@ const MoreButton = ({
       aria-hidden
       role="button"
       ref={refCallback}
-      onClick={onSelect}
-      onKeyDown={onKeyDown}
+      onClick={handleOnSelect}
+      onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
       className={cx('tab-menu', { 'is-active': isActive }, theme.className)}

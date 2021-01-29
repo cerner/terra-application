@@ -2,16 +2,20 @@
 // @import '../themes/orion-fusion-theme/ActionMenu.module';
 
 :local {
-  .action-menu {
-    background-color: var(--terra-application-action-menu-background-color, #fff);
-    outline: none;
-  }
-
   .action-menu,
   .action-sub-menu {
     list-style: none;
     margin: 0;
+    outline: none;
     padding: 0;
+  }
+
+  .action-menu {
+    background-color: var(--terra-application-action-menu-background-color, #fff);
+    min-width: var(--terra-application-action-menu-padding-bottom, 200px);
+    outline: none;
+    padding-bottom: var(--terra-application-action-menu-padding-bottom, 0.3571rem);
+    padding-top: var(--terra-application-action-menu-padding-top, 0.3571rem);
   }
 
   .action-sub-menu,
@@ -20,7 +24,9 @@
   }
 
   .action-divider > .line {
-    margin: 0;
+    box-shadow: var(--terra-application-action-menu-action-divider-box-shadow, 0 2px 0 0 #f4f4f4, 0 1px 0 0 #c8cacb);
+    margin: var(--terra-application-action-menu-action-divider-margin, 0.3571rem 0);
+    height: 1px;
   }
 
   .action-item,
@@ -32,6 +38,8 @@
     color: var(--terra-application-action-menu-button-action-color, #222a2e);
     display: flex;
     flex-direction: row;
+    outline: none;
+    vertical-align: center;
   }
 
   .action-checkbox,
@@ -39,10 +47,10 @@
   .action-link,
   .action-item {
     cursor: pointer;
-    padding-bottom: var(--terra-application-action-menu-action-padding-bottom, 0.643rem);
+    padding-bottom: var(--terra-application-action-menu-action-padding-bottom, 0.5rem);
     padding-left: var(--terra-application-action-menu-action-padding-left, 0.5714rem);
     padding-right: var(--terra-application-action-menu-action-padding-right, 0.7143rem);
-    padding-top: var(--terra-application-action-menu-action-padding-top, 0.643rem);
+    padding-top: var(--terra-application-action-menu-action-padding-top, 0.3571rem);
 
     &:last-child {
       border-bottom: 0;
@@ -62,16 +70,22 @@
 
   .checkbox {
     flex: 0 0 auto;
-    height: 1rem;
+    height: var(--terra-application-action-menu-checkbox-height, 0.8571rem);
     margin-right: var(--terra-application-action-menu-checkbox-padding-top, 0.4286rem);
-    width: 1rem;
+    position: relative;
+    width: var(--terra-application-action-menu-checkbox-width, 0.8571rem);
 
     & > * {
+      height: 100%;
       position: absolute;
+      width: 100%;
     }
   }
 
   .content {
+    color: var(--terra-application-action-menu-content-color, #222a2e);
+    font-size: var(--terra-application-action-menu-content-font-size, 1rem);
+    font-weight: var(--terra-application-action-menu-content-font-weight, normal);
     flex: 1 1 auto;
   }
 
@@ -98,14 +112,52 @@
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
-        background-color: var(--terra-application-action-menu-is-actionable-hover-color, #ccc);
+        background-color: var(--terra-application-action-menu-is-actionable-hover-color, #ebf6fd);
       }
     }
     
     &[data-focus-styles-enabled='true']:focus {
       outline: var(--terra-application-action-menu-is-actionable-focus-color, 2px dashed #000);
-      outline-offset: var(--terra-application-action-menu-is-actionable-focus-color, -5px);
+      outline-offset: var(--terra-application-action-menu-is-actionable-focus-color, -2px);
       z-index: 5;
+    }
+  }
+
+  .action-header {
+    align-items: var(--terra-application-action-menu-action-header-align-items, flex-start);
+    background-color: var(--terra-application-action-menu-action-header-background-color, #f9f9f9);
+    border-bottom: var(--terra-application-action-menu-action-header-border-bottom, 1px solid #d3d4d5);
+    border-left: var(--terra-application-action-menu-action-header-border-left);
+    border-right: var(--terra-application-action-menu-action-header-border-right);
+    border-top: var(--terra-application-action-menu-action-header-border-top);
+    box-shadow: var(--terra-application-action-menu-action-header-box-shadow);
+    display: flex;
+    justify-content: space-between;
+    min-height: var(--terra-application-action-menu-action-header-min-height, 2.92857rem);
+    padding: var(--terra-application-action-menu-action-header-padding, 0.35714rem 0.35714rem 0.35714rem 0);
+    position: relative;
+    width: 100%;
+
+    .title{
+      align-self: var(--terra-application-action-menu-action-header-title-align-self);
+      color: var(--terra-application-action-menu-action-header-title-color);
+      flex: 1 1 auto;
+      font-size: var(--terra-application-action-menu-action-header-title-font-size, 1.10714rem);
+      font-weight: var(--terra-application-action-menu-action-header-title-font-weight, 500);
+      hyphens: auto;
+      margin: 0;
+      overflow-wrap: break-word; /* Modern browsers */
+      padding: var(--terra-application-action-menu-action-header-title-padding, 0.28571rem 0.71428rem 0 0.71428rem);
+      padding-top: var(--terra-application-action-menu-action-header-title-padding-top, 0.28571rem);
+      position: relative;
+      width: 100%;
+      word-wrap: break-word; /* For IE 10 and IE 11 */
+    }
+  
+    .close-button{
+      display: flex;
+      flex: 0 0 auto;
+      position: relative;
     }
   }
 }

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import ActionHeader from 'terra-action-header';
 import ContentContainer from 'terra-content-container';
+import Header from './ActionMenuHeader';
 import {
   generateOnKeyDown,
   itemByDirection,
@@ -30,10 +30,19 @@ const propTypes = {
    */
   isHeaderDisplayed: PropTypes.bool,
   /**
+   * The close callback.
+   */
+  onRequestClose: PropTypes.func,
+  /**
    * @private
    * Callback function for event.
    */
   isHeightBounded: PropTypes.bool,
+  /**
+   * @private
+   * Callback function for event.
+   */
+  isWidthBounded: PropTypes.bool,
 };
 
 const ActionMenu = ({
@@ -41,6 +50,8 @@ const ActionMenu = ({
   children,
   isHeightBounded,
   isHeaderDisplayed,
+  isWidthBounded,
+  onRequestClose,
   ...customProps
 }) => {
   const menuRef = useRef();
@@ -103,9 +114,23 @@ const ActionMenu = ({
   );
 
   if (isHeaderDisplayed) {
+    let onClose;
+    if (isHeightBounded && isWidthBounded) {
+      onClose = onRequestClose;
+    }
+
+    let attr = {
+      style: { outline: 'none' },
+      tabIndex: '0',
+      onKeyDown: generateOnKeyDown(null, null, onArrow, onChar),
+      role: 'dialog',
+      'aria-label': ariaLabel,
+    };
+
     content = (
       <ContentContainer
-        header={<ActionHeader title={ariaLabel} />}
+        {...attr}
+        header={<Header label={ariaLabel} onClose={onClose} />}
         fill={isHeightBounded}
       >
         {content}

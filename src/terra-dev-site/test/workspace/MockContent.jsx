@@ -9,12 +9,13 @@ const MockContent = ({
 
   const [clickCount, setClickCount] = useState(initialCount);
   const [showAlertBanner, setShowAlertBanner] = useState(false);
+  const [showWarningBanner, setShowWarningBanner] = useState(false);
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h1>{`${title}'s Number of Clicks: ${clickCount}`}</h1>
-      <button type="button" onClick={() => setClickCount(clickCount + 1)}>Click Me</button>
-      <button type="button" data-testid="test-workspace-banner-button" onClick={() => setShowAlertBanner(true)}>Show Banner</button>
+      <button type="button" onClick={() => setClickCount(clickCount + 1)}>Increment Counter</button>
+      <button type="button" data-testid="test-workspace-banner-button" onClick={() => setShowAlertBanner(true)}>Show Alert Banner</button>
+      <button type="button" data-testid="test-workspace-banner-warning-button" onClick={() => setShowWarningBanner(true)}>Show Warning Banner</button>
       <button
         type="button"
         onClick={() => {
@@ -42,10 +43,20 @@ const MockContent = ({
       {showAlertBanner && (
         <NotificationBanner
           variant="hazard-high"
-          id="chart-review-page-alert-banner"
+          id="workspace-test-alert-banner"
           onRequestClose={() => setShowAlertBanner(false)}
         />
       )}
+      {showWarningBanner && (
+        <NotificationBanner
+          variant="hazard-medium"
+          id="workspace-test-warning-banner"
+          onRequestClose={() => setShowWarningBanner(false)}
+        />
+      )}
+      <div role="none" aria-live="polite">
+        <p>{`${title}'s Click Counter: ${clickCount}`}</p>
+      </div>
       <p>
         Active Main Page Key:
         {' '}

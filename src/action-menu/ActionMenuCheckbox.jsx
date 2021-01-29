@@ -71,7 +71,7 @@ const ActionMenuCheckbox = ({
   return (
     <li
       {...attrs}
-      className={cx('action-checkbox', { 'is-checked': isChecked }, { 'is-disabled': isDisabled })}
+      className={cx('action-checkbox', { 'is-checked': isChecked }, { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled })}
       role="menuitemcheckbox"
       aria-checked={isChecked}
       data-action-menu-key={actionKey}

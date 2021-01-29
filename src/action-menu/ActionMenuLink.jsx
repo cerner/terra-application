@@ -70,7 +70,7 @@ const ActionMenuLink = ({
   return (
     <li
       role="none"
-      className={cx('action-link', { 'is-disabled': isDisabled }, { indent: indentChildren })}
+      className={cx('action-link', { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled }, { indent: indentChildren })}
     >
       <a
         {...attrs}

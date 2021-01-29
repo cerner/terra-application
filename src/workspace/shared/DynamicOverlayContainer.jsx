@@ -20,6 +20,8 @@ const defaultProps = {
 
 const DynamicOverlayContainer = ({ overlays, children }) => {
   const contentRef = React.useRef();
+  const focusAnchorRef = React.useRef();
+  const focusTriggersRef = React.useRef({});
 
   /**
    * The refs for each overlay are kept in a local variable to ensure
@@ -36,15 +38,50 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
    * its assigned state.
    */
   React.useLayoutEffect(() => {
-    contentRef.current.inert = overlays.length !== 0;
+    const activeElement = document.activeElement;
+
+    if (overlays.length !== 0) {
+      if (contentRef.current.contains(activeElement)) {
+        focusTriggersRef.current['__dynamic-overlay-content__'] = activeElement;
+        focusAnchorRef.current.focus();
+      }
+
+      contentRef.current.inert = true;
+    } else {
+      contentRef.current.inert = false;
+
+      const cachedActiveElement = focusTriggersRef.current['__dynamic-overlay-content__'];
+      if (cachedActiveElement && contentRef.current.contains(cachedActiveElement) && document.activeElement === focusAnchorRef.current) {
+        cachedActiveElement.focus();
+
+        focusTriggersRef.current['__dynamic-overlay-content__'] = undefined;
+      }
+    }
 
     for (let i = 0, count = overlays.length; i < count; i += 1) {
-      overlayRefs[i].inert = i !== count - 1;
+      if (i !== count - 1) {
+        if (overlayRefs[i].element.contains(activeElement)) {
+          focusTriggersRef.current[overlayRefs[i].key] = activeElement;
+          focusAnchorRef.current.focus();
+        }
+
+        overlayRefs[i].element.inert = true;
+      } else {
+        overlayRefs[i].element.inert = false;
+
+        const cachedActiveElement = focusTriggersRef.current[overlayRefs[i].key];
+        if (cachedActiveElement && overlayRefs[i].element.contains(cachedActiveElement) && document.activeElement === focusAnchorRef.current) {
+          cachedActiveElement.focus();
+  
+          focusTriggersRef.current[overlayRefs[i].key] = undefined;
+        }
+      }
     }
   }, [overlayRefs, overlays]);
 
   return (
     <div className={cx('outer-container')}>
+      <div ref={focusAnchorRef} tabIndex="-1" />
       <div ref={contentRef} className={cx('content-container')}>
         {children}
       </div>
@@ -52,7 +89,10 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
         <div
           key={overlay.key}
           ref={(overlayRef) => {
-            overlayRefs[index] = overlayRef;
+            overlayRefs[index] = {
+              key: overlay.key,
+              element: overlayRef,
+            };
           }}
           className={cx('overlay-container')}
         >

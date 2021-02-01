@@ -1,4 +1,14 @@
 {
+  "terraApplication.notificationBanner.advisory": "Hinweis.",
+  "terraApplication.notificationBanner.alert": "Warnung.",
+  "terraApplication.notificationBanner.dismiss": "Verwerfen",
+  "terraApplication.notificationBanner.error": "Fehler.",
+  "terraApplication.notificationBanner.info": "Informationen.",
+  "terraApplication.notificationBanner.success": "Erfolg.",
+  "terraApplication.notificationBanner.unsatisfied": "Erforderliche Aktion.",
+  "terraApplication.notificationBanner.unverified": "Externe Datensätze",
+  "terraApplication.notificationBanner.warning": "Achtung.",
+
   "terraApplication.unsavedChangesPrompt.title": "Nicht gespeicherte Änderungen",
   "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Die Änderungen der folgenden Elemente wurden nicht gespeichert: {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Die Änderungen der folgenden Elemente wurden nicht gespeichert:",

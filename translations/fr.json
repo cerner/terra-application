@@ -5,5 +5,15 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas les modifications, elles seront perdues. Comment voulez-vous procéder ?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuer la modification",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}",
+
+  "terraApplication.notificationBanner.advisory": "Recommandation.",
+  "terraApplication.notificationBanner.alert": "Alerte.",
+  "terraApplication.notificationBanner.dismiss": "Ignorer",
+  "terraApplication.notificationBanner.error": "Erreur.",
+  "terraApplication.notificationBanner.info": "Information.",
+  "terraApplication.notificationBanner.success": "Opération réussie.",
+  "terraApplication.notificationBanner.unsatisfied": "Action requise.",
+  "terraApplication.notificationBanner.unverified": "Dossiers extérieurs.",
+  "terraApplication.notificationBanner.warning": "Avertissement."
 }

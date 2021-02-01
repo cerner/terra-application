@@ -5,5 +5,15 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Om du inte sparar ändringarna går de förlorade. Hur vill du fortsätta?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Spara inte",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Fortsätt redigera",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Ett fel uppstod: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Ett fel uppstod: {errorDetails}",
+
+  "terraApplication.notificationBanner.advisory": "Rådgivning.",
+  "terraApplication.notificationBanner.alert": "Avisering.",
+  "terraApplication.notificationBanner.dismiss": "Ignorera",
+  "terraApplication.notificationBanner.error": "Fel.",
+  "terraApplication.notificationBanner.info": "Information.",
+  "terraApplication.notificationBanner.success": "Klar.",
+  "terraApplication.notificationBanner.unsatisfied": "Nödvändig åtgärd krävs.",
+  "terraApplication.notificationBanner.unverified": "Externa journaler.",
+  "terraApplication.notificationBanner.warning": "Varning!"
 }

@@ -5,5 +5,15 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Deze wijzigingen gaan verloren als u ze niet opslaat. Hoe wilt u verder gaan?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Niet opslaan",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Doorgaan met bewerken",
-  "terraApplication.errorBoundary.defaultErrorMessage": "In het systeem is een fout opgetreden: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "In het systeem is een fout opgetreden: {errorDetails}",
+
+  "terraApplication.notificationBanner.advisory": "Adviserend.",
+  "terraApplication.notificationBanner.alert": "Waarschuwing.",
+  "terraApplication.notificationBanner.dismiss": "Negeren",
+  "terraApplication.notificationBanner.error": "Fout.",
+  "terraApplication.notificationBanner.info": "Informatie.",
+  "terraApplication.notificationBanner.success": "Succes.",
+  "terraApplication.notificationBanner.unsatisfied": "Vereiste actie.",
+  "terraApplication.notificationBanner.unverified": "Externe records.",
+  "terraApplication.notificationBanner.warning": "Waarschuwing."
 }

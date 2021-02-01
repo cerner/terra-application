@@ -1,11 +1,11 @@
 import React from 'react';
 import classNamesBind from 'classnames/bind';
-import Alert from 'terra-alert';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
+import NotificationBannerView from './_NotificationBannerView';
 
 import styles from './CustomIcon.module.scss';
 
@@ -98,9 +98,17 @@ const useNotificationBanners = () => {
       /**
        * Renders a list of prioritized notification banners.
        */
-      NotificationBanners: () => {
+      NotificationBanners: ({ onHandleFocusPlacement }) => {
         const theme = React.useContext(ThemeContext);
         const [banners, setBanners] = React.useState([]);
+        const activeDismissalElementRef = React.useRef();
+
+        React.useLayoutEffect(() => {
+          if (activeDismissalElementRef.current && !document.contains(activeDismissalElementRef.current)) {
+            onHandleFocusPlacement();
+            activeDismissalElementRef.current = undefined;
+          }
+        });
 
         /**
          * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
@@ -161,17 +169,20 @@ const useNotificationBanners = () => {
               }
 
               return (
-                <Alert
+                <NotificationBannerView
                   key={key}
                   action={actionButton}
-                  onDismiss={onRequestClose}
+                  onDismiss={onRequestClose ? () => {
+                    activeDismissalElementRef.current = document.activeElement;
+                    onRequestClose();
+                  } : undefined}
                   type={alertType}
                   customIcon={customIcon}
                   title={customSignalWord}
                   data-terra-application-notification-banner={variant}
                 >
                   {description}
-                </Alert>
+                </NotificationBannerView>
               );
             })}
           </div>

@@ -38,7 +38,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
    * its assigned state.
    */
   React.useLayoutEffect(() => {
-    const activeElement = document.activeElement;
+    const { activeElement } = document;
 
     if (overlays.length !== 0) {
       if (contentRef.current.contains(activeElement)) {
@@ -51,7 +51,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
       contentRef.current.inert = false;
 
       const cachedActiveElement = focusTriggersRef.current['__dynamic-overlay-content__'];
-      if (cachedActiveElement && contentRef.current.contains(cachedActiveElement) && document.activeElement === focusAnchorRef.current) {
+      if (cachedActiveElement && contentRef.current.contains(cachedActiveElement) && (document.activeElement === focusAnchorRef.current || focusAnchorRef.current.contains(document.activeElement))) {
         cachedActiveElement.focus();
 
         focusTriggersRef.current['__dynamic-overlay-content__'] = undefined;
@@ -70,9 +70,9 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
         overlayRefs[i].element.inert = false;
 
         const cachedActiveElement = focusTriggersRef.current[overlayRefs[i].key];
-        if (cachedActiveElement && overlayRefs[i].element.contains(cachedActiveElement) && document.activeElement === focusAnchorRef.current) {
+        if (cachedActiveElement && overlayRefs[i].element.contains(cachedActiveElement) && (document.activeElement === focusAnchorRef.current || focusAnchorRef.current.contains(document.activeElement))) {
           cachedActiveElement.focus();
-  
+
           focusTriggersRef.current[overlayRefs[i].key] = undefined;
         }
       }
@@ -80,8 +80,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
   }, [overlayRefs, overlays]);
 
   return (
-    <div className={cx('outer-container')}>
-      <div ref={focusAnchorRef} tabIndex="-1" />
+    <div className={cx('outer-container')} ref={focusAnchorRef} tabIndex="-1">
       <div ref={contentRef} className={cx('content-container')}>
         {children}
       </div>

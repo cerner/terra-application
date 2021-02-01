@@ -14,5 +14,15 @@
 
   "terraApplication.workspace.activityOverlay.loading": "Loading...",  
   "terraApplication.workspace.hideWorkspaceLabel": "Hide Workspace",
-  "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings"
+  "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings",
+
+  "terraApplication.notificationBanner.dismiss": "Dismiss",
+  "terraApplication.notificationBanner.info": "Information.",
+  "terraApplication.notificationBanner.error": "Error.",
+  "terraApplication.notificationBanner.warning": "Warning.",
+  "terraApplication.notificationBanner.alert": "Alert.",
+  "terraApplication.notificationBanner.advisory": "Advisory.",
+  "terraApplication.notificationBanner.unsatisfied": "Required Action.",
+  "terraApplication.notificationBanner.unverified": "Outside Records.",
+  "terraApplication.notificationBanner.success": "Success."
 }

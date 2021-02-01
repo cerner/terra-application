@@ -5,5 +5,15 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Los cambios se perderán si no los guarda. ¿Qué desea hacer?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "No guardar",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando",
-  "terraApplication.errorBoundary.defaultErrorMessage": "El sistema detectó un error: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "El sistema detectó un error: {errorDetails}",
+
+  "terraApplication.notificationBanner.advisory": "Recomendación.",
+  "terraApplication.notificationBanner.alert": "Alerta.",
+  "terraApplication.notificationBanner.dismiss": "Descartar",
+  "terraApplication.notificationBanner.error": "Error.",
+  "terraApplication.notificationBanner.info": "Información.",
+  "terraApplication.notificationBanner.success": "Correcto.",
+  "terraApplication.notificationBanner.unsatisfied": "Acción obligatoria.",
+  "terraApplication.notificationBanner.unverified": "Historias clínicas externas.",
+  "terraApplication.notificationBanner.warning": "Advertencia."
 }

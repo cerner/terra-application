@@ -5,5 +5,15 @@
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Se você não as salvar, essas alterações serão perdidas. Deseja continuar?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Não salvar",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuar editando",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Erro no sistema: {errorDetails}"
+  "terraApplication.errorBoundary.defaultErrorMessage": "Erro no sistema: {errorDetails}",
+
+  "terraApplication.notificationBanner.advisory": "Informe.",
+  "terraApplication.notificationBanner.alert": "Alerta.",
+  "terraApplication.notificationBanner.dismiss": "Ignorar",
+  "terraApplication.notificationBanner.error": "Erro.",
+  "terraApplication.notificationBanner.info": "Informações.",
+  "terraApplication.notificationBanner.success": "Êxito.",
+  "terraApplication.notificationBanner.unsatisfied": "Ação exigida.",
+  "terraApplication.notificationBanner.unverified": "Registros externos.",
+  "terraApplication.notificationBanner.warning": "Aviso."
 }

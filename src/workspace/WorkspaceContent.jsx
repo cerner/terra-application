@@ -40,6 +40,7 @@ const WorkspaceContent = ({
   const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+  const panelRef = React.useRef();
 
   const overlays = React.useMemo(() => {
     const overlaysToRender = [];
@@ -73,11 +74,16 @@ const WorkspaceContent = ({
       >
         <TabHeader>{label}</TabHeader>
         {toolbar}
-        <NotificationBanners />
+        <NotificationBanners 
+          onHandleFocusPlacement={() => {
+            panelRef.current.focus();
+          }} 
+        />
       </div>
       <div role="none" className={cx('panel-content')}>
         <DynamicOverlayContainer overlays={overlays}>
           <div
+            ref={panelRef}
             className={cx('panel-overflow')}
             role="tabpanel"
             tabIndex="0"

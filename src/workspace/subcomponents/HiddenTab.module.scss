@@ -3,6 +3,7 @@
 
 :local {
   .hidden {
+    align-items: center;
     background-color: var(--terra-application-workspace-hidden-tab-hidden-background-color, #fff);
     color: var(--terra-application-workspace-hidden-tab-hidden-color, #222a2e);
     cursor: pointer;

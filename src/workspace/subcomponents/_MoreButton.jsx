@@ -101,7 +101,9 @@ const MoreButton = ({
     >
       <div className={cx('before')} />
       <div className={cx('inner')}>
-        <IconCaretDown />
+        <div className={cx('icon')}>
+          <IconCaretDown />
+        </div>
       </div>
       <div className={cx('after')} />
     </div>

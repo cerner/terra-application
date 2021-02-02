@@ -282,7 +282,7 @@ class Tabs extends React.Component {
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
-            zIndex={isHiddenSelected ? tabData.length : tabData.length - this.hiddenStartIndex}
+            zIndex={tabData.length - this.hiddenStartIndex}
             onBlur={this.handleHiddenBlur}
             onSelect={this.handleOnMoreButtonSelect}
             refCallback={node => { this.moreButtonRef.current = node; }}

@@ -176,7 +176,7 @@ const NotificationBannerView = ({
   );
 
   return (
-    <div {...customProps} role="status" className={alertClassNames} ref={containerRef}>
+    <div {...customProps} className={alertClassNames} ref={containerRef}>
       <div className={bodyClassNameForParent}>
         {getAlertIcon(type, customIcon)}
         {alertMessageContent}

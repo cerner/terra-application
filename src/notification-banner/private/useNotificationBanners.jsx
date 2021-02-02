@@ -3,7 +3,7 @@ import classNamesBind from 'classnames/bind';
 // import uuidv4 from 'uuid/v4'; TODO
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
-// import VisuallyHiddenText from 'terra-visually-hidden-text'; TODO
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ApplicationIntlContext } from '../../application-intl';
 
@@ -102,7 +102,7 @@ const useNotificationBanners = () => {
       /**
        * Renders a list of prioritized notification banners.
        */
-      NotificationBanners: ({ label }) => {
+      NotificationBanners: ({ id, label }) => {
         const theme = React.useContext(ThemeContext);
         const intl = React.useContext(ApplicationIntlContext);
         const [banners, setBanners] = React.useState([]);
@@ -126,7 +126,7 @@ const useNotificationBanners = () => {
         // }
 
         return (
-          <div role="region" aria-label={descriptionStart} tabIndex="-1">
+          <div role="region" aria-label={descriptionStart} tabIndex="-1" id={id} aria-live="polite" aria-atomic="false" aria-relevant="additions">
             <ul className={cx('banners-list')} ref={containerRef} tabIndex="-1">
               {prioritizedBanners.map((bannerProps, index) => {
                 const {
@@ -178,7 +178,9 @@ const useNotificationBanners = () => {
                     aria-setsize={prioritizedBanners.length}
                     aria-posinset={index + 1}
                     tabIndex="-1"
+                    key={key}
                   >
+                    <VisuallyHiddenText text="Workspace Notification" />
                     <NotificationBannerView
                       key={key}
                       action={actionButton}

@@ -22,7 +22,7 @@ const WorkspaceTest = () => {
     pageLabel: 'Test Page',
     pageMetaData: {
       data: 'data here',
-    }
+    },
   });
 
   const onRequestSizeChange = (size) => {
@@ -36,14 +36,14 @@ const WorkspaceTest = () => {
 
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
-      <div style={{ 
-        width: sizeMap[workspaceSize], 
-        height: '100%' 
-      }}>
+      <div style={{
+        width: sizeMap[workspaceSize],
+        height: '100%',
+      }}
+      >
         <Workspace
           id="test-id"
           activeItemKey={activeItemKey}
-          ariaLabel="work space"
           onRequestActivate={key => setActiveItemKey(key)}
           activeSize={workspaceSize}
           sizeOptions={[{

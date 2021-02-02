@@ -76,6 +76,7 @@ const WorkspaceContent = ({
         {toolbar}
         <NotificationBanners
           label={`Workspace ${label}`}
+          id={`${panelId}-notifications`}
         />
       </div>
       <div role="none" className={cx('panel-content')}>

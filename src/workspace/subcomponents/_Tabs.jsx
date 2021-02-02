@@ -181,7 +181,7 @@ class Tabs extends React.Component {
     const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
     const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
 
-    // getBoundingClientRect - using adding 5px for visual offset effect
+    // getBoundingClientRect - using adding 6px for visual offset effect
     const moreRect = this.moreButtonRef.current.getBoundingClientRect()
     const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
     const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 6);

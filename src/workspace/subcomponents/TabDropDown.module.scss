@@ -8,8 +8,8 @@
     height: 1px;
     margin: -1px;
     max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 44px));
-    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 240px); // TODO: determine final value, or if needed additional classes
-    min-width: var(--terra-application-workspace-tab-drop-down-min-width, 200px);
+    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 187px); // TODO: determine final value, or if needed additional classes
+    min-width: var(--terra-application-workspace-tab-drop-down-min-width, 150px);
     opacity: 0;
     overflow: hidden;
     padding: var(--terra-application-workspace-tab-drop-down-padding, 5px 0);

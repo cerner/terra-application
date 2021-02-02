@@ -184,7 +184,7 @@ class Tabs extends React.Component {
     // getBoundingClientRect - using adding 5px for visual offset effect
     const moreRect = this.moreButtonRef.current.getBoundingClientRect()
     const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
-    const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 5);
+    const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 6);
 
     // calculate right
     this.dropdownRef.current.style.right = `${calcRight}px`;

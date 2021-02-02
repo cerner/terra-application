@@ -33,6 +33,7 @@ const PageHeader = ({
     const containerElement = headerContainerRef.current;
 
     const resizeObserver = new ResizeObserver(entries => {
+      // TODO: wrap in requestAnimationFrame to prevent resizeObserver exceeded loop violation
       const resizeWidth = entries[0].contentRect.width;
 
       if (resizeWidth === 0) {

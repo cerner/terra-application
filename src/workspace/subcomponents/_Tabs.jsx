@@ -70,7 +70,6 @@ class Tabs extends React.Component {
 
   componentDidMount() {
     this.resizeObserver = new ResizeObserver((entries) => {
-      this.contentWidth = entries[0].contentRect.width;
       if (!this.isCalculating) {
         this.animationFrameID = window.requestAnimationFrame(() => {
           // Resetting the cache so that all elements will be rendered face-up for width calculations
@@ -80,7 +79,7 @@ class Tabs extends React.Component {
       }
     });
     this.resizeObserver.observe(this.containerRef.current);
-    this.handleResize(this.contentWidth);
+    this.handleResize();
   }
 
   componentDidUpdate(prevProps) {

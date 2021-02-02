@@ -49,10 +49,6 @@ const propTypes = {
    */
   activeSize: PropTypes.string,
   /**
-   * The accessible label of the workspace.
-   */
-  ariaLabel: PropTypes.string.isRequired,
-  /**
    * The child WorkspaceItems.
    */
   children: PropTypes.node.isRequired,
@@ -105,7 +101,6 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
 const Workspace = ({
   id,
   activeItemKey,
-  ariaLabel,
   activeSize,
   children,
   dismissButtonIsVisible,
@@ -121,6 +116,8 @@ const Workspace = ({
   const sizeMenuRef = useRef();
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
+
+  const ariaLabel = 'Workspace'; // TODO INTL
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),

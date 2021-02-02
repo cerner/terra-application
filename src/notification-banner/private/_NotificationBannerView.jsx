@@ -110,6 +110,8 @@ const getAlertIcon = (type, customIcon) => {
 
 const shouldUpdateFromElementSizeChange = (newSize, oldSize) => (newSize.activeBreakpoint !== oldSize.activeBreakpoint);
 
+const getTitleStringIdForType = (type) => (type === NotificationTypes.CUSTOM ? undefined : `terraApplication.notificationBanner.${type}`);
+
 const NotificationBannerView = ({
   action,
   children,
@@ -130,7 +132,7 @@ const NotificationBannerView = ({
     setIsNarrow(activeBreakpoint === 'tiny');
   }, [activeBreakpoint]);
 
-  const defaultTitle = type === NotificationTypes.CUSTOM ? '' : intl.formatMessage({ id: `terraApplication.notificationBanner.${type}` });
+  const defaultTitle = type === NotificationTypes.CUSTOM ? '' : intl.formatMessage({ id: getTitleStringIdForType(type) });
   const alertClassNames = classNames(
     cx(
       'notification-banner',
@@ -174,7 +176,7 @@ const NotificationBannerView = ({
   );
 
   return (
-    <div role="status" {...customProps} className={alertClassNames} ref={containerRef}>
+    <div {...customProps} role="status" className={alertClassNames} ref={containerRef}>
       <div className={bodyClassNameForParent}>
         {getAlertIcon(type, customIcon)}
         {alertMessageContent}
@@ -188,3 +190,4 @@ NotificationBannerView.propTypes = propTypes;
 NotificationBannerView.defaultProps = defaultProps;
 
 export default NotificationBannerView;
+export { getTitleStringIdForType, NotificationTypes };

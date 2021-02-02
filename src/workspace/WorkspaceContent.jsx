@@ -74,10 +74,8 @@ const WorkspaceContent = ({
       >
         <TabHeader>{label}</TabHeader>
         {toolbar}
-        <NotificationBanners 
-          onHandleFocusPlacement={() => {
-            panelRef.current.focus();
-          }} 
+        <NotificationBanners
+          label={`Workspace ${label}`}
         />
       </div>
       <div role="none" className={cx('panel-content')}>

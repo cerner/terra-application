@@ -1,13 +1,17 @@
 import React from 'react';
 import classNamesBind from 'classnames/bind';
+// import uuidv4 from 'uuid/v4'; TODO
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
+// import VisuallyHiddenText from 'terra-visually-hidden-text'; TODO
+
+import { ApplicationIntlContext } from '../../application-intl';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
-import NotificationBannerView from './_NotificationBannerView';
+import NotificationBannerView, { getTitleStringIdForType } from './_NotificationBannerView';
 
-import styles from './CustomIcon.module.scss';
+import styles from './useNotificationBanners.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
@@ -98,17 +102,11 @@ const useNotificationBanners = () => {
       /**
        * Renders a list of prioritized notification banners.
        */
-      NotificationBanners: ({ onHandleFocusPlacement }) => {
+      NotificationBanners: ({ label }) => {
         const theme = React.useContext(ThemeContext);
+        const intl = React.useContext(ApplicationIntlContext);
         const [banners, setBanners] = React.useState([]);
-        const activeDismissalElementRef = React.useRef();
-
-        React.useLayoutEffect(() => {
-          if (activeDismissalElementRef.current && !document.contains(activeDismissalElementRef.current)) {
-            onHandleFocusPlacement();
-            activeDismissalElementRef.current = undefined;
-          }
-        });
+        const containerRef = React.useRef();
 
         /**
          * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
@@ -116,75 +114,89 @@ const useNotificationBanners = () => {
          */
         updateBannerState.current = setBanners;
 
-        if (!Object.keys(banners).length) {
-          return null;
-        }
-
         const prioritizedBanners = organizeBannersByPriority(banners, theme.name);
+        const descriptionStart = `${label} Notifications.`;
+        // let bannerCountText;
+        // if (prioritizedBanners.length === 0) {
+        //   bannerCountText = 'There are no notifications.';
+        // } else if (prioritizedBanners.length === 1) {
+        //   bannerCountText = 'There is 1 notification.';
+        // } else {
+        //   bannerCountText = `There are ${prioritizedBanners.length} notifications.`;
+        // }
 
         return (
-          <div aria-live="polite">
-            {prioritizedBanners.map((bannerProps) => {
-              const {
-                bannerAction, custom, description, key, onRequestClose, variant,
-              } = bannerProps;
+          <div role="region" aria-label={descriptionStart} tabIndex="-1">
+            <ul className={cx('banners-list')} ref={containerRef} tabIndex="-1">
+              {prioritizedBanners.map((bannerProps, index) => {
+                const {
+                  bannerAction, custom, description, key, onRequestClose, variant,
+                } = bannerProps;
 
-              let alertType;
-              switch (variant) {
-                case 'hazard-high':
-                  alertType = 'alert';
-                  break;
-                case 'hazard-medium':
-                  alertType = 'warning';
-                  break;
-                case 'hazard-low':
-                  alertType = 'info';
-                  break;
-                default:
-                  alertType = variant;
-              }
+                let alertType;
+                switch (variant) {
+                  case 'hazard-high':
+                    alertType = 'alert';
+                    break;
+                  case 'hazard-medium':
+                    alertType = 'warning';
+                    break;
+                  case 'hazard-low':
+                    alertType = 'info';
+                    break;
+                  default:
+                    alertType = variant;
+                }
 
-              let actionButton = null;
-              if (bannerAction) {
-                actionButton = (
-                  <Button
-                    text={bannerAction.text}
-                    variant="ghost"
-                    data-terra-application-notification-banner={variant}
-                    onClick={bannerAction.onClick}
-                  />
-                );
-              }
-
-              let customIcon;
-              let customSignalWord;
-              if (alertType === 'custom' && custom !== undefined) {
-                customSignalWord = custom?.signalWord;
-
-                if (custom.customIconClass) {
-                  customIcon = (
-                    <svg className={cx(['custom-icon', custom.customIconClass])} />
+                let actionButton = null;
+                if (bannerAction) {
+                  actionButton = (
+                    <Button
+                      text={bannerAction.text}
+                      variant="ghost"
+                      data-terra-application-notification-banner={variant}
+                      onClick={bannerAction.onClick}
+                    />
                   );
                 }
-              }
 
-              return (
-                <NotificationBannerView
-                  key={key}
-                  action={actionButton}
-                  onDismiss={onRequestClose ? () => {
-                    activeDismissalElementRef.current = document.activeElement;
-                    onRequestClose();
-                  } : undefined}
-                  type={alertType}
-                  customIcon={customIcon}
-                  title={customSignalWord}
-                  data-terra-application-notification-banner={variant}
-                >
-                  {description}
-                </NotificationBannerView>
-              );
-            })}
+                let customIcon;
+                let customSignalWord;
+                if (alertType === 'custom' && custom !== undefined) {
+                  customSignalWord = custom?.signalWord;
+
+                  if (custom.customIconClass) {
+                    customIcon = (
+                      <svg className={cx(['custom-icon', custom.customIconClass])} />
+                    );
+                  }
+                }
+
+                return (
+                  <li
+                    aria-label={getTitleStringIdForType(alertType) ? intl.formatMessage({ id: getTitleStringIdForType(alertType) }) : 'Notification'}
+                    aria-setsize={prioritizedBanners.length}
+                    aria-posinset={index + 1}
+                    tabIndex="-1"
+                  >
+                    <NotificationBannerView
+                      key={key}
+                      action={actionButton}
+                      onDismiss={onRequestClose ? () => {
+                        onRequestClose();
+                        containerRef.current.focus();
+                      } : undefined}
+                      type={alertType}
+                      customIcon={customIcon}
+                      title={customSignalWord}
+                      data-terra-application-notification-banner={variant}
+                    >
+                      {description}
+                    </NotificationBannerView>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         );
       },

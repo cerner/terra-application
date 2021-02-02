@@ -95,7 +95,7 @@ const MoreButton = ({
       onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
-      className={cx('tab-menu', { 'is-active': isActive }, theme.className)}
+      className={cx('tab-menu', { 'is-active': isActive || isOpen }, theme.className)}
       data-terra-tabs-menu // TODO remove this?
       style={{ zIndex: isOpen ? '100' : zIndex }}
     >

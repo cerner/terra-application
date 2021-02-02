@@ -98,14 +98,17 @@ class Tabs extends React.Component {
     this.resizeObserver.disconnect(this.containerRef.current);
   }
 
-  handleResize(width) {
+  handleResize() {
     if (!this.moreButtonRef.current || !this.containerRef.current) {
       return;
     }
 
+    // NOTE: get width from bounding client rect instead of r4esize observer, zoom throws off safari.
+    const width = this.containerRef.current.parentNode.getBoundingClientRect().width;
+
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 10);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
+    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 0);
     const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width + moreMarginLeft + moreMarginRight;
     const availableWidth = width - moreButtonWidth;
 
@@ -119,20 +122,7 @@ class Tabs extends React.Component {
       const tabStyle = window.getComputedStyle(tab, null);
       const tabMarginLeft = parseFloat(tabStyle.getPropertyValue('margin-left'));
       const tabMarginRight = parseFloat(tabStyle.getPropertyValue('margin-right'));
-      // const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width')); // TODO: come up with better
-
-      const startSvg = tab.children[0];
-      const innerSvg = tab.children[1];
-      const endSvg = tab.children[2];
-      const startStyle = window.getComputedStyle(startSvg, null);
-      const innerStyle = window.getComputedStyle(innerSvg, null);
-      const endStyle = window.getComputedStyle(endSvg, null);
-
-      const startWidth = parseFloat(startStyle.getPropertyValue('width'));
-      const innerMinWidth = parseFloat(innerStyle.getPropertyValue('min-width'));
-      const endWidth = parseFloat(endStyle.getPropertyValue('width'));
-
-      const tabMinWidth = startWidth + innerMinWidth + endWidth;
+      const tabMinWidth = parseFloat(tabStyle.getPropertyValue('min-width'));
 
       calcMinWidth += (tabMinWidth + tabMarginLeft + tabMarginRight);
       if (calcMinWidth > availableWidth && !(i === tabCount - 1 && calcMinWidth <= width)) {
@@ -185,18 +175,18 @@ class Tabs extends React.Component {
 
     // more button computed
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 0);
 
     // container's parentNode computed (parent contains relative position)
     const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
     const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
 
-    // more button to container
-    const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width;
-    const moreButtonOffset = this.moreButtonRef.current.offsetLeft;
+    // getBoundingClientRect - using adding 5px for visual offset effect
+    const moreRect = this.moreButtonRef.current.getBoundingClientRect()
+    const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
+    const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 5);
 
     // calculate right
-    const calcRight = this.contentWidth - moreButtonOffset - moreButtonWidth - moreMarginLeft + parentMarginRight;
     this.dropdownRef.current.style.right = `${calcRight}px`;
   }
 

@@ -96,6 +96,7 @@
     "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
+    "@cerner/terra-docs": "^1.0.0",
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "mutationobserver-shim": "0.3.3",
@@ -129,7 +130,6 @@
     "@babel/core": "7.10.5",
     "@babel/parser": "7.10.5",
     "@cerner/terra-cli": "^1.0.0",
-    "@cerner/terra-docs": "^1.0.0",
     "@cerner/terra-open-source-scripts": "^1.0.1",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.9.0",

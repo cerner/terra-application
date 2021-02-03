@@ -152,6 +152,8 @@ const useNotificationBanners = () => {
               clearTimeout(timeout);
             };
           }
+
+          return undefined;
         }, [renderedBannerComparison, forceUpdate]);
 
         lastRenderedBannersRef.current = prioritizedBanners;

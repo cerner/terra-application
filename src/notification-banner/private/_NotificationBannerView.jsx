@@ -11,6 +11,7 @@ import IconSuccess from 'terra-icon/lib/icon/IconSuccess';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ApplicationIntlContext } from '../../application-intl';
 
@@ -113,6 +114,7 @@ const shouldUpdateFromElementSizeChange = (newSize, oldSize) => (newSize.activeB
 const getTitleStringIdForType = (type) => (type === NotificationTypes.CUSTOM ? undefined : `terraApplication.notificationBanner.${type}`);
 
 const NotificationBannerView = ({
+  label,
   action,
   children,
   customIcon,
@@ -127,10 +129,21 @@ const NotificationBannerView = ({
   const containerRef = React.useRef();
   const { activeBreakpoint } = useElementSize(containerRef, shouldUpdateFromElementSizeChange);
   const [isNarrow, setIsNarrow] = useState();
+  const [showDescription, setShowDescription] = React.useState(true);
 
   React.useLayoutEffect(() => {
     setIsNarrow(activeBreakpoint === 'tiny');
   }, [activeBreakpoint]);
+
+  React.useEffect(() => {
+    const timeout = setTimeout(() => {
+      setShowDescription(false);
+    }, 10000);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, []);
 
   const defaultTitle = type === NotificationTypes.CUSTOM ? '' : intl.formatMessage({ id: getTitleStringIdForType(type) });
   const alertClassNames = classNames(
@@ -176,9 +189,10 @@ const NotificationBannerView = ({
   );
 
   return (
-    <div {...customProps} className={alertClassNames} ref={containerRef}>
+    <div {...customProps} role="none" className={alertClassNames} ref={containerRef}>
       <div className={bodyClassNameForParent}>
         {getAlertIcon(type, customIcon)}
+        {label ? <VisuallyHiddenText text={label} /> : undefined}
         {alertMessageContent}
       </div>
       {actionsSection}

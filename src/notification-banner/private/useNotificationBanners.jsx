@@ -31,7 +31,7 @@ const useNotificationBanners = () => {
   const registeredBanners = React.useRef({});
 
   /**
-   * The updateBannerState ref stores the update state function used to manage the banner rendered in the NotificationBanners component.
+   * The updateBannerState ref stores the update state function used to manage the banners rendered in the NotificationBanners component.
    * This ties the state updates to the `useNotificationBanners` hook, while allowing the NotificationBanners to be rendered above or below
    * the NotificationBannerProvider.
    */
@@ -59,7 +59,7 @@ const useNotificationBanners = () => {
       registeredBanners.current[variant][bannerId] = { key: bannerId, ...bannerProps };
 
       if (updateBannerState.current) {
-        updateBannerState.current({ ...registeredBanners.current });
+        updateBannerState.current({ banners: { ...registeredBanners.current } });
       }
     };
 
@@ -86,7 +86,7 @@ const useNotificationBanners = () => {
       }
 
       if (updateBannerState.current) {
-        updateBannerState.current({ ...registeredBanners.current });
+        updateBannerState.current({ banners: { ...registeredBanners.current } });
       }
     };
 
@@ -102,32 +102,73 @@ const useNotificationBanners = () => {
       /**
        * Renders a list of prioritized notification banners.
        */
-      NotificationBanners: ({ id, label }) => {
+      NotificationBanners: ({ id, label, activeClassName }) => {
         const theme = React.useContext(ThemeContext);
         const intl = React.useContext(ApplicationIntlContext);
-        const [banners, setBanners] = React.useState([]);
+        const [bannerState, setBannerState] = React.useState({});
         const containerRef = React.useRef();
+        const notificationRemovedRef = React.useRef();
+        const lastRenderedBannersRef = React.useRef([]);
+        const forceUpdate = React.useState(false)[1];
 
         /**
          * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
          * while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
          */
-        updateBannerState.current = setBanners;
+        updateBannerState.current = setBannerState;
 
-        const prioritizedBanners = organizeBannersByPriority(banners, theme.name);
-        const descriptionStart = `${label} Notifications.`;
-        // let bannerCountText;
-        // if (prioritizedBanners.length === 0) {
-        //   bannerCountText = 'There are no notifications.';
-        // } else if (prioritizedBanners.length === 1) {
-        //   bannerCountText = 'There is 1 notification.';
-        // } else {
-        //   bannerCountText = `There are ${prioritizedBanners.length} notifications.`;
-        // }
+        const prioritizedBanners = organizeBannersByPriority(bannerState.banners, theme.name);
+
+        function comparedBannerSets(newBanners, oldBanners) {
+          const newKeys = newBanners.map(item => item.key);
+          const oldKeys = oldBanners.map(item => item.key);
+
+          const additions = [];
+          const deletions = [...oldBanners];
+
+          for (let i = 0, count = newKeys.length; i < count; i += 1) {
+            if (oldKeys.indexOf(newKeys[i]) < 0) {
+              additions.push(newBanners[i]);
+            } else {
+              deletions.splice(deletions.findIndex(banner => banner.key === newKeys[i]), 1);
+            }
+          }
+
+          return {
+            additions,
+            deletions,
+          };
+        }
+
+        const renderedBannerComparison = comparedBannerSets(prioritizedBanners, lastRenderedBannersRef.current);
+
+        React.useEffect(() => {
+          if (renderedBannerComparison.deletions.length) {
+            const timeout = setTimeout(() => {
+              forceUpdate(val => !val);
+            }, 1000);
+
+            return () => {
+              clearTimeout(timeout);
+            };
+          }
+        }, [renderedBannerComparison, forceUpdate]);
+
+        lastRenderedBannersRef.current = prioritizedBanners;
+
+        let removedBannerLog;
+        if (renderedBannerComparison.deletions) {
+          removedBannerLog = renderedBannerComparison.deletions.map((removedBanner) => (
+            `${removedBanner.description} was removed`
+          )).join('. ');
+        }
 
         return (
-          <div role="region" aria-label={descriptionStart} tabIndex="-1" id={id} aria-live="polite" aria-atomic="false" aria-relevant="additions">
-            <ul className={cx('banners-list')} ref={containerRef} tabIndex="-1">
+          <div role="region" aria-label={`${label} Notifications.`} id={id}>
+            <span className={cx('hidden-log')} role="log" aria-label="Removed Notifications" tabIndex="-1" ref={notificationRemovedRef}>
+              {removedBannerLog}
+            </span>
+            <ul ref={containerRef} className={cx('banners-list')} aria-live="polite" aria-atomic="true" aria-relevant="additions">
               {prioritizedBanners.map((bannerProps, index) => {
                 const {
                   bannerAction, custom, description, key, onRequestClose, variant,
@@ -180,13 +221,13 @@ const useNotificationBanners = () => {
                     tabIndex="-1"
                     key={key}
                   >
-                    <VisuallyHiddenText text="Workspace Notification" />
                     <NotificationBannerView
+                      label={label}
                       key={key}
                       action={actionButton}
                       onDismiss={onRequestClose ? () => {
+                        notificationRemovedRef.current.focus();
                         onRequestClose();
-                        containerRef.current.focus();
                       } : undefined}
                       type={alertType}
                       customIcon={customIcon}

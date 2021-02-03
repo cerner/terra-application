@@ -19,7 +19,7 @@
   "terraApplication.applicationNavigation.header.menuButtonTitle": "Meny",
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Fler navigeringslänkar",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Fler navigeringslänkar",
-  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Användarinställningar",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Användarinställningar för: {currentUserName}",
   "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Alternativ",
   "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigeringsobjekt",
   "terraApplication.applicationNavigation.drawerMenu.utilities": "Verktygsobjekt"

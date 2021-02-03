@@ -190,14 +190,18 @@ const Workspace = ({
             setIsMenuOpen(false);
           }}
           contentHeight="auto"
-          contentWidth="240"
+          contentWidth="auto"
           contentAttachment="top right"
           isContentFocusDisabled
           isHeaderDisabled
+          popupContentRole="none"
         >
           <ActionMenu
             isHeaderDisplayed
             ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+            onRequestClose={() => {
+              setIsMenuOpen(false);
+            }}
           >
             {sizeItems}
             {dividerItem}

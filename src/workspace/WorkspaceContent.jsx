@@ -40,7 +40,6 @@ const WorkspaceContent = ({
   const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-  const panelRef = React.useRef();
 
   const overlays = React.useMemo(() => {
     const overlaysToRender = [];
@@ -72,17 +71,17 @@ const WorkspaceContent = ({
         role="none"
         data-testid="workspace-content-heading"
       >
-        <TabHeader>{label}</TabHeader>
-        {toolbar}
-        <NotificationBanners
-          label={`Workspace ${label}`}
-          id={`${panelId}-notifications`}
-        />
+        <TabHeader title={label} />
+        <div className={cx('rounded')}>
+          {toolbar}
+        </div>
+        <div className={cx('rounded')}>
+          <NotificationBanners />
+        </div>
       </div>
       <div role="none" className={cx('panel-content')}>
         <DynamicOverlayContainer overlays={overlays}>
           <div
-            ref={panelRef}
             className={cx('panel-overflow')}
             role="tabpanel"
             tabIndex="0"

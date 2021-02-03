@@ -5,121 +5,77 @@
 :local {
   .tab,
   .tab-menu {
+    background-color: rgba(0,124,195,0.0001);
+    box-sizing: border-box;
     cursor: pointer;
     display: flex;
-    height: 40px; // TODO: best guess?
-    margin-bottom: -1px;
-    margin-left: -0.3571rem; // TODO: best guess?
+    height: 33px;
+    min-width: 0;
     outline: none;
-    overflow: hidden;
     position: relative;
-
+    
     &:first-child {
-      margin-left: 0;
+      margin-left: 8px;
+    }
+
+    &:last-child {
+      margin-right: 8px;
+    }
+
+
+    .before,
+    .inner,
+    .after {
+      height: 41px;
+      margin-bottom: -2px;
+      margin-top: -6px;
+      overflow: hidden;
+      pointer-events: none;
+    }
+
+    .before,
+    .after {
+      background-size: 35px 41px;
+      flex: 0 0 auto;
+      width: 35px;
     }
 
     .before {
-      background-image: inline-svg(
-        '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <defs>
-            <rect id="path-1" x="0" y="0" width="34" height="40"></rect>
-            <path d="M17.4187513,0 L40.5812487,0 C44.9870583,2.74337958e-15 48.8737754,2.88345872 50.1514927,7.09992605 L58,33 L58,33 L0,33 L7.84850726,7.09992605 C9.12622463,2.88345872 13.0129417,4.36204778e-15 17.4187513,0 Z" id="path-3"></path>
-            <filter x="-12.9%" y="-22.7%" width="125.9%" height="145.5%" filterUnits="objectBoundingBox" id="filter-4">
-              <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-              <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-              <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
-              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-            </filter>
-          </defs>
-          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Group-Copy-28">
-              <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-              </mask>
-              <g id="Mask"></g>
-              <g mask="url(#mask-2)">
-                <g transform="translate(8.000000, 7.000000)">
-                  <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                  <path stroke-opacity="0.3" stroke="#979797" stroke-width="1" d="M40.5812487,0.5 C42.6740083,0.5 44.6434833,1.18482145 46.2414975,2.37034839 C47.8395116,3.55587533 49.0660648,5.24210777 49.6729805,7.24492974 L49.6729805,7.24492974 L57.3260321,32.5 L0.673967868,32.5 L8.32701946,7.24492974 C8.93393521,5.24210777 10.1604884,3.55587533 11.7585025,2.37034839 C13.3565167,1.18482145 15.3259917,0.5 17.4187513,0.5 L17.4187513,0.5 Z" stroke-linejoin="square" fill="#E8E9E9" fill-rule="evenodd"></path>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>'
-      );
-      background-position: right;
-      overflow: hidden;
-      flex: 0 0 auto;
-      width: 26px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxtYXNrIGlkPSJpbnNldHNoYWRvd21hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMxIDI4LC0zMSBoMTYgYzE4LDAgMTgsMzEgMjgsMzEgdjggaC03MiB2LTggWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9tYXNrPgogICAgPGZpbHRlciBpZD0ib3V0c2lkZXNoYWRvd2JsdXIyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIC8+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMSIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSIxIiAvPgogICAgPC9maWx0ZXI+CgogICAgPGZpbHRlciBpZD0iaW5zZXRzaGFkb3dibHVyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjUiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPGcgbWFzaz0idXJsKCNjcm9wbWFzaykiPgogICAgPHBhdGggZD0iTSA5LDQyIEMxMy4zLDM5LjcgMTUuNywzMy44IDE4LjIzLDI3LjU2IEMyMi40LDE3LjMgMjUuOTMsMTIgMzMsMTIgaDE2IEM1Ni4xLDEyIDU5LjYsMTcuMyA2My43NywyNy41OSBDNjYuMywzMy44IDY4LjcsMzkuNzUgNzMsNDIgdjEgaC02NCB2LTEgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNyAwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjA2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMikiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03IDApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMDYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIyKSIvPgogICAgPHBhdGggZD0iTSA5LDQyIEMxMy4zLDM5LjcgMTUuNywzMy44IDE4LjIzLDI3LjU2IEMyMi40LDE3LjMgMjUuOTMsMTIgMzMsMTIgaDE2IEM1Ni4xLDEyIDU5LjYsMTcuMyA2My43NywyNy41OSBDNjYuMywzMy44IDY4LjcsMzkuNzUgNzMsNDIgdjEgaC02NCB2LTEgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNykiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNykiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICA8cGF0aCBkPSJNIDksNDIgQzEzLjMsMzkuNyAxNS43LDMzLjggMTguMjMsMjcuNTYgQzIyLjQsMTcuMyAyNS45MywxMiAzMywxMiBoMTYgQzU2LjEsMTIgNTkuNiwxNy4zIDYzLjc3LDI3LjU5IEM2Ni4zLDMzLjggNjguNywzOS43NSA3Myw0MiB2MSBoLTY0IHYtMSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTUpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTIpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgPHBhdGggZD0iTSA1LDM5IGMxMCwwIDEwLC0zMSAyOCwtMzEgaDE2IGMxOCwwIDE4LDMxIDI4LDMxIHY2IGgtNzIgdi02IFoiIGZpbGw9IiNmNGY0ZjQiLz4KICAgIDxnIG1hc2s9InVybCgjaW5zZXRzaGFkb3dtYXNrKSI+CiAgICAgIDxwYXRoIGQ9Ik0wLDAgdjUzIGg4MiBWMCBaIE01LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY4IGgtNzIgdi04IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTEwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjI1KSIgZmlsdGVyPSJ1cmwoI2luc2V0c2hhZG93Ymx1cikiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=');
+      background-position: top right;
+      background-repeat: no-repeat;
+      margin-left: -15px;
+      background-size: 35px 41px;
     }
 
     .inner {
-      background-image: inline-svg(
-        '<svg width="1px" height="41px" viewBox="0 0 1 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <defs>
-            <rect id="path-1" x="0" y="0" width="1" height="41"></rect>
-            <path d="M17.4187513,0 L40.5812487,0 C44.9870583,2.74337958e-15 48.8737754,2.88345872 50.1514927,7.09992605 L58,33 L58,33 L0,33 L7.84850726,7.09992605 C9.12622463,2.88345872 13.0129417,4.36204778e-15 17.4187513,0 Z" id="path-3"></path>
-            <filter x="-12.9%" y="-22.7%" width="125.9%" height="145.5%" filterUnits="objectBoundingBox" id="filter-4">
-              <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-              <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-              <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
-              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-            </filter>
-          </defs>
-          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g transform="translate(-26.000000, 7.000000)">
-              <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-              <path stroke-opacity="0.3" stroke="#979797" stroke-width="1" d="M40.5812487,0.5 C42.6740083,0.5 44.6434833,1.18482145 46.2414975,2.37034839 C47.8395116,3.55587533 49.0660648,5.24210777 49.6729805,7.24492974 L49.6729805,7.24492974 L57.3260321,32.5 L0.673967868,32.5 L8.32701946,7.24492974 C8.93393521,5.24210777 10.1604884,3.55587533 11.7585025,2.37034839 C13.3565167,1.18482145 15.3259917,0.5 17.4187513,0.5 L17.4187513,0.5 Z" stroke-linejoin="square" fill="#E8E9E9" fill-rule="evenodd"></path>
-            </g>
-          </g>
-        </svg>'
-      );
+      background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 41" width="10" height="41" preserveAspectRatio="none"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="2000" height="39" fill="#fff"/> </mask> <mask id="insetshadowmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="8" width="2000" height="31" fill="#fff"/> </mask> <filter id="outsideshadowblur2" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="4" /> </filter> <filter id="outsideshadowblur1" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="1" /> </filter> <filter id="insetshadowblur" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="5" /> </filter> </defs> <g style="mask:url(#cropmask)"> <rect x="-5" y="12" width="2010" height="31" transform="translate(7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="12" width="2010" height="31" transform="translate(-7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="12" width="2010" height="31" transform="translate(0 -7)" fill="rgba(28,31,33,0.07)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="12" width="2010" height="31" transform="translate(5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="12" width="2010" height="31" transform="translate(-5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="12" width="2010" height="31" transform="translate(0 -5)" fill="rgba(28,31,33,0.12)" filter="url(#outsideshadowblur1)"/> <rect x="-2" y="8" width="2004" height="31" style="fill:#f4f4f4"/> <g mask="url(#insetshadowmask)"> <path d="M-20,1 v51 h2040 V1 Z M-15,6 h2030 v41 H-15 Z" transform="translate(0 -10)" fill="rgba(28,31,33,0.25)" filter="url(#insetshadowblur)"/> </g> </g> </svg>');
+      background-position: top center;
+      background-repeat: repeat;
+      background-size: 110% 41px;
+      display: flex;
       flex: 0 1 auto;
-      height: 40px; // TODO: fix this?
-      overflow: hidden;
-      padding-top: 14px;
+      justify-content: center;
+      margin-left: -1px;
     }
 
     .after {
-      background-image: inline-svg(
-        '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <defs>
-            <rect id="path-1" x="0" y="0" width="34" height="40"></rect>
-            <path d="M17.4187513,0 L40.5812487,0 C44.9870583,2.74337958e-15 48.8737754,2.88345872 50.1514927,7.09992605 L58,33 L58,33 L0,33 L7.84850726,7.09992605 C9.12622463,2.88345872 13.0129417,4.36204778e-15 17.4187513,0 Z" id="path-3"></path>
-            <filter x="-12.9%" y="-22.7%" width="125.9%" height="145.5%" filterUnits="objectBoundingBox" id="filter-4">
-              <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-              <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-              <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"></feComposite>
-              <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-            </filter>
-          </defs>
-          <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-            <g id="Group-Copy-30" transform="translate(17.000000, 20.000000) scale(-1, 1) translate(-17.000000, -20.000000) ">
-              <mask id="mask-2" fill="white">
-                <use xlink:href="#path-1"></use>
-              </mask>
-              <g id="Mask"></g>
-              <g id="Group-Copy-28" mask="url(#mask-2)">
-                <g transform="translate(8.000000, 7.000000)">
-                  <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                  <path stroke-opacity="0.3" stroke="#979797" stroke-width="1" d="M40.5812487,0.5 C42.6740083,0.5 44.6434833,1.18482145 46.2414975,2.37034839 C47.8395116,3.55587533 49.0660648,5.24210777 49.6729805,7.24492974 L49.6729805,7.24492974 L57.3260321,32.5 L0.673967868,32.5 L8.32701946,7.24492974 C8.93393521,5.24210777 10.1604884,3.55587533 11.7585025,2.37034839 C13.3565167,1.18482145 15.3259917,0.5 17.4187513,0.5 L17.4187513,0.5 Z" stroke-linejoin="square" fill="#E8E9E9" fill-rule="evenodd"></path>
-                </g>
-              </g>
-            </g>
-          </g>
-        </svg>'
-      );
-      background-position: left;
-      flex: 0 0 auto;
-      margin-left: -1px;
-      overflow: hidden;
-      width: 26px;
+      background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxtYXNrIGlkPSJpbnNldHNoYWRvd21hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMxIDI4LC0zMSBoMTYgYzE4LDAgMTgsMzEgMjgsMzEgdjggaC03MiB2LTggWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9tYXNrPgogICAgPGZpbHRlciBpZD0ib3V0c2lkZXNoYWRvd2JsdXIyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIC8+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMSIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSIxIiAvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJpbnNldHNoYWRvd2JsdXIiIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iNSIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBtYXNrPSJ1cmwoI2Nyb3BtYXNrKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDcgMCkiPgogICAgICA8cGF0aCBkPSJNIDksNDIgQzEzLjMsMzkuNyAxNS43LDMzLjggMTguMjMsMjcuNTYgQzIyLjQsMTcuMyAyNS45MywxMiAzMywxMiBoMTYgQzU2LjEsMTIgNTkuNiwxNy4zIDYzLjc3LDI3LjU5IEM2Ni4zLDMzLjggNjguNywzOS43NSA3Myw0MiB2MSBoLTY0IHYtMSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3IDApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMDYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIyKSIvPgogICAgICA8cGF0aCBkPSJNIDksNDIgQzEzLjMsMzkuNyAxNS43LDMzLjggMTguMjMsMjcuNTYgQzIyLjQsMTcuMyAyNS45MywxMiAzMywxMiBoMTYgQzU2LjEsMTIgNTkuNiwxNy4zIDYzLjc3LDI3LjU5IEM2Ni4zLDMzLjggNjguNywzOS43NSA3Myw0MiB2MSBoLTY0IHYtMSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNyAwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjA2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMikiLz4KICAgICAgPHBhdGggZD0iTSA5LDQyIEMxMy4zLDM5LjcgMTUuNywzMy44IDE4LjIzLDI3LjU2IEMyMi40LDE3LjMgMjUuOTMsMTIgMzMsMTIgaDE2IEM1Ni4xLDEyIDU5LjYsMTcuMyA2My43NywyNy41OSBDNjYuMywzMy44IDY4LjcsMzkuNzUgNzMsNDIgdjEgaC02NCB2LTEgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNykiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNykiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUgLTIpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICA8cGF0aCBkPSJNIDksNDIgQzEzLjMsMzkuNyAxNS43LDMzLjggMTguMjMsMjcuNTYgQzIyLjQsMTcuMyAyNS45MywxMiAzMywxMiBoMTYgQzU2LjEsMTIgNTkuNiwxNy4zIDYzLjc3LDI3LjU5IEM2Ni4zLDMzLjggNjguNywzOS43NSA3Myw0MiB2MSBoLTY0IHYtMSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNSAtMikiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTUpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTIpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMxIDI4LC0zMSBoMTYgYzE4LDAgMTgsMzEgMjgsMzEgdjYgaC03MiB2LTYgWiIgZmlsbD0iI2Y0ZjRmNCIvPgogICAgICA8ZyBtYXNrPSJ1cmwoI2luc2V0c2hhZG93bWFzaykiPgogICAgICAgIDxwYXRoIGQ9Ik0wLDAgdjUzIGg4MiBWMCBaIE01LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY4IGgtNzIgdi04IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTEwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjI1KSIgZmlsdGVyPSJ1cmwoI2luc2V0c2hhZG93Ymx1cikiLz4KICAgICAgPC9nPgogICAgPC9nPgogIDwvZz4KPC9zdmc+');
+      background-position: top left;
+      background-repeat: no-repeat;
+      margin-left: -1.5px;
+      margin-right: -15px;
+    }
+
+    .icon,
+    .label {
+      color: var(--terra-application-workspace-tab-icon-label-color, #434a4d);
+      line-height: 1.21428;
+      padding-top: 15px;
     }
 
     .label {
-      color: #4E5558; // TODO: themeable variable
-      font-size: 0.8571rem; // TODO: themable variable
-      line-height: 1.4;
+      flex: 0 1 auto;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -130,134 +86,71 @@
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
         .before {
-          // background-image: inline-svg('<svg />');
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxtYXNrIGlkPSJpbnNldHNoYWRvd21hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMzIDI4LC0zMyBoMTYgYzE4LDAgMTgsMzMgMjgsMzMgdjggaC03MiB2LTggWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9tYXNrPgogICAgPGZpbHRlciBpZD0ib3V0c2lkZXNoYWRvd2JsdXIyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIC8+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMSIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSIxIiAvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJpbnNldHNoYWRvd2JsdXIiIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iNSIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBtYXNrPSJ1cmwoI2Nyb3BtYXNrKSI+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03IDApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMDYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIyKSIvPgogICAgPHBhdGggZD0iTSA0OSwxMCBjNy4wNywwICwgMTAuNTksNy4yOSAsIDE0Ljc3LDE3LjU5IEM2Ni4zLDMzLjgxICwgNjguNzIsMzkuNzUgLCA3Myw0MiB2MSBIOSBWNDIgYzQuMjgsLTIuMjggLCA2LjcsLTguMjIgLCA5LjIzLC0xNC40NCBDMjIuNDEsMTcuMjkgLCAyNS45MywxMCAsIDMzLDEwIEg0OSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC03KSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjA3KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMikiLz4KICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSAtMikiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNSkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xMikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CgogICAgPHBhdGggZD0iTSA1LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY2IGgtNzIgdi02IFoiIGZpbGw9IiNmZmYiLz4KCiAgICA8ZyBtYXNrPSJ1cmwoI2luc2V0c2hhZG93bWFzaykiPgogICAgICA8cGF0aCBkPSJNMCwwIHY1MyBoODIgVjAgWiBNNSwzOSBjMTAsMCAxMCwtMzMgMjgsLTMzIGgxNiBjMTgsMCAxOCwzMyAyOCwzMyB2OCBoLTcyIHYtOCBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC0xMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4yNSkiIGZpbHRlcj0idXJsKCNpbnNldHNoYWRvd2JsdXIpIi8+CiAgICA8L2c+CiAgPC9nPgogIDxyZWN0IHg9IjIiIHk9IjM5IiB3aWR0aD0iMTMzIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmYiLz4KPC9zdmc+Cg==');
         }
+
         .inner {
-          // background-image: inline-svg('<svg />');
-          // tODO: shift text up? padding-top?
+          background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 41" width="10" height="41" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="10" height="39" fill="#fff"/> </mask> <mask id="insetshadowmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="8" width="10" height="33" fill="#fff"/> </mask> <filter id="outsideshadowblur2" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="4" /> </filter> <filter id="outsideshadowblur1" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="1" /> </filter> <filter id="insetshadowblur" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="5" /> </filter> </defs> <g style="mask:url(#cropmask)"> <rect x="-5" y="10" width="20" height="33" transform="translate(7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(-7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(0 -7)" fill="rgba(28,31,33,0.07)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(-5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(0 -5)" fill="rgba(28,31,33,0.12)" filter="url(#outsideshadowblur1)"/> <rect x="-2" y="6" width="14" height="33" style="fill:#ffffff"/> <g mask="url(#insetshadowmask)"> <path d="M-20,0 v53 h50 V0 Z M-15,6 h40 v41 H-15 Z" transform="translate(0 -10)" fill="rgba(28,31,33,0.25)" filter="url(#insetshadowblur)"/> </g> </g> </svg>');
         }
+
         .after {
-          // background-image: inline-svg('<svg />');
+          background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxtYXNrIGlkPSJpbnNldHNoYWRvd21hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMzIDI4LC0zMyBoMTYgYzE4LDAgMTgsMzMgMjgsMzMgdjggaC03MiB2LTggWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9tYXNrPgogICAgPGZpbHRlciBpZD0ib3V0c2lkZXNoYWRvd2JsdXIyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIC8+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMSIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSIxIiAvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJpbnNldHNoYWRvd2JsdXIiIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iNSIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBtYXNrPSJ1cmwoI2Nyb3BtYXNrKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDcgMCkiPgogICAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNykiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNykiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSAtMikiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUgLTIpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTUpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTIpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICAKICAgICAgPHBhdGggZD0iTSA1LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY2IGgtNzIgdi02IFoiIGZpbGw9IiNmZmYiLz4KICAgICAgCiAgICAgIDxnIG1hc2s9InVybCgjaW5zZXRzaGFkb3dtYXNrKSI+CiAgICAgICAgPHBhdGggZD0iTTAsMCB2NTMgaDgyIFYwIFogTTUsMzkgYzEwLDAgMTAsLTMzIDI4LC0zMyBoMTYgYzE4LDAgMTgsMzMgMjgsMzMgdjggaC03MiB2LTggWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtMTApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMjUpIiBmaWx0ZXI9InVybCgjaW5zZXRzaGFkb3dibHVyKSIvPgogICAgICA8L2c+CiAgICA8L2c+CiAgPC9nPgogIDxyZWN0IHg9IjAiIHk9IjM5IiB3aWR0aD0iMzMiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K');
         }
+
+        .icon,
         .label {
           color: #1C1F21; // TODO: themable variable
-          // tODO: shift text up? -margin-top?
+          padding-top: 13px;
         }
       }
     }
 
     &[data-focus-styles-enabled='true']:focus {
       outline: 2px dashed #000;
-      outline-offset: -4px;
+      outline-offset: -6px;
     }
 
     &.is-active {
       .before {
-        background-image: inline-svg(
-          '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-              <rect id="path-1" x="0" y="0" width="34" height="40"></rect>
-              <path d="M17.5430141,0 L115.456986,0 C119.921789,2.73254256e-15 123.845649,2.95977314 125.072225,7.25278872 L133,35 L133,35 L0,35 L7.92777465,7.25278872 C9.15435053,2.95977314 13.0782105,-2.73254256e-15 17.5430141,0 Z" id="path-3"></path>
-              <filter x="-5.6%" y="-21.4%" width="111.3%" height="142.9%" filterUnits="objectBoundingBox" id="filter-4">
-                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-              </filter>
-            </defs>
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-              <g id="Group-3-Copy-30">
-                <mask id="mask-2" fill="white">
-                  <use xlink:href="#path-1"></use>
-                </mask>
-                <g id="Mask"></g>
-                <g mask="url(#mask-2)">
-                  <g transform="translate(8.000000, 5.000000)">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>'
-        );
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMiIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSI0IiAvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJvdXRzaWRlc2hhZG93Ymx1cjEiIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iMSIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBtYXNrPSJ1cmwoI2Nyb3BtYXNrKSI+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03IDApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMDYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIyKSIvPgogICAgPHBhdGggZD0iTSA0OSwxMCBjNy4wNywwICwgMTAuNTksNy4yOSAsIDE0Ljc3LDE3LjU5IEM2Ni4zLDMzLjgxICwgNjguNzIsMzkuNzUgLCA3Myw0MiB2MSBIOSBWNDIgYzQuMjgsLTIuMjggLCA2LjcsLTguMjIgLCA5LjIzLC0xNC40NCBDMjIuNDEsMTcuMjkgLCAyNS45MywxMCAsIDMzLDEwIEg0OSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgwIC03KSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjA3KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMikiLz4KICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSAtMikiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CiAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNSkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xMikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CgogICAgPHBhdGggZD0iTSA1LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY2IGgtNzIgdi02IFoiIGZpbGw9IiNmZmYiLz4KICA8L2c+CiAgPHJlY3QgeD0iMiIgeT0iMzkiIHdpZHRoPSIxMzMiIGhlaWdodD0iMiIgZmlsbD0iI2ZmZiIvPgo8L3N2Zz4K');
       }
 
       .inner {
-        background-image: inline-svg(
-          '<svg width="1px" height="41px" viewBox="0 0 1 41" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-              <rect id="path-1" x="0" y="0" width="1" height="41"></rect>
-              <path d="M17.5430141,0 L115.456986,0 C119.921789,2.73254256e-15 123.845649,2.95977314 125.072225,7.25278872 L133,35 L133,35 L0,35 L7.92777465,7.25278872 C9.15435053,2.95977314 13.0782105,-2.73254256e-15 17.5430141,0 Z" id="path-3"></path>
-              <filter x="-5.6%" y="-21.4%" width="111.3%" height="142.9%" filterUnits="objectBoundingBox" id="filter-4">
-                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-              </filter>
-            </defs>
-            <g transform="translate(-67.000000, 5.000000)">
-              <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-              <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
-            </g>
-          </svg>'
-        );
+        background-image: inline-svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 41" width="10" height="41" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="10" height="39" fill="#fff"/> </mask> <filter id="outsideshadowblur2" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="4" /> </filter> <filter id="outsideshadowblur1" x="-33%" y="-33%" width="150%" height="150%"> <feGaussianBlur in="SourceGraphic" stdDeviation="1" /> </filter> </defs> <g style="mask:url(#cropmask)"> <rect x="-5" y="10" width="20" height="33" transform="translate(7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(-7 0)" fill="rgba(28,31,33,0.06)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(0 -7)" fill="rgba(28,31,33,0.07)" filter="url(#outsideshadowblur2)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(-5 -2)" fill="rgba(28,31,33,0.16)" filter="url(#outsideshadowblur1)"/> <rect x="-5" y="10" width="20" height="33" transform="translate(0 -5)" fill="rgba(28,31,33,0.12)" filter="url(#outsideshadowblur1)"/> <rect x="-2" y="6" width="14" height="33" style="fill:#fff"/> </g> <rect x="-2" y="39" width="14" height="1" fill="#fff"/> </svg>');
       }
 
       .after {
-        background-image: inline-svg(
-          '<svg width="34px" height="40px" viewBox="0 0 34 40" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-            <defs>
-              <rect id="path-1" x="0" y="0" width="34" height="40"></rect>
-              <path d="M17.5430141,0 L115.456986,0 C119.921789,2.73254256e-15 123.845649,2.95977314 125.072225,7.25278872 L133,35 L133,35 L0,35 L7.92777465,7.25278872 C9.15435053,2.95977314 13.0782105,-2.73254256e-15 17.5430141,0 Z" id="path-3"></path>
-              <filter x="-5.6%" y="-21.4%" width="111.3%" height="142.9%" filterUnits="objectBoundingBox" id="filter-4">
-                <feOffset dx="0" dy="0" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
-                <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
-                <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
-              </filter>
-            </defs>
-            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-              <g id="Group-3-Copy-31" transform="translate(17.000000, 20.000000) scale(-1, 1) translate(-17.000000, -20.000000) ">
-                <mask id="mask-2" fill="white">
-                    <use xlink:href="#path-1"></use>
-                </mask>
-                <g id="Mask"></g>
-                <g id="Group-3-Copy-30" mask="url(#mask-2)">
-                  <g transform="translate(8.000000, 5.000000)">
-                    <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
-                    <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-3"></use>
-                  </g>
-                </g>
-              </g>
-            </g>
-          </svg>'
-        );
+        background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMiIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSI0IiAvPgogICAgPC9maWx0ZXI+CiAgICA8ZmlsdGVyIGlkPSJvdXRzaWRlc2hhZG93Ymx1cjEiIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8ZmVHYXVzc2lhbkJsdXIgaW49IlNvdXJjZUdyYXBoaWMiIHN0ZERldmlhdGlvbj0iMSIgLz4KICAgIDwvZmlsdGVyPgogIDwvZGVmcz4KICA8ZyBtYXNrPSJ1cmwoI2Nyb3BtYXNrKSI+CiAgICA8ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtNDcgMCkiPgogICAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTcgMCkiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNykiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNykiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNSAtMikiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4xNikiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjEpIi8+CiAgICAgIDxwYXRoIGQ9Ik0gNDksMTAgYzcuMDcsMCAsIDEwLjU5LDcuMjkgLCAxNC43NywxNy41OSBDNjYuMywzMy44MSAsIDY4LjcyLDM5Ljc1ICwgNzMsNDIgdjEgSDkgVjQyIGM0LjI4LC0yLjI4ICwgNi43LC04LjIyICwgOS4yMywtMTQuNDQgQzIyLjQxLDE3LjI5ICwgMjUuOTMsMTAgLCAzMywxMCBINDkgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUgLTIpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICA8cGF0aCBkPSJNIDQ5LDEwIGM3LjA3LDAgLCAxMC41OSw3LjI5ICwgMTQuNzcsMTcuNTkgQzY2LjMsMzMuODEgLCA2OC43MiwzOS43NSAsIDczLDQyIHYxIEg5IFY0MiBjNC4yOCwtMi4yOCAsIDYuNywtOC4yMiAsIDkuMjMsLTE0LjQ0IEMyMi40MSwxNy4yOSAsIDI1LjkzLDEwICwgMzMsMTAgSDQ5IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTUpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTIpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMzIDI4LC0zMyBoMTYgYzE4LDAgMTgsMzMgMjgsMzMgdjYgaC03MiB2LTYgWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9nPgogIDwvZz4KICA8cmVjdCB4PSIwIiB5PSIzOSIgd2lkdGg9IjMzIiBoZWlnaHQ9IjIiIGZpbGw9IiNmZmYiLz4KPC9zdmc+Cg==');
       }
 
+      .icon,
       .label {
         color: #1C1F21;  // TODO: themable variable
+        padding-top: 15px;
       }
     }
   }
 
   .tab {
     flex: 0 1 auto;
-    min-width: calc(2.2857rem + 52px); // TODO: alter logic to avoid this type mismatch
+    min-width: calc(var(--terra-application-workspace-tab-inner-min-width, 64px) + 42px); // TODO: alter logic to avoid this type mismatch
 
     .inner {
       text-align: center;
-      min-width: 2.2857rem;
+      min-width: var(--terra-application-workspace-tab-inner-min-width, 64px); // TODO: 22px?
     }
   }
 
   .tab-menu {
+    color: var(--terra-application-workspace-tab-menu-color, #434a4d);
     display: flex;
     flex: 0 0 auto;
     justify-content: center;
-    min-width: 0;
-    max-width: 100%;
 
     svg {
       flex: 0 0 auto;
-      height: 0.7143rem;
+      height: var(--terra-application-workspace-tab-menu-svg-height, 0.8571rem);
+      margin-top: 4px;
     }
   }
 

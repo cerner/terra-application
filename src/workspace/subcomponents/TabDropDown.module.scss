@@ -4,25 +4,27 @@
 :local {
   .drop-down {
     border: var(--terra-application-workspace-tab-drop-down-border, 1px solid transparent);
+    border-radius: var(--terra-application-workspace-tab-drop-down-border-radius, 3px);
     height: 1px;
     margin: -1px;
-    max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 3.571rem));
-    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 240px);
-    min-width: var(--terra-application-workspace-tab-drop-down-min-width, 200px);
+    max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 44px));
+    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 187px); // TODO: determine final value, or if needed additional classes
+    min-width: var(--terra-application-workspace-tab-drop-down-min-width, 150px);
     opacity: 0;
     overflow: hidden;
-    padding: 0;
+    padding: var(--terra-application-workspace-tab-drop-down-padding, 5px 0);
     position: absolute;
-    top: var(--terra-application-workspace-tab-drop-down-top, 3.571rem);
-    z-index: 100;
+    top: var(--terra-application-workspace-tab-drop-down-top, 44px);
+    z-index: 50;
   }
 
   .is-open {
+    box-shadow: var(--terra-application-workspace-tab-drop-down-is-open-box-shadow, 0 0 7px 0 rgba(0, 0, 0, 0.4));
     border-color: var(--terra-application-workspace-tab-drop-down-is-open-border-color, #ccc);
     background-color: var(--terra-application-workspace-tab-drop-down-is-open-background-color, #fff);
     height: auto;
     margin: 0;
-    margin-top: -1px;
+    margin-top: -2px;
     opacity: 1;
     overflow: auto;
     -webkit-overflow-scrolling: touch;

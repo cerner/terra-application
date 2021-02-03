@@ -3,14 +3,24 @@
 
 :local {
   .panel {
-    background-color: var(--terra-application-workspace-content-panel-background-color, rgb(255, 255, 255));
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: hidden;
-    padding: 0 10px;
     position: relative;
     width: 100%;
+
+    background-color: #fefffe;
+    border-radius: 0 0 5px 5px;
+
+    border-top: 1px solid #eeefee;
+    border-left: 1px solid #dfe0df;
+    border-right: 1px solid #dfe0df;
+    border-bottom: 1px solid #c6c8c7;
+
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+
+    overflow: hidden;
+    padding: 0 10px 10px;
   }
 
   .panel-header {
@@ -19,13 +29,6 @@
     padding-bottom: 5px;
     padding-top: 5px;
     z-index: 10;
-
-    // TODO: revise this with a container?
-    > *:not(:first-child) {
-      border-radius: 3px !important;
-      margin-top: 5px !important;
-      overflow: hidden;
-    }
   }
 
   .panel-content {
@@ -41,5 +44,11 @@
     outline: none;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .rounded {
+    border-radius: var(--terra-application-workspace-content-rounded-border-radius, 3px);
+    margin-top: var(--terra-application-workspace-content-rounded-margin-top, 5px);
+    overflow: hidden;
   }
 }

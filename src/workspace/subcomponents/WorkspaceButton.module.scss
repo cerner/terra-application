@@ -10,7 +10,7 @@
     flex: 0 0 auto;
     height: 100%;
     justify-content: center;
-    margin: var(--terra-application-workspace-button-workspace-button-margin, 0.3571rem);
+    margin: 0;
     outline: none;
     position: relative;
   
@@ -27,7 +27,7 @@
       .button-inner {
         color: var(--terra-application-workspace-button-button-inner-focus-color, rgba(255, 255, 255, 0.8));
         outline: var(--terra-application-workspace-button-button-inner-focus-outline, 2px dashed #fff);
-        outline-offset: var(--terra-application-workspace-button-button-inner-focus-outline-offset, -2px);
+        outline-offset: var(--terra-application-workspace-button-button-inner-focus-outline-offset, -4px);
       }
     }
   
@@ -39,18 +39,21 @@
 
     .button-inner {
       line-height: 0;
-      padding: var(--terra-application-workspace-button-button-inner-padding, 0.5714rem);
+      padding: var(--terra-application-workspace-button-button-inner-padding, 0.6429rem);
       position: relative;
     }
   
     .button-image {
-      height: 1rem;
+      height: var(--terra-application-workspace-button-button-image-height, 0.8571rem);
       overflow: hidden;
-      width: 1rem;
+      position: relative;
+      width: var(--terra-application-workspace-button-button-image-width, 0.8571rem);
     }
   
     .button-image > svg {
+      height: 100%;
       position: absolute;
+      width: 100%;
     }
   }
 }

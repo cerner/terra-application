@@ -64,6 +64,7 @@ const WorkspaceButton = ({
       aria-label={ariaLabel}
       ref={refCallback}
       data-testid={testId}
+      aria-pressed={isActive}
     >
       <div aria-hidden className={cx('button-inner')}>
         <div

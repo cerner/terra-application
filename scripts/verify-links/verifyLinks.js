@@ -61,7 +61,6 @@ class VerifyLinks {
         xmlHttp.onloadend = () => {
           if (xmlHttp.status === 404 && xmlHttp.responseText.includes('404 Not Found')) {
             console.warn('Warning! Broken Link', link, 'in file', file, 'at', 'line:', fileLinks[file][link]);
-            // console.log('%c Oh my heavens! ', 'background: #222; color: #bada55');
           }
         };
       });

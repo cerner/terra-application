@@ -1,5 +1,5 @@
-// @import '../../themes/clinical-lowlight-theme/Workspace.module';
-// @import '../../themes/orion-fusion-theme/Wo.module';
+@import '../clinical-lowlight-theme/WorkspaceButton.module';
+@import '../orion-fusion-theme/WorkspaceButton.module';
 
 :local {
   .workspace-button {
@@ -18,36 +18,36 @@
       &:hover {
         /* stylelint-disable-next-line max-nesting-depth */
         .button-inner {
-          color: #fff;
+          color: var(--terra-application-workspace-workspace-button-inner-color, #fff);
         }
       }
     }
   
     &[data-focus-styles-enabled='true']:focus {
       .button-inner {
-        color: var(--terra-application-workspace-button-button-inner-focus-color, rgba(255, 255, 255, 0.8));
-        outline: var(--terra-application-workspace-button-button-inner-focus-outline, 2px dashed #fff);
-        outline-offset: var(--terra-application-workspace-button-button-inner-focus-outline-offset, -4px);
+        color: var(--terra-application-workspace-workspace-button-focus-button-inner-color, rgba(255, 255, 255, 0.8));
+        outline: var(--terra-application-workspace-workspace-button-focus-button-inner-outline, 2px dashed #fff);
+        outline-offset: var(--terra-application-workspace-workspace-button-focus-button-inner-outline-offset, -4px);
       }
     }
   
     &:active {
       .button-inner {
-        color: var(--terra-application-workspace-button-button-inner-active-color, #ccc);
+        color: var(--terra-application-workspace-button-active-button-inner-color, #ccc);
       }
     }
 
     .button-inner {
       line-height: 0;
-      padding: var(--terra-application-workspace-button-button-inner-padding, 0.6429rem);
+      padding: var(--terra-application-workspace-workspace-button-button-inner-padding, 0.6429rem);
       position: relative;
     }
   
     .button-image {
-      height: var(--terra-application-workspace-button-button-image-height, 0.8571rem);
+      height: var(--terra-application-workspace-workspace-button-button-image-height, 0.8571rem);
       overflow: hidden;
       position: relative;
-      width: var(--terra-application-workspace-button-button-image-width, 0.8571rem);
+      width: var(--terra-application-workspace-workspace-button-button-image-width, 0.8571rem);
     }
   
     .button-image > svg {

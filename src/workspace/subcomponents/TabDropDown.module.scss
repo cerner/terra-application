@@ -1,5 +1,5 @@
-// @import '../../../themes/clinical-lowlight-theme/TabDropDown.module';
-// @import '../../../themes/orion-fusion-theme/TabDropDown.module';
+@import '../clinical-lowlight-theme/TabDropDown.module';
+@import '../orion-fusion-theme/TabDropDown.module';
 
 :local {
   .drop-down {
@@ -8,7 +8,7 @@
     height: 1px;
     margin: -1px;
     max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 44px));
-    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 187px); // TODO: determine final value, or if needed additional classes
+    max-width: var(--terra-application-workspace-tab-drop-down-max-width, 187px);
     min-width: var(--terra-application-workspace-tab-drop-down-min-width, 150px);
     opacity: 0;
     overflow: hidden;

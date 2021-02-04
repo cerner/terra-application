@@ -1,5 +1,13 @@
 :local {
   .clinical-lowlight-theme {
-    // --terra-application-status-overlay-background-color: #222a2e;
+    --terra-application-workspace-button-header-background-image: linear-gradient(to bottom, #007cc3, #3a67a4);
+    --terra-application-workspace-button-header-padding-bottom: 3.571rem;
+    --terra-application-workspace-button-header-padding-bottom: 0.7143rem;
+    --terra-application-workspace-tab-header-margin-left: 0.5714rem;
+    --terra-application-workspace-tab-header-margin-right: 2.143rem;
+    --terra-application-workspace-tab-header-margin-top: 0.7143rem;
+    --terra-application-workspace-tab-header-width: 2.714rem;
+    --terra-application-workspace-tab-header-has-dismiss-margin-left: 2.143rem;
+    --terra-application-workspace-tab-header-has-dismiss-width: 4.286rem;
   }
 }

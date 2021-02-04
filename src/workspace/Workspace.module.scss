@@ -1,5 +1,5 @@
-// @import '../../themes/clinical-lowlight-theme/Workspace.module';
-// @import '../../themes/orion-fusion-theme/Workspace.module';
+@import './clinical-lowlight-theme/Workspace.module';
+@import './orion-fusion-theme/Workspace.module';
 
 :local {
   .workspace {

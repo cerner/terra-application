@@ -1,5 +1,18 @@
 :local {
   .clinical-lowlight-theme {
-    // --terra-application-status-overlay-background-color: #222a2e;
+    --terra-application-workspace-hidden-tab-hidden-background-color: #fff;
+    --terra-application-workspace-hidden-tab-hidden-color: #222a2e;
+    --terra-application-workspace-hidden-tab-hidden-font-size: 1rem;
+    --terra-application-workspace-hidden-tab-hidden-line-height: 1.4;
+    --terra-application-workspace-hidden-tab-hidden-padding-bottom: 0.5rem;
+    --terra-application-workspace-hidden-tab-hidden-padding-left: 0.5714rem;
+    --terra-application-workspace-hidden-tab-hidden-padding-right: 0.7143rem;
+    --terra-application-workspace-hidden-tab-hidden-padding-top: 0.3571rem;
+    --terra-application-workspace-hidden-tab-hidden-hover-background-color: aliceblue;
+    --terra-application-workspace-hidden-tab-hidden-is-active-hover-background-color: aliceblue;
+    --terra-application-workspace-hidden-tab-checkbox-color: #007cc3;
+    --terra-application-workspace-hidden-tab-checkbox-height: 0.8571rem;
+    --terra-application-workspace-hidden-tab-checkbox-margin-right: 0.4286rem;
+    --terra-application-workspace-hidden-tab-checkbox-width: 0.8571re;
   }
 }

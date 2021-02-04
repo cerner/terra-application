@@ -1,5 +1,6 @@
 import hasIntlData from 'intl-locales-supported';
 import loadLocaleData from './loadLocaleData';
+import logger from '../../utils/logger';
 
 const supportedIntlConstructors = (polyfill) => {
   /**
@@ -51,9 +52,7 @@ const loadIntl = (locale, polyfill) => {
   if (!hasIntlData([locale], supportedIntlConstructors(polyfill))) {
     return loadLocaleData(locale, polyfill).catch((error) => {
       if (fallbackLocale) {
-        if (process.env.NODE_ENV !== 'production') {
-          console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
-        }
+        logger.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale data.`);
         if (!hasIntlData([fallbackLocale], supportedIntlConstructors(polyfill))) {
           return loadLocaleData(fallbackLocale, polyfill);
         }
@@ -63,9 +62,7 @@ const loadIntl = (locale, polyfill) => {
 
       return Promise.resolve();
     }).catch((error) => {
-      if (process.env.NODE_ENV !== 'production') {
-        console.warn(`${error.message} Using en data as the fallback locale data.`);
-      }
+      logger.warn(`${error.message} Using en data as the fallback locale data.`);
 
       if (!hasIntlData(['en'], supportedIntlConstructors(polyfill))) {
         return loadLocaleData('en', polyfill);

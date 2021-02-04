@@ -1,3 +1,5 @@
+import logger from '../../utils/logger';
+
 const loadTranslationsFile = (locale) => {
   switch (locale) {
     case 'en':
@@ -41,9 +43,7 @@ const loadTranslations = (locale) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
 
   return loadTranslationsFile(locale).catch((error) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
-    }
+    logger.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
 
     if (fallbackLocale) {
       return loadTranslationsFile(fallbackLocale);
@@ -51,9 +51,7 @@ const loadTranslations = (locale) => {
 
     return Promise.reject(error);
   }).catch((error) => {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(`${error.message} Using en as the fallback locale.`);
-    }
+    logger.warn(`${error.message} Using en as the fallback locale.`);
 
     return loadTranslationsFile('en');
   });

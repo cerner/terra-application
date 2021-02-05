@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
 
 describe('ApplicationBase', () => {
@@ -16,11 +15,8 @@ describe('ApplicationBase', () => {
     const wrapper = shallow((
       <ApplicationBase
         locale="en"
-        customTranslatedMessages={{ custom: 'messages' }}
-        translationsLoadingPlaceholder={<div>placeholder</div>}
         themeName="test-theme"
-        themeIsGlobal
-        fitToParentIsDisabled
+        unloadPromptIsDisabled
       >
         <div>content</div>
       </ApplicationBase>
@@ -28,7 +24,7 @@ describe('ApplicationBase', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render with the preferred browser local', () => {
+  it('should render with the preferred browser locale', () => {
     const wrapper = shallow((
       <ApplicationBase>
         <div>content</div>

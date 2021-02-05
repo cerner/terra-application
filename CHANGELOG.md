@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+* Breaking
+  * Upgraded to intl v5
+
+* Removed
+  * References to terra-base and moved terra-base logic to terra-application-base
+
+* Added
+  * Added i18n logic
+
 * Changed
   * Updated application-base to initialize `inert`.
   * Injecting an empty link with id `inert-style` to head in order avoid CSP violations.

@@ -1,3 +1,3 @@
-const terraDevSiteWebpackConfig = require('terra-dev-site/config/webpack/webpack.config');
+const terraDevSiteWebpackConfig = require('@cerner/webpack-config-terra');
 
 module.exports = terraDevSiteWebpackConfig;

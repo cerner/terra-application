@@ -15,7 +15,7 @@ import ApplicationNavigation from '@cerner/terra-application/lib/application-nav
 
 ApplicationNavigation requires values from the following Contexts:
 
-* [ApplicationIntlContext](/application/cerner-terra-application/contexts/application-intl-context)
+* [react-intl](https://formatjs.io/docs/react-intl/api)
 
 ## Props
 
@@ -279,7 +279,6 @@ If the children within ApplicationNavigation can be changed by a mechanism other
 check for unsaved changes prior to the pending child's removal.
 
 > Note: This default prompting can be disabled with the `disablePromptsForNavigationItems` and `disablePromptsForLogout` props if a custom implementation is required.
-
 ### Code Splitting
 
 ApplicationNavigation renders a [Suspense](https://reactjs.org/docs/code-splitting.html#reactlazy) component around its children. If any child components or their

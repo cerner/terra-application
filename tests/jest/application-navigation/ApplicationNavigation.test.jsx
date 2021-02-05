@@ -1,10 +1,23 @@
 import React from 'react';
-
+/* eslint-disable-next-line import/no-extraneous-dependencies */
+import { shallowWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationNavigation from '../../../src/application-navigation/ApplicationNavigation';
+
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
 
 describe('ApplicationNavigation', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = shallowWithIntl(
       <ApplicationNavigation />,
     );
 
@@ -12,7 +25,7 @@ describe('ApplicationNavigation', () => {
   });
 
   it('should render with all props', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = shallowWithIntl(
       <ApplicationNavigation
         activeBreakpoint="large"
         titleConfig={{

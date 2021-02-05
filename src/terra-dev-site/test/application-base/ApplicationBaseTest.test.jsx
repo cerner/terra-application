@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
+import { useIntl } from 'react-intl';
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';
 import ApplicationStatusOverlay from '../../../application-status-overlay';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
-import { ApplicationIntlContext } from '../../../application-intl';
 
 const ApplicationContentTest = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -13,7 +13,7 @@ const ApplicationContentTest = () => {
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");

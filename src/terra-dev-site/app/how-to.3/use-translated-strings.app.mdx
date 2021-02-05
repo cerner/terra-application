@@ -7,15 +7,13 @@ Every child of [ApplicationBase](/application/cerner-terra-application/component
 application's translated strings. Please review Terra's [recommended consumption guides](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/building-components-which-include-translations)
 for more information.
 
-Additionally, ApplicateBase provides react-intl's APIs through the [ApplicationIntlContext](/application/cerner-terra-application/contexts/application-intl-context)
-for consumers seeking a modern Context implementation.
 
 ```jsx
 import React, { useContext } from 'react';
-import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 
 const ExampleComponent = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   return (
     <div>
@@ -33,4 +31,4 @@ export default ExampleComponent;
 ```
 
 > Accessing react-intl's [legacy context value](https://reactjs.org/docs/legacy-context.html) directly is **not recommended**.
-> This API is deprecated and not provided by react-intl v3.x. Terra's recommended usage patterns are supported by versions 2.x and 3.x of react-intl.
+> This API is deprecated and not provided by react-intl v3.x. Terra's recommended usage patterns are supported by versions 5.x of react-intl.

@@ -1,61 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationErrorBoundary Snapshots should render error view when an error is detected 1`] = `
-<InjectIntl(ApplicationErrorBoundary)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
   >
@@ -63,65 +44,46 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       <div />
     </ErrorComponent>
   </ApplicationErrorBoundary>
-</InjectIntl(ApplicationErrorBoundary)>
+</injectIntl(ApplicationErrorBoundary)>
 `;
 
 exports[`ApplicationErrorBoundary Snapshots should render error view when an error is detected 2`] = `
-<InjectIntl(ApplicationErrorBoundary)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
   >
@@ -155,11 +117,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           >
             <FormattedMessage
               id="Terra.status-view.error"
-              values={Object {}}
             >
-              <span>
-                Terra.status-view.error
-              </span>
+              Terra.status-view.error
             </FormattedMessage>
           </p>
           <div
@@ -184,157 +143,92 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       </div>
     </StatusView>
   </ApplicationErrorBoundary>
-</InjectIntl(ApplicationErrorBoundary)>
+</injectIntl(ApplicationErrorBoundary)>
 `;
 
 exports[`ApplicationErrorBoundary Snapshots should render error view when an error is detected 3`] = `
-<InjectIntl(ApplicationErrorBoundary)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
   >
-    <StatusView
-      buttonAttrs={Array []}
-      isAlignedTop={false}
-      isGlyphHidden={false}
-      message="terraApplication.errorBoundary.defaultErrorMessage"
-      role="alert"
-      variant="error"
-    >
-      <div
-        className="outer-view"
-        role="alert"
-      >
-        <div
-          className="top-space"
-        />
-        <div
-          className="inner-view"
-        >
-          <div
-            className="glyph"
-          >
-            <div
-              className="error glyph-icon"
-            />
-          </div>
-          <p
-            className="title"
-          >
-            <FormattedMessage
-              id="Terra.status-view.error"
-              values={Object {}}
-            >
-              <span>
-                Terra.status-view.error
-              </span>
-            </FormattedMessage>
-          </p>
-          <div
-            className="divider"
-          >
-            <Divider>
-              <hr
-                aria-hidden="true"
-                className="divider"
-              />
-            </Divider>
-          </div>
-          <p
-            className="message"
-          >
-            terraApplication.errorBoundary.defaultErrorMessage
-          </p>
-        </div>
-        <div
-          className="bottom-space"
-        />
-      </div>
-    </StatusView>
+    <ErrorComponent>
+      <div />
+    </ErrorComponent>
   </ApplicationErrorBoundary>
-</InjectIntl(ApplicationErrorBoundary)>
+</injectIntl(ApplicationErrorBoundary)>
 `;
 
 exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
 <ApplicationErrorBoundary
   intl={
     Object {
+      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
+      "defaultRichTextElements": undefined,
       "formatDate": [Function],
-      "formatHTMLMessage": [Function],
+      "formatDateTimeRange": [Function],
+      "formatDateToParts": [Function],
+      "formatDisplayName": [Function],
+      "formatList": [Function],
       "formatMessage": [Function],
       "formatNumber": [Function],
+      "formatNumberToParts": [Function],
       "formatPlural": [Function],
-      "formatRelative": [Function],
+      "formatRelativeTime": [Function],
       "formatTime": [Function],
+      "formatTimeToParts": [Function],
       "formats": Object {},
       "formatters": Object {
         "getDateTimeFormat": [Function],
+        "getDisplayNames": [Function],
+        "getListFormat": [Function],
         "getMessageFormat": [Function],
         "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
+        "getPluralRules": [Function],
+        "getRelativeTimeFormat": [Function],
       },
       "locale": "en",
       "messages": null,
-      "now": [Function],
       "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
+      "textComponent": Symbol(react.fragment),
+      "timeZone": undefined,
+      "wrapRichTextChunksInFragment": undefined,
     }
   }
 >
@@ -348,29 +242,38 @@ exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`]
 <ApplicationErrorBoundary
   intl={
     Object {
+      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
+      "defaultRichTextElements": undefined,
       "formatDate": [Function],
-      "formatHTMLMessage": [Function],
+      "formatDateTimeRange": [Function],
+      "formatDateToParts": [Function],
+      "formatDisplayName": [Function],
+      "formatList": [Function],
       "formatMessage": [Function],
       "formatNumber": [Function],
+      "formatNumberToParts": [Function],
       "formatPlural": [Function],
-      "formatRelative": [Function],
+      "formatRelativeTime": [Function],
       "formatTime": [Function],
+      "formatTimeToParts": [Function],
       "formats": Object {},
       "formatters": Object {
         "getDateTimeFormat": [Function],
+        "getDisplayNames": [Function],
+        "getListFormat": [Function],
         "getMessageFormat": [Function],
         "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
+        "getPluralRules": [Function],
+        "getRelativeTimeFormat": [Function],
       },
       "locale": "en",
       "messages": null,
-      "now": [Function],
       "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
+      "textComponent": Symbol(react.fragment),
+      "timeZone": undefined,
+      "wrapRichTextChunksInFragment": undefined,
     }
   }
 />

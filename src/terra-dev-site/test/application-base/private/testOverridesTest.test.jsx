@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
-import { ApplicationIntlContext } from '../../../../application-intl';
+import React from 'react';
+import { useIntl } from 'react-intl';
 
 const TestOverrideTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   return (
     <div>
       {'locale: '}

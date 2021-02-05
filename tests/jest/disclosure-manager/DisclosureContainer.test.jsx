@@ -1,5 +1,5 @@
 import React from 'react';
-import { mockIntl } from 'terra-enzyme-intl';
+import { mockIntl } from '@cerner/terra-enzyme-intl';
 
 import DisclosureContainer from '../../../src/disclosure-manager/_DisclosureContainer';
 

@@ -1,61 +1,42 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Header should render default element 1`] = `
-<InjectIntl(Header)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<injectIntl(Header)>
   <Header
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     utilityItems={Array []}
@@ -77,33 +58,42 @@ exports[`Header should render default element 1`] = `
       <div
         className="main-navigation-container"
       >
-        <InjectIntl(Tabs)>
+        <injectIntl(Tabs)>
           <Tabs
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             navigationItems={Array []}
@@ -140,45 +130,18 @@ exports[`Header should render default element 1`] = `
               </div>
             </Tab>
           </Tabs>
-        </InjectIntl(Tabs)>
+        </injectIntl(Tabs)>
       </div>
       <div
         className="extensions-container"
       />
     </header>
   </Header>
-</InjectIntl(Header)>
+</injectIntl(Header)>
 `;
 
 exports[`Header should render title element 1`] = `
-<InjectIntl(Header)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
+<injectIntl(Header)
   titleConfig={
     Object {
       "element": <img
@@ -192,29 +155,38 @@ exports[`Header should render title element 1`] = `
   <Header
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     titleConfig={
@@ -255,33 +227,42 @@ exports[`Header should render title element 1`] = `
       <div
         className="main-navigation-container"
       >
-        <InjectIntl(Tabs)>
+        <injectIntl(Tabs)>
           <Tabs
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             navigationItems={Array []}
@@ -318,18 +299,18 @@ exports[`Header should render title element 1`] = `
               </div>
             </Tab>
           </Tabs>
-        </InjectIntl(Tabs)>
+        </injectIntl(Tabs)>
       </div>
       <div
         className="extensions-container"
       />
     </header>
   </Header>
-</InjectIntl(Header)>
+</injectIntl(Header)>
 `;
 
 exports[`Header should render with function callbacks 1`] = `
-<InjectIntl(Header)
+<injectIntl(Header)
   activeNavigationItemKey="test-text"
   extensionItems={
     Array [
@@ -346,33 +327,6 @@ exports[`Header should render with function callbacks 1`] = `
     <div>
       my test hero
     </div>
-  }
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
   }
   navigationItems={
     Array [
@@ -463,29 +417,38 @@ exports[`Header should render with function callbacks 1`] = `
     }
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     navigationItems={
@@ -582,7 +545,7 @@ exports[`Header should render with function callbacks 1`] = `
       <div
         className="main-navigation-container"
       >
-        <InjectIntl(Tabs)
+        <injectIntl(Tabs)
           activeTabKey="test-text"
           navigationItems={
             Array [
@@ -635,29 +598,38 @@ exports[`Header should render with function callbacks 1`] = `
             activeTabKey="test-text"
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             navigationItems={
@@ -778,12 +750,12 @@ exports[`Header should render with function callbacks 1`] = `
               </Tab>
             </nav>
           </Tabs>
-        </InjectIntl(Tabs)>
+        </injectIntl(Tabs)>
       </div>
       <div
         className="extensions-container"
       >
-        <InjectIntl(Extensions)
+        <injectIntl(Extensions)
           extensionItems={
             Array [
               Object {
@@ -817,29 +789,38 @@ exports[`Header should render with function callbacks 1`] = `
             }
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             notifications={
@@ -919,12 +900,12 @@ exports[`Header should render with function callbacks 1`] = `
               targetRef={[Function]}
             />
           </Extensions>
-        </InjectIntl(Extensions)>
+        </injectIntl(Extensions)>
       </div>
       <div
         className="utilities-container"
       >
-        <InjectIntl(UtilityMenuHeaderButton)
+        <injectIntl(UtilityMenuHeaderButton)
           onClick={[MockFunction]}
           popupAnchorRef={
             Object {
@@ -945,29 +926,38 @@ exports[`Header should render with function callbacks 1`] = `
           <UtilityMenuHeaderButton
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             onClick={[MockFunction]}
@@ -1097,70 +1087,52 @@ exports[`Header should render with function callbacks 1`] = `
               />
             </div>
           </UtilityMenuHeaderButton>
-        </InjectIntl(UtilityMenuHeaderButton)>
+        </injectIntl(UtilityMenuHeaderButton)>
       </div>
     </header>
   </Header>
-</InjectIntl(Header)>
+</injectIntl(Header)>
 `;
 
 exports[`Header should render with skip callback 1`] = `
-<InjectIntl(Header)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
+<injectIntl(Header)
   onSelectSkipToContent={[MockFunction]}
 >
   <Header
     intl={
       Object {
+        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
+        "formatTimeToParts": [Function],
         "formats": Object {},
         "formatters": Object {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     onSelectSkipToContent={[MockFunction]}
@@ -1184,33 +1156,42 @@ exports[`Header should render with skip callback 1`] = `
       <div
         className="main-navigation-container"
       >
-        <InjectIntl(Tabs)>
+        <injectIntl(Tabs)>
           <Tabs
             intl={
               Object {
+                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
+                "formatTimeToParts": [Function],
                 "formats": Object {},
                 "formatters": Object {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             navigationItems={Array []}
@@ -1247,12 +1228,12 @@ exports[`Header should render with skip callback 1`] = `
               </div>
             </Tab>
           </Tabs>
-        </InjectIntl(Tabs)>
+        </injectIntl(Tabs)>
       </div>
       <div
         className="extensions-container"
       />
     </header>
   </Header>
-</InjectIntl(Header)>
+</injectIntl(Header)>
 `;

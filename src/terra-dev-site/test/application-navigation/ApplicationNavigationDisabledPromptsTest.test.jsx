@@ -1,6 +1,6 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ApplicationIntlContext } from '../../../application-intl';
+import { useIntl } from 'react-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
 import NavigationPrompt from '../../../navigation-prompt';
@@ -34,7 +34,7 @@ PageContent.propTypes = {
 };
 
 const ApplicationNavigationDisabledPromptsTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);
 

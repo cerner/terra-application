@@ -24,7 +24,7 @@
   }
 
   .panel-header {
-    box-shadow: inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB;
+    box-shadow: var(--terra-application-workspace-content-panel-header-box-shadow, inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB);
     flex: 0 0 auto;
     padding-bottom: 5px;
     padding-top: 5px;

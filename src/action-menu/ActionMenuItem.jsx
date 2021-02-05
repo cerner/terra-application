@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
 
@@ -67,10 +68,11 @@ const ActionMenuItem = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  const theme = React.useContext(ThemeContext);
   return (
     <li
       {...attrs}
-      className={cx('action-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren })}
+      className={cx('action-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren }, theme.className)}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

@@ -17,10 +17,6 @@ const propTypes = {
    */
   hiddenIndex: PropTypes.number.isRequired,
   /**
-   * Whether or not a hidden tab is active.
-   */
-  isActive: PropTypes.bool,
-  /**
    * Whether or not the associated dropdown is open.
    */
   isOpen: PropTypes.bool,
@@ -57,7 +53,6 @@ const removeFocus = event => {
 
 const MoreButton = ({
   hiddenIndex,
-  isActive,
   isOpen,
   onBlur,
   onSelect,
@@ -72,7 +67,7 @@ const MoreButton = ({
   const handleOnMouseDown = event => setFocus(event);
 
   const handleOnSelect = event => {
-    setFocus(event)
+    setFocus(event);
     if (onSelect) {
       onSelect(event);
     }

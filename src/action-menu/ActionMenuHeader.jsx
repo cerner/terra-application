@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconClose from 'terra-icon/lib/icon/IconClose';
 import { injectIntl, intlShape } from 'react-intl';
@@ -30,9 +31,10 @@ const ActionMenuHeader = ({
   label,
   onClose,
 }) => {
+  const theme = React.useContext(ThemeContext);
   return (
     <div
-      className={cx('action-header')}
+      className={cx('action-header', theme.className)}
     >
       <div aria-hidden className={cx('title')}>
         {label}

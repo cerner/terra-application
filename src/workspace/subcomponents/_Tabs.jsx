@@ -69,7 +69,7 @@ class Tabs extends React.Component {
   }
 
   componentDidMount() {
-    this.resizeObserver = new ResizeObserver((entries) => {
+    this.resizeObserver = new ResizeObserver(() => {
       if (!this.isCalculating) {
         this.animationFrameID = window.requestAnimationFrame(() => {
           // Resetting the cache so that all elements will be rendered face-up for width calculations
@@ -102,8 +102,8 @@ class Tabs extends React.Component {
       return;
     }
 
-    // NOTE: get width from bounding client rect instead of r4esize observer, zoom throws off safari.
-    const width = this.containerRef.current.parentNode.getBoundingClientRect().width;
+    // NOTE: get width from bounding client rect instead of resize observer, zoom throws off safari.
+    const { width } = this.containerRef.current.parentNode.getBoundingClientRect();
 
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
     const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
@@ -181,7 +181,7 @@ class Tabs extends React.Component {
     const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
 
     // getBoundingClientRect - using adding 6px for visual offset effect
-    const moreRect = this.moreButtonRef.current.getBoundingClientRect()
+    const moreRect = this.moreButtonRef.current.getBoundingClientRect();
     const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
     const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 6);
 

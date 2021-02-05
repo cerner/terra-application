@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
 import styles from './ActionMenu.module.scss';
@@ -67,11 +68,12 @@ const ActionMenuCheckbox = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  const theme = React.useContext(ThemeContext);
   /* eslint-disable jsx-a11y/no-noninteractive-element-to-interactive-role */
   return (
     <li
       {...attrs}
-      className={cx('action-checkbox', { 'is-checked': isChecked }, { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled })}
+      className={cx('action-checkbox', { 'is-checked': isChecked }, { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled }, theme.className)}
       role="menuitemcheckbox"
       aria-checked={isChecked}
       data-action-menu-key={actionKey}

@@ -1,5 +1,5 @@
-// @import '../themes/clinical-lowlight-theme/ActionMenu.module';
-// @import '../themes/orion-fusion-theme/ActionMenu.module';
+@import './clinical-lowlight-theme/ActionMenu.module';
+@import './orion-fusion-theme/ActionMenu.module';
 
 :local {
   .action-menu,
@@ -12,7 +12,7 @@
 
   .action-menu {
     background-color: var(--terra-application-action-menu-background-color, #fff);
-    min-width: var(--terra-application-action-menu-padding-bottom, 200px);
+    min-width: var(--terra-application-action-menu-min-width, 200px);
     outline: none;
     padding-bottom: var(--terra-application-action-menu-padding-bottom, 0.3571rem);
     padding-top: var(--terra-application-action-menu-padding-top, 0.3571rem);
@@ -71,7 +71,7 @@
   .checkbox {
     flex: 0 0 auto;
     height: var(--terra-application-action-menu-checkbox-height, 0.8571rem);
-    margin-right: var(--terra-application-action-menu-checkbox-padding-top, 0.4286rem);
+    margin-right: var(--terra-application-action-menu-checkbox-margin-right, 0.4286rem);
     position: relative;
     width: var(--terra-application-action-menu-checkbox-width, 0.8571rem);
 
@@ -134,7 +134,10 @@
     display: flex;
     justify-content: space-between;
     min-height: var(--terra-application-action-menu-action-header-min-height, 2.92857rem);
-    padding: var(--terra-application-action-menu-action-header-padding, 0.35714rem 0.35714rem 0.35714rem 0);
+    padding-bottom: var(--terra-application-action-menu-action-header-padding-bottom, 0.5714rem);
+    padding-left: var(--terra-application-action-menu-action-header-padding-left, 0.8571rem);
+    padding-right: var(--terra-application-action-menu-action-header-padding-right, 0.7143rem);
+    padding-top: var(--terra-application-action-menu-action-header-padding-top, 0.5rem);
     position: relative;
     width: 100%;
 
@@ -147,8 +150,6 @@
       hyphens: auto;
       margin: 0;
       overflow-wrap: break-word; /* Modern browsers */
-      padding: var(--terra-application-action-menu-action-header-title-padding, 0.28571rem 0.71428rem 0 0.71428rem);
-      padding-top: var(--terra-application-action-menu-action-header-title-padding-top, 0.28571rem);
       position: relative;
       width: 100%;
       word-wrap: break-word; /* For IE 10 and IE 11 */

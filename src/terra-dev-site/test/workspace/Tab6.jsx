@@ -1,15 +1,13 @@
 import React from 'react';
 import {
-  WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay, WorkspaceContentStatusOverlayButton,
+  WorkspaceContent, WorkspaceContentActivityOverlay,
 } from '../../../workspace';
 
-const Tab6 = () => {
-  return (
-    <WorkspaceContent
-      activityOverlay={<WorkspaceContentActivityOverlay variant="loading" />}
-    />
-  );
-};
+const Tab6 = () => (
+  <WorkspaceContent
+    activityOverlay={<WorkspaceContentActivityOverlay variant="loading" />}
+  />
+);
 
 Tab6.titleKey = 'derp';
 

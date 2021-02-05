@@ -1,5 +1,5 @@
 @import '../clinical-lowlight-theme/HiddenTab.module';
-@import '../themes/orion-fusion-theme/HiddenTab.module';
+@import '../orion-fusion-theme/HiddenTab.module';
 
 :local {
   .hidden {
@@ -8,8 +8,8 @@
     color: var(--terra-application-workspace-hidden-tab-hidden-color, #222a2e);
     cursor: pointer;
     display: flex;
-    font-size:  var(--terra-application-workspace-hidden-tab-hidden-font-size, 1rem);
-    line-height:  var(--terra-application-workspace-hidden-tab-hidden-line-height, 1.4);
+    font-size: var(--terra-application-workspace-hidden-tab-hidden-font-size, 1rem);
+    line-height: var(--terra-application-workspace-hidden-tab-hidden-line-height, 1.4);
     font-weight: normal;
     margin-left: 0;
     outline: none;

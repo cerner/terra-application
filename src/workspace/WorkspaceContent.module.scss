@@ -44,6 +44,10 @@
     outline: none;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+
+    &.disable-overflow {
+      overflow: hidden;
+    }
   }
 
   .rounded {

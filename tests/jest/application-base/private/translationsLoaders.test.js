@@ -1,11 +1,14 @@
 import loadTranslations from '../../../../src/application-base/private/translationsLoaders';
+import logger from '../../../../src/utils/logger';
 
-global.console = { warn: jest.fn() };
+jest.mock('../../../../src/utils/logger', () => ({
+  warn: jest.fn(),
+}));
 
 describe('translationsLoaders', () => {
   beforeEach(() => {
     jest.resetModules();
-    console.warn.mockClear();
+    logger.warn.mockClear();
   });
 
   it('loads en translation file', () => {
@@ -24,7 +27,7 @@ describe('translationsLoaders', () => {
     }));
     expect.assertions(1);
     return loadTranslations('es-US').then(() => {
-      expect(console.warn).toBeCalledWith(expect.stringContaining('Translations were not supplied for the es-US locale. Using es data as the fallback locale.'));
+      expect(logger.warn).toBeCalledWith(expect.stringContaining('Translations were not supplied for the es-US locale. Using es data as the fallback locale.'));
     });
   });
 
@@ -38,7 +41,7 @@ describe('translationsLoaders', () => {
     expect.assertions(2);
     return loadTranslations('es').then((messages) => {
       expect(messages.test).toEqual('test');
-      expect(console.warn).toBeCalledWith(expect.stringContaining('Translations were not supplied for the es locale. Using en as the fallback locale.'));
+      expect(logger.warn).toBeCalledWith(expect.stringContaining('Translations were not supplied for the es locale. Using en as the fallback locale.'));
     });
   });
 
@@ -55,8 +58,8 @@ describe('translationsLoaders', () => {
     expect.assertions(3);
     return loadTranslations('es-US').then((messages) => {
       expect(messages.test).toEqual('test');
-      expect(console.warn).toHaveBeenNthCalledWith(1, expect.stringContaining('Translations were not supplied for the es-US locale. Using es data as the fallback locale.'));
-      expect(console.warn).toHaveBeenNthCalledWith(2, expect.stringContaining('Translations were not supplied for the es locale. Using en as the fallback locale.'));
+      expect(logger.warn).toHaveBeenNthCalledWith(1, expect.stringContaining('Translations were not supplied for the es-US locale. Using es data as the fallback locale.'));
+      expect(logger.warn).toHaveBeenNthCalledWith(2, expect.stringContaining('Translations were not supplied for the es locale. Using en as the fallback locale.'));
     });
   });
 
@@ -89,36 +92,6 @@ describe('translationsLoaders', () => {
 
     afterEach(() => {
       delete process.env.NODE_ENV;
-    });
-
-    it('only falls back when the regional locale is not provided and locale fallback is used', () => {
-      jest.doMock('es.js', () => ({
-        test: 'test-es',
-      }));
-      expect.assertions(1);
-      return loadTranslations('es-US').then(() => {
-        expect(console.warn).not.toHaveBeenCalled();
-      });
-    });
-
-    it('only falls back when the locale is not provided and en fallback is used', () => {
-      jest.doMock('en.js', () => ({
-        test: 'test',
-      }));
-      expect.assertions(1);
-      return loadTranslations('es').then(() => {
-        expect(console.warn).not.toHaveBeenCalled();
-      });
-    });
-
-    it('only falls back when the regional locale and locale are not provided and en fallback is used', () => {
-      jest.doMock('en.js', () => ({
-        test: 'test',
-      }));
-      expect.assertions(1);
-      return loadTranslations('es-US').then(() => {
-        expect(console.warn).not.toHaveBeenCalled();
-      });
     });
 
     it('still throws an error when the locale and en fallback are not provided', () => {

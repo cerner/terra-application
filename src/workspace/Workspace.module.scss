@@ -1,5 +1,5 @@
-// @import '../../themes/clinical-lowlight-theme/Workspace.module';
-// @import '../../themes/orion-fusion-theme/Workspace.module';
+@import './clinical-lowlight-theme/Workspace.module';
+@import './orion-fusion-theme/Workspace.module';
 
 :local {
   .workspace {
@@ -25,7 +25,7 @@
     flex: 0 0 auto;
     left: 0;
     justify-content: space-between;
-    min-height: var(--terra-application-workspace-button-header-padding-bottom, 3.571rem);
+    min-height: var(--terra-application-workspace-button-header-min-height, 3.571rem);
     padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
     position: absolute;
     top: 0;

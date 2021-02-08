@@ -75,25 +75,27 @@ const WorkspaceContent = ({
         <div className={cx('rounded')}>
           {toolbar}
         </div>
-        <div className={cx('rounded')}>
-          <NotificationBanners />
-        </div>
+        <NotificationBanners
+          id={`${panelId}-notifications`}
+          label={`Workspace ${label}`}
+          activeClassName={cx('rounded')}
+        />
       </div>
       <div role="none" className={cx('panel-content')}>
-        <DynamicOverlayContainer overlays={overlays}>
-          <div
-            className={cx('panel-overflow')}
-            role="tabpanel"
-            tabIndex="0"
-            id={panelId}
-            aria-labelledby={tabId}
-            data-application-overflow-container
-          >
+        <div
+          className={cx('panel-overflow', { 'disable-overflow': overlays.length })}
+          role="tabpanel"
+          tabIndex="0"
+          id={panelId}
+          aria-labelledby={tabId}
+          data-application-overflow-container
+        >
+          <DynamicOverlayContainer overlays={overlays}>
             <NotificationBannerProvider>
               {children}
             </NotificationBannerProvider>
-          </div>
-        </DynamicOverlayContainer>
+          </DynamicOverlayContainer>
+        </div>
       </div>
     </div>
   );

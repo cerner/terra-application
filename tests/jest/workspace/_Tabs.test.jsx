@@ -12,7 +12,7 @@ import Tabs from '../../../src/workspace/subcomponents/_Tabs';
 describe('Tabs', () => {
   test('should render a tablist container with the provided label', () => {
     render((
-      <Tabs ariaLabel="Test Label" tabData={[]} />
+      <Tabs label="Test Label" tabData={[]} />
     ));
 
     expect(screen.getByRole('tablist', { name: 'Test Label' })).toBeInTheDocument();
@@ -21,7 +21,7 @@ describe('Tabs', () => {
   test('should render a tabs', () => {
     render((
       <Tabs
-        ariaLabel="Test Label"
+        label="Test Label"
         tabData={[{
           id: 'tab-1',
           associatedPanelId: 'panel-1',

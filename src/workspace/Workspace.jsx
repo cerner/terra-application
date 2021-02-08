@@ -14,6 +14,7 @@ import {
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
+import { ApplicationIntlContext } from '../application-intl';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
@@ -47,10 +48,6 @@ const propTypes = {
    * The size string value matching the active size option.
    */
   activeSize: PropTypes.string,
-  /**
-   * The accessible label of the workspace.
-   */
-  ariaLabel: PropTypes.string.isRequired,
   /**
    * The child WorkspaceItems.
    */
@@ -104,7 +101,6 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
 const Workspace = ({
   id,
   activeItemKey,
-  ariaLabel,
   activeSize,
   children,
   dismissButtonIsVisible,
@@ -116,9 +112,12 @@ const Workspace = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = React.useContext(ThemeContext);
+  const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
+
+  const ariaLabel = 'Workspace'; // TODO INTL
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),
@@ -134,7 +133,7 @@ const Workspace = ({
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
-        ariaLabel="Hide Workspace Pane" // TODO: i18n needed
+        ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
         icon={<IconPanelRight />}
         onActivate={onRequestDismiss}
       />
@@ -156,8 +155,8 @@ const Workspace = ({
     if (onRequestDismiss) {
       dismissItem = (
         <ActionMenuItem
-          actionKey="workspace-dismiss-action"
-          label="Hide Workspace Pane" // TODO: i18n needed
+          actionKey="workspace-dimiss-action"
+          label={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
           onAction={() => {
             setIsMenuOpen(false);
             onRequestDismiss();
@@ -178,10 +177,11 @@ const Workspace = ({
     sizeButton = (
       <>
         <WorkspaceButton
-          ariaLabel="Workspace Size Menu" // TODO: i18n needed
+          ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
           icon={<IconSettings />}
           onActivate={() => setIsMenuOpen(true)}
           refCallback={node => { sizeMenuRef.current = node; }}
+          testId={`workspace-${id}-settings-button`}
         />
         <Popup
           isOpen={isMenuOpen}
@@ -197,8 +197,8 @@ const Workspace = ({
           popupContentRole="none"
         >
           <ActionMenu
-            ariaLabel="Workspace Settings" // TODO: i18n needed
             isHeaderDisplayed
+            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
             onRequestClose={() => {
               setIsMenuOpen(false);
             }}
@@ -233,7 +233,7 @@ const Workspace = ({
         {sizeButton}
       </div>
       <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
-        <Tabs ariaLabel={ariaLabel} tabData={tabData} />
+        <Tabs label={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceContainerRef}>
         {React.Children.map(children, child => {

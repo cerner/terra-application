@@ -1,5 +1,5 @@
-// @import '../../themes/clinical-lowlight-theme/WorkspaceContent.module';
-// @import '../../themes/orion-fusion-theme/WorkspaceContent.module';
+@import './clinical-lowlight-theme/WorkspaceContent.module';
+@import './orion-fusion-theme/WorkspaceContent.module';
 
 :local {
   .panel {
@@ -20,11 +20,11 @@
     box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
 
     overflow: hidden;
-    padding: 0 10px 10px;
+    padding: 0 10px;
   }
 
   .panel-header {
-    box-shadow: inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB;
+    box-shadow: var(--terra-application-workspace-content-panel-header-box-shadow, inset -3px -4px 0px -3px #fefffe, inset -3px -5px 0px -3px #C7CACB);
     flex: 0 0 auto;
     padding-bottom: 5px;
     padding-top: 5px;
@@ -44,6 +44,10 @@
     outline: none;
     overflow: auto;
     -webkit-overflow-scrolling: touch;
+
+    &.disable-overflow {
+      overflow: hidden;
+    }
   }
 
   .rounded {

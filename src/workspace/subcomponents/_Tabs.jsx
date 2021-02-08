@@ -15,7 +15,7 @@ const propTypes = {
   /**
    * The label to set on the tablist element.
    */
-  ariaLabel: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * Currently active Tabs.Pane content to be displayed.
    */
@@ -103,7 +103,7 @@ class Tabs extends React.Component {
     }
 
     // NOTE: get width from bounding client rect instead of r4esize observer, zoom throws off safari.
-    const width = this.containerRef.current.parentNode.getBoundingClientRect().width;
+    const { width } = this.containerRef.current.parentNode.getBoundingClientRect();
 
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
     const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
@@ -181,7 +181,7 @@ class Tabs extends React.Component {
     const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
 
     // getBoundingClientRect - using adding 6px for visual offset effect
-    const moreRect = this.moreButtonRef.current.getBoundingClientRect()
+    const moreRect = this.moreButtonRef.current.getBoundingClientRect();
     const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
     const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 6);
 
@@ -206,7 +206,7 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { tabData, ariaLabel } = this.props;
+    const { tabData, label } = this.props;
     const theme = this.context;
     const ids = tabData.map(tab => tab.id);
     const hiddenIds = [];
@@ -263,7 +263,7 @@ class Tabs extends React.Component {
         className={cx('tab-container', theme.className)}
         ref={this.containerRef}
         role="tablist"
-        aria-label={ariaLabel}
+        aria-label={label}
         aria-orientation="horizontal"
         aria-owns={hiddenIds.join(' ')}
       >

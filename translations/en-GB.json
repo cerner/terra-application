@@ -33,6 +33,10 @@
 
   "terraApplication.statusLayout.no-data": "No Results",
   "terraApplication.statusLayout.no-matching-results": "No Matching Results",
-  "terraApplication.statusLayout.not-authorized": "Not Authorised",
-  "terraApplication.statusLayout.error": "Error"
+  "terraApplication.statusLayout.not-authorized": "Not Authorized",
+  "terraApplication.statusLayout.error": "Error",
+
+  "terraApplication.workspace.activityOverlay.loading": "Loading...",  
+  "terraApplication.workspace.hideWorkspaceLabel": "Hide Workspace",
+  "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings"
 }

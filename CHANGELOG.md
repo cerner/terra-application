@@ -2,11 +2,14 @@
 
 ## Unreleased
 
-### Added
-* Added `webpack-config-terra` as a dependency.
+* Added
+  * Added `webpack-config-terra` as a dependency.
 
-### Changed
-* Updated webpack.config to use `webpack-config-terra`
+* Changed
+  * Updated webpack.config to use `webpack-config-terra`
+
+* Fixed
+  * Moved development dependencies into devDependencies
 
 ## 1.41.1 - (January 8, 2021)
 

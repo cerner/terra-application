@@ -9,8 +9,8 @@ import Tab5 from './Tab5';
 import Tab6 from './Tab6';
 
 const sizeMap = {
-  tiny: '320px',
-  small: '500px',
+  small: '320px',
+  medium: '500px',
   large: '1000px',
 };
 
@@ -47,11 +47,11 @@ const WorkspaceTest = () => {
           onRequestActivate={key => setActiveItemKey(key)}
           activeSize={workspaceSize}
           sizeOptions={[{
-            key: 'tiny',
-            text: 'Tiny',
-          }, {
             key: 'small',
             text: 'Small',
+          }, {
+            key: 'medium',
+            text: 'Medium',
           }, {
             key: 'large',
             text: 'Large',

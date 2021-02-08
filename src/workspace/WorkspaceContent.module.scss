@@ -3,24 +3,15 @@
 
 :local {
   .panel {
+    background-color: var(--terra-application-workspace-content-panel-background-color, #fefffe);
+    border-top: var(--terra-application-workspace-content-panel-border-top, 0);
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
+    padding: 0 10px;
     position: relative;
     width: 100%;
-
-    background-color: #fefffe;
-    border-radius: 0 0 5px 5px;
-
-    border-top: 1px solid #eeefee;
-    border-left: 1px solid #dfe0df;
-    border-right: 1px solid #dfe0df;
-    border-bottom: 1px solid #c6c8c7;
-
-    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
-
-    overflow: hidden;
-    padding: 0 10px 10px;
   }
 
   .panel-header {

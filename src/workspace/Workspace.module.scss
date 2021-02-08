@@ -20,12 +20,13 @@
   }
 
   .button-header {
+    border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
     background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #3a67a4));
     display: flex;
     flex: 0 0 auto;
     left: 0;
     justify-content: space-between;
-    min-height: var(--terra-application-workspace-button-header-min-height, 3.571rem);
+    min-height: var(--terra-application-workspace-button-header-min-height, 44px);
     padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
     position: absolute;
     top: 0;

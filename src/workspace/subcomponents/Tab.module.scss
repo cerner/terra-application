@@ -143,12 +143,12 @@
   }
 
   .tab-menu {
-    color: var(--terra-application-workspace-tab-menu-color, #434a4d);
     display: flex;
     flex: 0 0 auto;
     justify-content: center;
 
     svg {
+      color: var(--terra-application-workspace-tab-menu-svg-color, #434a4d);
       flex: 0 0 auto;
       height: var(--terra-application-workspace-tab-menu-svg-height, 0.8571rem);
       margin-left: 5px;

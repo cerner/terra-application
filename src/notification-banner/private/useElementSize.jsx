@@ -2,6 +2,11 @@ import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import { activeBreakpointForSize } from '../../breakpoints';
 
+/**
+ * Takes the given rect value and translates it into the shape desired by the useElementSize hook.
+ * @param {Object} rect - A rect object, like the one returned by getBoundingClientRect().
+ * @returns {Object} A value containing height, width, and active breakpoint values.
+ */
 const processRect = (rect) => {
   if (!rect) {
     return undefined;
@@ -13,10 +18,10 @@ const processRect = (rect) => {
   return { activeBreakpoint, width, height };
 };
 
-const useElementSize = (elementRef, updatefilter) => {
+const useElementSize = (elementRef, updateFilter) => {
   // Filter is cached to limit the rebinding the resize observer.
   // The provided function should be static anyway.
-  const cachedUpdateFilterRef = React.useRef(updatefilter);
+  const cachedUpdateFilterRef = React.useRef(updateFilter);
 
   // An active animation frame id is stored in this ref so it can be cancelled, if necessary.
   const animationFrameRef = React.useRef();

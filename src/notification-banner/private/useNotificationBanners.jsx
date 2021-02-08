@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
@@ -13,6 +14,11 @@ import styles from './useNotificationBanners.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
+/**
+ * Given a NotificationBanner variant, translates the variant into the legacy support banner types.
+ * @param {string} variant One of the supported NotificationBanner variants.
+ * @returns {string} The legacy banner type corresponding to the variant, or the variant itself if supported.
+ */
 function getBannerTypeFromVariant(variant) {
   let bannerType;
   switch (variant) {
@@ -32,6 +38,12 @@ function getBannerTypeFromVariant(variant) {
   return bannerType;
 }
 
+/**
+ * Returns a comparison of two collections of banners, including banners that were added and removed.
+ * @param {Array} newBanners An array of banner data representing the current state.
+ * @param {Array} oldBanners An array of banner data representing the previous state.
+ * @returns {Object} An object containing references to the banners that were added and removed.
+ */
 function comparedBannerSets(newBanners, oldBanners) {
   const additions = [];
   const deletions = [...oldBanners];
@@ -62,14 +74,12 @@ function comparedBannerSets(newBanners, oldBanners) {
  * @returns { NotificationBannerProvider, NotificationBanners }
  */
 const useNotificationBanners = () => {
-  /** The registeredBanners ref maintains collection of banner ids and banner props registered to the  NotificationBannerProvider. */
+  // The registeredBanners ref maintains collection of banner ids and banner props registered to the  NotificationBannerProvider.
   const registeredBanners = React.useRef({});
 
-  /**
-   * The updateBannerState ref stores the update state function used to manage the banners rendered in the NotificationBanners component.
-   * This ties the state updates to the `useNotificationBanners` hook, while allowing the NotificationBanners to be rendered above or below
-   * the NotificationBannerProvider.
-   */
+  // The updateBannerState ref stores the update state function used to manage the banners rendered in the NotificationBanners component.
+  // This ties the state updates to the `useNotificationBanners` hook, while allowing the NotificationBanners to be rendered above or below
+  // the NotificationBannerProvider.
   const updateBannerState = React.useRef();
 
   const useNotificationBannerExports = React.useMemo(() => {
@@ -130,173 +140,226 @@ const useNotificationBanners = () => {
       }
     };
 
-    return {
+    /**
+     * Provides the Banner Registration Context to its children.
+     */
+    const NotificationBannerProvider = ({ children }) => (
+      <BannerRegistrationContext.Provider value={{ registerNotificationBanner, unregisterNotificationBanner }}>
+        {children}
+      </BannerRegistrationContext.Provider>
+    );
+
+    NotificationBannerProvider.propTypes = {
       /**
-       * Provides the Banner Registration Context to its children.
+       * The elements to receive access to the BannerRegistrationContext value.
        */
-      NotificationBannerProvider: ({ children }) => ( // eslint-disable-line react/prop-types
-        <BannerRegistrationContext.Provider value={{ registerNotificationBanner, unregisterNotificationBanner }}>
-          {children}
-        </BannerRegistrationContext.Provider>
-      ),
-      /**
-       * Renders a list of prioritized notification banners.
-       */
-      NotificationBanners: ({ id, label, activeClassName }) => {
-        const theme = React.useContext(ThemeContext);
-        const intl = React.useContext(ApplicationIntlContext);
-        const [bannerState, setBannerState] = React.useState({});
-        const containerRef = React.useRef();
-        const notificationRemovedRef = React.useRef();
-        const lastRenderedBannersRef = React.useRef([]);
-        const forceUpdate = React.useState(false)[1];
-        const lastReadAddedBanner = React.useRef();
-        const lastReadRemovedBanner = React.useRef();
+      children: PropTypes.node,
+    };
 
-        /**
-         * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
-         * while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
-         */
-        updateBannerState.current = setBannerState;
+    /**
+     * Renders a list of prioritized notification banners.
+     */
+    const NotificationBanners = ({ id, label, activeClassName }) => {
+      const theme = React.useContext(ThemeContext);
+      const intl = React.useContext(ApplicationIntlContext);
+      const [bannerState, setBannerState] = React.useState({});
+      const containerRef = React.useRef();
+      const notificationRemovedRef = React.useRef();
+      const lastRenderedBannersRef = React.useRef([]);
+      const forceUpdate = React.useState(false)[1];
+      const lastReadAddedBanner = React.useRef();
+      const lastReadRemovedBanner = React.useRef();
 
-        const prioritizedBanners = organizeBannersByPriority(bannerState.banners, theme.name);
+      // Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
+      // while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
+      updateBannerState.current = setBannerState;
 
-        const renderedBannerComparison = comparedBannerSets(prioritizedBanners, lastRenderedBannersRef.current);
-        lastRenderedBannersRef.current = prioritizedBanners;
+      const prioritizedBanners = organizeBannersByPriority(bannerState.banners, theme.name);
 
-        React.useEffect(() => {
-          if (renderedBannerComparison.deletions.length || renderedBannerComparison.additions.length) {
-            const timeout = setTimeout(() => {
-              forceUpdate(val => !val);
-            }, 3000);
+      const renderedBannerComparison = comparedBannerSets(prioritizedBanners, lastRenderedBannersRef.current);
+      lastRenderedBannersRef.current = prioritizedBanners;
 
-            return () => {
-              clearTimeout(timeout);
-            };
-          }
+      React.useEffect(() => {
+        if (renderedBannerComparison.deletions.length || renderedBannerComparison.additions.length) {
+          const timeout = setTimeout(() => {
+            forceUpdate(val => !val);
+          }, 3000);
 
-          return undefined;
-        }, [renderedBannerComparison, forceUpdate]);
-
-        let addedBannersLog;
-        if (renderedBannerComparison.additions.length) {
-          addedBannersLog = renderedBannerComparison.additions.map((addedBanner) => {
-            let translatedBannerLabel = getTitleStringIdForType(getBannerTypeFromVariant(addedBanner.variant));
-            if (translatedBannerLabel) {
-              translatedBannerLabel = intl.formatMessage({ id: translatedBannerLabel });
-            }
-
-            return `New ${label} Notification. ${translatedBannerLabel}, ${addedBanner.description}, ${addedBanner?.bannerAction?.text || ''}, ${addedBanner.onRequestClose ? 'Dismiss' : ''}`;
-          }).join(' ');
-
-          if (lastReadAddedBanner.current === addedBannersLog) {
-            addedBannersLog += '\u00A0';
-          }
-
-          lastReadAddedBanner.current = addedBannersLog;
+          return () => {
+            clearTimeout(timeout);
+          };
         }
 
-        let removedBannersLog;
-        if (renderedBannerComparison.deletions.length) {
-          removedBannersLog = renderedBannerComparison.deletions.map((removedBanner) => {
-            let translatedBannerLabel = getTitleStringIdForType(getBannerTypeFromVariant(removedBanner.variant));
-            if (translatedBannerLabel) {
-              translatedBannerLabel = intl.formatMessage({ id: translatedBannerLabel });
-            }
+        return undefined;
+      }, [renderedBannerComparison, forceUpdate]);
 
-            return `Removed Notification: ${translatedBannerLabel} ${removedBanner.description}.`;
-          }).join(' ');
-
-          if (lastReadRemovedBanner.current === removedBannersLog) {
-            removedBannersLog += '\u00A0';
+      let addedBannersLog;
+      if (renderedBannerComparison.additions.length) {
+        addedBannersLog = renderedBannerComparison.additions.map((addedBanner) => {
+          let translatedBannerType = getTitleStringIdForType(getBannerTypeFromVariant(addedBanner.variant));
+          if (translatedBannerType) {
+            translatedBannerType = intl.formatMessage({ id: translatedBannerType });
           }
 
-          lastReadRemovedBanner.current = removedBannersLog;
+          return intl.formatMessage({ id: 'terraApplication.notifications.newNotificationLabel' }, {
+            label,
+            bannerType: translatedBannerType,
+            bannerDescription: addedBanner.description,
+            bannerAction: addedBanner?.bannerAction?.text ? addedBanner.bannerAction.text : '',
+            bannerDismiss: addedBanner.onRequestClose ? intl.formatMessage({ id: 'terraApplication.notificationBanner.dismiss' }) : '',
+          });
+        }).join(' ');
+
+        if (addedBannersLog.length) {
+          addedBannersLog += ` ${intl.formatMessage({ id: 'terraApplication.notifications.totalCountLabel' }, { label, count: prioritizedBanners.length })}`;
         }
 
-        return (
-          <div
-            role="region"
-            aria-label={`${label} Notifications.`}
-            id={id}
-            className={prioritizedBanners.length && activeClassName ? activeClassName : undefined}
-            tabIndex="-1"
-            ref={notificationRemovedRef}
-          >
-            <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
-              <span>{addedBannersLog}</span>
-            </span>
-            <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
-              <span>{removedBannersLog}</span>
-            </span>
-            <ul ref={containerRef} className={cx('banners-list')}>
-              {prioritizedBanners.map((bannerProps, index) => {
-                const {
-                  bannerAction, custom, description, key, onRequestClose, variant,
-                } = bannerProps;
+        // Certain screen readers will not read text in a live region if it has already been read. This can be a problem,
+        // if the same notification is presented, dismissed, and then presented again. We work around this by appending
+        // and invisible, non-breaking space to the string, if it is a duplicate, in order to force the screen reader
+        // to read the string.
+        if (lastReadAddedBanner.current === addedBannersLog) {
+          addedBannersLog += '\u00A0';
+        }
 
-                const bannerType = getBannerTypeFromVariant(variant);
+        lastReadAddedBanner.current = addedBannersLog;
+      }
 
-                let actionButton = null;
-                if (bannerAction) {
-                  actionButton = (
-                    <Button
-                      text={bannerAction.text}
-                      variant="ghost"
-                      data-terra-application-notification-banner={variant}
-                      onClick={bannerAction.onClick}
-                    />
+      let removedBannersLog;
+      if (renderedBannerComparison.deletions.length) {
+        removedBannersLog = renderedBannerComparison.deletions.map((removedBanner) => {
+          let translatedBannerType = getTitleStringIdForType(getBannerTypeFromVariant(removedBanner.variant));
+          if (translatedBannerType) {
+            translatedBannerType = intl.formatMessage({ id: translatedBannerType });
+          }
+
+          return intl.formatMessage({ id: 'terraApplication.notifications.removedNotificationLabel' }, {
+            label,
+            bannerType: translatedBannerType,
+            bannerDescription: removedBanner.description,
+          });
+        }).join(' ');
+
+        if (removedBannersLog.length) {
+          removedBannersLog += ` ${intl.formatMessage({ id: 'terraApplication.notifications.totalCountLabel' }, { label, count: prioritizedBanners.length })}`;
+        }
+
+        // Certain screen readers will not read text in a live region if it has already been read. This can be a problem,
+        // if the same notification is presented, dismissed, and then presented again. We work around this by appending
+        // and invisible, non-breaking space to the string, if it is a duplicate, in order to force the screen reader
+        // to read the string.
+        if (lastReadRemovedBanner.current === removedBannersLog) {
+          removedBannersLog += '\u00A0';
+        }
+
+        lastReadRemovedBanner.current = removedBannersLog;
+      }
+
+      return (
+        <div
+          role="region"
+          aria-label={intl.formatMessage({ id: 'terraApplication.notifications.regionLabel' }, { label })}
+          id={id}
+          className={prioritizedBanners.length && activeClassName ? activeClassName : undefined}
+          tabIndex="-1"
+          ref={notificationRemovedRef}
+        >
+          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+            <span>{addedBannersLog}</span>
+          </span>
+          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+            <span>{removedBannersLog}</span>
+          </span>
+          <ul ref={containerRef} className={cx('banners-list')}>
+            {prioritizedBanners.map((bannerProps, index) => {
+              const {
+                bannerAction, custom, description, key, onRequestClose, variant,
+              } = bannerProps;
+
+              const bannerType = getBannerTypeFromVariant(variant);
+
+              let actionButton = null;
+              if (bannerAction) {
+                actionButton = (
+                  <Button
+                    text={bannerAction.text}
+                    variant="ghost"
+                    data-terra-application-notification-banner={variant}
+                    onClick={bannerAction.onClick}
+                  />
+                );
+              }
+
+              let customIcon;
+              let customSignalWord;
+              if (bannerType === 'custom' && custom) {
+                customSignalWord = custom.signalWord;
+
+                if (custom.customIconClass) {
+                  customIcon = (
+                    <svg className={cx(['custom-icon', custom.customIconClass])} />
                   );
                 }
+              }
 
-                let customIcon;
-                let customSignalWord;
-                if (bannerType === 'custom' && custom !== undefined) {
-                  customSignalWord = custom?.signalWord;
+              let translatedBannerLabel = getTitleStringIdForType(bannerType);
+              if (translatedBannerLabel) {
+                translatedBannerLabel = intl.formatMessage({ id: getTitleStringIdForType(bannerType) });
+              } else if (customSignalWord) {
+                translatedBannerLabel = customSignalWord;
+              }
 
-                  if (custom.customIconClass) {
-                    customIcon = (
-                      <svg className={cx(['custom-icon', custom.customIconClass])} />
-                    );
-                  }
-                }
-
-                let translatedBannerLabel = getTitleStringIdForType(bannerType);
-                if (translatedBannerLabel) {
-                  translatedBannerLabel = intl.formatMessage({ id: getTitleStringIdForType(bannerType) });
-                } else {
-                  translatedBannerLabel = 'Notification';
-                }
-
-                return (
-                  <li
-                    aria-label={translatedBannerLabel}
-                    aria-setsize={prioritizedBanners.length}
-                    aria-posinset={index + 1}
-                    tabIndex="-1"
+              return (
+                <li
+                  aria-label={translatedBannerLabel}
+                  aria-setsize={prioritizedBanners.length}
+                  aria-posinset={index + 1}
+                  tabIndex="-1"
+                  key={key}
+                >
+                  <NotificationBannerView
                     key={key}
+                    action={actionButton}
+                    onDismiss={onRequestClose ? () => {
+                      notificationRemovedRef.current.focus();
+                      onRequestClose();
+                    } : undefined}
+                    type={bannerType}
+                    customIcon={customIcon}
+                    title={customSignalWord}
+                    data-terra-application-notification-banner={variant}
                   >
-                    <NotificationBannerView
-                      key={key}
-                      action={actionButton}
-                      onDismiss={onRequestClose ? () => {
-                        notificationRemovedRef.current.focus();
-                        onRequestClose();
-                      } : undefined}
-                      type={bannerType}
-                      customIcon={customIcon}
-                      title={customSignalWord}
-                      data-terra-application-notification-banner={variant}
-                    >
-                      {description}
-                    </NotificationBannerView>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
-        );
-      },
+                    {description}
+                  </NotificationBannerView>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    };
+
+    NotificationBanners.propTypes = {
+      /**
+       * An identifier for the notifications region, applied as an `id` for the notification container element.
+       * Must be globally unique.
+       */
+      id: PropTypes.string.isRequired,
+      /**
+       * A description of what the notification banners are related to. Used to provide additional descriptive labeling
+       * for screen readers.
+       */
+      label: PropTypes.string.isRequired,
+      /**
+       * A className applied to the notifications container when the container is populated with at least one notification banner.
+       * Can be used to provide styling only when notification content will be visible.
+       */
+      activeClassName: PropTypes.string,
+    };
+
+    return {
+      NotificationBannerProvider,
+      NotificationBanners,
     };
   }, []);
 

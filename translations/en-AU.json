@@ -24,5 +24,10 @@
   "terraApplication.notificationBanner.advisory": "Advisory.",
   "terraApplication.notificationBanner.unsatisfied": "Required Action.",
   "terraApplication.notificationBanner.unverified": "Outside Records.",
-  "terraApplication.notificationBanner.success": "Success."
+  "terraApplication.notificationBanner.success": "Success.",
+
+  "terraApplication.notifications.regionLabel": "{label} Notifications.",
+  "terraApplication.notifications.totalCountLabel": "Total {label} notifications: {count}",
+  "terraApplication.notifications.newNotificationLabel": "New {label} Notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
+  "terraApplication.notifications.removedNotificationLabel": "Removed {label} Notification. {bannerType} ${bannerDescription}."
 }

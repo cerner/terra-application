@@ -42,7 +42,7 @@ const PageHeader = ({
         return;
       }
 
-      if (resizeWidth < 540) {
+      if (resizeWidth < 544) {
         setActionsAreCollapsed(true);
       } else {
         setActionsAreCollapsed(false);

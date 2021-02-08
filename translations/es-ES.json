@@ -22,5 +22,15 @@
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Más",
   "terraApplication.applicationNavigation.notifications.new": "Nuevo",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Saltar al contenido",
-  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menú"
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menú",
+
+  "terraApplication.notificationBanner.advisory": "Recomendación.",
+  "terraApplication.notificationBanner.alert": "Alerta.",
+  "terraApplication.notificationBanner.dismiss": "Descartar",
+  "terraApplication.notificationBanner.error": "Error.",
+  "terraApplication.notificationBanner.info": "Información.",
+  "terraApplication.notificationBanner.success": "Correcto.",
+  "terraApplication.notificationBanner.unsatisfied": "Acción obligatoria.",
+  "terraApplication.notificationBanner.unverified": "Historias clínicas externas.",
+  "terraApplication.notificationBanner.warning": "Advertencia."
 }

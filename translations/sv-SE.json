@@ -22,5 +22,15 @@
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Mer",
   "terraApplication.applicationNavigation.notifications.new": "Nytt",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Gå till Innehåll",
-  "terraApplication.applicationNavigation.header.menuButtonTitle": "Meny"
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Meny",
+
+  "terraApplication.notificationBanner.advisory": "Rådgivning.",
+  "terraApplication.notificationBanner.alert": "Avisering.",
+  "terraApplication.notificationBanner.dismiss": "Ignorera",
+  "terraApplication.notificationBanner.error": "Fel.",
+  "terraApplication.notificationBanner.info": "Information.",
+  "terraApplication.notificationBanner.success": "Klar.",
+  "terraApplication.notificationBanner.unsatisfied": "Nödvändig åtgärd krävs.",
+  "terraApplication.notificationBanner.unverified": "Externa journaler.",
+  "terraApplication.notificationBanner.warning": "Varning!"
 }

@@ -1,0 +1,24 @@
+:local {
+  .custom-icon {
+    height: 1em;
+    width: 1em;
+  }
+
+  .banners-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .hidden-log {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap; /* Ensures words  are not read one at a time on screen readers*/
+    width: 1px;
+  }
+}

@@ -22,5 +22,15 @@
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Mais",
   "terraApplication.applicationNavigation.notifications.new": "Novo",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Pular para conteúdo",
-  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu"
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
+
+  "terraApplication.notificationBanner.advisory": "Informe.",
+  "terraApplication.notificationBanner.alert": "Alerta.",
+  "terraApplication.notificationBanner.dismiss": "Ignorar",
+  "terraApplication.notificationBanner.error": "Erro.",
+  "terraApplication.notificationBanner.info": "Informações.",
+  "terraApplication.notificationBanner.success": "Êxito.",
+  "terraApplication.notificationBanner.unsatisfied": "Ação exigida.",
+  "terraApplication.notificationBanner.unverified": "Registros externos.",
+  "terraApplication.notificationBanner.warning": "Aviso."
 }

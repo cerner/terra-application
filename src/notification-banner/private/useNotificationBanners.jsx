@@ -1,15 +1,54 @@
 import React from 'react';
 import classNamesBind from 'classnames/bind';
-import Alert from 'terra-alert';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
+import { ApplicationIntlContext } from '../../application-intl';
+
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
+import NotificationBannerView, { getTitleStringIdForType } from './_NotificationBannerView';
 
-import styles from './CustomIcon.module.scss';
+import styles from './useNotificationBanners.module.scss';
 
 const cx = classNamesBind.bind(styles);
+
+function getBannerTypeFromVariant(variant) {
+  let bannerType;
+  switch (variant) {
+    case 'hazard-high':
+      bannerType = 'alert';
+      break;
+    case 'hazard-medium':
+      bannerType = 'warning';
+      break;
+    case 'hazard-low':
+      bannerType = 'info';
+      break;
+    default:
+      bannerType = variant;
+  }
+
+  return bannerType;
+}
+
+function comparedBannerSets(newBanners, oldBanners) {
+  const additions = [];
+  const deletions = [...oldBanners];
+
+  for (let i = 0, count = newBanners.length; i < count; i += 1) {
+    if (oldBanners.findIndex(oldBanner => oldBanner.key === newBanners[i].key) < 0) {
+      additions.push(newBanners[i]);
+    } else {
+      deletions.splice(deletions.findIndex(banner => banner.key === newBanners[i].key), 1);
+    }
+  }
+
+  return {
+    additions,
+    deletions,
+  };
+}
 
 /**
  * The `useNotificationBanners` Hook manages registering and prioritizing Notification Banners
@@ -27,7 +66,7 @@ const useNotificationBanners = () => {
   const registeredBanners = React.useRef({});
 
   /**
-   * The updateBannerState ref stores the update state function used to manage the banner rendered in the NotificationBanners component.
+   * The updateBannerState ref stores the update state function used to manage the banners rendered in the NotificationBanners component.
    * This ties the state updates to the `useNotificationBanners` hook, while allowing the NotificationBanners to be rendered above or below
    * the NotificationBannerProvider.
    */
@@ -52,10 +91,15 @@ const useNotificationBanners = () => {
         registeredBanners.current[variant] = {};
       }
 
-      registeredBanners.current[variant][bannerId] = { key: bannerId, ...bannerProps };
+      let existingTimestamp;
+      if (registeredBanners.current[variant][bannerId]) {
+        existingTimestamp = registeredBanners.current[variant][bannerId].timestamp;
+      }
+
+      registeredBanners.current[variant][bannerId] = { ...bannerProps, timestamp: existingTimestamp || Date.now(), key: bannerId };
 
       if (updateBannerState.current) {
-        updateBannerState.current({ ...registeredBanners.current });
+        updateBannerState.current({ banners: { ...registeredBanners.current } });
       }
     };
 
@@ -82,100 +126,174 @@ const useNotificationBanners = () => {
       }
 
       if (updateBannerState.current) {
-        updateBannerState.current({ ...registeredBanners.current });
+        updateBannerState.current({ banners: { ...registeredBanners.current } });
       }
     };
-
-    const registrationContextValue = { registerNotificationBanner, unregisterNotificationBanner };
 
     return {
       /**
        * Provides the Banner Registration Context to its children.
        */
       NotificationBannerProvider: ({ children }) => ( // eslint-disable-line react/prop-types
-        <BannerRegistrationContext.Provider value={registrationContextValue}>
+        <BannerRegistrationContext.Provider value={{ registerNotificationBanner, unregisterNotificationBanner }}>
           {children}
         </BannerRegistrationContext.Provider>
       ),
       /**
        * Renders a list of prioritized notification banners.
        */
-      NotificationBanners: () => {
+      NotificationBanners: ({ id, label, activeClassName }) => {
         const theme = React.useContext(ThemeContext);
-        const [banners, setBanners] = React.useState([]);
+        const intl = React.useContext(ApplicationIntlContext);
+        const [bannerState, setBannerState] = React.useState({});
+        const containerRef = React.useRef();
+        const notificationRemovedRef = React.useRef();
+        const lastRenderedBannersRef = React.useRef([]);
+        const forceUpdate = React.useState(false)[1];
+        const lastReadAddedBanner = React.useRef();
+        const lastReadRemovedBanner = React.useRef();
 
         /**
          * Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
          * while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
          */
-        updateBannerState.current = setBanners;
+        updateBannerState.current = setBannerState;
 
-        if (!Object.keys(banners).length) {
-          return null;
+        const prioritizedBanners = organizeBannersByPriority(bannerState.banners, theme.name);
+
+        const renderedBannerComparison = comparedBannerSets(prioritizedBanners, lastRenderedBannersRef.current);
+        lastRenderedBannersRef.current = prioritizedBanners;
+
+        React.useEffect(() => {
+          if (renderedBannerComparison.deletions.length || renderedBannerComparison.additions.length) {
+            const timeout = setTimeout(() => {
+              forceUpdate(val => !val);
+            }, 3000);
+
+            return () => {
+              clearTimeout(timeout);
+            };
+          }
+
+          return undefined;
+        }, [renderedBannerComparison, forceUpdate]);
+
+        let addedBannersLog;
+        if (renderedBannerComparison.additions.length) {
+          addedBannersLog = renderedBannerComparison.additions.map((addedBanner) => {
+            let translatedBannerLabel = getTitleStringIdForType(getBannerTypeFromVariant(addedBanner.variant));
+            if (translatedBannerLabel) {
+              translatedBannerLabel = intl.formatMessage({ id: translatedBannerLabel });
+            }
+
+            return `New ${label} Notification. ${translatedBannerLabel}, ${addedBanner.description}, ${addedBanner?.bannerAction?.text || ''}, ${addedBanner.onRequestClose ? 'Dismiss' : ''}`;
+          }).join(' ');
+
+          if (lastReadAddedBanner.current === addedBannersLog) {
+            addedBannersLog += '\u00A0';
+          }
+
+          lastReadAddedBanner.current = addedBannersLog;
         }
 
-        const prioritizedBanners = organizeBannersByPriority(banners, theme.name);
+        let removedBannersLog;
+        if (renderedBannerComparison.deletions.length) {
+          removedBannersLog = renderedBannerComparison.deletions.map((removedBanner) => {
+            let translatedBannerLabel = getTitleStringIdForType(getBannerTypeFromVariant(removedBanner.variant));
+            if (translatedBannerLabel) {
+              translatedBannerLabel = intl.formatMessage({ id: translatedBannerLabel });
+            }
+
+            return `Removed Notification: ${translatedBannerLabel} ${removedBanner.description}.`;
+          }).join(' ');
+
+          if (lastReadRemovedBanner.current === removedBannersLog) {
+            removedBannersLog += '\u00A0';
+          }
+
+          lastReadRemovedBanner.current = removedBannersLog;
+        }
 
         return (
-          <div aria-live="polite">
-            {prioritizedBanners.map((bannerProps) => {
-              const {
-                bannerAction, custom, description, key, onRequestClose, variant,
-              } = bannerProps;
+          <div
+            role="region"
+            aria-label={`${label} Notifications.`}
+            id={id}
+            className={prioritizedBanners.length && activeClassName ? activeClassName : undefined}
+            tabIndex="-1"
+            ref={notificationRemovedRef}
+          >
+            <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+              <span>{addedBannersLog}</span>
+            </span>
+            <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+              <span>{removedBannersLog}</span>
+            </span>
+            <ul ref={containerRef} className={cx('banners-list')}>
+              {prioritizedBanners.map((bannerProps, index) => {
+                const {
+                  bannerAction, custom, description, key, onRequestClose, variant,
+                } = bannerProps;
 
-              let alertType;
-              switch (variant) {
-                case 'hazard-high':
-                  alertType = 'alert';
-                  break;
-                case 'hazard-medium':
-                  alertType = 'warning';
-                  break;
-                case 'hazard-low':
-                  alertType = 'info';
-                  break;
-                default:
-                  alertType = variant;
-              }
+                const bannerType = getBannerTypeFromVariant(variant);
 
-              let actionButton = null;
-              if (bannerAction) {
-                actionButton = (
-                  <Button
-                    text={bannerAction.text}
-                    variant="ghost"
-                    data-terra-application-notification-banner={variant}
-                    onClick={bannerAction.onClick}
-                  />
-                );
-              }
-
-              let customIcon;
-              let customSignalWord;
-              if (alertType === 'custom' && custom !== undefined) {
-                customSignalWord = custom?.signalWord;
-
-                if (custom.customIconClass) {
-                  customIcon = (
-                    <svg className={cx(['custom-icon', custom.customIconClass])} />
+                let actionButton = null;
+                if (bannerAction) {
+                  actionButton = (
+                    <Button
+                      text={bannerAction.text}
+                      variant="ghost"
+                      data-terra-application-notification-banner={variant}
+                      onClick={bannerAction.onClick}
+                    />
                   );
                 }
-              }
 
-              return (
-                <Alert
-                  key={key}
-                  action={actionButton}
-                  onDismiss={onRequestClose}
-                  type={alertType}
-                  customIcon={customIcon}
-                  title={customSignalWord}
-                  data-terra-application-notification-banner={variant}
-                >
-                  {description}
-                </Alert>
-              );
-            })}
+                let customIcon;
+                let customSignalWord;
+                if (bannerType === 'custom' && custom !== undefined) {
+                  customSignalWord = custom?.signalWord;
+
+                  if (custom.customIconClass) {
+                    customIcon = (
+                      <svg className={cx(['custom-icon', custom.customIconClass])} />
+                    );
+                  }
+                }
+
+                let translatedBannerLabel = getTitleStringIdForType(bannerType);
+                if (translatedBannerLabel) {
+                  translatedBannerLabel = intl.formatMessage({ id: getTitleStringIdForType(bannerType) });
+                } else {
+                  translatedBannerLabel = 'Notification';
+                }
+
+                return (
+                  <li
+                    aria-label={translatedBannerLabel}
+                    aria-setsize={prioritizedBanners.length}
+                    aria-posinset={index + 1}
+                    tabIndex="-1"
+                    key={key}
+                  >
+                    <NotificationBannerView
+                      key={key}
+                      action={actionButton}
+                      onDismiss={onRequestClose ? () => {
+                        notificationRemovedRef.current.focus();
+                        onRequestClose();
+                      } : undefined}
+                      type={bannerType}
+                      customIcon={customIcon}
+                      title={customSignalWord}
+                      data-terra-application-notification-banner={variant}
+                    >
+                      {description}
+                    </NotificationBannerView>
+                  </li>
+                );
+              })}
+            </ul>
           </div>
         );
       },

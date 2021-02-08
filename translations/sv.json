@@ -22,5 +22,15 @@
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Användarinställningar för: {currentUserName}",
   "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Alternativ",
   "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigeringsobjekt",
-  "terraApplication.applicationNavigation.drawerMenu.utilities": "Verktygsobjekt"
+  "terraApplication.applicationNavigation.drawerMenu.utilities": "Verktygsobjekt",
+
+  "terraApplication.notificationBanner.advisory": "Rådgivning.",
+  "terraApplication.notificationBanner.alert": "Avisering.",
+  "terraApplication.notificationBanner.dismiss": "Ignorera",
+  "terraApplication.notificationBanner.error": "Fel.",
+  "terraApplication.notificationBanner.info": "Information.",
+  "terraApplication.notificationBanner.success": "Klar.",
+  "terraApplication.notificationBanner.unsatisfied": "Nödvändig åtgärd krävs.",
+  "terraApplication.notificationBanner.unverified": "Externa journaler.",
+  "terraApplication.notificationBanner.warning": "Varning!"
 }

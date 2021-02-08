@@ -22,5 +22,15 @@
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Meer",
   "terraApplication.applicationNavigation.notifications.new": "Nieuw",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Doorgaan naar content",
-  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu"
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
+
+  "terraApplication.notificationBanner.advisory": "Adviserend.",
+  "terraApplication.notificationBanner.alert": "Waarschuwing.",
+  "terraApplication.notificationBanner.dismiss": "Negeren",
+  "terraApplication.notificationBanner.error": "Fout.",
+  "terraApplication.notificationBanner.info": "Informatie.",
+  "terraApplication.notificationBanner.success": "Succes.",
+  "terraApplication.notificationBanner.unsatisfied": "Vereiste actie.",
+  "terraApplication.notificationBanner.unverified": "Externe records.",
+  "terraApplication.notificationBanner.warning": "Waarschuwing."
 }

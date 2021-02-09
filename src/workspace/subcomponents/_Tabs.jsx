@@ -61,7 +61,7 @@ class Tabs extends React.Component {
     this.handleHiddenBlur = this.handleHiddenBlur.bind(this);
     this.handleHiddenFocus = this.handleHiddenFocus.bind(this);
     this.handleMoreButtonBlur = this.handleMoreButtonBlur.bind(this);
-    this.handleMoreButtonSelect = this.handleOnMoreButtonSelect.bind(this);
+    this.handleMoreButtonSelect = this.handleMoreButtonSelect.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
@@ -299,7 +299,7 @@ class Tabs extends React.Component {
             isActive={isHiddenSelected}
             zIndex={tabData.length - this.hiddenStartIndex}
             onBlur={this.handleMoreButtonBlur}
-            onSelect={this.handleOnMoreButtonSelect}
+            onSelect={this.handleMoreButtonSelect}
             refCallback={node => { this.moreButtonRef.current = node; }}
             tabIds={ids}
           />

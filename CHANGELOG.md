@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.42.0 - (February 9, 2021)
+
 * Fixed
   * Moved development dependencies into devDependencies
 

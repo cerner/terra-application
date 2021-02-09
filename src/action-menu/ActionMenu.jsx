@@ -121,7 +121,7 @@ const ActionMenu = ({
 
     content = (
       <ContentContainer
-        ariaLabel={ariaLabel}
+        aria-label={ariaLabel}
         tabIndex="0"
         onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
         role="dialog"

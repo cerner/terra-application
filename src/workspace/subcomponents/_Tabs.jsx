@@ -283,15 +283,6 @@ class Tabs extends React.Component {
         aria-owns={hiddenIds.join(' ')}
       >
         {visibleTabs}
-        <TabDropDown
-          onFocus={this.handleHiddenFocus}
-          onBlur={this.handleHiddenBlur}
-          isOpen={this.isOpen}
-          onRequestClose={this.handleOutsideClick}
-          refCallback={node => { this.dropdownRef.current = node; }}
-        >
-          {hiddenTabs}
-        </TabDropDown>
         {this.showMoreButton ? (
           <MoreButton
             isOpen={this.isOpen}
@@ -304,6 +295,15 @@ class Tabs extends React.Component {
             tabIds={ids}
           />
         ) : undefined}
+        <TabDropDown
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          isOpen={this.isOpen}
+          onRequestClose={this.handleOutsideClick}
+          refCallback={node => { this.dropdownRef.current = node; }}
+        >
+          {hiddenTabs}
+        </TabDropDown>
       </div>
     );
   }

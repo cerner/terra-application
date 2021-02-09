@@ -18,6 +18,10 @@
     padding-top: var(--terra-application-action-menu-padding-top, 0.3571rem);
   }
 
+  .action-container {
+    outline: none;
+  }
+
   .action-sub-menu,
   .action-divider > .line {
     width: 100%;

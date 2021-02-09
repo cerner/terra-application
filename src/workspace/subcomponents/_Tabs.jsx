@@ -143,9 +143,9 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
   }
 
-  handleHiddenBlur(e) {
+  handleHiddenBlur() {
     // The check for dropdown.contains(activeElement) is necessary to prevent IE11 from closing dropdown on click of scrollbar in certain contexts.
-    if (this.dropdownRef.current && this.dropdownRef.current.contains(document.activeElement)) {  
+    if (this.dropdownRef.current && this.dropdownRef.current.contains(document.activeElement)) {
       if (this.dropdownRef.current === document.activeElement) {
         this.moreButtonRef.current.focus(); // focus last?
       }

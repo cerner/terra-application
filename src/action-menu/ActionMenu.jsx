@@ -119,17 +119,13 @@ const ActionMenu = ({
       onClose = onRequestClose;
     }
 
-    let attr = {
-      style: { outline: 'none' },
-      tabIndex: '0',
-      onKeyDown: generateOnKeyDown(null, null, onArrow, onChar),
-      role: 'dialog',
-      'aria-label': ariaLabel,
-    };
-
     content = (
       <ContentContainer
-        {...attr}
+        ariaLabel={ariaLabel}
+        tabIndex="0"
+        onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
+        role="dialog"
+        className={cx('action-container')}
         header={<Header label={ariaLabel} onClose={onClose} />}
         fill={isHeightBounded}
       >

@@ -24,7 +24,7 @@ const TabHeader = ({
   return (
     <div className={cx('header', theme.className)}>
       <VisuallyHiddenText aria-level="2" role="heading" tabIndex="-1" text={title} />
-      <div className={cx('title')} aria-hidden>
+      <div className={cx('title')} aria-hidden="true">
         {title}
       </div>
     </div>

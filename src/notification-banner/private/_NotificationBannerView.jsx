@@ -11,11 +11,10 @@ import IconSuccess from 'terra-icon/lib/icon/IconSuccess';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ApplicationIntlContext } from '../../application-intl';
 
-import useElementSize from './useElementSize';
+import useElementSize, { breakpointFilter } from './useElementSize';
 
 import styles from './NotificationBannerView.module.scss';
 
@@ -109,8 +108,6 @@ const getAlertIcon = (type, customIcon) => {
   }
 };
 
-const shouldUpdateFromElementSizeChange = (newSize, oldSize) => (newSize.activeBreakpoint !== oldSize.activeBreakpoint);
-
 const getTitleStringIdForType = (type) => (type === NotificationTypes.CUSTOM ? undefined : `terraApplication.notificationBanner.${type}`);
 
 const NotificationBannerView = ({
@@ -126,7 +123,7 @@ const NotificationBannerView = ({
   const theme = React.useContext(ThemeContext);
   const intl = React.useContext(ApplicationIntlContext);
   const containerRef = React.useRef();
-  const { activeBreakpoint } = useElementSize(containerRef, shouldUpdateFromElementSizeChange);
+  const { activeBreakpoint } = useElementSize(containerRef, breakpointFilter);
   const [isNarrow, setIsNarrow] = useState();
 
   React.useLayoutEffect(() => {

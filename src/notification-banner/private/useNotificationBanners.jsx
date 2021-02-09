@@ -344,12 +344,12 @@ const useNotificationBanners = () => {
        * An identifier for the notifications region, applied as an `id` for the notification container element.
        * Must be globally unique.
        */
-      id: PropTypes.string.isRequired,
+      id: PropTypes.string,
       /**
        * A description of what the notification banners are related to. Used to provide additional descriptive labeling
        * for screen readers.
        */
-      label: PropTypes.string.isRequired,
+      label: PropTypes.string,
       /**
        * A className applied to the notifications container when the container is populated with at least one notification banner.
        * Can be used to provide styling only when notification content will be visible.

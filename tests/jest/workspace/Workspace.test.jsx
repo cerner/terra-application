@@ -14,7 +14,6 @@ const TestWorkspace = (props) => (
   <MockApplication>
     <Workspace
       id="test-workspace"
-      ariaLabel="Test Workspace"
       activeItemKey="1"
       onRequestActivate={() => {}}
       {...props}
@@ -81,7 +80,7 @@ test('should present utility menu with size options and utilizes onRequestSizeCh
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBeInTheDocument();
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBeInTheDocument();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
@@ -95,7 +94,7 @@ test('should present utility menu with size options and utilizes onRequestSizeCh
   userEvent.click(largeMenuItem);
 
   // Expect the settings menu to be closed after selecting menu item
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBe(null);
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBe(null);
 
   // Expect onRequestSizeChange callback to be executed with the key for the selected menu item
   expect(mockOnRequestSizeChange).toHaveBeenCalledWith('large');
@@ -116,7 +115,7 @@ test('should present utility menu with item to close workspace if onRequestDismi
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBeInTheDocument();
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBeInTheDocument();
 
   const closeWorkspaceMenuItem = screen.getByRole('menuitem', { name: 'terraApplication.workspace.hideWorkspaceLabel' });
 
@@ -126,7 +125,7 @@ test('should present utility menu with item to close workspace if onRequestDismi
   userEvent.click(closeWorkspaceMenuItem);
 
   // Expect the settings menu to be closed after selecting menu item
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBe(null);
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBe(null);
 
   // Expect onRequestDismiss callback to be executed after close menu item selection
   expect(mockOnRequestDismiss).toHaveBeenCalled();
@@ -148,7 +147,7 @@ test('should present utility menu with combined size and dismiss options if nece
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBeInTheDocument();
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBeInTheDocument();
 
   const smallMenuItem = screen.getByRole('menuitemradio', { checked: true, name: 'Small', disabled: false });
   const largeMenuItem = screen.getByRole('menuitemradio', { checked: false, name: 'Large', disabled: false });
@@ -197,13 +196,13 @@ test('should dismiss the Workspace Settings menu when the popup wants to close',
   userEvent.click(menuButton);
 
   // Expect settings menu to render after button selection
-  const settingsPopup = screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel');
+  const settingsPopup = screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' });
   expect(settingsPopup).toBeInTheDocument();
 
   // Simulate user pressing Escape key to close settings popup
   userEvent.type(settingsPopup, '{esc}');
 
   // Expect the settings menu to be closed after pressing escape
-  expect(screen.queryByLabelText('terraApplication.workspace.workspaceSettingsLabel')).toBe(null);
+  expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBe(null);
 });
 

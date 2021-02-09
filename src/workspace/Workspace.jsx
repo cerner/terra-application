@@ -53,7 +53,7 @@ const propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The unique identifier used of accessibility mappings.
+   * The unique identifier used for accessibility mappings.
    */
   id: PropTypes.string.isRequired,
   /**

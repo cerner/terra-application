@@ -121,5 +121,5 @@ test('should render NotificationBanners when rendered by children', () => {
   ));
 
   // Expect NotificationBanner with role of "alert" to be rendered when provided by children
-  expect(screen.getByRole('alert')).toHaveTextContent('Test Notification');
+  expect(screen.getByLabelText('terraApplication.notificationBanner.error')).toHaveTextContent('Test Notification');
 });

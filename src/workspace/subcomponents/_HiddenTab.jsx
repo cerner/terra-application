@@ -105,7 +105,7 @@ const HiddenTab = ({
   }
 
   attributes.tabIndex = isSelected ? 0 : -1;
-  attributes.onClick = handleOnSelect;
+  attributes.onClick = e => { e.preventDefault(); e.stopPropagation(); handleOnSelect(e); };
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
   attributes.onFocus = onFocus;

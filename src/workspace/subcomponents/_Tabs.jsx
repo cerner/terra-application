@@ -60,7 +60,8 @@ class Tabs extends React.Component {
     this.handleResize = this.handleResize.bind(this);
     this.handleHiddenBlur = this.handleHiddenBlur.bind(this);
     this.handleHiddenFocus = this.handleHiddenFocus.bind(this);
-    this.handleOnMoreButtonSelect = this.handleOnMoreButtonSelect.bind(this);
+    this.handleMoreButtonBlur = this.handleMoreButtonBlur.bind(this);
+    this.handleMoreButtonSelect = this.handleOnMoreButtonSelect.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
@@ -142,11 +143,25 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
   }
 
-  handleHiddenBlur() {
+  handleHiddenBlur(e) {
+    // The check for dropdown.contains(activeElement) is necessary to prevent IE11 from closing dropdown on click of scrollbar in certain contexts.
+    if (this.dropdownRef.current && this.dropdownRef.current.contains(document.activeElement)) {  
+      if (this.dropdownRef.current === document.activeElement) {
+        this.moreButtonRef.current.focus(); // focus last?
+      }
+      return;
+    }
     this.setIsOpen(false);
   }
 
-  handleOnMoreButtonSelect() {
+  handleMoreButtonBlur(e) {
+    if (e.currentTarget === document.activeElement) {
+      return;
+    }
+    this.handleHiddenBlur(e);
+  }
+
+  handleMoreButtonSelect() {
     this.setIsOpen(true);
   }
 
@@ -283,7 +298,7 @@ class Tabs extends React.Component {
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
             zIndex={tabData.length - this.hiddenStartIndex}
-            onBlur={this.handleHiddenBlur}
+            onBlur={this.handleMoreButtonBlur}
             onSelect={this.handleOnMoreButtonSelect}
             refCallback={node => { this.moreButtonRef.current = node; }}
             tabIds={ids}

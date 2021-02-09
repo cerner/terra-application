@@ -155,7 +155,7 @@ class Tabs extends React.Component {
   }
 
   handleMoreButtonBlur(event) {
-    if (e.currentTarget === document.activeElement) {
+    if (event.currentTarget === document.activeElement) {
       return;
     }
     this.handleHiddenBlur(event);

@@ -78,7 +78,7 @@ const ActionMenuCheckbox = ({
       aria-checked={isChecked}
       data-action-menu-key={actionKey}
     >
-      <span className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</span>
+      <div className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</div>
       <div className={cx('icon')}>{icon}</div>
       <div className={cx('content')}>
         {label}

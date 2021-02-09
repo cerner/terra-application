@@ -18,8 +18,10 @@
       margin-left: 8px;
     }
 
-    &:last-child {
-      margin-right: 8px;
+    // :nth-last-child(2) avoids the dropdown, update this if the dropdown moves location.
+    // should be the opposite value of the after margin, otherwise mouse overlaps in IE
+    &:nth-last-child(2)  {
+      margin-right: var(--terra-application-workspace-tab-nth-last-child-margin-right, 15px);
     }
 
 

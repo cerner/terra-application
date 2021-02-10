@@ -85,26 +85,25 @@ const defaultProps = {
 
 const getAlertIcon = (type, customIcon) => {
   switch (type) {
-    case NotificationTypes.ALERT:
-      return (<span className={cx('icon')}><IconAlert /></span>);
     case NotificationTypes.ERROR:
-      return (<span className={cx('icon')}><IconError /></span>);
+      return (<span data-testid="banner-icon-error" className={cx('icon')}><IconError /></span>);
     case NotificationTypes.WARNING:
-      return (<span className={cx('icon')}><IconWarning /></span>);
+      return (<span data-testid="banner-icon-warning" className={cx('icon')}><IconWarning /></span>);
     case NotificationTypes.UNSATISFIED:
-      return (<span className={cx('icon', 'unsatisfied-icon')}><IconGapChecking /></span>);
+      return (<span data-testid="banner-icon-unsatisfied" className={cx('icon', 'unsatisfied-icon')}><IconGapChecking /></span>);
     case NotificationTypes.UNVERIFIED:
-      return (<span className={cx('icon', 'unverified-icon')}><IconDiamondSymbol /></span>);
+      return (<span data-testid="banner-icon-unverified" className={cx('icon', 'unverified-icon')}><IconDiamondSymbol /></span>);
     case NotificationTypes.ADVISORY:
       return null;
     case NotificationTypes.INFO:
-      return (<span className={cx('icon')}><IconInformation /></span>);
+      return (<span data-testid="banner-icon-info" className={cx('icon')}><IconInformation /></span>);
     case NotificationTypes.SUCCESS:
-      return (<span className={cx('icon')}><IconSuccess /></span>);
+      return (<span data-testid="banner-icon-success" className={cx('icon')}><IconSuccess /></span>);
     case NotificationTypes.CUSTOM:
-      return (<span className={cx('icon')}>{customIcon}</span>);
+      return (<span data-testid="banner-icon-custom" className={cx('icon')}>{customIcon}</span>);
+    case NotificationTypes.ALERT:
     default:
-      return null;
+      return (<span data-testid="banner-icon-alert" className={cx('icon')}><IconAlert /></span>);
   }
 };
 

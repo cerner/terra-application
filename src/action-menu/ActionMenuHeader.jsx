@@ -33,9 +33,7 @@ const ActionMenuHeader = ({
 }) => {
   const theme = React.useContext(ThemeContext);
   return (
-    <div
-      className={cx('action-header', theme.className)}
-    >
+    <div className={cx('action-header', theme.className)}>
       <div aria-hidden className={cx('title')}>
         {label}
       </div>

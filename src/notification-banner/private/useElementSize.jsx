@@ -8,10 +8,6 @@ import { activeBreakpointForSize } from '../../breakpoints';
  * @returns {Object} A value containing height, width, and active breakpoint values.
  */
 const processRect = (rect) => {
-  if (!rect) {
-    return undefined;
-  }
-
   const activeBreakpoint = activeBreakpointForSize(rect.width);
   const { width, height } = rect;
 

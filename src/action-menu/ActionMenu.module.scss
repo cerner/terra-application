@@ -91,6 +91,7 @@
     font-size: var(--terra-application-action-menu-content-font-size, 1rem);
     font-weight: var(--terra-application-action-menu-content-font-weight, normal);
     flex: 1 1 auto;
+    text-align: start;
   }
 
   .is-disabled {

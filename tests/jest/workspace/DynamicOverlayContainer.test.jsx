@@ -39,6 +39,8 @@ const FocusTestOverlay = ({ onShow, onDismiss, id }) => (
   </div>
 );
 
+// This test harness gives the tests a click-based method of showing dynamic
+// overlays and tracking their focus placement.
 const OverlayFocusTestHarness = () => {
   const [showOverlay1, setShowOverlay1] = React.useState();
   const [showOverlay2, setShowOverlay2] = React.useState();
@@ -165,8 +167,6 @@ test('should reapply focus to reactivated layers', () => {
   userEvent.click(screen.getByTestId('test-overlay-1-show'));
 
   expect(screen.getByTestId('dynamic-overlay-container')).toHaveFocus();
-
-  debugger;
 
   userEvent.click(screen.getByTestId('test-overlay-2-dismiss'));
 

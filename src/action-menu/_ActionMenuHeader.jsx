@@ -12,7 +12,7 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * The label text to display for the item.
+   * The label text to display for the header.
    */
   label: PropTypes.string.isRequired,
   /**

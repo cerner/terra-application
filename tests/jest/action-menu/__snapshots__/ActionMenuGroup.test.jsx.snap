@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenuGroup should render with all props 1`] = `
+<li
+  role="none"
+>
+  <ul
+    className="action-sub-menu"
+    role="menu"
+  >
+    <li
+      indentChildren={true}
+      key=".0"
+      onArrow={[MockFunction]}
+      onChar={[MockFunction]}
+    >
+      test element
+    </li>
+  </ul>
+</li>
+`;
+
+exports[`ActionMenuGroup should render with minimal props 1`] = `
+<li
+  role="none"
+>
+  <ul
+    className="action-sub-menu"
+    role="menu"
+  />
+</li>
+`;

@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import ContentContainer from 'terra-content-container';
-import Header from './ActionMenuHeader';
+import Header from './_ActionMenuHeader';
 import {
   generateOnKeyDown,
   itemByDirection,

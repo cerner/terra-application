@@ -8,6 +8,7 @@ import { ApplicationIntlContext } from '../../application-intl';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
+import useForceUpdate from './useForceUpdate';
 import NotificationBannerView, { getTitleStringIdForType } from './_NotificationBannerView';
 
 import styles from './useNotificationBanners.module.scss';
@@ -101,12 +102,7 @@ const useNotificationBanners = () => {
         registeredBanners.current[variant] = {};
       }
 
-      let existingTimestamp;
-      if (registeredBanners.current[variant][bannerId]) {
-        existingTimestamp = registeredBanners.current[variant][bannerId].timestamp;
-      }
-
-      registeredBanners.current[variant][bannerId] = { ...bannerProps, timestamp: existingTimestamp || Date.now(), key: bannerId };
+      registeredBanners.current[variant][bannerId] = { ...bannerProps, key: bannerId };
 
       if (updateBannerState.current) {
         updateBannerState.current({ banners: { ...registeredBanners.current } });
@@ -163,26 +159,43 @@ const useNotificationBanners = () => {
       const theme = React.useContext(ThemeContext);
       const intl = React.useContext(ApplicationIntlContext);
       const [bannerState, setBannerState] = React.useState({});
+
+      // The container reference points to the notification region so we
+      // can move focus there when necessary.
       const containerRef = React.useRef();
-      const notificationRemovedRef = React.useRef();
+
+      // We track the last rendered set of banners so that we can determine
+      // when banners are added/removed at render time.
       const lastRenderedBannersRef = React.useRef([]);
-      const forceUpdate = React.useState(false)[1];
+
+      // We track the last read removal message to ensure that duplicates are
+      // known and updated to work around some VoiceOver issues.
       const lastReadAddedBanner = React.useRef();
+
+      // We track the last read removal message to ensure that duplicates are
+      // known and updated to work around some VoiceOver issues.
       const lastReadRemovedBanner = React.useRef();
+
+      // We track identifiers for banners explicitly dismissed by the user
+      // so that we can appropriately read the result.
+      const dismissalRefs = React.useRef({});
+
+      const forceUpdate = useForceUpdate();
 
       // Set the updateBannerState ref to the update state function. This ties the state updates to the `useNotificationBanners` hook,
       // while allowing the NotificationBanners to be rendered above or below the NotificationBannerProvider.
       updateBannerState.current = setBannerState;
 
       const prioritizedBanners = organizeBannersByPriority(bannerState.banners, theme.name);
-
       const renderedBannerComparison = comparedBannerSets(prioritizedBanners, lastRenderedBannersRef.current);
       lastRenderedBannersRef.current = prioritizedBanners;
 
       React.useEffect(() => {
         if (renderedBannerComparison.deletions.length || renderedBannerComparison.additions.length) {
+          // An update is triggered in a few seconds to clear out the screen reader labels
+          // for the additions/deletions. Those labels should not be found after the fact.
           const timeout = setTimeout(() => {
-            forceUpdate(val => !val);
+            forceUpdate();
           }, 3000);
 
           return () => {
@@ -228,6 +241,13 @@ const useNotificationBanners = () => {
       let removedBannersLog;
       if (renderedBannerComparison.deletions.length) {
         removedBannersLog = renderedBannerComparison.deletions.map((removedBanner) => {
+          // Only read removed banners if the user explicitly triggered the removal.
+          if (!dismissalRefs.current[removedBanner.key]) {
+            return '';
+          }
+
+          delete dismissalRefs[removedBanner.key];
+
           let translatedBannerType = getTitleStringIdForType(getBannerTypeFromVariant(removedBanner.variant));
           if (translatedBannerType) {
             translatedBannerType = intl.formatMessage({ id: translatedBannerType });
@@ -240,7 +260,7 @@ const useNotificationBanners = () => {
           });
         }).join(' ');
 
-        if (removedBannersLog.length) {
+        if (removedBannersLog.trim().length) {
           removedBannersLog += ` ${intl.formatMessage({ id: 'terraApplication.notifications.totalCountLabel' }, { label, count: prioritizedBanners.length })}`;
         }
 
@@ -262,7 +282,7 @@ const useNotificationBanners = () => {
           id={id}
           className={prioritizedBanners.length && activeClassName ? activeClassName : undefined}
           tabIndex="-1"
-          ref={notificationRemovedRef}
+          ref={containerRef}
         >
           <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
             <span>{addedBannersLog}</span>
@@ -270,7 +290,7 @@ const useNotificationBanners = () => {
           <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
             <span>{removedBannersLog}</span>
           </span>
-          <ul ref={containerRef} className={cx('banners-list')}>
+          <ul className={cx('banners-list')}>
             {prioritizedBanners.map((bannerProps, index) => {
               const {
                 bannerAction, custom, description, key, onRequestClose, variant,
@@ -321,7 +341,8 @@ const useNotificationBanners = () => {
                     key={key}
                     action={actionButton}
                     onDismiss={onRequestClose ? () => {
-                      notificationRemovedRef.current.focus();
+                      dismissalRefs.current[key] = true;
+                      containerRef.current.focus();
                       onRequestClose();
                     } : undefined}
                     type={bannerType}

@@ -7,10 +7,19 @@ import styles from './DynamicOverlayContainer.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * Array of unique overlay objects to render over the child content.
+   * Overlays are stacked in index order; the overlay with the highest index
+   * will be rendered on top.
+   */
   overlays: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string.isRequired,
     component: PropTypes.element.isRequired,
   })),
+  /**
+   * The base content to render within the container. This content will
+   * be overlaid by all provided overlays.
+   */
   children: PropTypes.node,
 };
 
@@ -65,20 +74,16 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
   const focusAnchorRef = React.useRef();
   const focusTriggersRef = React.useRef({});
 
-  /**
-   * The refs for each overlay are kept in a local variable to ensure
-   * it expires after each render to ensure that removed overlays do not
-   * persist in memory.
-   */
+  // The refs for each overlay are kept in a local variable to ensure
+  // it expires after each render to ensure that removed overlays do not
+  // persist in memory.
   const overlayRefs = [];
 
-  /**
-   * This effect ensures that the proper layers are rendered
-   * as inert prior to painting to the DOM. This effect will execute
-   * after every update of the DynamicOverlayContainer; however, the
-   * inner inert logic will abort early if the element is already in
-   * its assigned state.
-   */
+  // This effect ensures that the proper layers are rendered
+  // as inert prior to painting to the DOM. This effect will execute
+  // after every update of the DynamicOverlayContainer; however, the
+  // inner inert logic will abort early if the element is already in
+  // its assigned state.
   React.useLayoutEffect(() => {
     if (overlays.length !== 0) {
       setLayerInert(contentRef.current, focusTriggersRef.current, '__dynamic-overlay-content__', focusAnchorRef.current);

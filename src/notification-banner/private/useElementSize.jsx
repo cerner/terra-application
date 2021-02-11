@@ -23,7 +23,7 @@ const processRect = (rect) => {
  * if a state update is desired. Ex. filter(newRect, oldRect);
  */
 const useElementSize = (elementRef, updateFilter) => {
-  // Filter is cached to limit the rebinding the resize observer.
+  // Filter is cached to limit rebinding of the resize observer.
   // The provided function should be static anyway.
   const cachedUpdateFilterRef = React.useRef(updateFilter);
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
 import IconAlert from 'terra-icon/lib/icon/IconAlert';
@@ -123,11 +123,8 @@ const NotificationBannerView = ({
   const intl = React.useContext(ApplicationIntlContext);
   const containerRef = React.useRef();
   const { activeBreakpoint } = useElementSize(containerRef, breakpointFilter);
-  const [isNarrow, setIsNarrow] = useState();
 
-  React.useLayoutEffect(() => {
-    setIsNarrow(activeBreakpoint === 'tiny');
-  }, [activeBreakpoint]);
+  const isNarrow = activeBreakpoint === 'tiny';
 
   const defaultTitle = type === NotificationTypes.CUSTOM ? '' : intl.formatMessage({ id: getTitleStringIdForType(type) });
   const alertClassNames = classNames(

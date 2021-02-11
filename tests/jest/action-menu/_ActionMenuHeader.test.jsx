@@ -9,7 +9,7 @@ describe('ActionMenuHeader', () => {
         label="test label"
       />
     ));
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.dive()).toMatchSnapshot();
   });
 
   it('should render with all props', () => {
@@ -19,6 +19,6 @@ describe('ActionMenuHeader', () => {
         onClose={jest.fn()}
       />
     ));
-    expect(wrapper).toMatchSnapshot();
+    expect(wrapper.dive()).toMatchSnapshot();
   });
 });

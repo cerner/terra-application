@@ -1,68 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActionMenuHeader should render with all props 1`] = `
-<ActionMenuHeader
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
-  label="test label"
-  onClose={[MockFunction]}
-/>
+<div
+  className="action-header"
+>
+  <div
+    aria-hidden={true}
+    className="title"
+  >
+    test label
+  </div>
+  <div
+    className="close-button"
+  >
+    <Button
+      icon={
+        <IconClose
+          data-name="Layer 1"
+          viewBox="0 0 48 48"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      }
+      isBlock={false}
+      isCompact={false}
+      isDisabled={false}
+      isIconOnly={false}
+      isReversed={false}
+      onClick={[MockFunction]}
+      text="terraApplication.actionMenu.headerCloseButtonLabel"
+      type="button"
+      variant="utility"
+    />
+  </div>
+</div>
 `;
 
 exports[`ActionMenuHeader should render with minimal props 1`] = `
-<ActionMenuHeader
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
-  label="test label"
-/>
+<div
+  className="action-header"
+>
+  <div
+    aria-hidden={true}
+    className="title"
+  >
+    test label
+  </div>
+  <div
+    className="close-button"
+  />
+</div>
 `;

@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import { injectIntl, intlShape } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconClose from 'terra-icon/lib/icon/IconClose';
-
-import { ApplicationIntlContext } from '../application-intl';
 
 import styles from './ActionMenu.module.scss';
 
@@ -21,14 +20,18 @@ const propTypes = {
    * Returns the event e.e. onClose(event).
    */
   onClose: PropTypes.func,
+  /**
+   * @private
+   */
+  intl: intlShape,
 };
 
 const ActionMenuHeader = ({
   label,
   onClose,
+  intl,
 }) => {
   const theme = React.useContext(ThemeContext);
-  const intl = React.useContext(ApplicationIntlContext);
 
   return (
     <div className={cx('action-header', theme.className)}>
@@ -51,4 +54,4 @@ const ActionMenuHeader = ({
 
 ActionMenuHeader.propTypes = propTypes;
 
-export default ActionMenuHeader;
+export default injectIntl(ActionMenuHeader);

@@ -85,12 +85,12 @@ const useNotificationBanners = () => {
 
   const useNotificationBannerExports = React.useMemo(() => {
     /**
-    * Adds the banner ID and props to the collection of registered banners. Once registered,
-    * it updates the NotificationBanner's state to render the new Banner.
-    *
-    * @param {UUID} bannerId - unique ID associated to the banner
-    * @param {Object} bannerProps - react props associated to the banner. See ../NotificationBanner's propTypes.
-    */
+     * Adds the banner ID and props to the collection of registered banners. Once registered,
+     * it updates the NotificationBanner's state to render the new Banner.
+     *
+     * @param {UUID} bannerId - unique ID associated to the banner
+     * @param {Object} bannerProps - react props associated to the banner. See ../NotificationBanner's propTypes.
+     */
     const registerNotificationBanner = (bannerId, bannerProps) => {
       if (!bannerId) {
         throw new Error('A banner cannot be registered without an identifier.');
@@ -110,18 +110,18 @@ const useNotificationBanners = () => {
     };
 
     /**
-      * Removes the banner ID and props from the collection of registered banners. Once unregistered,
-      * it updates the NotificationBanner's state to remove the Banner from the list.
-      *
-      * @param {UUID} bannerId - unique ID associated to the banner
-      * @param {String} bannerVariant - the banner variant to remove banner from
-      */
+     * Removes the banner ID and props from the collection of registered banners. Once unregistered,
+     * it updates the NotificationBanner's state to remove the Banner from the list.
+     *
+     * @param {UUID} bannerId - unique ID associated to the banner
+     * @param {String} bannerVariant - the banner variant to remove banner from
+     */
     const unregisterNotificationBanner = (bannerId, bannerVariant) => {
       if (!bannerId || !bannerVariant) {
         throw new Error('A banner cannot be unregistered without an identifier or banner variant.');
       }
 
-      if (!registeredBanners.current[bannerVariant][bannerId]) {
+      if (!registeredBanners.current[bannerVariant] || !registeredBanners.current[bannerVariant][bannerId]) {
         return;
       }
 
@@ -284,13 +284,13 @@ const useNotificationBanners = () => {
           tabIndex="-1"
           ref={containerRef}
         >
-          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true" data-testid="added-banner-log">
             <span>{addedBannersLog}</span>
           </span>
-          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true">
+          <span className={cx('hidden-log')} aria-live="polite" aria-atomic="true" data-testid="removed-banner-log">
             <span>{removedBannersLog}</span>
           </span>
-          <ul className={cx('banners-list')}>
+          <ul className={cx('banners-list')} data-testid="notification-banners-list">
             {prioritizedBanners.map((bannerProps, index) => {
               const {
                 bannerAction, custom, description, key, onRequestClose, variant,
@@ -304,7 +304,7 @@ const useNotificationBanners = () => {
                   <Button
                     text={bannerAction.text}
                     variant="ghost"
-                    data-terra-application-notification-banner={variant}
+                    // data-terra-application-notification-banner={variant} TODO validate this
                     onClick={bannerAction.onClick}
                   />
                 );

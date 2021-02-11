@@ -1,7 +1,7 @@
 import React from 'react';
-import { renderHook, act } from '@testing-library/react-hooks/dom';
+import { renderHook } from '@testing-library/react-hooks/dom';
 import '@testing-library/jest-dom/extend-expect';
-import ResizeObserver from 'resize-observer-polyfill';
+import 'resize-observer-polyfill';
 
 import { activeBreakpointForSize } from '../../../../src/breakpoints';
 import useElementSize, { breakpointFilter } from '../../../../src/notification-banner/private/useElementSize';

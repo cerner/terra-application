@@ -2,7 +2,7 @@ import React from 'react';
 
 /**
  * Custom hook that returns a function that will trigger functional component updates when executed.
- * @returns A static update function
+ * @returns {Function} A static update function
  */
 const useForceUpdate = () => {
   const setState = React.useState(false)[1];

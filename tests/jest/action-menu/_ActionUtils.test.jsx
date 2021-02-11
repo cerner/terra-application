@@ -29,7 +29,7 @@ import {
   ActionMenuItem,
   ActionMenuLink,
   ActionMenuRadio,
-} from '../../../src/action-menu/';
+} from '../../../src/action-menu';
 
 describe('generateOnKeyDown', () => {
   test('should return callback with handlers for return key handling', () => {
@@ -133,7 +133,7 @@ describe('generateOnKeyDown', () => {
     expect(result).toBeDefined();
 
     const mockEvent = {
-      nativeEvent: { keyCode: KEY_UP},
+      nativeEvent: { keyCode: KEY_UP },
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
@@ -179,7 +179,7 @@ describe('generateOnKeyDown', () => {
     expect(result).toBeDefined();
 
     const mockEvent = {
-      nativeEvent: { keyCode: KEY_DOWN},
+      nativeEvent: { keyCode: KEY_DOWN },
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
@@ -202,7 +202,7 @@ describe('generateOnKeyDown', () => {
     expect(result).toBeDefined();
 
     const mockEvent = {
-      nativeEvent: { keyCode: KEY_HOME},
+      nativeEvent: { keyCode: KEY_HOME },
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
@@ -225,7 +225,7 @@ describe('generateOnKeyDown', () => {
     expect(result).toBeDefined();
 
     const mockEvent = {
-      nativeEvent: { keyCode: KEY_END},
+      nativeEvent: { keyCode: KEY_END },
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
@@ -249,7 +249,7 @@ describe('generateOnKeyDown', () => {
 
     const mockEvent = {
       key: 'a',
-      nativeEvent: { keyCode: KEY_A},
+      nativeEvent: { keyCode: KEY_A },
       preventDefault: jest.fn(),
       stopPropagation: jest.fn(),
     };
@@ -271,7 +271,6 @@ describe('enableFocusStyles', () => {
     };
 
     enableFocusStyles(mockEvent);
-
     expect(mockEvent.currentTarget).toHaveAttribute('data-focus-styles-enabled', 'true');
   });
 });
@@ -283,70 +282,65 @@ describe('disableFocusStyles', () => {
     };
 
     disableFocusStyles(mockEvent);
-
     expect(mockEvent.currentTarget).toHaveAttribute('data-focus-styles-enabled', 'false');
   });
 });
 
 describe('itemByDirection', () => {
   test('should return the item for next', () => {
-    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' } ];
+    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' }];
     const direction = 'next';
 
-
-    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-2');;
-    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-3');;
-    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-1');;
+    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-2');
+    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-3');
+    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-1');
   });
 
   test('should return the item for previous', () => {
-    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' } ];
+    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' }];
     const direction = 'previous';
 
-
-    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-3');;
-    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-1');;
-    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-2');;
+    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-3');
+    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-1');
+    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-2');
   });
 
   test('should return the item for first', () => {
-    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' } ];
+    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' }];
     const direction = 'first';
 
-
-    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-1');;
-    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-1');;
-    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-1');;
+    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-1');
+    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-1');
+    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-1');
   });
 
   test('should return the item for last', () => {
-    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' } ];
+    const items = [{ actionKey: 'test-1' }, { actionKey: 'test-2' }, { actionKey: 'test-3' }];
     const direction = 'last';
 
-
-    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-3');;
-    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-3');;
-    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-3');;
+    expect(itemByDirection('test-1', items, direction).actionKey).toBe('test-3');
+    expect(itemByDirection('test-2', items, direction).actionKey).toBe('test-3');
+    expect(itemByDirection('test-3', items, direction).actionKey).toBe('test-3');
   });
 });
 
 describe('itemByChar', () => {
   test('should return the item for single match', () => {
-    const items = [{ actionKey: 'test-1', label: 'abc' }, { actionKey: 'test-2', label: 'abcd' }, { actionKey: 'test-3', label: 'bcd' } ];
+    const items = [{ actionKey: 'test-1', label: 'abc' }, { actionKey: 'test-2', label: 'abcd' }, { actionKey: 'test-3', label: 'bcd' }];
     const char = 'b';
 
-    expect(itemByChar('test-1', items, char).actionKey).toBe('test-3');;
-    expect(itemByChar('test-2', items, char).actionKey).toBe('test-3');;
-    expect(itemByChar('test-3', items, char).actionKey).toBe('test-3');;
+    expect(itemByChar('test-1', items, char).actionKey).toBe('test-3');
+    expect(itemByChar('test-2', items, char).actionKey).toBe('test-3');
+    expect(itemByChar('test-3', items, char).actionKey).toBe('test-3');
   });
-  
+
   test('should return the item for multiple match', () => {
-    const items = [{ actionKey: 'test-1', label: 'abc' }, { actionKey: 'test-2', label: 'abcd' }, { actionKey: 'test-3', label: 'bcd' } ];
+    const items = [{ actionKey: 'test-1', label: 'abc' }, { actionKey: 'test-2', label: 'abcd' }, { actionKey: 'test-3', label: 'bcd' }];
     const char = 'a';
 
-    expect(itemByChar('test-1', items, char).actionKey).toBe('test-2');;
-    expect(itemByChar('test-2', items, char).actionKey).toBe('test-1');;
-    expect(itemByChar('test-3', items, char).actionKey).toBe('test-1');;
+    expect(itemByChar('test-1', items, char).actionKey).toBe('test-2');
+    expect(itemByChar('test-2', items, char).actionKey).toBe('test-1');
+    expect(itemByChar('test-3', items, char).actionKey).toBe('test-1');
   });
 });
 

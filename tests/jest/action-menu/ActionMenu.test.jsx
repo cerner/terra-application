@@ -2,9 +2,7 @@ import React from 'react';
 
 import ActionMenu from '../../../src/action-menu/ActionMenu';
 
-const MockComponent = () => {
-  return <li>item</li>;
-};
+const MockComponent = () => <li>item</li>;
 MockComponent.interactiveType = false;
 
 describe('ActionMenu', () => {

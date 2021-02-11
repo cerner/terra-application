@@ -7,8 +7,7 @@ import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
 
-import {
-  ActionMenu,
+import ActionMenu, {
   ActionMenuDivider,
   ActionMenuItem,
   ActionMenuGroup,

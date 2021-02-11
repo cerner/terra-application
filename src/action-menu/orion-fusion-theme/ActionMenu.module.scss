@@ -23,8 +23,9 @@
     --terra-application-action-menu-is-checked-checkbox-color: #4e5558;
     --terra-application-action-menu-is-disabled-checkbox-color: #ccc;
     --terra-application-action-menu-is-actionable-hover-color: #ebf6fd;
-    --terra-application-action-menu-is-actionable-focus-color: 2px dashed #000;
-    --terra-application-action-menu-is-actionable-focus-color: -2px;
+    --terra-application-action-menu-is-actionable-focus-outline: 2px dashed #000;
+    --terra-application-action-menu-is-actionable-focus-outline-outset: -2px;
+    --terra-application-action-menu-is-actionable-ie-focus-before-border: 2px dashed #000;
     --terra-application-action-menu-action-header-align-items: flex-start;
     --terra-application-action-menu-action-header-background-color: #f9f9f9;
     --terra-application-action-menu-action-header-border-bottom: 1px solid #d3d4d5;

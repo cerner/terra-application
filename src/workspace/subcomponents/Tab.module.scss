@@ -105,12 +105,27 @@
           color: var(--terra-application-workspace-tab-hover-icon-label-color, #1c1f21);
           padding-top: var(--terra-application-workspace-tab-hover-icon-label-padding-top, 13px);
         }
+
+        &[data-focus-styles-enabled='true']:focus {
+          &::before {
+            top: var(--terra-application-workspace-tab-hover-ie-focus-before-top, 0px);
+          }
+        }
       }
     }
 
     &[data-focus-styles-enabled='true']:focus {
-      outline: var(--terra-application-workspace-tab-focus-outline, 2px dashed #000);
-      outline-offset: var(--terra-application-workspace-tab-focus-outline-offset, -6px);
+      outline: none;
+
+      &::before {
+        border: var(--terra-application-workspace-tab-ie-focus-before-border, 2px dashed #000);
+        bottom: var(--terra-application-workspace-tab-ie-focus-before-bottom, 2px);
+        content: '';
+        left: var(--terra-application-workspace-tab-ie-focus-before-left, 2px);
+        position: absolute;
+        right: var(--terra-application-workspace-tab-ie-focus-before-right, 4px);
+        top: var(--terra-application-workspace-tab-ie-focus-before-top, 2px);
+      }
     }
 
     &.is-active {

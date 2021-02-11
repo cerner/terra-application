@@ -121,9 +121,9 @@
         border: var(--terra-application-workspace-tab-focus-before-border, 2px dashed #000);
         bottom: var(--terra-application-workspace-tab-focus-before-bottom, 2px);
         content: '';
-        left: var(--terra-application-workspace-tab-focus-before-left, 11px);
+        left: var(--terra-application-workspace-tab-focus-before-left, 10px);
         position: absolute;
-        right: var(--terra-application-workspace-tab-focus-before-right, 14px);
+        right: var(--terra-application-workspace-tab-focus-before-right, 15px);
         top: var(--terra-application-workspace-tab-focus-before-top, 4px);
       }
     }

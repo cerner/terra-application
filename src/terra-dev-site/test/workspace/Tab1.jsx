@@ -1,5 +1,10 @@
 import React from 'react';
+import classNames from 'classnames/bind';
 import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '../../../workspace';
+
+import styles from './TestStyles.module.scss';
+
+const cx = classNames.bind(styles);
 
 import MockContent from './MockContent';
 
@@ -9,7 +14,7 @@ const Tab1 = () => {
 
   return (
     <WorkspaceContent
-      toolbar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
+      toolbar={<p className={cx('tab-1-toolbar')}>Tab 1 Toolbar</p>}
       activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
     >

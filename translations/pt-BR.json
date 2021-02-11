@@ -15,5 +15,7 @@
   "terraApplication.notificationBanner.success": "Êxito.",
   "terraApplication.notificationBanner.unsatisfied": "Ação exigida.",
   "terraApplication.notificationBanner.unverified": "Registros externos.",
-  "terraApplication.notificationBanner.warning": "Aviso."
+  "terraApplication.notificationBanner.warning": "Aviso.",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Fechar"
 }

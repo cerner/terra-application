@@ -4,7 +4,8 @@ import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconClose from 'terra-icon/lib/icon/IconClose';
-import { injectIntl, intlShape } from 'react-intl';
+
+import { ApplicationIntlContext } from '../application-intl';
 
 import styles from './ActionMenu.module.scss';
 
@@ -20,11 +21,6 @@ const propTypes = {
    * Returns the event e.e. onClose(event).
    */
   onClose: PropTypes.func,
-  /**
-   * @private
-   * The intl object to be injected for translations.
-   */
-  intl: intlShape,
 };
 
 const ActionMenuHeader = ({
@@ -32,6 +28,8 @@ const ActionMenuHeader = ({
   onClose,
 }) => {
   const theme = React.useContext(ThemeContext);
+  const intl = React.useContext(ApplicationIntlContext);
+
   return (
     <div className={cx('action-header', theme.className)}>
       <div aria-hidden className={cx('title')}>
@@ -41,7 +39,7 @@ const ActionMenuHeader = ({
         {onClose ? (
           <Button
             icon={<IconClose />}
-            text="Close" // TODO: i18n; {intl.formatMessage({ id: 'Terra.actionHeader.close' })}
+            text={intl.formatMessage({ id: 'terraApplication.actionMenu.headerCloseButtonLabel' })}
             onClick={onClose}
             variant="utility"
           />
@@ -53,4 +51,4 @@ const ActionMenuHeader = ({
 
 ActionMenuHeader.propTypes = propTypes;
 
-export default injectIntl(ActionMenuHeader);
+export default ActionMenuHeader;

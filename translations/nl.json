@@ -15,5 +15,7 @@
   "terraApplication.notificationBanner.success": "Succes.",
   "terraApplication.notificationBanner.unsatisfied": "Vereiste actie.",
   "terraApplication.notificationBanner.unverified": "Externe records.",
-  "terraApplication.notificationBanner.warning": "Waarschuwing."
+  "terraApplication.notificationBanner.warning": "Waarschuwing.",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Sluiten"
 }

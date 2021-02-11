@@ -414,6 +414,7 @@ describe('firstFocus', () => {
       if (id === 'id-0') {
         return undefined;
       }
+      return null;
     });
 
     firstFocus(mockEvent, testIndex, testIds);
@@ -489,6 +490,7 @@ describe('lastFocus', () => {
       if (id === 'id-2') {
         return undefined;
       }
+      return null;
     });
 
     lastFocus(mockEvent, testIndex, testIds);

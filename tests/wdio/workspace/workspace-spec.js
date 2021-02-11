@@ -8,7 +8,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
 
   after(() => {
     browser.enableCSSAnimations();
-  })
+  });
 
   it('renders as expected at the initial large size', () => {
     Terra.validates.element('1. initial rendering at large size', { selector });
@@ -39,7 +39,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
     browser.clickWithTestId('workspace-tabs-more-button');
     Terra.validates.element('6. Workspace renders more tabs dropdown', { selector });
   });
-  
+
   it('renders tab selected from rollup', () => {
     browser.click('#test-id-tab-3');
     Terra.validates.element('7. Workspace renders Tab 3 after dropdown selection', { selector });
@@ -47,7 +47,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
 
   it('renders tab with status overlay', () => {
     browser.clickWithTestId('workspace-test-id-settings-button');
-    browser.clickWithAttribute('data-action-menu-key', 'large');  
+    browser.clickWithAttribute('data-action-menu-key', 'large');
     browser.click('#test-id-tab-5');
     Terra.validates.element('8. Workspace renders Tab 5 with status overlay after dropdown selection', { selector });
   });

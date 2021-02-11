@@ -15,5 +15,7 @@
   "terraApplication.notificationBanner.success": "Correcto.",
   "terraApplication.notificationBanner.unsatisfied": "Acción obligatoria.",
   "terraApplication.notificationBanner.unverified": "Historias clínicas externas.",
-  "terraApplication.notificationBanner.warning": "Advertencia."
+  "terraApplication.notificationBanner.warning": "Advertencia.",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Cerrar"
 }

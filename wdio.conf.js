@@ -35,14 +35,14 @@ wdioConfig.before = () => {
     `);
   });
 
-  global.browser.addCommand('clickWithTestId', function (testId) {
+  global.browser.addCommand('clickWithTestId', (testId) => {
     const selector = `[data-testid="${testId}"]`;
 
     global.browser.waitForVisible(selector);
     global.browser.click(selector);
   });
 
-  global.browser.addCommand('clickWithAttribute', function (key, value) {
+  global.browser.addCommand('clickWithAttribute', (key, value) => {
     const selector = `[${key}=${value}]`;
 
     global.browser.waitForVisible(selector);

@@ -15,5 +15,7 @@
   "terraApplication.notificationBanner.success": "Klar.",
   "terraApplication.notificationBanner.unsatisfied": "Nödvändig åtgärd krävs.",
   "terraApplication.notificationBanner.unverified": "Externa journaler.",
-  "terraApplication.notificationBanner.warning": "Varning!"
+  "terraApplication.notificationBanner.warning": "Varning!",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Stäng"
 }

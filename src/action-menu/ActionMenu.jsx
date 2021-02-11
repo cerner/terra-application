@@ -35,14 +35,19 @@ const propTypes = {
   onRequestClose: PropTypes.func,
   /**
    * @private
-   * Callback function for event.
+   * Injected Popup prop indicating height bounding
    */
   isHeightBounded: PropTypes.bool,
   /**
    * @private
-   * Callback function for event.
+   * Injected Popup prop indicating width bounding
    */
   isWidthBounded: PropTypes.bool,
+  /**
+   * @private
+   * Injected Popup prop indicating close button is required
+   */
+  closeButtonRequired: PropTypes.string,
 };
 
 const ActionMenu = ({
@@ -51,6 +56,7 @@ const ActionMenu = ({
   isHeightBounded,
   isHeaderDisplayed,
   isWidthBounded,
+  closeButtonRequired,
   onRequestClose,
   ...customProps
 }) => {

@@ -79,21 +79,21 @@ describe('applyScrollData', () => {
     Object.defineProperty(mockElement, 'scrollLeft', {
       enumerable: true,
       get() {
-        return this._scrollLeft;
+        return this.testScrollLeft;
       },
       /** @this {!Element} */
       set(val) {
-        this._scrollLeft = val;
+        this.testScrollLeft = val;
       },
     });
     Object.defineProperty(mockElement, 'scrollTop ', {
       enumerable: true,
       get() {
-        return this._scrollTop;
+        return this.testScrollTop;
       },
       /** @this {!Element} */
       set(val) {
-        this._scrollTop = val;
+        this.testScrollTop = val;
       },
     });
 
@@ -102,6 +102,7 @@ describe('applyScrollData', () => {
         if (selector === '[data-persistent-overflow-id="uuid-1"]') {
           return mockElement;
         }
+        return undefined;
       },
     };
 

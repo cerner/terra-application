@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen, act } from '@testing-library/react';
+import PropTypes from 'prop-types';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
 
@@ -38,6 +39,12 @@ const FocusTestOverlay = ({ onShow, onDismiss, id }) => (
     <button type="button" onClick={onDismiss} data-testid={`test-overlay-${id}-dismiss`}>Dismiss</button>
   </div>
 );
+
+FocusTestOverlay.propTypes = {
+  onShow: PropTypes.func,
+  onDismiss: PropTypes.func,
+  id: PropTypes.string,
+};
 
 // This test harness gives the tests a click-based method of showing dynamic
 // overlays and tracking their focus placement.

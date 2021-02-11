@@ -24,7 +24,6 @@ test('should render button with test id', () => {
   expect(screen.getByLabelText('Test Label', { selector: 'div[role=button]' })).toHaveAttribute('data-testid', 'test-id');
 });
 
-
 test('should render button with selection callback on click', () => {
   const mockOnActivate = jest.fn();
 

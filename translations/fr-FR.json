@@ -15,5 +15,7 @@
   "terraApplication.notificationBanner.success": "Opération réussie.",
   "terraApplication.notificationBanner.unsatisfied": "Action requise.",
   "terraApplication.notificationBanner.unverified": "Dossiers extérieurs.",
-  "terraApplication.notificationBanner.warning": "Avertissement."
+  "terraApplication.notificationBanner.warning": "Avertissement.",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Fermer"
 }

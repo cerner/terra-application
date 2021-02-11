@@ -26,20 +26,17 @@ const WorkspaceTest = () => {
   });
 
   const onRequestSizeChange = (size) => {
-    console.log('onRequestSizeChange', size);
     setWorkspaceSize(size);
   };
 
   const onRequestClose = () => {
-    console.log('onRequestClose');
+    console.log('onRequestClose'); // eslint-disable-line no-console
   };
 
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
-      <div style={{
-        width: sizeMap[workspaceSize],
-        height: '100%',
-      }}
+      <div
+        style={{ height: '100%', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
       >
         <Workspace
           id="test-id"

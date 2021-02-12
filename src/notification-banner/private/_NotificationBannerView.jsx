@@ -83,7 +83,7 @@ const defaultProps = {
   type: NotificationTypes.ALERT,
 };
 
-const getAlertIcon = (type, customIcon) => {
+const getNotificationIcon = (type, customIcon) => {
   switch (type) {
     case NotificationTypes.ERROR:
       return (<span data-testid="banner-icon-error" className={cx('icon')}><IconError /></span>);
@@ -172,7 +172,7 @@ const NotificationBannerView = ({
   return (
     <div {...customProps} className={alertClassNames} ref={containerRef}>
       <div className={bodyClassNameForParent}>
-        {getAlertIcon(type, customIcon)}
+        {getNotificationIcon(type, customIcon)}
         {alertMessageContent}
       </div>
       {actionsSection}

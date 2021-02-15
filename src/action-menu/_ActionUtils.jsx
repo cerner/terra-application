@@ -145,6 +145,7 @@ const itemByChar = (key, items, char) => {
 /**
  * Returns a flattened array of enabled items in the order they are visible.
  * @param {node} children The child node to strip the items from.
+ * @param {bool} showSelection Flag indicating whether selection is shown for these action items.
  */
 const flattenActionItems = (children, showSelection = false) => {
   let tempSelection = showSelection;

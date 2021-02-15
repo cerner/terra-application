@@ -227,9 +227,9 @@ const useNotificationBanners = () => {
           addedBannersLog += ` ${intl.formatMessage({ id: 'terraApplication.notifications.totalCountLabel' }, { label, count: prioritizedBanners.length })}`;
         }
 
-        // Certain screen readers will not read text in a live region if it has already been read. This can be a problem,
+        // Certain screen readers will not read text in a live region if it has already been read. This can be a problem
         // if the same notification is presented, dismissed, and then presented again. We work around this by appending
-        // and invisible, non-breaking space to the string, if it is a duplicate, in order to force the screen reader
+        // an invisible, non-breaking space to the string if it is a duplicate in order to force the screen reader
         // to read the string.
         if (lastReadAddedBanner.current === addedBannersLog) {
           addedBannersLog += '\u00A0';

@@ -304,7 +304,6 @@ const useNotificationBanners = () => {
                   <Button
                     text={bannerAction.text}
                     variant="ghost"
-                    // data-terra-application-notification-banner={variant} TODO validate this
                     onClick={bannerAction.onClick}
                   />
                 );

@@ -116,7 +116,7 @@ const Workspace = ({
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
 
-  const ariaLabel = 'Workspace'; // TODO INTL
+  const ariaLabel = intl.formatMessage({ id: 'terraApplication.workspace.workspaceLabel' });
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),

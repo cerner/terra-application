@@ -17,7 +17,7 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   /**
    * Callback function for close button selection.
-   * Returns the event e.e. onClose(event).
+   * Returns the event e.g. onClose(event).
    */
   onClose: PropTypes.func,
   /**

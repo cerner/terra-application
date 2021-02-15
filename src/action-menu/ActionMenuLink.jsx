@@ -26,7 +26,7 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   /**
    * Callback function for action element selection.
-   * Returns the event e.e. onAction(event).
+   * Returns the event e.g. onAction(event).
    */
   onAction: PropTypes.func,
   /**

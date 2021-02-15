@@ -148,7 +148,7 @@
     "@cerner/browserslist-config-terra": "^3.1.0",
     "@cerner/eslint-config-terra": "^4.0.0",
     "@testing-library/react": "^10.0.4",
-    "@testing-library/jest-dom": "5.11.6",
+    "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/user-event": "^12.6.0",
     "@testing-library/react-hooks": "^5.0.0",
     "babel-eslint": "^10.1.0",

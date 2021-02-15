@@ -154,7 +154,7 @@ const Workspace = ({
     if (onRequestDismiss) {
       dismissItem = (
         <ActionMenuItem
-          actionKey="workspace-dimiss-action"
+          actionKey="workspace-dismiss-action"
           label={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
           onAction={() => {
             setIsMenuOpen(false);

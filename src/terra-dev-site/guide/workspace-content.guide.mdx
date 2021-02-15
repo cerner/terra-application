@@ -1,18 +1,18 @@
 # Workspace Content Guide
 
-Welcome to the Terra Workspce content guide. This guide will walk through the recommended approach for creating a component to be consumed and presented within a workspaces content area.
+Welcome to the Terra Workspace content guide. This guide will walk through the recommended approach for creating a component to be consumed and presented within a workspaces content area.
 
 ## Summary
 
-The overall construction a workspace region is composed of a higher order `Workspace` component and child `WorkspaceItem`'s. The `WorkspaceItem` is comprised of labels, identifiers, and a render block. Within the render block a `WorkspaceContent` component should be yielded.
+The overall construction of a workspace region is composed of a higher order `Workspace` component and child `WorkspaceItem`'s. The `WorkspaceItem` is comprised of labels, identifiers, and a render function. Within the render function a `WorkspaceContent` component, or a component that wraps it, should be returned.
 
 ## Getting Started
 
-This guide will walk through structure, exports, and contruction of a stand alone WorkspaceContent component. The example component is using the base component from terra-application to provide an API for interacting with the theme.
+This guide will walk through structure, exports, and construction of a stand alone WorkspaceContent component. The example component is using the base component from terra-application to provide an API for interacting with the theme.
 
 ## Workspace - Higher Order
 
-An application and it's associated page navigation will have the resposibility of constructing the workspace itself similar to the example below.
+An application and its associated page navigation will have the responsibility of constructing the workspace similar to the example below.
 
 ```jsx
 import React from 'react';
@@ -36,6 +36,12 @@ const MyWorkspace = () => {
         metaData={{ key: 'item-2' }}
         render={() => <MyContent2 />}
       />
+      <WorkspaceItem
+        itemKey="item-3"
+        label={intl.formatMessage({ id: MyContent3.labelTranslationId })}
+        metaData={{ key: 'item-3' }}
+        render={() => <MyContent3 />}
+      />
     </Workspace>
   );
 };
@@ -43,20 +49,20 @@ const MyWorkspace = () => {
 export default MyWorkspace;
 ```
 
-We will be focusing on the cotent within the renders, in this example as shown by `MyContent1` and `MyContent2`.
+We will be focusing on the content within the renders, in this example as shown by `MyContent1` and `MyContent2`.
 
 ## Workspace - Content
 
 While the WorkspaceContent component can be wrapped for composition/state management, there should be no structural/layout elements between the WorkspaceItem and the WorkspaceContent.
 
-A WorkspaceContent element takes the toolbar and children props.
+A WorkspaceContent element can receive toolbar and children props.
 
-The toolbar will be prop will be injected into the layout by the WorkspaceContent itself. This pattern is similiar to the terra-content-container and header/footer nodes.
+The toolbar will be injected into the layout by the WorkspaceContent itself. This pattern is similar to the terra-content-container and header/footer nodes.
 
-The child component will be placed within a scrollable region.
+The child component will be placed within a scroll-able region.
 
 *Best Practice*
-As applications will be pulling in multiple workspaces and multiple components to keep things isolated the best practice is export a translation id. In this example we are exporting a entry for `labelTranslationId`.
+As applications will be pulling in multiple workspaces and multiple components to keep things isolated the best practice is to export a translation string identifier for the content's desired labeling. In this example, we are exporting a constant value as `labelTranslationId`.
 
 ```jsx
 import React from 'react';
@@ -79,7 +85,7 @@ export default MyContent1;
 
 ## Workspace - Managing Active Display
 
-WorkspaceContent components that are not the currently active display will remain mounted, but will be removed from the DOM. So any dependent logic or listeners that expect to be on the DOM need to be disabled or provided for when no longer on the dom. In order to facilitate this the WorkspaceContext is explosed, providing and `isActive` value to key off of.
+WorkspaceContent components that are not the currently active display will remain mounted, but will be removed from the DOM. So any dependent logic or listeners that expect to be on the DOM need to be disabled or provided for when no longer on the DOM. In order to facilitate this, the WorkspaceContext provides an `isActive` value that will change when the WorkspaceContent component activates/deactivates.
 
 Below is an example using hooks to retrieve the `isActive` value.
 
@@ -87,61 +93,118 @@ Below is an example using hooks to retrieve the `isActive` value.
 import React from 'react';
 import { WorkspaceContext } from 'terra-application/lib/workspace';
 
-const MyComponent = () => {
+const MyContent2 = () => {
   const { isActive } = React.useContext(WorkspaceContext);
 
-  ...
+  React.useEffect(() => {
+    if (isActive) {
+      // add listeners
+
+      return () => {
+        // remove listeners
+      }
+    }
+  }, [isActive])
+
+  return (
+    <WorkspaceContent>
+      <MyComponent />
+    </WorkspaceContent>
+  );
 };
 
-export default MyComponent;
+export default MyContent2;
 ```
 
 ## Workspace - Notifications
 
-The workspace region of the application provides an entry point for the display of notifications associated to the presented WorksapceItem. In order to yeild notifications for your content import and render the terra-application provided `notification-banner`.
+Each WorkspaceContent component provides a region for rendering notification banners. To render a notification banner, the NotificationBanner provided by terra-application must be rendered as a child or descendent of the WorkspaceContent component.
 
 ```jsx
 import React from 'react';
 import NotificationBanner from 'terra-application/lib/notification-banner';
 
-const MyComponent = () => {
+const MyContent3 = () => {
   const [showAlertBanner, setShowAlertBanner] = useState(false);
 
+  // Note that any NotificationBanner components rendered by MyComponent would also be rendered within the
+  // WorkspaceContent notification region as WorkspaceContent is an ancestor to this MyComponent instance.
+
   return (
-    {showAlertBanner && (
-      <NotificationBanner
-        variant="hazard-high"
-        id="my-component-notification-id"
-        onRequestClose={() => setShowAlertBanner(false)}
-      />
-    )}
-    ...
+    <WorkspaceContent>
+      {showAlertBanner && (
+        <NotificationBanner
+          variant="hazard-high"
+          id="my-component-notification-id"
+          onRequestClose={() => setShowAlertBanner(false)}
+        />
+      )}
+      <MyComponent />
+    </WorkspaceContent>
   );
 };
 
-export default MyComponent;
+export default MyContent2;
 ```
 
-## Workspace - Loading
+## Workspace - Activity Overlay
 
-The workspace provides an overlay out of the box. In order to place a loading overlay above your content import and render the terra-application provided `application-loading-overlay`.
+The WorkspaceContent component can receive an `activityOverlay` prop that will be rendered over the component's other content.
 
-If content will be displayed underneath the overlay ensure that it's elements are set as disabled, for both visuals and assitive technology.
+The provided `WorkspaceContentActivityOverlay` is the only supported component at this time.
 
 ```jsx
 import React from 'react';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import { WorkspaceContent, WorkspaceContentActivityOverlay } from 'terra-application/lib/workspace';
 
-const MyComponent = () => {
-  const [showLoadingOverlay, setShowLoadingOverlay] = React.useState(false);
+const MyContent4 = () => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  React.useEffect(() => {
+    // toggle loading state here
+  })
 
   return (
-    {showLoadingOverlay && <ApplicationLoadingOverlay backgroundStyle="light" />}
-    ...
+    <WorkspaceContent
+      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
+    >
+      <MyComponent />
+    </WorkspaceContent>
   );
 };
 
-export default MyComponent;
+export default MyContent4;
+```
+
+## Workspace - Status Overlay
+
+The WorkspaceContent component can receive an `statusOverlay` prop that will be rendered over the component's other content.
+
+The provided `WorkspaceContentStatusOverlay` is the only supported component at this time.
+
+Note that this can be combined with and presented alongside the activity overlay if both props are provided. However, the activity overlay will render on top of the status overlay.
+
+```jsx
+import React from 'react';
+import { WorkspaceContent, WorkspaceContentStatusOverlay } from 'terra-application/lib/workspace';
+
+const MyContent5 = () => {
+  const [hasNoResults, setHasNoResults] = React.useState(false);
+
+  React.useEffect(() => {
+    // toggle results state here
+  })
+
+  return (
+    <WorkspaceContent
+      statusOverlay={hasNoResults ? <WorkspaceContentStatusOverlay variant="no-matching-results" /> : undefined}
+    >
+      <MyComponent />
+    </WorkspaceContent>
+  );
+};
+
+export default MyContent5;
 ```
 
 ## FAQ
@@ -152,4 +215,4 @@ Yes! Content that is not actively displayed on the DOM remains mounted, so any s
 
 ### Can I provide my own scrolling via terra-scroll or terra-content-container?
 
-No. The workspace provides the scrollable region and the location to render fixed header elements. This region is provided and controlled in order to handle the various keyboard/accessibility concerns associated with the presentation.
+No. The workspace provides the scroll-able region and the location to render fixed header elements. This region is provided and controlled in order to handle the various keyboard/accessibility concerns associated with the presentation.

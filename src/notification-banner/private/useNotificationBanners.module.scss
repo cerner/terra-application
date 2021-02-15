@@ -1,5 +1,5 @@
 :local {
-  .notification-banner-region {
+  .region {
     outline: none;
   }
 
@@ -26,7 +26,7 @@
     overflow: hidden;
     padding: 0;
     position: absolute;
-    white-space: nowrap; /* Ensures words  are not read one at a time on screen readers*/
+    white-space: nowrap; /* Ensures words are not read one at a time on screen readers */
     width: 1px;
   }
 }

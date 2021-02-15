@@ -279,12 +279,14 @@ const useNotificationBanners = () => {
         lastReadRemovedBanner.current = removedBannersLog;
       }
 
+      const appliedActiveClassName = prioritizedBanners.length && activeClassName ? activeClassName : undefined;
+
       return (
         <div
           role="region"
           aria-label={intl.formatMessage({ id: 'terraApplication.notifications.regionLabel' }, { label })}
           id={id}
-          className={prioritizedBanners.length && activeClassName ? activeClassName : undefined}
+          className={classNames(cx('region'), appliedActiveClassName)}
           tabIndex="-1"
           ref={containerRef}
         >

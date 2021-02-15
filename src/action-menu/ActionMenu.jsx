@@ -20,13 +20,13 @@ const propTypes = {
   /**
    * Label for the ActionMenu.
    */
-  ariaLabel: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * The child ActionMenu elements.
    */
   children: PropTypes.node,
   /**
-   * Whether or not a header should be displayed using the ariaLabel.
+   * Whether or not a header should be displayed using the label.
    */
   isHeaderDisplayed: PropTypes.bool,
   /**
@@ -51,7 +51,7 @@ const propTypes = {
 };
 
 const ActionMenu = ({
-  ariaLabel,
+  label,
   children,
   isHeightBounded,
   isHeaderDisplayed,
@@ -103,7 +103,7 @@ const ActionMenu = ({
       className={menuClassNames}
       role="menu"
       tabIndex="0"
-      aria-label={ariaLabel}
+      aria-label={label}
       ref={menuRef}
       onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
     >
@@ -127,12 +127,12 @@ const ActionMenu = ({
 
     content = (
       <ContentContainer
-        aria-label={ariaLabel}
+        aria-label={label}
         tabIndex="0"
         onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
         role="dialog"
         className={cx('action-container')}
-        header={<Header label={ariaLabel} onClose={onClose} />}
+        header={<Header label={label} onClose={onClose} />}
         fill={isHeightBounded}
       >
         {content}

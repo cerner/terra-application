@@ -5,14 +5,13 @@ exports[`ActionMenuGroup should render with all props 1`] = `
   role="none"
 >
   <ul
-    className="action-sub-menu"
+    className="action-menu-group"
     role="menu"
   >
     <li
       indentChildren={true}
       key=".0"
       onArrow={[MockFunction]}
-      onChar={[MockFunction]}
     >
       test element
     </li>
@@ -25,7 +24,7 @@ exports[`ActionMenuGroup should render with minimal props 1`] = `
   role="none"
 >
   <ul
-    className="action-sub-menu"
+    className="action-menu-group"
     role="menu"
   />
 </li>

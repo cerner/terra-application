@@ -3,7 +3,7 @@
 exports[`ActionMenuDivider should render with minimal props 1`] = `
 <li
   aria-hidden={true}
-  className="action-divider"
+  className="action-menu-divider"
 >
   <div
     className="line"

@@ -2,7 +2,7 @@
 
 exports[`ActionMenuHeader should render with all props 1`] = `
 <div
-  className="action-header"
+  className="action-menu-header"
 >
   <div
     aria-hidden={true}
@@ -37,7 +37,7 @@ exports[`ActionMenuHeader should render with all props 1`] = `
 
 exports[`ActionMenuHeader should render with minimal props 1`] = `
 <div
-  className="action-header"
+  className="action-menu-header"
 >
   <div
     aria-hidden={true}

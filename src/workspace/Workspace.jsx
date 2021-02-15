@@ -197,7 +197,7 @@ const Workspace = ({
         >
           <ActionMenu
             isHeaderDisplayed
-            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+            label={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
             onRequestClose={() => {
               setIsMenuOpen(false);
             }}

@@ -2,7 +2,7 @@
 
 exports[`ActionMenuItem should render with all props 1`] = `
 <li
-  className="action-link is-disabled"
+  className="action-menu-link is-disabled"
   role="none"
 >
   <a
@@ -28,7 +28,7 @@ exports[`ActionMenuItem should render with all props 1`] = `
 
 exports[`ActionMenuItem should render with minimal props 1`] = `
 <li
-  className="action-link is-actionable"
+  className="action-menu-link is-actionable"
   role="none"
 >
   <a

@@ -4,7 +4,7 @@ exports[`ActionMenuCheckbox should render with all props 1`] = `
 <li
   aria-checked={true}
   aria-disabled={true}
-  className="action-checkbox is-checked is-disabled"
+  className="action-menu-checkbox is-checked is-disabled"
   data-action-menu-key="test key"
   role="menuitemcheckbox"
 >
@@ -34,7 +34,7 @@ exports[`ActionMenuCheckbox should render with all props 1`] = `
 
 exports[`ActionMenuCheckbox should render with minimal props 1`] = `
 <li
-  className="action-checkbox is-actionable"
+  className="action-menu-checkbox is-actionable"
   data-action-menu-key="test key"
   data-focus-styles-enabled={true}
   onBlur={[Function]}

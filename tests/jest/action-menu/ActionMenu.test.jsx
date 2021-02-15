@@ -8,7 +8,7 @@ MockComponent.interactiveType = false;
 describe('ActionMenu', () => {
   it('should render with minimal props', () => {
     const wrapper = shallow((
-      <ActionMenu ariaLabel="test menu" />
+      <ActionMenu label="test menu" />
     ));
     expect(wrapper).toMatchSnapshot();
   });
@@ -16,7 +16,7 @@ describe('ActionMenu', () => {
   it('should render with all props', () => {
     const wrapper = shallow((
       <ActionMenu
-        ariaLabel="test menu"
+        label="test menu"
         isHeaderDisplayed
         onRequestClose={jest.fn()}
         isHeightBounded

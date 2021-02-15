@@ -3,7 +3,7 @@
 exports[`ActionMenuItem should render with all props 1`] = `
 <li
   aria-disabled={true}
-  className="action-item is-disabled"
+  className="action-menu-item is-disabled"
   data-action-menu-key="test key"
   role="menuitem"
 >
@@ -24,7 +24,7 @@ exports[`ActionMenuItem should render with all props 1`] = `
 
 exports[`ActionMenuItem should render with minimal props 1`] = `
 <li
-  className="action-item is-actionable"
+  className="action-menu-item is-actionable"
   data-action-menu-key="test key"
   data-focus-styles-enabled={true}
   onBlur={[Function]}

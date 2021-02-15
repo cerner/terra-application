@@ -4,7 +4,7 @@ exports[`ActionMenuRadio should render with all props 1`] = `
 <li
   aria-checked={true}
   aria-disabled={true}
-  className="action-radio is-checked is-disabled"
+  className="action-menu-radio is-checked is-disabled"
   data-action-menu-key="test key"
   role="menuitemradio"
 >
@@ -34,7 +34,7 @@ exports[`ActionMenuRadio should render with all props 1`] = `
 
 exports[`ActionMenuRadio should render with minimal props 1`] = `
 <li
-  className="action-radio is-actionable"
+  className="action-menu-radio is-actionable"
   data-action-menu-key="test key"
   data-focus-styles-enabled={true}
   onBlur={[Function]}

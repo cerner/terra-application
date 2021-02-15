@@ -1,14 +1,14 @@
 :local {
   .clinical-lowlight-theme {
     --terra-application-workspace-tab-drop-down-border: 1px solid transparent;
-    --terra-application-workspace-tab-drop-down-border-radius: 0;
-    --terra-application-workspace-tab-drop-down-max-height: 44px;
+    --terra-application-workspace-tab-drop-down-border-radius: 3px;
+    --terra-application-workspace-tab-drop-down-max-height: 49px;
     --terra-application-workspace-tab-drop-down-max-width: 187px;
     --terra-application-workspace-tab-drop-down-min-width: 150px;
-    --terra-application-workspace-tab-drop-down-padding: 0;
-    --terra-application-workspace-tab-drop-down-top: 44px;
-    --terra-application-workspace-tab-drop-down-is-open-box-shadow: 2px 2px 4px 0 rgba(0, 0, 0, 0.35);
-    --terra-application-workspace-tab-drop-down-is-open-border-color: #868a8c;
+    --terra-application-workspace-tab-drop-down-padding: 5px 0;
+    --terra-application-workspace-tab-drop-down-top: 49px;
+    --terra-application-workspace-tab-drop-down-is-open-box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.4);
+    --terra-application-workspace-tab-drop-down-is-open-border-color: #ccc;
     --terra-application-workspace-tab-drop-down-is-open-background-color: #fff;
   }
 }

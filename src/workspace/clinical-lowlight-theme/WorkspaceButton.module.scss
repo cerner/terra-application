@@ -1,13 +1,13 @@
 :local {
   .clinical-lowlight-theme {
-    --terra-application-workspace-workspace-button-color: #7a7f82;
-    --terra-application-workspace-workspace-button-hover-color: #7a7f82;
-    --terra-application-workspace-workspace-button-focus-color: #7a7f82;
-    --terra-application-workspace-workspace-button-active-color: #7a7f82;
-    --terra-application-workspace-workspace-button-focus-button-inner-outline: 2px dashed #000;
+    --terra-application-workspace-workspace-button-color: #fff;
+    --terra-application-workspace-workspace-button-hover-color: #fff;
+    --terra-application-workspace-workspace-button-focus-color: rgba(255, 255, 255, 0.8);
+    --terra-application-workspace-workspace-button-focus-button-inner-outline: 2px dashed #fff;
     --terra-application-workspace-workspace-button-focus-button-inner-outline-offset: -4px;
-    --terra-application-workspace-workspace-button-button-inner-padding: 0.75rem;
-    --terra-application-workspace-workspace-button-button-image-height: 1rem;
-    --terra-application-workspace-workspace-button-button-image-width: 1rem;
+    --terra-application-workspace-workspace-button-active-color: #ccc;
+    --terra-application-workspace-workspace-button-button-inner-padding: 0.6429rem;
+    --terra-application-workspace-workspace-button-button-image-height: 0.8571rem;
+    --terra-application-workspace-workspace-button-button-image-width: 0.8571rem;
   }
 }

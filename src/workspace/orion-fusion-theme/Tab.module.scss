@@ -3,23 +3,22 @@
 :local {
   .orion-fusion-theme {
     --terra-application-workspace-tab-height: 28px;
-    --terra-application-workspace-tab-hover-icon-label-color: #1c1f21;
-    --terra-application-workspace-tab-hover-icon-label-padding-top: 7px;
+    --terra-application-workspace-tab-nth-last-child-margin-right: 9px;
     --terra-application-workspace-tab-icon-label-color: #434a4d;
     --terra-application-workspace-tab-icon-label-padding-top: 9px;
-    --terra-application-workspace-tab-is-active-icon-label-color: #1c1f21;
-    --terra-application-workspace-tab-is-active-icon-label-padding-top: 9px;
-    --terra-application-workspace-tab-inner-min-width: 46px;
-    --terra-application-workspace-tab-menu-svg-color: #868a8c;
-    --terra-application-workspace-tab-menu-svg-height: 0.8333rem;
-    --terra-application-workspace-tab-min-width: 74px;
+    --terra-application-workspace-tab-hover-icon-label-color: #1c1f21;
+    --terra-application-workspace-tab-hover-icon-label-padding-top: 7px;
+    --terra-application-workspace-tab-hover-focus-before-top: 4px;  
     --terra-application-workspace-tab-focus-before-border: 2px dashed #000;
     --terra-application-workspace-tab-focus-before-bottom: 2px;
     --terra-application-workspace-tab-focus-before-left: 9px;
     --terra-application-workspace-tab-focus-before-right: 9px;
     --terra-application-workspace-tab-focus-before-top: 4px;
-    --terra-application-workspace-tab-hover-focus-before-top: 4px;
-    --terra-application-workspace-tab-nth-last-child-margin-right: 9px;
+    --terra-application-workspace-tab-is-active-icon-label-color: #1c1f21;
+    --terra-application-workspace-tab-is-active-icon-label-padding-top: 9px;
+    --terra-application-workspace-tab-min-width: 74px;
+    --terra-application-workspace-tab-menu-svg-color: #868a8c;
+    --terra-application-workspace-tab-menu-svg-height: 0.8333rem; 
 
     // before, after & inner
     --terra-application-workspace-tab-before-inner-after-height: 30px;
@@ -33,10 +32,11 @@
     // before position
     --terra-application-workspace-tab-before-background-position: top left;
     --terra-application-workspace-tab-before-margin-left: -9px;
-    --terra-application-workspace-tab-before-margin-right: -9x;
+    --terra-application-workspace-tab-before-margin-right: -9px;
 
     // inner position
     --terra-application-workspace-tab-inner-background-size: 110% 30px;
+    --terra-application-workspace-tab-inner-min-width: 46px;
 
     // after position
     --terra-application-workspace-tab-after-background-position: top right;

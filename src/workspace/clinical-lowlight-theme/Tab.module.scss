@@ -2,11 +2,46 @@
 
 :local {
   .clinical-lowlight-theme {
+    --terra-application-workspace-tab-height: 33px;
+    --terra-application-workspace-tab-nth-last-child-margin-right: 15px;
     --terra-application-workspace-tab-icon-label-color: #434a4d;
+    --terra-application-workspace-tab-icon-label-padding-top: 15px;
     --terra-application-workspace-tab-hover-icon-label-color: #1c1f21;
-    --terra-application-workspace-tab-inner-min-width: 64px;
-    --terra-application-workspace-tab-menu-color: #434a4d;
+    --terra-application-workspace-tab-hover-icon-label-padding-top: 13px;
+    --terra-application-workspace-tab-hover-focus-before-top: 4px;
+    --terra-application-workspace-tab-focus-before-border: 2px dashed #000;
+    --terra-application-workspace-tab-focus-before-bottom: 2px;
+    --terra-application-workspace-tab-focus-before-left: 10px;
+    --terra-application-workspace-tab-focus-before-right: 15px;
+    --terra-application-workspace-tab-focus-before-top: 4px;
+    --terra-application-workspace-tab-is-active-icon-label-color: #1c1f21;
+    --terra-application-workspace-tab-is-active-icon-label-padding-top: 15px;
+    --terra-application-workspace-tab-min-width: 98px;
+    --terra-application-workspace-tab-menu-svg-color: #434a4d;
     --terra-application-workspace-tab-menu-svg-height: 0.8571rem;
+
+    // before, after & inner
+    --terra-application-workspace-tab-before-inner-after-height: 41px;
+    --terra-application-workspace-tab-before-inner-after-margin-bottom: -2px;
+    --terra-application-workspace-tab-before-inner-after-margin-top: -6px;
+
+    // before & after
+    --terra-application-workspace-tab-before-after-background-size: 35px 41px;
+    --terra-application-workspace-tab-before-after-width: 35px;
+
+    // before position
+    --terra-application-workspace-tab-before-background-position: top right;
+    --terra-application-workspace-tab-before-margin-left: -15px;
+    --terra-application-workspace-tab-before-margin-right: 0;
+
+    // inner position
+    --terra-application-workspace-tab-inner-background-size: 100% 41px;
+    --terra-application-workspace-tab-inner-min-width: 56px;
+
+    // after position
+    --terra-application-workspace-tab-after-background-position: top left;
+    --terra-application-workspace-tab-after-margin-left: -1.5px;
+    --terra-application-workspace-tab-after-margin-right: -15px;
 
     // default images
     --terra-application-workspace-tab--before-background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNSA0MSI+CiAgPGRlZnM+CiAgICA8bWFzayBpZD0iY3JvcG1hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cmVjdCB4PSIwIiB5PSIwIiB3aWR0aD0iMzUiIGhlaWdodD0iMzkiIGZpbGw9IiNmZmYiLz4KICAgIDwvbWFzaz4KICAgIDxtYXNrIGlkPSJpbnNldHNoYWRvd21hc2siIHg9Ii0zMyUiIHk9Ii0zMyUiIHdpZHRoPSIxNTAlIiBoZWlnaHQ9IjE1MCUiPgogICAgICA8cGF0aCBkPSJNIDUsMzkgYzEwLDAgMTAsLTMxIDI4LC0zMSBoMTYgYzE4LDAgMTgsMzEgMjgsMzEgdjggaC03MiB2LTggWiIgZmlsbD0iI2ZmZiIvPgogICAgPC9tYXNrPgogICAgPGZpbHRlciBpZD0ib3V0c2lkZXNoYWRvd2JsdXIyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjQiIC8+CiAgICA8L2ZpbHRlcj4KICAgIDxmaWx0ZXIgaWQ9Im91dHNpZGVzaGFkb3dibHVyMSIgeD0iLTMzJSIgeT0iLTMzJSIgd2lkdGg9IjE1MCUiIGhlaWdodD0iMTUwJSI+CiAgICAgIDxmZUdhdXNzaWFuQmx1ciBpbj0iU291cmNlR3JhcGhpYyIgc3RkRGV2aWF0aW9uPSIxIiAvPgogICAgPC9maWx0ZXI+CgogICAgPGZpbHRlciBpZD0iaW5zZXRzaGFkb3dibHVyIiB4PSItMzMlIiB5PSItMzMlIiB3aWR0aD0iMTUwJSIgaGVpZ2h0PSIxNTAlIj4KICAgICAgPGZlR2F1c3NpYW5CbHVyIGluPSJTb3VyY2VHcmFwaGljIiBzdGREZXZpYXRpb249IjUiIC8+CiAgICA8L2ZpbHRlcj4KICA8L2RlZnM+CiAgPGcgbWFzaz0idXJsKCNjcm9wbWFzaykiPgogICAgPHBhdGggZD0iTSA5LDQyIEMxMy4zLDM5LjcgMTUuNywzMy44IDE4LjIzLDI3LjU2IEMyMi40LDE3LjMgMjUuOTMsMTIgMzMsMTIgaDE2IEM1Ni4xLDEyIDU5LjYsMTcuMyA2My43NywyNy41OSBDNjYuMywzMy44IDY4LjcsMzkuNzUgNzMsNDIgdjEgaC02NCB2LTEgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoNyAwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjA2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMikiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC03IDApIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMDYpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIyKSIvPgogICAgPHBhdGggZD0iTSA5LDQyIEMxMy4zLDM5LjcgMTUuNywzMy44IDE4LjIzLDI3LjU2IEMyMi40LDE3LjMgMjUuOTMsMTIgMzMsMTIgaDE2IEM1Ni4xLDEyIDU5LjYsMTcuMyA2My43NywyNy41OSBDNjYuMywzMy44IDY4LjcsMzkuNzUgNzMsNDIgdjEgaC02NCB2LTEgWiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMCAtNykiIGZpbGw9InJnYmEoMjgsMzEsMzMsMC4wNykiIGZpbHRlcj0idXJsKCNvdXRzaWRlc2hhZG93Ymx1cjIpIi8+CiAgICA8cGF0aCBkPSJNIDksNDIgQzEzLjMsMzkuNyAxNS43LDMzLjggMTguMjMsMjcuNTYgQzIyLjQsMTcuMyAyNS45MywxMiAzMywxMiBoMTYgQzU2LjEsMTIgNTkuNiwxNy4zIDYzLjc3LDI3LjU5IEM2Ni4zLDMzLjggNjguNywzOS43NSA3Myw0MiB2MSBoLTY0IHYtMSBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg1IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC01IC0yKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjE2KSIgZmlsdGVyPSJ1cmwoI291dHNpZGVzaGFkb3dibHVyMSkiLz4KICAgIDxwYXRoIGQ9Ik0gOSw0MiBDMTMuMywzOS43IDE1LjcsMzMuOCAxOC4yMywyNy41NiBDMjIuNCwxNy4zIDI1LjkzLDEyIDMzLDEyIGgxNiBDNTYuMSwxMiA1OS42LDE3LjMgNjMuNzcsMjcuNTkgQzY2LjMsMzMuOCA2OC43LDM5Ljc1IDczLDQyIHYxIGgtNjQgdi0xIFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTUpIiBmaWxsPSJyZ2JhKDI4LDMxLDMzLDAuMTIpIiBmaWx0ZXI9InVybCgjb3V0c2lkZXNoYWRvd2JsdXIxKSIvPgogICAgPHBhdGggZD0iTSA1LDM5IGMxMCwwIDEwLC0zMSAyOCwtMzEgaDE2IGMxOCwwIDE4LDMxIDI4LDMxIHY2IGgtNzIgdi02IFoiIGZpbGw9IiNmNGY0ZjQiLz4KICAgIDxnIG1hc2s9InVybCgjaW5zZXRzaGFkb3dtYXNrKSI+CiAgICAgIDxwYXRoIGQ9Ik0wLDAgdjUzIGg4MiBWMCBaIE01LDM5IGMxMCwwIDEwLC0zMyAyOCwtMzMgaDE2IGMxOCwwIDE4LDMzIDI4LDMzIHY4IGgtNzIgdi04IFoiIHRyYW5zZm9ybT0idHJhbnNsYXRlKDAgLTEwKSIgZmlsbD0icmdiYSgyOCwzMSwzMywwLjI1KSIgZmlsdGVyPSJ1cmwoI2luc2V0c2hhZG93Ymx1cikiLz4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPgo=');

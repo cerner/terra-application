@@ -1,6 +1,8 @@
 :local {
-  .clinical-lowlight-theme {
-    --terra-application-workspace-content-panel-header-box-shadow: inset -3px -4px 0px -3px #cbcacb;
+  .orion-fusion-theme {
+    --terra-application-workspace-content-panel-background-color: #fefffe;
+    --terra-application-workspace-content-panel-border-top: 0;
+    --terra-application-workspace-content-panel-header-box-shadow: inset -3px -4px 0 -3px #fefffe, inset -3px -5px 0 -3px #c7cacb;
     --terra-application-workspace-content-rounded-border-radius: 3px;
     --terra-application-workspace-content-rounded-margin-top: 5px;
   }

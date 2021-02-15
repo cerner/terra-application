@@ -15,10 +15,10 @@
   }
 
   .panel-header {
-    box-shadow: var(--terra-application-workspace-content-panel-header-box-shadow, inset -3px -4px 0 -3px #fefffe, inset -3px -5px 0 -3px #c7cacb);
+    box-shadow: var(--terra-application-workspace-content-panel-header-box-shadow, inset -3px -4px 0 -3px #f4f4f4, inset -3px -5px 0 -3px #c8cacb);
     flex: 0 0 auto;
-    padding-bottom: 5px;
-    padding-top: 5px;
+    padding-bottom: 8px;
+    padding-top: 7px;
     z-index: 10;
   }
 
@@ -41,9 +41,26 @@
     }
   }
 
+  .toolbar {
+    margin-top: 4px;
+  }
+
+  .notification-banners-container {
+    margin-top: 4px;
+  }
+
+  .toolbar + .notification-banners-container {
+    margin-top: 6px;
+  }
+
+  .notification-banner {
+    &:not(:first-child) {
+      margin-top: 3px;
+    }
+  }
+
   .rounded {
     border-radius: var(--terra-application-workspace-content-rounded-border-radius, 3px);
-    margin-top: var(--terra-application-workspace-content-rounded-margin-top, 5px);
     overflow: hidden;
   }
 }

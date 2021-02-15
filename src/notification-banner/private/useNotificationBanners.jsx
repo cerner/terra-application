@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
+import classNames from 'classnames';
+
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
@@ -155,7 +157,9 @@ const useNotificationBanners = () => {
     /**
      * Renders a list of prioritized notification banners.
      */
-    const NotificationBanners = ({ id, label, activeClassName }) => {
+    const NotificationBanners = ({
+      id, label, activeClassName, bannerClassName,
+    }) => {
       const theme = React.useContext(ThemeContext);
       const intl = React.useContext(ApplicationIntlContext);
       const [bannerState, setBannerState] = React.useState({});
@@ -330,6 +334,7 @@ const useNotificationBanners = () => {
 
               return (
                 <li
+                  className={classNames(cx('banner-list-item'), bannerClassName)}
                   aria-label={translatedBannerLabel}
                   aria-setsize={prioritizedBanners.length}
                   aria-posinset={index + 1}
@@ -375,6 +380,10 @@ const useNotificationBanners = () => {
        * Can be used to provide styling only when notification content will be visible.
        */
       activeClassName: PropTypes.string,
+      /**
+       * A className applied to each rendered notification banner.
+       */
+      bannerClassName: PropTypes.string,
     };
 
     return {

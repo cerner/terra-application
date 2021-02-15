@@ -72,13 +72,16 @@ const WorkspaceContent = ({
         data-testid="workspace-content-heading"
       >
         <TabHeader title={label} />
-        <div className={cx('rounded')}>
-          {toolbar}
-        </div>
+        { toolbar ? (
+          <div className={cx('toolbar', 'rounded')}>
+            {toolbar}
+          </div>
+        ) : undefined}
         <NotificationBanners
           id={`${panelId}-notifications`}
           label={`Workspace ${label}`}
-          activeClassName={cx('rounded')}
+          activeClassName={cx('notification-banners-container')}
+          bannerClassName={cx('notification-banner', 'rounded')}
         />
       </div>
       <div role="none" className={cx('panel-content')}>

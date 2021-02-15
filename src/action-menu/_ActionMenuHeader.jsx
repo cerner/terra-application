@@ -6,7 +6,7 @@ import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
 import IconClose from 'terra-icon/lib/icon/IconClose';
 
-import styles from './ActionMenu.module.scss';
+import styles from './ActionMenuHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -34,7 +34,7 @@ const ActionMenuHeader = ({
   const theme = React.useContext(ThemeContext);
 
   return (
-    <div className={cx('action-header', theme.className)}>
+    <div className={cx('action-menu-header', theme.className)}>
       <div aria-hidden className={cx('title')}>
         {label}
       </div>

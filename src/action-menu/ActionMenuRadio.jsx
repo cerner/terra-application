@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
-import styles from './ActionMenu.module.scss';
+import styles from './ActionMenuRadio.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -73,7 +73,7 @@ const ActionMenuRadio = ({
   return (
     <li
       {...attrs}
-      className={cx('action-radio', { 'is-checked': isChecked }, { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled }, theme.className)}
+      className={cx('action-menu-radio', { 'is-checked': isChecked }, { 'is-actionable': !isDisabled }, { 'is-disabled': isDisabled }, theme.className)}
       role="menuitemradio"
       aria-checked={isChecked}
       data-action-menu-key={actionKey}

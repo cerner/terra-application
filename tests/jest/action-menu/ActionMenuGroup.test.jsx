@@ -17,7 +17,7 @@ describe('ActionMenuGroup', () => {
     const wrapper = shallow((
       <ActionMenuGroup
         onArrow={jest.fn()}
-        onChar={jest.fn()}
+        onClose={jest.fn()}
         indentChildren
       >
         <li>test element</li>

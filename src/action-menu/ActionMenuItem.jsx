@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
-import styles from './ActionMenu.module.scss';
+import styles from './ActionMenuItem.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -72,7 +72,7 @@ const ActionMenuItem = ({
   return (
     <li
       {...attrs}
-      className={cx('action-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren }, theme.className)}
+      className={cx('action-menu-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren }, theme.className)}
       role="menuitem"
       data-action-menu-key={actionKey}
     >

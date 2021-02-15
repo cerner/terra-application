@@ -1,0 +1,11 @@
+@import './clinical-lowlight-theme/ActionMenuDivider.module';
+@import './orion-fusion-theme/ActionMenuDivider.module';
+
+:local {
+  .action-menu-divider > .line {
+    box-shadow: var(--terra-application-action-menu-divider-box-shadow, 0 2px 0 0 #f4f4f4, 0 1px 0 0 #c8cacb);
+    height: 1px;
+    margin: var(--terra-application-action-menu-divider-margin, 0.3571rem 0);
+    width: 100%;
+  }
+}

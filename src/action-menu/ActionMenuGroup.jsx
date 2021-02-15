@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
-import styles from './ActionMenu.module.scss';
+import styles from './ActionMenuGroup.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -38,7 +38,7 @@ const ActionMenuGroup = ({
       role="none"
     >
       <ul
-        className={cx('action-sub-menu', theme.className)}
+        className={cx('action-menu-group', theme.className)}
         role="menu"
       >
         {React.Children.map(children, child => {

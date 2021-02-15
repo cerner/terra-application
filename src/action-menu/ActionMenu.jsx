@@ -30,7 +30,8 @@ const propTypes = {
    */
   isHeaderDisplayed: PropTypes.bool,
   /**
-   * The close callback.
+   * Callback function for close button selection.
+   * Returns the event e.g. onClose(event).
    */
   onRequestClose: PropTypes.func,
   /**

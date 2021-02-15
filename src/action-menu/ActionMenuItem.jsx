@@ -36,12 +36,14 @@ const propTypes = {
   indentChildren: PropTypes.bool,
   /**
    * @private
-   * Callback function for event.
+   * Callback function for arrow key interaction.
+   * Returns the event e.g. onArrow(key, direction).
    */
   onArrow: PropTypes.func,
   /**
    * @private
-   * Callback function for event.
+   * Callback function for arrow char.
+   * Returns the event e.g. onChar(key, char).
    */
   onChar: PropTypes.func,
 };

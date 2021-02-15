@@ -88,7 +88,7 @@ const HiddenTab = ({
     theme.className,
   );
 
-  function handleOnSelect(event) {
+  const handleOnSelect = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
@@ -96,7 +96,7 @@ const HiddenTab = ({
     onSelect(itemKey, metaData);
   }
 
-  function onKeyDown(event) {
+  const onKeyDown = (event) => {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
       handleOnSelect(event);
     } else {

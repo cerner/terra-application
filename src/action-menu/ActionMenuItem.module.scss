@@ -20,10 +20,6 @@
       border-bottom: 0;
     }
 
-    &:not(.is-disabled):hover {
-      background-color: var(--terra-application-action-menu-item-not-is-disabled-hover-background-color, #f0f8ff);
-    }
-
     &.indent {
       padding-left: var(--terra-application-action-menu-item-indent-padding-left, 1.857rem);
     }

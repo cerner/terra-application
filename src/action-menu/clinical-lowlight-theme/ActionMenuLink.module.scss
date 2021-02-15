@@ -1,19 +1,18 @@
 :local {
   .clinical-lowlight-theme {
-    --terra-application-action-menu-link-color: #222a2e;
+    --terra-application-action-menu-link-color: #b2b5b6;
     --terra-application-action-menu-link-padding-bottom: 0.5rem;
     --terra-application-action-menu-link-padding-left: 0.5714rem;
     --terra-application-action-menu-link-padding-right: 0.7143rem;
     --terra-application-action-menu-link-padding-top: 0.3571rem;
-    --terra-application-action-menu-link-not-is-disabled-hover-background-color: #f0f8ff;
     --terra-application-action-menu-link-indent-padding-left: 2rem;
-    --terra-application-action-menu-link-content-color: #222a2e;
+    --terra-application-action-menu-link-content-color: #b2b5b6;
     --terra-application-action-menu-link-content-font-size: 1rem;
     --terra-application-action-menu-link-content-font-weight: normal;
     --terra-application-action-menu-link-is-disabled-color: #ccc;
-    --terra-application-action-menu-link-is-actionable-hover-background-color: #ebf6fd;
-    --terra-application-action-menu-link-is-actionable-focus-outline: 2px dashed #000;
+    --terra-application-action-menu-link-is-actionable-hover-background-color: #1e3a49;
+    --terra-application-action-menu-link-is-actionable-focus-outline: 2px dashed #fff;
     --terra-application-action-menu-link-is-actionable-focus-outline-offset: -2px;
-    --terra-application-action-menu-link-is-actionable-ie-focus-before-border: 2px dashed #000;
+    --terra-application-action-menu-link-is-actionable-ie-focus-before-border: 2px dashed #fff;
   }
 }

@@ -19,10 +19,6 @@
     &:last-child {
       border-bottom: 0;
     }
-
-    &:not(.is-disabled):hover {
-      background-color: var(--terra-application-action-menu-checkbox-not-is-disabled-hover-background-color, #f0f8ff);
-    }
   }
 
   .checkbox {

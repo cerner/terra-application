@@ -92,6 +92,7 @@ const MoreButton = ({
       onMouseDown={handleOnMouseDown}
       className={cx('tab-menu', { 'is-active': isOpen }, theme.className)}
       style={{ zIndex: isOpen ? '100' : zIndex }}
+      data-testid="workspace-tabs-more-button"
     >
       <div className={cx('before')} />
       <div className={cx('inner')}>

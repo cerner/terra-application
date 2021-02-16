@@ -2,7 +2,8 @@ const selector = '#root';
 
 Terra.describeViewports('Workspace', ['huge'], () => {
   before(() => {
-    browser.url('/raw/tests/terra-application/workspace/workspace');
+    browser.url('/#/raw/tests/terra-application/workspace/workspace');
+    browser.execute('document.title = "Test Title";');
     browser.disableCSSAnimations();
   });
 
@@ -24,15 +25,15 @@ Terra.describeViewports('Workspace', ['huge'], () => {
     Terra.validates.element('3. Settings menu renders after button selection', { selector });
   });
 
-  it('renders workspace at small size', () => {
-    browser.clickWithAttribute('data-action-menu-key', 'small');
-    Terra.validates.element('4. Workspace renders at small size', { selector });
+  it('renders workspace at medium size', () => {
+    browser.clickWithAttribute('data-action-menu-key', 'medium');
+    Terra.validates.element('4. Workspace renders at medium size', { selector });
   });
 
-  it('renders workspace at tiny size', () => {
+  it('renders workspace at small size', () => {
     browser.clickWithTestId('workspace-test-id-settings-button');
-    browser.clickWithAttribute('data-action-menu-key', 'tiny');
-    Terra.validates.element('5. Workspace renders at tiny size', { selector });
+    browser.clickWithAttribute('data-action-menu-key', 'small');
+    Terra.validates.element('5. Workspace renders at small size', { selector });
   });
 
   it('renders tabs rollup after selection', () => {
@@ -57,7 +58,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
     Terra.validates.element('9. Workspace renders Tab 6 with loading overlay after dropdown selection', { selector });
   });
 
-  it('renders tab with loading overlay', () => {
+  it('renders tab with notification banner', () => {
     browser.click('#test-id-tab-1');
     browser.clickWithTestId('test-workspace-banner-button');
     Terra.validates.element('10. Workspace renders Tab 1 with notification banner', { selector });

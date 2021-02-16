@@ -62,7 +62,7 @@
         &::before { // stylelint-disable-line max-nesting-depth
           border: var(--terra-application-action-menu-link-is-actionable-ie-focus-before-border, 2px dashed #000);
           bottom: 0;
-          box-shadow: var(--terra-application-action-menu-link-is-actionable-ie-focus-box-shadow, none);
+          box-shadow: var(--terra-application-action-menu-link-is-actionable-ie-focus-before-box-shadow, none);
           content: '';
           left: 0;
           position: absolute;

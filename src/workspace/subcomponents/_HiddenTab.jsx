@@ -94,7 +94,7 @@ const HiddenTab = ({
 
     enableFocusStyles(event);
     onSelect(itemKey, metaData);
-  }
+  };
 
   const onKeyDown = (event) => {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
@@ -102,7 +102,7 @@ const HiddenTab = ({
     } else {
       handleArrows(event, index, tabIds);
     }
-  }
+  };
 
   attributes.tabIndex = isSelected ? 0 : -1;
   attributes.onClick = e => { e.preventDefault(); e.stopPropagation(); handleOnSelect(e); };

@@ -120,6 +120,7 @@
       &::before {
         border: var(--terra-application-workspace-tab-focus-before-border, 2px dashed #000);
         bottom: var(--terra-application-workspace-tab-focus-before-bottom, 2px);
+        box-shadow: var(--terra-application-workspace-tab-focus-before-box-shadow, none);
         content: '';
         left: var(--terra-application-workspace-tab-focus-before-left, 10px);
         position: absolute;

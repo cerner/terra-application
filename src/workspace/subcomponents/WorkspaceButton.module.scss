@@ -24,6 +24,7 @@
       color: var(--terra-application-workspace-workspace-button-focus-color, rgba(255, 255, 255, 0.8));
 
       .button-inner {
+        box-shadow: var(--terra-application-workspace-workspace-button-focus-button-inner-box-shadow, none);
         outline: var(--terra-application-workspace-workspace-button-focus-button-inner-outline, 2px dashed #fff);
         outline-offset: var(--terra-application-workspace-workspace-button-focus-button-inner-outline-offset, -4px);
       }

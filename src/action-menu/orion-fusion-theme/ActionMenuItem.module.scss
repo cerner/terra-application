@@ -11,8 +11,10 @@
     --terra-application-action-menu-item-content-font-weight: normal;
     --terra-application-action-menu-item-is-disabled-color: #ccc;
     --terra-application-action-menu-item-is-actionable-hover-color: #ebf6fd;
-    --terra-application-action-menu-item-is-actionable-focus-outline: 2px dashed #000;
-    --terra-application-action-menu-item-is-actionable-focus-outline-outset: -2px;
-    --terra-application-action-menu-item-is-actionable-ie-focus-before-border: 2px dashed #000;
+    --terra-application-action-menu-item-is-actionable-focus-box-shadow: 0 0 1px 1px rgba(76, 178, 233,0.50), 0 0 6px 2px rgba(76, 178, 233, 0.40), inset 0 0 4px 1px rgba(76, 178, 233, 0.50);
+    --terra-application-action-menu-item-is-actionable-focus-outline: none;
+    --terra-application-action-menu-item-is-actionable-focus-outline-outset: 0;
+    --terra-application-action-menu-item-is-actionable-ie-focus-before-border: 0;
+    --terra-application-action-menu-item-is-actionable-ie-focus-before-box-shadow: 0 0 1px 1px rgba(76, 178, 233,0.50), 0 0 6px 2px rgba(76, 178, 233, 0.40), inset 0 0 4px 1px rgba(76, 178, 233, 0.50);
   }
 }

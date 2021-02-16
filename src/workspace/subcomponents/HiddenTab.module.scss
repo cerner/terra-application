@@ -32,6 +32,7 @@
     }
 
     &[data-focus-styles-enabled='true']:focus {
+      box-shadow: var(--terra-application-workspace-hidden-tab-focus-box-shadow, none);
       outline: var(--terra-application-workspace-hidden-tab-focus-outline, 2px dashed #000);
       outline-offset: var(--terra-application-workspace-hidden-tab-focus-outline-offset, -2px);
       z-index: 5;
@@ -47,6 +48,7 @@
         &::before {
           border: var(--terra-application-workspace-hidden-tab-ie-focus-before-border, 2px dashed #000);
           bottom: 0;
+          box-shadow: var(--terra-application-workspace-hidden-tab-ie-focus-before-box-shadow, none);
           content: '';
           left: 0;
           position: absolute;

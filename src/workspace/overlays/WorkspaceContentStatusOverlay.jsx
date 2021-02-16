@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import StatusLayout from '../shared/StatusLayout';
+import { ThemeContext } from '../../theme';
+
 import WorkspaceContentStatusOverlayButton from './WorkspaceContentStatusOverlayButton';
 
 import styles from './WorkspaceContentStatusOverlay.module.scss';
@@ -39,17 +41,21 @@ const propTypes = {
   },
 };
 
-const WorkspaceContentStatusOverlay = ({ variant, message, children }) => (
-  <div
-    className={cx('status-overlay')}
-    role="status"
-    data-testid="workspace-content-status"
-  >
-    <StatusLayout variant={variant} message={message}>
-      {children}
-    </StatusLayout>
-  </div>
-);
+const WorkspaceContentStatusOverlay = ({ variant, message, children }) => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <div
+      className={cx('status-overlay', theme.className)}
+      role="status"
+      data-testid="workspace-content-status"
+    >
+      <StatusLayout variant={variant} message={message}>
+        {children}
+      </StatusLayout>
+    </div>
+  );
+};
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
 

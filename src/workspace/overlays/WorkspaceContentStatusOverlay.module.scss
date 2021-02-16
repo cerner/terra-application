@@ -1,6 +1,9 @@
+@import '../clinical-lowlight-theme/WorkspaceContentStatusOverlay.module';
+@import '../orion-fusion-theme/WorkspaceContentStatusOverlay.module';
+
 :local {
   .status-overlay {
-    background: var(--terra-application-workspace-content-status-overlay-background, #fefffe);
+    background-color: var(--terra-application-workspace-content-status-overlay-background-color, #fefffe);
     background-image: var(--terra-application-workspace-content-status-overlay-background-image, none);
     height: 100%;
     outline: none;

@@ -1,5 +1,4 @@
 import React from 'react';
-import classNames from 'classnames/bind';
 import Toolbar from 'terra-toolbar';
 import Button from 'terra-button';
 import IconEdit from 'terra-icon/lib/icon/IconEdit';
@@ -7,10 +6,6 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 
 import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '../../../workspace';
-
-import styles from './TestStyles.module.scss';
-
-const cx = classNames.bind(styles);
 
 import MockContent from './MockContent';
 

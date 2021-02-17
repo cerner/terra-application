@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ApplicationBase should render with all props 1`] = `""`;
+
+exports[`ApplicationBase should render with minimal props 1`] = `""`;
+
+exports[`ApplicationBase should render with the preferred browser locale 1`] = `""`;

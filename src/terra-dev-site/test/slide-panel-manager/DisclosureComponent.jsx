@@ -64,6 +64,10 @@ class DisclosureComponent extends React.Component {
     }
   }
 
+  handleSelectChange(event) {
+    this.setState({ [event.target.name]: event.target.value });
+  }
+
   getId(name) {
     return `${this.state.id}-${name}-${this.props.nestedIndex}`;
   }
@@ -73,10 +77,6 @@ class DisclosureComponent extends React.Component {
       const keyValue = index;
       return <option id={`${name}-${currentValue}-${this.props.nestedIndex}`} key={keyValue} value={currentValue}>{currentValue}</option>;
     });
-  }
-
-  handleSelectChange(event) {
-    this.setState({ [event.target.name]: event.target.value });
   }
 
   disclose(size, dimensions) {

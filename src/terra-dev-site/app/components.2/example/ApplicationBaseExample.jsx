@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
@@ -11,7 +11,7 @@ const ApplicationContentExample = () => {
   const [blockUnload, setBlockUnload] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
@@ -81,7 +81,7 @@ const ApplicationContentExample = () => {
 };
 
 const ApplicationBaseExample = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   return (
     <ApplicationBase locale={applicationIntl.locale}>

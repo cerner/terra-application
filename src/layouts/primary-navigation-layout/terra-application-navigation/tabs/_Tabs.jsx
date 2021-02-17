@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ResizeObserver from 'resize-observer-polyfill';
 import LodashDebounce from 'lodash.debounce';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import Popup from 'terra-popup';
 
 import Tab from './_Tab';
@@ -43,7 +43,7 @@ const propTypes = {
    * @private
    * Object containing intl APIs.
    */
-  intl: intlShape.isRequired,
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
 };
 
 const defaultProps = {
@@ -127,6 +127,30 @@ class Tabs extends React.Component {
     this.containerRef.current = null;
   }
 
+  handleResize(width) {
+    // Calculate hide index
+    const childrenCount = this.props.navigationItems.length;
+    const moreWidth = width - this.getRollupTabWidth();
+    let newHideIndex = childrenCount;
+    let isMenuHidden = true;
+
+    let calcMinWidth = 0;
+    for (let i = 0; i < childrenCount; i += 1) {
+      calcMinWidth += this.childRefs[i].current.getBoundingClientRect().width;
+      if (calcMinWidth > moreWidth && !(i === childrenCount - 1 && calcMinWidth <= width)) {
+        newHideIndex = i;
+        isMenuHidden = false;
+        break;
+      }
+    }
+
+    if (this.hiddenStartIndex !== newHideIndex) {
+      this.hiddenStartIndex = newHideIndex;
+      this.menuHidden = isMenuHidden;
+      this.forceUpdate();
+    }
+  }
+
   getRollupTabWidth() {
     if (!this.rollupTabRef.current) {
       return 0;
@@ -150,30 +174,6 @@ class Tabs extends React.Component {
     this.hiddenStartIndex = -1;
     this.menuHidden = false;
     this.isCalculating = true;
-  }
-
-  handleResize(width) {
-    // Calculate hide index
-    const childrenCount = this.props.navigationItems.length;
-    const moreWidth = width - this.getRollupTabWidth();
-    let newHideIndex = childrenCount;
-    let isMenuHidden = true;
-
-    let calcMinWidth = 0;
-    for (let i = 0; i < childrenCount; i += 1) {
-      calcMinWidth += this.childRefs[i].current.getBoundingClientRect().width;
-      if (calcMinWidth > moreWidth && !(i === childrenCount - 1 && calcMinWidth <= width)) {
-        newHideIndex = i;
-        isMenuHidden = false;
-        break;
-      }
-    }
-
-    if (this.hiddenStartIndex !== newHideIndex) {
-      this.hiddenStartIndex = newHideIndex;
-      this.menuHidden = isMenuHidden;
-      this.forceUpdate();
-    }
   }
 
   shouldPulse(navigationItems, notifications) {

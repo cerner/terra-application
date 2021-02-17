@@ -1,7 +1,7 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, useMemo, useState,
+  useEffect, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import ThemeProvider from 'terra-theme-provider';
@@ -11,7 +11,6 @@ import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import { IntlProvider } from 'react-intl';
 import { ApplicationIntlProvider } from '../application-intl';
 import i18nLoader from './private/i18nLoader';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
 
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
@@ -60,7 +59,9 @@ const ApplicationBase = ({
 
   useEffect(() => {
     if (finalLocale !== undefined) {
-      i18nLoader(finalLocale).then(translationsModule => setMessages(translationsModule.default)).catch((error) => {
+      i18nLoader(finalLocale).then(translationsModule => {
+        setMessages(translationsModule.default || translationsModule.messages); // TODO figure out why this changes
+      }).catch((error) => {
         // eslint-disable-next-line no-console
         console.error(error);
         throw error;

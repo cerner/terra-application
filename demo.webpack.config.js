@@ -1,6 +1,6 @@
 const path = require('path');
-const merge = require('webpack-merge');
-const defaultWebpackConfig = require('terra-toolkit/config/webpack/webpack.config');
+const { merge } = require('webpack-merge');
+const defaultWebpackConfig = require('@cerner/webpack-config-terra');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const demoConfig = () => ({

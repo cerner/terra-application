@@ -1,8 +1,8 @@
 import React from 'react';
-import { useIntl } from 'react-intl';
+import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
 
 const TestOverrideTest = () => {
-  const applicationIntl = useIntl();
+  const applicationIntl = React.useContext(ApplicationIntlContext);
   return (
     <div>
       {'locale: '}

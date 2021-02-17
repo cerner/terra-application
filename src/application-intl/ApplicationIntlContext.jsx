@@ -1,9 +1,9 @@
 import { createContext } from 'react';
-import { intlShape } from 'react-intl';
+import PropTypes from 'prop-types';
 
 const ApplicationIntlContext = createContext();
 
-const contextShape = intlShape;
+const contextShape = PropTypes.shape({ formatMessage: PropTypes.func });
 
 export default ApplicationIntlContext;
 export { contextShape };

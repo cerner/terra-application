@@ -62,12 +62,12 @@ to match the prompt messaging provided by the components within `terra-applicati
 
 ```jsx
 import React, { useContext, useRef } from 'react';
-import { useIntl } from 'react-intl';
+import { ApplicationIntlContext } from '@cerner/terra-application/lib/application-intl';
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '@cerner/terra-application/lib/navigation-prompt';
 
 const ExampleComponent = () => {
   const checkpointRef = useRef();
-  const applicationIntl = useIntl();
+  const applicationIntl = useContext(ApplicationIntlContext);
 
   function resolvePrompts() {
     checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(applicationIntl)).then(() => { ... });

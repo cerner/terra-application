@@ -60,7 +60,7 @@
 
     &.is-active {
       box-shadow: none;
-      color: #000;
+      color: var(--terra-application-workspace-hidden-tab-hidden-is-active-color, #000);
       font-weight: normal;
       overflow: hidden;
   

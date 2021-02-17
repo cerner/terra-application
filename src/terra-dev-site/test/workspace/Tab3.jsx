@@ -1,5 +1,9 @@
 import React from 'react';
-import classNames from 'classnames/bind';
+import classNames from 'classnames/bind'; import Toolbar from 'terra-toolbar';
+import Button from 'terra-button';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAdd from 'terra-icon/lib/icon/IconAdd';
+
 import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '../../../workspace';
 
 import MockContent from './MockContent';
@@ -14,7 +18,12 @@ const Tab3 = () => {
 
   return (
     <WorkspaceContent
-      toolbar={<p className={cx('tab-3-toolbar')}>Tab 3 Toolbar</p>}
+      toolbar={(
+        <Toolbar>
+          <Button text="Edit" variant="utility" icon={<IconEdit />} />
+          <Button text="Add" variant="utility" icon={<IconAdd />} />
+        </Toolbar>
+    )}
       activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
     >

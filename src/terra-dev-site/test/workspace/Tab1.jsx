@@ -1,5 +1,11 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import Toolbar from 'terra-toolbar';
+import Button from 'terra-button';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
+
 import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '../../../workspace';
 
 import styles from './TestStyles.module.scss';
@@ -14,7 +20,13 @@ const Tab1 = () => {
 
   return (
     <WorkspaceContent
-      toolbar={<p className={cx('tab-1-toolbar')}>Tab 1 Toolbar</p>}
+      toolbar={(
+        <Toolbar>
+          <Button text="Edit" variant="utility" icon={<IconEdit />} />
+          <Button text="Add" variant="utility" icon={<IconAdd />} />
+          <Button text="Attachment" variant="utility" icon={<IconAttachment />} />
+        </Toolbar>
+      )}
       activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
     >

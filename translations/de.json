@@ -6,7 +6,7 @@
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Nicht speichern",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Mit der Bearbeitung fortfahren",
   "terraApplication.errorBoundary.defaultErrorMessage": "Das System hat einen Fehler festgestellt: {errorDetails}",
-  
+
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Mehr Navigation",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Mehr Navigation",
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Benutzereinstellungen",
@@ -32,5 +32,5 @@
   "terraApplication.notificationBanner.success": "Erfolg.",
   "terraApplication.notificationBanner.unsatisfied": "Erforderliche Aktion.",
   "terraApplication.notificationBanner.unverified": "Externe Datensätze",
-  "terraApplication.notificationBanner.warning": "Achtung.",
+  "terraApplication.notificationBanner.warning": "Achtung."
 }

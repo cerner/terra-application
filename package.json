@@ -27,37 +27,12 @@
   },
   "eslintConfig": {
     "extends": "@cerner/terra",
-    "overrides": [
-      {
-        "files": [
-          "src/terra-dev-site/**/*.jsx"
-        ],
-        "rules": {
-          "import/no-extraneous-dependencies": "off",
-          "import/no-unresolved": "off",
-          "import/extensions": "off",
-          "import/no-webpack-loader-syntax": "off",
-          "import/first": "off",
-          "import/no-duplicates": "off"
-        }
-      }
-    ],
     "rules": {
       "react/forbid-prop-types": "off"
-    },
-    "settings": {
-      "polyfills": [
-        "Promise",
-        "Map"
-      ]
-    },
-    "parser": "babel-eslint",
-    "parserOptions": {
-      "allowImportExportEverywhere": true
     }
   },
   "stylelint": {
-    "extends": "stylelint-config-terra",
+    "extends": "@cerner/stylelint-config-terra",
     "rules": {
       "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
     }
@@ -150,7 +125,8 @@
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-react": "^7.9.1",
     "@cerner/browserslist-config-terra": "^3.1.0",
-    "@cerner/eslint-config-terra": "^4.0.0",
+    "@cerner/eslint-config-terra": "^5.0.0",
+    "@cerner/stylelint-config-terra": "^4.0.0",
     "@cerner/terra-cli": "^1.1.0",
     "@cerner/terra-enzyme-intl": "^4.0.0",
     "@cerner/terra-open-source-scripts": "^1.1.0",
@@ -163,18 +139,18 @@
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
-    "eslint": "^6.8.0",
+    "eslint": "^7.0.0",
     "gh-pages": "^2.2.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "pacote": "^11.1.11",
+    "postcss": "^8.2.6",
     "raf": "^3.4.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^5.8.2",
     "regenerator-runtime": "^0.13.5",
-    "stylelint": "^10.0.1",
-    "stylelint-config-terra": "^3.3.0",
+    "stylelint": "^13.0.0",
     "terra-collapsible-menu-view": "^6.29.0",
     "terra-toolkit": "^6.0.0",
     "webpack": "^4.42.0",

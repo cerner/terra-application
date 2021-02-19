@@ -103,7 +103,7 @@
         .icon,
         .label {
           color: var(--terra-application-workspace-tab-hover-icon-label-color, #1c1f21);
-          padding-top: var(--terra-application-workspace-tab-hover-icon-label-padding-top, 13px);
+          padding-top: var(--terra-application-workspace-tab-hover-icon-label-padding-top, 14px);
         }
 
         &[data-focus-styles-enabled='true']:focus {
@@ -145,7 +145,7 @@
       .icon,
       .label {
         color: var(--terra-application-workspace-tab-is-active-icon-label-color, #1c1f21);
-        padding-top: var(--terra-application-workspace-tab-is-active-icon-label-padding-top, 15px);
+        padding-top: var(--terra-application-workspace-tab-is-active-icon-label-padding-top, 14px);
       }
     }
   }

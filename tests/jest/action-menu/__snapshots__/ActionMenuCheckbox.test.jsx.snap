@@ -47,9 +47,6 @@ exports[`ActionMenuCheckbox should render with minimal props 1`] = `
     className="checkbox"
   />
   <div
-    className="icon"
-  />
-  <div
     className="content"
   >
     test label

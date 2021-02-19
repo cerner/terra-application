@@ -81,7 +81,7 @@ const ActionMenuCheckbox = ({
       data-action-menu-key={actionKey}
     >
       <div className={cx('checkbox')}>{isChecked ? <IconCheckmark /> : null}</div>
-      <div className={cx('icon')}>{icon}</div>
+      {icon ? <div className={cx('icon')}>{icon}</div> : null}
       <div className={cx('content')}>
         {label}
       </div>

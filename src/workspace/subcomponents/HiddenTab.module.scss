@@ -3,7 +3,7 @@
 
 :local {
   .hidden {
-    align-items: center;
+    align-items: start;
     background-color: var(--terra-application-workspace-hidden-tab-hidden-background-color, #fff);
     color: var(--terra-application-workspace-hidden-tab-hidden-color, #222a2e);
     cursor: pointer;
@@ -85,6 +85,7 @@
     flex: 0 0 auto;
     height: var(--terra-application-workspace-hidden-tab-checkbox-height, 0.8571rem);
     margin-right: var(--terra-application-workspace-hidden-tab-checkbox-margin-right, 0.4286rem);
+    margin-top: var(--terra-application-workspace-hidden-tab-checkbox-margin-top, 0.1429rem);
     position: relative;
     width: var(--terra-application-workspace-hidden-tab-checkbox-width, 0.8571rem);
 

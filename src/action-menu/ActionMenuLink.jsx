@@ -81,7 +81,7 @@ const ActionMenuLink = ({
         role="menuitem"
         data-action-menu-key={actionKey}
       >
-        <div className={cx('icon')}>{icon}</div>
+        {icon ? <div className={cx('icon')}>{icon}</div> : null}
         <div className={cx('content')}>
           {label}
         </div>

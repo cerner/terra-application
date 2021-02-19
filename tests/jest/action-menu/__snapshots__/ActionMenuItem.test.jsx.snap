@@ -34,9 +34,6 @@ exports[`ActionMenuItem should render with minimal props 1`] = `
   tabIndex="-1"
 >
   <div
-    className="icon"
-  />
-  <div
     className="content"
   >
     test label

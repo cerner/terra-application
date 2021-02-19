@@ -3,7 +3,7 @@
 
 :local {
   .action-menu-radio {
-    align-items: center;
+    align-items: start;
     color: var(--terra-application-action-menu-radio-action-color, #222a2e);
     cursor: pointer;
     display: flex;
@@ -21,12 +21,14 @@
     }
   }
 
+  .icon,
   .checkbox {
     flex: 0 0 auto;
-    height: var(--terra-application-action-menu-radio-checkbox-height, 0.8571rem);
-    margin-right: var(--terra-application-action-menu-radio-checkbox-margin-right, 0.4286rem);
+    height: var(--terra-application-action-menu-radio-icon-checkbox-height, 0.8571rem);
+    margin-right: var(--terra-application-action-menu-radio-icon-checkbox-margin-right, 0.4286rem);
+    margin-top: var(--terra-application-action-menu-radio-icon-checkbox-margin-top, 0.1429rem);
     position: relative;
-    width: var(--terra-application-action-menu-radio-checkbox-width, 0.8571rem);
+    width: var(--terra-application-action-menu-radio-icon-checkbox-width, 0.8571rem);
 
     > * {
       height: 100%;
@@ -40,7 +42,9 @@
     flex: 1 1 auto;
     font-size: var(--terra-application-action-menu-radio-content-font-size, 1rem);
     font-weight: var(--terra-application-action-menu-radio-content-font-weight, normal);
+    overflow: hidden;
     text-align: start;
+    word-wrap: break-word;
   }
 
   .is-disabled {

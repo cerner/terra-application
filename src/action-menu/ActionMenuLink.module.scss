@@ -25,12 +25,29 @@
     }
   }
 
+  .icon {
+    flex: 0 0 auto;
+    height: var(--terra-application-action-menu-link-icon-height, 0.8571rem);
+    margin-right: var(--terra-application-action-menu-link-icon-margin-right, 0.4286rem);
+    margin-top: var(--terra-application-action-menu-link-icon-margin-top, 0.1429rem);
+    position: relative;
+    width: var(--terra-application-action-menu-link-icon-width, 0.8571rem);
+
+    > * {
+      height: 100%;
+      position: absolute;
+      width: 100%;
+    }
+  }
+
   .content {
     color: var(--terra-application-action-menu-link-content-color, #222a2e);
     flex: 1 1 auto;
     font-size: var(--terra-application-action-menu-link-content-font-size, 1rem);
     font-weight: var(--terra-application-action-menu-link-content-font-weight, normal);
+    overflow: hidden;
     text-align: start;
+    word-wrap: break-word;
   }
 
   .is-disabled {

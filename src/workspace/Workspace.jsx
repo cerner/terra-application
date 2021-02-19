@@ -91,6 +91,7 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
     key={option.key}
     actionKey={option.key}
     label={option.text}
+    icon={option.icon}
     isChecked={option.key === size}
     isDisabled={option.isDisabled}
     onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}

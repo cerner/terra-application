@@ -90,10 +90,9 @@
     "start-static": "npm run compile:prod && tt-serve-static --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
     "wdio-default": "wdio",
-    "wdio-locale": "LOCALE=de wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",
     "wdio-fusion": "THEME=orion-fusion-theme wdio",
-    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
+    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
     "@cerner/terra-docs": "^1.0.0",

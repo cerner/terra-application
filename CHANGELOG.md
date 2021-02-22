@@ -6,7 +6,9 @@
   * Added `webpack-config-terra` as a dependency.
 
 * Changed
-  * Updated webpack.config to use `webpack-config-terra`
+  * Updated `webpack.config` to use `webpack-config-terra`
+
+## 1.42.0 - (February 9, 2021)
 
 * Fixed
   * Moved development dependencies into devDependencies

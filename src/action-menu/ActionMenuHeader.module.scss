@@ -5,11 +5,11 @@
   .action-menu-header {
     align-items: var(--terra-application-action-menu-header-align-items, flex-start);
     background-color: var(--terra-application-action-menu-header-background-color, #f4f4f4);
-    border-bottom: var(--terra-application-action-menu-header-border-bottom, 1px solid #d3d4d5);
+    border-bottom: var(--terra-application-action-menu-header-border-bottom, 0);
     border-left: var(--terra-application-action-menu-header-border-left);
     border-right: var(--terra-application-action-menu-header-border-right);
     border-top: var(--terra-application-action-menu-header-border-top);
-    box-shadow: var(--terra-application-action-menu-header-box-shadow, 0 2px 0 0 #dedfe0, 0 1px 0 0 #f9f9f9);
+    box-shadow: var(--terra-application-action-menu-header-box-shadow, 0 1px 0 0 #dedfe0, 0 2px 0 0 #f9f9f9);
     display: flex;
     justify-content: space-between;
     min-height: var(--terra-application-action-menu-header-min-height, 2.5rem);

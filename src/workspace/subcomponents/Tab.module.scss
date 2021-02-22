@@ -74,6 +74,8 @@
     .label {
       color: var(--terra-application-workspace-tab-icon-label-color, #434a4d);
       line-height: 1.21428;
+      margin-left: var(--terra-application-workspace-tab-icon-label-margin-left, 0.5px);
+      margin-right: var(--terra-application-workspace-tab-icon-label-margin-right, 1.5px);
       padding-top: var(--terra-application-workspace-tab-icon-label-padding-top, 15px);
     }
 

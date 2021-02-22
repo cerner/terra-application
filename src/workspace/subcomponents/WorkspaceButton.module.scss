@@ -31,6 +31,8 @@
     }
   
     &:active {
+      background-color: var(--terra-application-workspace-workspace-button-active-background-color, transparent);
+      border-radius: var(--terra-application-workspace-workspace-button-active-border-radius, 0);
       color: var(--terra-application-workspace-workspace-button-active-color, #ccc);
     }
 

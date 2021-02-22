@@ -7,7 +7,7 @@
     height: var(--terra-application-action-menu-divider-height, 1px);
     margin: var(--terra-application-action-menu-divider-margin, 0.3571rem 0);
 
-    & > .line {
+    > .line {
       border-top: var(--terra-application-action-menu-divider-line-border-top, 1px solid #f9f9f9);
       height: var(--terra-application-action-menu-divider-line-height, 1px);
       height: 1px;

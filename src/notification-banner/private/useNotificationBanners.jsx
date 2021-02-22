@@ -336,7 +336,7 @@ const useNotificationBanners = () => {
 
               return (
                 <li
-                  className={classNames(cx('banner-list-item'), bannerClassName)}
+                  className={classNames(cx('banner-list-item', { 'legacy-banner-style': !bannerClassName }), bannerClassName)}
                   aria-label={translatedBannerLabel}
                   aria-setsize={prioritizedBanners.length}
                   aria-posinset={index + 1}

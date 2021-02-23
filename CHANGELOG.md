@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added Workspace and related components
+
 ## 1.42.0 - (February 9, 2021)
 
 * Fixed

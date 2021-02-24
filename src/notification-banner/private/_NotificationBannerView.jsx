@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import { injectIntl } from 'react-intl';
 import Button from 'terra-button';
 import IconAlert from 'terra-icon/lib/icon/IconAlert';
 import IconError from 'terra-icon/lib/icon/IconError';
@@ -8,11 +11,7 @@ import IconGapChecking from 'terra-icon/lib/icon/IconGapChecking';
 import IconDiamondSymbol from 'terra-icon/lib/icon/IconDiamondSymbol';
 import IconInformation from 'terra-icon/lib/icon/IconInformation';
 import IconSuccess from 'terra-icon/lib/icon/IconSuccess';
-import classNames from 'classnames';
-import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-
-import { ApplicationIntlContext } from '../../application-intl';
 
 import useElementSize, { breakpointFilter } from './useElementSize';
 
@@ -76,6 +75,10 @@ const propTypes = {
     NotificationTypes.SUCCESS,
     NotificationTypes.CUSTOM,
   ]),
+  /**
+   * @private
+   */
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 const defaultProps = {
@@ -117,10 +120,10 @@ const NotificationBannerView = ({
   onDismiss,
   title,
   type,
+  intl,
   ...customProps
 }) => {
   const theme = React.useContext(ThemeContext);
-  const intl = React.useContext(ApplicationIntlContext);
   const containerRef = React.useRef();
   const { activeBreakpoint } = useElementSize(containerRef, breakpointFilter);
 
@@ -183,5 +186,5 @@ const NotificationBannerView = ({
 NotificationBannerView.propTypes = propTypes;
 NotificationBannerView.defaultProps = defaultProps;
 
-export default NotificationBannerView;
+export default injectIntl(NotificationBannerView);
 export { getTitleStringIdForType, NotificationTypes };

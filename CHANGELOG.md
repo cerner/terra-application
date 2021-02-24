@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Injecting intl into NotificationBanner components for usage outside of ApplicationBase
+
 ## 1.43.0 - (February 23, 2021)
 
 * Added

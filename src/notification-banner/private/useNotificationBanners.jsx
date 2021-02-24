@@ -2,11 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
 import classNames from 'classnames';
-
+import { injectIntl } from 'react-intl';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
-
-import { ApplicationIntlContext } from '../../application-intl';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
@@ -158,10 +156,9 @@ const useNotificationBanners = () => {
      * Renders a list of prioritized notification banners.
      */
     const NotificationBanners = ({
-      id, label, activeClassName, bannerClassName,
+      id, label, activeClassName, bannerClassName, intl,
     }) => {
       const theme = React.useContext(ThemeContext);
-      const intl = React.useContext(ApplicationIntlContext);
       const [bannerState, setBannerState] = React.useState({});
 
       // The container reference points to the notification region so we
@@ -386,11 +383,15 @@ const useNotificationBanners = () => {
        * A className applied to each rendered notification banner.
        */
       bannerClassName: PropTypes.string,
+      /**
+       * @private
+       */
+      intl: PropTypes.shape({ formatMessage: PropTypes.func }),
     };
 
     return {
       NotificationBannerProvider,
-      NotificationBanners,
+      NotificationBanners: injectIntl(NotificationBanners),
     };
   }, []);
 

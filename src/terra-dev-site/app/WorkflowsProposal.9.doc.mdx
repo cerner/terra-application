@@ -834,136 +834,142 @@ TODO 10/21
 * Suspense - with lifecycle callbacks
 * TerraRequestor
 * Transient Presentation - for external popup/content overlay dismissal
+* Testing Helpers
 
 * Technical Documentation
-* Testing Helpers
 
 ## ApplicationBase
 
-Needs minor cleanup and testing. 
+Needs minor cleanup and testing. 3
 
 ## ApplicationContainer
 
-Need to evaluate ApplicationConceptBannerContext API.
-Need to evaluate ApplicationContainerContext API.
-Need to evaluate Skip to Links for accessibility criteria.
-Need to evaluate extensibility/plan for recreation in Mpages.
-Needs minor clean up and testing otherwise.
+Need to evaluate ApplicationConceptBannerContext API. 3
+Need to evaluate ApplicationContainerContext API. 3
+Need to evaluate Skip to Links for accessibility criteria. 5
+Need to evaluate extensibility/plan for recreation in Mpages. 3
+Need to investigate F6/region hopping accessibility feature and how those regions could be identified. 8
+Needs minor clean up and testing otherwise. 5
 
 ## Layouts
 
 ### PrimaryNavigationLayout
 
-Need to evaluate ApplicationConceptBannerContext integration.
-Need to evaluate SessionUserContext integration.
-Need to evaluate SessionActionsContext integration.
-Needs minor cleanup and testing. (Portal hook has been tested with workspace v1.)
+Need to evaluate ApplicationConceptBannerContext integration. 8
+Need to evaluate SessionUserContext integration. 5
+Need to evaluate SessionActionsContext integration. 5
+Needs minor cleanup and testing. (Portal hook has been tested with workspace v1.) 3
 
 Rename? (ApplicationNavigationLayout)
 
 ### SecondaryNavigationLayout
 
-Need to determine sidebar styles.
-Need to determine sidebar extensibility.
-Need to implement final workspace API.
-Need to implement workspace container styles.
-Need to better implement dynamic workspace resizing.
-Need to validate sidebar/workspace overlay behavior at small breakpoints, I know something is coming.
-Needs major clean up and testing.
+Need to determine sidebar styles. UX
+Need to determine sidebar extensibility. UX
+Need to validate sidebar/workspace overlay behavior at small breakpoints, I know something is coming. UX
+Need to implement final workspace API. 5
+Need to implement workspace container styles. 8
+Need to better implement dynamic workspace resizing. 13
+Needs major clean up and testing. 8
 
 Rename? (SideNavigationLayout)
 
 ### EmbeddedLayout
 
-Need to evaluate ApplicationConceptBannerContext integration.
-Needs minor clean up and testing.
+Need to evaluate ApplicationConceptBannerContext integration. 3
+Needs minor clean up and testing. 3
 
 ### LegacyLayout
 
 This is a layout that implements the ApplicationLayout-/ApplicationStatusOveryProviders and an error boundary
 for teams that want to migrate to v2 without using pages.
 
-Needs to be developed in its entirety.
-Needs testing.
+Needs to be developed in its entirety. 5
+Needs testing. 3
 
 ## Page
 
-Need to implement Page header styles.
-Need to validate header "heading" level or determine if dynamic leveling is needed.
-Need to validate ApplicationConceptBannerContext integration.
-Need to validate NotificationBanner integration.
-Need to implement default PageLayout styles.
-Need to implement loading/status overlays (matching WorkspaceContent API)
-Need to validate provided contexts/callbacks for presentation state (when a Page is hidden due to subsequent drill-in)
-Need to consume useElementSize hook for determining header action presentation state.
-Needs cleanup and testing.
+Need to validate header "heading" level or determine if dynamic leveling is needed. UX
+Need to implement Page header styles. 5
+Need to validate NotificationBanner integration. 3
+Need to implement default PageLayout styles. 5
+Need to implement loading/status overlays (matching WorkspaceContent API). 5
+Need to validate provided contexts/callbacks for presentation state (when a Page is hidden due to subsequent drill-in) 8
+Need to consume useElementSize hook for determining header action presentation state. 3
+Needs cleanup and testing. 5
 
 ## Layers
 
-Need to validate general layering strategy (with shared focus replay, inert logic, etc.)
+Need to validate general layering strategy (with shared focus replay, inert logic, etc.) 12
 
 ### Modal
 
-Need to validate ported code (check for changes since copy).
-Need to validate NotificationBanner integration.
-Need to validate modal header "heading" level or determine if dynamic leveling is needed.
-Needs cleanup and testing.
+Need to determine modal header styles. UX
+Need to validate modal header "heading" level or determine if dynamic leveling is needed. UX
+Need to validate ported code (check for changes since copy). 3
+Need to validate NotificationBanner integration. 3
+Needs cleanup and testing. 5
 
 ### NotificationDialog
 
-Need to validate ported code (check for changes since copy).
-Needs cleanup and testing.
+Need to validate ported code (check for changes since copy). 3
+Needs cleanup and testing. 3
 
 ### InteractionBlockingOverlay
 
-Need to determine styles.
-Need to determine accessibility/flashing concerns.
-Need to implement styles.
-Need to determine presentation API (declarative vs. API).
-Need to validate positioning in overall layer hierarchy (above/below general notification dialog).
-Needs testing.
+Need to determine styles. UX
+Need to determine accessibility/flashing concerns. UX
+Need to validate positioning in overall layer hierarchy (above/below general notification dialog). UX
+Need to implement styles. 5
+Need to determine presentation API (declarative vs. API). 8
+Needs testing. 3
 
 ## MainContainer
 
-Needs cleanup and testing.
+Needs cleanup and testing. 3
 
 ## ActionMenu
 
-Tested with workspace v1, no changes anticipated at this time.
+Tested with workspace v1, no changes anticipated at this time. 0
 
 ## Workspace
 
-Tested with workspace v1, no changes anticipated at this time.
+Tested with workspace v1, no changes anticipated at this time. 0
 
 ## SessionUserContext
 
-Need to validate context shape and expected usage.
+Need to validate context shape and expected usage. 5
 
 ## SessionActionsContext
 
-Need to validate context shape and expected usage.
+Need to validate context shape and expected usage. 5
 
 ## Suspense - with lifecycle callbacks
 
 Need to determine immediate need or punt.
+If needed, needs tests. 5
 
 ## TerraRequestor
 
-Need to pull in fetch shim.
-Need to determine API for global setup.
+Need to pull in fetch shim. 3
+Need to determine API for global setup. 5
+Need to code everything. 3
+Need tests. 5
 
 ## Transient Presentation - for external popup/content overlay dismissal
 
+EventEmitter based API for dismissing transient content. Paired with custom useTransientState hook with listener built in.
+
 Need to determine need for this.
-If needed, need to determine API for this.
-
-## Technical Documentation
-
-Need to write a whole bunch of s#!t
+If needed, need to determine API for this and tests. 5
 
 ## Testing Helpers
 
 It'd be nice to provide first-class mocks for testing with react-testing-library.
 MockApplication with mock intl, etc.
 
-Need to spike on that.
+Need to spike on that. 8
+
+## Technical Documentation
+
+Need to stand up a doc site and write a whole bunch of stuff. 20

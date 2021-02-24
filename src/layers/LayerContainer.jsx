@@ -11,6 +11,9 @@ const LayerContainer = ({ children }) => {
   const [layerContextValue, setLayerContextValue] = React.useState();
   const [baseContentInert, setBaseContentInert] = React.useState(false);
 
+  // TODO investigate opening up a prop for dynamically getting the container ref
+  // for easier mpage integration. let them pick where these things show up in their DOM.
+
   React.useLayoutEffect(() => {
     // The LayerNodeManager needs valid refs when it is instantiated
     setLayerContextValue({

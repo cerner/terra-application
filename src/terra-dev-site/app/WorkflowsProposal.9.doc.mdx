@@ -794,6 +794,7 @@ TODO 10/21
         * Decisions here will impact things like default padding/margin placement.
         * **ANSWER** no content restrictions, no "cards", punting thus far
       * Actions Menu for WorkspaceTab - Can we punt? If not, what sort of control are we needing? terra-menu has issues.
+        * **ANSWER** we're punting
 
       
       * PageHeader uplift to use new ActionsMenu for rollup
@@ -806,3 +807,163 @@ TODO 10/21
       * Include LegacyLayout (including loading/status overlays) for slow adopters
       * Make workspace expand to full container size at overlay sizes
       * Remove custom notification banner support in v2
+
+
+# 2/24/2021 Status
+
+* ApplicationBase
+* ApplicationContainer
+  * ApplicationConceptBannerContext
+  * ApplicationContainerContext
+* Layouts
+  * PrimaryNavigationLayout
+  * SecondaryNavigationLayout
+  * EmbeddedLayout
+  * LegacyLayout
+* Page
+* Layers
+  * Modal
+  * NotificationDialog
+  * InteractionBlockingOverlay
+* ActionMenu
+* Workspace
+* MainContainer
+
+* SessionUserContext
+* SessionActionsContext
+* Suspense - with lifecycle callbacks
+* TerraRequestor
+* Transient Presentation - for external popup/content overlay dismissal
+
+* Technical Documentation
+* Testing Helpers
+
+## ApplicationBase
+
+Needs minor cleanup and testing. 
+
+## ApplicationContainer
+
+Need to evaluate ApplicationConceptBannerContext API.
+Need to evaluate ApplicationContainerContext API.
+Need to evaluate Skip to Links for accessibility criteria.
+Need to evaluate extensibility/plan for recreation in Mpages.
+Needs minor clean up and testing otherwise.
+
+## Layouts
+
+### PrimaryNavigationLayout
+
+Need to evaluate ApplicationConceptBannerContext integration.
+Need to evaluate SessionUserContext integration.
+Need to evaluate SessionActionsContext integration.
+Needs minor cleanup and testing. (Portal hook has been tested with workspace v1.)
+
+Rename? (ApplicationNavigationLayout)
+
+### SecondaryNavigationLayout
+
+Need to determine sidebar styles.
+Need to determine sidebar extensibility.
+Need to implement final workspace API.
+Need to implement workspace container styles.
+Need to better implement dynamic workspace resizing.
+Need to validate sidebar/workspace overlay behavior at small breakpoints, I know something is coming.
+Needs major clean up and testing.
+
+Rename? (SideNavigationLayout)
+
+### EmbeddedLayout
+
+Need to evaluate ApplicationConceptBannerContext integration.
+Needs minor clean up and testing.
+
+### LegacyLayout
+
+This is a layout that implements the ApplicationLayout-/ApplicationStatusOveryProviders and an error boundary
+for teams that want to migrate to v2 without using pages.
+
+Needs to be developed in its entirety.
+Needs testing.
+
+## Page
+
+Need to implement Page header styles.
+Need to validate header "heading" level or determine if dynamic leveling is needed.
+Need to validate ApplicationConceptBannerContext integration.
+Need to validate NotificationBanner integration.
+Need to implement default PageLayout styles.
+Need to implement loading/status overlays (matching WorkspaceContent API)
+Need to validate provided contexts/callbacks for presentation state (when a Page is hidden due to subsequent drill-in)
+Need to consume useElementSize hook for determining header action presentation state.
+Needs cleanup and testing.
+
+## Layers
+
+Need to validate general layering strategy (with shared focus replay, inert logic, etc.)
+
+### Modal
+
+Need to validate ported code (check for changes since copy).
+Need to validate NotificationBanner integration.
+Need to validate modal header "heading" level or determine if dynamic leveling is needed.
+Needs cleanup and testing.
+
+### NotificationDialog
+
+Need to validate ported code (check for changes since copy).
+Needs cleanup and testing.
+
+### InteractionBlockingOverlay
+
+Need to determine styles.
+Need to determine accessibility/flashing concerns.
+Need to implement styles.
+Need to determine presentation API (declarative vs. API).
+Need to validate positioning in overall layer hierarchy (above/below general notification dialog).
+Needs testing.
+
+## MainContainer
+
+Needs cleanup and testing.
+
+## ActionMenu
+
+Tested with workspace v1, no changes anticipated at this time.
+
+## Workspace
+
+Tested with workspace v1, no changes anticipated at this time.
+
+## SessionUserContext
+
+Need to validate context shape and expected usage.
+
+## SessionActionsContext
+
+Need to validate context shape and expected usage.
+
+## Suspense - with lifecycle callbacks
+
+Need to determine immediate need or punt.
+
+## TerraRequestor
+
+Need to pull in fetch shim.
+Need to determine API for global setup.
+
+## Transient Presentation - for external popup/content overlay dismissal
+
+Need to determine need for this.
+If needed, need to determine API for this.
+
+## Technical Documentation
+
+Need to write a whole bunch of s#!t
+
+## Testing Helpers
+
+It'd be nice to provide first-class mocks for testing with react-testing-library.
+MockApplication with mock intl, etc.
+
+Need to spike on that.

@@ -15,6 +15,9 @@ import PageHeader from './private/_PageHeader';
 import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 import PageActions from './PageActions';
 
+import PageIdentifierContext from './new/PageIdentifierContext';
+import usePagePortal from './new/usePagePortal';
+
 import styles from './Page.module.scss';
 
 const cx = classNames.bind(styles);
@@ -95,15 +98,6 @@ const Page = ({
   const pageContext = React.useContext(PageContext);
 
   /**
-   * An unique identifier is generated for each Page to ensure it can be
-   * safely registered with the PageContainerPortalManager.
-   *
-   * While the pageKey _might_ be sufficient, it is safer to create a separate,
-   * guaranteed unique identifier here in case the pageKey prop were to change.
-   */
-  const nodeIdRef = React.useRef(uuidv4());
-
-  /**
    * A UnsavedChangesPromptCheckpoint is used to detect unsaved changes within the Page's
    * content.
    */
@@ -122,11 +116,13 @@ const Page = ({
    */
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
+  const { portalId, portalElement } = usePagePortal({ onActivate: setIsActive });
+
   /**
    * A unique id to generated for Page's rendered hidden text. This id is used by the
    * nodeManager to ensure the container element is properly described by the presented Page.
    */
-  const pageLabelIdRef = React.useRef(`page-label-${nodeIdRef.current}`);
+  const pageLabelIdRef = React.useRef(`page-label-${portalId}`);
 
   if (!pageContext) {
     throw new Error(`[terra-application] Page ${label} was rendered outside of a PageContainer.`);
@@ -138,22 +134,22 @@ const Page = ({
    */
   const childPageContextValue = React.useMemo(() => ({
     ...pageContext,
-    parentNodeId: nodeIdRef.current,
-  }), [pageContext]);
+    parentNodeId: portalId,
+  }), [pageContext, portalId]);
 
   /**
    * The Page must release the element into which it is portaled when it is unmounted
    * to prevent memory leaks.
    */
   React.useLayoutEffect(() => () => {
-    pageContext.nodeManager.releaseNode({ nodeId: nodeIdRef.current });
-  }, [pageContext.nodeManager]);
+    pageContext.nodeManager.releaseNode({ nodeId: portalId });
+  }, [pageContext.nodeManager, portalId]);
 
-  const portalNode = pageContext.nodeManager.getNode({
-    nodeId: nodeIdRef.current,
-    ancestorNodeId: pageContext.parentNodeId,
-    setPageActive: setIsActive,
-  });
+  // const portalNode = pageContext.nodeManager.getNode({
+  //   nodeId: portalId,
+  //   ancestorNodeId: pageContext.parentNodeId,
+  //   setPageActive: setIsActive,
+  // });
 
   /**
    * When the Page becomes active within the PageContainer, the container is notified.
@@ -178,7 +174,7 @@ const Page = ({
     return undefined;
   }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, label, metaData, activeMainPageRegistration]);
 
-  if (!portalNode) {
+  if (!portalElement) {
     throw new Error(`[terra-application] Page ${label} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
   }
 
@@ -215,36 +211,38 @@ const Page = ({
 
   return (
     ReactDOM.createPortal((
-      <div className={cx('page')}>
-        <div className={cx('header')}>
-          <PageHeader
-            onBack={onRequestClose && safelyRequestClose}
-            label={label}
-            actions={actions}
-            toolbar={toolbar}
-            notificationBanners={<NotificationBanners />}
-          />
+      <PageIdentifierContext.Provider value={portalId}>
+        <div className={cx('page')}>
+          <div className={cx('header')}>
+            <PageHeader
+              onBack={onRequestClose && safelyRequestClose}
+              label={label}
+              actions={actions}
+              toolbar={toolbar}
+              notificationBanners={<NotificationBanners />}
+            />
+          </div>
+          <div className={cx('content')}>
+            <VisuallyHiddenText
+              aria-hidden
+              id={pageLabelIdRef.current}
+              text={label}
+            />
+            <DynamicOverlayContainer
+              overlays={overlays}
+            >
+              <PageContext.Provider value={childPageContextValue}>
+                <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+                  <NotificationBannerProvider>
+                    {children}
+                  </NotificationBannerProvider>
+                </UnsavedChangesPromptCheckpoint>
+              </PageContext.Provider>
+            </DynamicOverlayContainer>
+          </div>
         </div>
-        <div className={cx('content')}>
-          <VisuallyHiddenText
-            aria-hidden
-            id={pageLabelIdRef.current}
-            text={label}
-          />
-          <DynamicOverlayContainer
-            overlays={overlays}
-          >
-            <PageContext.Provider value={childPageContextValue}>
-              <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-                <NotificationBannerProvider>
-                  {children}
-                </NotificationBannerProvider>
-              </UnsavedChangesPromptCheckpoint>
-            </PageContext.Provider>
-          </DynamicOverlayContainer>
-        </div>
-      </div>
-    ), portalNode)
+      </PageIdentifierContext.Provider>
+    ), portalElement)
   );
 };
 

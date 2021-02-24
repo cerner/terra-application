@@ -7,9 +7,11 @@ import LayoutActionsContext from '../layouts/shared/LayoutActionsContext';
 import NavigationItemContext from '../layouts/shared/NavigationItemContext';
 
 import { deferExecution } from '../utils/lifecycle-utils';
+import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
 
 import PageContext from './private/PageContext';
 import PageContainerPortalManager from './private/_PageContainerPortalManager';
+import PagePortalContext from './new/PagePortalContext';
 
 import styles from './PageContainer.module.scss';
 
@@ -80,6 +82,107 @@ const PageContainer = ({
    */
   const layoutActions = React.useContext(LayoutActionsContext);
 
+  const portalRegisterRef = React.useRef({});
+  const lastActivePortalArrayRef = React.useRef([]);
+  const [activePortalArray, setActivePortalArray] = React.useState([]);
+  const pagePortalContextValue = React.useMemo(() => {
+    const renderPortalElement = (portalElement, portalId, ancestorPortalId, onPortalActivate) => {
+      const entryForPortalId = portalRegisterRef.current[portalId];
+      if (entryForPortalId) {
+        entryForPortalId.ancestorPortalId = ancestorPortalId;
+        entryForPortalId.onPortalActivate = onPortalActivate;
+      }
+
+      if (ancestorPortalId) {
+        const entryForAncestorId = portalRegisterRef.current[portalId];
+        if (entryForAncestorId && entryForAncestorId.childId !== portalId) {
+          // If the ancestor already has a child, we cannot render this page
+          // TODO warn or error here?
+          return;
+        }
+      }
+
+      portalRegisterRef.current[portalId] = {
+        element: portalElement,
+        ancestorPortalId,
+        onPortalActivate,
+        child: undefined,
+        overflowData: undefined,
+      };
+
+      if (portalRegisterRef.current[ancestorPortalId]) {
+        portalRegisterRef.current[ancestorPortalId].child = portalId;
+      }
+
+      setActivePortalArray((activePortals) => {
+        if (activePortals.indexOf(portalId) >= 0) {
+          return activePortals;
+        }
+
+        if (activePortals.indexOf(ancestorPortalId) >= 0) {
+          const newPortals = [...activePortals];
+          newPortals.splice(activePortals.indexOf(ancestorPortalId) + 1, 0, portalId);
+          return newPortals;
+        }
+
+        return [portalId];
+      });
+    };
+
+    const releasePortalElement = (portalId) => {
+      const entryForPortalId = portalRegisterRef.current[portalId];
+      if (!entryForPortalId) {
+        return;
+      }
+
+      setActivePortalArray((activePortals) => {
+        const newPortals = [...activePortals];
+        newPortals.splice(activePortals.indexOf(portalId), 1);
+        return newPortals;
+      });
+    };
+
+    return {
+      renderPortalElement,
+      releasePortalElement,
+    };
+  }, []);
+
+  React.useLayoutEffect(() => {
+    const danglingPortals = [...lastActivePortalArrayRef.current];
+    for (let i = 0, count = activePortalArray.length; i < count; i += 1) {
+      const isTopPortal = i === count - 1;
+
+      const portalData = portalRegisterRef.current[activePortalArray[i]];
+
+      if (!isTopPortal && rootContainerRef.current.contains(portalData.element)) {
+        portalData.overflowData = getPersistentScrollMap(portalData.element);
+
+        rootContainerRef.current.removeChild(portalData.element);
+
+        portalData.onPortalActivate(false);
+      } else if (isTopPortal && !rootContainerRef.current.contains(portalData.element)) {
+        rootContainerRef.current.appendChild(portalData.element);
+        applyScrollData(portalData.overflowData, portalData.element);
+
+        portalData.onPortalActivate(true);
+      }
+
+      danglingPortals.splice(danglingPortals.indexOf(activePortalArray[i]), 1);
+    }
+
+    for (let i = 0, count = danglingPortals.length; i < count; i += 1) {
+      const danglingPortalData = portalRegisterRef.current[danglingPortals[i]];
+      if (rootContainerRef.current.contains(danglingPortalData.element)) {
+        rootContainerRef.current.removeChild(danglingPortalData.element);
+      }
+
+      delete portalRegisterRef.current[danglingPortals[i]];
+    }
+
+    lastActivePortalArrayRef.current = activePortalArray;
+  }, [activePortalArray]);
+
   const pageContextValue = React.useMemo(() => ({
     nodeManager: portalManagerRef.current,
     containerStartActions: layoutActions.startActions,
@@ -124,9 +227,11 @@ const PageContainer = ({
 
   const content = (
     <LayoutActionsContext.Provider value={defaultLayoutActionsOverrideValue}>
-      <PageContext.Provider value={pageContextValue}>
-        {hasMounted && children}
-      </PageContext.Provider>
+      <PagePortalContext.Provider value={pagePortalContextValue}>
+        <PageContext.Provider value={pageContextValue}>
+          {hasMounted && children}
+        </PageContext.Provider>
+      </PagePortalContext.Provider>
     </LayoutActionsContext.Provider>
   );
 

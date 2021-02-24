@@ -21,7 +21,7 @@ function getPersistentScrollMap(container) {
   return Array.prototype.slice.call(scrollElements).reduce((accumulator, element) => ({ ...accumulator, ...getOverflowDataForElement(element) }), {});
 }
 
-function applyScrollData(scrollData, container) {
+function applyScrollData(scrollData = {}, container) {
   Object.entries(scrollData).forEach(([overflowId, data]) => {
     const overflowElement = container.querySelector(`[data-persistent-overflow-id="${overflowId}"]`);
     if (overflowElement) {

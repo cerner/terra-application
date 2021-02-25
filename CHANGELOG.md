@@ -8,6 +8,16 @@
 * Changed
   * Updated `webpack.config` to use `webpack-config-terra`
 
+## 1.43.1 - (February 24, 2021)
+
+* Changed
+  * Injecting intl into NotificationBanner components for usage outside of ApplicationBase
+
+## 1.43.0 - (February 23, 2021)
+
+* Added
+  * Added Workspace and related components
+
 ## 1.42.0 - (February 9, 2021)
 
 * Fixed

@@ -17,10 +17,36 @@ wdioConfig.before = () => {
 
   global.browser.addCommand('disableCSSAnimations', () => {
     global.browser.execute(`
-      var animationOverride = document.createElement('style');
-      animationOverride.appendChild(document.createTextNode('body * { animation: none !important; }'));
-      document.head.appendChild(animationOverride);
+      if (!document.getElementById('wdio-animation-override')) {
+        var animationOverride = document.createElement('style');
+        animationOverride.id = 'wdio-animation-override';
+        animationOverride.appendChild(document.createTextNode('body * { animation: none !important; }'));
+        document.head.appendChild(animationOverride);  
+      }
     `);
+  });
+
+  global.browser.addCommand('enableCSSAnimations', () => {
+    global.browser.execute(`
+      var animationOverride = document.getElementById('wdio-animation-override');
+      if (animationOverride) {
+        animationOverride.parentNode.removeChild(animationOverride);
+      }
+    `);
+  });
+
+  global.browser.addCommand('clickWithTestId', (testId) => {
+    const selector = `[data-testid="${testId}"]`;
+
+    global.browser.waitForVisible(selector);
+    global.browser.click(selector);
+  });
+
+  global.browser.addCommand('clickWithAttribute', (key, value) => {
+    const selector = `[${key}=${value}]`;
+
+    global.browser.waitForVisible(selector);
+    global.browser.click(selector);
   });
 };
 

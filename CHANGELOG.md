@@ -5,6 +5,21 @@
 * Changed
   * Renamed file `NotificationBanner.mdx` to `NotificationBanner.app.mdx`.
 
+## 1.43.1 - (February 24, 2021)
+
+* Changed
+  * Injecting intl into NotificationBanner components for usage outside of ApplicationBase
+
+## 1.43.0 - (February 23, 2021)
+
+* Added
+  * Added Workspace and related components
+
+## 1.42.0 - (February 9, 2021)
+
+* Fixed
+  * Moved development dependencies into devDependencies
+
 ## 1.41.1 - (January 8, 2021)
 
 * Changed

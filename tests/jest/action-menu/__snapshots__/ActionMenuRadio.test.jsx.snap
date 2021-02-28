@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenuRadio should render with all props 1`] = `
+<li
+  aria-checked={true}
+  aria-disabled={true}
+  className="action-menu-radio is-checked is-disabled"
+  data-action-menu-key="test key"
+  role="menuitemradio"
+>
+  <div
+    className="checkbox"
+  >
+    <IconCheckmark
+      data-name="Layer 1"
+      viewBox="0 0 48 48"
+      xmlns="http://www.w3.org/2000/svg"
+    />
+  </div>
+  <div
+    className="icon"
+  >
+    <p>
+      test icon
+    </p>
+  </div>
+  <div
+    className="content"
+  >
+    test label
+  </div>
+</li>
+`;
+
+exports[`ActionMenuRadio should render with minimal props 1`] = `
+<li
+  className="action-menu-radio is-actionable"
+  data-action-menu-key="test key"
+  data-focus-styles-enabled={true}
+  onBlur={[Function]}
+  onKeyDown={[Function]}
+  onMouseDown={[Function]}
+  role="menuitemradio"
+  tabIndex="-1"
+>
+  <div
+    className="checkbox"
+  />
+  <div
+    className="content"
+  >
+    test label
+  </div>
+</li>
+`;

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Renamed file `NotificationBanner.mdx` to `NotificationBanner.app.mdx`.
+
 ## 1.41.1 - (January 8, 2021)
 
 * Changed

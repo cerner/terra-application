@@ -15,8 +15,8 @@ import PageHeader from './private/_PageHeader';
 import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 import PageActions from './PageActions';
 
-import PageIdentifierContext from './new/PageIdentifierContext';
-import usePagePortal from './new/usePagePortal';
+import PageIdentifierContext from './private/PageIdentifierContext';
+import usePagePortal from './private/usePagePortal';
 
 import styles from './Page.module.scss';
 
@@ -128,38 +128,6 @@ const Page = ({
     throw new Error(`[terra-application] Page ${label} was rendered outside of a PageContainer.`);
   }
 
-  /**
-   * The PageContext value is overridden by the Page to ensure a child Page has
-   * access to this Page's key, which is required for portal element retrieval.
-   */
-  const childPageContextValue = React.useMemo(() => ({
-    ...pageContext,
-    parentNodeId: portalId,
-  }), [pageContext, portalId]);
-
-  /**
-   * The Page must release the element into which it is portaled when it is unmounted
-   * to prevent memory leaks.
-   */
-  React.useLayoutEffect(() => () => {
-    pageContext.nodeManager.releaseNode({ nodeId: portalId });
-  }, [pageContext.nodeManager, portalId]);
-
-  // const portalNode = pageContext.nodeManager.getNode({
-  //   nodeId: portalId,
-  //   ancestorNodeId: pageContext.parentNodeId,
-  //   setPageActive: setIsActive,
-  // });
-
-  /**
-   * When the Page becomes active within the PageContainer, the container is notified.
-   */
-  React.useEffect(() => {
-    if (isActive) {
-      pageContext.onPageActivate({ pageLabelId: pageLabelIdRef.current });
-    }
-  }, [isActive, pageContext]);
-
   React.useEffect(() => {
     /**
      * If the Page activates while visible and within a main PageContainer, an event is
@@ -231,13 +199,11 @@ const Page = ({
             <DynamicOverlayContainer
               overlays={overlays}
             >
-              <PageContext.Provider value={childPageContextValue}>
-                <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-                  <NotificationBannerProvider>
-                    {children}
-                  </NotificationBannerProvider>
-                </UnsavedChangesPromptCheckpoint>
-              </PageContext.Provider>
+              <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+                <NotificationBannerProvider>
+                  {children}
+                </NotificationBannerProvider>
+              </UnsavedChangesPromptCheckpoint>
             </DynamicOverlayContainer>
           </div>
         </div>

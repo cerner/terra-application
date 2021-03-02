@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
 const PageContext = createContext({
-  nodeManager: undefined,
-  containerStartActions: undefined,
-  containerEndActions: undefined,
+  containerStartActions: [],
+  containerEndActions: [],
+  isMainPage: false,
 });
 
 export default PageContext;

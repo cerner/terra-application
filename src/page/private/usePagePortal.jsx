@@ -16,7 +16,7 @@ function createPortalElement() {
 }
 
 const usePagePortal = ({
-  onActivate, pageKey, label, metaData,
+  pageKey, label, metaData,
 }) => {
   const portalIdRef = React.useRef(uuidv4());
   const pagePortalContext = React.useContext(PagePortalContext);
@@ -27,9 +27,9 @@ const usePagePortal = ({
 
   React.useLayoutEffect(() => {
     pagePortalContext.renderPortalElement(portalElementRef.current, portalIdRef.current, parentPageIdentifer, {
-      onActivate, pageKey, label, metaData, pagePortalLabelId,
+      pageKey, label, metaData, pagePortalLabelId,
     });
-  }, [pagePortalContext, parentPageIdentifer, onActivate, pageKey, label, metaData, pagePortalLabelId]);
+  }, [pagePortalContext, parentPageIdentifer, pageKey, label, metaData, pagePortalLabelId]);
 
   React.useLayoutEffect(() => () => {
     pagePortalContext.releasePortalElement(portalIdRef.current);

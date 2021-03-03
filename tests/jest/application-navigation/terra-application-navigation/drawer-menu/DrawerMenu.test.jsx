@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mockIntl } from '@cerner/terra-enzyme-intl';
-import DrawerMenu from '../../../../../src/application-navigation/terra-application-navigation/drawer-menu/_DrawerMenu';
+import DrawerMenu from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/drawer-menu/_DrawerMenu';
 
 describe('DrawerMenu', () => {
   it('should render default element', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mountWithIntl } from '@cerner/terra-enzyme-intl';
-import Header from '../../../../../src/application-navigation/terra-application-navigation/header/_Header';
+import Header from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/header/_Header';
 
 describe('Header', () => {
   it('should render default element', () => {

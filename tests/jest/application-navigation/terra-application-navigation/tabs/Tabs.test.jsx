@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mountWithIntl } from '@cerner/terra-enzyme-intl';
-import Tabs from '../../../../../src/application-navigation/terra-application-navigation/tabs/_Tabs';
+import Tabs from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/tabs/_Tabs';
 
 describe('Tabs', () => {
   it('should render default element', () => {

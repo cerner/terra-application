@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mountWithIntl } from '@cerner/terra-enzyme-intl';
-import CompactHeader from '../../../../../src/application-navigation/terra-application-navigation/header/_CompactHeader';
+import CompactHeader from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/header/_CompactHeader';
 
 describe('CompactHeader', () => {
   it('should render default element', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mountWithIntl } from '@cerner/terra-enzyme-intl';
-import UtilityMenuHeaderButton from '../../../../../src/application-navigation/terra-application-navigation/utility-menu/_UtilityMenuHeaderButton';
+import UtilityMenuHeaderButton from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/utility-menu/_UtilityMenuHeaderButton';
 
 describe('UtilityMenuHeaderButton', () => {
   it('should render default element', () => {

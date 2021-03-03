@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mockIntl } from '@cerner/terra-enzyme-intl';
-import ExtensionRollup from '../../../../../src/application-navigation/terra-application-navigation/extensions/_ExtensionRollup';
+import ExtensionRollup from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/extensions/_ExtensionRollup';
 
 describe('ExtensionRollup', () => {
   it('should render default element', () => {

@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { shallowWithIntl } from '@cerner/terra-enzyme-intl';
-import ApplicationNavigation from '../../../src/application-navigation/ApplicationNavigation';
+import ApplicationNavigation from '../../../src/layouts/primary-navigation-layout/terra-application-navigation/ApplicationNavigation';
 
 jest.mock('react-intl', () => {
   const reactIntl = jest.requireActual('react-intl');

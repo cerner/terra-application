@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mockIntl } from '@cerner/terra-enzyme-intl';
-import TabCount from '../../../../../src/application-navigation/terra-application-navigation/tabs/_TabCount';
+import TabCount from '../../../../../src/layouts/primary-navigation-layout/terra-application-navigation/tabs/_TabCount';
 
 describe('TabCount', () => {
   it('should render default element', () => {

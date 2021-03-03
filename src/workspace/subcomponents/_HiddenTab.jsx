@@ -88,24 +88,24 @@ const HiddenTab = ({
     theme.className,
   );
 
-  function handleOnSelect(event) {
+  const handleOnSelect = (event) => {
     event.preventDefault();
     event.stopPropagation();
 
     enableFocusStyles(event);
     onSelect(itemKey, metaData);
-  }
+  };
 
-  function onKeyDown(event) {
+  const onKeyDown = (event) => {
     if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
       handleOnSelect(event);
     } else {
       handleArrows(event, index, tabIds);
     }
-  }
+  };
 
   attributes.tabIndex = isSelected ? 0 : -1;
-  attributes.onClick = handleOnSelect;
+  attributes.onClick = e => { e.preventDefault(); e.stopPropagation(); handleOnSelect(e); };
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
   attributes.onFocus = onFocus;

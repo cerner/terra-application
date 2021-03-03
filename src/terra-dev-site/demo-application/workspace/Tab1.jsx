@@ -1,4 +1,10 @@
 import React from 'react';
+import Toolbar from 'terra-toolbar';
+import Button from 'terra-button';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
+
 import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '../../../workspace';
 
 import MockContent from './MockContent';
@@ -9,7 +15,13 @@ const Tab1 = () => {
 
   return (
     <WorkspaceContent
-      toolbar={<p style={{ backgroundColor: 'pink', padding: '0.5rem', margin: '0' }}>Tab 1 Toolbar</p>}
+      toolbar={(
+        <Toolbar>
+          <Button text="Edit" variant="utility" icon={<IconEdit />} />
+          <Button text="Add" variant="utility" icon={<IconAdd />} />
+          <Button text="Attachment" variant="utility" icon={<IconAttachment />} />
+        </Toolbar>
+      )}
       activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
       statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
     >

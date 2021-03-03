@@ -4,7 +4,7 @@ import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import { mountWithIntl } from '@cerner/terra-enzyme-intl';
 
 import { ActiveBreakpointContext } from '../../../../src/breakpoints';
-import ApplicationNavigation from '../../../../src/application-navigation/terra-application-navigation/ApplicationNavigation';
+import ApplicationNavigation from '../../../../src/layouts/primary-navigation-layout/terra-application-navigation/ApplicationNavigation';
 
 jest.mock('react-intl', () => {
   const reactIntl = jest.requireActual('react-intl');

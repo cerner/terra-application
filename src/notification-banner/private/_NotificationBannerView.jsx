@@ -1,5 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
+import classNamesBind from 'classnames/bind';
+import { injectIntl } from 'react-intl';
 import Button from 'terra-button';
 import IconAlert from 'terra-icon/lib/icon/IconAlert';
 import IconError from 'terra-icon/lib/icon/IconError';
@@ -8,14 +11,9 @@ import IconGapChecking from 'terra-icon/lib/icon/IconGapChecking';
 import IconDiamondSymbol from 'terra-icon/lib/icon/IconDiamondSymbol';
 import IconInformation from 'terra-icon/lib/icon/IconInformation';
 import IconSuccess from 'terra-icon/lib/icon/IconSuccess';
-import classNames from 'classnames';
-import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
 
-import { ApplicationIntlContext } from '../../application-intl';
-
-import useElementSize from './useElementSize';
+import useElementSize, { breakpointFilter } from './useElementSize';
 
 import styles from './NotificationBannerView.module.scss';
 
@@ -77,6 +75,10 @@ const propTypes = {
     NotificationTypes.SUCCESS,
     NotificationTypes.CUSTOM,
   ]),
+  /**
+   * @private
+   */
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 const defaultProps = {
@@ -84,32 +86,29 @@ const defaultProps = {
   type: NotificationTypes.ALERT,
 };
 
-const getAlertIcon = (type, customIcon) => {
+const getNotificationIcon = (type, customIcon) => {
   switch (type) {
-    case NotificationTypes.ALERT:
-      return (<span className={cx('icon')}><IconAlert /></span>);
     case NotificationTypes.ERROR:
-      return (<span className={cx('icon')}><IconError /></span>);
+      return (<span data-testid="banner-icon-error" className={cx('icon')}><IconError /></span>);
     case NotificationTypes.WARNING:
-      return (<span className={cx('icon')}><IconWarning /></span>);
+      return (<span data-testid="banner-icon-warning" className={cx('icon')}><IconWarning /></span>);
     case NotificationTypes.UNSATISFIED:
-      return (<span className={cx('icon', 'unsatisfied-icon')}><IconGapChecking /></span>);
+      return (<span data-testid="banner-icon-unsatisfied" className={cx('icon', 'unsatisfied-icon')}><IconGapChecking /></span>);
     case NotificationTypes.UNVERIFIED:
-      return (<span className={cx('icon', 'unverified-icon')}><IconDiamondSymbol /></span>);
+      return (<span data-testid="banner-icon-unverified" className={cx('icon', 'unverified-icon')}><IconDiamondSymbol /></span>);
     case NotificationTypes.ADVISORY:
       return null;
     case NotificationTypes.INFO:
-      return (<span className={cx('icon')}><IconInformation /></span>);
+      return (<span data-testid="banner-icon-info" className={cx('icon')}><IconInformation /></span>);
     case NotificationTypes.SUCCESS:
-      return (<span className={cx('icon')}><IconSuccess /></span>);
+      return (<span data-testid="banner-icon-success" className={cx('icon')}><IconSuccess /></span>);
     case NotificationTypes.CUSTOM:
-      return (<span className={cx('icon')}>{customIcon}</span>);
+      return (<span data-testid="banner-icon-custom" className={cx('icon')}>{customIcon}</span>);
+    case NotificationTypes.ALERT:
     default:
-      return null;
+      return (<span data-testid="banner-icon-alert" className={cx('icon')}><IconAlert /></span>);
   }
 };
-
-const shouldUpdateFromElementSizeChange = (newSize, oldSize) => (newSize.activeBreakpoint !== oldSize.activeBreakpoint);
 
 const getTitleStringIdForType = (type) => (type === NotificationTypes.CUSTOM ? undefined : `terraApplication.notificationBanner.${type}`);
 
@@ -121,17 +120,14 @@ const NotificationBannerView = ({
   onDismiss,
   title,
   type,
+  intl,
   ...customProps
 }) => {
   const theme = React.useContext(ThemeContext);
-  const intl = React.useContext(ApplicationIntlContext);
   const containerRef = React.useRef();
-  const { activeBreakpoint } = useElementSize(containerRef, shouldUpdateFromElementSizeChange);
-  const [isNarrow, setIsNarrow] = useState();
+  const { activeBreakpoint } = useElementSize(containerRef, breakpointFilter);
 
-  React.useLayoutEffect(() => {
-    setIsNarrow(activeBreakpoint === 'tiny');
-  }, [activeBreakpoint]);
+  const isNarrow = activeBreakpoint === 'tiny';
 
   const defaultTitle = type === NotificationTypes.CUSTOM ? '' : intl.formatMessage({ id: getTitleStringIdForType(type) });
   const alertClassNames = classNames(
@@ -179,7 +175,7 @@ const NotificationBannerView = ({
   return (
     <div {...customProps} className={alertClassNames} ref={containerRef}>
       <div className={bodyClassNameForParent}>
-        {getAlertIcon(type, customIcon)}
+        {getNotificationIcon(type, customIcon)}
         {alertMessageContent}
       </div>
       {actionsSection}
@@ -190,5 +186,5 @@ const NotificationBannerView = ({
 NotificationBannerView.propTypes = propTypes;
 NotificationBannerView.defaultProps = defaultProps;
 
-export default NotificationBannerView;
+export default injectIntl(NotificationBannerView);
 export { getTitleStringIdForType, NotificationTypes };

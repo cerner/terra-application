@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import { enableFocusStyles, disableFocusStyles, generateOnKeyDown } from './_ActionUtils';
-import styles from './ActionMenu.module.scss';
+import styles from './ActionMenuItem.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -25,7 +26,7 @@ const propTypes = {
   label: PropTypes.string.isRequired,
   /**
    * Callback function for action element selection.
-   * Returns the event e.e. onAction(event).
+   * Returns the event e.g. onAction(event).
    */
   onAction: PropTypes.func,
   /**
@@ -35,12 +36,14 @@ const propTypes = {
   indentChildren: PropTypes.bool,
   /**
    * @private
-   * Callback function for event.
+   * Callback function for arrow key interaction.
+   * Returns the event e.g. onArrow(key, direction).
    */
   onArrow: PropTypes.func,
   /**
    * @private
-   * Callback function for event.
+   * Callback function for arrow char.
+   * Returns the event e.g. onChar(key, char).
    */
   onChar: PropTypes.func,
 };
@@ -67,14 +70,15 @@ const ActionMenuItem = ({
     attrs['data-focus-styles-enabled'] = true;
   }
 
+  const theme = React.useContext(ThemeContext);
   return (
     <li
       {...attrs}
-      className={cx('action-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren })}
+      className={cx('action-menu-item', { 'is-disabled': isDisabled }, { 'is-actionable': !isDisabled }, { indent: indentChildren }, theme.className)}
       role="menuitem"
       data-action-menu-key={actionKey}
     >
-      <div className={cx('icon')}>{icon}</div>
+      {icon ? <div className={cx('icon')}>{icon}</div> : null}
       <div className={cx('content')}>
         {label}
       </div>

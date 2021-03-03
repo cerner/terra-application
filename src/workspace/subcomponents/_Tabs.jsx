@@ -15,7 +15,7 @@ const propTypes = {
   /**
    * The label to set on the tablist element.
    */
-  label: PropTypes.string.isRequired,
+  ariaLabel: PropTypes.string.isRequired,
   /**
    * Currently active Tabs.Pane content to be displayed.
    */
@@ -60,7 +60,8 @@ class Tabs extends React.Component {
     this.handleResize = this.handleResize.bind(this);
     this.handleHiddenBlur = this.handleHiddenBlur.bind(this);
     this.handleHiddenFocus = this.handleHiddenFocus.bind(this);
-    this.handleOnMoreButtonSelect = this.handleOnMoreButtonSelect.bind(this);
+    this.handleMoreButtonBlur = this.handleMoreButtonBlur.bind(this);
+    this.handleMoreButtonSelect = this.handleMoreButtonSelect.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
@@ -69,7 +70,7 @@ class Tabs extends React.Component {
   }
 
   componentDidMount() {
-    this.resizeObserver = new ResizeObserver((entries) => {
+    this.resizeObserver = new ResizeObserver(() => {
       if (!this.isCalculating) {
         this.animationFrameID = window.requestAnimationFrame(() => {
           // Resetting the cache so that all elements will be rendered face-up for width calculations
@@ -102,7 +103,7 @@ class Tabs extends React.Component {
       return;
     }
 
-    // NOTE: get width from bounding client rect instead of r4esize observer, zoom throws off safari.
+    // NOTE: get width from bounding client rect instead of resize observer, zoom throws off safari.
     const { width } = this.containerRef.current.parentNode.getBoundingClientRect();
 
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
@@ -142,11 +143,25 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
   }
 
-  handleHiddenBlur() {
+  handleHiddenBlur(event) {
+    // The check for dropdown.contains(activeElement) is necessary to prevent IE11 from closing dropdown on click of scroll bar in certain contexts.
+    if (this.dropdownRef.current && this.dropdownRef.current.contains(document.activeElement)) {
+      if (this.dropdownRef.current === document.activeElement) {
+        event.currentTarget.focus();
+      }
+      return;
+    }
     this.setIsOpen(false);
   }
 
-  handleOnMoreButtonSelect() {
+  handleMoreButtonBlur(event) {
+    if (event.currentTarget === document.activeElement) {
+      return;
+    }
+    this.handleHiddenBlur(event);
+  }
+
+  handleMoreButtonSelect() {
     this.setIsOpen(true);
   }
 
@@ -206,7 +221,7 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { tabData, label } = this.props;
+    const { tabData, ariaLabel } = this.props;
     const theme = this.context;
     const ids = tabData.map(tab => tab.id);
     const hiddenIds = [];
@@ -263,11 +278,23 @@ class Tabs extends React.Component {
         className={cx('tab-container', theme.className)}
         ref={this.containerRef}
         role="tablist"
-        aria-label={label}
+        aria-label={ariaLabel}
         aria-orientation="horizontal"
         aria-owns={hiddenIds.join(' ')}
       >
         {visibleTabs}
+        {this.showMoreButton ? (
+          <MoreButton
+            isOpen={this.isOpen}
+            hiddenIndex={this.hiddenStartIndex}
+            isActive={isHiddenSelected}
+            zIndex={tabData.length - this.hiddenStartIndex}
+            onBlur={this.handleMoreButtonBlur}
+            onSelect={this.handleMoreButtonSelect}
+            refCallback={node => { this.moreButtonRef.current = node; }}
+            tabIds={ids}
+          />
+        ) : undefined}
         <TabDropDown
           onFocus={this.handleHiddenFocus}
           onBlur={this.handleHiddenBlur}
@@ -277,18 +304,6 @@ class Tabs extends React.Component {
         >
           {hiddenTabs}
         </TabDropDown>
-        {this.showMoreButton ? (
-          <MoreButton
-            isOpen={this.isOpen}
-            hiddenIndex={this.hiddenStartIndex}
-            isActive={isHiddenSelected}
-            zIndex={tabData.length - this.hiddenStartIndex}
-            onBlur={this.handleHiddenBlur}
-            onSelect={this.handleOnMoreButtonSelect}
-            refCallback={node => { this.moreButtonRef.current = node; }}
-            tabIds={ids}
-          />
-        ) : undefined}
       </div>
     );
   }

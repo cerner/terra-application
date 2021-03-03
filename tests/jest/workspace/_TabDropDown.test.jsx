@@ -21,6 +21,8 @@ describe('TabDropDown', () => {
           itemKey="tab-1-key"
           onSelect={mockOnSelect}
           tabIds={['tab-1', 'tab-2']}
+          onBlur={() => {}}
+          onFocus={() => {}}
         />
         <HiddenTab
           id="tab-2"
@@ -30,6 +32,8 @@ describe('TabDropDown', () => {
           itemKey="tab-2-key"
           onSelect={mockOnSelect}
           tabIds={['tab-1', 'tab-2']}
+          onBlur={() => {}}
+          onFocus={() => {}}
         />
       </TabDropDown>
     ));

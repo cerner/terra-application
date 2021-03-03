@@ -1,12 +1,4 @@
-{
-  "terraApplication.unsavedChangesPrompt.title": "Unsaved Changes",
-  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Unsaved changes were made to {promptDescription}.",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Unsaved changes were made to the following:",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
-  "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
-  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
-  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}",
-  
+{  
   "terraApplication.applicationNavigation.utilityMenu.logout": "Logout",
   "terraApplication.applicationNavigation.utilityMenu.settings": "Settings",
   "terraApplication.applicationNavigation.utilityMenu.help": "Help",
@@ -31,14 +23,25 @@
   "terraApplication.PageOverlayContainer.loading": "Loading...",
   "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading...",
 
+  "terraApplication.unsavedChangesPrompt.title": "Unsaved Changes",
+  "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Unsaved changes were made to {promptDescription}.",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Unsaved changes were made to the following:",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Changes will be lost if you don't save them. How do you want to proceed?",
+  "terraApplication.unsavedChangesPrompt.acceptButtonText": "Don't Save",
+  "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continue Editing",
+
+  "terraApplication.errorBoundary.defaultErrorMessage": "The system encountered an error: {errorDetails}",
+
   "terraApplication.statusLayout.no-data": "No Results",
   "terraApplication.statusLayout.no-matching-results": "No Matching Results",
   "terraApplication.statusLayout.not-authorized": "Not Authorized",
   "terraApplication.statusLayout.error": "Error",
 
-  "terraApplication.workspace.activityOverlay.loading": "Loading...",  
+  "terraApplication.workspace.workspaceLabel": "Workspace",
+  "terraApplication.workspace.showWorkspaceLabel": "Show Workspace",
   "terraApplication.workspace.hideWorkspaceLabel": "Hide Workspace",
   "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings",
+  "terraApplication.workspace.activityOverlay.loading": "Loading...",
 
   "terraApplication.notificationBanner.dismiss": "Dismiss",
   "terraApplication.notificationBanner.info": "Information.",
@@ -48,5 +51,12 @@
   "terraApplication.notificationBanner.advisory": "Advisory.",
   "terraApplication.notificationBanner.unsatisfied": "Required Action.",
   "terraApplication.notificationBanner.unverified": "Outside Records.",
-  "terraApplication.notificationBanner.success": "Success."
+  "terraApplication.notificationBanner.success": "Success.",
+
+  "terraApplication.notifications.regionLabel": "{label} notifications.",
+  "terraApplication.notifications.totalCountLabel": "Total {label} notifications: {count}",
+  "terraApplication.notifications.newNotificationLabel": "New {label} notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
+  "terraApplication.notifications.removedNotificationLabel": "Removed {label} notification. {bannerType} {bannerDescription}.",
+
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Close"
 }

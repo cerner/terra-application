@@ -17,10 +17,6 @@ const propTypes = {
    */
   hiddenIndex: PropTypes.number.isRequired,
   /**
-   * Whether or not a hidden tab is active.
-   */
-  isActive: PropTypes.bool,
-  /**
    * Whether or not the associated dropdown is open.
    */
   isOpen: PropTypes.bool,
@@ -57,7 +53,6 @@ const removeFocus = event => {
 
 const MoreButton = ({
   hiddenIndex,
-  isActive,
   isOpen,
   onBlur,
   onSelect,
@@ -72,7 +67,7 @@ const MoreButton = ({
   const handleOnMouseDown = event => setFocus(event);
 
   const handleOnSelect = event => {
-    setFocus(event)
+    setFocus(event);
     if (onSelect) {
       onSelect(event);
     }
@@ -96,16 +91,16 @@ const MoreButton = ({
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
       className={cx('tab-menu', { 'is-active': isOpen }, theme.className)}
-      data-terra-tabs-menu // TODO remove this?
       style={{ zIndex: isOpen ? '100' : zIndex }}
+      data-testid="workspace-tabs-more-button"
     >
-      <div className={cx('before')} />
+      <div className={cx('start')} />
       <div className={cx('inner')}>
         <div className={cx('icon')}>
           <IconCaretDown />
         </div>
       </div>
-      <div className={cx('after')} />
+      <div className={cx('end')} />
     </div>
   );
   /* eslint-disable react/forbid-dom-props */

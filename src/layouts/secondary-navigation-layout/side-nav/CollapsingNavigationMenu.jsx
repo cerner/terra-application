@@ -81,7 +81,7 @@ const CollapsingNavigationMenu = ({
    * Sets tabindex for current node
    */
   const setTabIndex = (val) => {
-    const currentNode = currentNodeId.current ? containerRef?.current.querySelector(`#${currentNodeId.current}`) : null;
+    const currentNode = currentNodeId.current && containerRef.current ? containerRef.current.querySelector(`#${currentNodeId.current}`) : null;
     if (currentNode) {
       currentNode.setAttribute('tabIndex', val);
     }
@@ -91,7 +91,7 @@ const CollapsingNavigationMenu = ({
    * Assigns focus to current node.
    */
   const focusCurrentNode = () => {
-    const currentNode = currentNodeId.current ? containerRef?.current.querySelector(`#${currentNodeId.current}`) : null;
+    const currentNode = currentNodeId.current && containerRef.current ? containerRef.current.querySelector(`#${currentNodeId.current}`) : null;
     if (currentNode) {
       currentNode.focus();
     }

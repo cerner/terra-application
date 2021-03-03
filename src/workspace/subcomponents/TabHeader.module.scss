@@ -1,5 +1,5 @@
-// @import '../../../themes/clinical-lowlight-theme/TabHeader.module';
-// @import '../../../themes/orion-fusion-theme/TabHeader.module';
+@import '../clinical-lowlight-theme/TabHeader.module';
+@import '../orion-fusion-theme/TabHeader.module';
 
 :local {
   .header {
@@ -19,7 +19,7 @@
     font-size: var(--terra-application-workspace-tab-header-title-font-size, 1.143rem);
     font-weight: var(--terra-application-workspace-tab-header-title-font-weight, 500);
     outline: none;
-    padding: var(--terra-application-workspace-tab-header-title-padding,  0 0.5rem);
+    padding: var(--terra-application-workspace-tab-header-title-padding, 0 0.1429rem);
     text-align: start;
     width: 100;
   }

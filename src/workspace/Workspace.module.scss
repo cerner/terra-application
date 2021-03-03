@@ -6,6 +6,7 @@
     display: flex;
     flex-direction: column;
     height: 100%;
+    overflow: hidden;
     position: relative;
     user-select: none;
     width: 100%;
@@ -21,11 +22,12 @@
 
   .button-header {
     background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #3a67a4));
+    border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
     display: flex;
     flex: 0 0 auto;
-    left: 0;
     justify-content: space-between;
-    min-height: var(--terra-application-workspace-button-header-min-height, 3.571rem);
+    left: 0;
+    min-height: var(--terra-application-workspace-button-header-min-height, 48px);
     padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
     position: absolute;
     top: 0;
@@ -42,7 +44,7 @@
     margin-bottom: 0;
     margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.5714rem);
     margin-right: var(--terra-application-workspace-tab-header-margin-right, 2.143rem);
-    margin-top: var(--terra-application-workspace-tab-header-margin-top, 0.7143rem);
+    margin-top: var(--terra-application-workspace-tab-header-margin-top, 1.0714rem);
     width: calc(100% - var(--terra-application-workspace-tab-header-width, 2.714rem));
     z-index: 50;
 

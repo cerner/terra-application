@@ -7,8 +7,7 @@ import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
 
-import {
-  ActionMenu,
+import ActionMenu, {
   ActionMenuDivider,
   ActionMenuItem,
   ActionMenuGroup,
@@ -16,6 +15,7 @@ import {
 } from '../action-menu';
 import { ApplicationIntlContext } from '../application-intl';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
+
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
 import Tabs from './subcomponents/_Tabs';
@@ -53,7 +53,7 @@ const propTypes = {
    */
   children: PropTypes.node.isRequired,
   /**
-   * The unique identifier used of accessibility mappings.
+   * The unique identifier used for accessibility mappings.
    */
   id: PropTypes.string.isRequired,
   /**
@@ -92,6 +92,7 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => opt
     key={option.key}
     actionKey={option.key}
     label={option.text}
+    icon={option.icon}
     isChecked={option.key === size}
     isDisabled={option.isDisabled}
     onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
@@ -117,7 +118,7 @@ const Workspace = ({
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
 
-  const ariaLabel = 'Workspace'; // TODO INTL
+  const ariaLabel = intl.formatMessage({ id: 'terraApplication.workspace.workspaceLabel' });
 
   const tabData = React.Children.map(children, child => ({
     id: getTabId(id, child.props.itemKey),
@@ -155,7 +156,7 @@ const Workspace = ({
     if (onRequestDismiss) {
       dismissItem = (
         <ActionMenuItem
-          actionKey="workspace-dimiss-action"
+          actionKey="workspace-dismiss-action"
           label={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
           onAction={() => {
             setIsMenuOpen(false);
@@ -198,7 +199,7 @@ const Workspace = ({
         >
           <ActionMenu
             isHeaderDisplayed
-            ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+            label={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
             onRequestClose={() => {
               setIsMenuOpen(false);
             }}
@@ -233,7 +234,7 @@ const Workspace = ({
         {sizeButton}
       </div>
       <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
-        <Tabs label={ariaLabel} tabData={tabData} />
+        <Tabs ariaLabel={ariaLabel} tabData={tabData} />
       </div>
       <div role="none" className={cx('body')} ref={workspaceContainerRef}>
         {React.Children.map(children, child => {

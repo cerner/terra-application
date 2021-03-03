@@ -18,6 +18,12 @@ test('should render button as active', () => {
   expect(screen.getByLabelText('Test Label', { selector: 'div[role=button]' })).toHaveClass('is-active');
 });
 
+test('should render button with test id', () => {
+  render(<WorkspaceButton ariaLabel="Test Label" icon={<span data-testid="test-icon" />} testId="test-id" />);
+
+  expect(screen.getByLabelText('Test Label', { selector: 'div[role=button]' })).toHaveAttribute('data-testid', 'test-id');
+});
+
 test('should render button with selection callback on click', () => {
   const mockOnActivate = jest.fn();
 

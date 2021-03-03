@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+
 import { useActiveMainPage } from '../../../application-container';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
+import styles from './TestStyles.module.scss';
+
+const cx = classNames.bind(styles);
+
+const propTypes = {
+  initialCount: PropTypes.number,
+  title: PropTypes.string,
+  onShowActivityOverlay: PropTypes.func,
+  onShowStatusOverlay: PropTypes.func,
+};
 
 const MockContent = ({
   initialCount = 0, title = '', onShowActivityOverlay, onShowStatusOverlay,
@@ -12,52 +25,8 @@ const MockContent = ({
   const [showWarningBanner, setShowWarningBanner] = useState(false);
   const [showErrorBanner, setShowErrorBanner] = useState(false);
 
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowAlertBanner(true);
-  //   }, 5000);
-  //   setTimeout(() => {
-  //     setShowWarningBanner(true);
-  //   }, 8000);
-  //   setTimeout(() => {
-  //     setShowErrorBanner(true);
-  //   }, 11000);
-
-  //   setTimeout(() => {
-  //     setShowAlertBanner(false);
-  //   }, 12000);
-  //   setTimeout(() => {
-  //     setShowWarningBanner(false);
-  //   }, 13000);
-  //   setTimeout(() => {
-  //     setShowErrorBanner(false);
-  //   }, 14000);
-  // }, []);
-
-  // React.useEffect(() => {
-  //   setTimeout(() => {
-  //     setShowAlertBanner(true);
-  //   }, 5000);
-  //   setTimeout(() => {
-  //     setShowWarningBanner(true);
-  //   }, 5000);
-  //   setTimeout(() => {
-  //     setShowErrorBanner(true);
-  //   }, 5000);
-
-  //   setTimeout(() => {
-  //     setShowAlertBanner(false);
-  //   }, 10000);
-  //   setTimeout(() => {
-  //     setShowWarningBanner(false);
-  //   }, 10000);
-  //   setTimeout(() => {
-  //     setShowErrorBanner(false);
-  //   }, 10000);
-  // }, []);
-
   return (
-    <div style={{ padding: '1rem' }}>
+    <div className={cx('content-container')}>
       <button type="button" onClick={() => setClickCount(clickCount + 1)}>Increment Counter</button>
       <button type="button" data-testid="test-workspace-banner-button" onClick={() => setShowAlertBanner(true)}>Show Alert Banner</button>
       <button type="button" data-testid="test-workspace-banner-warning-button" onClick={() => setShowWarningBanner(true)}>Show Warning Banner</button>
@@ -114,7 +83,7 @@ const MockContent = ({
           }}
         />
       )}
-      <div role="none" aria-live="polite">
+      <div aria-live="polite">
         <p>{`${title}'s Click Counter: ${clickCount}`}</p>
       </div>
       <p>
@@ -150,5 +119,7 @@ const MockContent = ({
     </div>
   );
 };
+
+MockContent.propTypes = propTypes;
 
 export default MockContent;

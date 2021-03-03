@@ -7,10 +7,19 @@ import styles from './DynamicOverlayContainer.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * Array of unique overlay objects to render over the child content.
+   * Overlays are stacked in index order; the overlay with the highest index
+   * will be rendered on top.
+   */
   overlays: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string.isRequired,
     component: PropTypes.element.isRequired,
   })),
+  /**
+   * The base content to render within the container. This content will
+   * be overlaid by all provided overlays.
+   */
   children: PropTypes.node,
 };
 
@@ -18,69 +27,81 @@ const defaultProps = {
   overlays: [],
 };
 
+/* eslint-disable no-param-reassign */
+function setLayerInert(inertElement, focusTriggers, focusTriggerKey, focusAnchorElement) {
+  if (inertElement.inert) {
+    return;
+  }
+
+  const { activeElement } = document;
+
+  // If the element to be inerted contains or is the current active element,
+  // we cache it to be replayed if and when the element reactivates.
+  if (inertElement.contains(activeElement) || inertElement === activeElement) {
+    focusTriggers[focusTriggerKey] = activeElement;
+    focusAnchorElement.focus();
+  }
+
+  inertElement.inert = true;
+}
+
+function removeLayerInert(inertElement, focusTriggers, focusTriggerKey, focusAnchorElement) {
+  if (!inertElement.inert) {
+    return;
+  }
+
+  const { activeElement } = document;
+
+  inertElement.inert = false;
+
+  // If a focus trigger has been cached for this element, and if the element still contains or
+  // is the active element, and if the focus has not been placed outside of the container since it was rendered inert,
+  // the focus is replayed onto the cached element.
+  //
+  // Consideration is also made for when focus is on the body element, which can occur if a focused element was rendered
+  // within the last removed overlay.
+  const cachedActiveElement = focusTriggers[focusTriggerKey];
+  if (cachedActiveElement && (inertElement.contains(cachedActiveElement) || inertElement === cachedActiveElement) && (document.body === activeElement || focusAnchorElement === activeElement || focusAnchorElement.contains(activeElement))) {
+    cachedActiveElement.focus();
+
+    focusTriggers[focusTriggerKey] = undefined;
+  }
+}
+/* eslint-enable no-param-reassign */
+
 const DynamicOverlayContainer = ({ overlays, children }) => {
   const contentRef = React.useRef();
   const focusAnchorRef = React.useRef();
   const focusTriggersRef = React.useRef({});
 
-  /**
-   * The refs for each overlay are kept in a local variable to ensure
-   * it expires after each render to ensure that removed overlays do not
-   * persist in memory.
-   */
+  // The refs for each overlay are kept in a local variable to ensure
+  // it expires after each render to ensure that removed overlays do not
+  // persist in memory.
   const overlayRefs = [];
 
-  /**
-   * This effect ensures that the proper layers are rendered
-   * as inert prior to painting to the DOM. This effect will execute
-   * after every update of the DynamicOverlayContainer; however, the
-   * inner inert logic will abort early if the element is already in
-   * its assigned state.
-   */
+  // This effect ensures that the proper layers are rendered
+  // as inert prior to painting to the DOM. This effect will execute
+  // after every update of the DynamicOverlayContainer; however, the
+  // inner inert logic will abort early if the element is already in
+  // its assigned state.
   React.useLayoutEffect(() => {
-    const { activeElement } = document;
-
     if (overlays.length !== 0) {
-      if (contentRef.current.contains(activeElement)) {
-        focusTriggersRef.current['__dynamic-overlay-content__'] = activeElement;
-        focusAnchorRef.current.focus();
-      }
-
-      contentRef.current.inert = true;
+      setLayerInert(contentRef.current, focusTriggersRef.current, '__dynamic-overlay-content__', focusAnchorRef.current);
     } else {
-      contentRef.current.inert = false;
-
-      const cachedActiveElement = focusTriggersRef.current['__dynamic-overlay-content__'];
-      if (cachedActiveElement && contentRef.current.contains(cachedActiveElement) && (document.activeElement === focusAnchorRef.current || focusAnchorRef.current.contains(document.activeElement))) {
-        cachedActiveElement.focus();
-
-        focusTriggersRef.current['__dynamic-overlay-content__'] = undefined;
-      }
+      removeLayerInert(contentRef.current, focusTriggersRef.current, '__dynamic-overlay-content__', focusAnchorRef.current);
     }
 
     for (let i = 0, count = overlays.length; i < count; i += 1) {
       if (i !== count - 1) {
-        if (overlayRefs[i].element.contains(activeElement)) {
-          focusTriggersRef.current[overlayRefs[i].key] = activeElement;
-          focusAnchorRef.current.focus();
-        }
-
-        overlayRefs[i].element.inert = true;
+        setLayerInert(overlayRefs[i].element, focusTriggersRef.current, overlayRefs[i].key, focusAnchorRef.current);
       } else {
-        overlayRefs[i].element.inert = false;
-
-        const cachedActiveElement = focusTriggersRef.current[overlayRefs[i].key];
-        if (cachedActiveElement && overlayRefs[i].element.contains(cachedActiveElement) && (document.activeElement === focusAnchorRef.current || focusAnchorRef.current.contains(document.activeElement))) {
-          cachedActiveElement.focus();
-
-          focusTriggersRef.current[overlayRefs[i].key] = undefined;
-        }
+        removeLayerInert(overlayRefs[i].element, focusTriggersRef.current, overlayRefs[i].key, focusAnchorRef.current);
       }
     }
   }, [overlayRefs, overlays]);
 
   return (
-    <div className={cx('outer-container')} ref={focusAnchorRef} tabIndex="-1">
+    <div className={cx('outer-container')} ref={focusAnchorRef} tabIndex="-1" data-testid="dynamic-overlay-container">
       <div ref={contentRef} className={cx('content-container')}>
         {children}
       </div>

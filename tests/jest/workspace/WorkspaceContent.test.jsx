@@ -93,7 +93,7 @@ test('should render given activity overlay', () => {
   ));
 
   // Expect activity overlay to be rendered when provided
-  expect(screen.getByTestId('workspace-content-activity')).toBeInTheDocument();
+  expect(screen.getByTestId('workspace-content-activity-overlay')).toBeInTheDocument();
 });
 
 test('should render both status and activity overlays if both are provided', () => {
@@ -109,7 +109,7 @@ test('should render both status and activity overlays if both are provided', () 
 
   // Expect both overlays to be rendered when provided
   expect(screen.getByTestId('workspace-content-status')).toBeInTheDocument();
-  expect(screen.getByTestId('workspace-content-activity')).toBeInTheDocument();
+  expect(screen.getByTestId('workspace-content-activity-overlay')).toBeInTheDocument();
 });
 
 test('should render NotificationBanners when rendered by children', () => {
@@ -121,5 +121,5 @@ test('should render NotificationBanners when rendered by children', () => {
   ));
 
   // Expect NotificationBanner with role of "alert" to be rendered when provided by children
-  expect(screen.getByRole('alert')).toHaveTextContent('Test Notification');
+  expect(screen.getByLabelText('terraApplication.notificationBanner.error')).toHaveTextContent('Test Notification');
 });

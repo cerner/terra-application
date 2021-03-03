@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import ContentContainer from 'terra-content-container';
-import Header from './ActionMenuHeader';
+import Header from './_ActionMenuHeader';
 import {
   generateOnKeyDown,
   itemByDirection,
@@ -20,37 +20,44 @@ const propTypes = {
   /**
    * Label for the ActionMenu.
    */
-  ariaLabel: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
   /**
    * The child ActionMenu elements.
    */
   children: PropTypes.node,
   /**
-   * Whether or not a header should be displayed using the ariaLabel.
+   * Whether or not a header should be displayed using the label.
    */
   isHeaderDisplayed: PropTypes.bool,
   /**
-   * The close callback.
+   * Callback function for close button selection.
+   * Returns the event e.g. onClose(event).
    */
   onRequestClose: PropTypes.func,
   /**
    * @private
-   * Callback function for event.
+   * Injected Popup prop indicating height bounding
    */
   isHeightBounded: PropTypes.bool,
   /**
    * @private
-   * Callback function for event.
+   * Injected Popup prop indicating width bounding
    */
   isWidthBounded: PropTypes.bool,
+  /**
+   * @private
+   * Injected Popup prop indicating close button is required
+   */
+  closeButtonRequired: PropTypes.string,
 };
 
 const ActionMenu = ({
-  ariaLabel,
+  label,
   children,
   isHeightBounded,
   isHeaderDisplayed,
   isWidthBounded,
+  closeButtonRequired,
   onRequestClose,
   ...customProps
 }) => {
@@ -97,7 +104,7 @@ const ActionMenu = ({
       className={menuClassNames}
       role="menu"
       tabIndex="0"
-      aria-label={ariaLabel}
+      aria-label={label}
       ref={menuRef}
       onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
     >
@@ -119,18 +126,14 @@ const ActionMenu = ({
       onClose = onRequestClose;
     }
 
-    let attr = {
-      style: { outline: 'none' },
-      tabIndex: '0',
-      onKeyDown: generateOnKeyDown(null, null, onArrow, onChar),
-      role: 'dialog',
-      'aria-label': ariaLabel,
-    };
-
     content = (
       <ContentContainer
-        {...attr}
-        header={<Header label={ariaLabel} onClose={onClose} />}
+        aria-label={label}
+        tabIndex="0"
+        onKeyDown={generateOnKeyDown(null, null, onArrow, onChar)}
+        role="dialog"
+        className={cx('action-container')}
+        header={<Header label={label} onClose={onClose} />}
         fill={isHeightBounded}
       >
         {content}

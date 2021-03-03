@@ -1,9 +1,8 @@
-// @import '../themes/clinical-lowlight-theme/ActionMenu.module';
-// @import '../themes/orion-fusion-theme/ActionMenu.module';
+@import './clinical-lowlight-theme/ActionMenu.module';
+@import './orion-fusion-theme/ActionMenu.module';
 
 :local {
-  .action-menu,
-  .action-sub-menu {
+  .action-menu {
     list-style: none;
     margin: 0;
     outline: none;
@@ -12,152 +11,14 @@
 
   .action-menu {
     background-color: var(--terra-application-action-menu-background-color, #fff);
-    min-width: var(--terra-application-action-menu-padding-bottom, 200px);
+    max-width: var(--terra-application-action-menu-max-width, 280px);
+    min-width: var(--terra-application-action-menu-min-width, 150px);
     outline: none;
     padding-bottom: var(--terra-application-action-menu-padding-bottom, 0.3571rem);
     padding-top: var(--terra-application-action-menu-padding-top, 0.3571rem);
   }
 
-  .action-sub-menu,
-  .action-divider > .line {
-    width: 100%;
-  }
-
-  .action-divider > .line {
-    box-shadow: var(--terra-application-action-menu-action-divider-box-shadow, 0 2px 0 0 #f4f4f4, 0 1px 0 0 #c8cacb);
-    margin: var(--terra-application-action-menu-action-divider-margin, 0.3571rem 0);
-    height: 1px;
-  }
-
-  .action-item,
-  .action-divider,
-  .action-checkbox,
-  .action-radio,
-  .action-link {
-    align-items: center;
-    color: var(--terra-application-action-menu-button-action-color, #222a2e);
-    display: flex;
-    flex-direction: row;
+  .action-container {
     outline: none;
-    vertical-align: center;
-  }
-
-  .action-checkbox,
-  .action-radio,
-  .action-link,
-  .action-item {
-    cursor: pointer;
-    padding-bottom: var(--terra-application-action-menu-action-padding-bottom, 0.5rem);
-    padding-left: var(--terra-application-action-menu-action-padding-left, 0.5714rem);
-    padding-right: var(--terra-application-action-menu-action-padding-right, 0.7143rem);
-    padding-top: var(--terra-application-action-menu-action-padding-top, 0.3571rem);
-
-    &:last-child {
-      border-bottom: 0;
-    }
-
-    &:not(.is-disabled):hover {
-      background-color: var(--terra-application-action-menu-action-not-is-disabled-hover-background-color, aliceblue);
-    }
-  }
-
-  .action-link,
-  .action-item {
-    &.indent {
-      padding-left: var(--terra-application-action-menu-action-indent-padding-left, 2rem);
-    }
-  }
-
-  .checkbox {
-    flex: 0 0 auto;
-    height: var(--terra-application-action-menu-checkbox-height, 0.8571rem);
-    margin-right: var(--terra-application-action-menu-checkbox-padding-top, 0.4286rem);
-    position: relative;
-    width: var(--terra-application-action-menu-checkbox-width, 0.8571rem);
-
-    & > * {
-      height: 100%;
-      position: absolute;
-      width: 100%;
-    }
-  }
-
-  .content {
-    color: var(--terra-application-action-menu-content-color, #222a2e);
-    font-size: var(--terra-application-action-menu-content-font-size, 1rem);
-    font-weight: var(--terra-application-action-menu-content-font-weight, normal);
-    flex: 1 1 auto;
-  }
-
-  .is-disabled {
-    color: var(--terra-application-action-menu-is-disabled-color, #ccc);
-    cursor: default;
-  }
-
-  .is-checked {
-    .checkbox {
-      color: var(--terra-application-action-menu-is-checked-checkbox-color, #007cc3);
-    }
-
-    .is-disabled {
-      .checkbox {
-        color: var(--terra-application-action-menu-is-disabled-checkbox-color, #ccc);
-      }
-    }
-  }
-
-  .is-actionable {
-    cursor: pointer;
-    outline: none;
-
-    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
-      &:hover {
-        background-color: var(--terra-application-action-menu-is-actionable-hover-color, #ebf6fd);
-      }
-    }
-    
-    &[data-focus-styles-enabled='true']:focus {
-      outline: var(--terra-application-action-menu-is-actionable-focus-color, 2px dashed #000);
-      outline-offset: var(--terra-application-action-menu-is-actionable-focus-color, -2px);
-      z-index: 5;
-    }
-  }
-
-  .action-header {
-    align-items: var(--terra-application-action-menu-action-header-align-items, flex-start);
-    background-color: var(--terra-application-action-menu-action-header-background-color, #f9f9f9);
-    border-bottom: var(--terra-application-action-menu-action-header-border-bottom, 1px solid #d3d4d5);
-    border-left: var(--terra-application-action-menu-action-header-border-left);
-    border-right: var(--terra-application-action-menu-action-header-border-right);
-    border-top: var(--terra-application-action-menu-action-header-border-top);
-    box-shadow: var(--terra-application-action-menu-action-header-box-shadow);
-    display: flex;
-    justify-content: space-between;
-    min-height: var(--terra-application-action-menu-action-header-min-height, 2.92857rem);
-    padding: var(--terra-application-action-menu-action-header-padding, 0.35714rem 0.35714rem 0.35714rem 0);
-    position: relative;
-    width: 100%;
-
-    .title{
-      align-self: var(--terra-application-action-menu-action-header-title-align-self);
-      color: var(--terra-application-action-menu-action-header-title-color);
-      flex: 1 1 auto;
-      font-size: var(--terra-application-action-menu-action-header-title-font-size, 1.10714rem);
-      font-weight: var(--terra-application-action-menu-action-header-title-font-weight, 500);
-      hyphens: auto;
-      margin: 0;
-      overflow-wrap: break-word; /* Modern browsers */
-      padding: var(--terra-application-action-menu-action-header-title-padding, 0.28571rem 0.71428rem 0 0.71428rem);
-      padding-top: var(--terra-application-action-menu-action-header-title-padding-top, 0.28571rem);
-      position: relative;
-      width: 100%;
-      word-wrap: break-word; /* For IE 10 and IE 11 */
-    }
-  
-    .close-button{
-      display: flex;
-      flex: 0 0 auto;
-      position: relative;
-    }
   }
 }

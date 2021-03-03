@@ -1,21 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import uuidv4 from 'uuid/v4';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
-import { NavigationItemContext } from '../layouts';
-import ActiveMainPageRegistrationContext from '../application-container/private/active-main-page/ActiveMainPageRegistrationContext';
 
-import PageContext from './private/PageContext';
+import PageContainerContext from './private/PageContainerContext';
 import PageHeader from './private/_PageHeader';
 import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 import PageActions from './PageActions';
 
-import PageIdentifierContext from './private/PageIdentifierContext';
 import usePagePortal from './private/usePagePortal';
 
 import styles from './Page.module.scss';
@@ -88,62 +82,28 @@ const Page = ({
     throw new Error(`[terra-application] Page ${label} provided with invalid actions prop. Only PageActions is supported.`);
   }
 
-  const navigationItem = React.useContext(NavigationItemContext);
-  const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);
+  // The PageContainerContext value is provided by a parent PageContainer to provide information
+  // about the container (actions for the PageHeader to render, placement in the application, etc.)
+  const pageContainerContext = React.useContext(PageContainerContext);
 
-  /**
-   * The PageContext value is either provided by a parent PageContainer or
-   * a parent Page.
-   */
-  const pageContext = React.useContext(PageContext);
-
-  /**
-   * A UnsavedChangesPromptCheckpoint is used to detect unsaved changes within the Page's
-   * content.
-   */
+  // An UnsavedChangesPromptCheckpoint is used to detect unsaved changes within the Page's content.
   const unsavedChangesCheckpointRef = React.useRef();
 
-  /**
-   * Certain logic must be executed upon activation/presentation of a Page. Activation will trigger
-   * an update of the component, where we can appropriately adjust focus or notify page changes based upon
-   * other presentation state.
-   */
-  const [isActive, setIsActive] = React.useState(false);
+  // A Provider/Presenter pair is generated for NotificationBanner presentation within in the Page to
+  // limit updates to Page content due to banner presentation.
+  const { NotificationBannerProvider, NotificationBanners: NotificationBannerPresenter } = useNotificationBanners();
 
-  /**
-   * A Provider/Presenter pair is generated for NotificationBanner presentation within in the Page to
-   * limit updates to Page content due to banner presentation.
-   */
-  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+  // The usePagePortal hook is used to generate the PagePortal component that will render the Page content.
+  // This component will be consistent between renders, so there is no potential for remounting of Page content or state loss.
+  // The hook also orchestrates the presentation of the Page within the PageContainer.
+  const { PagePortal } = usePagePortal({
+    pageKey,
+    label,
+    metaData,
+  });
 
-  const { portalId, portalElement } = usePagePortal({ onActivate: setIsActive });
-
-  /**
-   * A unique id to generated for Page's rendered hidden text. This id is used by the
-   * nodeManager to ensure the container element is properly described by the presented Page.
-   */
-  const pageLabelIdRef = React.useRef(`page-label-${portalId}`);
-
-  if (!pageContext) {
+  if (!pageContainerContext) {
     throw new Error(`[terra-application] Page ${label} was rendered outside of a PageContainer.`);
-  }
-
-  React.useEffect(() => {
-    /**
-     * If the Page activates while visible and within a main PageContainer, an event is
-     * emitted to notify interested parties of the activation.
-     */
-    if (isActive && pageContext.isMainPage && navigationItem.isActive) {
-      const unregisterPage = activeMainPageRegistration.registerActiveMainPage(pageKey, label, metaData, navigationItem.navigationKeys);
-
-      return unregisterPage;
-    }
-
-    return undefined;
-  }, [isActive, pageContext.isMainPage, navigationItem.isActive, navigationItem.navigationKeys, pageKey, label, metaData, activeMainPageRegistration]);
-
-  if (!portalElement) {
-    throw new Error(`[terra-application] Page ${label} could not be assigned portal element due to multiple Page renders at the same presentation layer.`);
   }
 
   function safelyRequestClose() {
@@ -178,37 +138,30 @@ const Page = ({
   }, [statusOverlay, activityOverlay]);
 
   return (
-    ReactDOM.createPortal((
-      <PageIdentifierContext.Provider value={portalId}>
-        <div className={cx('page')}>
-          <div className={cx('header')}>
-            <PageHeader
-              onBack={onRequestClose && safelyRequestClose}
-              label={label}
-              actions={actions}
-              toolbar={toolbar}
-              notificationBanners={<NotificationBanners />}
-            />
-          </div>
-          <div className={cx('content')}>
-            <VisuallyHiddenText
-              aria-hidden
-              id={pageLabelIdRef.current}
-              text={label}
-            />
-            <DynamicOverlayContainer
-              overlays={overlays}
-            >
-              <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-                <NotificationBannerProvider>
-                  {children}
-                </NotificationBannerProvider>
-              </UnsavedChangesPromptCheckpoint>
-            </DynamicOverlayContainer>
-          </div>
+    <PagePortal>
+      <div className={cx('page')}>
+        <div className={cx('header')}>
+          <PageHeader
+            onBack={onRequestClose && safelyRequestClose}
+            label={label}
+            actions={actions}
+            toolbar={toolbar}
+            notificationBanners={<NotificationBannerPresenter />}
+          />
         </div>
-      </PageIdentifierContext.Provider>
-    ), portalElement)
+        <div className={cx('content')}>
+          <DynamicOverlayContainer
+            overlays={overlays}
+          >
+            <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+              <NotificationBannerProvider>
+                {children}
+              </NotificationBannerProvider>
+            </UnsavedChangesPromptCheckpoint>
+          </DynamicOverlayContainer>
+        </div>
+      </div>
+    </PagePortal>
   );
 };
 

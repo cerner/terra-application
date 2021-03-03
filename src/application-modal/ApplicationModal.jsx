@@ -9,7 +9,7 @@ import { PageContainer } from '../page';
 import { deferExecution } from '../utils/lifecycle-utils';
 
 import ModalContent from './_ModalContent';
-import PageContext from '../page/private/PageContext';
+import PageContainerContext from '../page/private/PageContainerContext';
 
 const propTypes = {
   title: PropTypes.string,
@@ -95,7 +95,7 @@ const ApplicationModal = ({
   }, [isInert, onInert]);
 
   return (
-    <PageContext.Provider value={undefined}>
+    <PageContainerContext.Provider value={undefined}>
       <LayerPortal
         type="modal"
         setInert={setIsInert}
@@ -119,7 +119,7 @@ const ApplicationModal = ({
           </ModalContent>
         </UnsavedChangesPromptCheckpoint>
       </LayerPortal>
-    </PageContext.Provider>
+    </PageContainerContext.Provider>
   );
 };
 

@@ -1,5 +1,7 @@
 import React from 'react';
+import ReactDOM from 'react-dom';
 import uuidv4 from 'uuid/v4';
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import PagePortalContext from './PagePortalContext';
 import PageIdentifierContext from './PageIdentifierContext';
@@ -13,23 +15,41 @@ function createPortalElement() {
   return newPortalElement;
 }
 
-const usePagePortal = ({ onActivate }) => {
+const usePagePortal = ({
+  onActivate, pageKey, label, metaData,
+}) => {
   const portalIdRef = React.useRef(uuidv4());
-  const pagePortal = React.useContext(PagePortalContext);
+  const pagePortalContext = React.useContext(PagePortalContext);
   const parentPageIdentifer = React.useContext(PageIdentifierContext);
   const portalElementRef = React.useRef(createPortalElement());
 
+  const pagePortalLabelId = `page-portal-${portalIdRef.current}`;
+
   React.useLayoutEffect(() => {
-    pagePortal.renderPortalElement(portalElementRef.current, portalIdRef.current, parentPageIdentifer, onActivate);
-  }, [pagePortal, parentPageIdentifer, onActivate]);
+    pagePortalContext.renderPortalElement(portalElementRef.current, portalIdRef.current, parentPageIdentifer, {
+      onActivate, pageKey, label, metaData, pagePortalLabelId,
+    });
+  }, [pagePortalContext, parentPageIdentifer, onActivate, pageKey, label, metaData, pagePortalLabelId]);
 
   React.useLayoutEffect(() => () => {
-    pagePortal.releasePortalElement(portalIdRef.current);
-  }, [pagePortal]);
+    pagePortalContext.releasePortalElement(portalIdRef.current);
+  }, [pagePortalContext]);
+
+  const pagePortalComponentRef = React.useRef(({ children }) => (
+    ReactDOM.createPortal((
+      <PageIdentifierContext.Provider value={portalIdRef.current}>
+        <VisuallyHiddenText
+          aria-hidden
+          id={pagePortalLabelId}
+          text={label}
+        />
+        {children}
+      </PageIdentifierContext.Provider>
+    ), portalElementRef.current)
+  ));
 
   return {
-    portalId: portalIdRef.current,
-    portalElement: portalElementRef.current,
+    PagePortal: pagePortalComponentRef.current,
   };
 };
 

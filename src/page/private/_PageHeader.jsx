@@ -8,7 +8,7 @@ import Menu from 'terra-menu';
 
 import { useTransientPresentationState } from '../../utils/transient-presentation';
 
-import PageContext from './PageContext';
+import PageContainerContext from './PageContainerContext';
 
 import styles from './PageHeader.module.scss';
 
@@ -19,7 +19,7 @@ const propTypes = {};
 const PageHeader = ({
   actions, toolbar, notificationBanners, onBack, label,
 }) => {
-  const pageContext = React.useContext(PageContext);
+  const pageContainerContext = React.useContext(PageContainerContext);
   const [actionsAreCollapsed, setActionsAreCollapsed] = React.useState(false);
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const headerContainerRef = React.useRef();
@@ -34,6 +34,7 @@ const PageHeader = ({
 
     const resizeObserver = new ResizeObserver(entries => {
       // TODO: wrap in requestAnimationFrame to prevent resizeObserver exceeded loop violation
+      // TODO redux: consume useElementSize hook when ported
       const resizeWidth = entries[0].contentRect.width;
 
       if (resizeWidth === 0) {
@@ -130,11 +131,11 @@ const PageHeader = ({
   return (
     <div ref={headerContainerRef} className={cx('page-header-container')}>
       <div className={cx('page-header')}>
-        {onBack || pageContext?.containerStartActions ? (
+        {onBack || pageContainerContext?.containerStartActions ? (
           <div className={cx('back-button-container')}>
-            {pageContext.containerStartActions.length ? (
+            {pageContainerContext.containerStartActions.length ? (
               <>
-                {pageContext.containerStartActions.map(({ icon: Icon, ...action }) => (
+                {pageContainerContext.containerStartActions.map(({ icon: Icon, ...action }) => (
                   <Button
                     className={cx('header-button')}
                     key={action.key}
@@ -166,10 +167,10 @@ const PageHeader = ({
           {renderActionButtons()}
           {renderMenuButton()}
           {showMenu && renderMenu()}
-          {pageContext.containerEndActions.length ? (
+          {pageContainerContext.containerEndActions.length ? (
             <>
               <div className={cx('actions-divider')} />
-              {pageContext.containerEndActions.map(({ icon: Icon, ...action }) => (
+              {pageContainerContext.containerEndActions.map(({ icon: Icon, ...action }) => (
                 <Button
                   className={cx('header-button')}
                   key={action.key}

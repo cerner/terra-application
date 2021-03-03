@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const PagePortalContext = createContext(undefined);
 
 const contextShape = PropTypes.shape({
-  getPortalElement: PropTypes.func,
+  renderPortalElement: PropTypes.func,
+  releasePortalElement: PropTypes.func,
 });
 
 export default PagePortalContext;

@@ -25,12 +25,23 @@ const propTypes = {
   onRequestClose: PropTypes.func,
 };
 
-const page1MetaData = { data: 'page-1' };
+// const page1MetaData = { data: 'page-1' };
 
 const Page1 = ({ onRequestClose }) => {
   const [showPage2, setShowPage2] = React.useState(false);
   const [showPageModal, setShowPageModal] = React.useState(false);
   const [isLoading, setIsLoading] = React.useState(false);
+  const [metaData, setMetaData] = React.useState({ update_timestamp: Date.now() });
+
+  React.useEffect(() => {
+    const interval = setInterval(() => {
+      setMetaData({ update_timestamp: Date.now() });
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
 
   const pageActions = (
     <PageActions>
@@ -48,7 +59,7 @@ const Page1 = ({ onRequestClose }) => {
     <Page
       pageKey="page-1"
       label="Page 1"
-      metaData={page1MetaData}
+      metaData={metaData}
       actions={pageActions}
       onRequestClose={onRequestClose}
       activityOverlay={isLoading ? <PageActivityOverlay variant="loading" /> : undefined}

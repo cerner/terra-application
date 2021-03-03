@@ -5,6 +5,7 @@ import classNamesBind from 'classnames/bind';
 
 import { ApplicationIntlContext } from '../application-intl';
 import SkipToButton from '../application-container/private/skip-to/SkipToButton';
+import useActiveMainPageRegistry from '../application-container/private/active-main-page/useActiveMainPageRegistry';
 import { deferExecution } from '../utils/lifecycle-utils';
 
 import styles from './MainContainer.module.scss';
@@ -17,6 +18,10 @@ const propTypes = {
    * `<main>` element.
    */
   refCallback: PropTypes.func,
+  // TODO DOC
+  mainKey: PropTypes.string,
+  mainLabel: PropTypes.string,
+  mainMetaData: PropTypes.shape({}),
 };
 
 /**
@@ -29,11 +34,15 @@ const propTypes = {
  * framework-provided Layout to render Pages. Layouts that feature a `renderPage` prop will render
  * a MainContainer automatically when the `renderPage` prop is used.
  */
-const MainContainer = ({ refCallback, ...otherProps }) => {
+const MainContainer = ({
+  refCallback, mainKey, mainLabel, mainMetaData, ...otherProps
+}) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const mainElementRef = React.useRef();
 
-  const mainElementClasses = classNames(cx('main-container'), otherProps.className);
+  // TODO figure out this awkward mapping. Page-prefixed stuff is weird here.
+  const mainPageData = mainKey ? { pageKey: mainKey, label: mainLabel, metaData: mainMetaData } : undefined;
+  useActiveMainPageRegistry(mainPageData);
 
   return (
     <>
@@ -54,7 +63,7 @@ const MainContainer = ({ refCallback, ...otherProps }) => {
           }
         }}
         {...otherProps}
-        className={mainElementClasses}
+        className={classNames(cx('main-container'), otherProps.className)}
       />
     </>
   );

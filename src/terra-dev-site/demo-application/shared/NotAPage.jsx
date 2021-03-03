@@ -3,11 +3,17 @@ import Button from 'terra-button';
 import LayoutActionsContext from '../../../layouts/shared/LayoutActionsContext';
 import MainContainer from '../../../main-container';
 
+const metaData = { data: 'data for NotAPage' };
+
 const NotAPage = () => {
   const layoutActions = React.useContext(LayoutActionsContext);
 
   return (
-    <MainContainer>
+    <MainContainer
+      mainKey="not-a-page-key"
+      mainLabel="Not a Page"
+      mainMetaData={metaData}
+    >
       <div style={{ padding: '1rem' }}>
         <h2>Not A Page</h2>
         <p>This component does not use a Page to render its content. While usage of Pages is recommended, it is not outright required.</p>

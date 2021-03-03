@@ -10,7 +10,7 @@ import { deferExecution } from '../utils/lifecycle-utils';
 import Logger from '../utils/logger';
 import { getPersistentScrollMap, applyScrollData } from '../utils/scroll-persistence/scroll-persistence';
 
-import PageContext from './private/PageContext';
+import PageContainerContext from './private/PageContainerContext';
 import PagePortalContext from './private/PagePortalContext';
 
 import styles from './PageContainer.module.scss';
@@ -67,7 +67,7 @@ const PageContainer = ({
 
   /**
    * The LayoutActionsContext value is read, and its value is provided to the individual Pages
-   * through the PageContext. This allows the PageContainer to override the actions context value and
+   * through the PageContainerContext. This allows the PageContainer to override the actions context value and
    * ensure the previous value does not bleed into any nested PageContainers.
    */
   const layoutActions = React.useContext(LayoutActionsContext);
@@ -76,31 +76,34 @@ const PageContainer = ({
   const lastActivePortalArrayRef = React.useRef([]);
   const [activePortalArray, setActivePortalArray] = React.useState([]);
   const pagePortalContextValue = React.useMemo(() => {
-    const renderPortalElement = (portalElement, portalId, ancestorPortalId, onPortalActivate) => {
-      const entryForPortalId = portalRegisterRef.current[portalId];
-      if (entryForPortalId) {
-        entryForPortalId.ancestorPortalId = ancestorPortalId;
-        entryForPortalId.onPortalActivate = onPortalActivate;
-      }
+    const renderPortalElement = (portalElement, portalId, ancestorPortalId, {
+      pageKey, label, metaData, pagePortalLabelId,
+    }) => {
+      // If the page data has changed for an existing portal, we need to ensure the activePortalArray state changes
+      // to trigger downstream effects. Otherwise, these changes will not be detected.
+      const existingPortalEntry = portalRegisterRef.current[portalId];
+      const forceUpdate = existingPortalEntry && (existingPortalEntry.pageKey !== pageKey || existingPortalEntry.label !== label || existingPortalEntry.metaData !== metaData);
 
       portalRegisterRef.current[portalId] = {
         element: portalElement,
         ancestorPortalId,
-        onPortalActivate,
         overflowData: undefined,
+        pageKey,
+        label,
+        metaData,
+        pagePortalLabelId,
       };
 
       setActivePortalArray((activePortals) => {
         // If the specified portal is already present in the render order,
-        // it can stay where it is and the state does not need to be updated.
-
+        // it can stay where it is. The state is updated to ensure that any changed
+        // page values (label/metaData) are communicated to the other effects.
         if (activePortals.indexOf(portalId) >= 0) {
-          return activePortals;
+          return forceUpdate ? [...activePortals] : activePortals;
         }
 
         // If there are currently no registered portals, we initialize the state
         // with the single new entry.
-
         if (!activePortals.length) {
           return [portalId];
         }
@@ -109,7 +112,6 @@ const PageContainer = ({
         // this new portal must be a duplicate Page at the root of the PageContainer.
         // This new portal is not queued for rendering and is ignored until it becomes
         // render-able due to changes to the Page hierarchy.
-
         if (!ancestorPortalId) {
           // We need to perform a separate check to see if the new portal should be inserted into the existing ordering,
           // likely due to a series of Pages mounting at the same time.
@@ -121,13 +123,12 @@ const PageContainer = ({
           }
 
           Logger.warn('Application Page Rendering: A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
-          return activePortals;
+          return forceUpdate ? [...activePortals] : activePortals;
         }
 
         // If the new portal's ancestor has already been registered, the new portal is injected
         // into the array immediately after the ancestor. If the ancestor is found to already have descendant Pages, the new portal
         // is not queued for rendering and is ignored until it becomes render-able due to changes to the Page hierarchy.
-
         const indexOfAncestorPortal = activePortals.indexOf(ancestorPortalId);
         if (indexOfAncestorPortal >= 0) {
           if (indexOfAncestorPortal === activePortals.length - 1) {
@@ -146,13 +147,12 @@ const PageContainer = ({
           }
 
           Logger.warn('Application Page Rendering: A Page can only render a single Page child. The redundant Page will not be displayed.');
-          return activePortals;
+          return forceUpdate ? [...activePortals] : activePortals;
         }
 
         // If a series of nested Pages are mounted at the same time, the child pages will be registered and processed
         // prior to their ancestors. In this case, we need to ensure that the portal order managed in state
         // reflects the component component hierarchy.
-
         const earlyDescendantId = Object.keys(portalRegisterRef.current).find((registeredPortalId) => portalRegisterRef.current[registeredPortalId].ancestorPortalId === portalId);
         if (earlyDescendantId) {
           const newPortals = [...activePortals];
@@ -163,7 +163,6 @@ const PageContainer = ({
         // If neither an ancestor nor an early descendant can be found for the new portal, we assume that the ancestor will be coming in a subsequent update.
         // Given the protections above for duplicate Page detection, we can be optimistic and push the portal to the end of the line to prepare for rendering.
         // If the ancestor never arrives, someone has done something very wrong.
-
         const newPortals = [...activePortals];
         newPortals.push(portalId);
         return newPortals;
@@ -189,21 +188,23 @@ const PageContainer = ({
     };
   }, []);
 
+  const activeNavigationItemRef = React.useRef();
+  activeNavigationItemRef.current = navigationItem.isActive;
   React.useLayoutEffect(() => {
-    const onPageActivate = ({ pageLabelId }) => {
+    const onPageActivate = ({ pagePortalLabelId }) => {
       /**
        * Update the aria attributes on the root PageContainer element that is described by the current
        * active Page.
        */
       if (rootContainerRef.current) {
-        rootContainerRef.current.setAttribute('aria-labelledby', pageLabelId);
+        rootContainerRef.current.setAttribute('aria-labelledby', pagePortalLabelId);
       }
 
       /**
-       * If a Page is activating within the visible navigation hierarchy, focus is anmbbnmmmdjusted
+       * If a Page is activating within the visible navigation hierarchy, focus is moved
        * to account for the new activation.
        */
-      if (navigationItem.isActive) {
+      if (activeNavigationItemRef.current) {
         if (isMainRef.current) {
           deferExecution(() => {
             document.body.focus();
@@ -226,15 +227,11 @@ const PageContainer = ({
         portalData.overflowData = getPersistentScrollMap(portalData.element);
 
         rootContainerRef.current.removeChild(portalData.element);
-
-        portalData.onPortalActivate(false);
       } else if (isTopPortal && !rootContainerRef.current.contains(portalData.element)) {
         rootContainerRef.current.appendChild(portalData.element);
         applyScrollData(portalData.overflowData, portalData.element);
 
-        portalData.onPortalActivate(true);
-
-        onPageActivate(activePortalArray[i]);
+        onPageActivate(portalData);
       }
 
       danglingPortals.splice(danglingPortals.indexOf(activePortalArray[i]), 1);
@@ -250,9 +247,9 @@ const PageContainer = ({
     }
 
     lastActivePortalArrayRef.current = activePortalArray;
-  }, [activePortalArray, navigationItem]);
+  }, [activePortalArray]);
 
-  const pageContextValue = React.useMemo(() => ({
+  const pageContainerContextValue = React.useMemo(() => ({
     containerStartActions: layoutActions.startActions,
     containerEndActions: layoutActions.endActions,
     isMainPage: isMainRef.current,
@@ -261,20 +258,27 @@ const PageContainer = ({
   const content = (
     <LayoutActionsContext.Provider value={defaultLayoutActionsOverrideValue}>
       <PagePortalContext.Provider value={pagePortalContextValue}>
-        <PageContext.Provider value={pageContextValue}>
+        <PageContainerContext.Provider value={pageContainerContextValue}>
           {children}
-        </PageContext.Provider>
+        </PageContainerContext.Provider>
       </PagePortalContext.Provider>
     </LayoutActionsContext.Provider>
   );
 
   if (isMainRef.current) {
+    // The currently active page data is provided to the MainContainer, which notifies the rest of the application
+    // of the active main content state.
+    const activePagePortalData = portalRegisterRef.current[activePortalArray[activePortalArray.length - 1]];
+
     return (
       <MainContainer
         refCallback={(ref) => {
           rootContainerRef.current = ref;
         }}
         className={cx('page-container')}
+        mainKey={activePagePortalData?.pageKey}
+        mainLabel={activePagePortalData?.label}
+        mainMetaData={activePagePortalData?.metaData}
       >
         {content}
       </MainContainer>

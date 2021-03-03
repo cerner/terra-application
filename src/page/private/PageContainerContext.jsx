@@ -1,9 +1,9 @@
 import { createContext } from 'react';
 
-const PageContext = createContext({
+const PageContainerContext = createContext({
   containerStartActions: [],
   containerEndActions: [],
   isMainPage: false,
 });
 
-export default PageContext;
+export default PageContainerContext;

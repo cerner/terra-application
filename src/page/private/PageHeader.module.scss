@@ -60,10 +60,27 @@
     width: 2px;
   }
 
-  .toolbar-container,
-  .notification-banner-container {
-    margin-top: 5px;
-    border-radius: 3px;
+  .toolbar-container {
+    margin-top: var(--terra-application-page-header-toolbar-margin-top, 4px);
+  }
+
+  .notification-banners-container {
+    margin-bottom: var(--terra-application-page-header-notification-banners-container-margin-bottom, 3px);
+    margin-top: var(--terra-application-page-header-notification-banners-container-margin-top, 4px);
+  }
+
+  .toolbar-container + .notification-banners-container {
+    margin-top: var(--terra-application-page-header-notification-banners-container-adjacent-margin-top, 6px);
+  }
+
+  .notification-banner {
+    &:not(:first-child) {
+      margin-top: var(--terra-application-page-header-notification-banner-adjacent-margin-top, 3px);
+    }
+  }
+
+  .rounded {
+    border-radius: var(--terra-application-page-header-rounded-border-radius, 3px);
     overflow: hidden;
   }
 }

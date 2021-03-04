@@ -3,7 +3,9 @@ import PropTypes from 'prop-types';
 import Button from 'terra-button';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
-import DropdownButton, { Item, Variants } from 'terra-dropdown-button';
+import Toolbar from 'terra-toolbar';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 
 import Page, {
   PageActions, Action, CardLayout, Card, PageActivityOverlay,
@@ -13,7 +15,6 @@ import Page4 from './Page4';
 import AddModal from '../modals/AddModal';
 import PrintModal from '../modals/PrintModal';
 
-import PageToolbar from './content/PageToolbar';
 import PendingActionsCard from './content/PendingActionsCard';
 import NotificationBannersCard from './content/NotificationBannersCard';
 import ErrorHandlingCard from './content/ErrorHandlingCard';
@@ -54,26 +55,10 @@ const Page3 = ({ onRequestClose }) => {
   );
 
   const pageToolbar = (
-    <PageToolbar title="Page 3 Toolbar">
-      <DropdownButton
-        label="Dropdown 1"
-        variant="ghost"
-      >
-        <Item label="1st Option" onSelect={() => {}} />
-        <Item label="2nd Option" onSelect={() => {}} />
-        <Item label="3rd Option" onSelect={() => {}} />
-        <Item label="4th Option" onSelect={() => {}} />
-      </DropdownButton>
-      <DropdownButton
-        label="Dropdown 2"
-        variant={Variants.EMPHASIS}
-      >
-        <Item label="1st Option" onSelect={() => {}} />
-        <Item label="2nd Option" onSelect={() => {}} />
-        <Item label="3rd Option" onSelect={() => {}} />
-        <Item label="4th Option" onSelect={() => {}} />
-      </DropdownButton>
-    </PageToolbar>
+    <Toolbar style={{ backgroundColor: '#fefffe' }}>
+      <Button text="Edit" variant="utility" icon={<IconEdit />} />
+      <Button text="Add" variant="utility" icon={<IconAttachment />} />
+    </Toolbar>
   );
 
   return (

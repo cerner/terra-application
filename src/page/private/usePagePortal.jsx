@@ -49,6 +49,7 @@ const usePagePortal = ({
   ));
 
   return {
+    portalId: portalIdRef.current,
     PagePortal: pagePortalComponentRef.current,
   };
 };

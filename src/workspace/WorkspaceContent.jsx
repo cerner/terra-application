@@ -79,7 +79,7 @@ const WorkspaceContent = ({
         ) : undefined}
         <NotificationBanners
           id={`${panelId}-notifications`}
-          label={`Workspace ${label}`}
+          label={`Workspace ${label}`} // TODO I think we missed this translation
           activeClassName={cx('notification-banners-container')}
           bannerClassName={cx('notification-banner', 'rounded')}
         />

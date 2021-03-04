@@ -96,7 +96,7 @@ const Page = ({
   // The usePagePortal hook is used to generate the PagePortal component that will render the Page content.
   // This component will be consistent between renders, so there is no potential for remounting of Page content or state loss.
   // The hook also orchestrates the presentation of the Page within the PageContainer.
-  const { PagePortal } = usePagePortal({
+  const { PagePortal, portalId } = usePagePortal({
     pageKey,
     label,
     metaData,
@@ -142,11 +142,12 @@ const Page = ({
       <div className={cx('page')}>
         <div className={cx('header')}>
           <PageHeader
+            id={portalId}
             onBack={onRequestClose && safelyRequestClose}
             label={label}
             actions={actions}
             toolbar={toolbar}
-            notificationBanners={<NotificationBannerPresenter />}
+            NotificationBanners={NotificationBannerPresenter}
           />
         </div>
         <div className={cx('content')}>

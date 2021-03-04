@@ -17,7 +17,7 @@ const cx = classNames.bind(styles);
 const propTypes = {};
 
 const PageHeader = ({
-  actions, toolbar, notificationBanners, onBack, label,
+  actions, toolbar, NotificationBanners, onBack, label, id,
 }) => {
   const pageContainerContext = React.useContext(PageContainerContext);
   const [actionsAreCollapsed, setActionsAreCollapsed] = React.useState(false);
@@ -186,15 +186,16 @@ const PageHeader = ({
         </div>
       </div>
       {toolbar && (
-        <div className={cx('toolbar-container')}>
+        <div className={cx('toolbar-container', 'rounded')}>
           {toolbar}
         </div>
       )}
-      {notificationBanners && (
-        <div className={cx('notification-banner-container')}>
-          {notificationBanners}
-        </div>
-      )}
+      <NotificationBanners
+        id={id}
+        label={label}
+        activeClassName={cx('notification-banners-container')}
+        bannerClassName={cx('notification-banner', 'rounded')}
+      />
     </div>
   );
 };

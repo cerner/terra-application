@@ -5,7 +5,6 @@ exports[`Header should render default element 1`] = `
   <Header
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -62,7 +61,6 @@ exports[`Header should render default element 1`] = `
           <Tabs
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -155,7 +153,6 @@ exports[`Header should render title element 1`] = `
   <Header
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -231,7 +228,6 @@ exports[`Header should render title element 1`] = `
           <Tabs
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -417,7 +413,6 @@ exports[`Header should render with function callbacks 1`] = `
     }
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -598,7 +593,6 @@ exports[`Header should render with function callbacks 1`] = `
             activeTabKey="test-text"
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -789,7 +783,6 @@ exports[`Header should render with function callbacks 1`] = `
             }
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -926,7 +919,6 @@ exports[`Header should render with function callbacks 1`] = `
           <UtilityMenuHeaderButton
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -1101,7 +1093,6 @@ exports[`Header should render with skip callback 1`] = `
   <Header
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -1160,7 +1151,6 @@ exports[`Header should render with skip callback 1`] = `
           <Tabs
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,

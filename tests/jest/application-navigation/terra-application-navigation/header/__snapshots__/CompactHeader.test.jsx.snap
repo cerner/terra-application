@@ -6,7 +6,6 @@ exports[`CompactHeader should render default element 1`] = `
     extensionItems={Array []}
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -101,7 +100,6 @@ exports[`CompactHeader should render title element 1`] = `
     extensionItems={Array []}
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -298,7 +296,6 @@ exports[`CompactHeader should render with function callbacks 1`] = `
     }
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -492,7 +489,6 @@ exports[`CompactHeader should render with function callbacks 1`] = `
             }
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,
@@ -631,7 +627,6 @@ exports[`CompactHeader should render with menu callback 1`] = `
     extensionItems={Array []}
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -777,7 +772,6 @@ exports[`CompactHeader should render with skip callback 1`] = `
     extensionItems={Array []}
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,

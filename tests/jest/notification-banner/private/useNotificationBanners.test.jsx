@@ -1,252 +1,169 @@
-import React, { useState } from 'react';
-import { act } from 'react-dom/test-utils';
-import { render, fireEvent } from '@testing-library/react';
-import { IntlProvider } from 'react-intl';
+import React from 'react';
+import { render, screen, waitFor } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import '@testing-library/jest-dom/extend-expect';
+import 'mutationobserver-shim';
 
-import BannerRegistrationContext from '../../../../src/notification-banner/private/BannerRegistrationContext';
 import NotificationBanner from '../../../../src/notification-banner';
 import useNotificationBanners from '../../../../src/notification-banner/private/useNotificationBanners';
-// eslint-disable-next-line import/no-unresolved, import/extensions
-import { messages } from '../../../../aggregated-translations/en'; // aggregation is pre-jest step so this will exist
 
-global.console.warn = jest.fn();
-
-let keyValue = 0;
-const mockBannerProps = { variant: 'error' };
-
-// eslint-disable-next-line react/prop-types
-const ChildContent = ({ showBannerOnRender = false, buttonId = 'show-banner', children = null }) => {
-  const [hasBanner, setHasBanner] = useState(showBannerOnRender);
-  keyValue += 1;
-  return (
-    <div>
-      <button
-        type="button"
-        data-testid={buttonId}
-        onClick={() => setHasBanner(!hasBanner)}
-      >
-        Toggle Notification Banner
-      </button>
-      {hasBanner ? <NotificationBanner {...mockBannerProps} key={keyValue} /> : null}
-      {children}
-    </div>
-  );
-};
-
-const renderComponentWithChild = (childrenContent) => {
-  let childContext;
-
-  const ExampleWithBannerProvider = () => {
-    const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-
-    return (
-      <IntlProvider locale="en" messages={messages}>
-        <NotificationBannerProvider>
-          <NotificationBanners />
-          <BannerRegistrationContext.Consumer>
-            {(context) => {
-              childContext = context;
-              return childrenContent;
-            }}
-          </BannerRegistrationContext.Consumer>
-        </NotificationBannerProvider>
-      </IntlProvider>
-    );
-  };
-  const component = render(<ExampleWithBannerProvider />);
-
-  return { component, context: childContext };
-};
+import MockApplication from '../../MockApplication';
 
 describe('useNotificationBanners', () => {
+  let NotificationBannersTestHarness;
   beforeEach(() => {
-    jest.resetAllMocks;
-    // eslint-disable-next-line no-console
-    console.warn.mockClear();
+    NotificationBannersTestHarness = ({ children }) => { // eslint-disable-line react/prop-types
+      const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+
+      return (
+        <MockApplication>
+          <div>
+            <div>
+              <NotificationBanners label="Test Banners Label" />
+            </div>
+            <div>
+              <NotificationBannerProvider>
+                {children}
+              </NotificationBannerProvider>
+            </div>
+          </div>
+        </MockApplication>
+      );
+    };
   });
 
-  it('renders with children', () => {
-    const { component } = renderComponentWithChild(null);
-    expect(component.container).toMatchSnapshot();
+  test('should provide components that render banners upon NotificationBanner registration', () => {
+    const view = render(<NotificationBannersTestHarness />);
+
+    expect(screen.getByRole('region', { name: 'terraApplication.notifications.regionLabel' })).toBeInTheDocument();
+
+    view.rerender((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+      </NotificationBannersTestHarness>
+    ));
+
+    const hazardHighListItem = screen.getByLabelText('terraApplication.notificationBanner.alert', { selector: 'li' });
+    expect(hazardHighListItem).toBeInTheDocument();
+    expect(hazardHighListItem).toHaveAttribute('aria-posinset', '1');
+    expect(hazardHighListItem).toHaveAttribute('aria-setsize', '1');
+    expect(hazardHighListItem).toHaveTextContent('High Hazard Test Description');
+
+    view.rerender((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+        <NotificationBanner variant="hazard-medium" description="Medium Hazard Test Description" />
+      </NotificationBannersTestHarness>
+    ));
+
+    const hazardMediumListItem = screen.getByLabelText('terraApplication.notificationBanner.warning', { selector: 'li' });
+    expect(hazardMediumListItem).toBeInTheDocument();
+    expect(hazardMediumListItem).toHaveAttribute('aria-posinset', '2');
+    expect(hazardMediumListItem).toHaveAttribute('aria-setsize', '2');
+    expect(hazardMediumListItem).toHaveTextContent('Medium Hazard Test Description');
+
+    view.rerender((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+        <NotificationBanner variant="hazard-medium" description="Medium Hazard Test Description" />
+        <NotificationBanner variant="hazard-low" description="Low Hazard Test Description" />
+      </NotificationBannersTestHarness>
+    ));
+
+    const lowHazardListItem = screen.getByLabelText('terraApplication.notificationBanner.info', { selector: 'li' });
+    expect(lowHazardListItem).toBeInTheDocument();
+    expect(lowHazardListItem).toHaveAttribute('aria-posinset', '3');
+    expect(lowHazardListItem).toHaveAttribute('aria-setsize', '3');
+    expect(lowHazardListItem).toHaveTextContent('Low Hazard Test Description');
+
+    view.rerender((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+        <NotificationBanner variant="hazard-medium" description="Medium Hazard Test Description" />
+        <NotificationBanner variant="hazard-low" description="Low Hazard Test Description" />
+        <NotificationBanner variant="custom" custom={{ signalWord: 'Custom Signal', customIconClass: 'custom-icon-class' }} description="Custom Test Description" />
+      </NotificationBannersTestHarness>
+    ));
+
+    const customListItem = screen.getByLabelText('Custom Signal', { selector: 'li' });
+    expect(customListItem).toBeInTheDocument();
+    expect(customListItem).toHaveAttribute('aria-posinset', '4');
+    expect(customListItem).toHaveAttribute('aria-setsize', '4');
+    expect(customListItem).toHaveTextContent('Custom Test Description');
   });
 
-  it('renders with children', () => {
-    const { component } = renderComponentWithChild(<div>child</div>);
+  test('should provide components that remove banners when they are no longer rendered', () => {
+    const view = render((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+        <NotificationBanner variant="hazard-medium" description="Medium Hazard Test Description" />
+      </NotificationBannersTestHarness>
+    ));
 
-    expect(component.container).toMatchSnapshot();
+    expect(screen.getByRole('region', { name: 'terraApplication.notifications.regionLabel' })).toBeInTheDocument();
+
+    let hazardHighListItem = screen.getByLabelText('terraApplication.notificationBanner.alert', { selector: 'li' });
+    expect(hazardHighListItem).toBeInTheDocument();
+    expect(hazardHighListItem).toHaveAttribute('aria-posinset', '1');
+    expect(hazardHighListItem).toHaveAttribute('aria-setsize', '2');
+
+    const hazardMediumListItem = screen.getByLabelText('terraApplication.notificationBanner.warning', { selector: 'li' });
+    expect(hazardMediumListItem).toBeInTheDocument();
+    expect(hazardMediumListItem).toHaveAttribute('aria-posinset', '2');
+    expect(hazardMediumListItem).toHaveAttribute('aria-setsize', '2');
+
+    view.rerender((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" />
+      </NotificationBannersTestHarness>
+    ));
+
+    hazardHighListItem = screen.getByLabelText('terraApplication.notificationBanner.alert', { selector: 'li' });
+    expect(hazardHighListItem).toBeInTheDocument();
+    expect(hazardHighListItem).toHaveAttribute('aria-posinset', '1');
+    expect(hazardHighListItem).toHaveAttribute('aria-setsize', '1');
+
+    view.rerender(<NotificationBannersTestHarness />);
+
+    expect(screen.getByTestId('notification-banners-list').childElementCount).toBe(0);
   });
 
-  it('renders with children that has a an banner', () => {
-    const { component } = renderComponentWithChild(<ChildContent showBannerOnRender />);
+  test('should provide components that render banners with custom actions', () => {
+    const mockAction = { text: 'Test Action', onClick: jest.fn() };
 
-    expect(component.container).toMatchSnapshot();
+    render((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" bannerAction={mockAction} />
+      </NotificationBannersTestHarness>
+    ));
+
+    const action = screen.getByText('Test Action');
+    expect(action).toBeInTheDocument();
+
+    userEvent.click(action);
+
+    expect(mockAction.onClick).toHaveBeenCalled();
   });
 
-  describe('NotificationBannerProvider.registerNotificationBanner', () => {
-    it('provides registerNotificationBanner callback in context', () => {
-      const { context } = renderComponentWithChild();
+  test('should provide components that render dismiss-able banners', async () => {
+    const mockOnRequestClose = jest.fn();
 
-      expect(context).toBeDefined();
-      expect(context).toHaveProperty('registerNotificationBanner', expect.any(Function));
-    });
+    const view = render((
+      <NotificationBannersTestHarness>
+        <NotificationBanner variant="hazard-high" description="High Hazard Test Description" onRequestClose={mockOnRequestClose} />
+      </NotificationBannersTestHarness>
+    ));
 
-    it('does not register banner if no id is provided', () => {
-      const { component, context } = renderComponentWithChild();
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
+    const dismissButton = screen.getByText('terraApplication.notificationBanner.dismiss');
+    expect(dismissButton).toBeInTheDocument();
 
-      expect(() => context.registerNotificationBanner(undefined, mockBannerProps)).toThrowError('A banner cannot be registered without an identifier.');
+    userEvent.click(dismissButton);
 
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
-    });
+    expect(mockOnRequestClose).toHaveBeenCalled();
 
-    it('registers banner when id is provided', () => {
-      expect.assertions(3);
-      const { component, context } = renderComponentWithChild();
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
+    view.rerender(<NotificationBannersTestHarness />);
 
-      expect(() => act(() => {
-        context.registerNotificationBanner('mockID', mockBannerProps);
-      })).not.toThrowError('A banner cannot be registered without an identifier.');
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-    });
-
-    it('registers banner when rendered after mount', () => {
-      const { component } = renderComponentWithChild(<ChildContent />);
-
-      expect(component.container).toMatchSnapshot();
-
-      const childButton = component.getByTestId('show-banner');
-      act(() => {
-        fireEvent.click(childButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-      expect(component.container).toMatchSnapshot();
-    });
-  });
-
-  describe('NotificationBannerProvider.unregisterNotificationBanner', () => {
-    it('provides unregisterNotificationBanner callback in context', () => {
-      const { context } = renderComponentWithChild();
-
-      expect(context).toBeDefined();
-      expect(context).toHaveProperty('unregisterNotificationBanner', expect.any(Function));
-    });
-
-    it('does not unregister notification banner if no id is provided', () => {
-      const { component, context } = renderComponentWithChild(<ChildContent showBannerOnRender />);
-
-      // eslint-disable-next-line no-console
-      console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-
-      expect(() => context.unregisterNotificationBanner(undefined)).toThrowError('A banner cannot be unregistered without an identifier or banner variant.');
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-    });
-
-    it('does not unregister notification banner if banner variant is not provided', () => {
-      const { component, context } = renderComponentWithChild(<ChildContent showBannerOnRender />);
-
-      // eslint-disable-next-line no-console
-      console.warn.mockClear(); // clear terra-responsive-element will be deprecated warning
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-
-      // context.unregisterNotificationBanner('mockID', undefined);
-      expect(() => context.unregisterNotificationBanner('mockID', undefined)).toThrowError('A banner cannot be unregistered without an identifier or banner variant.');
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-    });
-
-    it('unregisters notification banner when id is provided', () => {
-      const { component } = renderComponentWithChild(<ChildContent showBannerOnRender />);
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-
-      expect(component.container).toMatchSnapshot();
-
-      const childButton = component.getByTestId('show-banner');
-      act(() => {
-        fireEvent.click(childButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
-      expect(component.container).toMatchSnapshot();
-    });
-  });
-
-  describe(('Nested Notification Banner Provider'), () => {
-    it('registers notification banner with top-level Banner Provider', () => {
-      const ChildComponent = () => {
-        const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-        return (
-          <ChildContent>
-            <NotificationBannerProvider>
-              <NotificationBanners />
-              <ChildContent buttonId="show-2nd-banner" />
-            </NotificationBannerProvider>
-          </ChildContent>
-        );
-      };
-      const { component } = renderComponentWithChild(<ChildComponent />);
-      expect(component.container).toMatchSnapshot();
-
-      // trigger top Provider's banner
-      const childButton = component.getByTestId('show-banner');
-      act(() => {
-        fireEvent.click(childButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-      expect(component.container).toMatchSnapshot();
-
-      // trigger nested banner Provider's banner
-      const secondChildButton = component.getByTestId('show-2nd-banner');
-      act(() => {
-        fireEvent.click(secondChildButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(2);
-      expect(component.container).toMatchSnapshot();
-    });
-
-    it('unregisters banner with top-level Banner Provider', () => {
-      const ChildComponent = () => {
-        const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
-        return (
-          <ChildContent showBannerOnRender>
-            <NotificationBannerProvider>
-              <NotificationBanners />
-              <ChildContent buttonId="show-2nd-banner" showBannerOnRender />
-            </NotificationBannerProvider>
-          </ChildContent>
-        );
-      };
-      const { component } = renderComponentWithChild(<ChildComponent />);
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(2);
-
-      expect(component.container).toMatchSnapshot();
-
-      // remove top Provider's banner
-      const childButton = component.getByTestId('show-banner');
-      act(() => {
-        fireEvent.click(childButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(1);
-      expect(component.container).toMatchSnapshot();
-
-      // remove nested banner Provider's banner
-      const secondChildButton = component.getByTestId('show-2nd-banner');
-      act(() => {
-        fireEvent.click(secondChildButton);
-      });
-
-      expect(component.container.querySelectorAll('[data-terra-application-notification-banner]')).toHaveLength(0);
-      expect(component.container).toMatchSnapshot();
-    });
+    // Make sure the removal text for screen readers gets cleaned up after a timeout
+    await waitFor(() => expect(screen.getByTestId('removed-banner-log')).not.toHaveTextContent('terraApplication.notifications.totalCountLabel'), { interval: 1000, timeout: 4000 });
   });
 });

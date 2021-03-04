@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenu should render with all props 1`] = `
+<ContentContainer
+  aria-label="test menu"
+  className="action-container"
+  fill={true}
+  header={
+    <injectIntl(ActionMenuHeader)
+      label="test menu"
+      onClose={[MockFunction]}
+    />
+  }
+  onKeyDown={[Function]}
+  role="dialog"
+  tabIndex="0"
+>
+  <ul
+    aria-label="test menu"
+    className="action-menu"
+    onKeyDown={[Function]}
+    role="menu"
+    tabIndex="0"
+  >
+    <MockComponent
+      indentChildren={false}
+      key=".0"
+      onArrow={[Function]}
+      onChar={[Function]}
+    />
+  </ul>
+</ContentContainer>
+`;
+
+exports[`ActionMenu should render with minimal props 1`] = `
+<ul
+  aria-label="test menu"
+  className="action-menu"
+  onKeyDown={[Function]}
+  role="menu"
+  tabIndex="0"
+/>
+`;

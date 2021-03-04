@@ -10,6 +10,7 @@
 
 * Added
   * Added i18n logic
+  * Created Workspace content presentation framework.
 
 * Changed
   * Updated application-base to initialize `inert`.

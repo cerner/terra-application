@@ -1,0 +1,56 @@
+@import './clinical-lowlight-theme/Workspace.module';
+@import './orion-fusion-theme/Workspace.module';
+
+:local {
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .body {
+    flex: 1 1 auto;
+    height: 100%;
+    overflow: hidden;
+    z-index: 10;
+  }
+
+  .button-header {
+    background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #3a67a4));
+    border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
+    display: flex;
+    flex: 0 0 auto;
+    justify-content: space-between;
+    left: 0;
+    min-height: var(--terra-application-workspace-button-header-min-height, 48px);
+    padding-bottom: var(--terra-application-workspace-button-header-padding-bottom, 0.7143rem);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+
+    .fill-element {
+      flex: 1 1 auto;
+      width: 100%;
+    }
+  }
+
+  .tab-header {
+    margin-bottom: 0;
+    margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.5714rem);
+    margin-right: var(--terra-application-workspace-tab-header-margin-right, 2.143rem);
+    margin-top: var(--terra-application-workspace-tab-header-margin-top, 1.0714rem);
+    width: calc(100% - var(--terra-application-workspace-tab-header-width, 2.714rem));
+    z-index: 50;
+
+    &.has-dismiss-button {
+      margin-left: var(--terra-application-workspace-tab-header-has-dismiss-margin-left, 2.143rem);
+      width: calc(100% - var(--terra-application-workspace-tab-header-has-dismiss-width, 4.286rem));
+    }
+  }
+}

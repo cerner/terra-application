@@ -5,7 +5,6 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -52,7 +51,6 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -115,11 +113,11 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <p
             className="title"
           >
-            <FormattedMessage
+            <Component
               id="Terra.status-view.error"
             >
               Terra.status-view.error
-            </FormattedMessage>
+            </Component>
           </p>
           <div
             className="divider"
@@ -151,7 +149,6 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
   <ApplicationErrorBoundary
     intl={
       Object {
-        "__addMessages": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
@@ -197,7 +194,6 @@ exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
 <ApplicationErrorBoundary
   intl={
     Object {
-      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
@@ -242,7 +238,6 @@ exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`]
 <ApplicationErrorBoundary
   intl={
     Object {
-      "__addMessages": [Function],
       "defaultFormats": Object {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,

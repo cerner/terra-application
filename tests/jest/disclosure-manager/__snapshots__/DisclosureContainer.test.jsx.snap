@@ -13,7 +13,7 @@ exports[`DisclosureContainer should render the provided children 1`] = `
       <withPromptRegistration(NavigationPromptCheckpoint)>
         <ContentContainer
           fill={true}
-          header={<NotificationBanners />}
+          header={<injectIntl(NotificationBanners) />}
         >
           <NotificationBannerProvider>
             <div>

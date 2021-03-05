@@ -21,16 +21,16 @@ const defaultLayoutActionsOverrideValue = {
 
 const propTypes = {
   /**
-   * The components to render within the context of the PageContainer.
+   * The components to render within the context of the MainPageContainer.
    */
   children: PropTypes.node,
 };
 
 /**
- * The PageContainer defines a structural region within the application where Pages can be presented.
- * Any Page components rendered within a PageContainer will be portaled into the PageContainer's root element.
+ * The MainPageContainer defines a structural region within the application where Pages can be presented.
+ * Any Page components rendered within a MainPageContainer will be portaled into the MainPageContainer's 'main' element
  */
-const PageContainer = ({
+const MainPageContainer = ({
   children,
 }) => {
   // The NavigationItemContext gives valuable information regarding the presentaton state of the PageContainer.
@@ -52,7 +52,7 @@ const PageContainer = ({
     // Focus is moved only upon initial Page activation if the PageContainer is part of the active navigation hierarchy (i.e. it is visible)
     if (navigationItem.isActive && (lastActivePagePortalRef.current?.portalId !== activePortal?.portalId)) {
       deferExecution(() => {
-        rootContainerRef.current.focus();
+        document.body.focus();
       });
     }
 
@@ -65,10 +65,14 @@ const PageContainer = ({
   }), [layoutActions.startActions, layoutActions.endActions]);
 
   return (
-    <div
-      ref={rootContainerRef}
+    <MainContainer
+      refCallback={(ref) => {
+        rootContainerRef.current = ref;
+      }}
       className={cx('page-container')}
-      tabIndex="-1"
+      mainKey={activePortal?.pageKey}
+      mainLabel={activePortal?.label}
+      mainMetaData={activePortal?.metaData}
     >
       <LayoutActionsContext.Provider value={defaultLayoutActionsOverrideValue}>
         <PagePortalManager>
@@ -77,10 +81,10 @@ const PageContainer = ({
           </PageContainerContext.Provider>
         </PagePortalManager>
       </LayoutActionsContext.Provider>
-    </div>
+    </MainContainer>
   );
 };
 
-PageContainer.propTypes = propTypes;
+MainPageContainer.propTypes = propTypes;
 
-export default PageContainer;
+export default MainPageContainer;

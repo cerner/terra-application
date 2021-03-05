@@ -7,7 +7,7 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
-import { PageContainer } from '../../page';
+import MainPageContainer from '../../page/MainPageContainer';
 import LayoutActionsContext from '../shared/LayoutActionsContext';
 import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
@@ -398,9 +398,9 @@ const SecondaryNavigationLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <PageContainer isMain>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (renderLayout) {
     content = renderLayout();

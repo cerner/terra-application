@@ -4,8 +4,7 @@ import IconPadlock from 'terra-icon/lib/icon/IconPadlock';
 
 import { ApplicationIntlContext } from '../../application-intl';
 import { ApplicationContainerContext } from '../../application-container';
-import { PageContainer } from '../../page';
-import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
+import MainPageContainer from '../../page/MainPageContainer';
 import SessionUserContext from '../../session/SessionUserContext';
 import SessionActionsContext from '../../session/SessionActionsContext';
 import { deferExecution } from '../../utils/lifecycle-utils';
@@ -245,9 +244,9 @@ const PrimaryNavigationLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <PageContainer isMain>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (renderLayout) {
     content = renderLayout();

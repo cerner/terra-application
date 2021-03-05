@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import { ApplicationConceptBannerContext } from '../../application-container';
-import { PageContainer } from '../../page';
+import MainPageContainer from '../../page/MainPageContainer';
 
 import styles from './HeadlessLayout.module.scss';
 
@@ -23,9 +23,9 @@ const HeadlessLayout = ({
   let content;
   if (renderPage) {
     content = (
-      <PageContainer isMain>
+      <MainPageContainer>
         {renderPage()}
-      </PageContainer>
+      </MainPageContainer>
     );
   } else if (renderLayout) {
     content = renderLayout();

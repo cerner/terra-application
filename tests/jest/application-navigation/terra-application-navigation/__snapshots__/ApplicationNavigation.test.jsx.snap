@@ -44,7 +44,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
             <DrawerMenu
               intl={
                 Object {
-                  "__addMessages": [Function],
                   "defaultFormats": Object {},
                   "defaultLocale": "en",
                   "defaultRichTextElements": undefined,
@@ -124,7 +123,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
             extensionItems={Array []}
             intl={
               Object {
-                "__addMessages": [Function],
                 "defaultFormats": Object {},
                 "defaultLocale": "en",
                 "defaultRichTextElements": undefined,

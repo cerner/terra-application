@@ -107,8 +107,8 @@ class Tabs extends React.Component {
     const { width } = this.containerRef.current.parentNode.getBoundingClientRect();
 
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 0);
+    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 10);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
     const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width + moreMarginLeft + moreMarginRight;
     const availableWidth = width - moreButtonWidth;
 
@@ -189,11 +189,11 @@ class Tabs extends React.Component {
 
     // more button computed
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 0);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
 
     // container's parentNode computed (parent contains relative position)
     const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
-    const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
+    const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 10);
 
     // getBoundingClientRect - using adding 6px for visual offset effect
     const moreRect = this.moreButtonRef.current.getBoundingClientRect();

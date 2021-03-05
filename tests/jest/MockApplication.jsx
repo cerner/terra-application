@@ -7,7 +7,13 @@ import { ApplicationIntlContext } from '../../src/application-intl';
 /* eslint-disable react/prop-types */
 const MockApplication = ({ children }) => (
   // eslint-disable-next-line compat/compat
-  <IntlProvider locale="en" messages={new Proxy({}, { get: (_, property) => property })}>
+  <IntlProvider
+    locale="en"
+    messages={new Proxy({}, {
+      get: (_, property) => property,
+      getOwnPropertyDescriptor: () => ({ configurable: true, enumerable: true }), // important for new checks in react-intl v5
+    })}
+  >
     <ApplicationIntlContext.Provider value={mockIntl}>
       <ApplicationContainer>
         {children}

@@ -98,7 +98,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
         removeLayerInert(overlayRefs[i].element, focusTriggersRef.current, overlayRefs[i].key, focusAnchorRef.current);
       }
     }
-  }, [overlayRefs, overlays]);
+  });
 
   return (
     <div className={cx('outer-container')} ref={focusAnchorRef} tabIndex="-1" data-testid="dynamic-overlay-container">

@@ -79,21 +79,21 @@ describe('applyScrollData', () => {
     Object.defineProperty(mockElement, 'scrollLeft', {
       enumerable: true,
       get() {
-        return this._scrollLeft;
+        return this._scrollLeft; // eslint-disable-line no-underscore-dangle
       },
       /** @this {!Element} */
       set(val) {
-        this._scrollLeft = val;
+        this._scrollLeft = val; // eslint-disable-line no-underscore-dangle
       },
     });
     Object.defineProperty(mockElement, 'scrollTop ', {
       enumerable: true,
       get() {
-        return this._scrollTop;
+        return this._scrollTop; // eslint-disable-line no-underscore-dangle
       },
       /** @this {!Element} */
       set(val) {
-        this._scrollTop = val;
+        this._scrollTop = val; // eslint-disable-line no-underscore-dangle
       },
     });
 
@@ -102,6 +102,7 @@ describe('applyScrollData', () => {
         if (selector === '[data-persistent-overflow-id="uuid-1"]') {
           return mockElement;
         }
+        return null;
       },
     };
 

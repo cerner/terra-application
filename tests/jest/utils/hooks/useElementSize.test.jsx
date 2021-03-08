@@ -4,7 +4,7 @@ import '@testing-library/jest-dom/extend-expect';
 import 'resize-observer-polyfill';
 
 import { activeBreakpointForSize } from '../../../../src/breakpoints';
-import useElementSize, { breakpointFilter } from '../../../../src/notification-banner/private/useElementSize';
+import useElementSize, { breakpointFilter } from '../../../../src/utils/hooks/useElementSize';
 
 // The resize observer is mocked here, with a external reference
 // populated in order to trigger size updates externally.

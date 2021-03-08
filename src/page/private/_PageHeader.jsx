@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames/bind';
-import ResizeObserver from 'resize-observer-polyfill';
 import Button, { ButtonVariants } from 'terra-button';
 import IconLeft from 'terra-icon/lib/icon/IconLeft';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import Menu from 'terra-menu';
 
 import { useTransientPresentationState } from '../../utils/transient-presentation';
+import useElementSize, { breakpointFilter } from '../../utils/hooks/useElementSize';
 
 import PageContainerContext from './PageContainerContext';
 
@@ -20,42 +20,17 @@ const PageHeader = ({
   actions, toolbar, NotificationBanners, onBack, label, id,
 }) => {
   const pageContainerContext = React.useContext(PageContainerContext);
-  const [actionsAreCollapsed, setActionsAreCollapsed] = React.useState(false);
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const headerContainerRef = React.useRef();
   const moreActionsButtonRef = React.useRef();
 
+  const { activeBreakpoint } = useElementSize(headerContainerRef, breakpointFilter);
+
+  const actionsAreCollapsed = activeBreakpoint === 'tiny';
+
   if (actions && React.Children.count(actions.props.children) > 3) {
     throw new Error(`[terra-application] Page ${label} cannot render more than three actions.`);
   }
-
-  React.useLayoutEffect(() => {
-    const containerElement = headerContainerRef.current;
-
-    const resizeObserver = new ResizeObserver(entries => {
-      // TODO: wrap in requestAnimationFrame to prevent resizeObserver exceeded loop violation
-      // TODO redux: consume useElementSize hook when ported
-      const resizeWidth = entries[0].contentRect.width;
-
-      if (resizeWidth === 0) {
-        // The Page was likely removed from the DOM due to an external navigation.
-        // The PageHeader will wait until it is visible before updating.
-        return;
-      }
-
-      if (resizeWidth < 544) {
-        setActionsAreCollapsed(true);
-      } else {
-        setActionsAreCollapsed(false);
-      }
-    });
-
-    resizeObserver.observe(containerElement);
-
-    return () => {
-      resizeObserver.disconnect(containerElement);
-    };
-  }, []);
 
   function renderActionButtons() {
     if (!actions || (actionsAreCollapsed && React.Children.count(actions.props.children) > 1)) {

@@ -800,10 +800,12 @@ TODO 10/21
       * PageHeader uplift to use new ActionsMenu for rollup
       * Think about adding ActiveMainPage handling to MainContainer
         * Making the "active main" concept not Page-specific, which I think makes more sense.
+        * **DONE**
       * Document portaled iframe behavior
       * add label ("Workspace"?) to workspace panel in secondary navigation layout
       * Revisit setState warning caused by Page's onBlur triggering during render 
         * maybe defer portaling until after render vs. during render 
+        * **DONE** including major refactor for extensibility
       * Include LegacyLayout (including loading/status overlays) for slow adopters
       * Make workspace expand to full container size at overlay sizes
       * Remove custom notification banner support in v2

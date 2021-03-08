@@ -8,7 +8,7 @@ import ThemeContext from 'terra-theme-context';
 
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
-import useForceUpdate from './useForceUpdate';
+import useForceUpdate from '../../utils/hooks/useForceUpdate';
 import NotificationBannerView, { getTitleStringIdForType } from './_NotificationBannerView';
 
 import styles from './useNotificationBanners.module.scss';

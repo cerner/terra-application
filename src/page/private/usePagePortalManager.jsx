@@ -136,8 +136,6 @@ const usePagePortalProvider = (rootContainerRef) => {
       if (!isTopPortal && rootContainerRef.current.contains(portalData.element)) {
         // If the portal is not the top portal, but it remains within the container, its scroll positions are cached and it is removed.
         portalData.overflowData = getPersistentScrollMap(portalData.element);
-        console.log('saving overflow data:');
-        console.log(portalData.overflowData);
         rootContainerRef.current.removeChild(portalData.element);
       } else if (isTopPortal && !rootContainerRef.current.contains(portalData.element)) {
         // If the portal is the top portal, but it is not yet within the container, it is added to the container and any cached scroll
@@ -145,8 +143,6 @@ const usePagePortalProvider = (rootContainerRef) => {
         rootContainerRef.current.appendChild(portalData.element);
         rootContainerRef.current.setAttribute('aria-labelledby', portalData.pagePortalLabelId);
         applyScrollData(portalData.overflowData, portalData.element);
-        console.log('setting overflow data:');
-        console.log(portalData.overflowData);
       }
 
       // Remove the current portal data from the dangling data set, as we know its present and thus not dangling

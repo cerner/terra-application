@@ -2,8 +2,11 @@
 
 ## Unreleased
 
+* Added
+  * Added German translations back into project
+
 * Changed
-  * Pass theme to the application navigation tests to apply dynamic theme switching.
+  * Pass theme to the application navigation tests to apply dynamic theme switching
 
 ## 1.43.1 - (February 24, 2021)
 

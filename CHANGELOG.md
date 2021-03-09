@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.44.0 - (March 9, 2021)
+
 * Added
   * Added German translations back into project
 

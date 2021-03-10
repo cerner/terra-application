@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { ThemeContext } from 'terra-application/lib/theme';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
@@ -58,6 +59,7 @@ PageContent.propTypes = {
 
 const ApplicationNavigationTest = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
+  const theme = React.useContext(ThemeContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);
 
@@ -74,7 +76,7 @@ const ApplicationNavigationTest = () => {
 
   return (
     // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
-    <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale}>
+    <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale} themeName={theme.className}>
       {loggedOut ? <p>Logged Out</p> : (
         <ApplicationNavigation
           titleConfig={{

@@ -8,6 +8,14 @@
 * Changed
   * Updated `webpack.config` to use `webpack-config-terra`
 
+## 1.44.0 - (March 9, 2021)
+
+* Added
+  * Added German translations back into project
+
+* Changed
+  * Pass theme to the application navigation tests to apply dynamic theme switching
+
 ## 1.43.1 - (February 24, 2021)
 
 * Changed

@@ -1,5 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { ThemeContext } from 'terra-application/lib/theme';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
 import ApplicationBase from 'terra-application/lib/application-base';
@@ -82,9 +83,10 @@ const ApplicationContentExample = () => {
 
 const ApplicationBaseExample = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
+  const theme = React.useContext(ThemeContext);
 
   return (
-    <ApplicationBase locale={applicationIntl.locale}>
+    <ApplicationBase locale={applicationIntl.locale} themeName={theme.className}>
       <ApplicationContentExample />
     </ApplicationBase>
   );

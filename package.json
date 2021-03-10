@@ -89,7 +89,6 @@
     "start-prod": "webpack-dev-server --env.disableHotReloading -p",
     "start-heroku": "terra express-server --port '8081' --site ./build",
     "start-static": "npm run pack && terra express-server --site ./build",
-    "terra": "node node_modules/@cerner/terra-cli/bin/terra",
     "test": "npm run lint && npm run jest && npm run wdio",
     "wdio-default": "wdio",
     "wdio-lowlight": "THEME=clinical-lowlight-theme wdio",

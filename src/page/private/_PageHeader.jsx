@@ -3,8 +3,11 @@ import classNames from 'classnames/bind';
 import Button, { ButtonVariants } from 'terra-button';
 import IconLeft from 'terra-icon/lib/icon/IconLeft';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
-import Menu from 'terra-menu';
+import Popup from 'terra-popup';
 
+import ActionMenu, {
+  ActionMenuItem,
+} from '../../action-menu';
 import { useTransientPresentationState } from '../../utils/transient-presentation';
 import useElementSize, { breakpointFilter } from '../../utils/hooks/useElementSize';
 
@@ -80,26 +83,35 @@ const PageHeader = ({
 
   function renderMenu() {
     return (
-      <Menu
-        isOpen
+      <Popup
+        isOpen={showMenu}
         targetRef={() => moreActionsButtonRef.current}
         onRequestClose={() => { setShowMenu(false); }}
-        contentWidth="240"
-        headerTitle={`${label} Menu`} // TODO INTL
+        contentHeight="auto"
+        contentWidth="auto"
+        isContentFocusDisabled
+        isHeaderDisabled
+        popupContentRole="none"
       >
-        {React.Children.map(actions.props.children, (childAction) => (
-          <Menu.Item
-            key={childAction.props.actionKey}
-            text={childAction.props.label}
-            isDisabled={childAction.props.isDisabled}
-            onClick={() => {
-              setShowMenu(false);
-
-              childAction.props.onSelect();
-            }}
-          />
-        ))}
-      </Menu>
+        <ActionMenu
+          label="Actions" // TODO intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+          onRequestClose={() => {
+            setShowMenu(false);
+          }}
+        >
+          {React.Children.map(actions.props.children, (childAction) => (
+            <ActionMenuItem
+              key={childAction.props.actionKey}
+              label={childAction.props.label}
+              isDisabled={childAction.props.isDisabled}
+              onAction={() => {
+                setShowMenu(false);
+                childAction.props.onSelect();
+              }}
+            />
+          ))}
+        </ActionMenu>
+      </Popup>
     );
   }
 

@@ -798,17 +798,22 @@ TODO 10/21
 
       
       * PageHeader uplift to use new ActionsMenu for rollup
-      * Think about adding ActiveMainPage handling to MainContainer
-        * Making the "active main" concept not Page-specific, which I think makes more sense.
-        * **DONE**
       * Document portaled iframe behavior
       * add label ("Workspace"?) to workspace panel in secondary navigation layout
-      * Revisit setState warning caused by Page's onBlur triggering during render 
-        * maybe defer portaling until after render vs. during render 
-        * **DONE** including major refactor for extensibility
       * Include LegacyLayout (including loading/status overlays) for slow adopters
       * Make workspace expand to full container size at overlay sizes
       * Remove custom notification banner support in v2
+
+      * Accessibility Talk
+        * role='document' inside modal (?)
+        * Modal bookmarks for tab-index wrapping from bottom->top, top->bottom
+
+      * Think about adding ActiveMainPage handling to MainContainer
+        * Making the "active main" concept not Page-specific, which I think makes more sense.
+        * **DONE**
+      * Revisit setState warning caused by Page's onBlur triggering during render 
+        * maybe defer portaling until after render vs. during render 
+        * **DONE** including major refactor for extensibility
 
 
 # 2/24/2021 Status
@@ -876,7 +881,6 @@ Rename? (SideNavigationLayout)
 * Need to better implement dynamic workspace resizing. **13**
 * Needs major clean up and testing. **8**
 
-
 ### EmbeddedLayout
 
 * Need to evaluate ApplicationConceptBannerContext integration. **3**
@@ -884,7 +888,7 @@ Rename? (SideNavigationLayout)
 
 ### LegacyLayout
 
-This is a layout that implements the ApplicationLayout-/ApplicationStatusOveryProviders and an error boundary
+This is a layout that implements the ApplicationLayout-/ApplicationStatusOverlayProviders and an error boundary
 for teams that want to migrate to v**2** without using pages.
 
 * Needs to be developed in its entirety. **5**
@@ -975,4 +979,4 @@ MockApplication with mock intl, etc.
 
 ## Technical Documentation
 
-* Need to stand up a doc site and write a whole bunch of stuff. **20**+
+* Need to stand up a doc site and write a whole bunch of stuff. **20**

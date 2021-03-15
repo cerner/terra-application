@@ -16,6 +16,7 @@ import Page8 from '../pages/Page8';
 import NavBLayout from './NavBLayout';
 import NavCLayout from './NavCLayout';
 import NavDLayout from './NavDLayout';
+import NavELayout from './NavELayout';
 
 import ConceptBanner from '../shared/ConceptBanner';
 import NotAPage from '../shared/NotAPage';
@@ -81,7 +82,7 @@ const DemoApplicationNavigationLayout = () => {
             <NavigationItem
               navigationKey="nav-E"
               label="Nav E"
-              renderPage={() => <Page5 />}
+              renderLayout={() => <NavELayout />}
             />
             <NavigationItem
               navigationKey="nav-F"

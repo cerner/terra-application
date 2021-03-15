@@ -18,6 +18,10 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   * Text to be displayed as the title of the workspace content.
+   */
+  label: PropTypes.string,
+  /**
    * Optional toolbar to be displayed outside of the content region.
    */
   toolbar: PropTypes.element,
@@ -33,12 +37,13 @@ const propTypes = {
 
 const WorkspaceContent = ({
   children,
+  label,
   toolbar,
   statusOverlay,
   activityOverlay,
 }) => {
   const theme = React.useContext(ThemeContext);
-  const { panelId, tabId, label } = React.useContext(TabContext);
+  const { panelId, tabId, label: tabLabel } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const overlays = React.useMemo(() => {
@@ -61,6 +66,7 @@ const WorkspaceContent = ({
     return overlaysToRender;
   }, [statusOverlay, activityOverlay]);
 
+  const labelDisplay = label || tabLabel;
   return (
     <div
       className={cx('panel', theme.className)}
@@ -71,7 +77,7 @@ const WorkspaceContent = ({
         role="none"
         data-testid="workspace-content-heading"
       >
-        <TabHeader title={label} />
+        <TabHeader title={labelDisplay} />
         { toolbar ? (
           <div className={cx('toolbar', 'rounded')}>
             {toolbar}
@@ -79,7 +85,7 @@ const WorkspaceContent = ({
         ) : undefined}
         <NotificationBanners
           id={`${panelId}-notifications`}
-          label={`Workspace ${label}`}
+          label={`Workspace ${labelDisplay}`}
           activeClassName={cx('notification-banners-container')}
           bannerClassName={cx('notification-banner', 'rounded')}
         />

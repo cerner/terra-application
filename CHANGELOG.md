@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Added
-  * Added `webpack-config-terra` as a dependency.
+  * Added `webpack-config-terra` as a dependency
 
 * Changed
   * Updated `webpack.config` to use `webpack-config-terra`

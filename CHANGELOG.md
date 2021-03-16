@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Added
+  * Added optional `label` prop to WorkspaceContent to allow label override for guided usage.
 
 * Added
   * Added `webpack-config-terra` as a dependency

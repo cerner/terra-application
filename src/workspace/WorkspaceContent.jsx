@@ -19,6 +19,7 @@ const propTypes = {
   children: PropTypes.node,
   /**
    * Text to be displayed as the title of the workspace content.
+   * Special Note: this prop is optional and should be used with caution. If this prop is not provided, the workspace content title is injected by default using the label specified in `WorkspaceItem` _(recommended without additional guidance)_. Providing this prop will override the default text and will need to follow proper accessibility guidelines.
    */
   label: PropTypes.string,
   /**

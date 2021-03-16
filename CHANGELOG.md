@@ -2,7 +2,7 @@
 
 ## Unreleased
 * Added
-  * Added `label` prop to WorkspaceContent to allow label override.
+  * Added optional `label` prop to WorkspaceContent to allow label override for guided usage.
 
 ## 1.44.0 - (March 9, 2021)
 

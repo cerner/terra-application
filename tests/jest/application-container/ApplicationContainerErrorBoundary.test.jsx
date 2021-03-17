@@ -25,11 +25,6 @@ test('should render TestApplicationContainerErrorBoundary with provided content'
 });
 
 test('should catch errors thrown by rendered children', () => {
-  /* eslint-disable no-console */
-  // Mock console.error to limit test output pollution
-  const errorImpl = console.error;
-  console.error = jest.fn();
-
   const ErrorChild = () => {
     React.useLayoutEffect(() => {
       throw new Error('Test Error');
@@ -46,8 +41,5 @@ test('should catch errors thrown by rendered children', () => {
 
   expect(screen.getByRole('alert')).toBeInTheDocument();
   expect(screen.getByText('terraApplication.errorBoundary.defaultErrorMessage')).toBeInTheDocument();
-
-  console.error = errorImpl;
-  /* eslint-enable no-console */
 });
 

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
-import WindowManager from '../utils/window-manager/window-manager';
+import WindowManager from '../utils/window-manager';
 
 import ApplicationContainerErrorBoundary from './private/ApplicationContainerErrorBoundary';
 
@@ -55,7 +55,7 @@ const ApplicationContainer = ({
         registeredPromptsRef.current = registeredPrompts;
       }}
     >
-      <div className={cx('application-container')}>
+      <div className={cx('application-container')} data-testid="application-container">
         <ApplicationContainerErrorBoundary>
           {children}
         </ApplicationContainerErrorBoundary>

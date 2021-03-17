@@ -31,7 +31,7 @@ class WindowManager {
   }
 
   constructor() {
-    this.handlers = [];
+    this.signals = [];
     this.beforeUnloadHandler = (event) => {
       if (WindowManager.shouldShowUnloadPrompt(this.promptTriggers)) {
         event.preventDefault();

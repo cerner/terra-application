@@ -33,7 +33,7 @@ class WindowManager {
   constructor() {
     this.signals = [];
     this.beforeUnloadHandler = (event) => {
-      if (WindowManager.shouldShowUnloadPrompt(this.promptTriggers)) {
+      if (WindowManager.shouldShowUnloadPrompt(this.signals)) {
         event.preventDefault();
 
         // Chrome requires returnValue to be set to present the dialog prompt.
@@ -90,4 +90,16 @@ class WindowManager {
   }
 }
 
-export default new WindowManager();
+// A WindowManager is instantiated by default, and its public API is exposed as
+// the default export.
+const windowManagerSingleton = new WindowManager();
+const singletonExports = {
+  registerUnloadPromptSignal: windowManagerSingleton.registerUnloadPromptSignal,
+  dangerouslyForceLocationReload: windowManagerSingleton.dangerouslyForceLocationReload,
+  dangerouslyForceLocationAssign: windowManagerSingleton.dangerouslyForceLocationAssign,
+};
+
+export default singletonExports;
+
+// The class definition itself is exported for testing purposes.
+export { WindowManager as TestWindowManager };

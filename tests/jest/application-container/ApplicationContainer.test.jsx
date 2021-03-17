@@ -12,11 +12,6 @@ jest.mock('../../../src/utils/window-manager', () => ({
   registerUnloadPromptSignal: jest.fn().mockImplementation(() => mockUnregisterUnloadPromptSignal),
 }));
 
-// Mock logger to limit test output pollution
-jest.mock('../../../src/utils/logger', () => ({
-  error: jest.fn(),
-}));
-
 const TestApplicationContainer = (props) => (
   <MockApplication>
     <ApplicationContainer
@@ -61,6 +56,11 @@ test('should register handler with WindowManager to prompt for unsaved changes b
 });
 
 test('should catch errors thrown by rendered children', () => {
+  /* eslint-disable no-console */
+  // Mock console.error to limit test output pollution
+  const errorImpl = console.error;
+  console.error = jest.fn();
+
   const ErrorChild = () => {
     React.useLayoutEffect(() => {
       throw new Error('Test Error');
@@ -77,5 +77,8 @@ test('should catch errors thrown by rendered children', () => {
 
   expect(screen.getByRole('alert')).toBeInTheDocument();
   expect(screen.getByText('terraApplication.errorBoundary.defaultErrorMessage')).toBeInTheDocument();
+
+  console.error = errorImpl;
+  /* eslint-enable no-console */
 });
 

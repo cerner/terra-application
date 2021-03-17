@@ -2,14 +2,19 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
+import NavigationPrompt from '../../../src/navigation-prompt';
 import ApplicationContainer from '../../../src/application-container';
 import WindowManager from '../../../src/utils/window-manager';
 import MockApplication from '../MockApplication';
 
 // Mock WindowManager to track registrations/unregistrations of prompt signals.
+let registeredSignal;
 const mockUnregisterUnloadPromptSignal = jest.fn();
 jest.mock('../../../src/utils/window-manager', () => ({
-  registerUnloadPromptSignal: jest.fn().mockImplementation(() => mockUnregisterUnloadPromptSignal),
+  registerUnloadPromptSignal: jest.fn().mockImplementation((signal) => {
+    registeredSignal = signal;
+    return mockUnregisterUnloadPromptSignal;
+  }),
 }));
 
 const TestApplicationContainer = (props) => (
@@ -72,5 +77,32 @@ test('should catch errors thrown by rendered children', () => {
 
   expect(screen.getByRole('alert')).toBeInTheDocument();
   expect(screen.getByText('terraApplication.errorBoundary.defaultErrorMessage')).toBeInTheDocument();
+});
+
+test('should respond to navigation prompt registrations within its children', () => {
+  registeredSignal = undefined;
+
+  const view = render((
+    <TestApplicationContainer>
+      <div data-testid="test-content" />
+    </TestApplicationContainer>
+  ));
+
+  // Expect children to be rendered
+  expect(screen.queryByTestId('test-content')).toBeInTheDocument();
+
+  // Expect a WindowManager signal function to be registered
+  expect(registeredSignal).toBeDefined();
+  expect(registeredSignal()).toBe(false);
+
+  view.rerender((
+    <TestApplicationContainer>
+      <div data-testid="test-content" />
+      <NavigationPrompt description="Test Prompt" />
+    </TestApplicationContainer>
+  ));
+
+  // Expect registered function to return true due to NavigationPrompt presence
+  expect(registeredSignal()).toBe(true);
 });
 

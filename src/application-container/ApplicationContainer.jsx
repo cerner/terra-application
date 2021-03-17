@@ -41,7 +41,7 @@ const ApplicationContainer = ({
     }
 
     const unregisterUnloadPromptSignal = WindowManager.registerUnloadPromptSignal(() => (
-      registeredPromptsRef.current && registeredPromptsRef.current.length
+      !!(registeredPromptsRef.current && registeredPromptsRef.current.length)
     ));
 
     return () => {

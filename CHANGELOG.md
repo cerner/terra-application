@@ -1,5 +1,10 @@
 # Changelog
 
+## V2
+
+* Added
+  * Adding ApplicationContainerContext
+
 ## Unreleased
 
 * Breaking

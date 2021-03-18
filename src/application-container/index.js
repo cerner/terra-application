@@ -1,5 +1,12 @@
 import useActiveMainPage from './useActiveMainPage';
+import ApplicationConceptContext, {
+  useApplicationConcept,
+  contextShape as applicationConceptContextShape,
+} from './ApplicationConceptContext';
 
 export {
-  useActiveMainPage, // eslint-disable-line import/prefer-default-export
+  useActiveMainPage,
+  ApplicationConceptContext,
+  useApplicationConcept,
+  applicationConceptContextShape,
 };

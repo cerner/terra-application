@@ -7,20 +7,20 @@
     border-radius: var(--terra-application-workspace-tab-drop-down-border-radius, 3px);
     height: 1px;
     margin: -1px;
-    max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 49px));
+    max-height: calc(100% - var(--terra-application-workspace-tab-drop-down-max-height, 50px));
     max-width: var(--terra-application-workspace-tab-drop-down-max-width, 187px);
     min-width: var(--terra-application-workspace-tab-drop-down-min-width, 150px);
     opacity: 0;
     overflow: hidden;
     padding: var(--terra-application-workspace-tab-drop-down-padding, 5px 0);
     position: absolute;
-    top: var(--terra-application-workspace-tab-drop-down-top, 49px);
+    top: var(--terra-application-workspace-tab-drop-down-top, 50px);
     z-index: 50;
   }
 
   .is-open {
     box-shadow: var(--terra-application-workspace-tab-drop-down-is-open-box-shadow, 0 0 7px 0 rgba(0, 0, 0, 0.4));
-    border-color: var(--terra-application-workspace-tab-drop-down-is-open-border-color, #ccc);
+    border-color: var(--terra-application-workspace-tab-drop-down-is-open-border-color, #868a8c);
     background-color: var(--terra-application-workspace-tab-drop-down-is-open-background-color, #fff);
     height: auto;
     margin: 0;

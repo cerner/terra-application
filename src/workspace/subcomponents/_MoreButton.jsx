@@ -94,13 +94,11 @@ const MoreButton = ({
       style={{ zIndex: isOpen ? '100' : zIndex }}
       data-testid="workspace-tabs-more-button"
     >
-      <div className={cx('start')} />
       <div className={cx('inner')}>
         <div className={cx('icon')}>
           <IconCaretDown />
         </div>
       </div>
-      <div className={cx('end')} />
     </div>
   );
   /* eslint-disable react/forbid-dom-props */

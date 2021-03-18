@@ -21,7 +21,7 @@
   }
 
   .button-header {
-    background-image: var(--terra-application-workspace-button-header-background-image, linear-gradient(to bottom, #007cc3, #3a67a4));
+    background-image: var(--terra-application-workspace-button-header-background-image, none); // TODO: new? background-color?
     border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
     display: flex;
     flex: 0 0 auto;
@@ -42,15 +42,15 @@
 
   .tab-header {
     margin-bottom: 0;
-    margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.5714rem);
+    margin-left: var(--terra-application-workspace-tab-header-margin-left, 0.5rem);
     margin-right: var(--terra-application-workspace-tab-header-margin-right, 2.143rem);
     margin-top: var(--terra-application-workspace-tab-header-margin-top, 1.0714rem);
     width: calc(100% - var(--terra-application-workspace-tab-header-width, 2.714rem));
     z-index: 50;
 
     &.has-dismiss-button {
-      margin-left: var(--terra-application-workspace-tab-header-has-dismiss-margin-left, 2.143rem);
-      width: calc(100% - var(--terra-application-workspace-tab-header-has-dismiss-width, 4.286rem));
+      margin-left: var(--terra-application-workspace-tab-header-has-dismiss-margin-left, 2.286rem);
+      width: calc(100% - var(--terra-application-workspace-tab-header-has-dismiss-width, 4.571rem));
     }
   }
 }

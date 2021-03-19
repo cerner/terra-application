@@ -5,14 +5,15 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
 import MainPageContainer from '../../page/MainPageContainer';
 import LayoutActionsContext from '../shared/LayoutActionsContext';
-import { getPersistentScrollMap, applyScrollData } from '../../utils/scroll-persistence/scroll-persistence';
 import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
 import { deferExecution } from '../../utils/lifecycle-utils';
 import usePortalManager from '../../shared/usePortalManager';
+import { DynamicHeadingProvider } from '../../shared/DynamicHeadingContext';
 
 import NavigationItem from '../shared/NavigationItem';
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
@@ -569,78 +570,84 @@ const SecondaryNavigationLayout = ({
               style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
               inert={sideNavOverlayIsVisible ? 'true' : null}
               tabIndex="-1"
-              aria-label="Workspace" // TODO intl
+              aria-labelledby={`${id}-workspace-container`}
             >
-              <div
-                style={{
-                  height: '100%', overflow: 'hidden', width: '100%', position: 'relative', zIndex: '-1', borderRadius: '5px',
-                }}
-              >
-                {React.cloneElement(workspace, {
-                  id: `${id}-workspace`,
-                  isOpen: workspaceIsVisible,
-                  onRequestClose: () => {
-                    setWorkspaceIsVisible(false);
-                  },
-                  isPresentedAsOverlay: hasOverlayWorkspace,
-                  sizeScalar: workspaceSize.scale,
-                  activeSize: (() => {
-                    if (workspaceSize.scale === 0) {
-                      return 'small';
-                    } if (workspaceSize.scale === 0.5) {
-                      return 'medium';
-                    } if (workspaceSize.scale === 1) {
-                      return 'large';
-                    } if (workspaceSize.type === 'split') {
-                      return 'split';
-                    } if (workspaceSize.type === 'overlay') {
-                      return 'overlay';
-                    }
+              <DynamicHeadingProvider isRoot>
+                {/* TODO intl */}
+                <VisuallyHiddenText id={`${id}-workspace-container`} role="heading" aria-level="1" text="Workspace" />
+                <DynamicHeadingProvider>
+                  <div
+                    style={{
+                      height: '100%', overflow: 'hidden', width: '100%', position: 'relative', zIndex: '-1', borderRadius: '5px',
+                    }}
+                  >
+                    {React.cloneElement(workspace, {
+                      id: `${id}-workspace`,
+                      isOpen: workspaceIsVisible,
+                      onRequestClose: () => {
+                        setWorkspaceIsVisible(false);
+                      },
+                      isPresentedAsOverlay: hasOverlayWorkspace,
+                      sizeScalar: workspaceSize.scale,
+                      activeSize: (() => {
+                        if (workspaceSize.scale === 0) {
+                          return 'small';
+                        } if (workspaceSize.scale === 0.5) {
+                          return 'medium';
+                        } if (workspaceSize.scale === 1) {
+                          return 'large';
+                        } if (workspaceSize.type === 'split') {
+                          return 'split';
+                        } if (workspaceSize.type === 'overlay') {
+                          return 'overlay';
+                        }
 
-                    return undefined;
-                  })(),
-                  sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
-                  onRequestSizeChange: (size) => {
-                    userSelectedTypeRef.current = undefined;
+                        return undefined;
+                      })(),
+                      sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
+                      onRequestSizeChange: (size) => {
+                        userSelectedTypeRef.current = undefined;
 
-                    if (size === 'small') {
-                      userSelectedScaleRef.current = 0;
-                      setWorkspaceSize({
-                        scale: 0,
-                        type: undefined,
-                      });
-                    } else if (size === 'medium') {
-                      userSelectedScaleRef.current = 0.5;
+                        if (size === 'small') {
+                          userSelectedScaleRef.current = 0;
+                          setWorkspaceSize({
+                            scale: 0,
+                            type: undefined,
+                          });
+                        } else if (size === 'medium') {
+                          userSelectedScaleRef.current = 0.5;
 
-                      setWorkspaceSize({
-                        scale: 0.5,
-                        type: undefined,
-                      });
-                    } else if (size === 'large') {
-                      userSelectedScaleRef.current = 1.0;
+                          setWorkspaceSize({
+                            scale: 0.5,
+                            type: undefined,
+                          });
+                        } else if (size === 'large') {
+                          userSelectedScaleRef.current = 1.0;
 
-                      setWorkspaceSize({
-                        scale: 1.0,
-                        type: undefined,
-                      });
-                    } else if (size === 'split') {
-                      userSelectedTypeRef.current = 'split';
+                          setWorkspaceSize({
+                            scale: 1.0,
+                            type: undefined,
+                          });
+                        } else if (size === 'split') {
+                          userSelectedTypeRef.current = 'split';
 
-                      setWorkspaceSize({
-                        scale: undefined,
-                        type: 'split',
-                      });
-                    } else if (size === 'overlay') {
-                      userSelectedTypeRef.current = 'overlay';
+                          setWorkspaceSize({
+                            scale: undefined,
+                            type: 'split',
+                          });
+                        } else if (size === 'overlay') {
+                          userSelectedTypeRef.current = 'overlay';
 
-                      setWorkspaceSize({
-                        scale: undefined,
-                        type: 'overlay',
-                      });
-                    }
-                  },
-                })}
-              </div>
+                          setWorkspaceSize({
+                            scale: undefined,
+                            type: 'overlay',
+                          });
+                        }
+                      },
+                    })}
+                  </div>
+                </DynamicHeadingProvider>
+              </DynamicHeadingProvider>
             </div>
           )}
           {workspaceIsVisible && hasOverlayWorkspace ? (

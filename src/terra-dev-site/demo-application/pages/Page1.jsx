@@ -18,6 +18,7 @@ import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
 import ApplicationInfoCard from './content/ApplicationInfoCard';
 import InputCard from './content/InputCard';
+import DynamicHeadingCard from './content/DynamicHeadingCard';
 
 import Page2 from './Page2';
 
@@ -76,6 +77,7 @@ const Page1 = ({ onRequestClose }) => {
           <p>Page 1 presents Page 2 due changes to its local state.</p>
           <Button text="Show Page 2" onClick={() => { setShowPage2(true); }} />
         </Card>
+        <DynamicHeadingCard />
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />

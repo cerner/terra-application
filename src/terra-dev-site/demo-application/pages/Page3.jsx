@@ -24,6 +24,7 @@ import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
 import ApplicationInfoCard from './content/ApplicationInfoCard';
+import DynamicHeadingCard from './content/DynamicHeadingCard';
 
 const propTypes = {
   onRequestClose: PropTypes.func,
@@ -85,6 +86,7 @@ const Page3 = ({ onRequestClose }) => {
           <p>Page 3 presents Page 4 due changes to its local state.</p>
           <Button text="Show Page 4" onClick={() => { setShowPage4(true); }} />
         </Card>
+        <DynamicHeadingCard />
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />

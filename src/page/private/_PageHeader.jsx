@@ -10,6 +10,7 @@ import ActionMenu, {
 } from '../../action-menu';
 import { useTransientPresentationState } from '../../utils/transient-presentation';
 import useElementSize, { breakpointFilter } from '../../utils/hooks/useElementSize';
+import { useDynamicHeading } from '../../shared/DynamicHeadingContext';
 
 import PageContainerContext from './PageContainerContext';
 
@@ -24,6 +25,7 @@ const PageHeader = ({
 }) => {
   const pageContainerContext = React.useContext(PageContainerContext);
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
+  const { level: headingLevel } = useDynamicHeading();
   const headerContainerRef = React.useRef();
   const moreActionsButtonRef = React.useRef();
 
@@ -147,7 +149,7 @@ const PageHeader = ({
             ) : null}
           </div>
         ) : null}
-        <div className={cx('label-container')}>
+        <div className={cx('label-container')} role="heading" aria-level={headingLevel}>
           {label}
         </div>
         <div className={cx('end-actions-container')}>

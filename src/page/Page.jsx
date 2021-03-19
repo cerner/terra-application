@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
+import { DynamicHeadingProvider } from '../shared/DynamicHeadingContext';
 
 import PageContainerContext from './private/PageContainerContext';
 import PageHeader from './private/_PageHeader';
@@ -138,31 +139,35 @@ const Page = ({
   }, [statusOverlay, activityOverlay]);
 
   return (
-    <PagePortal>
-      <div className={cx('page')}>
-        <div className={cx('header')}>
-          <PageHeader
-            id={portalId}
-            onBack={onRequestClose && safelyRequestClose}
-            label={label}
-            actions={actions}
-            toolbar={toolbar}
-            NotificationBanners={NotificationBannerPresenter}
-          />
+    <DynamicHeadingProvider isRoot>
+      <PagePortal>
+        <div className={cx('page')}>
+          <div className={cx('header')}>
+            <PageHeader
+              id={portalId}
+              onBack={onRequestClose && safelyRequestClose}
+              label={label}
+              actions={actions}
+              toolbar={toolbar}
+              NotificationBanners={NotificationBannerPresenter}
+            />
+          </div>
+          <div className={cx('content')}>
+            <DynamicHeadingProvider>
+              <DynamicOverlayContainer
+                overlays={overlays}
+              >
+                <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+                  <NotificationBannerProvider>
+                    {children}
+                  </NotificationBannerProvider>
+                </UnsavedChangesPromptCheckpoint>
+              </DynamicOverlayContainer>
+            </DynamicHeadingProvider>
+          </div>
         </div>
-        <div className={cx('content')}>
-          <DynamicOverlayContainer
-            overlays={overlays}
-          >
-            <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-              <NotificationBannerProvider>
-                {children}
-              </NotificationBannerProvider>
-            </UnsavedChangesPromptCheckpoint>
-          </DynamicOverlayContainer>
-        </div>
-      </div>
-    </PagePortal>
+      </PagePortal>
+    </DynamicHeadingProvider>
   );
 };
 

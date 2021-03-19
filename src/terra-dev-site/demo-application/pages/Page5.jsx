@@ -14,6 +14,7 @@ import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
 import ApplicationInfoCard from './content/ApplicationInfoCard';
+import DynamicHeadingCard from './content/DynamicHeadingCard';
 
 import Page6 from './Page6';
 
@@ -36,7 +37,6 @@ const Page5 = ({ onRequestClose }) => {
       activityOverlay={isLoading ? <PageActivityOverlay variant="loading" /> : undefined}
     >
       <CardLayout>
-        <h2>Page 5</h2>
         <Card label="Page 5 Details">
           <p>Page 5 demonstrates the following features:</p>
           <ul>
@@ -53,6 +53,7 @@ const Page5 = ({ onRequestClose }) => {
           <p>Page 5 presents Page 6 due changes to its local state.</p>
           <Button text="Show Page 6" onClick={() => { setShowPage6(true); }} />
         </Card>
+        <DynamicHeadingCard />
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />

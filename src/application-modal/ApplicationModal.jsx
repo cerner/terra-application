@@ -4,9 +4,9 @@ import { KEY_ESCAPE } from 'keycode-js';
 
 import LayerPortal from '../layers/LayerPortal';
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
-import { ApplicationIntlContext } from '../application-intl';
 import { PageContainer } from '../page';
 import { deferExecution } from '../utils/lifecycle-utils';
+import { DynamicHeadingProvider } from '../shared/DynamicHeadingContext';
 
 import ModalContent from './_ModalContent';
 import PageContainerContext from '../page/private/PageContainerContext';
@@ -96,29 +96,31 @@ const ApplicationModal = ({
 
   return (
     <PageContainerContext.Provider value={undefined}>
-      <LayerPortal
-        type="modal"
-        setInert={setIsInert}
-      >
-        <UnsavedChangesPromptCheckpoint
-          ref={unsavedChangesCheckpointRef}
+      <DynamicHeadingProvider isRoot>
+        <LayerPortal
+          type="modal"
+          setInert={setIsInert}
         >
-          <ModalContent
-            refCallback={(ref) => { modalContainerRef.current = ref; }}
-            title={title}
-            toolbar={toolbar}
-            footer={footer}
-            size={size}
-            onRequestClose={safeRequestClose}
+          <UnsavedChangesPromptCheckpoint
+            ref={unsavedChangesCheckpointRef}
           >
-            {renderPage ? (
-              <PageContainer>
-                {renderPage()}
-              </PageContainer>
-            ) : children}
-          </ModalContent>
-        </UnsavedChangesPromptCheckpoint>
-      </LayerPortal>
+            <ModalContent
+              refCallback={(ref) => { modalContainerRef.current = ref; }}
+              title={title}
+              toolbar={toolbar}
+              footer={footer}
+              size={size}
+              onRequestClose={safeRequestClose}
+            >
+              {renderPage ? (
+                <PageContainer>
+                  {renderPage()}
+                </PageContainer>
+              ) : children}
+            </ModalContent>
+          </UnsavedChangesPromptCheckpoint>
+        </LayerPortal>
+      </DynamicHeadingProvider>
     </PageContainerContext.Provider>
   );
 };

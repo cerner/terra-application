@@ -5,6 +5,7 @@ import ThemeContext from 'terra-theme-context';
 import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import styles from './TabHeader.module.scss';
+import { useDynamicHeading } from '../../shared/DynamicHeadingContext';
 
 const cx = classNames.bind(styles);
 
@@ -19,11 +20,12 @@ const TabHeader = ({
   title,
 }) => {
   const theme = React.useContext(ThemeContext);
+  const { level } = useDynamicHeading();
 
   // tabIndex of -1 ensure a focus location for the dropdown to navigate to with a screen reader.
   return (
     <div className={cx('header', theme.className)}>
-      <VisuallyHiddenText aria-level="2" role="heading" tabIndex="-1" text={title} />
+      <VisuallyHiddenText aria-level={level} role="heading" tabIndex="-1" text={title} />
       <div className={cx('title')} aria-hidden="true">
         {title}
       </div>

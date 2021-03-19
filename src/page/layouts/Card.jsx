@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
+import { useDynamicHeading, DynamicHeadingProvider } from '../../shared/DynamicHeadingContext';
+
 import styles from './Card.module.scss';
 
 const cx = classNames.bind(styles);
@@ -13,20 +15,26 @@ const propTypes = {
 
 const Card = ({
   label, children,
-}) => (
-  <div className={cx('card')}>
-    { label && (
+}) => {
+  const { level } = useDynamicHeading();
+
+  return (
+    <div className={cx('card')}>
+      { label && (
       <div className={cx('card-header')}>
-        <div className={cx('label-container')}>
+        <div className={cx('label-container')} role="heading" aria-level={level}>
           {label}
         </div>
       </div>
-    )}
-    <div className={cx('card-body')}>
-      {children}
+      )}
+      <div className={cx('card-body')}>
+        <DynamicHeadingProvider>
+          {children}
+        </DynamicHeadingProvider>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 Card.propTypes = propTypes;
 

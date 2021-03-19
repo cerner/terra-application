@@ -15,6 +15,7 @@ import NotificationDialogCard from './content/NotificationDialogCard';
 import ModalManagerIntegrationCard from './content/ModalManagerIntegrationCard';
 import NavigationItemCard from './content/NavigationItemCard';
 import ApplicationInfoCard from './content/ApplicationInfoCard';
+import DynamicHeadingCard from './content/DynamicHeadingCard';
 
 import Page5 from './Page5';
 
@@ -52,6 +53,7 @@ const Page4 = ({ onRequestClose }) => {
           <p>iframe elements will reload after leaving and reappearing on the DOM.</p>
           <iframe src="https://www.tor.com" style={{ height: '300px', width: '100%' }} />
         </Card>
+        <DynamicHeadingCard />
         <NotificationBannersCard />
         <NotificationDialogCard />
         <LoadingOverlayCard onSetLoading={setIsLoading} />

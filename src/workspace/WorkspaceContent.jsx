@@ -5,6 +5,7 @@ import ThemeContext from 'terra-theme-context';
 
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
+import { DynamicHeadingProvider } from '../shared/DynamicHeadingContext';
 
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
@@ -93,11 +94,13 @@ const WorkspaceContent = ({
           aria-labelledby={tabId}
           data-application-overflow-container
         >
-          <DynamicOverlayContainer overlays={overlays}>
-            <NotificationBannerProvider>
-              {children}
-            </NotificationBannerProvider>
-          </DynamicOverlayContainer>
+          <DynamicHeadingProvider>
+            <DynamicOverlayContainer overlays={overlays}>
+              <NotificationBannerProvider>
+                {children}
+              </NotificationBannerProvider>
+            </DynamicOverlayContainer>
+          </DynamicHeadingProvider>
         </div>
       </div>
     </div>

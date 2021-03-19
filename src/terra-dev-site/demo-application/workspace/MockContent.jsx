@@ -4,6 +4,8 @@ import classNames from 'classnames/bind';
 
 import { useActiveMainPage } from '../../../application-container';
 import NotificationBanner from '../../../notification-banner/NotificationBanner';
+import { DynamicHeading } from '../../../shared/DynamicHeadingContext';
+
 import styles from './TestStyles.module.scss';
 
 const cx = classNames.bind(styles);
@@ -101,6 +103,8 @@ const MockContent = ({
         {' '}
         {`${JSON.stringify(activeMainPage?.pageMetaData)}`}
       </p>
+      <p>Dynamic Heading: </p>
+      <DynamicHeading>Dynamic Heading Example</DynamicHeading>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam sit amet lacus cursus massa ullamcorper scelerisque. Aenean vitae posuere neque, consequat dapibus diam. Proin convallis venenatis magna, sit amet volutpat erat. Nulla sodales eu est sit amet sagittis. Suspendisse lacinia diam ut justo venenatis, a sollicitudin ante venenatis. Vivamus a leo ullamcorper, tristique diam id, vestibulum felis. Nullam mattis eget eros vestibulum porttitor. Duis eget massa nec urna ultrices laoreet. Aenean rhoncus mauris in luctus blandit. Morbi tempor enim a libero placerat, at bibendum elit luctus. In in tempor neque, laoreet facilisis quam. Fusce faucibus dui eget erat gravida egestas. Nullam laoreet purus eget urna placerat, sit amet ultrices mi tristique. Sed vulputate gravida risus, vehicula rhoncus ipsum tempus id. Phasellus aliquet nec mi non pretium. Maecenas turpis nulla, mollis et rhoncus vel, porttitor id nisl.
       </p>

@@ -5,6 +5,7 @@
 :local {
   .tab,
   .tab-menu {
+    background-color: var(--terra-application-workspace-tab-menu-background-color, transparent);
     background-image: var(--terra-application-workspace-tab-menu-background-image, linear-gradient(to bottom, #fff, #dedfe0)); // TODO: new
     box-sizing: border-box;
     border: 1px solid #868A8C; // TODO: new
@@ -48,8 +49,8 @@
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
-        background-color: transparent;
-        background-image: linear-gradient(to bottom, #fff, #e8e9ea); // TODO: new
+        background-color: var(--terra-application-workspace-tab-hover-background-color, transparent);
+        background-image: var(--terra-application-workspace-tab-hover-background-image, linear-gradient(to bottom, #fff, #e8e9ea));
 
         .icon,
         .label {
@@ -74,13 +75,14 @@
     }
 
     &.is-active {
-      background-color: var(--terra-application-workspace-tab-is-active-background-color, #fff); // new
-      background-image: none;
-      height: 34px;
+      background-color: var(--terra-application-workspace-tab-is-active-background-color, #fff); // TODO: new
+      background-image: none; // TODO: new
+      height: var(--terra-application-workspace-tab-is-active-height, 34px); // TODO: new
 
       .icon,
       .label {
         color: var(--terra-application-workspace-tab-is-active-icon-label-color, #1c1f21);
+        margin-top: var(--terra-application-workspace-tab-is-active-icon-label-margin-top, -1px);  // TODO: new
       }
     }
   }

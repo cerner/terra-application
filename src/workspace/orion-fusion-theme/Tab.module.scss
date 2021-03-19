@@ -10,55 +10,23 @@
     --terra-application-workspace-tab-icon-label-margin-left: 0;
     --terra-application-workspace-tab-icon-label-margin-right: 1.5px;
     --terra-application-workspace-tab-hover-icon-label-padding-top: 7px;
+    --terra-application-workspace-tab-hover-background-image: linear-gradient(to bottom, #fff, #f4f4f4);
+    --terra-application-workspace-tab-hover-background-color: transparent;
     --terra-application-workspace-tab-hover-focus-before-top: 4px;  
     --terra-application-workspace-tab-focus-before-border: 0;
     --terra-application-workspace-tab-focus-before-box-shadow: 0 0 1px 1px rgba(76, 178, 233,0.50), 0 0 6px 2px rgba(76, 178, 233, 0.40), inset 0 0 4px 1px rgba(76, 178, 233, 0.50);
-    --terra-application-workspace-tab-focus-before-bottom: 2px;
-    --terra-application-workspace-tab-focus-before-left: 9px;
-    --terra-application-workspace-tab-focus-before-right: 9px;
-    --terra-application-workspace-tab-focus-before-top: 4px;
     --terra-application-workspace-tab-is-active-icon-label-color: #1c1f21;
     --terra-application-workspace-tab-is-active-icon-label-padding-top: 7px;
+    --terra-application-workspace-tab-is-active-background-color: #fff;
+    --terra-application-workspace-tab-is-active-height: 29px;
     --terra-application-workspace-tab-min-width: 74px;
     --terra-application-workspace-tab-menu-svg-color: #868a8c;
     --terra-application-workspace-tab-menu-svg-height: 0.8333rem; 
-
-    // start, end & inner
-    --terra-application-workspace-tab-start-inner-end-height: 30px;
-    --terra-application-workspace-tab-start-inner-end-margin-bottom: -2px;
-    --terra-application-workspace-tab-start-inner-end-margin-top: 0;
-
-    // start & end
-    --terra-application-workspace-tab-start-end-background-size: 60px 30px;
-    --terra-application-workspace-tab-start-end-width: 24px;
-
-    // start position
-    --terra-application-workspace-tab-start-background-position: top left;
-    --terra-application-workspace-tab-start-margin-left: -9px;
-    --terra-application-workspace-tab-start-margin-right: 0;
+    --terra-application-workspace-tab-menu-background-color: #f4f4f4;
+    --terra-application-workspace-tab-menu-background-image: none;
 
     // inner position
     --terra-application-workspace-tab-inner-background-size: 100% 30px;
     --terra-application-workspace-tab-inner-min-width: 46px;
-
-    // end position
-    --terra-application-workspace-tab-end-background-position: top right;
-    --terra-application-workspace-tab-end-margin-left: -1.5px;
-    --terra-application-workspace-tab-end-margin-right: -9px;
-
-    // default images
-    @include terra-inline-svg-var('--terra-application-workspace-tab-start-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-25 -22,-25 H24 c-13.5,0 -13.5,25 -22,25 H0.5 h59 Z" fill="#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-end-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-25 -22,-25 H24 c-13.5,0 -13.5,25 -22,25 H0.5 h59 Z" fill="#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-inner-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 30" width="10" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="10" height="28" fill="#fff"/> </mask> </defs> <g style="mask:url(#cropmask)"> <rect x="-2.5" y="2.5" width="15" height="25" style="fill:#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-
-    // hover images
-    @include terra-inline-svg-var('--terra-application-workspace-tab-hover-start-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-27 -22,-27 H24 c-13.5,0 -13.5,27 -22,27 H0.5 h59 Z" fill="#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-hover-end-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-27 -22,-27 H24 c-13.5,0 -13.5,27 -22,27 H0.5 h59 Z" fill="#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-hover-inner-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 30" width="10" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="10" height="28" fill="#fff"/> </mask> </defs> <g style="mask:url(#cropmask)"> <rect x="-2.5" y="0.5" width="15" height="27" style="fill:#f4f4f4" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g></svg>');
-
-    // is-active images
-    @include terra-inline-svg-var('--terra-application-workspace-tab-is-active-start-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-27 -22,-27 H24 c-13.5,0 -13.5,27 -22,27 H0.5 v1.5 h59 v-1.5 Z" fill="#fff" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g> <rect x="0" y="28" width="24" height="2" fill="#fff"/> <rect x="36" y="28" width="24" height="2" fill="#fff"/></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-is-active-end-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="60" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="24" height="28" fill="#fff"/> <rect x="36" y="0" width="24" height="28" fill="#fff"/> </mask> </defs> <g mask="url(#cropmask)"> <path d="M 58,27.5 c-8.5,0 -8.5,-27 -22,-27 H24 c-13.5,0 -13.5,27 -22,27 H0.5 v1.5 h59 v-1.5 Z" fill="#fff" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g> <rect x="0" y="28" width="24" height="2" fill="#fff"/> <rect x="36" y="28" width="24" height="2" fill="#fff"/></svg>');
-    @include terra-inline-svg-var('--terra-application-workspace-tab-is-active-inner-background-image', '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 30" width="10" height="30" preserveAspectRatio="none slice"> <defs> <mask id="cropmask" x="-33%" y="-33%" width="150%" height="150%"> <rect x="0" y="0" width="10" height="28" fill="#fff"/> </mask> </defs> <g style="mask:url(#cropmask)"> <rect x="-2.5" y="0.5" width="15" height="28.5" style="fill:#fff" stroke="#868a8c" stroke-width="1" stroke-linecap="square"/> </g> <rect x="0" y="28" width="10" height="2" fill="#fff"/></svg>');
   }
 }

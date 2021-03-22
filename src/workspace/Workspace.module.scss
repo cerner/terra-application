@@ -21,7 +21,7 @@
   }
 
   .button-header {
-    background-image: var(--terra-application-workspace-button-header-background-image, none); // TODO: new? background-color?
+    background-image: var(--terra-application-workspace-button-header-background-image, none);
     border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
     display: flex;
     flex: 0 0 auto;

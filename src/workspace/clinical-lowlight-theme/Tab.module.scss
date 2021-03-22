@@ -7,8 +7,6 @@
     --terra-application-workspace-tab-icon-label-color: #6f7477;
     --terra-application-workspace-tab-icon-label-padding-top: 15px;
     --terra-application-workspace-tab-hover-icon-label-color: #868a8c;
-    --terra-application-workspace-tab-icon-label-margin-left: 0.5px;
-    --terra-application-workspace-tab-icon-label-margin-right: 1.5px;
     --terra-application-workspace-tab-hover-icon-label-padding-top: 14px;
     --terra-application-workspace-tab-hover-background-image: linear-gradient(to bottom, #222a2e, #1e2427);
     --terra-application-workspace-tab-hover-background-color: transparent;
@@ -19,7 +17,7 @@
     --terra-application-workspace-tab-is-active-icon-label-padding-top: 14px;
     --terra-application-workspace-tab-is-active-background-color: #222a2e;
     --terra-application-workspace-tab-is-active-height: 34px;
-    --terra-application-workspace-tab-min-width: 98px;
+    --terra-application-workspace-tab-min-width: 76px;
     --terra-application-workspace-tab-menu-svg-color: #868a8c;
     --terra-application-workspace-tab-menu-svg-height: 0.8571rem;
     --terra-application-workspace-tab-menu-background-color: #1e2427;
@@ -27,6 +25,5 @@
 
     // inner position
     --terra-application-workspace-tab-inner-background-size: 100% 42px;
-    --terra-application-workspace-tab-inner-min-width: 56px;
   }
 }

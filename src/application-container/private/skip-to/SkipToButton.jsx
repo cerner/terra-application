@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
 
 import NavigationItemContext from '../../../layouts/shared/NavigationItemContext';
-import ApplicationConceptBannerContext from '../../ApplicationConceptBannerContext';
 
 import SkipToButtonsContext from './SkipToButtonsContext';
 
@@ -30,7 +29,7 @@ const SkipToButton = ({
 }) => {
   const skipToButtonsContext = React.useContext(SkipToButtonsContext);
   const navigationItemContext = React.useContext(NavigationItemContext);
-  const conceptContext = React.useContext(ApplicationConceptBannerContext);
+
   /**
    * A unique identifier is generated for each SkipToButton instance for registration purposes.
    */
@@ -53,10 +52,9 @@ const SkipToButton = ({
        */
       skipToButtonsContext.unregisterButton(keyRef.current);
     } else {
-      // TODO Come back around and land on need for conceptDescription here
-      skipToButtonsContext.registerButton(keyRef.current, `${description} for ${conceptContext.conceptDescription}`, isMain, onSelect);
+      skipToButtonsContext.registerButton(keyRef.current, description, isMain, onSelect);
     }
-  }, [skipToButtonsContext, description, conceptContext.conceptDescription, isMain, onSelect, navigationItemContext.isActive]);
+  }, [skipToButtonsContext, description, isMain, onSelect, navigationItemContext.isActive]);
 
   React.useEffect(() => () => {
     /**

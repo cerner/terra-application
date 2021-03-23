@@ -79,6 +79,14 @@ describe('browser-locale/index', () => {
 
       expect(filterLanguages()).toBeNull();
     });
+
+    it('should return a fallback locale when the regional locale is not supported', () => {
+      global.TERRA_AGGREGATED_LOCALES = ['fr', 'en-US', 'es'];
+
+      Object.defineProperty(navigator, 'languages', { get() { return ['fr-CA', 'br', 'du']; }, configurable: true });
+      
+      expect(filterLanguages()).toBe('fr');
+    });
   });
 
   describe('getBrowserLocale', () => {

@@ -60,6 +60,10 @@ const propTypes = {
    * Also requires the onRequestDismiss prop.
    */
   dismissButtonIsVisible: PropTypes.bool,
+  /**
+   * Whether or not the Workspace is being presented as an overlay and thus
+   * should render with its overlay-specific styling.
+   */
   isPresentedAsOverlay: PropTypes.bool,
   /**
    * The function callback triggering when a item is selected.

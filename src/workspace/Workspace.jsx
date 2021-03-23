@@ -60,6 +60,7 @@ const propTypes = {
    * Also requires the onRequestDismiss prop.
    */
   dismissButtonIsVisible: PropTypes.bool,
+  isPresentedAsOverlay: PropTypes.bool,
   /**
    * The function callback triggering when a item is selected.
    * Returns the associated itemKey and metaData. e.g. onRequestActivate(itemKey, metaData)
@@ -104,6 +105,7 @@ const Workspace = ({
   activeSize,
   children,
   dismissButtonIsVisible,
+  isPresentedAsOverlay,
   onRequestActivate,
   onRequestSizeChange,
   onRequestDismiss,
@@ -212,9 +214,10 @@ const Workspace = ({
     );
   }
 
-  const workspaceClassNames = classNames(
+  const containerClassNames = classNames(
     cx(
-      'workspace',
+      'workspace-container',
+      { 'is-overlay': isPresentedAsOverlay },
       theme.className,
     ),
     customProps.className,
@@ -224,39 +227,47 @@ const Workspace = ({
     <div
       {...customProps}
       id={id}
-      className={workspaceClassNames}
+      className={containerClassNames}
       role="none"
     >
-      <div role="none" className={cx('button-header')}>
-        {dismissButton}
-        <div className={cx('fill-element')} />
-        {sizeButton}
-      </div>
-      <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
-        <Tabs ariaLabel={ariaLabel} tabData={tabData} />
-      </div>
-      <div role="none" className={cx('body')} ref={workspaceContainerRef}>
-        {React.Children.map(children, child => {
-          let portalElement = workspacePortalsRef.current[child.props.itemKey]?.element;
-          if (!portalElement) {
-            portalElement = getPortalElement();
-            portalElement.setAttribute('role', 'none');
+      <div
+        className={cx('workspace')}
+        role="none"
+      >
+        <div aria-hidden className={cx('body-shadow-container')}>
+          <div className={cx('body-shadow')} />
+        </div>
+        <div role="none" className={cx('button-header')}>
+          {dismissButton}
+          <div className={cx('fill-element')} />
+          {sizeButton}
+        </div>
+        <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
+          <Tabs ariaLabel={ariaLabel} tabData={tabData} />
+        </div>
+        <div role="none" className={cx('body')} ref={workspaceContainerRef}>
+          {React.Children.map(children, child => {
+            let portalElement = workspacePortalsRef.current[child.props.itemKey]?.element;
+            if (!portalElement) {
+              portalElement = getPortalElement();
+              portalElement.setAttribute('role', 'none');
 
-            workspacePortalsRef.current[child.props.itemKey] = {
-              element: portalElement,
-            };
-          }
+              workspacePortalsRef.current[child.props.itemKey] = {
+                element: portalElement,
+              };
+            }
 
-          return (
-            React.cloneElement(child, {
-              key: child.props.itemKey,
-              id: getTabId(id, child.props.itemKey),
-              associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
-              isActive: child.props.itemKey === activeItemKey,
-              portalElement,
-            })
-          );
-        })}
+            return (
+              React.cloneElement(child, {
+                key: child.props.itemKey,
+                id: getTabId(id, child.props.itemKey),
+                associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
+                isActive: child.props.itemKey === activeItemKey,
+                portalElement,
+              })
+            );
+          })}
+        </div>
       </div>
     </div>
   );

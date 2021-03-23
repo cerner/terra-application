@@ -41,7 +41,9 @@ const WorkspaceTest = () => {
         }} // eslint-disable-line react/forbid-dom-props
       >
         <Workspace
-          id="test-id"
+          id="overlay-test-id"
+          dismissButtonIsVisible
+          isPresentedAsOverlay
           activeItemKey={activeItemKey}
           onRequestActivate={key => setActiveItemKey(key)}
           activeSize={workspaceSize}

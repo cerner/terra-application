@@ -84,7 +84,7 @@ describe('browser-locale/index', () => {
       global.TERRA_AGGREGATED_LOCALES = ['fr', 'en-US', 'es'];
 
       Object.defineProperty(navigator, 'languages', { get() { return ['fr-CA', 'br', 'du']; }, configurable: true });
-      
+
       expect(filterLanguages()).toBe('fr');
     });
   });

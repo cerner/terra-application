@@ -87,7 +87,7 @@
     "prepare-for-release": "terra prepare-for-release",
     "start": "webpack-dev-server",
     "start-prod": "webpack-dev-server --env.disableHotReloading -p",
-    "start-heroku": "terra express-server --port '8081' --site ./build",
+    "start-heroku": "terra express-server --port $PORT --site ./build",
     "start-static": "npm run pack && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
     "wdio-default": "wdio",

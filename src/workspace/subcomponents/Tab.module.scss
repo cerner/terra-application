@@ -106,6 +106,18 @@
       flex: 0 0 auto;
       height: var(--terra-application-workspace-tab-menu-svg-height, 0.8571rem);
     }
+
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
+      &.is-active:hover {
+        background-color: var(--terra-application-workspace-tab-menu-is-active-hover-background-color, transparent);
+        background-image: var(--terra-application-workspace-tab-menu-is-active-hover-background-image, linear-gradient(to bottom, #e8e9ea, #fff));
+
+        .icon,
+        .label {
+          color: var(--terra-application-workspace-tab-hover-icon-label-color, #1c1f21);
+        }
+      }
+    }
   }
 
   [data-tab-is-calculating="true"] {

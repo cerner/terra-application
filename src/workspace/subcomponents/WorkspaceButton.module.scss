@@ -16,7 +16,7 @@
   
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
-        color: var(--terra-application-workspace-workspace-button-hover-color, #7a7f82);
+        color: var(--terra-application-workspace-workspace-button-hover-color, #64696c);
       }
     }
   
@@ -33,7 +33,7 @@
     &:active {
       background-color: var(--terra-application-workspace-workspace-button-active-background-color, transparent);
       border-radius: var(--terra-application-workspace-workspace-button-active-border-radius, 0);
-      color: var(--terra-application-workspace-workspace-button-active-color, #7a7f82);
+      color: var(--terra-application-workspace-workspace-button-active-color, #4e5558);
     }
 
     .button-inner {

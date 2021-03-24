@@ -192,18 +192,18 @@ class Tabs extends React.Component {
 
     const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
     const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
-    
+
     // calculate Offset
     let offset;
     const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
     if (isRTL) {
-      const parentMarginLeft = parseInt(parentStyle.getPropertyValue('margin-left'), 0);
-      const moreLeftBorderWidth = parseInt(moreStyle.getPropertyValue('border-left-width'), 0);
-      offset = { direction: 'left', value:  Math.floor(moreRect.left - parentRect.left + moreLeftBorderWidth + parentMarginLeft) };
+      const parentMarginLeft = parseInt(parentStyle.getPropertyValue('margin-left'), 10);
+      const moreLeftBorderWidth = parseInt(moreStyle.getPropertyValue('border-left-width'), 10);
+      offset = { direction: 'left', value: Math.floor(moreRect.left - parentRect.left + moreLeftBorderWidth + parentMarginLeft) };
     } else {
-      const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 0);
-      const moreRightBorderWidth = parseInt(moreStyle.getPropertyValue('border-right-width'), 0);
-      offset = { direction: 'right', value:  Math.floor(parentRect.right - moreRect.right + moreRightBorderWidth + parentMarginRight) };
+      const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 10);
+      const moreRightBorderWidth = parseInt(moreStyle.getPropertyValue('border-right-width'), 10);
+      offset = { direction: 'right', value: Math.floor(parentRect.right - moreRect.right + moreRightBorderWidth + parentMarginRight) };
     }
     if (this.lastOffsetDirection && offset.direction !== this.lastOffsetDirection) {
       this.dropdownRef.current.style[this.lastOffsetDirection] = null;

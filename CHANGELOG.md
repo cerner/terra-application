@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated Workspace styles
+
 ## 1.45.0 - (March 17, 2021)
 
 * Added

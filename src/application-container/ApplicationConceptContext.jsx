@@ -15,10 +15,7 @@ const ApplicationConceptContext = React.createContext({});
  * value is not validated, as a provider is not required for all applications.
  * @returns The retrieved ApplicationConceptContext value.
  */
-const useApplicationConcept = () => {
-  const contextValue = React.useContext(ApplicationConceptContext);
-  return contextValue;
-};
+const useApplicationConcept = () => React.useContext(ApplicationConceptContext);
 
 const contextShape = {
   /**

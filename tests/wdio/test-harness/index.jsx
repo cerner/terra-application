@@ -4,12 +4,15 @@ import ReactDOM from 'react-dom';
 import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test';
 
 const testMap = {
-  '/raw/tests/terra-application/workspace/workspace': Workspace,
+  '#/workspace': Workspace,
 };
 
 const Entry = () => {
-  const Component = testMap[window.location.pathname];
-  return <Component />;
+  const Component = testMap[window.location.hash];
+  if (Component) {
+    return <Component />;
+  }
+  return <div>{window.location.hash}</div>;
 };
 
 ReactDOM.render(<Entry />, document.getElementById('root'));

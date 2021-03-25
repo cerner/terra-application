@@ -110,7 +110,7 @@
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &.is-active:hover {
         background-color: var(--terra-application-workspace-tab-menu-is-active-hover-background-color, transparent);
-        background-image: var(--terra-application-workspace-tab-menu-is-active-hover-background-image, linear-gradient(to bottom, #e8e9ea, #fff));
+        background-image: var(--terra-application-workspace-tab-menu-is-active-hover-background-image, linear-gradient(to bottom, #f4f4f4, #fff));
 
         .icon,
         .label {

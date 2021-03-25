@@ -7,7 +7,13 @@ import { injectIntl } from 'react-intl';
 import IconMenu from 'terra-icon/lib/icon/IconMenu';
 import ToggleCount from './_ToggleCount';
 import Extensions from '../extensions/_Extensions';
-import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
+import {
+  enableFocusStyles,
+  disableFocusStyles,
+  generateKeyDownSelection,
+  utilityItemId,
+  navigationItemId,
+} from '../utils/helpers';
 import {
   userConfigPropType,
   navigationItemsPropType,
@@ -90,6 +96,10 @@ const propTypes = {
    */
   onSelectLogout: PropTypes.func,
   /**
+   * The base id used to generate ids of navigation, utility, and extension items
+   */
+  id: PropTypes.string,
+  /**
    * @private
    * The currently active breakpoint.
    */
@@ -117,9 +127,10 @@ const defaultProps = {
   notifications: {},
 };
 
-function buildUtilityItem(text, key, onSelect, isUtilityOpen) {
+function buildUtilityItem(text, key, onSelect, isUtilityOpen, id) {
   return (
     <li
+      id={id && utilityItemId(id, key)}
       key={key}
       className={cx('hidden-item')}
       tabIndex={isUtilityOpen ? '0' : '-1'}
@@ -149,6 +160,7 @@ const CompactHeader = ({
   onSelectSettings,
   onSelectHelp,
   onSelectLogout,
+  id,
   intl,
   hero,
   userConfig,
@@ -225,6 +237,7 @@ const CompactHeader = ({
         activeBreakpoint={activeBreakpoint}
         onSelect={onSelectExtensionItem}
         notifications={notifications}
+        id={id}
       />
     );
   }
@@ -255,6 +268,7 @@ const CompactHeader = ({
               return (
                 <li key={item.key}>
                   <div
+                    id={id && navigationItemId(id, item.key)}
                     role="link"
                     className={cx('hidden-item')}
                     tabIndex={navigationIsOpen ? '0' : '-1'}
@@ -298,26 +312,17 @@ const CompactHeader = ({
         onBlur={() => setUtilitiesIsOpen(false)}
       >
         {utilityItems.map((item) => {
-          const onSelect = generateCloseUtilsFunc(() => {
-            if (item.onSelect) {
-              item.onSelect();
-            }
-
-            if (onSelectUtilityItem) {
-              onSelectUtilityItem(item.key, item.metaData);
-            }
-          });
-
-          return buildUtilityItem(item.text, item.key, onSelect, utilitiesIsOpen);
+          const onSelect = onSelectUtilityItem && generateCloseUtilsFunc(onSelectUtilityItem.bind(null, item.key, item.metaData));
+          return buildUtilityItem(item.text, item.key, onSelect, utilitiesIsOpen, id);
         })}
         {onSelectSettings ? (
-          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.settings' }), 'app-menu-settings', generateCloseUtilsFunc(onSelectSettings), utilitiesIsOpen)
+          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.settings' }), 'app-menu-settings', generateCloseUtilsFunc(onSelectSettings), utilitiesIsOpen, id)
         ) : null}
         {onSelectHelp ? (
-          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.help' }), 'app-menu-help', generateCloseUtilsFunc(onSelectHelp), utilitiesIsOpen)
+          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.help' }), 'app-menu-help', generateCloseUtilsFunc(onSelectHelp), utilitiesIsOpen, id)
         ) : null}
         {onSelectLogout ? (
-          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.logout' }), 'app-menu-logout', generateCloseUtilsFunc(onSelectLogout), utilitiesIsOpen)
+          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.logout' }), 'app-menu-logout', generateCloseUtilsFunc(onSelectLogout), utilitiesIsOpen, id)
         ) : null}
       </ul>
     );

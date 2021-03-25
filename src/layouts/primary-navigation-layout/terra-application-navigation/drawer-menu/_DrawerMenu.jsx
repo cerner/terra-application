@@ -13,6 +13,9 @@ import DrawerMenuFooterButton from './_DrawerMenuFooterButton';
 import {
   titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType,
 } from '../utils/propTypes';
+import {
+  navigationItemId, utilityItemId, settingsUtilityItemId, helpUtilityItemId, logoutUtilityItemId,
+} from '../utils/helpers';
 
 import styles from './DrawerMenu.module.scss';
 
@@ -40,6 +43,10 @@ const propTypes = {
    * `navigationItems` array.
    */
   activeNavigationItemKey: PropTypes.string,
+  /**
+   * The base id used to generate ids of navigation, utility, and extension items
+   */
+  id: PropTypes.string,
   /**
    * A function to be executed upon the selection of a navigation item.
    * Ex: `onSelectNavigationItem(String selectedNavigationItemKey)`
@@ -98,6 +105,7 @@ const DrawerMenu = ({
   onSelectSettings,
   onSelectHelp,
   onSelectLogout,
+  id,
   utilityItems,
   onSelectUtilityItem,
   notifications,
@@ -108,6 +116,7 @@ const DrawerMenu = ({
   const logoutButton = onSelectLogout ? (
     <div className={cx('footer')}>
       <DrawerMenuFooterButton
+        id={id && logoutUtilityItemId(id)}
         onClick={onSelectLogout}
         text={intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.logout' })}
         data-navigation-drawer-item-logout
@@ -129,6 +138,7 @@ const DrawerMenu = ({
         >
           {navigationItems.map(item => (
             <DrawerMenuLinkItem
+              id={id && navigationItemId(id, item.key)}
               key={item.key}
               text={item.text}
               notificationCount={notifications[item.key]}
@@ -152,15 +162,17 @@ const DrawerMenu = ({
       >
         {utilityItems.map(item => (
           <DrawerMenuListItem
+            id={id && utilityItemId(id, item.key)}
             key={item.key}
             text={item.text}
             icon={item.icon}
-            onSelect={onSelectUtilityItem && onSelectUtilityItem.bind(null, item)}
+            onSelect={onSelectUtilityItem && onSelectUtilityItem.bind(null, item.key, item.metaData)}
           />
         ))}
         {onSelectSettings ? (
           <DrawerMenuListItem
             text={intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.settings' })}
+            id={id && settingsUtilityItemId(id)}
             icon={<IconSettings />}
             onSelect={onSelectSettings}
             data-navigation-drawer-item-settings
@@ -169,6 +181,7 @@ const DrawerMenu = ({
         {onSelectHelp ? (
           <DrawerMenuListItem
             text={intl.formatMessage({ id: 'terraApplication.applicationNavigation.utilityMenu.help' })}
+            id={id && helpUtilityItemId(id)}
             icon={<IconQuestionOutline />}
             onSelect={onSelectHelp}
             data-navigation-drawer-item-help

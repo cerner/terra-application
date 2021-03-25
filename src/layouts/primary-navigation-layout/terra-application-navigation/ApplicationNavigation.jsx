@@ -66,6 +66,10 @@ const propTypes = {
    */
   activeNavigationItemKey: PropTypes.string,
   /**
+   * The base id used to generate ids of navigation, utility, and extension items
+   */
+  id: PropTypes.string,
+  /**
   * Callback function triggered on Drawer Menu state change
   */
   onDrawerMenuStateChange: PropTypes.func,
@@ -127,6 +131,7 @@ const ApplicationNavigation = ({
   onSelectSettings,
   onSelectHelp,
   onSelectLogout,
+  id,
   utilityItems,
   onSelectUtilityItem,
   notifications,
@@ -137,8 +142,7 @@ const ApplicationNavigation = ({
   const utilityButtonPopupAnchorRef = useRef();
   // Need to capture the animation life-cycle as opposed to the open/close state.
   const drawerMenuIsVisibleRef = useRef(false);
-  // FocusTrap captures the initial value of the onDeactivate callback, so need a persistent ref to the isOpen value.
-  const drawerMenuIsOpenRef = useRef(false);
+
   const closeMenuCallbackRef = useRef();
 
   const [drawerMenuIsOpen, setDrawerMenuIsOpen] = useState(false);
@@ -146,14 +150,6 @@ const ApplicationNavigation = ({
 
   // Use dot notation temporarily until hooks + enzyme support for userContext
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-
-  function updateDrawerIsOpen(value) {
-    drawerMenuIsOpenRef.current = value;
-    setDrawerMenuIsOpen(value);
-    if (onDrawerMenuStateChange) {
-      onDrawerMenuStateChange(value);
-    }
-  }
 
   /**
    * Given a callback function, generateMenuClosingCallback will return a new function
@@ -167,7 +163,7 @@ const ApplicationNavigation = ({
       }
 
       closeMenuCallbackRef.current = () => { wrappedFunction(...args); };
-      updateDrawerIsOpen(false);
+      setDrawerMenuIsOpen(false);
       setPopupMenuIsOpen(false);
     };
   }
@@ -221,16 +217,9 @@ const ApplicationNavigation = ({
             onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
             onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
             onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}
+            id={id}
             utilityItems={utilityItems}
-            onSelectUtilityItem={generateMenuClosingCallback((item) => {
-              if (item.onSelect) {
-                item.onSelect();
-              }
-
-              if (onSelectUtilityItem) {
-                onSelectUtilityItem(item.key, item.metaData);
-              }
-            })}
+            onSelectUtilityItem={onSelectUtilityItem ? generateMenuClosingCallback(onSelectUtilityItem) : undefined}
             notifications={notifications}
           />
         </div>
@@ -259,16 +248,9 @@ const ApplicationNavigation = ({
           onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}
+          id={id}
           utilityItems={utilityItems}
-          onSelectUtilityItem={generateMenuClosingCallback((item) => {
-            if (item.onSelect) {
-              item.onSelect();
-            }
-
-            if (onSelectUtilityItem) {
-              onSelectUtilityItem(item.key, item.metaData);
-            }
-          })}
+          onSelectUtilityItem={onSelectUtilityItem ? generateMenuClosingCallback(onSelectUtilityItem) : undefined}
         />
       </Popup>
     );
@@ -282,8 +264,9 @@ const ApplicationNavigation = ({
         extensionItems={extensionItems}
         onSelectExtensionItem={onSelectExtensionItem}
         navigationItems={navigationItems}
-        onSelectMenuButton={() => updateDrawerIsOpen(true)}
+        onSelectMenuButton={() => setDrawerMenuIsOpen(true)}
         notifications={notifications}
+        isDrawerMenuOpen={drawerMenuIsOpen}
         utilityItems={utilityItems}
         activeNavigationItemKey={activeNavigationItemKey}
         userConfig={userConfig}
@@ -293,6 +276,7 @@ const ApplicationNavigation = ({
         onSelectSettings={onSelectSettings}
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
+        id={id}
       />
     );
   }
@@ -304,6 +288,7 @@ const ApplicationNavigation = ({
         titleConfig={titleConfig}
         extensionItems={extensionItems}
         onSelectExtensionItem={onSelectExtensionItem}
+        id={id}
         navigationItems={navigationItems}
         navigationRenderFunction={navigationRenderFunction}
         activeNavigationItemKey={activeNavigationItemKey}
@@ -334,6 +319,28 @@ const ApplicationNavigation = ({
     if (closeMenuCallbackRef.current) {
       closeMenuCallbackRef.current();
       closeMenuCallbackRef.current = undefined;
+    }
+  });
+
+  useEffect(() => {
+    if (onDrawerMenuStateChange) {
+      onDrawerMenuStateChange(drawerMenuIsOpen);
+    }
+  }, [drawerMenuIsOpen, onDrawerMenuStateChange]);
+
+  /**
+   * This custom hook will listen for the event indicating that transient
+   * content presentations should be dismissed and execute the provided callback.
+   * ApplicationNavigation must close its transient presentations when the event
+   * is dispatched.
+   */
+  useDismissTransientPresentationsCallback(() => {
+    if (drawerMenuIsOpen) {
+      setDrawerMenuIsOpen(false);
+    }
+
+    if (popupMenuIsOpen) {
+      setPopupMenuIsOpen(false);
     }
   });
 
@@ -377,28 +384,12 @@ const ApplicationNavigation = ({
   }, [contentLayoutRef]);
 
   /**
-   * This custom hook will listen for the event indicating that transient
-   * content presentations should be dismissed and execute the provided callback.
-   * ApplicationNavigation must close its transient presentations when the event
-   * is dispatched.
-   */
-  useDismissTransientPresentationsCallback(() => {
-    if (drawerMenuIsOpen) {
-      setDrawerMenuIsOpen(false);
-    }
-
-    if (popupMenuIsOpen) {
-      setPopupMenuIsOpen(false);
-    }
-  });
-
-  /**
    * If the ApplicationNavigation is rendering at non-compact breakpoints, and the drawer menu is still
    * open, then it is closed here. This will trigger an new update immediately after the completion of
    * the current render.
    */
   if (drawerMenuIsOpen && !shouldRenderCompactNavigation(activeBreakpoint)) {
-    updateDrawerIsOpen(false);
+    setDrawerMenuIsOpen(false);
   }
 
   /**
@@ -413,8 +404,9 @@ const ApplicationNavigation = ({
   const handleRequestClose = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    updateDrawerIsOpen(false);
+    setDrawerMenuIsOpen(false);
   };
+
   const theme = React.useContext(ThemeContext);
 
   return (

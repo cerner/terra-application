@@ -3,7 +3,9 @@
 ## V2
 
 * Added
-  * Adding ApplicationConceptContext
+  * Adding ApplicationContainer
+  * Adding ApplicationContainerContext
+  * Adding ApplicationConceptContex
 
 ## Unreleased
 

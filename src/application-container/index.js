@@ -1,5 +1,7 @@
+import ApplicationContainer from './ApplicationContainer';
 import useActiveMainPage from './useActiveMainPage';
 
+export default ApplicationContainer;
 export {
-  useActiveMainPage, // eslint-disable-line import/prefer-default-export
+  useActiveMainPage,
 };

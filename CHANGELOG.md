@@ -1,5 +1,9 @@
 # Changelog
 
+## V2
+
+* Adding ApplicationContainer
+
 ## Unreleased
 
 * Breaking

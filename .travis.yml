@@ -48,7 +48,7 @@ jobs:
       before_install: skip
       install: skip
       script:
-        - SITE=$TRAVIS_BUILD_DIR/travis-build/default-locale run wdio-locale
+        - SITE=$TRAVIS_BUILD_DIR/travis-build/default-locale npm run wdio-locale
     - name: lowlight-theme
       before_install: skip
       install: skip

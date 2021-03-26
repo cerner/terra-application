@@ -113,11 +113,11 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           <p
             className="title"
           >
-            <Component
+            <FormattedMessage
               id="Terra.status-view.error"
             >
               Terra.status-view.error
-            </Component>
+            </FormattedMessage>
           </p>
           <div
             className="divider"

@@ -58,6 +58,8 @@
   .button-header {
     background-image: var(--terra-application-workspace-button-header-background-image, none);
     border-bottom: var(--terra-application-workspace-button-header-border-bottom, 0);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
     display: flex;
     flex: 0 0 auto;
     justify-content: space-between;
@@ -73,6 +75,11 @@
       flex: 1 1 auto;
       width: 100%;
     }
+  }
+
+  .is-overlay .button-header {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
   }
 
   .tab-header {
@@ -91,7 +98,7 @@
 
   .body-shadow-container {
     height: var(--terra-application-workspace-body-shadow-container-height, 100%);
-    padding-top: var(--terra-application-workspace-body-shadow-container-padding-top, 3.429rem); // calculated based on header height 
+    padding-top: var(--terra-application-workspace-body-shadow-container-padding-top, 48px); // calculated based on header height 
     position: absolute;
     width: 100%;
     z-index: -1;

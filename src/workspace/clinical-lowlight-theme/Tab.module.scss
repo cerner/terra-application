@@ -2,11 +2,16 @@
 
 :local {
   .clinical-lowlight-theme {
+    --terra-application-workspace-tab-background-color: #1e2427;
+    --terra-application-workspace-tab-background-image: none;
+    --terra-application-workspace-tab-border: 1px solid #868A8C;
+    --terra-application-workspace-tab-border-top-left-radius: 3px;
+    --terra-application-workspace-tab-border-top-right-radius: 3px;
     --terra-application-workspace-tab-height: 33px;
-    --terra-application-workspace-tab-nth-last-child-margin-right: 15px;
+    --terra-application-workspace-tab-margin-right: 2px;
     --terra-application-workspace-tab-icon-label-color: #6f7477;
-    --terra-application-workspace-tab-icon-label-padding-top: 15px;
     --terra-application-workspace-tab-hover-icon-label-color: #868a8c;
+    --terra-application-workspace-tab-menu-hover-icon-label-color: #868a8c;
     --terra-application-workspace-tab-hover-icon-label-padding-top: 14px;
     --terra-application-workspace-tab-hover-background-image: linear-gradient(to bottom, #222a2e, #1e2427);
     --terra-application-workspace-tab-hover-background-color: transparent;
@@ -15,7 +20,9 @@
     --terra-application-workspace-tab-focus-before-box-shadow: none;
     --terra-application-workspace-tab-is-active-icon-label-color: #868a8c;
     --terra-application-workspace-tab-is-active-icon-label-padding-top: 14px;
+    --terra-application-workspace-tab-is-active-icon-label-margin-top: -1px;
     --terra-application-workspace-tab-is-active-background-color: #222a2e;
+    --terra-application-workspace-tab-is-active-background-image: none;
     --terra-application-workspace-tab-is-active-height: 34px;
     --terra-application-workspace-tab-min-width: 76px;
     --terra-application-workspace-tab-menu-svg-color: #868a8c;

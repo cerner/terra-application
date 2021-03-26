@@ -2,7 +2,9 @@
 
 ## V2
 
-* Adding ApplicationContainer
+* Added
+  * Adding ApplicationContainer
+  * Adding ApplicationContainerContext
 
 ## Unreleased
 

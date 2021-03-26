@@ -4,6 +4,10 @@ import ApplicationContainerContext, {
   useApplicationContainer,
   contextShape as applicationContainerContextShape,
 } from './ApplicationContainerContext';
+import ApplicationConceptContext, {
+  useApplicationConcept,
+  contextShape as applicationConceptContextShape,
+} from './ApplicationConceptContext';
 
 export default ApplicationContainer;
 export {
@@ -11,4 +15,7 @@ export {
   ApplicationContainerContext,
   useApplicationContainer,
   applicationContainerContextShape,
+  ApplicationConceptContext,
+  useApplicationConcept,
+  applicationConceptContextShape,
 };

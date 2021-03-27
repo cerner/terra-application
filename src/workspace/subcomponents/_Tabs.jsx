@@ -186,6 +186,8 @@ class Tabs extends React.Component {
     if (!this.dropdownRef.current || !this.moreButtonRef.current) {
       return;
     }
+    const workspaceStyle = window.getComputedStyle(this.containerRef.current.parentNode.parentNode, null);
+    const workspaceLeftBorderWidth = parseInt(workspaceStyle.getPropertyValue('border-left-width'), 10);
 
     const moreRect = this.moreButtonRef.current.getBoundingClientRect();
     const dropdownRect = this.dropdownRef.current.getBoundingClientRect();
@@ -194,7 +196,7 @@ class Tabs extends React.Component {
 
     // calculate Offset
     const parentOffset = containerRect.left - workspaceRect.left;
-    const leftEdge = moreRect.left - containerRect.left;
+    const leftEdge = moreRect.left - containerRect.left - workspaceLeftBorderWidth;
 
     let offset;
     const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl'; 

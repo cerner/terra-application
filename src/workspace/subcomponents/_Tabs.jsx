@@ -187,30 +187,25 @@ class Tabs extends React.Component {
       return;
     }
 
-    const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
     const moreRect = this.moreButtonRef.current.getBoundingClientRect();
-
-    const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
-    const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
+    const dropdownRect = this.dropdownRef.current.getBoundingClientRect();
+    const containerRect = this.containerRef.current.getBoundingClientRect();
+    const workspaceRect = this.containerRef.current.parentNode.parentNode.getBoundingClientRect();
 
     // calculate Offset
+    const parentOffset = containerRect.left - workspaceRect.left;
+    const leftEdge = moreRect.left - containerRect.left;
+
     let offset;
-    const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
+    const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl'; 
     if (isRTL) {
-      const parentMarginLeft = parseInt(parentStyle.getPropertyValue('margin-left'), 10);
-      const moreLeftBorderWidth = parseInt(moreStyle.getPropertyValue('border-left-width'), 10);
-      offset = { direction: 'left', value: moreRect.left - parentRect.left + parentMarginLeft };
+      offset = parentOffset + leftEdge;
     } else {
-      const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 10);
-      const moreRightBorderWidth = parseInt(moreStyle.getPropertyValue('border-right-width'), 10);
-      offset = { direction: 'right', value: parentRect.right - moreRect.right + parentMarginRight };
+      const widthDelta = moreRect.width - dropdownRect.width;
+      offset = parentOffset + leftEdge + widthDelta;
     }
 
-    if (this.lastOffsetDirection && offset.direction !== this.lastOffsetDirection) {
-      this.dropdownRef.current.style[this.lastOffsetDirection] = null;
-    }
-    this.dropdownRef.current.style[offset.direction] = `${Math.round(offset.value)}px`;
-    this.lastOffsetDirection = offset.direction;
+    this.dropdownRef.current.style.left = `${offset}px`;
   }
 
   wrapOnSelect(onSelect) {

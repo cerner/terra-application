@@ -199,7 +199,7 @@ class Tabs extends React.Component {
     const leftEdge = moreRect.left - containerRect.left - workspaceLeftBorderWidth;
 
     let offset;
-    const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl'; 
+    const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
     if (isRTL) {
       offset = parentOffset + leftEdge;
     } else {

@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test';
 import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
+import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
 
 const testMap = {
   '#/workspace': Workspace,
   '#/primary-navigation-layout-1': PrimaryNavigationLayout1,
+  '#/primary-navigation-layout-2': PrimaryNavigationLayout2,
 };
 
 const Entry = () => {
@@ -14,7 +16,16 @@ const Entry = () => {
   if (Component) {
     return <Component />;
   }
-  return <div>{window.location.hash}</div>;
+  return (
+    <div>
+      <h1>Test Index</h1>
+      {Object.keys(testMap).map((key) => (
+        <p key={key}>
+          <a href={`${window.location.pathname}${key}`} onClick={() => { setTimeout(() => { window.location.reload(); }, 0); }}>{key}</a>
+        </p>
+      ))}
+    </div>
+  );
 };
 
 ReactDOM.render(<Entry />, document.getElementById('root'));

@@ -15,7 +15,8 @@ const PrimaryNavigationLayout1 = () => {
     <ApplicationBase locale="en-US">
       <ApplicationContainer>
         <PrimaryNavigationLayout
-          titleConfig={{ title: 'Primary Navigation Layout Test 1' }}
+          id="primary-nav-test-1"
+          titleConfig={{ title: 'Primary Navigation Layout Test 1', subline: 'NavigationItem test' }}
           extensionItems={[{
             key: 'search',
             icon: <IconSearch />,
@@ -29,37 +30,46 @@ const PrimaryNavigationLayout1 = () => {
           utilityItems={[{
             key: 'custom-utility-item',
             text: 'Custom Utility Item',
-            onSelect: () => {
-              console.log('Custom Utility Item selected');
-            },
           }]}
           onSelectUtilityItem={(itemKey) => {
             if (itemKey === 'custom-utility-item') {
               console.log('Custom Utility Item selected');
             }
           }}
-          onSelectHelp={() => {}}
+          onSelectHelp={() => {
+            console.log('Help selected');
+          }}
+          onSelectSettings={() => {
+            console.log('Settings selected');
+          }}
+          onSelectLogout={() => {
+            console.log('Logout selected');
+          }}
           activeNavigationKey={activeNavigationItemKey}
           onSelectNavigationItem={(key) => { setActiveNavigationItemKey(key); }}
           renderNavigationFallback={() => <div>404</div>}
+          userConfig={{
+            name: 'Demo User',
+            detail: 'demouser',
+          }}
         >
           <NavigationItem
             navigationKey="1"
             label="Nav 1"
           >
-            <p>Content 1</p>
+            <p>Nav 1 Content</p>
           </NavigationItem>
           <NavigationItem
             navigationKey="2"
             label="Nav 2"
           >
-            <p>Content 2</p>
+            <p>Nav 2 Content</p>
           </NavigationItem>
           <NavigationItem
             navigationKey="3"
             label="Nav 3"
           >
-            <p>Content 3</p>
+            <p>Nav 3 Content</p>
           </NavigationItem>
         </PrimaryNavigationLayout>
       </ApplicationContainer>

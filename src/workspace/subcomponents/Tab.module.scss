@@ -107,8 +107,12 @@
       height: var(--terra-application-workspace-tab-menu-svg-height, 0.8571rem);
     }
 
+    &.is-open {
+      cursor: default;
+    }
+
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
-      &.is-active:hover {
+      &.is-active:hover:not(.is-open) {
         background-color: var(--terra-application-workspace-tab-menu-is-active-hover-background-color, transparent);
         background-image: var(--terra-application-workspace-tab-menu-is-active-hover-background-image, linear-gradient(to bottom, #f4f4f4, #fff));
 

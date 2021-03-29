@@ -165,8 +165,10 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
   }
 
-  handleOutsideClick() {
-    this.setIsOpen(false);
+  handleOutsideClick(event) {
+    if (this.moreButtonRef.current !== event.currentTarget && !this.moreButtonRef.contains(event.currentTarget)) {
+      this.setIsOpen(false);
+    }
   }
 
   setIsOpen(value) {

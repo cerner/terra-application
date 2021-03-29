@@ -28,7 +28,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    overflow: var(--terra-application-workspace-workspace-overflow, visible);
     position: relative;
     user-select: none;
     width: 100%;
@@ -38,7 +37,6 @@
   .is-overlay .workspace {
     border: var(--terra-application-workspace-workspace-is-overlay-border, none);
     border-radius: var(--terra-application-workspace-workspace-is-overlay-border-radius, none);
-    overflow: var(--terra-application-workspace-workspace-is-overlay-overflow, visible);
   }
 
   .body {

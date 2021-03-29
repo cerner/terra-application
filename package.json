@@ -7,7 +7,7 @@
   "version": "1.35.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
-    "node": ">=8.9.2 <11"
+    "node": ">=10 <13"
   },
   "repository": {
     "type": "git",
@@ -66,7 +66,7 @@
     "start-prod": "webpack-dev-server -p",
     "start-heroku": "terra express-server --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
-    "test": "npm run lint && npm run jest",
+    "test": "npm run lint && npm run jest && npm run wdio",
     "wdio-default": "terra wdio",
     "wdio-locale": "terra wdio --locales de",
     "wdio-lowlight": "terra wdio --themes clinical-lowlight-theme",

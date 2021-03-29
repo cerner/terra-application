@@ -76,8 +76,8 @@
   }
 
   .is-overlay .button-header {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-top-left-radius: var(--terra-application-workspace-button-header-is-overlay-border-top-left-radius, 0);
+    border-top-right-radius: var(--terra-application-workspace-button-header-is-overlay-border-top-right-radius, 0);
   }
 
   .tab-header {

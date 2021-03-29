@@ -37,74 +37,78 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
           }
           paused={false}
         >
-          <injectIntl(DrawerMenu)
-            notifications={Object {}}
-            utilityItems={Array []}
+          <div
+            className="drawer-menu-focus-trap-container"
           >
-            <DrawerMenu
-              intl={
-                Object {
-                  "defaultFormats": Object {},
-                  "defaultLocale": "en",
-                  "defaultRichTextElements": undefined,
-                  "formatDate": [Function],
-                  "formatDateTimeRange": [Function],
-                  "formatDateToParts": [Function],
-                  "formatDisplayName": [Function],
-                  "formatList": [Function],
-                  "formatMessage": [Function],
-                  "formatNumber": [Function],
-                  "formatNumberToParts": [Function],
-                  "formatPlural": [Function],
-                  "formatRelativeTime": [Function],
-                  "formatTime": [Function],
-                  "formatTimeToParts": [Function],
-                  "formats": Object {},
-                  "formatters": Object {
-                    "getDateTimeFormat": [Function],
-                    "getDisplayNames": [Function],
-                    "getListFormat": [Function],
-                    "getMessageFormat": [Function],
-                    "getNumberFormat": [Function],
-                    "getPluralRules": [Function],
-                    "getRelativeTimeFormat": [Function],
-                  },
-                  "locale": "en",
-                  "messages": null,
-                  "onError": [Function],
-                  "textComponent": Symbol(react.fragment),
-                  "timeZone": undefined,
-                  "wrapRichTextChunksInFragment": undefined,
-                }
-              }
-              navigationItems={Array []}
+            <injectIntl(DrawerMenu)
               notifications={Object {}}
               utilityItems={Array []}
             >
-              <div
-                className="drawer-container"
+              <DrawerMenu
+                intl={
+                  Object {
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
+                navigationItems={Array []}
+                notifications={Object {}}
+                utilityItems={Array []}
               >
                 <div
-                  className="drawer-menu"
-                  data-navigation-drawer-menu={true}
-                  role={null}
-                  tabIndex={0}
+                  className="drawer-container"
                 >
                   <div
-                    className="vertical-overflow-container"
+                    className="drawer-menu"
+                    data-navigation-drawer-menu={true}
+                    role={null}
+                    tabIndex={0}
                   >
                     <div
-                      className="header"
+                      className="vertical-overflow-container"
                     >
                       <div
-                        className="header-background-fill"
-                      />
+                        className="header"
+                      >
+                        <div
+                          className="header-background-fill"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </DrawerMenu>
-          </injectIntl(DrawerMenu)>
+              </DrawerMenu>
+            </injectIntl(DrawerMenu)>
+          </div>
         </FocusTrap>
       </div>
       <div
@@ -501,56 +505,60 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       }
       paused={false}
     >
-      <injectIntl(DrawerMenu)
-        activeNavigationItemKey="my-test-key"
-        hero={
-          <div>
-            my test hero
-          </div>
-        }
-        navigationItems={
-          Array [
+      <div
+        className="drawer-menu-focus-trap-container"
+      >
+        <injectIntl(DrawerMenu)
+          activeNavigationItemKey="my-test-key"
+          hero={
+            <div>
+              my test hero
+            </div>
+          }
+          navigationItems={
+            Array [
+              Object {
+                "key": "my-test-key",
+                "text": "test-text",
+              },
+            ]
+          }
+          notifications={
             Object {
-              "key": "my-test-key",
-              "text": "test-text",
-            },
-          ]
-        }
-        notifications={
-          Object {
-            "my-test-key-1": 3,
+              "my-test-key-1": 3,
+            }
           }
-        }
-        onSelectHelp={[Function]}
-        onSelectLogout={[Function]}
-        onSelectNavigationItem={[Function]}
-        onSelectSettings={[Function]}
-        onSelectUtilityItem={[Function]}
-        titleConfig={
-          Object {
-            "title": "test-title",
-          }
-        }
-        userConfig={
-          Object {
-            "detail": "user-detail",
-            "imageSrc": "user-src",
-            "initials": "user-initials",
-            "name": "user-name",
-          }
-        }
-        utilityItems={
-          Array [
+          onSelectHelp={[Function]}
+          onSelectLogout={[Function]}
+          onSelectNavigationItem={[Function]}
+          onSelectSettings={[Function]}
+          onSelectUtilityItem={[Function]}
+          titleConfig={
             Object {
-              "icon": <span>
-                my icon
-              </span>,
-              "key": "my-test-key-2",
-              "text": "test-text-2",
-            },
-          ]
-        }
-      />
+              "title": "test-title",
+            }
+          }
+          userConfig={
+            Object {
+              "detail": "user-detail",
+              "imageSrc": "user-src",
+              "initials": "user-initials",
+              "name": "user-name",
+            }
+          }
+          utilityItems={
+            Array [
+              Object {
+                "icon": <span>
+                  my icon
+                </span>,
+                "key": "my-test-key-2",
+                "text": "test-text-2",
+              },
+            ]
+          }
+        />
+      </div>
     </FocusTrap>
   </div>
   <div

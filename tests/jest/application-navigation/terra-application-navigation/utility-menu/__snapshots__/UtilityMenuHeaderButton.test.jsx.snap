@@ -41,7 +41,7 @@ exports[`UtilityMenuHeaderButton should render default element 1`] = `
   >
     <div
       aria-haspopup={true}
-      aria-label="Terra.applicationNavigation.header.utilityButtonTitleNoUser"
+      aria-label="terraApplication.applicationNavigation.header.utilityButtonTitleNoUser"
       className="utility-button no-user"
       data-application-header-utility={true}
       data-focus-styles-enabled={true}
@@ -134,7 +134,7 @@ exports[`UtilityMenuHeaderButton should render with click callback 1`] = `
   >
     <div
       aria-haspopup={true}
-      aria-label="Terra.applicationNavigation.header.utilityButtonTitleNoUser"
+      aria-label="terraApplication.applicationNavigation.header.utilityButtonTitleNoUser"
       className="utility-button no-user"
       data-application-header-utility={true}
       data-focus-styles-enabled={true}
@@ -257,7 +257,7 @@ exports[`UtilityMenuHeaderButton should render with function callbacks 1`] = `
   >
     <div
       aria-haspopup={true}
-      aria-label="Terra.applicationNavigation.header.utilityButtonTitleUser"
+      aria-label="terraApplication.applicationNavigation.header.utilityButtonTitleUser"
       className="utility-button"
       data-application-header-utility={true}
       data-focus-styles-enabled={true}

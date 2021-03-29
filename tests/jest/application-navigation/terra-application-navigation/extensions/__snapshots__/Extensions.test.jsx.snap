@@ -28,7 +28,7 @@ exports[`Extensions should render default element 1`] = `
       onSelectMenuItem={[Function]}
       role="menu"
       showSelections={false}
-      title="Terra.applicationNavigation.extensions.rollupMenuHeaderTitle"
+      title="terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle"
     />
   </Popup>
 </Fragment>
@@ -75,7 +75,7 @@ exports[`Extensions should render prop data 1`] = `
       onSelectMenuItem={[Function]}
       role="menu"
       showSelections={false}
-      title="Terra.applicationNavigation.extensions.rollupMenuHeaderTitle"
+      title="terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle"
     />
   </Popup>
 </Fragment>

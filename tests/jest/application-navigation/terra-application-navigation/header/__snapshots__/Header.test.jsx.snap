@@ -49,7 +49,7 @@ exports[`Header should render default element 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"
@@ -206,7 +206,7 @@ exports[`Header should render title element 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"
@@ -525,7 +525,7 @@ exports[`Header should render with function callbacks 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"
@@ -971,7 +971,7 @@ exports[`Header should render with function callbacks 1`] = `
           >
             <div
               aria-haspopup={true}
-              aria-label="Terra.applicationNavigation.header.utilityButtonTitleUser"
+              aria-label="terraApplication.applicationNavigation.header.utilityButtonTitleUser"
               className="utility-button"
               data-application-header-utility={true}
               data-focus-styles-enabled={true}
@@ -1139,7 +1139,7 @@ exports[`Header should render with skip callback 1`] = `
         role="link"
         type="button"
       >
-        Terra.applicationNavigation.header.skipToContentTitle
+        terraApplication.applicationNavigation.header.skipToContentTitle
       </button>
       <div
         className="title-container"

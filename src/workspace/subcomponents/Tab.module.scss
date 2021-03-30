@@ -52,10 +52,11 @@
         background-color: var(--terra-application-workspace-tab-hover-background-color, transparent);
         background-image: var(--terra-application-workspace-tab-hover-background-image, linear-gradient(to bottom, #fff, #e8e9ea));
 
-        .icon,
+        .icon {
+          color: var(--terra-application-workspace-tab-hover-icon-color, #64696c);
+        }
         .label {
-          color: var(--terra-application-workspace-tab-label-color, #434a4d);
-          color: var(--terra-application-workspace-tab-icon-color, #64696c);
+          color: var(--terra-application-workspace-tab-hover-label-color, #434a4d);
         }
       }
     }
@@ -82,9 +83,14 @@
 
       .icon,
       .label {
-        color: var(--terra-application-workspace-tab-is-active-icon-color, #64696c);
-        color: var(--terra-application-workspace-tab-is-active-label-color, #434a4d);
         margin-top: var(--terra-application-workspace-tab-is-active-icon-label-margin-top, -1px);
+      }
+
+      .icon {
+        color: var(--terra-application-workspace-tab-is-active-icon-color, #64696c);
+      }
+      .label {
+        color: var(--terra-application-workspace-tab-is-active-label-color, #434a4d);
       }
     }
   }

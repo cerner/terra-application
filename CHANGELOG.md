@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.46.0 - (March 30, 2021)
+
 * Changed
   * Updated Workspace styles
 

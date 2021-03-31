@@ -30,8 +30,9 @@ const PrimaryNavigationLayout1 = () => {
           utilityItems={[{
             key: 'custom-utility-item',
             text: 'Custom Utility Item',
+            metaData: { test: 'data' },
           }]}
-          onSelectUtilityItem={(itemKey) => {
+          onSelectUtilityItem={(itemKey, metaData) => {
             if (itemKey === 'custom-utility-item') {
               console.log('Custom Utility Item selected');
             }

@@ -23,6 +23,7 @@
       flex: 1 1 auto;
       overflow: hidden;
       text-align: start;
+      word-break: break-word;
     }
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {

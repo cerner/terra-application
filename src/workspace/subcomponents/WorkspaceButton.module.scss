@@ -4,7 +4,7 @@
 :local {
   .workspace-button {
     align-items: center;
-    color: var(--terra-application-workspace-workspace-button-color, #fff);
+    color: var(--terra-application-workspace-workspace-button-color, #7a7f82);
     cursor: pointer;
     display: flex;
     flex: 0 0 auto;
@@ -16,16 +16,16 @@
   
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
-        color: var(--terra-application-workspace-workspace-button-hover-color, #fff);
+        color: var(--terra-application-workspace-workspace-button-hover-color, #64696c);
       }
     }
   
     &[data-focus-styles-enabled='true']:focus {
-      color: var(--terra-application-workspace-workspace-button-focus-color, rgba(255, 255, 255, 0.8));
+      color: var(--terra-application-workspace-workspace-button-focus-color, #7a7f82);
 
       .button-inner {
         box-shadow: var(--terra-application-workspace-workspace-button-focus-button-inner-box-shadow, none);
-        outline: var(--terra-application-workspace-workspace-button-focus-button-inner-outline, 2px dashed #fff);
+        outline: var(--terra-application-workspace-workspace-button-focus-button-inner-outline, 2px dashed #000);
         outline-offset: var(--terra-application-workspace-workspace-button-focus-button-inner-outline-offset, -4px);
       }
     }
@@ -33,7 +33,7 @@
     &:active {
       background-color: var(--terra-application-workspace-workspace-button-active-background-color, transparent);
       border-radius: var(--terra-application-workspace-workspace-button-active-border-radius, 0);
-      color: var(--terra-application-workspace-workspace-button-active-color, #ccc);
+      color: var(--terra-application-workspace-workspace-button-active-color, #4e5558);
     }
 
     .button-inner {

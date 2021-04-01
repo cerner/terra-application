@@ -29,6 +29,19 @@ test('should render heading with appropriate label', () => {
   expect(screen.getByTestId('workspace-content-heading')).toHaveTextContent('Test Label');
 });
 
+test('should render heading with appropriate label- override', () => {
+  render((
+    <TestWorkspaceContent
+      label="Test Label - override"
+    >
+      <div data-testid="test-content" />
+    </TestWorkspaceContent>
+  ));
+
+  // Expect heading region to render label provided by the TabContext
+  expect(screen.getByTestId('workspace-content-heading')).toHaveTextContent('Test Label - override');
+});
+
 test('should render tabpanel with appropriate labeling', () => {
   render((
     <TestWorkspaceContent>

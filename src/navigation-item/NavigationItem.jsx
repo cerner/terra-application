@@ -33,8 +33,8 @@ const propTypes = {
   children: PropTypes.node,
   /**
    * @private
-   * A boolean indicating whether or not the NavigationItem is considered active based on the
-   * determined activeNavigationKey of the layout consuming it.
+   * A boolean indicating whether or not the NavigationItem is considered active
+   * based on the determined active navigation key of the layout consuming it.
    */
   isActive: PropTypes.bool,
   /**
@@ -54,6 +54,8 @@ const NavigationItem = ({
   const ancestorNavigationItemContext = React.useContext(NavigationItemContext);
 
   const navigationItemContextValue = React.useMemo(() => ({
+    // If an ancestor NavigationItem is inactivated, then we must consider
+    // this entire branch inactivated as well.
     isActive: isActive && ancestorNavigationItemContext.isActive,
     navigationKeys: [
       ...ancestorNavigationItemContext.navigationKeys,

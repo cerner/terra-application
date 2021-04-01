@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test';
 import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
 import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
+import useForceUpdate from '../../../src/shared/useForceUpdate';
 
 const testMap = {
   '#/workspace': Workspace,
@@ -12,6 +13,20 @@ const testMap = {
 };
 
 const Entry = () => {
+  const forceUpdate = useForceUpdate();
+
+  React.useEffect(() => {
+    const handlePopState = () => {
+      forceUpdate();
+    };
+
+    window.addEventListener('popstate', handlePopState);
+
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+    };
+  }, [forceUpdate]);
+
   const Component = testMap[window.location.hash];
   if (Component) {
     return <Component />;
@@ -21,7 +36,7 @@ const Entry = () => {
       <h1>Test Index</h1>
       {Object.keys(testMap).map((key) => (
         <p key={key}>
-          <a href={`${window.location.pathname}${key}`} onClick={() => { setTimeout(() => { window.location.reload(); }, 0); }}>{key}</a>
+          <a href={`${window.location.pathname}${key}`}>{key}</a>
         </p>
       ))}
     </div>

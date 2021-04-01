@@ -176,7 +176,7 @@ const PrimaryNavigationLayout = ({
   // The onPortalActivated callback is used to set focus to the body when the
   // active navigation item changes, simulating how focus is handled during a
   // typical navigation event.
-  const [contentElementRef, pageContainerPortalsRef] = usePortalManager(activeNavigationKey, () => {
+  const [contentElementRef, navItemPortalsRef] = usePortalManager(activeNavigationKey, () => {
     deferExecution(() => {
       document.body.focus();
     });
@@ -230,7 +230,7 @@ const PrimaryNavigationLayout = ({
   // no dangling items exist.
   React.useEffect(() => {
     danglingNavigationItems.forEach((item) => {
-      delete pageContainerPortalsRef.current[item.key];
+      delete navItemPortalsRef.current[item.key];
     });
   });
 
@@ -242,11 +242,15 @@ const PrimaryNavigationLayout = ({
       <>
         {navigationItemChildren.map((child) => {
           const { navigationKey } = child.props;
-          let portalElement = pageContainerPortalsRef.current[navigationKey]?.element;
+          let portalElement = navItemPortalsRef.current[navigationKey]?.element;
           if (!portalElement) {
             portalElement = getPortalElement();
             portalElement.id = `terra-primary-navigation-${navigationKey}`;
-            pageContainerPortalsRef.current[navigationKey] = {
+
+            // The generated element is stored inside the ref provided by
+            // the usePortalManager hook. The hook will manage what portal is
+            // visible.
+            navItemPortalsRef.current[navigationKey] = {
               element: portalElement,
             };
           }

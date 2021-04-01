@@ -1,7 +1,14 @@
 import { createContext } from 'react';
 import PropTypes from 'prop-types';
 
+/**
+ * The NavigationItemContext provides children of a NavigationItem data
+ * regarding the item's current activation state as well as the structure of
+ * navigation hierarchy at the location that the context is being accessed.
+ */
 const NavigationItemContext = createContext({
+  // isActive is defaulted to true so that components that are not descendants
+  // of a NavigationItem are always known to be active.
   isActive: true,
   navigationKeys: [],
 });
@@ -10,10 +17,6 @@ const contextShape = {
   /**
    * A boolean indicating whether or not the NavigationItem is active. If a
    * NavigationItem is not active, it is neither visible nor interactive.
-   *
-   * Note that this value takes into account nested NavigationItems. If a parent
-   * NavigationItem is not active, then no NavigationItems within it will be
-   * active.
    */
   isActive: PropTypes.bool,
   /**

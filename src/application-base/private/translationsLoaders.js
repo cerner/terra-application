@@ -42,7 +42,7 @@ const loadTranslationsFile = (locale) => {
 const getFallbackLocale = (locale) => {
   // there is no fallback for en.
   if (locale === 'en') {
-    return false;
+    return undefined;
   }
   // If there was a region, remove it, if there wasn't use en
   return locale.split('-').length > 1 ? locale.split('-')[0] : 'en';

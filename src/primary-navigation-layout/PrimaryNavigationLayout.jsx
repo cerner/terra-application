@@ -183,7 +183,7 @@ const PrimaryNavigationLayout = ({
   });
 
   const navigationItems = [];
-  let danglingNavigationItems = [];
+  let danglingNavigationItems = [...lastProcessedNavigationItemsRef.current];
   let activeNavigationItemIsPresent = false;
 
   // We perform explicit checks for NavigationItem children so that we can
@@ -194,8 +194,6 @@ const PrimaryNavigationLayout = ({
     ));
 
   if (navigationItemChildren.length > 0) {
-    danglingNavigationItems = [...lastProcessedNavigationItemsRef.current];
-
     navigationItemChildren.forEach(child => {
       // We add the item data to the navigationItems array so that it can
       // be properly rendered by the ApplicationNavigation component.
@@ -208,7 +206,7 @@ const PrimaryNavigationLayout = ({
       // The item's key is removed from the dangling item set (if it's present,
       // we do not need to clean it up).
       danglingNavigationItems = danglingNavigationItems.filter(item => (
-        item.key === navigationItemEntry.key
+        item.key !== navigationItemEntry.key
       ));
 
       // If the item's key matches the current active key, then we know we do

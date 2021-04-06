@@ -250,7 +250,7 @@ const CompactHeader = ({
   }
 
   function buildNavigationItems() {
-    if (isDrawerMenuOpen || !navigationItems) {
+    if (isDrawerMenuOpen || !navigationItems.length) {
       return null;
     }
 

@@ -10,7 +10,7 @@
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "More Navigation",
   "terraApplication.applicationNavigation.notifications.new": "New",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Skip to Content",
-  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "User Settings",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "User Settings for: {currentUserName}",
   "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Options",
   "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
   "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigation Items",

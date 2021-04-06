@@ -22,3 +22,4 @@ The PrimaryNavigationLayout is specifically responsible for:
 * Add back renderPage prop when Page work is completed
 * Add renderPage prop back to NavigationItem as well
 * Add back session user/actions integrations when those contexts are completed
+* Add aria-label to nav element once we figure out naming

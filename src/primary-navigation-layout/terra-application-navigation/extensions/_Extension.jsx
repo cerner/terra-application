@@ -54,7 +54,7 @@ const Extension = ({
       role="button"
       tabIndex="0"
       className={cx('extension')}
-      onClick={onSelect}
+      onClick={onSelect ? () => onSelect() : undefined}
       onKeyDown={generateKeyDownSelection(onSelect)}
       onBlur={enableFocusStyles}
       onMouseDown={disableFocusStyles}

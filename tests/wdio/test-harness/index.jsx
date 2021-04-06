@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import useForceUpdate from '../../../src/shared/useForceUpdate';
+
 import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test';
 import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
 import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
-import useForceUpdate from '../../../src/shared/useForceUpdate';
 
 const testMap = {
   '#/workspace': Workspace,

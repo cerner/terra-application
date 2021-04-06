@@ -1,7 +1,7 @@
 import { renderHook, act } from '@testing-library/react-hooks/dom';
 import '@testing-library/jest-dom/extend-expect';
 
-import useForceUpdate from '../../../../src/notification-banner/private/useForceUpdate';
+import useForceUpdate from '../../../src/shared/useForceUpdate';
 
 describe('useForceUpdate', () => {
   test('should trigger updates when returned function is executed', async () => {

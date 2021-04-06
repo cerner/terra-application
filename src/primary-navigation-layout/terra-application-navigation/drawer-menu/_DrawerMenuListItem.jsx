@@ -46,7 +46,7 @@ const DrawerMenuListItem = ({
     aria-selected={isSelected}
     tabIndex="0"
     className={cx('item', { 'is-selected': isSelected })}
-    onClick={onSelect}
+    onClick={onSelect ? () => onSelect() : undefined}
     onKeyDown={generateKeyDownSelection(onSelect)}
     onBlur={enableFocusStyles}
     onMouseDown={disableFocusStyles}

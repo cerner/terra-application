@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('Workspace', ['huge'], () => {
   before(() => {
-    browser.url('/#/raw/tests/terra-application/workspace/workspace');
+    browser.url('/#/workspace');
     browser.execute('document.title = "Test Title";');
     browser.disableCSSAnimations();
   });
@@ -16,7 +16,7 @@ Terra.describeViewports('Workspace', ['huge'], () => {
   });
 
   it('renders Tab 2 after selection', () => {
-    browser.click('#test-id-tab-2');
+    $('#test-id-tab-2').click();
     Terra.validates.element('2. Tab 2 renders after selection', { selector });
   });
 
@@ -42,24 +42,24 @@ Terra.describeViewports('Workspace', ['huge'], () => {
   });
 
   it('renders tab selected from rollup', () => {
-    browser.click('#test-id-tab-3');
+    $('#test-id-tab-3').click();
     Terra.validates.element('7. Workspace renders Tab 3 after dropdown selection', { selector });
   });
 
   it('renders tab with status overlay', () => {
     browser.clickWithTestId('workspace-test-id-settings-button');
     browser.clickWithAttribute('data-action-menu-key', 'large');
-    browser.click('#test-id-tab-5');
+    $('#test-id-tab-5').click();
     Terra.validates.element('8. Workspace renders Tab 5 with status overlay after dropdown selection', { selector });
   });
 
   it('renders tab with loading overlay', () => {
-    browser.click('#test-id-tab-6');
+    $('#test-id-tab-6').click();
     Terra.validates.element('9. Workspace renders Tab 6 with loading overlay after dropdown selection', { selector });
   });
 
   it('renders tab with notification banner', () => {
-    browser.click('#test-id-tab-1');
+    $('#test-id-tab-1').click();
     browser.clickWithTestId('test-workspace-banner-button');
     Terra.validates.element('10. Workspace renders Tab 1 with notification banner', { selector });
   });

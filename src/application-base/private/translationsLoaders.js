@@ -39,22 +39,26 @@ const loadTranslationsFile = (locale) => {
   }
 };
 
-const loadTranslations = (locale) => {
-  const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
-
-  return loadTranslationsFile(locale).catch((error) => {
-    logger.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
-
-    if (fallbackLocale) {
-      return loadTranslationsFile(fallbackLocale);
-    }
-
-    return Promise.reject(error);
-  }).catch((error) => {
-    logger.warn(`${error.message} Using en as the fallback locale.`);
-
-    return loadTranslationsFile('en');
-  });
+const getFallbackLocale = (locale) => {
+  // there is no fallback for en.
+  if (locale === 'en') {
+    return undefined;
+  }
+  // If there was a region, remove it, if there wasn't use en
+  return locale.split('-').length > 1 ? locale.split('-')[0] : 'en';
 };
+
+const loadTranslations = (locale) => (
+  loadTranslationsFile(locale).catch((error) => {
+    const fallbackLocale = getFallbackLocale(locale);
+    if (fallbackLocale) {
+      logger.warn(`${error.message} Using ${fallbackLocale} as the fallback locale.`);
+      // Use the power of recursion.
+      return loadTranslations(fallbackLocale);
+    }
+    // en has no fallback.
+    return Promise.reject(error);
+  })
+);
 
 export default loadTranslations;

@@ -3,6 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import ErrorBoundaryBase from '../../../src/shared/ErrorBoundaryBase';
+import Logger from '../../../src/utils/logger';
 
 test('should render children when they do not throw errors during render', () => {
   render((
@@ -15,9 +16,12 @@ test('should render children when they do not throw errors during render', () =>
 });
 
 test('should catch child errors and execute callback', () => {
+  const loggerSpy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
+  const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const err = new Error('Test Error');
   const ErrorChild = () => {
     React.useLayoutEffect(() => {
-      throw new Error('Test Error');
+      throw err;
     });
 
     return <div data-testid="error-child" />;
@@ -32,12 +36,18 @@ test('should catch child errors and execute callback', () => {
 
   expect(screen.queryByTestId('error-child')).toBeNull();
   expect(caughtError.message).toBe('Test Error');
+  expect(loggerSpy).toBeCalledWith(err);
+  loggerSpy.mockRestore();
+  consoleSpy.mockRestore();
 });
 
 test('should throw child errors if callback is not provided', () => {
+  const loggerSpy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
+  const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const err = new Error('Test Error');
   const ErrorChild = () => {
     React.useLayoutEffect(() => {
-      throw new Error('Test Error');
+      throw err;
     });
 
     return <div data-testid="error-child" />;
@@ -50,5 +60,8 @@ test('should throw child errors if callback is not provided', () => {
   ));
 
   expect(renderTest).toThrowError('Test Error');
+  expect(loggerSpy).toBeCalledWith(err);
+  loggerSpy.mockRestore();
+  consoleSpy.mockRestore();
 });
 

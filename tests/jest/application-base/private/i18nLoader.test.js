@@ -44,30 +44,25 @@ describe('i18nLoader', () => {
 
     it('loads en locale', () => {
       i18nLoader('en');
-    });
 
-    it('adds the intl polyfill', () => {
+      // adds the intl polyfill
       expect(global.Intl).toBeDefined();
-    });
 
-    it('loads the locale data ', () => {
+      // loads the locale data
       expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'en', 'relativetimeformat');
-    });
 
-    it('loads translations', () => {
+      // loads translations
       expect(loadTranslations).toHaveBeenNthCalledWith(1, 'en');
     });
 
     it('loads es locale', () => {
       i18nLoader('es');
-    });
 
-    it('loads the new locale data on sequential load ', () => {
-      expect(defaultLoadIntl).toHaveBeenNthCalledWith(2, 'es', 'relativetimeformat');
-    });
+      // loads the new locale data on sequential load
+      expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'es', 'relativetimeformat');
 
-    it('loads the new translation data on sequential load ', () => {
-      expect(loadTranslations).toHaveBeenNthCalledWith(2, 'es');
+      // loads the new translation data on sequential load
+      expect(loadTranslations).toHaveBeenNthCalledWith(1, 'es');
     });
   });
 
@@ -82,31 +77,26 @@ describe('i18nLoader', () => {
 
     it('loads en locale', () => {
       i18nLoader('en');
-    });
 
-    it('adds the intl polyfill', () => {
+      // adds the intl polyfill
       expect(global.Intl).toBeDefined();
       expect(global.IntlPolyfill).toBeDefined();
-    });
 
-    it('loads the locale data ', () => {
+      // loads the locale data
       expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'en', 'intl');
-    });
 
-    it('loads translations', () => {
+      // loads translations
       expect(loadTranslations).toHaveBeenNthCalledWith(1, 'en');
     });
 
     it('loads es locale', () => {
       i18nLoader('es');
-    });
 
-    it('loads the new locale data on sequential load ', () => {
-      expect(defaultLoadIntl).toHaveBeenNthCalledWith(2, 'es', 'intl');
-    });
+      // loads the new locale data on sequential load
+      expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'es', 'intl');
 
-    it('loads the new translation data on sequential load ', () => {
-      expect(loadTranslations).toHaveBeenNthCalledWith(2, 'es');
+      // loads the new translation data on sequential load
+      expect(loadTranslations).toHaveBeenNthCalledWith(1, 'es');
     });
   });
 
@@ -120,31 +110,26 @@ describe('i18nLoader', () => {
 
     it('loads en locale', () => {
       i18nLoader('en');
-    });
 
-    it('adds the intl polyfill', () => {
+      // adds the intl polyfill
       expect(global.Intl).toBeDefined();
       expect(global.IntlPolyfill).toBeDefined();
-    });
 
-    it('loads the locale data ', () => {
+      // loads the locale data
       expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'en', 'intl');
-    });
 
-    it('loads translations', () => {
+      // loads translations
       expect(loadTranslations).toHaveBeenNthCalledWith(1, 'en');
     });
 
     it('loads es locale', () => {
       i18nLoader('es');
-    });
 
-    it('loads the new locale data on sequential load ', () => {
-      expect(defaultLoadIntl).toHaveBeenNthCalledWith(2, 'es', 'intl');
-    });
+      // loads the new locale data on sequential load
+      expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'es', 'intl');
 
-    it('loads the new translation data on sequential load ', () => {
-      expect(loadTranslations).toHaveBeenNthCalledWith(2, 'es');
+      // loads the new translation data on sequential load
+      expect(loadTranslations).toHaveBeenNthCalledWith(1, 'es');
     });
   });
 
@@ -158,31 +143,26 @@ describe('i18nLoader', () => {
 
     it('loads en locale', () => {
       i18nLoader('en');
-    });
 
-    it('adds the intl polyfill', () => {
+      // adds the intl polyfill
       expect(global.Intl).toBeDefined();
       expect(global.IntlPolyfill).toBeDefined();
-    });
 
-    it('loads the locale data ', () => {
+      // loads the locale data
       expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'en', 'intl');
-    });
 
-    it('loads translations', () => {
+      // loads translations
       expect(loadTranslations).toHaveBeenNthCalledWith(1, 'en');
     });
 
     it('loads es locale', () => {
       i18nLoader('es');
-    });
 
-    it('loads the new locale data on sequential load ', () => {
-      expect(defaultLoadIntl).toHaveBeenNthCalledWith(2, 'es', 'intl');
-    });
+      // loads the new locale data on sequential load
+      expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'es', 'intl');
 
-    it('loads the new translation data on sequential load ', () => {
-      expect(loadTranslations).toHaveBeenNthCalledWith(2, 'es');
+      // loads the new translation data on sequential load
+      expect(loadTranslations).toHaveBeenNthCalledWith(1, 'es');
     });
   });
 
@@ -196,31 +176,26 @@ describe('i18nLoader', () => {
 
     it('loads en locale', () => {
       i18nLoader('en');
-    });
 
-    it('adds the intl polyfill', () => {
+      // adds the intl polyfill
       expect(global.Intl).toBeDefined();
       expect(global.IntlPolyfill).toBeDefined();
-    });
 
-    it('loads the locale data ', () => {
+      // loads the locale data
       expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'en', 'intl');
-    });
 
-    it('loads translations', () => {
+      // loads translations
       expect(loadTranslations).toHaveBeenNthCalledWith(1, 'en');
     });
 
     it('loads es locale', () => {
       i18nLoader('es');
-    });
 
-    it('loads the new locale data on sequential load ', () => {
-      expect(defaultLoadIntl).toHaveBeenNthCalledWith(2, 'es', 'intl');
-    });
+      // loads the new locale data on sequential load
+      expect(defaultLoadIntl).toHaveBeenNthCalledWith(1, 'es', 'intl');
 
-    it('loads the new translation data on sequential load ', () => {
-      expect(loadTranslations).toHaveBeenNthCalledWith(2, 'es');
+      // loads the new translation data on sequential load
+      expect(loadTranslations).toHaveBeenNthCalledWith(1, 'es');
     });
   });
 });

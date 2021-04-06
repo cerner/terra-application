@@ -1,8 +1,10 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
 import Popup from 'terra-popup';
+
+import { useTransientPresentationState } from '../../../utils/transient-presentation';
 
 import PopupMenu from '../common/_PopupMenu';
 import { extensionItemsPropType } from '../utils/propTypes';
@@ -56,7 +58,7 @@ const Extensions = ({
   onSelect,
   intl,
 }) => {
-  const [popupIsOpen, setPopupIsOpen] = useState(false);
+  const [popupIsOpen, setPopupIsOpen] = useTransientPresentationState(false);
 
   const extensionRollupRef = useRef();
   const popupSelectionCallbackRef = useRef();

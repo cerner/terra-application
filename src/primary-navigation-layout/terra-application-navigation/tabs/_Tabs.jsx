@@ -6,6 +6,8 @@ import LodashDebounce from 'lodash.debounce';
 import { injectIntl } from 'react-intl';
 import Popup from 'terra-popup';
 
+import EventEmitter from '../../../utils/event-emitter';
+
 import Tab from './_Tab';
 import TabRollup from './_TabRollup';
 import PopupMenu from '../common/_PopupMenu';
@@ -60,6 +62,7 @@ class Tabs extends React.Component {
   constructor(props) {
     super(props);
 
+    this.handleTransientPopupDismissal = this.handleTransientPopupDismissal.bind(this);
     this.getRollupTabWidth = this.getRollupTabWidth.bind(this);
     this.closePopup = this.closePopup.bind(this);
     this.handleResize = this.handleResize.bind(this);
@@ -96,6 +99,8 @@ class Tabs extends React.Component {
       this.resizeObserver.observe(this.containerRef.current);
       this.handleResize(this.contentWidth);
     }
+
+    EventEmitter.on('terra-application.dismiss-transient-presentations', this.handleTransientPopupDismissal);
   }
 
   shouldComponentUpdate(nextProps) {
@@ -130,6 +135,12 @@ class Tabs extends React.Component {
       this.resizeObserver.disconnect(this.containerRef.current);
     }
     this.containerRef.current = null;
+
+    EventEmitter.off('terra-application.dismiss-transient-presentations', this.handleTransientPopupDismissal);
+  }
+
+  handleTransientPopupDismissal() {
+    this.closePopup();
   }
 
   handleResize(width) {

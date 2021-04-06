@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, logRoles } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 
@@ -244,6 +244,8 @@ describe('desktop size', () => {
   });
 
   test('renders selectable controls for navigation items', () => {
+    const mockOnSelectNavigationItem = jest.fn();
+
     render((
       <TestPrimaryNavigationLayout
         id="test-id"
@@ -251,6 +253,7 @@ describe('desktop size', () => {
           title: 'Test Title',
         }}
         activeNavigationKey="key-1"
+        onSelectNavigationItem={mockOnSelectNavigationItem}
       >
         <NavigationItem
           navigationKey="key-1"
@@ -276,6 +279,10 @@ describe('desktop size', () => {
     expect(screen.queryByRole('link', { name: 'Nav 1' })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Nav 2' })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Nav 3' })).toBeInTheDocument();
+
+    userEvent.click(screen.queryByRole('link', { name: 'Nav 2' }));
+
+    expect(mockOnSelectNavigationItem).toHaveBeenCalledWith('key-2', undefined);
   });
 
   test('renders header titles', () => {
@@ -596,7 +603,7 @@ describe('desktop size', () => {
 
 describe('compact size', () => {
   test('renders content provided as children', () => {
-    const view = render((
+    render((
       <TestPrimaryNavigationLayoutSmall
         id="test-id"
         titleConfig={{
@@ -606,8 +613,6 @@ describe('compact size', () => {
         <div data-testid="test-content">Test Child Content</div>
       </TestPrimaryNavigationLayoutSmall>
     ));
-
-    logRoles(view.container);
 
     expect(screen.queryByTestId('test-content')).toBeInTheDocument();
 
@@ -646,6 +651,7 @@ describe('compact size', () => {
           title: 'Test Title',
         }}
         activeNavigationKey="key-1"
+        onSelectNavigationItem={jest.fn()}
       >
         <NavigationItem
           navigationKey="key-1"
@@ -679,6 +685,7 @@ describe('compact size', () => {
           title: 'Test Title',
         }}
         activeNavigationKey="key-2"
+        onSelectNavigationItem={jest.fn()}
       >
         <NavigationItem
           navigationKey="key-1"
@@ -712,6 +719,7 @@ describe('compact size', () => {
   });
 
   test('renders selectable controls for navigation items', () => {
+    const mockOnSelectNavigationItem = jest.fn();
     render((
       <TestPrimaryNavigationLayoutSmall
         id="test-id"
@@ -719,6 +727,7 @@ describe('compact size', () => {
           title: 'Test Title',
         }}
         activeNavigationKey="key-1"
+        onSelectNavigationItem={mockOnSelectNavigationItem}
       >
         <NavigationItem
           navigationKey="key-1"
@@ -741,9 +750,18 @@ describe('compact size', () => {
       </TestPrimaryNavigationLayoutSmall>
     ));
 
+    const drawerMenuButton = screen.queryByRole('button', {
+      name: 'terraApplication.applicationNavigation.header.menuButtonTitle',
+    });
+    userEvent.click(drawerMenuButton);
+
     expect(screen.queryByRole('link', { name: 'Nav 1' })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Nav 2' })).toBeInTheDocument();
     expect(screen.queryByRole('link', { name: 'Nav 3' })).toBeInTheDocument();
+
+    userEvent.click(screen.queryByRole('link', { name: 'Nav 2' }));
+
+    expect(mockOnSelectNavigationItem).toHaveBeenCalledWith('key-2', undefined);
   });
 
   test('renders header titles', () => {

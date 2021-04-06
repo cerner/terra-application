@@ -46,7 +46,7 @@ const DrawerMenuLinkItem = ({
       aria-current={isSelected}
       tabIndex="0"
       className={cx('item', { 'is-selected': isSelected }, 'has-border')}
-      onClick={onSelect}
+      onClick={onSelect ? () => onSelect() : undefined}
       onKeyDown={generateKeyDownSelection(onSelect)}
       onBlur={enableFocusStyles}
       onMouseDown={disableFocusStyles}

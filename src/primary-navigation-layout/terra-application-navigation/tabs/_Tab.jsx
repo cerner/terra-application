@@ -93,7 +93,7 @@ const Tab = ({
         { 'is-placeholder': !render && isPlaceholder },
         { 'has-count': !render && hasCount },
       )}
-      onClick={!isActive ? onTabSelect : undefined}
+      onClick={!isActive ? () => onTabSelect() : undefined}
       onKeyDown={!isActive ? generateKeyDownSelection(onTabSelect) : undefined}
       onBlur={enableFocusStyles}
       onMouseDown={disableFocusStyles}

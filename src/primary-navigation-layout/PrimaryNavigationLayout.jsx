@@ -61,12 +61,6 @@ const propTypes = {
    */
   id: PropTypes.string.isRequired,
   /**
-   * Key/value pairs associating a string key entry to an integer notification
-   * count. The keys must correspond to a navigationItem or extensionItem key
-   * provided through their associated props.
-   */
-  notifications: PropTypes.object, // eslint-disable-line react/no-unused-prop-types
-  /**
    * A function used to render a single layout component within the body of
    * the PrimaryNavigationLayout.
    *
@@ -149,7 +143,6 @@ const PrimaryNavigationLayout = ({
   extensionItems,
   hero,
   id,
-  notifications,
   renderLayout,
   renderNavigationFallback,
   onDrawerMenuStateChange,
@@ -273,7 +266,6 @@ const PrimaryNavigationLayout = ({
       navigationItems={navigationItems}
       activeNavigationItemKey={activeNavigationKey}
       hero={hero}
-      notifications={notifications}
       titleConfig={titleConfig}
       userConfig={userConfig}
       onSelectNavigationItem={onSelectNavigationItem}

@@ -5,6 +5,11 @@
 * Added
   * Added fallback locale logic that takes locale from preferred unsupported regional locale. 
 
+## 1.46.0 - (March 30, 2021)
+
+* Changed
+  * Updated Workspace styles.
+
 ## 1.45.0 - (March 17, 2021)
 
 * Added

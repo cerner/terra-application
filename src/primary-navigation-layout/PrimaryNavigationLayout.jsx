@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import {
-  ApplicationConceptContext,
-} from '../application-container';
+import { ApplicationConceptContext } from '../application-container';
 import deferExecution from '../utils/defer-execution';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import NavigationItem from '../navigation-item';
@@ -196,8 +194,8 @@ const PrimaryNavigationLayout = ({
       };
       navigationItems.push(navigationItemEntry);
 
-      // The item's key is removed from the dangling item set (if it's present,
-      // we do not need to clean it up).
+      // The item's key is removed from the dangling item set (if the
+      // corresponding item is present, we do not want to clean it up).
       danglingNavigationItems = danglingNavigationItems.filter(item => (
         item.key !== navigationItemEntry.key
       ));

@@ -16,39 +16,56 @@ const PrimaryNavigationLayout1 = () => {
       <ApplicationContainer>
         <PrimaryNavigationLayout
           id="primary-nav-test-1"
-          titleConfig={{ title: 'Primary Navigation Layout Test 1', subline: 'NavigationItem test' }}
+          titleConfig={{
+            title: 'PrimaryNavigationLayout Test 1',
+            subline: 'Dense Content w/ NavigationItems',
+          }}
           extensionItems={[{
-            key: 'search',
+            key: 'extension-1',
             icon: <IconSearch />,
-            text: 'Search',
+            text: 'Extension 1',
+          }, {
+            key: 'extension-2',
+            icon: <IconSearch />,
+            text: 'Extension 2',
+          }, {
+            key: 'extension-3',
+            icon: <IconSearch />,
+            text: 'Extension 3',
+          }, {
+            key: 'extension-4',
+            icon: <IconSearch />,
+            text: 'Extension 4',
+          }, {
+            key: 'extension-5',
+            icon: <IconSearch />,
+            text: 'Extension 5',
+          }, {
+            key: 'extension6',
+            icon: <IconSearch />,
+            text: 'Extension 6',
           }]}
-          onSelectExtensionItem={(itemKey) => {
-            if (itemKey === 'search') {
-              console.log('Search Extension Item selected');
-            }
-          }}
+          onSelectExtensionItem={() => {}}
           utilityItems={[{
-            key: 'custom-utility-item',
-            text: 'Custom Utility Item',
-            metaData: { test: 'data' },
+            key: 'utility-1',
+            text: 'Utility 1',
+          }, {
+            key: 'utility-2',
+            text: 'Utility 2',
+          }, {
+            key: 'utility-3',
+            text: 'Utility 3',
+          }, {
+            key: 'utility-4',
+            text: 'Utility 4',
           }]}
-          onSelectUtilityItem={(itemKey, metaData) => {
-            if (itemKey === 'custom-utility-item') {
-              console.log('Custom Utility Item selected');
-            }
-          }}
-          onSelectHelp={() => {
-            console.log('Help selected');
-          }}
-          onSelectSettings={() => {
-            console.log('Settings selected');
-          }}
-          onSelectLogout={() => {
-            console.log('Logout selected');
-          }}
+          onSelectUtilityItem={() => {}}
+          onSelectHelp={() => {}}
+          onSelectSettings={() => {}}
+          onSelectLogout={() => {}}
           activeNavigationKey={activeNavigationItemKey}
           onSelectNavigationItem={(key) => { setActiveNavigationItemKey(key); }}
-          renderNavigationFallback={() => <div>404</div>}
+          renderNavigationFallback={() => <div>Navigation Fallback</div>}
           userConfig={{
             name: 'Demo User',
             detail: 'demouser',
@@ -58,19 +75,57 @@ const PrimaryNavigationLayout1 = () => {
             navigationKey="1"
             label="Nav 1"
           >
-            <p>Nav 1 Content</p>
+            <main>
+              <p>Nav 1 Content</p>
+            </main>
           </NavigationItem>
           <NavigationItem
             navigationKey="2"
             label="Nav 2"
           >
-            <p>Nav 2 Content</p>
+            <main>
+              <p>Nav 2 Content</p>
+            </main>
           </NavigationItem>
           <NavigationItem
             navigationKey="3"
             label="Nav 3"
           >
-            <p>Nav 3 Content</p>
+            <main>
+              <p>Nav 3 Content</p>
+            </main>
+          </NavigationItem>
+          <NavigationItem
+            navigationKey="4"
+            label="Nav 4"
+          >
+            <main>
+              <p>Nav 4 Content</p>
+            </main>
+          </NavigationItem>
+          <NavigationItem
+            navigationKey="5"
+            label="Nav 5"
+          >
+            <main>
+              <p>Nav 5 Content</p>
+            </main>
+          </NavigationItem>
+          <NavigationItem
+            navigationKey="6"
+            label="Nav 6"
+          >
+            <main>
+              <p>Nav 6 Content</p>
+            </main>
+          </NavigationItem>
+          <NavigationItem
+            navigationKey="7"
+            label="Nav 7"
+          >
+            <main>
+              <p>Nav 7 Content</p>
+            </main>
           </NavigationItem>
         </PrimaryNavigationLayout>
       </ApplicationContainer>

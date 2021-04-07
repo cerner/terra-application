@@ -110,8 +110,6 @@ const Header = ({
   activeBreakpoint,
   onSelectExtensionItem,
   userConfig,
-  onSelectSkipToContent,
-  intl,
   onSelectUtilityButton,
   utilityButtonPopupAnchorRef,
   hero,

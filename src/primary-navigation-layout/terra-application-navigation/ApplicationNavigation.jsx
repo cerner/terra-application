@@ -204,7 +204,9 @@ const ApplicationNavigation = ({
           See link for more info: https://github.com/focus-trap/focus-trap-react/issues/44#issuecomment-543770159
           This div could be removed with a newer version of FocusTrap
         */}
-        <div className={cx('drawer-menu-focus-trap-container')}>
+        <div
+          className={cx('drawer-menu-focus-trap-container')}
+        >
           <DrawerMenu
             titleConfig={titleConfig}
             userConfig={userConfig}

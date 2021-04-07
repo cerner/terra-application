@@ -6,6 +6,7 @@ import NavigationPrompt from '../../../src/navigation-prompt';
 import ApplicationContainer from '../../../src/application-container';
 import WindowManager from '../../../src/utils/window-manager';
 import MockApplication from '../MockApplication';
+import Logger from '../../../src/utils/logger';
 
 // Mock WindowManager to track registrations/unregistrations of prompt signals.
 let registeredSignal;
@@ -61,9 +62,12 @@ test('should register handler with WindowManager to prompt for unsaved changes b
 });
 
 test('should catch errors thrown by rendered children', () => {
+  const loggerSpy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
+  const consoleSpy = jest.spyOn(console, 'error').mockImplementation(() => {});
+  const error = new Error('Test Error');
   const ErrorChild = () => {
     React.useLayoutEffect(() => {
-      throw new Error('Test Error');
+      throw error;
     });
 
     return <div data-testid="error-child" />;
@@ -77,6 +81,9 @@ test('should catch errors thrown by rendered children', () => {
 
   expect(screen.getByRole('alert')).toBeInTheDocument();
   expect(screen.getByText('terraApplication.errorBoundary.defaultErrorMessage')).toBeInTheDocument();
+  expect(loggerSpy).toBeCalledWith(error);
+  loggerSpy.mockRestore();
+  consoleSpy.mockRestore();
 });
 
 test('should respond to navigation prompt registrations within its children', () => {

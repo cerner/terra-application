@@ -14,7 +14,7 @@ import ActionMenu, {
   ActionMenuRadio,
 } from '../action-menu';
 import { ApplicationIntlContext } from '../application-intl';
-import usePortalManager, { getPortalElement } from './shared/usePortalManager';
+import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
 import Tabs from './subcomponents/_Tabs';

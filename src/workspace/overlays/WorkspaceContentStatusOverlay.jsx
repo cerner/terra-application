@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import StatusLayout from '../shared/StatusLayout';
+import StatusLayout from '../../shared/StatusLayout';
 import { ThemeContext } from '../../theme';
 
 import WorkspaceContentStatusOverlayButton from './WorkspaceContentStatusOverlayButton';

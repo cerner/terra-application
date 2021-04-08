@@ -19,7 +19,7 @@ const sessionContextShape = PropTypes.shape({
    */
   isActive: PropTypes.bool,
   /**
-   * An object used to store data about the session and its user. 
+   * An object used to store data about the session and its user.
    */
   metaData: PropTypes.object,
   /**

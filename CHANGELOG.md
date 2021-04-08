@@ -5,7 +5,8 @@
 * Added
   * Adding ApplicationContainer
   * Adding ApplicationContainerContext
-  * Adding ApplicationConceptContex
+  * Adding ApplicationConceptContext
+  * Adding SessionContext
 
 ## Unreleased
 

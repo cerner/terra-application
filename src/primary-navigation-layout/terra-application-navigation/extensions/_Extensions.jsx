@@ -4,7 +4,7 @@ import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
 import Popup from 'terra-popup';
 
-import { useTransientPresentationState } from '../../../utils/transient-presentation';
+import { useTransientPresentationState } from '../../../utils/transient-presentations';
 
 import PopupMenu from '../common/_PopupMenu';
 import { extensionItemsPropType } from '../utils/propTypes';

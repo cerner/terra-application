@@ -11,7 +11,7 @@ import ThemeContext from 'terra-theme-context';
 import { ActiveBreakpointContext } from '../../breakpoints';
 import {
   useTransientPresentationState,
-} from '../../utils/transient-presentation';
+} from '../../utils/transient-presentations';
 
 import Header from './header/_Header';
 import CompactHeader from './header/_CompactHeader';

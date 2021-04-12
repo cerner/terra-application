@@ -112,13 +112,11 @@ const Tab = ({
       className={tabClassNames}
       title={label}
     >
-      <div className={cx('start')} />
       <div className={cx('inner')}>
         <div className={cx('label')}>
           {label}
         </div>
       </div>
-      <div className={cx('end')} />
     </div>
   );
 };

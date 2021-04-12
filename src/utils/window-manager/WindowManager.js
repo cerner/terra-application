@@ -94,9 +94,15 @@ class WindowManager {
 // the default export.
 const windowManagerSingleton = new WindowManager();
 const singletonExports = {
-  registerUnloadPromptSignal: windowManagerSingleton.registerUnloadPromptSignal,
-  dangerouslyForceLocationReload: windowManagerSingleton.dangerouslyForceLocationReload,
-  dangerouslyForceLocationAssign: windowManagerSingleton.dangerouslyForceLocationAssign,
+  registerUnloadPromptSignal: (
+    windowManagerSingleton.registerUnloadPromptSignal.bind(windowManagerSingleton)
+  ),
+  dangerouslyForceLocationReload: (
+    windowManagerSingleton.dangerouslyForceLocationReload.bind(windowManagerSingleton)
+  ),
+  dangerouslyForceLocationAssign: (
+    windowManagerSingleton.dangerouslyForceLocationAssign.bind(windowManagerSingleton)
+  ),
 };
 
 export default singletonExports;

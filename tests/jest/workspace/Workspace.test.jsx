@@ -206,3 +206,15 @@ test('should dismiss the Workspace Settings menu when the popup wants to close',
   expect(screen.queryByRole('dialog', { name: 'terraApplication.workspace.workspaceSettingsLabel' })).toBe(null);
 });
 
+test('should render with overlay styles if isPresentedAsOverlay is provided', () => {
+  render((
+    <TestWorkspace
+      data-testid="test-workspace"
+      isPresentedAsOverlay
+    />
+  ));
+
+  // Expect overlay class to be present on the workspace element
+  expect(screen.queryByTestId('test-workspace')).toHaveClass('is-overlay');
+});
+

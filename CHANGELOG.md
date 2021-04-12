@@ -7,6 +7,7 @@
   * Adding ApplicationContainerContext
   * Adding ApplicationConceptContext
   * Adding PrimaryNavigationLayout
+  * Adding SessionContext
 
 ## Unreleased
 

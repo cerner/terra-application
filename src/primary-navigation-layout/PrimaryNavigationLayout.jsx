@@ -2,10 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import { ApplicationConceptContext } from '../application-container';
+import { ApplicationConceptContext, ApplicationContainerContext } from '../application-container';
+import { ApplicationIntlContext } from '../application-intl';
+import SessionUserContext from '../session/SessionUserContext';
+import SessionActionsContext from '../session/SessionActionsContext';
 import deferExecution from '../utils/defer-execution';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import NavigationItem from '../navigation-item';
+import MainPageContainer from '../page/MainPageContainer';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
 
@@ -142,6 +146,7 @@ const PrimaryNavigationLayout = ({
   hero,
   id,
   renderLayout,
+  renderPage,
   renderNavigationFallback,
   onDrawerMenuStateChange,
   onSelectExtensionItem,
@@ -155,6 +160,10 @@ const PrimaryNavigationLayout = ({
   utilityItems,
 }) => {
   const applicationConcept = React.useContext(ApplicationConceptContext);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationContainer = React.useContext(ApplicationContainerContext);
+  const sessionUser = React.useContext(SessionUserContext);
+  const sessionActions = React.useContext(SessionActionsContext);
 
   // The set of NavigationItems rendered in the last update are stored in this
   // ref, allowing us to make comparisons with future updates and removed
@@ -172,6 +181,45 @@ const PrimaryNavigationLayout = ({
       document.body.focus();
     });
   });
+
+  const derivedTitleConfig = React.useMemo(() => {
+    if (titleConfig) {
+      return titleConfig;
+    }
+
+    return {
+      title: applicationContainer.applicationName,
+    };
+  }, [titleConfig, applicationContainer.applicationName]);
+
+  const derivedUserConfig = React.useMemo(() => {
+    if (userConfig) {
+      return userConfig;
+    }
+
+    if (sessionUser) {
+      let name = [];
+      let initials = [];
+      if (sessionUser.firstName && sessionUser.firstName.length) {
+        initials.push(sessionUser.firstName[0]);
+        name.push(sessionUser.firstName);
+      }
+
+      if (sessionUser.lastName && sessionUser.lastName.length) {
+        initials.push(sessionUser.lastName[0]);
+        name.push(sessionUser.lastName);
+      }
+
+      initials = initials.join('');
+      name = name.join(' ');
+
+      return {
+        name,
+        initials,
+        detail: sessionUser.username,
+      };
+    }
+  }, [userConfig, sessionUser]);
 
   const navigationItems = [];
   let danglingNavigationItems = [...lastProcessedNavigationItemsRef.current];
@@ -224,7 +272,13 @@ const PrimaryNavigationLayout = ({
   });
 
   let content;
-  if (renderLayout) {
+  if (renderPage) {
+    content = (
+      <MainPageContainer>
+        {renderPage()}
+      </MainPageContainer>
+    );
+  } else if (renderLayout) {
     content = renderLayout();
   } else if (navigationItemChildren.length) {
     content = (
@@ -264,8 +318,8 @@ const PrimaryNavigationLayout = ({
       navigationItems={navigationItems}
       activeNavigationItemKey={activeNavigationKey}
       hero={hero}
-      titleConfig={titleConfig}
-      userConfig={userConfig}
+      titleConfig={derivedTitleConfig}
+      userConfig={derivedUserConfig}
       onSelectNavigationItem={onSelectNavigationItem}
       extensionItems={extensionItems}
       onSelectExtensionItem={onSelectExtensionItem}

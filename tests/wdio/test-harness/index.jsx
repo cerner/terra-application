@@ -7,12 +7,18 @@ import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test
 import OverlayWorkspace from '../../../lib/terra-dev-site/test/workspace/OverlayWorkspace.test';
 import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
 import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
+import DemoApplication from '../../../src/terra-dev-site/test/demo-application/DemoApplication';
+import DemoApplicationLowlight from '../../../src/terra-dev-site/test/demo-application/DemoApplicationLowlight';
+import DemoApplicationFusion from '../../../src/terra-dev-site/test/demo-application/DemoApplicationFusion';
 
 const testMap = {
   '#/workspace': Workspace,
   '#/overlay-workspace': OverlayWorkspace,
   '#/primary-navigation-layout-1': PrimaryNavigationLayout1,
   '#/primary-navigation-layout-2': PrimaryNavigationLayout2,
+  '#/demo': DemoApplication,
+  '#/demo-lowlight': DemoApplicationLowlight,
+  '#/demo-fusion': DemoApplicationFusion,
 };
 
 const Entry = () => {

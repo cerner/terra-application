@@ -8,7 +8,7 @@ import Popup from 'terra-popup';
 import ActionMenu, {
   ActionMenuItem,
 } from '../../action-menu';
-import { useTransientPresentationState } from '../../utils/transient-presentation';
+import { useTransientPresentationState } from '../../utils/transient-presentations';
 import useElementSize, { breakpointFilter } from '../../utils/hooks/useElementSize';
 import { useDynamicHeading } from '../../shared/DynamicHeadingContext';
 

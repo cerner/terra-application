@@ -1,7 +1,8 @@
 import React from 'react';
 
+import NavigationItemContext from '../../../navigation-item/NavigationItemContext';
+
 import ActiveMainPageRegistrationContext from './ActiveMainPageRegistrationContext';
-import NavigationItemContext from '../../../layouts/shared/NavigationItemContext';
 
 const useActiveMainPageRegistry = (pageData = {}) => {
   const activeMainPageRegistration = React.useContext(ActiveMainPageRegistrationContext);

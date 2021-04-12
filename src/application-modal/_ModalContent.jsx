@@ -8,7 +8,7 @@ import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import Scroll from 'terra-scroll';
 
-import ApplicationConceptBannerContext from '../application-container/ApplicationConceptBannerContext';
+import ApplicationConceptContext from '../application-container/ApplicationConceptContext';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
 import ModalHeader from './_ModalHeader';
@@ -64,7 +64,7 @@ const ModalContent = (props) => {
     ...customProps
   } = props;
 
-  const conceptBannerContext = React.useContext(ApplicationConceptBannerContext);
+  const conceptBannerContext = React.useContext(ApplicationConceptContext);
   const theme = React.useContext(ThemeContext);
 
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
@@ -86,6 +86,8 @@ const ModalContent = (props) => {
 
   const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
 
+  // TODO modernize this file to ensure it's up to date
+
   return (
     <div
       {...customProps}
@@ -97,9 +99,16 @@ const ModalContent = (props) => {
       ref={(ref) => { if (refCallback) { refCallback(ref); } }}
     >
       <FormattedMessage id="Terra.AbstractModal.BeginModalDialog">
-        {text => (
-          <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={text} />
-        )}
+        {text => {
+          // In the latest version of react-intl this param is an array, when previous versions it was a string.
+          let useText = text;
+          if (Array.isArray(text)) {
+            useText = text.join('');
+          }
+          return (
+            <VisuallyHiddenText data-terra-abstract-modal-begin tabIndex="-1" text={useText} />
+          );
+        }}
       </FormattedMessage>
       <div className={cx('modal-layout')}>
         <div className={cx('header')}>
@@ -123,9 +132,16 @@ const ModalContent = (props) => {
         </div>
       </div>
       <FormattedMessage id="Terra.AbstractModal.EndModalDialog">
-        {text => (
-          <VisuallyHiddenText text={text} />
-        )}
+        {text => {
+          // In the latest version of react-intl this param is an array, when previous versions it was a string.
+          let useText = text;
+          if (Array.isArray(text)) {
+            useText = text.join('');
+          }
+          return (
+            <VisuallyHiddenText text={useText} />
+          );
+        }}
       </FormattedMessage>
     </div>
   );

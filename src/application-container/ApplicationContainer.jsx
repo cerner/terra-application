@@ -42,7 +42,7 @@ const propTypes = {
    * When true, the ApplicationContainer will not prompt the user during window
    * unload events when unsaved changes are present.
    */
-   unloadPromptIsDisabled: PropTypes.bool,
+  unloadPromptIsDisabled: PropTypes.bool,
   /**
    * When true, the ApplicationContainer will not render skip-to buttons.
    */
@@ -71,7 +71,7 @@ const ApplicationContainer = ({
       return undefined;
     }
 
-    const unregisterUnloadPromptTrigger = WindowManager.registerUnloadPromptTrigger(() => registeredPromptsRef.current && registeredPromptsRef.current.length);
+    const unregisterUnloadPromptTrigger = WindowManager.registerUnloadPromptSignal(() => registeredPromptsRef.current && registeredPromptsRef.current.length);
 
     return () => {
       unregisterUnloadPromptTrigger();
@@ -92,7 +92,8 @@ const ApplicationContainer = ({
             registeredPromptsRef.current = registeredPrompts;
           }}
         >
-          <div className={cx('application-container')} data-testid="application-container" aria-label="My Application Title"> {/* TODO:  re-evaluate label */}
+          <div className={cx('application-container')} data-testid="application-container" aria-label="My Application Title">
+            {/* TODO:  re-evaluate label */}
             <LayerContainer>
               {!skipToLinksAreDisabled && <SkipToButtons />}
               <SkipToButtonsProvider>

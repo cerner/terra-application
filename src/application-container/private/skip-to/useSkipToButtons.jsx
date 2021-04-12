@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames/bind';
 
 import { ApplicationIntlContext } from '../../../application-intl';
-import { dismissTransientPresentations } from '../../../utils/transient-presentation';
+import { dismissTransientPresentations } from '../../../utils/transient-presentations';
 import { deferExecution } from '../../../utils/lifecycle-utils';
 
 import SkipToButtonsContext from './SkipToButtonsContext';

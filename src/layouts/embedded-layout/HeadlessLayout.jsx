@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import { ApplicationConceptBannerContext } from '../../application-container';
+import { ApplicationConceptContext } from '../../application-container';
 import MainPageContainer from '../../page/MainPageContainer';
 
 import styles from './HeadlessLayout.module.scss';
@@ -18,7 +18,7 @@ const propTypes = {
 const HeadlessLayout = ({
   children, renderPage, renderLayout,
 }) => {
-  const conceptBannerContext = React.useContext(ApplicationConceptBannerContext);
+  const conceptBannerContext = React.useContext(ApplicationConceptContext);
 
   let content;
   if (renderPage) {

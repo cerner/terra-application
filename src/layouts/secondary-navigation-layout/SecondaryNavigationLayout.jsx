@@ -10,7 +10,7 @@ import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
 import MainPageContainer from '../../page/MainPageContainer';
 import LayoutActionsContext from '../shared/LayoutActionsContext';
-import { useDismissTransientPresentationsCallback } from '../../utils/transient-presentation';
+import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
 import { deferExecution } from '../../utils/lifecycle-utils';
 import usePortalManager from '../../shared/usePortalManager';
 import { DynamicHeadingProvider } from '../../shared/DynamicHeadingContext';
@@ -209,7 +209,7 @@ const SecondaryNavigationLayout = ({
     });
   }, [parentLayoutActions.startActions, parentLayoutActions.endActions, workspace, workspaceIsVisible, hasSidebar, hasOverlaySidebar, sideNavOverlayIsVisible]);
 
-  useDismissTransientPresentationsCallback(() => {
+  useDismissTransientPresentationsEffect(() => {
     if (hasOverlaySidebar) {
       setSideNavOverlayIsVisible(false);
     }

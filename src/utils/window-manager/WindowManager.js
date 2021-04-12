@@ -105,7 +105,7 @@ const singletonExports = {
   ),
 };
 
-export default singletonExports;
+export { singletonExports as default };
 
 // The class definition itself is exported for testing purposes.
 export { WindowManager as TestWindowManager };

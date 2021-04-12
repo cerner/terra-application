@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
+import MainPageContainer from '../page/MainPageContainer';
+
 import NavigationItemContext from './NavigationItemContext';
 
 const propTypes = {
@@ -48,6 +50,7 @@ const NavigationItem = ({
   navigationKey,
   children,
   renderLayout,
+  renderPage,
   isActive,
   portalElement,
 }) => {
@@ -69,7 +72,13 @@ const NavigationItem = ({
   ]);
 
   let pageContent;
-  if (renderLayout) {
+  if (renderPage) {
+    pageContent = (
+      <MainPageContainer>
+        {renderPage({ isActive })}
+      </MainPageContainer>
+    );
+  } else if (renderLayout) {
     pageContent = renderLayout({ isActive });
   } else {
     pageContent = children;

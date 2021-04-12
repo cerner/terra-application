@@ -4,7 +4,7 @@
 :local {
   .panel {
     background-color: var(--terra-application-workspace-content-panel-background-color, #fefffe);
-    border-top: var(--terra-application-workspace-content-panel-border-top, 0);
+    border-top: var(--terra-application-workspace-content-panel-border-top, 1px solid #868a8c);
     display: flex;
     flex-direction: column;
     height: 100%;

@@ -1,0 +1,79 @@
+// Themes
+@import '../clinical-lowlight-theme/HeaderCommon.module';
+@import '../orion-fusion-theme/HeaderCommon.module';
+
+:local {
+  .header {
+    align-content: center;
+    align-items: center;
+    background-color: var(--terra-application-application-navigation-header-background-color, #014979);
+    background-image: var(--terra-application-application-navigation-header-background-image, none);
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    overflow: hidden;
+    padding-left: 1.429rem;
+    padding-right: 1.429rem;
+    position: relative;
+    user-select: none;
+    z-index: 5001;
+  }
+
+  .title-container {
+    color: var(--terra-application-application-navigation-header-title-color, rgba(255, 255, 255, 0.9));
+    flex: 0 0 auto;
+    max-width: 30%;
+    overflow: hidden;
+    position: relative;
+    user-select: none;
+
+    .headline,
+    .subline,
+    .title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .headline,
+    .subline {
+      font-size: 1rem;
+    }
+
+    .headline {
+      font-weight: 500;
+    }
+
+    .title {
+      font-size: 1.429rem;
+      font-weight: 300;
+    }
+
+    .title-element {
+      padding-bottom: 0.5714rem;
+      padding-top: 0.5714rem;
+    }
+  }
+
+  .main-navigation-container {
+    flex: 1 1 auto;
+    min-width: 20%;
+    overflow: hidden;
+    padding-left: 1.143rem;
+    position: relative;
+  }
+
+  .extensions-container {
+    flex: 0 1 auto;
+    max-width: 25%;
+    padding-left: 1.143rem;
+    position: relative;
+  }
+
+  .utilities-container {
+    flex: 0 0 auto;
+    max-width: 25%;
+    padding-left: 1.143rem;
+    position: relative;
+  }
+}

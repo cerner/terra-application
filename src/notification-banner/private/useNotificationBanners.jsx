@@ -6,9 +6,10 @@ import { injectIntl } from 'react-intl';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 
+import useForceUpdate from '../../shared/useForceUpdate';
+
 import BannerRegistrationContext from './BannerRegistrationContext';
 import organizeBannersByPriority from './organizeBannersByPriority';
-import useForceUpdate from './useForceUpdate';
 import NotificationBannerView, { getTitleStringIdForType } from './_NotificationBannerView';
 
 import styles from './useNotificationBanners.module.scss';

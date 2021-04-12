@@ -1,4 +1,10 @@
-{  
+{
+  "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "More Navigation",
+  "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "More Navigation",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "User Settings for: {currentUserName}",
+  "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Options",
+  "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigation Items",
+  "terraApplication.applicationNavigation.drawerMenu.utilities": "Utility Items",
   "terraApplication.applicationNavigation.utilityMenu.logout": "Logout",
   "terraApplication.applicationNavigation.utilityMenu.settings": "Settings",
   "terraApplication.applicationNavigation.utilityMenu.help": "Help",
@@ -6,22 +12,9 @@
   "terraApplication.applicationNavigation.extensions.rollupButtonDescription": "Additional Tools",
   "terraApplication.applicationNavigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "More",
-  "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "More Navigation",
-  "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "More Navigation",
   "terraApplication.applicationNavigation.notifications.new": "New",
-  "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "User Settings for: {currentUserName}",
-  "terraApplication.applicationNavigation.header.utilityButtonTitleNoUser": "Options",
+  "terraApplication.applicationNavigation.header.skipToContentTitle": "Skip to Content",
   "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
-  "terraApplication.applicationNavigation.drawerMenu.navigation": "Navigation Items",
-  "terraApplication.applicationNavigation.drawerMenu.utilities": "Utility Items",
-
-  "terraApplication.applicationContainerErrorBoundary.reload": "Reload",
-  "terraApplication.primaryNavigationLayout.utilityMenu.lock": "Lock",
-  "terraApplication.mainContainer.skipToLabel": "Content",
-  "terraApplication.skipToButton.prefix": "Skip to {target}",
-
-  "terraApplication.PageOverlayContainer.loading": "Loading...",
-  "terraApplication.WorkspaceContentActivityOverlay.loading": "Loading...",
 
   "terraApplication.unsavedChangesPrompt.title": "Unsaved Changes",
   "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Unsaved changes were made to {promptDescription}.",

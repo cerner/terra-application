@@ -4,9 +4,8 @@ import classNamesBind from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
-import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
-import { DynamicHeadingProvider } from '../shared/DynamicHeadingContext';
 
+import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
 import styles from './WorkspaceContent.module.scss';
@@ -18,6 +17,11 @@ const propTypes = {
    * Child node content to be displayed within the content region.
    */
   children: PropTypes.node,
+  /**
+   * Text to be displayed as the title of the workspace content.
+   * Special Note: this prop is optional and should be used with caution. If this prop is not provided, the workspace content title is injected by default using the label specified in `WorkspaceItem` _(recommended without additional guidance)_. Providing this prop will override the default text and will need to follow proper accessibility guidelines.
+   */
+  label: PropTypes.string,
   /**
    * Optional toolbar to be displayed outside of the content region.
    */
@@ -34,12 +38,13 @@ const propTypes = {
 
 const WorkspaceContent = ({
   children,
+  label,
   toolbar,
   statusOverlay,
   activityOverlay,
 }) => {
   const theme = React.useContext(ThemeContext);
-  const { panelId, tabId, label } = React.useContext(TabContext);
+  const { panelId, tabId, label: tabLabel } = React.useContext(TabContext);
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
 
   const overlays = React.useMemo(() => {
@@ -62,6 +67,7 @@ const WorkspaceContent = ({
     return overlaysToRender;
   }, [statusOverlay, activityOverlay]);
 
+  const labelDisplay = label || tabLabel;
   return (
     <div
       className={cx('panel', theme.className)}
@@ -72,7 +78,7 @@ const WorkspaceContent = ({
         role="none"
         data-testid="workspace-content-heading"
       >
-        <TabHeader title={label} />
+        <TabHeader title={labelDisplay} />
         { toolbar ? (
           <div className={cx('toolbar', 'rounded')}>
             {toolbar}
@@ -80,7 +86,7 @@ const WorkspaceContent = ({
         ) : undefined}
         <NotificationBanners
           id={`${panelId}-notifications`}
-          label={`Workspace ${label}`} // TODO I think we missed this translation
+          label={`Workspace ${labelDisplay}`}
           activeClassName={cx('notification-banners-container')}
           bannerClassName={cx('notification-banner', 'rounded')}
         />
@@ -94,13 +100,11 @@ const WorkspaceContent = ({
           aria-labelledby={tabId}
           data-application-overflow-container
         >
-          <DynamicHeadingProvider>
-            <DynamicOverlayContainer overlays={overlays}>
-              <NotificationBannerProvider>
-                {children}
-              </NotificationBannerProvider>
-            </DynamicOverlayContainer>
-          </DynamicHeadingProvider>
+          <DynamicOverlayContainer overlays={overlays}>
+            <NotificationBannerProvider>
+              {children}
+            </NotificationBannerProvider>
+          </DynamicOverlayContainer>
         </div>
       </div>
     </div>

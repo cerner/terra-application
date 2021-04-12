@@ -6,11 +6,11 @@ import { ApplicationIntlContext } from '../application-intl';
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import ModalManager from '../modal-manager';
 import LayerContainer from '../layers/LayerContainer';
-import WindowManager from '../utils/window-manager/window-manager';
+import WindowManager from '../utils/window-manager';
 
 import useSkipToButtons from './private/skip-to/useSkipToButtons';
 import ActiveMainPageProvider from './private/active-main-page/ActiveMainPageProvider';
-import ApplicationContainerErrorBoundary from './ApplicationContainerErrorBoundary';
+import ApplicationContainerErrorBoundary from './private/ApplicationContainerErrorBoundary';
 import ApplicationContainerContext from './ApplicationContainerContext';
 
 import styles from './ApplicationContainer.module.scss';
@@ -39,10 +39,10 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * When true, the ApplicationContainer will not prompt the user during window unload
-   * events when unsaved changes are present.
+   * When true, the ApplicationContainer will not prompt the user during window
+   * unload events when unsaved changes are present.
    */
-  unloadPromptIsDisabled: PropTypes.bool,
+   unloadPromptIsDisabled: PropTypes.bool,
   /**
    * When true, the ApplicationContainer will not render skip-to buttons.
    */
@@ -92,17 +92,11 @@ const ApplicationContainer = ({
             registeredPromptsRef.current = registeredPrompts;
           }}
         >
-          <div className={cx('application-container')} aria-label="My Application Title"> {/* TODO:  re-evaluate label */}
+          <div className={cx('application-container')} data-testid="application-container" aria-label="My Application Title"> {/* TODO:  re-evaluate label */}
             <LayerContainer>
               {!skipToLinksAreDisabled && <SkipToButtons />}
               <SkipToButtonsProvider>
-                <ApplicationContainerErrorBoundary
-                  errorViewButtonAttrs={[{
-                    key: 'reload',
-                    text: applicationIntl.formatMessage({ id: 'terraApplication.applicationContainerErrorBoundary.reload' }),
-                    onClick: () => { WindowManager.forceLocationReload(); },
-                  }]}
-                >
+                <ApplicationContainerErrorBoundary>
                   <ModalManager>
                     {children}
                   </ModalManager>

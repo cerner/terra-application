@@ -165,7 +165,10 @@ class Tabs extends React.Component {
     this.setIsOpen(true);
   }
 
-  handleOutsideClick() {
+  handleOutsideClick(event) {
+    if (event.type === 'mousedown' && (this.moreButtonRef.current === event.currentTarget || this.moreButtonRef.contains(event.currentTarget))) {
+      return;
+    }
     this.setIsOpen(false);
   }
 
@@ -186,22 +189,28 @@ class Tabs extends React.Component {
     if (!this.dropdownRef.current || !this.moreButtonRef.current) {
       return;
     }
+    const workspaceStyle = window.getComputedStyle(this.containerRef.current.parentNode.parentNode, null);
+    const workspaceLeftBorderWidth = parseInt(workspaceStyle.getPropertyValue('border-left-width'), 10);
 
-    // more button computed
-    const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
-
-    // container's parentNode computed (parent contains relative position)
-    const parentStyle = window.getComputedStyle(this.containerRef.current.parentNode, null);
-    const parentMarginRight = parseInt(parentStyle.getPropertyValue('margin-right'), 10);
-
-    // getBoundingClientRect - using adding 6px for visual offset effect
     const moreRect = this.moreButtonRef.current.getBoundingClientRect();
-    const parentRect = this.containerRef.current.parentNode.getBoundingClientRect();
-    const calcRight = Math.floor(parentRect.right - moreRect.right - moreMarginRight + parentMarginRight - 6);
+    const dropdownRect = this.dropdownRef.current.getBoundingClientRect();
+    const containerRect = this.containerRef.current.getBoundingClientRect();
+    const workspaceRect = this.containerRef.current.parentNode.parentNode.getBoundingClientRect();
 
-    // calculate right
-    this.dropdownRef.current.style.right = `${calcRight}px`;
+    // calculate Offset
+    const parentOffset = containerRect.left - workspaceRect.left;
+    const leftEdge = moreRect.left - containerRect.left - workspaceLeftBorderWidth;
+
+    let offset;
+    const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
+    if (isRTL) {
+      offset = parentOffset + leftEdge;
+    } else {
+      const widthDelta = moreRect.width - dropdownRect.width;
+      offset = parentOffset + leftEdge + widthDelta;
+    }
+
+    this.dropdownRef.current.style.left = `${offset}px`;
   }
 
   wrapOnSelect(onSelect) {

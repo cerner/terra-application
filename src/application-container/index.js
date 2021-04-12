@@ -1,11 +1,21 @@
 import ApplicationContainer from './ApplicationContainer';
-import ApplicationConceptBannerProvider from './ApplicationConceptBannerProvider';
-import ApplicationConceptBannerContext from './ApplicationConceptBannerContext';
-import ApplicationContainerContext from './ApplicationContainerContext';
 import useActiveMainPage from './useActiveMainPage';
-import ApplicationContainerErrorBoundary from './ApplicationContainerErrorBoundary';
+import ApplicationContainerContext, {
+  useApplicationContainer,
+  contextShape as applicationContainerContextShape,
+} from './ApplicationContainerContext';
+import ApplicationConceptContext, {
+  useApplicationConcept,
+  contextShape as applicationConceptContextShape,
+} from './ApplicationConceptContext';
 
 export default ApplicationContainer;
 export {
-  ApplicationConceptBannerProvider, ApplicationConceptBannerContext, ApplicationContainerContext, useActiveMainPage, ApplicationContainerErrorBoundary,
+  useActiveMainPage,
+  ApplicationContainerContext,
+  useApplicationContainer,
+  applicationContainerContextShape,
+  ApplicationConceptContext,
+  useApplicationConcept,
+  applicationConceptContextShape,
 };

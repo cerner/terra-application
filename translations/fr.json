@@ -1,4 +1,4 @@
-{  
+{
   "terraApplication.applicationNavigation.tabs.rollupButtonDescription": "Liens de navigation supplémentaires",
   "terraApplication.applicationNavigation.tabs.rollupMenuHeaderTitle": "Liens de navigation supplémentaires",
   "terraApplication.applicationNavigation.header.utilityButtonTitleUser": "Paramètres utilisateur pour : {currentUserName}",
@@ -17,11 +17,11 @@
   "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
   "terraApplication.unsavedChangesPrompt.title": "Modifications non enregistrées",
   "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Des modifications apportées au {promptDescription} n'ont pas été enregistrées.",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Des modifications apportées aux éléments suivants n'ont pas été enregistrées :",
-  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas les modifications, elles seront perdues. Comment voulez-vous procéder ?",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Des modifications apportées aux éléments suivants n'ont pas été enregistrées :",
+  "terraApplication.unsavedChangesPrompt.multiplePromptMessageOutro": "Si vous n'enregistrez pas les modifications, elles seront perdues. Comment voulez-vous procéder ?",
   "terraApplication.unsavedChangesPrompt.acceptButtonText": "Ne pas enregistrer",
   "terraApplication.unsavedChangesPrompt.rejectButtonText": "Continuer la modification",
-  "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}",
+  "terraApplication.errorBoundary.defaultErrorMessage": "Le système a rencontré une erreur : {errorDetails}",
   "terraApplication.statusLayout.no-data": "Aucun résultat",
   "terraApplication.statusLayout.no-matching-results": "Aucun résultat correspondant",
   "terraApplication.statusLayout.not-authorized": "Non autorisé",
@@ -41,7 +41,7 @@
   "terraApplication.notificationBanner.unverified": "Dossiers extérieurs.",
   "terraApplication.notificationBanner.success": "Réussite.",
   "terraApplication.notifications.regionLabel": "Notifications {label}.",
-  "terraApplication.notifications.totalCountLabel": "Total des notifications {label} : {count}",
+  "terraApplication.notifications.totalCountLabel": "Total des notifications {label} : {count}",
   "terraApplication.notifications.newNotificationLabel": "Nouvelle notification {label}. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Notification {label} supprimée. {bannerType} {bannerDescription}.",
   "terraApplication.actionMenu.headerCloseButtonLabel": "Fermer"

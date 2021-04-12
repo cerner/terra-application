@@ -15,10 +15,6 @@ const useSession = () => React.useContext(SessionContext);
 
 const sessionContextShape = PropTypes.shape({
   /**
-   * Whether or not the current session is active or in an inactive state i.e. "locked".
-   */
-  isActive: PropTypes.bool,
-  /**
    * An object used to store data about the session and its user.
    */
   metaData: PropTypes.object,

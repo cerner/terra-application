@@ -11,7 +11,7 @@ const terraApplicationConfig = (env = {}) => ({
     historyApiFallback: true,
   },
   output: {
-    publicPath: '/',
+    publicPath: '',
   },
   plugins: [
     new HtmlWebpackPlugin({

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.47.0 - (April 13, 2021)
+
 * Added
   * Added fallback locale logic that takes locale from preferred unsupported regional locale. 
 

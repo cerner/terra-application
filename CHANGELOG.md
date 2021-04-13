@@ -8,6 +8,7 @@
   * Adding ApplicationConceptContext
   * Adding PrimaryNavigationLayout
   * Adding SessionContext
+  * ApplicationBase updates
 
 ## Unreleased
 

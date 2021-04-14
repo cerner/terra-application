@@ -4,7 +4,6 @@ import React, {
   useEffect, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import { IntlProvider } from 'react-intl';
@@ -60,7 +59,6 @@ const ApplicationBase = ({
         setMessages(translationsModule.default);
       }).catch((error) => {
         logger.error(error);
-        throw error;
       });
     }
   }, [finalLocale]);
@@ -72,24 +70,34 @@ const ApplicationBase = ({
     className: themeName,
   }), [themeName]);
 
+  useEffect(() => {
+    if (themeName) {
+      document.documentElement.classList.add(themeName);
+    }
+
+    return () => {
+      if (themeName) {
+        document.documentElement.classList.remove(themeName);
+      }
+    };
+  }, [themeName]);
+
   if (messages === undefined) return null;
 
   return (
-    <ThemeProvider themeName={themeName}>
-      <ThemeContextProvider theme={theme}>
-        <IntlProvider
-          key={finalLocale}
-          locale={finalLocale}
-          messages={messages}
-        >
-          <ApplicationIntlProvider>
-            <ActiveBreakpointProvider>
-              {children}
-            </ActiveBreakpointProvider>
-          </ApplicationIntlProvider>
-        </IntlProvider>
-      </ThemeContextProvider>
-    </ThemeProvider>
+    <ThemeContextProvider theme={theme}>
+      <IntlProvider
+        key={finalLocale}
+        locale={finalLocale}
+        messages={messages}
+      >
+        <ApplicationIntlProvider>
+          <ActiveBreakpointProvider>
+            {children}
+          </ActiveBreakpointProvider>
+        </ApplicationIntlProvider>
+      </IntlProvider>
+    </ThemeContextProvider>
   );
 };
 

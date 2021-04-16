@@ -166,7 +166,7 @@ class Tabs extends React.Component {
   }
 
   handleOutsideClick(event) {
-    if (event.type === 'mousedown' && (this.moreButtonRef.current === event.currentTarget || this.moreButtonRef.contains(event.currentTarget))) {
+    if (event.type === 'mousedown' && (this.moreButtonRef.current === event.currentTarget || this.moreButtonRef.current.contains(event.currentTarget))) {
       return;
     }
     this.setIsOpen(false);

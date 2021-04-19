@@ -6,6 +6,7 @@ import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import WindowManager from '../utils/window-manager';
 
 import ApplicationContainerErrorBoundary from './private/ApplicationContainerErrorBoundary';
+import useSkipToLinks from './private/skip-to-links/useSkipToLinks';
 
 import styles from './ApplicationContainer.module.scss';
 
@@ -35,6 +36,10 @@ const ApplicationContainer = ({
   // determine whether NavigationPrompts are currently registered.
   const registeredPromptsRef = React.useRef();
 
+  // Skip-to links are provided by the ApplicationContainer to ensure proper
+  // positioning within the application tab-order.
+  const { SkipToLinksProvider, SkipToLinks } = useSkipToLinks();
+
   React.useEffect(() => {
     if (unloadPromptIsDisabled) {
       return undefined;
@@ -56,9 +61,12 @@ const ApplicationContainer = ({
       }}
     >
       <div className={cx('application-container')} data-testid="application-container">
-        <ApplicationContainerErrorBoundary>
-          {children}
-        </ApplicationContainerErrorBoundary>
+        <SkipToLinks />
+        <SkipToLinksProvider>
+          <ApplicationContainerErrorBoundary>
+            {children}
+          </ApplicationContainerErrorBoundary>
+        </SkipToLinksProvider>
       </div>
     </NavigationPromptCheckpoint>
   );

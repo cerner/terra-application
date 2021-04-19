@@ -1,0 +1,12 @@
+:global {
+  .clinical-lowlight-theme {
+    --terra-application-skip-to-link-focus-background-color: #383f43;
+    --terra-application-skip-to-link-focus-border: 2px solid #000;
+    --terra-application-skip-to-link-focus-box-shadow: 0 0 20px -5px #000, inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+    --terra-application-skip-to-link-focus-color: #fff;
+    --terra-application-skip-to-link-focus-outline: 2px dashed #fff;
+    --terra-application-skip-to-link-focus-outline-offset: -0.71428rem;
+    --terra-application-skip-to-link-focus-text-decoration: underline;
+    --terra-application-skip-to-link-focus-width: 100%;
+  }
+}

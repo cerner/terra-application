@@ -51,5 +51,9 @@
   "terraApplication.notifications.newNotificationLabel": "New {label} notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Removed {label} notification. {bannerType} {bannerDescription}.",
 
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Close"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
+
+  "TODO": "translations needed for the below",
+  "terraApplication.skipToLink.prefix": "Skip to {description}"
+
 }

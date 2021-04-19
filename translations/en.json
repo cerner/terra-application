@@ -15,6 +15,7 @@
   "terraApplication.applicationNavigation.notifications.new": "New",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Skip to Content",
   "terraApplication.applicationNavigation.header.menuButtonTitle": "Menu",
+
   "terraApplication.unsavedChangesPrompt.title": "Unsaved Changes",
   "terraApplication.unsavedChangesPrompt.singlePromptMessage": "Unsaved changes were made to {promptDescription}.",
   "terraApplication.unsavedChangesPrompt.multiplePromptMessageIntro": "Unsaved changes were made to the following:",
@@ -50,5 +51,12 @@
   "terraApplication.notifications.newNotificationLabel": "New {label} notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Removed {label} notification. {bannerType} {bannerDescription}.",
 
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Close"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
+
+  "terraApplication.applicationContainerErrorBoundary.reload": "Reload",
+  "terraApplication.primaryNavigationLayout.utilityMenu.lock": "Lock",
+  "terraApplication.mainContainer.skipToLabel": "Content",
+  "terraApplication.skipToButton.prefix": "Skip to {target}",
+
+  "terraApplication.PageOverlayContainer.loading": "Loading..."
 }

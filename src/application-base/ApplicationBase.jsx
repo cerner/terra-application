@@ -21,10 +21,8 @@ const browserLocale = getBrowserLocale();
 
 // We only need to retrieve the root theme and root theme name once for the life
 // of the application.
-const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined')
-  ? TERRA_THEME_CONFIG : undefined;
-const rootThemeName = themeConfig?.theme
-  ? themeConfig.theme : 'terra-default-theme';
+const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : {};
+const rootThemeName = themeConfig.theme || 'terra-default-theme';
 
 const propTypes = {
   /**

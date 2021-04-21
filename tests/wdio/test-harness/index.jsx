@@ -10,6 +10,7 @@ import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-n
 import DemoApplication from '../../../src/terra-dev-site/test/demo-application/DemoApplication';
 import DemoApplicationLowlight from '../../../src/terra-dev-site/test/demo-application/DemoApplicationLowlight';
 import DemoApplicationFusion from '../../../src/terra-dev-site/test/demo-application/DemoApplicationFusion';
+import Derp from '../../../src/terra-dev-site/test/F6-test-bed/A11yParent.test';
 
 const testMap = {
   '#/workspace': Workspace,
@@ -19,6 +20,7 @@ const testMap = {
   '#/demo': DemoApplication,
   '#/demo-lowlight': DemoApplicationLowlight,
   '#/demo-fusion': DemoApplicationFusion,
+  '#/derp': Derp,
 };
 
 const Entry = () => {

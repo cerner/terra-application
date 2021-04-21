@@ -1,0 +1,60 @@
+:local {
+  .parent {
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    padding: 1rem;
+    position: relative;
+    width: 100%;
+  }
+
+  .header {
+    flex: 0 0 auto;
+    position: relative;
+    min-height: 20%;
+    width: 100%;
+  }
+
+  .fill {
+    flex: 1 1 auto;
+    flex-direction: column;
+    height: 80%;
+    position: relative;
+    width: 100%;
+  }
+
+  .sub {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    left: 0;
+    top: 0;
+  }
+
+  .start,
+  .end {
+    flex: 0 0 auto;
+    height: 100%;
+    position: relative;
+    width: 20%;
+  }
+
+  .middle {
+    flex: 1 1 auto;
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+
+  .start,
+  .middle,
+  .end,
+  .header {
+    border: 1px solid #000;
+    background-color: darkkhaki;
+    padding: 1rem;
+    overflow: hidden;
+  }
+}

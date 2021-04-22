@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 
+import ActiveMainProvider from '../main-container/private/ActiveMainProvider';
+
 import NavigationItemContext from './NavigationItemContext';
 
 const propTypes = {
@@ -77,7 +79,9 @@ const NavigationItem = ({
 
   return ReactDOM.createPortal((
     <NavigationItemContext.Provider value={navigationItemContextValue}>
-      {pageContent}
+      <ActiveMainProvider>
+        {pageContent}
+      </ActiveMainProvider>
     </NavigationItemContext.Provider>
   ), portalElement);
 };

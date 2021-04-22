@@ -54,5 +54,6 @@
   "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
 
   "TODO": "translations needed for the below",
-  "terraApplication.skipToLink.prefix": "Skip to {description}"
+  "terraApplication.skipToLink.prefix": "Skip to {description}",
+  "terraApplication.mainContainer.skipToLabel": "Content"
 }

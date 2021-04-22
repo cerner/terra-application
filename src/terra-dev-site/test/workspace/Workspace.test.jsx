@@ -1,7 +1,7 @@
 import React from 'react';
 import ApplicationBase from '../../../application-base';
 import Workspace, { WorkspaceItem } from '../../../workspace';
-import ActiveMainPageContext from '../../../application-container/private/active-main-page/ActiveMainPageContext';
+import ActiveMainContext from '../../../main-container/ActiveMainContext';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
@@ -19,9 +19,9 @@ const WorkspaceTest = () => {
   const [activeItemKey, setActiveItemKey] = React.useState('tab-1');
   const [workspaceSize, setWorkspaceSize] = React.useState('large');
   const activeMainPageRef = React.useRef({
-    pageKey: 'page-1',
-    pageLabel: 'Test Page',
-    pageMetaData: {
+    id: 'page-1',
+    label: 'Test Page',
+    metaData: {
       data: 'data here',
     },
   });
@@ -36,7 +36,7 @@ const WorkspaceTest = () => {
 
   return (
     <ApplicationBase>
-      <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
+      <ActiveMainContext.Provider value={activeMainPageRef.current}>
         <div
           style={{ height: '100%', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
         >
@@ -90,7 +90,7 @@ const WorkspaceTest = () => {
             />
           </Workspace>
         </div>
-      </ActiveMainPageContext.Provider>
+      </ActiveMainContext.Provider>
     </ApplicationBase>
   );
 };

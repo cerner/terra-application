@@ -4,9 +4,10 @@ import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 
 import { ApplicationIntlContext } from '../application-intl';
-import SkipToButton from '../application-container/private/skip-to/SkipToButton';
-import useActiveMainPageRegistry from '../application-container/private/active-main-page/useActiveMainPageRegistry';
-import { deferExecution } from '../utils/lifecycle-utils';
+import SkipToLink from '../application-container/private/skip-to-links/SkipToLink';
+import NavigationItemContext from '../navigation-item/NavigationItemContext';
+
+import ActiveMainRegistrationContext from './private/ActiveMainRegistrationContext';
 
 import styles from './MainContainer.module.scss';
 
@@ -14,58 +15,101 @@ const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   /**
+   * The elements to render within the main element.
+   */
+  children: PropTypes.node,
+  /**
+   * A unique identifier for the main element. This value will be applied
+   * to the element as an `id` attribute and will also be provided to consumers
+   * of the ActiveMainContext to identify the active main element within the
+   * application.
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * A string label describing the content within the main element. This value
+   * will be applied to the element as a user-facing aria-label and should be
+   * translated, if necessary. It will also be provided to consumers of the
+   * ActiveMainContext when this element is active.
+   */
+  label: PropTypes.string.isRequired,
+  /**
+   * An object containing meta data related to the main element. This data is
+   * provided to consumers of the ActiveMainContext to provide additional
+   * information regarding the active main content.
+   */
+  metaData: PropTypes.object,
+  /**
    * A function to be called when a ref has been assigned for the created
    * `<main>` element.
    */
   refCallback: PropTypes.func,
-  // TODO DOC
-  mainKey: PropTypes.string,
-  mainLabel: PropTypes.string,
-  mainMetaData: PropTypes.shape({}),
 };
 
 /**
- * The MainContainer can be used to create a semantic `<main>` element for the application
- * within which the application's most important and dynamic content will reside. A SkipToButton
- * will be registered to ensure accessibility of this content is maximized.
- *
- * Only one `<main>` element should be present on the DOM at any given time. As a result, the
- * MainContainer should be used with utmost caution. Only use the MainContainer when _not_ using a
- * framework-provided Layout to render Pages. Layouts that feature a `renderPage` prop will render
- * a MainContainer automatically when the `renderPage` prop is used.
+ * The MainContainer can be used to create a semantic `<main>` element for the
+ * application, within which the application's most important and dynamic
+ * content will reside. A SkipToLink will be registered automatically to ensure
+ * this content can be accessed quickly.
  */
 const MainContainer = ({
-  refCallback, mainKey, mainLabel, mainMetaData, ...otherProps
+  children, refCallback, id, label, metaData, ...otherProps
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-  const mainElementRef = React.useRef();
+  const activeMainRegistration = React.useContext(ActiveMainRegistrationContext);
+  const navigationItem = React.useContext(NavigationItemContext);
 
-  // TODO figure out this awkward mapping. Page-prefixed stuff is weird here.
-  const mainPageData = mainKey ? { pageKey: mainKey, label: mainLabel, metaData: mainMetaData } : undefined;
-  useActiveMainPageRegistry(mainPageData);
+  const mainElementRef = React.useRef();
+  const unregisterActiveMainRef = React.useRef();
+
+  React.useEffect(() => {
+    unregisterActiveMainRef.current = activeMainRegistration.register({
+      id,
+      label,
+      metaData,
+    });
+  }, [
+    activeMainRegistration,
+    id,
+    label,
+    metaData,
+    navigationItem.isActive,
+    navigationItem.navigationKeys,
+  ]);
+
+  React.useEffect(() => () => {
+    // A separate effect is used to unregister the active main when it is
+    // unmounted to limit registration thrash on updates to props.
+    if (unregisterActiveMainRef.current) {
+      unregisterActiveMainRef.current();
+      unregisterActiveMainRef.current = undefined;
+    }
+  }, []);
 
   return (
-    <>
-      <SkipToButton
-        isMain
-        description={applicationIntl.formatMessage({ id: 'terraApplication.mainContainer.skipToLabel' })}
-        onSelect={() => {
-          deferExecution(() => mainElementRef.current?.focus());
-        }}
-      />
-      <main
-        tabIndex="-1"
-        ref={(mainRef) => {
-          mainElementRef.current = mainRef;
+    <main
+      id={id}
+      label={label}
+      className={classNames(cx('main-container'), otherProps.className)}
+      tabIndex="-1"
+      ref={(mainRef) => {
+        mainElementRef.current = mainRef;
 
-          if (refCallback) {
-            refCallback(mainRef);
-          }
+        if (refCallback) {
+          refCallback(mainRef);
+        }
+      }}
+      {...otherProps}
+    >
+      <SkipToLink
+        description={applicationIntl.formatMessage({
+          id: 'terraApplication.mainContainer.skipToLabel',
+        })}
+        onSelect={() => {
+          mainElementRef.current.focus();
         }}
-        {...otherProps}
-        className={classNames(cx('main-container'), otherProps.className)}
       />
-    </>
+      {children}
+    </main>
   );
 };
 

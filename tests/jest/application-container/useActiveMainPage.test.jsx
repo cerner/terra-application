@@ -2,16 +2,15 @@ import React from 'react';
 import { renderHook } from '@testing-library/react-hooks/dom';
 import '@testing-library/jest-dom/extend-expect';
 
-import { useActiveMainPage } from '../../../src/application-container';
-import ActiveMainPageContext from '../../../src/application-container/private/active-main-page/ActiveMainPageContext';
+import { ActiveMainContext, useActiveMain } from '../../../src/main-container';
 
-describe('useActiveMainPage', () => {
-  test('should return ActiveMainPageContext value', () => {
+describe('useActiveMain', () => {
+  test('should return ActiveMainContext value', () => {
     const testValue = { test: 'data' };
     const wrapper = ({ children }) => ( // eslint-disable-line react/prop-types
-      <ActiveMainPageContext.Provider value={testValue}>{children}</ActiveMainPageContext.Provider>
+      <ActiveMainContext.Provider value={testValue}>{children}</ActiveMainContext.Provider>
     );
-    const { result } = renderHook(() => useActiveMainPage(), { wrapper });
+    const { result } = renderHook(() => useActiveMain(), { wrapper });
 
     expect(result.current).toBe(testValue);
   });

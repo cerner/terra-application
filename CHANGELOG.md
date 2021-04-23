@@ -9,6 +9,7 @@
   * Adding PrimaryNavigationLayout
   * Adding SessionContext
   * ApplicationBase updates
+  * Adding SkipToLink
 
 ## Unreleased
 

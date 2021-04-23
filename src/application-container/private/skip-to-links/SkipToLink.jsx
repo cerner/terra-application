@@ -38,13 +38,13 @@ const SkipToLink = ({
   const keyRef = React.useRef(uuidv4());
 
   React.useLayoutEffect(() => {
-    if (!navigationItemContext.isActive) {
+    if (navigationItemContext.isActive) {
+      skipToLinksContext.registerLink(keyRef.current, description, priority, onSelect);
+    } else {
       // If the SkipToLink is rendered within an inactive branch of the
       // navigation tree, the SkipToLink should not be registered.
       // SkipToLinks should not be rendered for content that is not visible.
       skipToLinksContext.unregisterLink(keyRef.current);
-    } else {
-      skipToLinksContext.registerLink(keyRef.current, description, priority, onSelect);
     }
   }, [
     skipToLinksContext,

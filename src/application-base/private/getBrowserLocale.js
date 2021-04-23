@@ -24,9 +24,14 @@ const filterLanguages = () => {
   if (navigator.languages && navigator.languages.length > 0) {
     for (let index = 0; index < navigator.languages.length; index += 1) {
       const locale = navigator.languages[index];
+      const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : undefined;
 
       if (isSupported(locale)) {
         return locale;
+      }
+
+      if (fallbackLocale && isSupported(fallbackLocale)) {
+        return fallbackLocale;
       }
     }
   }

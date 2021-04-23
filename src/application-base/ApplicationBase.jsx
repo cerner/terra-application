@@ -1,29 +1,28 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, useMemo, useState,
+  useEffect, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
-import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
-
 import { IntlProvider } from 'react-intl';
-import { ApplicationIntlProvider } from '../application-intl';
-import i18nLoader from './private/i18nLoader';
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
 
+import { ApplicationIntlProvider } from '../application-intl';
+import logger from '../utils/logger';
+
+import i18nLoader from './private/i18nLoader';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
-
 import './private/initializeInert';
 import './baseStyles';
 
 const browserLocale = getBrowserLocale();
 
-// We only need to retrieve the root theme and root theme name once for the life of the application.
-const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : undefined;
-const rootThemeName = themeConfig?.theme ? themeConfig.theme : 'terra-default-theme';
+// We only need to retrieve the root theme and root theme name once for the life
+// of the application.
+const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : {};
+const rootThemeName = themeConfig.theme || 'terra-default-theme';
 
 const propTypes = {
   /**
@@ -32,97 +31,71 @@ const propTypes = {
   children: PropTypes.node.isRequired,
   /**
    * The locale name to be used to load translated messages.
-   * If the `locale` prop is not provided, the preferred language from the browser will be used.
+   * If the `locale` prop is not provided, the preferred language from the
+   * browser will be used.
    */
   locale: PropTypes.string,
   /**
-   * The name of the theme to apply to the application using terra-theme-provider.
+   * The name of the theme to apply to the application.
    */
   themeName: PropTypes.string,
-  /**
-   * By default, NavigationPrompts rendered within ApplicationBase will cause the user to be prompted during
-   * the window's beforeUnload event. If `unloadPromptIsDisabled` is provided, the user will **not** be prompted
-   * before continuing with the unload event, even if NavigationPrompts are present.
-   */
-  unloadPromptIsDisabled: PropTypes.bool,
 };
 
 const ApplicationBase = ({
-  locale, themeName, children, unloadPromptIsDisabled,
+  locale, themeName, children,
 }) => {
-  const registeredPromptsRef = useRef();
   const [messages, setMessages] = useState();
 
-  const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
+  // Allows us to test deployed applications in different locales.
+  const { localeOverride } = useTestOverrides();
 
   const finalLocale = localeOverride || locale || browserLocale;
 
   useEffect(() => {
     if (finalLocale !== undefined) {
-      i18nLoader(finalLocale).then(translationsModule => setMessages(translationsModule.default)).catch((error) => {
-        // eslint-disable-next-line no-console
-        console.error(error);
-        throw error;
+      i18nLoader(finalLocale).then(translationsModule => {
+        setMessages(translationsModule.default);
+      }).catch((error) => {
+        logger.error(error);
       });
     }
   }, [finalLocale]);
 
   const theme = useMemo(() => ({
-    // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
+    // An undefined or an empty className indicates that we have the root theme
+    // and should apply the root theme name.
     name: themeName || rootThemeName,
     className: themeName,
   }), [themeName]);
 
   useEffect(() => {
-    if (unloadPromptIsDisabled) {
-      return undefined;
+    if (themeName) {
+      document.documentElement.classList.add(themeName);
     }
-
-    function onBeforeUnload(event) {
-      if (registeredPromptsRef.current && registeredPromptsRef.current.length) {
-        event.preventDefault();
-
-        // Chrome requires returnValue to be set to present the confirmation dialog
-        event.returnValue = ''; // eslint-disable-line no-param-reassign
-
-        // For this prompt, ApplicationBase is limited to browser-defaulted messaging.
-        return '';
-      }
-
-      return undefined;
-    }
-
-    window.addEventListener('beforeunload', onBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', onBeforeUnload);
+      if (themeName) {
+        document.documentElement.classList.remove(themeName);
+      }
     };
-  }, [unloadPromptIsDisabled, registeredPromptsRef]);
+  }, [themeName]);
 
   if (messages === undefined) return null;
 
   return (
-    <ThemeProvider themeName={themeName}>
-      <ThemeContextProvider theme={theme}>
-        <IntlProvider
-          key={finalLocale}
-          locale={finalLocale}
-          messages={messages}
-        >
-          <ApplicationIntlProvider>
-            <ActiveBreakpointProvider>
-              <NavigationPromptCheckpoint
-                onPromptChange={(registeredPrompts) => {
-                  registeredPromptsRef.current = registeredPrompts;
-                }}
-              >
-                {children}
-              </NavigationPromptCheckpoint>
-            </ActiveBreakpointProvider>
-          </ApplicationIntlProvider>
-        </IntlProvider>
-      </ThemeContextProvider>
-    </ThemeProvider>
+    <ThemeContextProvider theme={theme}>
+      <IntlProvider
+        key={finalLocale}
+        locale={finalLocale}
+        messages={messages}
+      >
+        <ApplicationIntlProvider>
+          <ActiveBreakpointProvider>
+            {children}
+          </ActiveBreakpointProvider>
+        </ApplicationIntlProvider>
+      </IntlProvider>
+    </ThemeContextProvider>
   );
 };
 

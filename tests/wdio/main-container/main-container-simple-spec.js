@@ -13,9 +13,4 @@ Terra.describeViewports('MainContainer - Simple Configuration', ['large'], () =>
     browser.keys('Tab');
     Terra.validates.element('2. rendering SkipToLink for main', { selector });
   });
-
-  it('places focus on main', () => {
-    browser.keys(['Enter', 'Tab']);
-    Terra.validates.element('3. focus placed on main', { selector });
-  });
 });

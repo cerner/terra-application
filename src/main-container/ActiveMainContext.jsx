@@ -19,10 +19,6 @@ const useActiveMain = () => React.useContext(ActiveMainContext);
 
 const contextShape = {
   /**
-   * The string uniquely identifying the active main content.
-   */
-  id: PropTypes.string,
-  /**
    * The string label describing the active main content to be used for display purposes.
    */
   label: PropTypes.string,

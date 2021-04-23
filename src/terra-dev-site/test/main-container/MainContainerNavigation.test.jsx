@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ApplicationBase from '../../../application-base';
 import ApplicationContainer from '../../../application-container';
@@ -16,11 +17,6 @@ const ActiveMainConsumer = ({ label }) => {
     <div>
       {label ? <p>{label}</p> : undefined}
       <p>
-        Active Main Id:
-        {' '}
-        <span>{activeMain.id}</span>
-      </p>
-      <p>
         Active Main Label:
         {' '}
         <span>{activeMain.label}</span>
@@ -34,7 +30,11 @@ const ActiveMainConsumer = ({ label }) => {
   );
 };
 
-const NavigationMainContainer = () => {
+ActiveMainConsumer.propTypes = {
+  label: PropTypes.string,
+};
+
+const MainContainerNavigation = () => {
   const [
     activeNavigationItemKey,
     setActiveNavigationItemKey,
@@ -69,6 +69,7 @@ const NavigationMainContainer = () => {
               metaData={{ test: 'nav 1 data' }}
             >
               <p>Nav 1 - Main Content</p>
+              <button type="button">Focusable Button</button>
             </MainContainer>
             <ActiveMainConsumer label="Nav 1 Main Consumer" />
           </NavigationItem>
@@ -82,6 +83,7 @@ const NavigationMainContainer = () => {
               metaData={{ test: 'nav 2 data' }}
             >
               <p>Nav 2 - Main Content</p>
+              <button type="button">Focusable Button</button>
             </MainContainer>
             <ActiveMainConsumer label="Nav 2 Main Consumer" />
           </NavigationItem>
@@ -95,6 +97,7 @@ const NavigationMainContainer = () => {
               metaData={{ test: 'nav 3 data' }}
             >
               <p>Nav 3 - Main Content</p>
+              <button type="button">Focusable Button</button>
             </MainContainer>
             <ActiveMainConsumer label="Nav 3 Main Consumer" />
           </NavigationItem>
@@ -103,6 +106,7 @@ const NavigationMainContainer = () => {
             label="Nav 4"
           >
             <p>Nav 4 - No Main</p>
+            <button type="button">Focusable Button</button>
             <ActiveMainConsumer label="Nav 4 Main Consumer" />
           </NavigationItem>
         </PrimaryNavigationLayout>
@@ -111,4 +115,4 @@ const NavigationMainContainer = () => {
   );
 };
 
-export default NavigationMainContainer;
+export default MainContainerNavigation;

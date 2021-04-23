@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 /**
  * A private Context used to enable communication between the
- * ActiveMainPageProvider and the useActiveMainPageRegistry hook.
+ * ActiveMainPageProvider and the MainContainer.
  */
 const ActiveMainPageRegistrationContext = React.createContext();
 

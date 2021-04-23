@@ -21,7 +21,6 @@ const ActiveMainProvider = ({ children }) => {
       return {
         registrationId: action.registrationId,
         activeMain: {
-          id: action.id,
           label: action.label,
           metaData: action.metaData,
         },
@@ -70,13 +69,12 @@ const ActiveMainProvider = ({ children }) => {
         return undefined;
       }
 
-      const { id, label, metaData } = registrationData;
+      const { label, metaData } = registrationData;
       const registrationId = uuidv4();
 
       dispatch({
         type: 'register',
         registrationId,
-        id,
         label,
         metaData,
       });

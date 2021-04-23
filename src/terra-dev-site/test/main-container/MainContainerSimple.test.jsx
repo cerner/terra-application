@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import ApplicationBase from '../../../application-base';
 import ApplicationContainer from '../../../application-container';
@@ -15,11 +16,6 @@ const ActiveMainConsumer = ({ label }) => {
     <div>
       {label ? <p>{label}</p> : undefined}
       <p>
-        Active Main Id:
-        {' '}
-        <span>{activeMain.id}</span>
-      </p>
-      <p>
         Active Main Label:
         {' '}
         <span>{activeMain.label}</span>
@@ -33,7 +29,11 @@ const ActiveMainConsumer = ({ label }) => {
   );
 };
 
-const SimpleMainContainer = () => (
+ActiveMainConsumer.propTypes = {
+  label: PropTypes.string,
+};
+
+const MainContainerSimple = () => (
   <ApplicationBase locale="en-US">
     <ApplicationContainer>
       <MainContainer
@@ -42,10 +42,11 @@ const SimpleMainContainer = () => (
         metaData={{ test: 'data' }}
       >
         <p>Main Content</p>
+        <button type="button">Focusable Button</button>
       </MainContainer>
       <ActiveMainConsumer label="Active Main Consumer" />
     </ApplicationContainer>
   </ApplicationBase>
 );
 
-export default SimpleMainContainer;
+export default MainContainerSimple;

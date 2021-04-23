@@ -9,6 +9,7 @@
   * Adding PrimaryNavigationLayout
   * Adding SessionContext
   * Adding SkipToLink
+  * Adding MainContainer
 
 ## Unreleased
 

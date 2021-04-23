@@ -19,7 +19,6 @@ const WorkspaceTest = () => {
   const [activeItemKey, setActiveItemKey] = React.useState('tab-1');
   const [workspaceSize, setWorkspaceSize] = React.useState('large');
   const activeMainPageRef = React.useRef({
-    id: 'page-1',
     label: 'Test Page',
     metaData: {
       data: 'data here',

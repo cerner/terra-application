@@ -19,13 +19,6 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * A unique identifier for the main element. This value will be applied
-   * to the element as an `id` attribute and will also be provided to consumers
-   * of the ActiveMainContext to identify the active main element within the
-   * application.
-   */
-  id: PropTypes.string.isRequired,
-  /**
    * A string label describing the content within the main element. This value
    * will be applied to the element as a user-facing aria-label and should be
    * translated, if necessary. It will also be provided to consumers of the
@@ -52,7 +45,7 @@ const propTypes = {
  * this content can be accessed quickly.
  */
 const MainContainer = ({
-  children, refCallback, id, label, metaData, ...otherProps
+  children, refCallback, label, metaData, ...otherProps
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const activeMainRegistration = React.useContext(ActiveMainRegistrationContext);
@@ -63,13 +56,11 @@ const MainContainer = ({
 
   React.useEffect(() => {
     unregisterActiveMainRef.current = activeMainRegistration.register({
-      id,
       label,
       metaData,
     });
   }, [
     activeMainRegistration,
-    id,
     label,
     metaData,
     navigationItem.isActive,
@@ -79,16 +70,12 @@ const MainContainer = ({
   React.useEffect(() => () => {
     // A separate effect is used to unregister the active main when it is
     // unmounted to limit registration thrash on updates to props.
-    if (unregisterActiveMainRef.current) {
-      unregisterActiveMainRef.current();
-      unregisterActiveMainRef.current = undefined;
-    }
+    unregisterActiveMainRef.current();
   }, []);
 
   return (
     <main
-      id={id}
-      label={label}
+      aria-label={label}
       className={classNames(cx('main-container'), otherProps.className)}
       tabIndex="-1"
       ref={(mainRef) => {

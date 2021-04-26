@@ -70,6 +70,13 @@ const ActiveMainProvider = ({ children }) => {
       }
 
       const { label, metaData } = registrationData;
+
+      // Multiple main sources can be writing to this single provider, and the
+      // order of their registrations is not guaranteed to be deterministic.
+      // So we assign an identifier to each registration and check it above
+      // prior to performing any unregistrations, ensuring that main elements
+      // can execute their unregistration logic as part of their lifecycle
+      // without worrying about damaging registration data from other sources.
       const registrationId = uuidv4();
 
       dispatch({

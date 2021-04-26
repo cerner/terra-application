@@ -1,5 +1,4 @@
 import ApplicationContainer from './ApplicationContainer';
-import useActiveMainPage from './useActiveMainPage';
 import ApplicationContainerContext, {
   useApplicationContainer,
   contextShape as applicationContainerContextShape,
@@ -11,7 +10,6 @@ import ApplicationConceptContext, {
 
 export default ApplicationContainer;
 export {
-  useActiveMainPage,
   ApplicationContainerContext,
   useApplicationContainer,
   applicationContainerContextShape,

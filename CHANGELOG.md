@@ -10,6 +10,7 @@
   * Adding SessionContext
   * ApplicationBase updates
   * Adding SkipToLink
+  * Adding MainContainer
 
 ## Unreleased
 

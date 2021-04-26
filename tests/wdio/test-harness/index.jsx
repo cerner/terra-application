@@ -8,6 +8,8 @@ import OverlayWorkspace from '../../../lib/terra-dev-site/test/workspace/Overlay
 import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
 import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
 import SkipToLinks from '../../../src/terra-dev-site/test/application-container/SkipToLinks.test';
+import MainContainerSimple from '../../../src/terra-dev-site/test/main-container/MainContainerSimple.test';
+import MainContainerNavigation from '../../../src/terra-dev-site/test/main-container/MainContainerNavigation.test';
 
 const testMap = {
   '#/workspace': Workspace,
@@ -15,6 +17,8 @@ const testMap = {
   '#/primary-navigation-layout-1': PrimaryNavigationLayout1,
   '#/primary-navigation-layout-2': PrimaryNavigationLayout2,
   '#/skip-to-links': SkipToLinks,
+  '#/main-container/simple': MainContainerSimple,
+  '#/main-container/navigation': MainContainerNavigation,
 };
 
 const Entry = () => {

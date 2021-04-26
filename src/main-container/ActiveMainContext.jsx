@@ -5,11 +5,7 @@ import PropTypes from 'prop-types';
  * The ActiveMainContext is used to communicate data related to the current
  * active main content to the application.
  */
-const ActiveMainContext = React.createContext({
-  id: undefined,
-  label: undefined,
-  metaData: undefined,
-});
+const ActiveMainContext = React.createContext({});
 
 /**
  * Hook to simplify consumption of the ActiveMainContext.

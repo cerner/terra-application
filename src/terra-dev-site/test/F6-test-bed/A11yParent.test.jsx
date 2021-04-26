@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classNames from 'classnames/bind';
 import A11yContainer from './A11yContainer.test';
 import styles from './A11yParentTest.module.scss';
@@ -7,7 +7,25 @@ const cx = classNames.bind(styles);
 
 const AllyParentTest = () => {
   const regionRefs = React.useRef({});
-  const lastActiveRegionKey = React.useRef('root');
+  const lastActiveRegionKey = React.useRef('fake-root');
+
+  const onRootFocus = e => { console.log('focus root'); onFocus(e, 'fake-root'); };
+
+  const onRootKeyDown = e => onKeyDown(e);
+
+  useEffect(() => {
+    document.addEventListener('focus', onRootFocus);
+    document.addEventListener('keydown', onRootKeyDown);
+    onRefUpdate(document.body, 'fake-root');
+    document.body.tabIndex = "-1";
+
+    return () => {
+      document.removeEventListener('focus', onRootFocus);
+      document.removeEventListener('keydown', onRootKeyDown);
+      delete regionRefs.current['fake-root'];
+      document.body.tabIndex = "";
+    };
+  }, []);
 
   const onRefUpdate = (ref, key) => {
     if (!regionRefs.current) {
@@ -21,7 +39,7 @@ const AllyParentTest = () => {
   };
 
   // DOM traversal or context registration?
-  const getNextRegion = (key) => {
+  const getNextRegionKey = (key) => {
     let regionKey;
     switch(key) {
       case 'fake-root':
@@ -40,11 +58,12 @@ const AllyParentTest = () => {
         regionKey =  'fake-root';
         break;
     };
-    return regionRefs.current[regionKey];
+    // return regionRefs.current[regionKey];
+    return regionKey;
   };
 
   // DOM traversal or context registration?
-  const getPreviousRegion = (key) => {
+  const getPreviousRegionKey = (key) => {
     let regionKey;
     switch(key) {
       case 'unique-1':
@@ -63,41 +82,66 @@ const AllyParentTest = () => {
         regionKey =  'fake-root';
         break;
     };
-    return regionRefs.current[regionKey];
+    // return regionRefs.current[regionKey];
+    return regionKey;
   };
 
-  const focusRegion = (region) => {
+  const focusRegionKey = (regionKey) => {
+    const region = regionRefs.current[regionKey];
     const focusElement = region.activeChildRef ? region.activeChildRef : region.ref;
     // may need style difference if "isRegion"
     focusElement.focus();
+    
   };
 
+  const isRegion = element => {
+    if (document.documentElement === element || document.body === element) {
+      return true;
+    }
+
+    let regionFound = false;
+    const regionArray = Object.keys(regionRefs.current);
+    for (let i = 0; i < regionArray.length; i += 1) {
+      const region = regionRefs.current[regionArray[i]];
+      if (element === region) {
+        regionFound = true;
+        break;
+      }
+    }
+    return regionFound;
+  }
+
   const onKeyDown = (event) => {
-    if (event.nativeEvent.keyCode === 117) {
+    if (event.keyCode === 117) {
+    // if (event.nativeEvent.keyCode === 117) {
       event.preventDefault();
       event.stopPropagation();
 
       const currentActiveNode = document.activeElement;
       const currentRegion = regionRefs.current[lastActiveRegionKey.current];
-      if (currentRegion.ref.contains(currentActiveNode)) {
+      if (!isRegion(currentActiveNode) && currentRegion.ref.contains(currentActiveNode)) {
         currentRegion.activeChildRef = currentActiveNode;
       } else {
         currentRegion.activeChildRef = undefined;
       }
 
+      let regionKey;
       if (event.shiftKey) {
-        const previousRegion = getPreviousRegion(lastActiveRegionKey.current);
-        focusRegion(previousRegion);
+        regionKey = getPreviousRegionKey(lastActiveRegionKey.current);
       } else {
-        const nextRegion = getNextRegion(lastActiveRegionKey.current);
-        focusRegion(nextRegion);
+        regionKey = getNextRegionKey(lastActiveRegionKey.current);
       }
+      lastActiveRegionKey.current = regionKey;
+
+      focusRegionKey(regionKey);
     }
   };
 
   const onFocus = (event, key) => {
     event.preventDefault();
     event.stopPropagation();
+
+    console.log(`focus that bad boy: ${key}`);
 
     // determine original source
     lastActiveRegionKey.current = key;
@@ -106,14 +150,14 @@ const AllyParentTest = () => {
   return (
     <div
       className={cx('parent')}
-      ref={ref => onRefUpdate(ref, 'fake-root')}
-      onFocus={e => onFocus(e, 'fake-root')}
+      // ref={ref => onRefUpdate(ref, 'fake-root')}
+      // onFocus={e => onFocus(e, 'fake-root')}
       // onBlurCapture={onBlur}
-      onKeyDownCapture={onKeyDown}
+      // onKeyDownCapture={onKeyDown}
       aria-label="web view"
-      role="landmark"
-      tabIndex="-1"
-      id="fake-root"
+      // role="landmark"
+      // tabIndex="-1"
+      // id="fake-root"
     >
       <div className={cx('header', 'nav')}>
         <button id="root-button" role="button">Button Root 1</button>

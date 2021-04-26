@@ -1,6 +1,14 @@
 :local {
-  .parent {
+  body {
     background-color: aquamarine;
+  }
+
+  body:focus {
+    background-color: red;
+  }
+
+  .parent {
+    // background-color: aquamarine;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -13,7 +21,7 @@
   .header {
     flex: 0 0 auto;
     position: relative;
-    min-height: 20%;
+    height: 20%;
     width: 100%;
   }
 

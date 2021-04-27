@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.47.1 - (April 27, 2021)
+
 * Fixed
   * Corrected ref usage in Workspace Tabs that threw a passive exception.
 

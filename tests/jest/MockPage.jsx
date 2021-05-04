@@ -2,11 +2,13 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import usePagePortal from '../../src/page-container/usePagePortal';
 
+/**
+ * Simple Page implementation to test integration with PageContainers
+ */
 const MockPage = ({
-  pageKey, label, metaData, children,
+  label, metaData, children,
 }) => {
   const { PagePortal } = usePagePortal({
-    pageKey,
     label,
     metaData,
   });
@@ -19,7 +21,6 @@ const MockPage = ({
 };
 
 MockPage.propTypes = {
-  pageKey: PropTypes.string,
   label: PropTypes.string,
   metaData: PropTypes.object,
   children: PropTypes.node,

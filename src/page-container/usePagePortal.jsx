@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import uuidv4 from 'uuid/v4';
 
-import PagePortalContext from './PagePortalContext';
+import PageManagerContext from './PageManagerContext';
 import PageIdentifierContext from './PageIdentifierContext';
 
 function createPortalElement() {
@@ -14,34 +14,49 @@ function createPortalElement() {
   return newPortalElement;
 }
 
+/**
+ * Custom hook used to register a Page to a parent PageContainer.
+ * @param {Object} pageData The page data to register
+ * @param {String} pageData.label The user-facing label for the Page
+ * @param {Object} pageData.metaData An object containing meta data for the Page
+ * @returns An object containing a unique PagePortal component and the generated
+ * identifier for the Page instance.
+ */
 const usePagePortal = ({
-  pageKey, label, metaData,
+  label, metaData,
 }) => {
-  const portalIdRef = React.useRef(uuidv4());
-  const pagePortalContext = React.useContext(PagePortalContext);
-  const parentPageIdentifer = React.useContext(PageIdentifierContext);
+  const pageManager = React.useContext(PageManagerContext);
+  const parentPageId = React.useContext(PageIdentifierContext);
+  const pageIdRef = React.useRef(uuidv4());
   const portalElementRef = React.useRef(createPortalElement());
+  const unregisterPageRef = React.useRef();
 
   React.useLayoutEffect(() => {
-    pagePortalContext.renderPortalElement(portalElementRef.current, portalIdRef.current, parentPageIdentifer, {
-      pageKey, label, metaData,
+    unregisterPageRef.current = pageManager.registerPage({
+      portalElement: portalElementRef.current,
+      pageId: pageIdRef.current,
+      parentPageId,
+      label,
+      metaData,
     });
-  }, [pagePortalContext, parentPageIdentifer, pageKey, label, metaData]);
+  }, [pageManager, parentPageId, label, metaData]);
 
   React.useLayoutEffect(() => () => {
-    pagePortalContext.releasePortalElement(portalIdRef.current);
-  }, [pagePortalContext]);
+    if (unregisterPageRef.current) {
+      unregisterPageRef.current();
+    }
+  }, []);
 
   const pagePortalComponentRef = React.useRef(({ children }) => (
     ReactDOM.createPortal((
-      <PageIdentifierContext.Provider value={portalIdRef.current}>
+      <PageIdentifierContext.Provider value={pageIdRef.current}>
         {children}
       </PageIdentifierContext.Provider>
     ), portalElementRef.current)
   ));
 
   return {
-    portalId: portalIdRef.current,
+    pageId: pageIdRef.current,
     PagePortal: pagePortalComponentRef.current,
   };
 };

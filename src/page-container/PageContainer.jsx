@@ -7,7 +7,7 @@ import NavigationItemContext from '../navigation-item/NavigationItemContext';
 import deferExecution from '../utils/defer-execution';
 
 import PageContainerContext from './PageContainerContext';
-import usePagePortalManager from './usePagePortalManager';
+import usePageManager from './usePageManager';
 
 import styles from './PageContainer.module.scss';
 
@@ -36,11 +36,11 @@ const PageContainer = ({
   // be rendered.
   const rootContainerRef = React.useRef();
 
-  // The usePagePortalManager hook is used manage the presentation of Page
+  // The usePageManager hook is used manage the presentation of Page
   // content within the container.
-  const { PagePortalManager, activePortal } = usePagePortalManager(rootContainerRef);
+  const { PageManager, activePage } = usePageManager(rootContainerRef);
 
-  const lastActivePagePortalRef = React.useRef();
+  const lastActivePageRef = React.useRef();
   React.useLayoutEffect(() => {
     // If the active Page within the portal container has changed, focus is
     // set to the root of the document to ensure focus remains close to container.
@@ -49,15 +49,15 @@ const PageContainer = ({
     // if no Page was previously active; this is likely to only occur
     // during the initial application launch.
     if (navigationItem.isActive
-      && (lastActivePagePortalRef.current && activePortal
-        && lastActivePagePortalRef.current.portalId !== activePortal.portalId)) {
+      && (lastActivePageRef.current && activePage
+        && lastActivePageRef.current.portalId !== activePage.pageId)) {
       deferExecution(() => {
         rootContainerRef.current.focus();
       });
     }
 
-    lastActivePagePortalRef.current = activePortal;
-  }, [activePortal, navigationItem.isActive]);
+    lastActivePageRef.current = activePage;
+  }, [activePage, navigationItem.isActive]);
 
   // The LayoutActionsContext value is read, and its value is provided to the
   // individual Pages through the PageContainerContext. The LayoutActionsContext
@@ -73,14 +73,14 @@ const PageContainer = ({
       ref={rootContainerRef}
       className={cx('page-container')}
       tabIndex="-1"
-      aria-label={activePortal?.label}
+      aria-label={activePage?.label}
     >
       <LayoutActionsContext.Provider value={undefined}>
-        <PagePortalManager>
+        <PageManager>
           <PageContainerContext.Provider value={pageContainerContextValue}>
             {children}
           </PageContainerContext.Provider>
-        </PagePortalManager>
+        </PageManager>
       </LayoutActionsContext.Provider>
     </div>
   );

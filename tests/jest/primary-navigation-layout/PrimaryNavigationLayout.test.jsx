@@ -78,7 +78,7 @@ describe('desktop size', () => {
           title: 'Test Title',
         }}
         renderPage={() => (
-          <MockPage pageKey="test" label="Page Label">
+          <MockPage label="Page Label">
             <div data-testid="test-content">Test Page Content</div>
           </MockPage>
         )}
@@ -180,7 +180,7 @@ describe('desktop size', () => {
           navigationKey="key-1"
           label="Nav 1"
           renderPage={() => (
-            <MockPage pageKey="nav-1-page" label="Nav 1 Page">
+            <MockPage label="Nav 1 Page">
               <div data-testid="test-nav-1">Nav 1</div>
             </MockPage>
           )}
@@ -189,7 +189,7 @@ describe('desktop size', () => {
           navigationKey="key-2"
           label="Nav 2"
           renderPage={() => (
-            <MockPage pageKey="nav-2-page" label="Nav 2 Page">
+            <MockPage label="Nav 2 Page">
               <div data-testid="test-nav-2">Nav 2</div>
             </MockPage>
           )}
@@ -198,7 +198,7 @@ describe('desktop size', () => {
           navigationKey="key-3"
           label="Nav 3"
           renderPage={() => (
-            <MockPage pageKey="nav-3-page" label="Nav 3 Page">
+            <MockPage label="Nav 3 Page">
               <div data-testid="test-nav-3">Nav 3</div>
             </MockPage>
           )}
@@ -224,7 +224,7 @@ describe('desktop size', () => {
           navigationKey="key-1"
           label="Nav 1"
           renderPage={() => (
-            <MockPage pageKey="nav-1-page" label="Nav 1 Page">
+            <MockPage label="Nav 1 Page">
               <div data-testid="test-nav-1">Nav 1</div>
             </MockPage>
           )}
@@ -233,7 +233,7 @@ describe('desktop size', () => {
           navigationKey="key-2"
           label="Nav 2"
           renderPage={() => (
-            <MockPage pageKey="nav-2-page" label="Nav 2 Page">
+            <MockPage label="Nav 2 Page">
               <div data-testid="test-nav-2">Nav 2</div>
             </MockPage>
           )}
@@ -242,7 +242,7 @@ describe('desktop size', () => {
           navigationKey="key-3"
           label="Nav 3"
           renderPage={() => (
-            <MockPage pageKey="nav-3-page" label="Nav 3 Page">
+            <MockPage label="Nav 3 Page">
               <div data-testid="test-nav-3">Nav 3</div>
             </MockPage>
           )}

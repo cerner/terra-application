@@ -81,7 +81,7 @@ const MainPageContainer = ({
         rootContainerRef.current = ref;
       }}
       className={cx('page-container')}
-      label={activePortal?.label}
+      label={activePortal?.label || ''}
       metaData={activePortal?.metaData}
     >
       <LayoutActionsContext.Provider value={undefined}>

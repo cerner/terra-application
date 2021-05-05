@@ -21,12 +21,6 @@ const usePageManager = (rootContainerRef) => {
       label,
       metaData,
     }) => {
-      // If the page data has changed for an existing Page, we need to ensure
-      // that the activePageArray state changes to trigger downstream effects.
-      // Otherwise, theses changes will not be detected.
-      const existingPageEntry = pageRegisterRef.current[pageId];
-      const forceUpdate = existingPageEntry && (existingPageEntry.label !== label || existingPageEntry.metaData !== metaData);
-
       pageRegisterRef.current[pageId] = {
         pageId,
         portalElement,
@@ -42,7 +36,7 @@ const usePageManager = (rootContainerRef) => {
         // it can stay where it is. The state is updated to ensure that any changed
         // page values (label/metaData) are communicated to the other effects.
         if (activePages.indexOf(pageId) >= 0) {
-          return forceUpdate ? [...activePages] : activePages;
+          return [...activePages];
         }
 
         // If there are currently no registered Pages, we initialize the state
@@ -53,8 +47,7 @@ const usePageManager = (rootContainerRef) => {
 
         // If no ancestor Page is specified, but there are known active Pages,
         // this new Page must be a duplicate at the root of the PageContainer.
-        // This new Page is not queued for rendering and is ignored until it becomes
-        // render-able due to changes to the Page hierarchy.
+        // This new Page is not queued for rendering and is ignored.
         if (!parentPageId) {
           // We need to perform a separate check to see if the new Page should
           // be inserted into the existing ordering, likely due to a series of
@@ -67,14 +60,13 @@ const usePageManager = (rootContainerRef) => {
           }
 
           Logger.warn('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
-          return forceUpdate ? [...activePages] : activePages;
+          return activePages;
         }
 
         // If the new Page's parent has already been registered, the new
         // Page is injected into the array immediately after the parent. If
         // the parent is found to already have descendant Pages, the new Page
-        // is not queued for rendering and is ignored until it becomes render-able
-        // due to changes to the Page hierarchy.
+        // is not queued for rendering and is ignored.
         const indexOfParentPage = activePages.indexOf(parentPageId);
         if (indexOfParentPage >= 0) {
           if (indexOfParentPage === activePages.length - 1) {
@@ -94,7 +86,7 @@ const usePageManager = (rootContainerRef) => {
           }
 
           Logger.warn('Application Page Rendering: A Page can only render a single Page child. The redundant Page will not be displayed.');
-          return forceUpdate ? [...activePages] : activePages;
+          return activePages;
         }
 
         // If a series of nested Pages are mounted at the same time, the child

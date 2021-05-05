@@ -15,8 +15,8 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * The components to render within the context of the MainPageContainer. Any
-   * Pages rendered as children will be managed by the MainPageContainer.
+   * The components to render within the context of the PageContainer. Any
+   * Pages rendered as children will be managed by the PageContainer.
    */
   children: PropTypes.node,
 };
@@ -30,7 +30,6 @@ const PageContainer = ({
   children,
 }) => {
   const navigationItem = React.useContext(NavigationItemContext);
-  const layoutActions = React.useContext(LayoutActionsContext);
 
   // The rootContainerRef points to the element within which Page content will
   // be rendered.
@@ -52,21 +51,22 @@ const PageContainer = ({
       && (lastActivePageRef.current && activePage
         && lastActivePageRef.current.portalId !== activePage.pageId)) {
       deferExecution(() => {
-        rootContainerRef.current.focus();
+        if (rootContainerRef.current) {
+          rootContainerRef.current.focus();
+        }
       });
     }
 
     lastActivePageRef.current = activePage;
   }, [activePage, navigationItem.isActive]);
 
-  // The LayoutActionsContext value is read, and its value is provided to the
-  // individual Pages through the PageContainerContext. The LayoutActionsContext
-  // value then is nullified for components within the MainPageContainer, as we
-  // do not wish to allow multiple implementers of these actions.
+  // The LayoutActionsContext value is nullified, and any present values are
+  // ignored. Handling of layout actions is the sole responsibility of the
+  // MainPageContainer.
   const pageContainerContextValue = React.useMemo(() => ({
-    containerStartActions: layoutActions.startActions,
-    containerEndActions: layoutActions.endActions,
-  }), [layoutActions.startActions, layoutActions.endActions]);
+    containerStartActions: [],
+    containerEndActions: [],
+  }), []);
 
   return (
     <div
@@ -74,6 +74,7 @@ const PageContainer = ({
       className={cx('page-container')}
       tabIndex="-1"
       aria-label={activePage?.label}
+      data-testid="page-container"
     >
       <LayoutActionsContext.Provider value={undefined}>
         <PageManager>

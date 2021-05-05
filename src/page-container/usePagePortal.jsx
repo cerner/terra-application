@@ -5,6 +5,11 @@ import uuidv4 from 'uuid/v4';
 import PageManagerContext from './PageManagerContext';
 import PageIdentifierContext from './PageIdentifierContext';
 
+/**
+ * Creates an element with appropriate styling to be used as the destination
+ * for portaled Page content.
+ * @returns An HTMLElement instance
+ */
 function createPortalElement() {
   const newPortalElement = document.createElement('div');
   newPortalElement.style.position = 'relative';

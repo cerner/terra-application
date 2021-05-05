@@ -5,13 +5,13 @@ import useForceUpdate from '../../../src/shared/useForceUpdate';
 
 import Workspace from '../../../lib/terra-dev-site/test/workspace/Workspace.test';
 import OverlayWorkspace from '../../../lib/terra-dev-site/test/workspace/OverlayWorkspace.test';
-import PrimaryNavigationLayout1 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
-import PrimaryNavigationLayout2 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
-import PrimaryNavigationLayout3 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout3.test';
-import PrimaryNavigationLayout4 from '../../../src/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout4.test';
-import SkipToLinks from '../../../src/terra-dev-site/test/application-container/SkipToLinks.test';
-import MainContainerSimple from '../../../src/terra-dev-site/test/main-container/MainContainerSimple.test';
-import MainContainerNavigation from '../../../src/terra-dev-site/test/main-container/MainContainerNavigation.test';
+import PrimaryNavigationLayout1 from '../../../lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout1.test';
+import PrimaryNavigationLayout2 from '../../../lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
+import PrimaryNavigationLayout3 from '../../../lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout3.test';
+import PrimaryNavigationLayout4 from '../../../lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout4.test';
+import SkipToLinks from '../../../lib/terra-dev-site/test/application-container/SkipToLinks.test';
+import MainContainerSimple from '../../../lib/terra-dev-site/test/main-container/MainContainerSimple.test';
+import MainContainerNavigation from '../../../lib/terra-dev-site/test/main-container/MainContainerNavigation.test';
 
 const testMap = {
   '#/workspace': Workspace,

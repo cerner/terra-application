@@ -8,6 +8,13 @@ import {
 
 import PageManagerContext from './PageManagerContext';
 
+/**
+ * Hook used to manage Page registrations within a PageContainer.
+ * @param {Object} rootContainerRef A React ref object with a current value pointing
+ * to a valid HTMLElement
+ * @returns An object containing data related to currently active/visible Page
+ * and a unique PageManager component definition
+ */
 const usePageManager = (rootContainerRef) => {
   const pageRegisterRef = React.useRef({});
   const lastActivePageArrayRef = React.useRef([]);
@@ -59,7 +66,7 @@ const usePageManager = (rootContainerRef) => {
             return newPages;
           }
 
-          Logger.warn('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
+          Logger.warn(`[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page ${label} will not be displayed.`);
           return activePages;
         }
 
@@ -85,7 +92,7 @@ const usePageManager = (rootContainerRef) => {
             return newPages;
           }
 
-          Logger.warn('Application Page Rendering: A Page can only render a single Page child. The redundant Page will not be displayed.');
+          Logger.warn(`[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page ${label} will not be displayed.`);
           return activePages;
         }
 

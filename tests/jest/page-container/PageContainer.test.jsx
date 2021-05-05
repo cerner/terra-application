@@ -58,7 +58,7 @@ test('renders multiple flat Page children gracefully', () => {
 
   expect(screen.queryByLabelText('Test Page')).toBeInTheDocument();
   expect(screen.queryByTestId('test-child')).toBeInTheDocument();
-  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
+  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page Redundant Page will not be displayed.');
 
   mockWarn.mockClear();
 
@@ -75,7 +75,7 @@ test('renders multiple flat Page children gracefully', () => {
 
   expect(screen.queryByLabelText('Test Page With New Label')).toBeInTheDocument();
   expect(screen.queryByTestId('test-child')).toBeInTheDocument();
-  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
+  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page Redundant Page will not be displayed.');
 });
 
 test('renders nested Page children', async () => {

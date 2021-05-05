@@ -55,7 +55,7 @@ test('renders single Page child', async () => {
   expect(activeMainForTest.metaData).toBe(pageMetaData);
 });
 
-test('renders multiple flat Page children gracefully', () => {
+test('renders multiple flat Page children gracefully with warning', () => {
   const mockWarn = jest.fn();
   jest.spyOn(Logger, 'warn').mockImplementation(mockWarn);
 
@@ -72,7 +72,7 @@ test('renders multiple flat Page children gracefully', () => {
 
   expect(screen.queryByRole('main', { name: 'Test Page' })).toBeInTheDocument();
   expect(screen.queryByTestId('test-child')).toBeInTheDocument();
-  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
+  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page Redundant Page will not be displayed.');
 
   mockWarn.mockClear();
 
@@ -89,7 +89,7 @@ test('renders multiple flat Page children gracefully', () => {
 
   expect(screen.queryByRole('main', { name: 'Test Page With New Label' })).toBeInTheDocument();
   expect(screen.queryByTestId('test-child')).toBeInTheDocument();
-  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer can only render a single Page child. The redundant Page will not be displayed.');
+  expect(mockWarn).toHaveBeenCalledWith('[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page Redundant Page will not be displayed.');
 });
 
 test('renders nested Page children', async () => {
@@ -230,7 +230,7 @@ test('renders multiple nested Pages after initial mount', () => {
   expect(screen.queryByTestId('doubly-nested-child')).toBeInTheDocument();
 });
 
-test('renders multiple flat Pages gracefully after initial mount', () => {
+test('renders multiple flat Pages gracefully after initial mount with warning', () => {
   const view = render((
     <TestMainPageContainer>
       <MockPage label="Test Page">

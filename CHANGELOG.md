@@ -11,6 +11,7 @@
   * ApplicationBase updates
   * Adding SkipToLink
   * Adding MainContainer
+  * Adding PageContainer and integrating throughout
 
 ## Unreleased
 

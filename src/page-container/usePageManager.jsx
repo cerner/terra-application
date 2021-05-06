@@ -61,9 +61,7 @@ const usePageManager = (rootContainerRef) => {
           // Pages mounting at the same time.
           const existingChild = pageRegisterRef.current[activePages[0]];
           if (existingChild && existingChild.parentPageId === pageId) {
-            const newPages = [...activePages];
-            newPages.splice(0, 0, pageId);
-            return newPages;
+            return [pageId, ...activePages];
           }
 
           Logger.warn(`[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page ${label} will not be displayed.`);
@@ -77,9 +75,7 @@ const usePageManager = (rootContainerRef) => {
         const indexOfParentPage = activePages.indexOf(parentPageId);
         if (indexOfParentPage >= 0) {
           if (indexOfParentPage === activePages.length - 1) {
-            const newPages = [...activePages];
-            newPages.push(pageId);
-            return newPages;
+            return [...activePages, pageId];
           }
 
           // We need to perform a separate check to see if the new Page should

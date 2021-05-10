@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import ActiveMainProvider from '../main-container/private/ActiveMainProvider';
 
 import NavigationItemContext from './NavigationItemContext';
+import { MainPageContainer } from '../page-container';
 
 const propTypes = {
   /**
@@ -22,15 +23,22 @@ const propTypes = {
    * A parameter indicating whether or not the NavigationItem is active is
    * provided.
    *
-   * If provided, the `children` prop will be ignored.
+   * If provided, the `renderPage` and `children` props will be ignored.
    *
    * Signature: `renderLayout({ isActive })`
    */
   renderLayout: PropTypes.func,
   /**
-   * The child components to render within the NavigationItem.
+   * A function called to render a single Page component as content for the
+   * NavigationItem.
    *
-   * If the `renderLayout` props is provided, this prop will be ignored.
+   * If provided, the `children` prop will be ignored.
+   *
+   * Signature: `renderPage({ isActive })`
+   */
+  renderPage: PropTypes.func,
+  /**
+   * The child components to render within the NavigationItem.
    */
   children: PropTypes.node,
   /**
@@ -50,6 +58,7 @@ const NavigationItem = ({
   navigationKey,
   children,
   renderLayout,
+  renderPage,
   isActive,
   portalElement,
 }) => {
@@ -70,17 +79,23 @@ const NavigationItem = ({
     ancestorNavigationItemContext.navigationKeys,
   ]);
 
-  let pageContent;
+  let content;
   if (renderLayout) {
-    pageContent = renderLayout({ isActive });
+    content = renderLayout({ isActive });
+  } else if (renderPage) {
+    content = (
+      <MainPageContainer>
+        {renderPage({ isActive })}
+      </MainPageContainer>
+    );
   } else {
-    pageContent = children;
+    content = children;
   }
 
   return ReactDOM.createPortal((
     <NavigationItemContext.Provider value={navigationItemContextValue}>
       <ActiveMainProvider>
-        {pageContent}
+        {content}
       </ActiveMainProvider>
     </NavigationItemContext.Provider>
   ), portalElement);

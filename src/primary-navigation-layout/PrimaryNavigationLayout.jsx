@@ -6,6 +6,7 @@ import { ApplicationConceptContext } from '../application-container';
 import deferExecution from '../utils/defer-execution';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import NavigationItem from '../navigation-item';
+import { MainPageContainer } from '../page-container';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
 
@@ -60,13 +61,24 @@ const propTypes = {
   id: PropTypes.string.isRequired,
   /**
    * A function used to render a single layout component within the body of
-   * the PrimaryNavigationLayout.
+   * the PrimaryNavigationLayout. If provided, the renderPage and children
+   * props will be ignored.
    *
    * This prop should be used only when primary navigation is not required for
    * the consuming application. If navigation capabilities are required,
    * NavigationItem children must be used instead.
    */
   renderLayout: PropTypes.func,
+  /**
+   * A function used to render a single Page component within the body of
+   * the PrimaryNavigationLayout. If provided, the children prop will be ignored.
+   *
+   * This prop should be used only when primary navigation is not required for
+   * the consuming application. If navigation capabilities are required,
+   * NavigationItem children (and their associated renderPage props) should be
+   * used instead.
+   */
+  renderPage: PropTypes.func,
   /**
    * A function used to render a fallback component when the provided
    * activeNavigationKey does not correspond to a provided NavigationItem child.
@@ -142,6 +154,7 @@ const PrimaryNavigationLayout = ({
   hero,
   id,
   renderLayout,
+  renderPage,
   renderNavigationFallback,
   onDrawerMenuStateChange,
   onSelectExtensionItem,
@@ -226,6 +239,12 @@ const PrimaryNavigationLayout = ({
   let content;
   if (renderLayout) {
     content = renderLayout();
+  } else if (renderPage) {
+    content = (
+      <MainPageContainer>
+        {renderPage()}
+      </MainPageContainer>
+    );
   } else if (navigationItemChildren.length) {
     content = (
       <>

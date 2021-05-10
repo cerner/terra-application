@@ -3,21 +3,27 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 
+import ApplicationContainer from '../../../src/application-container';
 import { ActiveBreakpointContext } from '../../../src/breakpoints';
 import PrimaryNavigationLayout, { NavigationItem } from '../../../src/primary-navigation-layout';
 
 import MockApplication from '../MockApplication';
+import MockPage from '../MockPage';
 
 const TestPrimaryNavigationLayout = (props) => (
   <MockApplication>
-    <PrimaryNavigationLayout {...props} />
+    <ApplicationContainer>
+      <PrimaryNavigationLayout {...props} />
+    </ApplicationContainer>
   </MockApplication>
 );
 
 const TestPrimaryNavigationLayoutSmall = (props) => (
   <MockApplication>
     <ActiveBreakpointContext.Provider value="small">
-      <PrimaryNavigationLayout {...props} />
+      <ApplicationContainer>
+        <PrimaryNavigationLayout {...props} />
+      </ApplicationContainer>
     </ActiveBreakpointContext.Provider>
   </MockApplication>
 );
@@ -57,6 +63,30 @@ describe('desktop size', () => {
     ));
 
     expect(screen.queryByTestId('test-content')).toBeInTheDocument();
+
+    // Expect <header> to be rendered
+    expect(screen.queryByRole('banner')).toBeInTheDocument();
+    // Expect <nav> to not be rendered since no NavigationItems are provided
+    expect(screen.queryByRole('navigation')).not.toBeInTheDocument();
+  });
+
+  test('renders content provided with renderPage prop', () => {
+    render((
+      <TestPrimaryNavigationLayout
+        id="test-id"
+        titleConfig={{
+          title: 'Test Title',
+        }}
+        renderPage={() => (
+          <MockPage label="Page Label">
+            <div data-testid="test-content">Test Page Content</div>
+          </MockPage>
+        )}
+      />
+    ));
+
+    expect(screen.queryByTestId('test-content')).toBeInTheDocument();
+    expect(screen.queryByRole('main', { name: 'Page Label' })).toBeInTheDocument();
 
     // Expect <header> to be rendered
     expect(screen.queryByRole('banner')).toBeInTheDocument();
@@ -126,6 +156,101 @@ describe('desktop size', () => {
         </NavigationItem>
       </TestPrimaryNavigationLayout>
     ));
+
+    expect(screen.queryByTestId('test-nav-1')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('test-nav-2')).toBeInTheDocument();
+    expect(screen.queryByTestId('test-nav-3')).not.toBeInTheDocument();
+
+    // Expect <header> to be rendered
+    expect(screen.queryByRole('banner')).toBeInTheDocument();
+    // Expect <nav> to be rendered since NavigationItems are provided
+    expect(screen.queryByRole('navigation')).toBeInTheDocument();
+  });
+
+  test('renders Page content provided as navigation items', () => {
+    const view = render((
+      <TestPrimaryNavigationLayout
+        id="test-id"
+        titleConfig={{
+          title: 'Test Title',
+        }}
+        activeNavigationKey="key-1"
+      >
+        <NavigationItem
+          navigationKey="key-1"
+          label="Nav 1"
+          renderPage={() => (
+            <MockPage label="Nav 1 Page">
+              <div data-testid="test-nav-1">Nav 1</div>
+            </MockPage>
+          )}
+        />
+        <NavigationItem
+          navigationKey="key-2"
+          label="Nav 2"
+          renderPage={() => (
+            <MockPage label="Nav 2 Page">
+              <div data-testid="test-nav-2">Nav 2</div>
+            </MockPage>
+          )}
+        />
+        <NavigationItem
+          navigationKey="key-3"
+          label="Nav 3"
+          renderPage={() => (
+            <MockPage label="Nav 3 Page">
+              <div data-testid="test-nav-3">Nav 3</div>
+            </MockPage>
+          )}
+        />
+      </TestPrimaryNavigationLayout>
+    ));
+
+    expect(screen.queryByRole('main', { name: 'Nav 1 Page' })).toBeInTheDocument();
+
+    expect(screen.queryByTestId('test-nav-1')).toBeInTheDocument();
+    expect(screen.queryByTestId('test-nav-2')).not.toBeInTheDocument();
+    expect(screen.queryByTestId('test-nav-3')).not.toBeInTheDocument();
+
+    view.rerender((
+      <TestPrimaryNavigationLayout
+        id="test-id"
+        titleConfig={{
+          title: 'Test Title',
+        }}
+        activeNavigationKey="key-2"
+      >
+        <NavigationItem
+          navigationKey="key-1"
+          label="Nav 1"
+          renderPage={() => (
+            <MockPage label="Nav 1 Page">
+              <div data-testid="test-nav-1">Nav 1</div>
+            </MockPage>
+          )}
+        />
+        <NavigationItem
+          navigationKey="key-2"
+          label="Nav 2"
+          renderPage={() => (
+            <MockPage label="Nav 2 Page">
+              <div data-testid="test-nav-2">Nav 2</div>
+            </MockPage>
+          )}
+        />
+        <NavigationItem
+          navigationKey="key-3"
+          label="Nav 3"
+          renderPage={() => (
+            <MockPage label="Nav 3 Page">
+              <div data-testid="test-nav-3">Nav 3</div>
+            </MockPage>
+          )}
+        />
+      </TestPrimaryNavigationLayout>
+    ));
+
+    expect(screen.queryByRole('main', { name: 'Nav 2 Page' })).toBeInTheDocument();
 
     expect(screen.queryByTestId('test-nav-1')).not.toBeInTheDocument();
     expect(screen.queryByTestId('test-nav-2')).toBeInTheDocument();

@@ -37,7 +37,7 @@ const MainPageContainer = ({
   children,
 }) => {
   const navigationItem = React.useContext(NavigationItemContext);
-  const layoutActions = React.useContext(LayoutActionsContext) || {};
+  const layoutActions = React.useContext(LayoutActionsContext);
 
   // The rootContainerRef points to the element within which Page content will
   // be rendered.
@@ -67,9 +67,8 @@ const MainPageContainer = ({
   }, [activePage, navigationItem.isActive]);
 
   // The LayoutActionsContext value is read, and its value is provided to the
-  // individual Pages through the PageContainerContext. The LayoutActionsContext
-  // value then is nullified for components within the MainPageContainer, as we
-  // do not wish to allow multiple implementers of these actions.
+  // individual Pages through the PageContainerContext. This allows us to better
+  // control the concerns of the various PageContainer implementations.
   const pageContainerContextValue = React.useMemo(() => ({
     containerStartActions: layoutActions.startActions,
     containerEndActions: layoutActions.endActions,
@@ -84,13 +83,11 @@ const MainPageContainer = ({
       label={activePage?.label || ''}
       metaData={activePage?.metaData}
     >
-      <LayoutActionsContext.Provider value={undefined}>
-        <PageManager>
-          <PageContainerContext.Provider value={pageContainerContextValue}>
-            {children}
-          </PageContainerContext.Provider>
-        </PageManager>
-      </LayoutActionsContext.Provider>
+      <PageManager>
+        <PageContainerContext.Provider value={pageContainerContextValue}>
+          {children}
+        </PageContainerContext.Provider>
+      </PageManager>
     </MainContainer>
   );
 };

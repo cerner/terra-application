@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import LayoutActionsContext from '../shared/LayoutActionsContext';
 import NavigationItemContext from '../navigation-item/NavigationItemContext';
 import deferExecution from '../utils/defer-execution';
 
@@ -60,9 +59,9 @@ const PageContainer = ({
     lastActivePageRef.current = activePage;
   }, [activePage, navigationItem.isActive]);
 
-  // The LayoutActionsContext value is nullified, and any present values are
-  // ignored. Handling of layout actions is the sole responsibility of the
-  // MainPageContainer.
+  // The LayoutActionsContext values are ignored and not passed through the
+  // PageContainerContext. Handling of layout actions is the sole responsibility
+  // of the MainPageContainer.
   const pageContainerContextValue = React.useMemo(() => ({
     containerStartActions: [],
     containerEndActions: [],
@@ -76,13 +75,11 @@ const PageContainer = ({
       aria-label={activePage?.label}
       data-testid="page-container"
     >
-      <LayoutActionsContext.Provider value={undefined}>
-        <PageManager>
-          <PageContainerContext.Provider value={pageContainerContextValue}>
-            {children}
-          </PageContainerContext.Provider>
-        </PageManager>
-      </LayoutActionsContext.Provider>
+      <PageManager>
+        <PageContainerContext.Provider value={pageContainerContextValue}>
+          {children}
+        </PageContainerContext.Provider>
+      </PageManager>
     </div>
   );
 };

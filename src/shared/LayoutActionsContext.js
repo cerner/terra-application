@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  * to the context's consumer to determine how and where these action controls
  * are rendered.
  */
-const LayoutActionsContext = createContext();
+const LayoutActionsContext = createContext({});
 
 const actionShape = PropTypes.shape({
   /**

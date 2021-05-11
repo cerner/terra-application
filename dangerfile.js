@@ -5,7 +5,7 @@ const lernaConfig = require('./lerna.json');
 
 let ignorePatterns = [];
 
-if (lernaConfig.command.publish) {
+if (lernaConfig.command) {
   ignorePatterns = lernaConfig.command.publish.ignoreChanges;
 }
 

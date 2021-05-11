@@ -3,7 +3,7 @@ import { danger, fail } from 'danger';
 
 const lernaConfig = require('./lerna.json');
 
-const ignorePatterns = lernaConfig.command.publish.ignoreChanges || [];
+const ignorePatterns = lernaConfig.command?.publish?.ignoreChanges || [];
 
 const CHANGELOG_PATTERN = /^packages\/([a-z-])*\/CHANGELOG\.md/i;
 

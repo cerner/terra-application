@@ -18,10 +18,11 @@ before_script:
   - docker load -i docker_images/images.tar || true
 jobs:
   include:
-    - stage: lint jest and compile
+    - stage: danger lint jest and compile
       script:
         # clear the cache of any old build artifacts
         - rm -rf ./travis-build
+        - npm run danger
         - npm run lint
         - npm run jest
         # These can't be built in parallel because the cache is a single object and you can't add to it in parallel
@@ -75,7 +76,7 @@ jobs:
         on:
           branch: main
 stages:
-  - lint jest and compile
+  - danger lint jest and compile
   - wdio
   - name: deploy
     if: type != pull_request AND branch = main

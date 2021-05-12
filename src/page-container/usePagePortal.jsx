@@ -36,6 +36,10 @@ const usePagePortal = ({
   const portalElementRef = React.useRef(createPortalElement());
   const unregisterPageRef = React.useRef();
 
+  if (!pageManager) {
+    throw new Error(`[terra-application] Page ${label} cannot be rendered outside of a PageContainer.`);
+  }
+
   React.useLayoutEffect(() => {
     unregisterPageRef.current = pageManager.registerPage({
       portalElement: portalElementRef.current,

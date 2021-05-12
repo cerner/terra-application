@@ -16,7 +16,7 @@ const PrimaryNavigationLayout3 = () => (
           subline: 'renderPage content',
         }}
         renderPage={() => (
-          <TestPage index={0} testLabel="Test Page" />
+          <TestPage index={1} testLabel="Test Page" />
         )}
       />
     </ApplicationContainer>

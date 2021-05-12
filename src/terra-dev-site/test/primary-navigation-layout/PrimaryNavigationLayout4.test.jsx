@@ -33,21 +33,21 @@ const PrimaryNavigationLayout1 = () => {
             navigationKey="1"
             label="Nav 1"
             renderPage={() => (
-              <TestPage index={0} testLabel="Nav 1 Test Page" />
+              <TestPage index={1} testLabel="Nav 1 Test Page" />
             )}
           />
           <NavigationItem
             navigationKey="2"
             label="Nav 2"
             renderPage={() => (
-              <TestPage index={0} testLabel="Nav 2 Test Page" />
+              <TestPage index={1} testLabel="Nav 2 Test Page" />
             )}
           />
           <NavigationItem
             navigationKey="3"
             label="Nav 3"
             renderPage={() => (
-              <TestPage index={0} testLabel="Nav 3 Test Page" />
+              <TestPage index={1} testLabel="Nav 3 Test Page" />
             )}
           />
         </PrimaryNavigationLayout>

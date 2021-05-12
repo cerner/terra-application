@@ -1,0 +1,31 @@
+@import '../breakpoints/media-queries';
+
+:local {
+  .page {
+    background-color: #f3f4f3;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    outline: none;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    .header {
+      flex: 0 0 auto;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .content {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 300px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+}

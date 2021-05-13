@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('MainContainer - Navigation Integration', ['large'], () => {
   before(() => {
-    browser.url('#/main-container/navigation');
+    browser.url('/terra-application-test/#/main-container/navigation');
   });
 
   it('renders with active main as nav 1', () => {

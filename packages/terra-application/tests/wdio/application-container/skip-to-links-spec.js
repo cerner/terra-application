@@ -2,11 +2,15 @@ const selector = '#root';
 
 Terra.describeViewports('ApplicationContainer SkipToLinks', ['large'], () => {
   before(() => {
-    browser.url('#/skip-to-links');
+    console.log('before set browser url');
+    browser.url('terra-application-test/#/skip-to-links');
+    console.log('after set browser url');
   });
 
   it('renders initial page without focus on skip to links', () => {
+    console.log('before validate element');
     Terra.validates.element('1. initial rendering', { selector });
+    console.log('after validate element');
   });
 
   it('renders first link when focus is set to it', () => {

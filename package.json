@@ -31,11 +31,11 @@
     },
     "overrides": [
       {
-        "files": ["packages/**/jest/**/*"],
+        "files": [
+          "packages/**/jest/**/*"
+        ],
         "rules": {
-          "import/no-extraneous-dependencies": "off",
-          "import/no-unresolved": "off",
-          "import/extensions": "off"
+          "import/no-extraneous-dependencies": "off"
         }
       }
     ]
@@ -75,22 +75,22 @@
     "start-heroku": "terra express-server --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio-default": "terra wdio",
+    "wdio-default": "terra wdio --spec skip-to-links-spec",
     "wdio-locale": "terra wdio --locales de",
     "wdio-lowlight": "terra wdio --themes clinical-lowlight-theme",
     "wdio-fusion": "terra wdio --themes orion-fusion-theme",
     "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "devDependencies": {
-    "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.10.5",
+    "@babel/cli": "^7.13.14",
+    "@babel/core": "^7.13.14",
     "@babel/plugin-proposal-class-properties": "^7.8.3",
-    "@babel/plugin-proposal-object-rest-spread": "^7.9.0",
-    "@babel/plugin-transform-async-to-generator": "^7.8.3",
-    "@babel/plugin-transform-object-assign": "^7.8.3",
-    "@babel/plugin-transform-runtime": "^7.9.0",
-    "@babel/preset-env": "^7.9.0",
-    "@babel/preset-react": "^7.9.1",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/plugin-transform-object-assign": "^7.12.13",
+    "@babel/plugin-transform-regenerator": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.13.10",
+    "@babel/preset-env": "^7.13.12",
+    "@babel/preset-react": "^7.13.13",
     "@cerner/browserslist-config-terra": "^3.1.0",
     "@cerner/eslint-config-terra": "^5.0.0",
     "@cerner/jest-config-terra": "^1.0.0",
@@ -100,6 +100,7 @@
     "@cerner/terra-functional-testing": "^1.0.3",
     "@cerner/terra-open-source-scripts": "^1.1.0",
     "@cerner/webpack-config-terra": "^1.2.0",
+    "@octokit/core": "^3.4.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^10.0.4",
     "@testing-library/react-hooks": "^5.0.0",
@@ -110,12 +111,14 @@
     "enzyme-adapter-react-16": "^1.15.2",
     "enzyme-to-json": "^3.4.4",
     "eslint": "^7.19.0",
-    "gh-pages": "^2.2.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.0",
+    "intl": "^1.2.5",
     "jest": "^26.6.3",
     "lerna": "^3.16.4",
     "link-parent-bin": "^1.0.0",
-    "postcss": "^8.2.6",
+    "loader-runner": "^4.1.0",
+    "postcss": "^8.2.10",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^5.8.2",

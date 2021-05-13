@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('PrimaryNavigationLayout - Configuration 1', ['large', 'huge', 'enormous'], () => {
   before(() => {
-    browser.url('#/primary-navigation-layout-1');
+    browser.url('/terra-application-test/#/primary-navigation-layout-1');
   });
 
   afterEach(() => {
@@ -35,7 +35,7 @@ Terra.describeViewports('PrimaryNavigationLayout - Configuration 1', ['large', '
 
 Terra.describeViewports('PrimaryNavigationLayout - Configuration 1', ['tiny', 'small', 'medium'], () => {
   before(() => {
-    browser.url('#/primary-navigation-layout-1');
+    browser.url('/terra-application-test/#/primary-navigation-layout-1');
   });
 
   afterEach(() => {

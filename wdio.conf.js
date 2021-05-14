@@ -40,6 +40,4 @@ config.before = () => {
   });
 };
 
-config.logLevel = 'trace';
-
 exports.config = config;

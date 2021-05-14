@@ -75,11 +75,10 @@
     "start-heroku": "terra express-server --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio-default": "terra wdio --spec skip-to-links-spec",
-    "wdio-locale": "terra wdio --locales de",
+    "wdio-default": "terra wdio",
     "wdio-lowlight": "terra wdio --themes clinical-lowlight-theme",
     "wdio-fusion": "terra wdio --themes orion-fusion-theme",
-    "wdio": "npm run wdio-default && npm run wdio-locale && npm run wdio-lowlight && npm run wdio-fusion"
+    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "devDependencies": {
     "@babel/cli": "^7.13.14",

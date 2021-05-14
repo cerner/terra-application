@@ -1,6 +1,6 @@
 Terra.describeViewports('home', ['tiny', 'huge'], () => {
   it('checks accessibility', () => {
-    browser.url('/');
+    browser.url('extended/');
     $('a [alt="devDependencies status"]').waitForDisplayed();
     $('a [alt="Dependencies status"]').waitForDisplayed();
     $('a [alt="Build Status"]').waitForDisplayed();

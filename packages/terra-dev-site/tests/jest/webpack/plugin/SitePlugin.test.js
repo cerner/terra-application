@@ -57,23 +57,23 @@ describe('SitePlugin', () => {
 
     expect(compiler.options.module.rules).toMatchSnapshot();
 
-    expect(compiler.options.resolve.plugins).toEqual([{
-      dirs: [{
-        distribution: path.join(processPath, 'lib'),
-        source: path.join(processPath, 'src'),
-      }],
-      extensions: ['.js'],
-      shouldSwitch: true,
-    }, {
-      alias: [{
-        alias: path.join(processPath),
-        name: '@cerner/terra-dev-site',
-        onlyModule: false,
-      }],
-    }]);
+    expect(compiler.options.resolve.plugins[0].extensions).toEqual(['.js']);
+
+    expect(compiler.options.resolve.plugins[0].shouldSwitch).toBeTruthy();
+
+    expect(compiler.options.resolve.plugins[0].dirs).toContainEqual({
+      distribution: path.join(processPath, 'packages', 'terra-dev-site', 'lib'),
+      source: path.join(processPath, 'packages', 'terra-dev-site', 'src'),
+    });
+
+    expect(compiler.options.resolve.plugins[1].alias).toContainEqual({
+      alias: path.join(processPath, 'packages', 'terra-dev-site'),
+      name: '@cerner/terra-dev-site',
+      onlyModule: false,
+    });
 
     expect(compiler.options.resolveLoader.modules).toEqual([
-      path.resolve(process.cwd(), 'src', 'webpack', 'loaders'),
+      path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'loaders'),
       'node_modules',
     ]);
 
@@ -83,14 +83,14 @@ describe('SitePlugin', () => {
 
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(1, {
       filename: '404.html',
-      template: path.join(processPath, 'src', 'webpack', 'templates', '404.html'),
+      template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', '404.html'),
       inject: 'head',
       chunks: ['redirect'],
     });
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(2, {
       title: 'title',
       filename: 'pathPrefix/index.html',
-      template: path.join(process.cwd(), 'src', 'webpack', 'templates', 'index.html'),
+      template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'index.html'),
       favicon: 'favicon',
       headHtml: [''],
       excludeChunks: ['rewriteHistory', 'redirect'],
@@ -153,7 +153,7 @@ describe('SitePlugin', () => {
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(1, {
       title: 'title',
       filename: 'index.html',
-      template: path.join(process.cwd(), 'src', 'webpack', 'templates', 'index.html'),
+      template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'index.html'),
       favicon: 'favicon',
       headHtml: [''],
       excludeChunks: ['rewriteHistory', 'redirect', 'pathPrefix/index'],

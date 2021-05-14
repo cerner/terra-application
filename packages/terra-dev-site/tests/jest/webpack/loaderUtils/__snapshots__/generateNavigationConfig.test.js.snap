@@ -6,17 +6,17 @@ Array [
     "children": Array [
       Object {
         "label": "Add",
-        "path": "/test/npm-package/add",
+        "path": "/test/cerner-terra-dev-site/add",
         "type": "md",
       },
       Object {
         "label": "File",
-        "path": "/test/npm-package/file",
+        "path": "/test/cerner-terra-dev-site/file",
         "type": "js",
       },
       Object {
         "label": "File Outside",
-        "path": "/test/npm-package/file-outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
         "type": "md",
       },
     ],
@@ -28,22 +28,22 @@ Array [
 
 exports[`generateNavigationConfig test standard config + additional content 2`] = `
 Object {
-  "/": "/test/npm-package/add",
-  "/test": "/test/npm-package/add",
+  "/": "/test/cerner-terra-dev-site/add",
+  "/test": "/test/cerner-terra-dev-site/add",
 }
 `;
 
 exports[`generateNavigationConfig test standard config + additional content 3`] = `
 Object {
-  "/test/npm-package/add": Object {
+  "/test/cerner-terra-dev-site/add": Object {
     "label": "Add",
     "type": "md",
   },
-  "/test/npm-package/file": Object {
+  "/test/cerner-terra-dev-site/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/file-outside": Object {
+  "/test/cerner-terra-dev-site/file-outside": Object {
     "label": "File Outside",
     "type": "md",
   },
@@ -56,12 +56,12 @@ Array [
     "children": Array [
       Object {
         "label": "File",
-        "path": "/test/npm-package/file",
+        "path": "/test/cerner-terra-dev-site/file",
         "type": "js",
       },
       Object {
         "label": "File Outside",
-        "path": "/test/npm-package/file-outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
         "type": "md",
       },
     ],
@@ -73,18 +73,18 @@ Array [
 
 exports[`generateNavigationConfig tests additionalSearchDirectories 2`] = `
 Object {
-  "/": "/test/npm-package/file",
-  "/test": "/test/npm-package/file",
+  "/": "/test/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
 }
 `;
 
 exports[`generateNavigationConfig tests additionalSearchDirectories 3`] = `
 Object {
-  "/test/npm-package/file": Object {
+  "/test/cerner-terra-dev-site/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/file-outside": Object {
+  "/test/cerner-terra-dev-site/file-outside": Object {
     "label": "File Outside",
     "type": "md",
   },
@@ -97,7 +97,7 @@ Array [
     "label": "Test",
     "pageConfig": Object {
       "label": "File",
-      "path": "/test/npm-package/file",
+      "path": "/test/cerner-terra-dev-site/file",
       "type": "js",
     },
     "path": "/test",
@@ -106,7 +106,7 @@ Array [
     "label": "Doc",
     "pageConfig": Object {
       "label": "File",
-      "path": "/doc/npm-package/file",
+      "path": "/doc/cerner-terra-dev-site/file",
       "type": "js",
     },
     "path": "/doc",
@@ -116,19 +116,19 @@ Array [
 
 exports[`generateNavigationConfig tests multiple primary nav items 2`] = `
 Object {
-  "/": "/test/npm-package/file",
-  "/doc": "/doc/npm-package/file",
-  "/test": "/test/npm-package/file",
+  "/": "/test/cerner-terra-dev-site/file",
+  "/doc": "/doc/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
 }
 `;
 
 exports[`generateNavigationConfig tests multiple primary nav items 3`] = `
 Object {
-  "/doc/npm-package/file": Object {
+  "/doc/cerner-terra-dev-site/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/file": Object {
+  "/test/cerner-terra-dev-site/file": Object {
     "label": "File",
     "type": "js",
   },
@@ -141,12 +141,12 @@ Array [
     "children": Array [
       Object {
         "label": "File",
-        "path": "/test/npm-package/file",
+        "path": "/test/cerner-terra-dev-site/file",
         "type": "js",
       },
       Object {
         "label": "File Outside",
-        "path": "/test/npm-package/file-outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
         "type": "md",
       },
     ],
@@ -158,18 +158,18 @@ Array [
 
 exports[`generateNavigationConfig tests prod mode 2`] = `
 Object {
-  "/": "/test/npm-package/file",
-  "/test": "/test/npm-package/file",
+  "/": "/test/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
 }
 `;
 
 exports[`generateNavigationConfig tests prod mode 3`] = `
 Object {
-  "/test/npm-package/file": Object {
+  "/test/cerner-terra-dev-site/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/file-outside": Object {
+  "/test/cerner-terra-dev-site/file-outside": Object {
     "label": "File Outside",
     "type": "md",
   },
@@ -182,19 +182,19 @@ Array [
     "children": Array [
       Object {
         "label": "First File",
-        "path": "/test/npm-package/first-file",
+        "path": "/test/cerner-terra-dev-site/first-file",
         "type": "js",
       },
       Object {
         "label": "Second File",
-        "path": "/test/npm-package/second-file",
+        "path": "/test/cerner-terra-dev-site/second-file",
         "type": "js",
       },
       Object {
         "children": Array [
           Object {
             "label": "File",
-            "path": "/test/npm-package/dir/file",
+            "path": "/test/cerner-terra-dev-site/dir/file",
             "type": "js",
           },
         ],
@@ -202,14 +202,14 @@ Array [
       },
       Object {
         "label": "A",
-        "path": "/test/npm-package/a",
+        "path": "/test/cerner-terra-dev-site/a",
         "type": "js",
       },
       Object {
         "children": Array [
           Object {
             "label": "File",
-            "path": "/test/npm-package/b/file",
+            "path": "/test/cerner-terra-dev-site/b/file",
             "type": "js",
           },
         ],
@@ -224,30 +224,30 @@ Array [
 
 exports[`generateNavigationConfig tests sorting 2`] = `
 Object {
-  "/": "/test/npm-package/first-file",
-  "/test": "/test/npm-package/first-file",
+  "/": "/test/cerner-terra-dev-site/first-file",
+  "/test": "/test/cerner-terra-dev-site/first-file",
 }
 `;
 
 exports[`generateNavigationConfig tests sorting 3`] = `
 Object {
-  "/test/npm-package/a": Object {
+  "/test/cerner-terra-dev-site/a": Object {
     "label": "A",
     "type": "js",
   },
-  "/test/npm-package/b/file": Object {
+  "/test/cerner-terra-dev-site/b/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/dir/file": Object {
+  "/test/cerner-terra-dev-site/dir/file": Object {
     "label": "File",
     "type": "js",
   },
-  "/test/npm-package/first-file": Object {
+  "/test/cerner-terra-dev-site/first-file": Object {
     "label": "First File",
     "type": "js",
   },
-  "/test/npm-package/second-file": Object {
+  "/test/cerner-terra-dev-site/second-file": Object {
     "label": "Second File",
     "type": "js",
   },

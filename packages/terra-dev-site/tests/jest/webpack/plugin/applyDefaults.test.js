@@ -37,7 +37,7 @@ describe('applyDefault', () => {
     }]);
     expect(config.additionalSearchDirectories).toEqual([]);
     expect(config.sideEffectImportFilePaths).toEqual([]);
-    expect(config.titleConfig).toEqual({ title: 'Terra Dev Site' });
+    expect(config.titleConfig).toEqual({ title: 'Terra Application' });
     expect(config.faviconFilePath).toEqual(path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'terra-favicon', '32px', 'favicon.ico'));
     expect(config.extensionItems).toEqual([]);
     expect(config.headHtml).toEqual([]);

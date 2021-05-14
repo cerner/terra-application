@@ -34,7 +34,7 @@ describe('devSiteEntry', () => {
       ],
     });
     runLoaders({
-      resource: path.resolve(process.cwd(), 'src', 'webpack', 'templates', 'entry.template'),
+      resource: path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template'),
       loaders: [
         {
           loader: path.resolve(__dirname, '../../../../src/webpack/loaders/devSiteEntry'),
@@ -113,7 +113,7 @@ describe('devSiteEntry', () => {
       ],
     });
     runLoaders({
-      resource: path.resolve(process.cwd(), 'src', 'webpack', 'templates', 'entry.template'),
+      resource: path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template'),
       loaders: [
         {
           loader: path.resolve(__dirname, '../../../../src/webpack/loaders/devSiteEntry'),

@@ -14,7 +14,7 @@ describe('generateNavigationConfig', () => {
           additionalContent: [
             {
               label: 'add',
-              filePath: path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'additionalContent.md'),
+              filePath: path.resolve(__dirname, 'testContent', 'additionalContent.md'),
             },
           ],
         }, {
@@ -30,18 +30,18 @@ describe('generateNavigationConfig', () => {
       resolveExtensions: ['.js'],
       mode: 'development',
       contentDirectory: 'TestA',
-      isLernaMonoRepo: false,
+      isLernaMonoRepo: true,
       addContextDependency,
       logger: () => {},
     });
-    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'TestA')}/`);
+    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(__dirname, 'testContent', 'TestA')}/`);
     expect(config.navigationConfig).toMatchSnapshot();
     expect(config.routesMap).toMatchSnapshot();
     expect(config.pageConfig).toMatchSnapshot();
     expect(config.contentImports).toEqual({
-      '/test/npm-package/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/ext/file.ext.js'),
-      '/test/npm-package/file-outside': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/fileOutside.ext.md'),
-      '/test/npm-package/add': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/additionalContent.md'),
+      '/test/cerner-terra-dev-site/file': path.join(__dirname, '/testContent/TestA/ext/file.ext.js'),
+      '/test/cerner-terra-dev-site/file-outside': path.join(__dirname, 'testContent/TestA/fileOutside.ext.md'),
+      '/test/cerner-terra-dev-site/add': path.join(__dirname, 'testContent/additionalContent.md'),
     });
   });
 
@@ -63,7 +63,7 @@ describe('generateNavigationConfig', () => {
       resolveExtensions: ['.js'],
       mode: 'production',
       contentDirectory: 'TestA',
-      isLernaMonoRepo: false,
+      isLernaMonoRepo: true,
       addContextDependency,
       logger: () => {},
     });
@@ -72,8 +72,8 @@ describe('generateNavigationConfig', () => {
     expect(config.routesMap).toMatchSnapshot();
     expect(config.pageConfig).toMatchSnapshot();
     expect(config.contentImports).toEqual({
-      '/test/npm-package/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/ext/file.ext.js'),
-      '/test/npm-package/file-outside': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/fileOutside.ext.md'),
+      '/test/cerner-terra-dev-site/file': path.join(__dirname, 'testContent/TestA/ext/file.ext.js'),
+      '/test/cerner-terra-dev-site/file-outside': path.join(__dirname, 'testContent/TestA/fileOutside.ext.md'),
     });
   });
 
@@ -95,20 +95,20 @@ describe('generateNavigationConfig', () => {
       resolveExtensions: ['.js'],
       mode: 'development',
       contentDirectory: 'TestB',
-      isLernaMonoRepo: false,
+      isLernaMonoRepo: true,
       addContextDependency,
       logger: () => {},
     });
-    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'TestB')}/`);
+    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(__dirname, 'testContent', 'TestB')}/`);
     expect(config.navigationConfig).toMatchSnapshot();
     expect(config.routesMap).toMatchSnapshot();
     expect(config.pageConfig).toMatchSnapshot();
     expect(config.contentImports).toEqual({
-      '/test/npm-package/a': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestB/ext/a.ext.js'),
-      '/test/npm-package/b/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestB/ext/b/file.ext.js'),
-      '/test/npm-package/dir/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestB/ext/dir.c/file.ext.js'),
-      '/test/npm-package/first-file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestB/ext/firstFile.a.ext.js'),
-      '/test/npm-package/second-file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestB/ext/secondFile.b.ext.js'),
+      '/test/cerner-terra-dev-site/a': path.join(__dirname, 'testContent/TestB/ext/a.ext.js'),
+      '/test/cerner-terra-dev-site/b/file': path.join(__dirname, 'testContent/TestB/ext/b/file.ext.js'),
+      '/test/cerner-terra-dev-site/dir/file': path.join(__dirname, 'testContent/TestB/ext/dir.c/file.ext.js'),
+      '/test/cerner-terra-dev-site/first-file': path.join(__dirname, 'testContent/TestB/ext/firstFile.a.ext.js'),
+      '/test/cerner-terra-dev-site/second-file': path.join(__dirname, 'testContent/TestB/ext/secondFile.b.ext.js'),
     });
   });
 
@@ -117,7 +117,7 @@ describe('generateNavigationConfig', () => {
     const config = generatePagesConfig({
       siteConfig: {
         additionalSearchDirectories: [
-          path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'TestA'),
+          path.resolve(__dirname, 'testContent', 'TestA'),
         ],
         primaryNavigationItems: [{
           path: '/test',
@@ -132,17 +132,16 @@ describe('generateNavigationConfig', () => {
       resolveExtensions: ['.js'],
       mode: 'development',
       contentDirectory: 'Empty',
-      isLernaMonoRepo: false,
+      isLernaMonoRepo: true,
       addContextDependency,
       logger: () => {},
     });
-    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'Empty')}/`);
     expect(config.navigationConfig).toMatchSnapshot();
     expect(config.routesMap).toMatchSnapshot();
     expect(config.pageConfig).toMatchSnapshot();
     expect(config.contentImports).toEqual({
-      '/test/npm-package/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/ext/file.ext.js'),
-      '/test/npm-package/file-outside': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestA/fileOutside.ext.md'),
+      '/test/cerner-terra-dev-site/file': path.join(__dirname, 'testContent/TestA/ext/file.ext.js'),
+      '/test/cerner-terra-dev-site/file-outside': path.join(__dirname, 'testContent/TestA/fileOutside.ext.md'),
     });
   });
 
@@ -168,17 +167,17 @@ describe('generateNavigationConfig', () => {
       resolveExtensions: ['.js'],
       mode: 'development',
       contentDirectory: 'TestC',
-      isLernaMonoRepo: false,
+      isLernaMonoRepo: true,
       addContextDependency,
       logger: () => {},
     });
-    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'TestC')}/`);
+    expect(addContextDependency).toHaveBeenCalledWith(`${path.resolve(__dirname, 'testContent', 'TestC')}/`);
     expect(config.navigationConfig).toMatchSnapshot();
     expect(config.routesMap).toMatchSnapshot();
     expect(config.pageConfig).toMatchSnapshot();
     expect(config.contentImports).toEqual({
-      '/test/npm-package/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestC/ext/file.ext.js'),
-      '/doc/npm-package/file': path.join(process.cwd(), 'tests/jest/webpack/loaderUtils/testContent/TestC/doc/file.doc.js'),
+      '/test/cerner-terra-dev-site/file': path.join(__dirname, 'testContent/TestC/ext/file.ext.js'),
+      '/doc/cerner-terra-dev-site/file': path.join(__dirname, 'testContent/TestC/doc/file.doc.js'),
     });
   });
 });

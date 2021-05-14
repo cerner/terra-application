@@ -185,7 +185,7 @@ const addWatchContentDirectories = ({
   const processPath = process.cwd();
 
   if (isLernaMonoRepo) {
-    glob.sync(`${processPath}/packages/*/${sourceFolder}/${contentDirectory}`).forEach(dir => { addContextDependency(dir); });
+    glob.sync(`${processPath}/packages/*/${sourceFolder}/${contentDirectory}`).forEach(dir => { addContextDependency(`${dir}/`); });
   } else {
     addContextDependency(`${processPath}/${sourceFolder}/${contentDirectory}/`);
   }

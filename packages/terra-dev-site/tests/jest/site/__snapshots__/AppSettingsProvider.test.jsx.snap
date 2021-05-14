@@ -14,13 +14,10 @@ exports[`ThemeContextProvider Snapshots should render with default config specif
       ],
       "locales": Array [
         "en",
-        "es",
-        "de",
       ],
       "onUpdate": [Function],
       "themes": Array [
-        "clinical-lowlight-theme",
-        "orion-fusion-theme",
+        "terra-default-theme",
       ],
     }
   }
@@ -35,7 +32,7 @@ exports[`ThemeContextProvider Snapshots should render with no config 1`] = `
     Object {
       "currentDirection": "ltr",
       "currentLocale": "en",
-      "currentTheme": "orion-fusion-theme",
+      "currentTheme": "terra-default-theme",
       "currentThemeClassName": undefined,
       "directions": Array [
         "ltr",
@@ -43,13 +40,10 @@ exports[`ThemeContextProvider Snapshots should render with no config 1`] = `
       ],
       "locales": Array [
         "en",
-        "es",
-        "de",
       ],
       "onUpdate": [Function],
       "themes": Array [
-        "clinical-lowlight-theme",
-        "orion-fusion-theme",
+        "terra-default-theme",
       ],
     }
   }

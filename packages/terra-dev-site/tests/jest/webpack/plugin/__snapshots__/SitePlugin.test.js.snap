@@ -19,7 +19,7 @@ Array [
               "basename": "/pathPrefix",
               "contentDirectory": "terra-dev-site",
               "entryPath": "entry",
-              "isLernaMonoRepo": false,
+              "isLernaMonoRepo": true,
               "resolveExtensions": undefined,
               "siteConfig": Object {
                 "defaultDirection": "rtl",
@@ -203,7 +203,7 @@ Array [
               "basename": "",
               "contentDirectory": "terra-dev-site",
               "entryPath": "entry",
-              "isLernaMonoRepo": false,
+              "isLernaMonoRepo": true,
               "resolveExtensions": undefined,
               "siteConfig": Object {
                 "defaultDirection": "rtl",

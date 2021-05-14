@@ -25,7 +25,7 @@ describe('getNamespace', () => {
   });
 
   it('returns the package name from the package.json associated with the mono repo package.', () => {
-    const directory = path.resolve(process.cwd(), 'tests', 'jest', 'webpack', 'loaderUtils', 'testContent', 'packages', 'module', 'file');
+    const directory = path.resolve(__dirname, 'testContent', 'packages', 'module', 'file');
     const namespace = 'namespace';
     let result = configHelpers.getNamespace(directory, namespace);
     expect(result).toEqual('@cerner/testing');

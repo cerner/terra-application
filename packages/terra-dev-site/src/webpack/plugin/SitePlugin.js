@@ -11,7 +11,7 @@ const getNewRelicJS = require('../new-relic/getNewRelicJS');
 
 // Singletons
 let oneTimeSetupComplete = false;
-const siteRegistry = {};
+let siteRegistry = {};
 const processPath = process.cwd();
 const isLernaMonoRepo = fs.existsSync(path.join(processPath, 'lerna.json'));
 
@@ -317,6 +317,12 @@ class SitePlugin {
       headHtml: [getNewRelicJS()].concat(this.siteConfig.headHtml),
       excludeChunks: ['rewriteHistory', 'redirect', ...Object.values(filteredSites).map(site => site.entry)],
     }).apply(compiler);
+
+    // Clean up the singletons after plugins are applied.
+    compiler.hooks.afterPlugins.tap('terra-dev-site-site-plugin', () => {
+      oneTimeSetupComplete = false;
+      siteRegistry = {};
+    });
   }
 }
 

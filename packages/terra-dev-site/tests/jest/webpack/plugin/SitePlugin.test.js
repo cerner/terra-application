@@ -44,6 +44,11 @@ describe('SitePlugin', () => {
         devServer: {},
         entry: {},
       },
+      hooks: {
+        afterPlugins: {
+          tap: jest.fn(),
+        },
+      },
     };
 
     plug.apply(compiler);
@@ -138,6 +143,11 @@ describe('SitePlugin', () => {
         resolveLoader: {},
         devServer: {},
         entry: {},
+      },
+      hooks: {
+        afterPlugins: {
+          tap: jest.fn(),
+        },
       },
     };
 

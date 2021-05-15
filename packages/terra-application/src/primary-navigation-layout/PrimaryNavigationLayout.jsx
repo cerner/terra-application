@@ -166,6 +166,7 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
+  workspace,
 }) => {
   const applicationConcept = React.useContext(ApplicationConceptContext);
 

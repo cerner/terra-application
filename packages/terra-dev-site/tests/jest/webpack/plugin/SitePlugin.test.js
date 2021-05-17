@@ -18,6 +18,7 @@ describe('SitePlugin', () => {
       defaultDirection: 'rtl',
       faviconFilePath: 'favicon',
       headHtml: [],
+      excludeChunks: [],
     };
     const siteConfig = {
       config,
@@ -114,6 +115,7 @@ describe('SitePlugin', () => {
       defaultDirection: 'rtl',
       faviconFilePath: 'favicon',
       headHtml: [],
+      excludeChunks: ['chunk'],
     };
     const siteConfig = {
       config,
@@ -166,7 +168,7 @@ describe('SitePlugin', () => {
       template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'index.html'),
       favicon: 'favicon',
       headHtml: [''],
-      excludeChunks: ['rewriteHistory', 'redirect', 'pathPrefix/index'],
+      excludeChunks: ['rewriteHistory', 'redirect', 'pathPrefix/index', 'chunk'],
     });
     // This is not called because one time setup has already been executed.
     expect(webpack.DefinePlugin).not.toHaveBeenCalled();

@@ -131,6 +131,11 @@ const propTypes = {
    * The dev directory housing non-transpiled code.
    */
   distributionFolder: PropTypes.string,
+
+  /**
+   * Allows you to skip adding some webpack chunks to the html template.
+   */
+  excludeChunks: PropTypes.arrayOf(PropTypes.string),
 };
 /* eslint-enable react/forbid-prop-types, react/no-unused-prop-types */
 

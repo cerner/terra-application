@@ -48,6 +48,7 @@ describe('applyDefault', () => {
     expect(config.defaultTheme).toBeUndefined();
     expect(config.defaultDirection).toBeUndefined();
     expect(config.pathPrefix).toBeUndefined();
+    expect(config.excludeChunks).toEqual([]);
   });
 
   it('applies all defaults', () => {
@@ -81,6 +82,9 @@ describe('applyDefault', () => {
       distributionFolder: 'dist',
       enableDebugLogging: true,
       derp: 'derp',
+      excludeChunks: [
+        'chunk',
+      ],
     });
     expect(config.primaryNavigationItems).toEqual([{
       path: '/custom',
@@ -101,5 +105,6 @@ describe('applyDefault', () => {
     expect(config.defaultDirection).toEqual('rtl');
     expect(config.pathPrefix).toEqual('pathPrefix');
     expect(config.derp).toBeUndefined();
+    expect(config.excludeChunks).toEqual(['chunk']);
   });
 });

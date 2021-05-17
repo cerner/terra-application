@@ -315,7 +315,7 @@ class SitePlugin {
       template: path.join(__dirname, '..', 'templates', 'index.html'),
       favicon: this.siteConfig.faviconFilePath,
       headHtml: [getNewRelicJS()].concat(this.siteConfig.headHtml),
-      excludeChunks: ['rewriteHistory', 'redirect', ...Object.values(filteredSites).map(site => site.entry)],
+      excludeChunks: ['rewriteHistory', 'redirect', ...Object.values(filteredSites).map(site => site.entry), ...this.siteConfig.excludeChunks],
     }).apply(compiler);
 
     // Clean up the singletons after plugins are applied.

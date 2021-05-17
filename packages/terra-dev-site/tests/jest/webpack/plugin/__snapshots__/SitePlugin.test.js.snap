@@ -24,6 +24,7 @@ Array [
               "siteConfig": Object {
                 "defaultDirection": "rtl",
                 "distributionFolder": "lib",
+                "excludeChunks": Array [],
                 "faviconFilePath": "favicon",
                 "headHtml": Array [],
                 "pathPrefix": "pathPrefix",
@@ -208,6 +209,9 @@ Array [
               "siteConfig": Object {
                 "defaultDirection": "rtl",
                 "distributionFolder": "lib",
+                "excludeChunks": Array [
+                  "chunk",
+                ],
                 "faviconFilePath": "favicon",
                 "headHtml": Array [],
                 "sourceFolder": "src",

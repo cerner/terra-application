@@ -52,6 +52,7 @@ const applyDefaults = ({
   distributionFolder = 'lib',
   enableDebugLogging = false,
   additionalConfig = {},
+  excludeChunks = [],
 } = {}) => ({
   primaryNavigationItems,
   additionalSearchDirectories,
@@ -69,6 +70,7 @@ const applyDefaults = ({
   enableDebugLogging,
   namespace: npmPackage.name,
   additionalConfig,
+  excludeChunks,
 });
 
 module.exports = applyDefaults;

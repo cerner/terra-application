@@ -29,6 +29,7 @@ const terraApplicationConfig = (env = {}) => ({
     }),
     new TerraDevSite({
       defaultLocale: env.defaultLocale,
+      excludeChunks: ['terra-application-test/index'],
     }),
     new TerraDevSite({
       pathPrefix: 'extended',
@@ -93,6 +94,7 @@ const terraApplicationConfig = (env = {}) => ({
       //     modalFilePath: '@cerner/terra-dev-site/lib/test-extension/TestExtension',
       //   },
       // ],
+      excludeChunks: ['terra-application-test/index'],
     }),
   ],
   resolve: {

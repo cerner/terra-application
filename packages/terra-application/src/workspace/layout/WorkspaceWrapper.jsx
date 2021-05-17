@@ -1,10 +1,61 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Workspace from '../../../workspace/Workspace';
 import WorkspaceItem from '../../../workspace/WorkspaceItem';
 
-const propTypes = {};
+const propTypes = {
+  onSizeChange: PropTypes.func,
+  onPresentationStateChange: PropTypes.func,
+  onActiveItemChange: PropTypes.func,
+  initialActiveItemKey: PropTypes.string,
+  children: PropTypes.node,
 
-const SecondaryNavigationLayoutWorkspace = ({
+  /**
+   * @private
+   * Id string to apply to the workspace
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * @private
+   * Whether or not the workspace is open
+   */
+  isOpen: PropTypes.bool,
+  /**
+   * @private
+   * Function callback i.e. `onRequest(event)`
+   */
+  onRequestClose: PropTypes.func,
+  /**
+   * @private
+   * Whether or not the workspace is present as an overlay
+   */
+  isPresentedAsOverlay: PropTypes.bool,
+  /**
+   * @private
+   * Numeric scale value ranging from `0.0 - 1.0` as the minimum to maximum size for the workspace
+   */
+  sizeScalar: PropTypes.number,
+  /**
+   * @private
+   * The string representation of the workspace size
+   */
+  activeSize: PropTypes.string,
+  /**
+   * @private
+   * Array of objects containing key/text pairs for the available size options
+   */
+  sizeOptions: PropTypes.arrayOf(PropTypes.shape({
+    key: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+  })),
+  /**
+   * @private
+   * Function callback i.e. `onRequestSizeChange(size)`
+   */
+  onRequestSizeChange: PropTypes.func,
+};
+
+const WorkspaceWrapper = ({
   // consumer props
   onSizeChange,
   onPresentationStateChange,
@@ -67,6 +118,6 @@ const SecondaryNavigationLayoutWorkspace = ({
   );
 };
 
-SecondaryNavigationLayoutWorkspace.propTypes = propTypes;
+WorkspaceWrapper.propTypes = propTypes;
 
-export default SecondaryNavigationLayoutWorkspace;
+export default WorkspaceWrapper;

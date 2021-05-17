@@ -1,4 +1,13 @@
 :local {
+  .workspace-inner {
+    border-radius: 5px;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    z-index: -1;
+  }
+
   .workspace-overlay {
     background-color: rgba(0, 0, 0, 0.3);
     bottom: 0;
@@ -140,7 +149,7 @@
     }
   }
 
-  .side-nav-container {
+  .layout-container {
     align-items: flex-start;
     display: flex;
     flex-direction: row;
@@ -151,33 +160,7 @@
     position: relative;
   }
 
-  .side-nav-sidebar {
-    background-color: #eff0ef;
-    box-shadow: inset -3px 0px 0px -2px#fefffe, inset -4px 0px 0px -2px #C7CACB;
-    display: none;
-    flex: 0 0 auto;
-    height: 100%;
-    width: 280px;
-
-    &.visible {
-      display: block;
-    }
-
-    &.overlay {
-      position: absolute;
-      width: calc(100% - 50px);
-      left: 0;
-      top: 0;
-      bottom: 0;
-      z-index: 6;
-
-      @include terra-mq-medium-up {
-        width: 200px;
-      }
-    }
-  }
-
-  .side-nav-body {
+  .layout-body {
     align-items: flex-start;
     display: flex;
     flex: 1 1 auto;

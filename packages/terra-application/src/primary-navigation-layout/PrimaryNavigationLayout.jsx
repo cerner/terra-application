@@ -9,6 +9,7 @@ import NavigationItem from '../navigation-item';
 import { MainPageContainer } from '../page-container';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import WorkspaceLayout from '../workspace/layout/WorkspaceLayout';
 
 import {
   titleConfigPropType,
@@ -166,7 +167,7 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
-  workspace,
+  workspaceWrapper, // abstraction, add props for state manipulation, open props up for fully controlled
 }) => {
   const applicationConcept = React.useContext(ApplicationConceptContext);
 
@@ -301,7 +302,11 @@ const PrimaryNavigationLayout = ({
           {applicationConcept?.layoutBanner}
         </div>
         <div ref={contentElementRef} className={cx('layout-content')}>
-          {content}
+          <WorkspaceLayout
+            workspace={workspaceWrapper}
+          >
+            {content}
+          </WorkspaceLayout>
         </div>
       </div>
     </ApplicationNavigation>

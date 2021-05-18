@@ -33,6 +33,7 @@ const terraApplicationConfig = (env = {}) => ({
     }),
     new TerraDevSite({
       pathPrefix: 'extended',
+      contentDirectory: 'dev-site-extended-test',
       primaryNavigationItems: [{
         path: '/home',
         label: 'Home',
@@ -79,9 +80,9 @@ const terraApplicationConfig = (env = {}) => ({
       titleConfig: {
         title: 'Terra Dev Site - Extended',
       },
-      additionalSearchDirectories: [
-        path.resolve(process.cwd(), 'node_modules', 'terra-list', 'lib', 'terra-dev-site'),
-      ],
+      // additionalSearchDirectories: [
+      //   path.resolve(process.cwd(), 'node_modules', 'terra-list', 'lib', 'terra-dev-site'),
+      // ],
       headHtml: [
         '<script> console.log("Inline head html script") </script>',
         html,
@@ -89,9 +90,9 @@ const terraApplicationConfig = (env = {}) => ({
       // extensionItems: [
       //   {
       //     iconPath: 'terra-icon/lib/icon/IconAllergy',
-      //     key: 'terra-dev-site.test-extension',
+      //     key: 'terra-application-docs.test-extension',
       //     text: 'Test Extension',
-      //     modalFilePath: '@cerner/terra-dev-site/lib/test-extension/TestExtension',
+      //     modalFilePath: '@cerner/terra-application-docs/lib/test-extension/TestExtension',
       //   },
       // ],
       excludeChunks: ['terra-application-test/index'],

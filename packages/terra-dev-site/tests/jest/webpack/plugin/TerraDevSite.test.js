@@ -23,7 +23,6 @@ describe('TerraDevSitePlugin', () => {
     expect(SitePlugin).toHaveBeenCalledWith({
       config: returnedConfig,
       entry: '@cerner/terra-dev-site/lib/site',
-      contentDirectory: 'terra-dev-site',
     });
     expect(SitePlugin).toHaveBeenCalledTimes(1);
     expect(plug.sitePlugin).toEqual(mockSitePlugin);

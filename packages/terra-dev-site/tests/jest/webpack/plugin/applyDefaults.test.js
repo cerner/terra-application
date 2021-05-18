@@ -49,6 +49,7 @@ describe('applyDefault', () => {
     expect(config.defaultDirection).toBeUndefined();
     expect(config.pathPrefix).toBeUndefined();
     expect(config.excludeChunks).toEqual([]);
+    expect(config.contentDirectory).toEqual('terra-dev-site');
   });
 
   it('applies all defaults', () => {
@@ -85,6 +86,7 @@ describe('applyDefault', () => {
       excludeChunks: [
         'chunk',
       ],
+      contentDirectory: 'contentDirectory',
     });
     expect(config.primaryNavigationItems).toEqual([{
       path: '/custom',
@@ -106,5 +108,6 @@ describe('applyDefault', () => {
     expect(config.pathPrefix).toEqual('pathPrefix');
     expect(config.derp).toBeUndefined();
     expect(config.excludeChunks).toEqual(['chunk']);
+    expect(config.contentDirectory).toEqual('contentDirectory');
   });
 });

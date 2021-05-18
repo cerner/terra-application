@@ -1,0 +1,31 @@
+# Terra Service
+
+The Terra service integrates [axe accessibility](https://github.com/dequelabs/axe-core) and screenshot comparison testing commands into the test environment. Invoking the axe engine will perform a static analysis of the entire document and dom structure.
+
+A list of available commands can be viewed [here](../about#test-utilities).
+
+## Options
+
+### selector
+
+An optional selector can be configured in the `serviceOptions` to specify the default element to be captured when taking a screenshot. Accessibility testing ignores this option and always tests the entire document.
+
+Type: `string`
+
+Required: `false`
+
+Default: `[data-terra-test-content] *:first-child`
+
+Example:
+
+```js
+// wdio.conf.js
+const { config } = require('@cerner/terra-functional-testing');
+
+config.serviceOptions = {
+  selector: '#root',
+};
+
+exports.config = config;
+```
+

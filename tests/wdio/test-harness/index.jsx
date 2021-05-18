@@ -9,6 +9,7 @@ import PrimaryNavigationLayout1 from '../../../packages/terra-application/lib/te
 import PrimaryNavigationLayout2 from '../../../packages/terra-application/lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout2.test';
 import PrimaryNavigationLayout3 from '../../../packages/terra-application/lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout3.test';
 import PrimaryNavigationLayout4 from '../../../packages/terra-application/lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout4.test';
+import PrimaryNavigationLayout5 from '../../../packages/terra-application/lib/terra-dev-site/test/primary-navigation-layout/PrimaryNavigationLayout5.test';
 import SkipToLinks from '../../../packages/terra-application/lib/terra-dev-site/test/application-container/SkipToLinks.test';
 import MainContainerSimple from '../../../packages/terra-application/lib/terra-dev-site/test/main-container/MainContainerSimple.test';
 import MainContainerNavigation from '../../../packages/terra-application/lib/terra-dev-site/test/main-container/MainContainerNavigation.test';
@@ -20,6 +21,7 @@ const testMap = {
   '#/primary-navigation-layout-2': PrimaryNavigationLayout2,
   '#/primary-navigation-layout-3': PrimaryNavigationLayout3,
   '#/primary-navigation-layout-4': PrimaryNavigationLayout4,
+  '#/primary-navigation-layout-5': PrimaryNavigationLayout5,
   '#/skip-to-links': SkipToLinks,
   '#/main-container/simple': MainContainerSimple,
   '#/main-container/navigation': MainContainerNavigation,

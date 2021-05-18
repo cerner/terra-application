@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Workspace from '../../../workspace/Workspace';
-import WorkspaceItem from '../../../workspace/WorkspaceItem';
+import Workspace from '../Workspace';
+import WorkspaceItem from '../WorkspaceItem';
 
 const propTypes = {
   onSizeChange: PropTypes.func,

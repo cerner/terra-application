@@ -303,7 +303,11 @@ const PrimaryNavigationLayout = ({
         </div>
         <div ref={contentElementRef} className={cx('layout-content')}>
           <WorkspaceLayout
+            id={`workspace-layout-${id}`}
             workspace={workspaceWrapper}
+            renderLayout={renderLayout}
+            renderPage={renderPage}
+            activeNavigationKey={activeNavigationKey} // TODO: confirm this
           >
             {content}
           </WorkspaceLayout>

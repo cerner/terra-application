@@ -6,13 +6,13 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-import SkipToButton from '../../application-container/private/skip-to/SkipToButton';
-import MainPageContainer from '../../page/MainPageContainer';
-import LayoutActionsContext from '../shared/LayoutActionsContext';
+import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
+import { MainPageContainer } from '../../page-container';
+import LayoutActionsContext from '../../shared/LayoutActionsContext';
 import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
-import { deferExecution } from '../../utils/lifecycle-utils';
+import { deferExecution } from '../../utils/defer-execution';
 import usePortalManager from '../../shared/usePortalManager';
-import ResizeHandle from './workspace/ResizeHandle';
+import ResizeHandle from './ResizeHandle';
 
 import styles from './WorkspaceLayout.module.scss';
 
@@ -24,6 +24,7 @@ const propTypes = {
   renderPage: PropTypes.func,
   renderLayout: PropTypes.func,
   workspace: PropTypes.element,
+  activeNavigationKey: PropTypes.string,
 };
 
 const initialSizeForBreakpoint = breakpoint => {
@@ -95,6 +96,7 @@ const WorkspaceLayout = ({
   renderPage,
   renderLayout,
   workspace,
+  activeNavigationKey,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const parentLayoutActions = React.useContext(LayoutActionsContext);
@@ -121,14 +123,14 @@ const WorkspaceLayout = ({
   } else {
     initialWorkspaceSize = initialSizeForBreakpoint(activeBreakpoint);
   }
+
   const [workspaceSize, setWorkspaceSize] = React.useState(initialWorkspaceSize);
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const isLargeFormFactor = activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
 
   const layoutActionsContextValue = React.useMemo(() => {
-    let newStartActions = parentLayoutActions.startActions;
-    let newEndActions = parentLayoutActions.endActions;
+    let newEndActions = parentLayoutActions.endActions || []; // TODO: should we need a default?
 
     if (workspace) {
       newEndActions = [...newEndActions, {
@@ -141,9 +143,9 @@ const WorkspaceLayout = ({
         isActive: workspaceIsVisible,
       }];
     }
-
+  
     return ({
-      startActions: newStartActions,
+      startActions: parentLayoutActions.startActions,
       endActions: newEndActions,
     });
   }, [parentLayoutActions.startActions, parentLayoutActions.endActions, workspace, workspaceIsVisible]);
@@ -289,13 +291,13 @@ const WorkspaceLayout = ({
     );
   };
 
-  const renderSkipToWorkspaceButton = () => {
+  const renderWorkspaceSkipToLink = () => {
     if (!workspace) {
       return undefined;
     }
 
     return (
-      <SkipToButton
+      <SkipToLink
         description="Workspace"
         onSelect={() => {
           if (!workspaceIsVisible) {
@@ -440,7 +442,7 @@ const WorkspaceLayout = ({
 
   return (
     <>
-     {renderSkipToWorkspaceButton()}
+     {renderWorkspaceSkipToLink()}
       <div
         className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
         ref={pageContainerRef}

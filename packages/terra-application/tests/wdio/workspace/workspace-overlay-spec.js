@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('Workspace Overlay', ['huge'], () => {
   before(() => {
-    browser.url('/#/overlay-workspace');
+    browser.url('/terra-application-test/#/overlay-workspace');
     browser.execute('document.title = "Test Title";');
   });
 

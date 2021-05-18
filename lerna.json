@@ -1,4 +1,12 @@
 {
   "version": "independent",
-  "packages": ["packages/*"]
+  "packages": ["packages/*"],
+  "command": {
+    "publish": {
+      "ignoreChanges": [
+        "packages/terra-application/**",
+        "packages/terra-dev-site/**"
+      ]
+    }
+  }
 }

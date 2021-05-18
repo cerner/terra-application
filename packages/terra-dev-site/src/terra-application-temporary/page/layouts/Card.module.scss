@@ -1,0 +1,53 @@
+@import '@cerner/terra-application/lib/breakpoints/media-queries';
+
+:local {
+  .card {
+    background-color: #fefffe;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+
+    border-top: 1px solid #eeefee;
+    border-left: 1px solid #dfe0df;
+    border-right: 1px solid #dfe0df;
+    border-bottom: 1px solid #c6c8c7;
+
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.1);
+
+    min-height: calc(100% - 30px);
+    overflow: hidden;
+    padding: 0 10px 10px;
+
+    @include terra-mq-medium-up {
+      min-width: 768px;
+    }
+  }
+
+  .card-header {
+    flex: 0 0 auto;
+
+    align-items: center;
+    box-shadow: inset -3px -4px 0px -3px #f3f4f3, inset -3px -5px 0px -3px #c7cacb;
+
+    display: flex;
+    flex-wrap: nowrap;
+
+
+    overflow: hidden;
+    width: 100%;
+
+    .label-container {
+      flex: 1 1 auto;
+      padding: 10px 0;
+    }
+
+    .action-container {
+      flex: 0 0 auto;
+    }
+  }
+
+  .card-body {
+    flex: 1 1 auto;
+    padding-top: 1rem;
+  }
+}

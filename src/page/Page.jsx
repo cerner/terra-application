@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import Button from 'terra-button';
+import Toolbar from 'terra-toolbar';
 
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -79,38 +81,36 @@ const Page = ({
   // presentation within the Page.
   const {
     NotificationBannerProvider,
-    NotificationBanners: NotificationBannerPresenter,
+    NotificationBanners,
   } = useNotificationBanners();
 
   // The usePagePortal hook is used to generate the PagePortal component that
   // will render the Page content.
-  const { PagePortal, portalId } = usePagePortal({
+  const { PagePortal, pageId } = usePagePortal({
     label,
     metaData,
   });
-
-  function safelyRequestClose() {
-    if (dangerouslyDisableUnsavedChangesPromptHandling) {
-      onRequestClose();
-      return;
-    }
-
-    unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
-      onRequestClose();
-    });
-  }
 
   return (
     <PagePortal>
       <div className={cx('page')}>
         <div className={cx('header')}>
           <PageHeader
-            id={portalId}
-            onSelectBack={onRequestClose ? safelyRequestClose : undefined}
+            id={pageId}
+            onSelectBack={onRequestClose ? () => {
+              if (dangerouslyDisableUnsavedChangesPromptHandling) {
+                onRequestClose();
+                return;
+              }
+
+              unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
+                onRequestClose();
+              });
+            } : undefined}
             label={label}
             actions={actions}
             toolbar={toolbar}
-            NotificationBanners={NotificationBannerPresenter}
+            NotificationBanners={NotificationBanners}
           />
         </div>
         <div className={cx('content')}>
@@ -129,5 +129,15 @@ Page.propTypes = propTypes;
 
 Page.Actions = Actions;
 Page.Action = Action;
+
+Page.Toolbar = ({ children }) => (
+  <Toolbar className={cx('page-toolbar')}>
+    {children}
+  </Toolbar>
+);
+
+Page.Toolbar.Button = ({ label, icon, onSelect }) => (
+  <Button isIconOnly variant="utility" icon={icon} text={label} onClick={onSelect} />
+);
 
 export default Page;

@@ -3,8 +3,11 @@ import PropTypes from 'prop-types';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPerson from 'terra-icon/lib/icon/IconPerson';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 
 import NavigationPrompt from '../../../navigation-prompt';
+import NotificationBanner from '../../../notification-banner';
 
 import Page from '../../../page';
 
@@ -14,6 +17,12 @@ const TestPage = ({
   const label = `Page ${index}`;
   const [showChildPage, setShowChildPage] = React.useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = React.useState(false);
+  const [showToolbar, setShowToolbar] = React.useState(false);
+  const [showHazardHigh, setShowHazardHigh] = React.useState(false);
+  const [showHazardMedium, setShowHazardMedium] = React.useState(false);
+  const [showHazardLow, setShowHazardLow] = React.useState(false);
+  const [showLongText, setShowLongText] = React.useState(false);
+
   const metaData = React.useRef({ test: index });
 
   const actions = (
@@ -26,10 +35,18 @@ const TestPage = ({
 
   return (
     <Page
-      label={label}
+      label={showLongText ? (
+        `${label} With A Lot Of Extra Text Test Wrapping Scenarios Within the Page Header - Mississippi, hydrocodone/acetaminophen, OnabotulinumtoxinA, Talimogene Laherparepvec`
+      ) : label}
       metaData={metaData.current}
       onRequestClose={onRequestDismiss}
       actions={actions}
+      toolbar={showToolbar ? (
+        <Page.Toolbar>
+          <Page.Toolbar.Button label="Edit" icon={<IconEdit />} onSelect={() => { console.log('edit'); }} />
+          <Page.Toolbar.Button label="Add" icon={<IconAttachment />} onSelect={() => { console.log('attach'); }} />
+        </Page.Toolbar>
+      ) : undefined}
     >
       <div style={{ padding: '15px', height: '100%', overflow: 'auto' }}>
         <p>{testLabel}</p>
@@ -52,6 +69,66 @@ const TestPage = ({
           <button type="button" onClick={() => setHasUnsavedChanges(state => !state)}>Toggle</button>
         </p>
         {hasUnsavedChanges ? <NavigationPrompt description={label} /> : undefined}
+        <p>
+          Show Toolbar:
+          {' '}
+          {showToolbar ? 'true' : 'false'}
+          {' '}
+          <button type="button" onClick={() => setShowToolbar(state => !state)}>Toggle</button>
+        </p>
+        <p>
+          Show High Hazard Banner:
+          {' '}
+          {showHazardHigh ? 'true' : 'false'}
+          {' '}
+          <button type="button" onClick={() => setShowHazardHigh(state => !state)}>Toggle</button>
+        </p>
+        <p>
+          Show Medium Hazard Banner:
+          {' '}
+          {showHazardMedium ? 'true' : 'false'}
+          {' '}
+          <button type="button" onClick={() => setShowHazardMedium(state => !state)}>Toggle</button>
+        </p>
+        <p>
+          Show Low Hazard Banner:
+          {' '}
+          {showHazardLow ? 'true' : 'false'}
+          {' '}
+          <button type="button" onClick={() => setShowHazardLow(state => !state)}>Toggle</button>
+        </p>
+        <p>
+          Show Long Label Text:
+          {' '}
+          {showLongText ? 'true' : 'false'}
+          {' '}
+          <button type="button" onClick={() => setShowLongText(state => !state)}>Toggle</button>
+        </p>
+        {showHazardHigh && (
+          <NotificationBanner
+            variant="hazard-high"
+            id="test-page-hazard-high-banner"
+            description="You need to look at something"
+            bannerAction={{
+              text: 'Resolve',
+            }}
+          />
+        )}
+        {showHazardMedium && (
+          <NotificationBanner
+            variant="hazard-medium"
+            id="test-page-hazard-medium-banner"
+            description="You should probably look at something"
+          />
+        )}
+        {showHazardLow && (
+          <NotificationBanner
+            variant="hazard-low"
+            id="test-page-hazard-low-banner"
+            description="You might want to look at something"
+            onRequestClose={() => { setShowHazardLow(false); }}
+          />
+        )}
         <p>Paragraph 1</p>
         <p>Paragraph 2</p>
         <p>Paragraph 3</p>

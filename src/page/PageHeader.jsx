@@ -11,82 +11,99 @@ import ActionMenu, {
 } from '../action-menu';
 import { useTransientPresentationState } from '../utils/transient-presentations';
 import useElementSize, { breakpointFilter } from '../shared/useElementSize';
-
 import PageContainerContext from '../page-container/PageContainerContext';
+
+import PageHeaderButton from './PageHeaderButton';
 
 import styles from './PageHeader.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
-  label: PropTypes.string,
-  onSelectBack: PropTypes.func,
-  toolbar: PropTypes.element,
+  /**
+   * A PageActions element containing action definitions to render as controls
+   * within the header.
+   */
   actions: PropTypes.element,
+  /**
+   * A unique identifier for the PageHeader. Applied to internal components
+   * as an id attribute and thus must be globally unique.
+   */
+  id: PropTypes.string.isRequired,
+  /**
+   * The label for the Page that the header is being rendered for.
+   */
+  label: PropTypes.string,
+  /**
+   * A NotificationBanners element type (as provided by the useNotificationBanners
+   * hook) to be rendered alongside the other header contents.
+   */
   NotificationBanners: PropTypes.elementType,
+  /**
+   * A function to be executed upon selection of the Page's back button. If not
+   * provided, the back button will not be rendered.
+   */
+  onSelectBack: PropTypes.func,
+  /**
+   * A toolbar element to render alongside the other header contents.
+   */
+  toolbar: PropTypes.element,
 };
 
 const PageHeader = ({
-  actions, toolbar, NotificationBanners, onSelectBack, label, id,
+  actions, id, label, NotificationBanners, onSelectBack, toolbar,
 }) => {
   const pageContainerContext = React.useContext(PageContainerContext);
-  const [showMenu, setShowMenu] = useTransientPresentationState(false);
+
   const headerContainerRef = React.useRef();
   const moreActionsButtonRef = React.useRef();
 
+  const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const { activeBreakpoint } = useElementSize(headerContainerRef, breakpointFilter);
 
-  const actionsAreCollapsed = activeBreakpoint === 'tiny';
+  let validActions = [];
+  if (actions) {
+    validActions = React.Children.toArray(actions.props.children).filter(child => child);
+  }
 
-  if (actions && React.Children.count(actions.props.children) > 3) {
+  if (validActions.length > 3) {
     throw new Error(`[terra-application] Page ${label} cannot render more than three actions.`);
   }
 
-  function renderActionButtons() {
-    if (!actions || (actionsAreCollapsed && React.Children.count(actions.props.children) > 1)) {
-      return undefined;
-    }
+  const actionsAreCollapsed = activeBreakpoint === 'tiny' && validActions.length > 1;
 
-    return React.Children.map(actions.props.children, (childAction) => (
-      childAction && (
-        <Button
-          refCallback={childAction.props.refCallback}
-          key={childAction.props.actionKey}
-          className={cx('header-button', { disabled: childAction.props.isDisabled })}
-          isIconOnly
-          icon={childAction.props.icon}
-          text={childAction.props.label}
-          variant={ButtonVariants.UTILITY}
-          onClick={(event) => { event.preventDefault(); childAction.props.onSelect(); }}
-          isDisabled={childAction.props.isDisabled}
-        />
-      )
+  function renderActionButtons() {
+    return validActions.map((action) => (
+      <PageHeaderButton
+        key={action.key}
+        refCallback={action.props.refCallback}
+        icon={action.props.icon}
+        ariaLabel={action.props.label}
+        onSelect={!action.props.isDisabled ? () => {
+          action.props.onSelect();
+        } : undefined}
+      />
     ));
   }
 
   function renderMenuButton() {
-    if (!actions || !actionsAreCollapsed || React.Children.count(actions.props.children) === 1) {
-      return undefined;
-    }
-
     return (
-      <Button
+      <PageHeaderButton
         refCallback={(ref) => {
           moreActionsButtonRef.current = ref;
 
-          React.Children.forEach(actions.props.children, (childAction) => {
-            if (childAction && childAction.props.refCallback) {
-              childAction.props.refCallback(ref);
+          validActions.forEach((action) => {
+            if (action.props.refCallback) {
+              action.props.refCallback(ref);
             }
           });
         }}
         className={cx('header-button')}
-        isIconOnly
         icon={<IconRollup />}
-        text="More Actions"
-        variant={ButtonVariants.UTILITY}
-        onClick={(event) => { event.preventDefault(); setShowMenu(true); }}
+        ariaLabel="More Actions"
+        onSelect={() => {
+          setShowMenu(true);
+        }}
       />
     );
   }
@@ -104,97 +121,112 @@ const PageHeader = ({
         popupContentRole="none"
       >
         <ActionMenu
-          label="Actions" // TODO intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+          label="Actions" // TODO intl
           onRequestClose={() => {
             setShowMenu(false);
           }}
         >
-          {React.Children.map(actions.props.children, (childAction) => (
-            childAction && (
-              <ActionMenuItem
-                key={childAction.props.actionKey}
-                label={childAction.props.label}
-                isDisabled={childAction.props.isDisabled}
-                onAction={() => {
-                  setShowMenu(false);
-                  childAction.props.onSelect();
-                }}
-              />
-            )
+          {validActions.map((action) => (
+            <ActionMenuItem
+              key={action.key}
+              actionKey={action.key}
+              label={action.props.label}
+              isDisabled={action.props.isDisabled}
+              icon={action.props.icon}
+              onAction={() => {
+                setShowMenu(false);
+                action.props.onSelect();
+              }}
+            />
           ))}
         </ActionMenu>
       </Popup>
     );
   }
 
+  function renderToolbar() {
+    return toolbar ? (
+      <div className={cx('toolbar-container')}>
+        {toolbar}
+      </div>
+    ) : undefined;
+  }
+
+  function renderStartActions() {
+    if (!onSelectBack && !pageContainerContext?.containerStartActions.length) {
+      return undefined;
+    }
+
+    return (
+      <>
+        {pageContainerContext.containerStartActions.length ? (
+          <>
+            {pageContainerContext.containerStartActions.map(({ icon: Icon, ...action }) => (
+              <PageHeaderButton
+                key={action.key}
+                ariaLabel={action.label}
+                icon={<Icon />}
+                onSelect={action.onSelect}
+                isDisabled={!action.onSelect}
+              />
+            ))}
+            {onSelectBack ? <div className={cx('actions-divider')} /> : undefined}
+          </>
+        ) : undefined}
+        {onSelectBack ? (
+          <PageHeaderButton
+            icon={<IconLeft />}
+            ariaLabel="Back" // TODO intl
+            onSelect={onSelectBack}
+          />
+        ) : undefined}
+      </>
+    );
+  }
+
+  function renderEndActions() {
+    return (
+      <>
+        {actionsAreCollapsed ? renderMenuButton() : renderActionButtons()}
+        {pageContainerContext?.containerEndActions.length ? (
+          <>
+            {validActions.length ? <div className={cx('actions-divider')} /> : undefined}
+            {pageContainerContext.containerEndActions.map(({ icon: Icon, ...action }) => (
+              <PageHeaderButton
+                key={action.key}
+                ariaLabel={action.label}
+                icon={<Icon />}
+                onSelect={action.onSelect}
+                isDisabled={!action.onSelect}
+              />
+            ))}
+          </>
+        ) : undefined}
+      </>
+    );
+  }
+
   return (
     <div ref={headerContainerRef} className={cx('page-header-container')}>
       <div className={cx('page-header')}>
-        {onSelectBack || pageContainerContext?.containerStartActions ? (
-          <div className={cx('back-button-container')}>
-            {pageContainerContext.containerStartActions.length ? (
-              <>
-                {pageContainerContext.containerStartActions.map(({ icon: Icon, ...action }) => (
-                  <Button
-                    className={cx('header-button')}
-                    key={action.key}
-                    text={action.label}
-                    icon={<Icon />}
-                    onClick={action.onSelect}
-                    isDisabled={!action.onSelect}
-                    variant="utility"
-                  />
-                ))}
-                <div className={cx('actions-divider')} />
-              </>
-            ) : null}
-            {onSelectBack ? (
-              <Button
-                className={cx(['header-button', 'back-button'])}
-                icon={<IconLeft />}
-                text="Back" // TODO intl and need for more explicit "return to [BLAH]" text
-                onClick={onSelectBack}
-                variant={ButtonVariants.UTILITY}
-              />
-            ) : null}
-          </div>
-        ) : null}
+        <div className={cx('start-actions-container')}>
+          {renderStartActions()}
+        </div>
         <div className={cx('label-container')} role="heading" aria-level={1}>
           {label}
         </div>
         <div className={cx('end-actions-container')}>
-          {renderActionButtons()}
-          {renderMenuButton()}
-          {showMenu && renderMenu()}
-          {pageContainerContext?.containerEndActions.length ? (
-            <>
-              <div className={cx('actions-divider')} />
-              {pageContainerContext.containerEndActions.map(({ icon: Icon, ...action }) => (
-                <Button
-                  className={cx('header-button')}
-                  key={action.key}
-                  text={action.label}
-                  icon={<Icon />}
-                  onClick={action.onSelect}
-                  isDisabled={!action.onSelect}
-                  variant="utility"
-                />
-              ))}
-            </>
-          ) : null}
+          {renderEndActions()}
         </div>
       </div>
-      {toolbar && (
-        <div className={cx('toolbar-container', 'rounded')}>
-          {toolbar}
-        </div>
-      )}
+      {renderToolbar()}
       <NotificationBanners
         id={id}
         label={label}
         activeClassName={cx('notification-banners-container')}
         bannerClassName={cx('notification-banner', 'rounded')}
       />
+      {renderMenu()}
     </div>
   );
 };

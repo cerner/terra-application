@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import logger from '../../utils/logger';
 
 const loadTranslationsFile = (locale) => {

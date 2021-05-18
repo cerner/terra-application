@@ -3,3 +3,4 @@ coverage
 build
 lib
 **/aggregated-translations/*.*
+packages/terra-dev-site/src/terra-application-temporary

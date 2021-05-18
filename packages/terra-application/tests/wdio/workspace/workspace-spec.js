@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('Workspace', ['huge'], () => {
   before(() => {
-    browser.url('/#/workspace');
+    browser.url('/terra-application-test/#/workspace');
     browser.execute('document.title = "Test Title";');
     browser.disableCSSAnimations();
   });

@@ -2,7 +2,7 @@ const selector = '#root';
 
 Terra.describeViewports('MainContainer - Simple Configuration', ['large'], () => {
   before(() => {
-    browser.url('#/main-container/simple');
+    browser.url('/terra-application-test/#/main-container/simple');
   });
 
   it('renders active main value output', () => {

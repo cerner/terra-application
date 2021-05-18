@@ -28,7 +28,7 @@ const TestPage = ({
   const actions = (
     <Page.Actions>
       <Page.Action actionKey="action-1" label="Action 1" onSelect={() => { console.log('action-1'); }} icon={<IconSearch />} />
-      {index % 2 === 0 && <Page.Action actionKey="action-2" label="Action 2" onSelect={() => { console.log('action-2'); }} icon={<IconAdd />} />}
+      {index % 2 === 0 && <Page.Action actionKey="action-2" label="Action 2 With A Really Long Label To See How It Wraps" onSelect={() => { console.log('action-2'); }} icon={<IconAdd />} />}
       {index % 2 === 0 && <Page.Action isDisabled actionKey="action-3" label="Action 3" onSelect={() => { console.log('action-3'); }} icon={<IconPerson />} />}
     </Page.Actions>
   );

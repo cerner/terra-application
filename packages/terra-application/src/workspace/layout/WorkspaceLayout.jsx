@@ -21,10 +21,7 @@ const cx = classNames.bind(styles);
 const propTypes = {
   id: PropTypes.string.isRequired,
   children: PropTypes.node,
-  renderPage: PropTypes.func,
-  renderLayout: PropTypes.func,
   workspace: PropTypes.element,
-  activeNavigationKey: PropTypes.string,
 };
 
 const initialSizeForBreakpoint = breakpoint => {
@@ -93,10 +90,7 @@ const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
 const WorkspaceLayout = ({
   id,
   children,
-  renderPage,
-  renderLayout,
   workspace,
-  activeNavigationKey,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const parentLayoutActions = React.useContext(LayoutActionsContext);
@@ -111,12 +105,6 @@ const WorkspaceLayout = ({
   const userSelectedTypeRef = React.useRef();
   const userSelectedScaleRef = React.useRef(0);
 
-  const [contentElementRef] = usePortalManager(activeNavigationKey, () => {
-    deferExecution(() => {
-      document.body.focus();
-    });
-  });
-
   let initialWorkspaceSize;
   if (validateInitialWorkspaceSizeForBreakpoint(activeBreakpoint)) {
     initialWorkspaceSize = (workspace && workspace.props.initialSize) || initialSizeForBreakpoint(activeBreakpoint);
@@ -130,10 +118,10 @@ const WorkspaceLayout = ({
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
 
   const layoutActionsContextValue = React.useMemo(() => {
-    let newEndActions = parentLayoutActions.endActions || []; // TODO: should we need a default?
+    let newActions = parentLayoutActions.actions || []; // TODO: should we need a default?
 
     if (workspace) {
-      newEndActions = [...newEndActions, {
+      newActions = [...newActions, {
         key: 'workspace-layout-toggle-workspace-panel',
         label: `Toggle Workspace Panel ${workspaceIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
         icon: workspaceIsVisible ? IconPanelRight : IconPanelLeft,
@@ -145,10 +133,9 @@ const WorkspaceLayout = ({
     }
   
     return ({
-      startActions: parentLayoutActions.startActions,
-      endActions: newEndActions,
+      actions: newActions,
     });
-  }, [parentLayoutActions.startActions, parentLayoutActions.endActions, workspace, workspaceIsVisible]);
+  }, [parentLayoutActions.actions, workspace, workspaceIsVisible]);
 
   useDismissTransientPresentationsEffect(() => {
     if (hasOverlayWorkspace) {
@@ -386,19 +373,6 @@ const WorkspaceLayout = ({
   };
 
   const renderContent = () => {
-    let content;
-    if (renderPage) {
-      content = (
-        <MainPageContainer>
-          {renderPage()}
-        </MainPageContainer>
-      );
-    } else if (renderLayout) {
-      content = renderLayout();
-    } else {
-      content = children;
-    }
-
     return (
       <div
         ref={contentElementRef}
@@ -407,7 +381,7 @@ const WorkspaceLayout = ({
         inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
       >
         <LayoutActionsContext.Provider value={layoutActionsContextValue}>
-          {content}
+          {children}
         </LayoutActionsContext.Provider>
       </div>
     );
@@ -425,7 +399,6 @@ const WorkspaceLayout = ({
           ref={workspacePanelRef}
           className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
-          inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null} // TODO: check if this needed, was checking for sideNav
           tabIndex="-1"
           aria-labelledby={`${id}-workspace-container`}
         >

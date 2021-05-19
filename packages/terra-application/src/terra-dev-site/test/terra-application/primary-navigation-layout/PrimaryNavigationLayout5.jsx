@@ -1,11 +1,11 @@
 import React from 'react';
 
-import ApplicationBase from '../../../application-base';
-import ApplicationContainer from '../../../application-container';
-import PrimaryNavigationLayout, { NavigationItem } from '../../../primary-navigation-layout';
-import WorkspaceWrapper from '../../../workspace/layout/WorkspaceWrapper';
-import WorkspaceTab from '../../../workspace/layout/WorkspaceTab';
-import { WorkspaceContent } from '../../../workspace';
+import ApplicationBase from '../../../../application-base';
+import ApplicationContainer from '../../../../application-container';
+import PrimaryNavigationLayout, { NavigationItem } from '../../../../primary-navigation-layout';
+import WorkspaceWrapper from '../../../../workspace/layout/WorkspaceWrapper';
+import WorkspaceTab from '../../../../workspace/layout/WorkspaceTab';
+import { WorkspaceContent } from '../../../../workspace';
 
 import TestPage from '../shared/TestPage';
 

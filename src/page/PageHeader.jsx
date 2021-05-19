@@ -100,7 +100,7 @@ const PageHeader = ({
         }}
         className={cx('header-button')}
         icon={<IconRollup />}
-        ariaLabel="More Actions"
+        ariaLabel="Show Actions" // TODO intl
         onSelect={() => {
           setShowMenu(true);
         }}
@@ -116,6 +116,7 @@ const PageHeader = ({
         onRequestClose={() => { setShowMenu(false); }}
         contentHeight="auto"
         contentWidth="auto"
+        contentAttachment="top right"
         isContentFocusDisabled
         isHeaderDisabled
         popupContentRole="none"
@@ -159,20 +160,6 @@ const PageHeader = ({
 
     return (
       <>
-        {pageContainerContext.containerStartActions.length ? (
-          <>
-            {pageContainerContext.containerStartActions.map(({ icon: Icon, ...action }) => (
-              <PageHeaderButton
-                key={action.key}
-                ariaLabel={action.label}
-                icon={<Icon />}
-                onSelect={action.onSelect}
-                isDisabled={!action.onSelect}
-              />
-            ))}
-            {onSelectBack ? <div className={cx('actions-divider')} /> : undefined}
-          </>
-        ) : undefined}
         {onSelectBack ? (
           <PageHeaderButton
             icon={<IconLeft />}

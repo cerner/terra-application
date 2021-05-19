@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'terra-button';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconPerson from 'terra-icon/lib/icon/IconPerson';
@@ -43,8 +44,8 @@ const TestPage = ({
       actions={actions}
       toolbar={showToolbar ? (
         <Page.Toolbar>
-          <Page.Toolbar.Button label="Edit" icon={<IconEdit />} onSelect={() => { console.log('edit'); }} />
-          <Page.Toolbar.Button label="Add" icon={<IconAttachment />} onSelect={() => { console.log('attach'); }} />
+          <Button isIconOnly variant="utility" text="Edit" icon={<IconEdit />} onClick={() => { console.log('edit'); }} />
+          <Button text="Attach" icon={<IconAttachment />} onClick={() => { console.log('attach'); }} />
         </Page.Toolbar>
       ) : undefined}
     >

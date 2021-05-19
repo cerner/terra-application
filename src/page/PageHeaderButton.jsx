@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import { KEY_RETURN, KEY_SPACE } from 'keycode-js';
 
 import styles from './PageHeaderButton.module.scss';
 
@@ -59,11 +58,11 @@ const PageHeaderButton = ({
       onMouseDown={(event) => {
         event.currentTarget.setAttribute('data-focus-styles-enabled', 'false');
       }}
-      data-focus-styles-enabled
       aria-label={ariaLabel}
+      disabled={!onSelect}
+      data-focus-styles-enabled
       ref={refCallback}
       data-testid={testId}
-      disabled={!onSelect}
     >
       <div aria-hidden className={cx('button-inner')}>
         <div

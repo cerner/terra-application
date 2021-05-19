@@ -52,7 +52,7 @@
     box-shadow: inset -3px 0px 0px -2px#fefffe, inset -4px 0px 0px -2px #C7CACB;
     flex: 0 0 auto;
     margin: 0.25rem 0;
-    width: 0.125rem;
+    width: 2px;
   }
 
   .toolbar-container {
@@ -69,13 +69,11 @@
   }
 
   .notification-banner {
+    border-radius: var(--terra-application-page-header-notification-banner-border-radius, 0.1875rem);
+    overflow: hidden;
+
     &:not(:first-child) {
       margin-top: var(--terra-application-page-header-notification-banner-adjacent-margin-top, 0.1875rem);
     }
-  }
-
-  .rounded {
-    border-radius: var(--terra-application-page-header-rounded-border-radius, 0.1875rem);
-    overflow: hidden;
   }
 }

@@ -1,14 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Button, { ButtonVariants } from 'terra-button';
 import IconLeft from 'terra-icon/lib/icon/IconLeft';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import Popup from 'terra-popup';
 
-import ActionMenu, {
-  ActionMenuItem,
-} from '../action-menu';
+import ActionMenu, { ActionMenuItem } from '../action-menu';
 import { useTransientPresentationState } from '../utils/transient-presentations';
 import useElementSize, { breakpointFilter } from '../shared/useElementSize';
 import PageContainerContext from '../page-container/PageContainerContext';
@@ -211,7 +208,7 @@ const PageHeader = ({
         id={id}
         label={label}
         activeClassName={cx('notification-banners-container')}
-        bannerClassName={cx('notification-banner', 'rounded')}
+        bannerClassName={cx('notification-banner')}
       />
       {renderMenu()}
     </div>

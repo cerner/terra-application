@@ -2,8 +2,8 @@ import React from 'react';
 
 const propTypes = {};
 
-const Action = ({
+const PageAction = ({
   actionKey, label, isDisabled, onSelect, refCallback, icon,
 }) => <div />;
 
-export default Action;
+export default PageAction;

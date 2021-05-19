@@ -1,8 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import Button from 'terra-button';
-import Toolbar from 'terra-toolbar';
 
 import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -10,8 +8,9 @@ import usePagePortal from '../page-container/usePagePortal';
 import { ApplicationIntlContext } from '../application-intl';
 
 import PageHeader from './PageHeader';
-import Actions from './Actions';
-import Action from './Action';
+import PageActions from './PageActions';
+import PageAction from './PageAction';
+import PageToolbar from './PageToolbar';
 
 import styles from './Page.module.scss';
 
@@ -69,7 +68,7 @@ const Page = ({
 }) => {
   const intl = React.useContext(ApplicationIntlContext);
 
-  if (actions && actions.type !== Actions) {
+  if (actions && actions.type !== PageActions) {
     throw new Error(`[terra-application] Page.Actions must be used to define actions for Page ${label}.`);
   }
 
@@ -127,17 +126,8 @@ const Page = ({
 
 Page.propTypes = propTypes;
 
-Page.Actions = Actions;
-Page.Action = Action;
-
-Page.Toolbar = ({ children }) => (
-  <Toolbar className={cx('page-toolbar')}>
-    {children}
-  </Toolbar>
-);
-
-Page.Toolbar.Button = ({ label, icon, onSelect }) => (
-  <Button isIconOnly variant="utility" icon={icon} text={label} onClick={onSelect} />
-);
+Page.Actions = PageActions;
+Page.Action = PageAction;
+Page.Toolbar = PageToolbar;
 
 export default Page;

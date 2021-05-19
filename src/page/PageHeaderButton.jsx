@@ -65,10 +65,7 @@ const PageHeaderButton = ({
       data-testid={testId}
     >
       <div aria-hidden className={cx('button-inner')}>
-        <div
-          className={cx('button-image')}
-          title={ariaLabel}
-        >
+        <div className={cx('button-image')} title={ariaLabel}>
           {icon}
         </div>
       </div>

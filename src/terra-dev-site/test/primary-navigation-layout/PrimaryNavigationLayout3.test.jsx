@@ -14,13 +14,7 @@ const PrimaryNavigationLayout3 = () => (
     <ApplicationContainer>
       <LayoutActionsContext.Provider
         value={{
-          startActions: [{
-            key: '1',
-            label: 'Layout Action 1',
-            onSelect: () => {},
-            icon: IconModified,
-          }],
-          endActions: [{
+          actions: [{
             key: '2',
             label: 'Layout Action 2',
             onSelect: () => {},

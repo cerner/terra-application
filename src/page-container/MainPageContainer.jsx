@@ -70,9 +70,8 @@ const MainPageContainer = ({
   // individual Pages through the PageContainerContext. This allows us to better
   // control the concerns of the various PageContainer implementations.
   const pageContainerContextValue = React.useMemo(() => ({
-    containerStartActions: layoutActions.startActions || [],
-    containerEndActions: layoutActions.endActions || [],
-  }), [layoutActions.startActions, layoutActions.endActions]);
+    containerActions: layoutActions.actions || [],
+  }), [layoutActions.actions]);
 
   return (
     <MainContainer

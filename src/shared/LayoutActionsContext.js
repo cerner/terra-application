@@ -33,15 +33,9 @@ const actionShape = PropTypes.shape({
 
 const contextShape = {
   /**
-   * Action definitions related to actions that are relevant to the Layout's
-   * leading (as determined by LTR/RTL) side.
+   * Action definitions for the layout.
    */
-  startActions: PropTypes.arrayOf(actionShape),
-  /**
-   * Action definitions related to actions that are relevant to the Layout's
-   * trailing (as determined by LTR/RTL) side.
-   */
-  endActions: PropTypes.arrayOf(actionShape),
+  actions: PropTypes.arrayOf(actionShape),
 };
 
 export default LayoutActionsContext;

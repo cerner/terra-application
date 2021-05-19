@@ -72,7 +72,11 @@ const Page = ({
     throw new Error(`[terra-application] Page.Actions must be used to define actions for Page ${label}.`);
   }
 
-  // An UnsavedChangesPromptCheckpoint is used to detect unsaved changes within
+  if (toolbar && toolbar.type !== PageToolbar) {
+    throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for Page ${label}.`);
+  }
+
+  // An NavigationPromptCheckpoint is used to detect unsaved changes within
   // the Page's content.
   const unsavedChangesCheckpointRef = React.useRef();
 

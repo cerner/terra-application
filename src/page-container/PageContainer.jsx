@@ -63,8 +63,7 @@ const PageContainer = ({
   // PageContainerContext. Handling of layout actions is the sole responsibility
   // of the MainPageContainer.
   const pageContainerContextValue = React.useMemo(() => ({
-    containerStartActions: [],
-    containerEndActions: [],
+    containerActions: [],
   }), []);
 
   return (

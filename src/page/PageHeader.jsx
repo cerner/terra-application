@@ -42,7 +42,7 @@ const propTypes = {
    */
   onSelectBack: PropTypes.func,
   /**
-   * A toolbar element to render alongside the other header contents.
+   * A PageToolbar element to render alongside the other header contents.
    */
   toolbar: PropTypes.element,
 };
@@ -58,6 +58,8 @@ const PageHeader = ({
   const [showMenu, setShowMenu] = useTransientPresentationState(false);
   const { activeBreakpoint } = useElementSize(headerContainerRef, breakpointFilter);
 
+  // We filter out any falsy action values that may have been provided
+  // due to inline boolean logic.
   let validActions = [];
   if (actions) {
     validActions = React.Children.toArray(actions.props.children).filter(child => child);
@@ -151,20 +153,16 @@ const PageHeader = ({
   }
 
   function renderStartActions() {
-    if (!onSelectBack && !pageContainerContext?.containerStartActions.length) {
+    if (!onSelectBack) {
       return undefined;
     }
 
     return (
-      <>
-        {onSelectBack ? (
-          <PageHeaderButton
-            icon={<IconLeft />}
-            ariaLabel="Back" // TODO intl
-            onSelect={onSelectBack}
-          />
-        ) : undefined}
-      </>
+      <PageHeaderButton
+        icon={<IconLeft />}
+        ariaLabel="Back" // TODO intl
+        onSelect={onSelectBack}
+      />
     );
   }
 
@@ -172,10 +170,10 @@ const PageHeader = ({
     return (
       <>
         {actionsAreCollapsed ? renderMenuButton() : renderActionButtons()}
-        {pageContainerContext?.containerEndActions.length ? (
+        {pageContainerContext?.containerActions.length ? (
           <>
             {validActions.length ? <div className={cx('actions-divider')} /> : undefined}
-            {pageContainerContext.containerEndActions.map(({ icon: Icon, ...action }) => (
+            {pageContainerContext.containerActions.map(({ icon: Icon, ...action }) => (
               <PageHeaderButton
                 key={action.key}
                 ariaLabel={action.label}

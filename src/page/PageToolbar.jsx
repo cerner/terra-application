@@ -8,6 +8,9 @@ import styles from './PageToolbar.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * The elements to render within the toolbar.
+   */
   children: PropTypes.node,
 };
 

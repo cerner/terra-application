@@ -7,11 +7,9 @@ import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
-import { MainPageContainer } from '../../page-container';
 import LayoutActionsContext from '../../shared/LayoutActionsContext';
 import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
 import { deferExecution } from '../../utils/defer-execution';
-import usePortalManager from '../../shared/usePortalManager';
 import ResizeHandle from './ResizeHandle';
 
 import styles from './WorkspaceLayout.module.scss';
@@ -19,10 +17,22 @@ import styles from './WorkspaceLayout.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
-  id: PropTypes.string.isRequired,
+  /**
+   * Child content to be rendered in the main content region of the workspace layout.
+   */
   children: PropTypes.node,
+  /**
+   * Unique id of the parent layout.
+   */
+  parentId: PropTypes.string.isRequired,
+  /**
+   * Element adhering to the Workspace API.
+   */
   workspace: PropTypes.element,
 };
+
+const MINIMUM_WORKSPACE_WIDTH = 320;
+const MINIMUM_CONTENT_WIDTH = 320;
 
 const initialSizeForBreakpoint = breakpoint => {
   if (breakpoint === 'tiny' || breakpoint === 'small') {
@@ -88,8 +98,8 @@ const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
 };
 
 const WorkspaceLayout = ({
-  id,
   children,
+  parentId,
   workspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -118,17 +128,31 @@ const WorkspaceLayout = ({
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
 
   const layoutActionsContextValue = React.useMemo(() => {
-    let newActions = parentLayoutActions.actions || []; // TODO: should we need a default?
+    let newActions = parentLayoutActions.actions || [];
+
+    let labelState;
+    if (workspaceIsVisible) {
+      labelState = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.closed' });
+    } else {
+      labelState = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.open' });
+    }
+
+    const actionLabel = applicationIntl.formatMessage(
+      {
+        id: 'terraApplication.workspaceLayout.toggle',
+      }, {
+        description: labelState,
+      }
+    );
 
     if (workspace) {
       newActions = [...newActions, {
         key: 'workspace-layout-toggle-workspace-panel',
-        label: `Toggle Workspace Panel ${workspaceIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
-        icon: workspaceIsVisible ? IconPanelRight : IconPanelLeft,
+        label: actionLabel,
+        icon: workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />,
         onSelect: () => {
           setWorkspaceIsVisible(state => !state);
         },
-        isActive: workspaceIsVisible,
       }];
     }
   
@@ -188,9 +212,7 @@ const WorkspaceLayout = ({
       deferExecution(() => { workspacePanelRef.current.focus(); });
     } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
       deferExecution(() => {
-        // TODO flex this based on whether we're overlay or not
-        // if overlay, focus on toggle button(?)
-        // if not overlay, focus stays on button (no action here)
+        // TODO: evaluate flexing focus element based on overlay state or previous active element
         const mainElement = document.querySelector('main');
         if (mainElement) {
           mainElement.focus();
@@ -264,7 +286,7 @@ const WorkspaceLayout = ({
   const clonePropsOntoWorkspace = () => {
     return (
       React.cloneElement(workspace, {
-        id: `${id}-workspace`,
+        id: `${parentId}-workspace-container`,
         isOpen: workspaceIsVisible,
         onRequestClose: () => {
           setWorkspaceIsVisible(false);
@@ -312,12 +334,12 @@ const WorkspaceLayout = ({
             resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
 
             workspaceResizeBoundsRef.current = {
-              range: layoutBodyRef.current.getBoundingClientRect().width - 320 - 320,
+              range: layoutBodyRef.current.getBoundingClientRect().width - MINIMUM_CONTENT_WIDTH - MINIMUM_WORKSPACE_WIDTH,
               currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
             };
 
             registerBounds({
-              range: layoutBodyRef.current.getBoundingClientRect().width - 320 - 320,
+              range: layoutBodyRef.current.getBoundingClientRect().width - MINIMUM_CONTENT_WIDTH - MINIMUM_WORKSPACE_WIDTH,
               currentWidth: workspacePanelRef.current.getBoundingClientRect().width,
             });
           }}
@@ -326,7 +348,7 @@ const WorkspaceLayout = ({
             resizeOverlayRef.current.style.backgroundColor = 'initial';
 
             const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
-            const scale = (newWidth - 320) / workspaceResizeBoundsRef.current.range;
+            const scale = (newWidth - MINIMUM_WORKSPACE_WIDTH) / workspaceResizeBoundsRef.current.range;
 
             userSelectedTypeRef.current = undefined;
 
@@ -375,7 +397,6 @@ const WorkspaceLayout = ({
   const renderContent = () => {
     return (
       <div
-        ref={contentElementRef}
         className={cx('page-body')}
         style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null}
         inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
@@ -400,7 +421,7 @@ const WorkspaceLayout = ({
           className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
           tabIndex="-1"
-          aria-labelledby={`${id}-workspace-container`}
+          aria-labelledby={`${parentId}-workspace-container`}
         >
           <div
             className={cx('workspace-inner')}

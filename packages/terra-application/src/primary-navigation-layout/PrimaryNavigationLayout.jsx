@@ -146,6 +146,10 @@ const propTypes = {
    * breakpoints.
    */
   utilityItems: utilityItemsPropType,
+  /**
+   * A PrimaryNavigationWorkspace element composed of PrimaryNavigationWorkspaceItem(s).
+   */
+  workspace: PropTypes.element,
 };
 
 const PrimaryNavigationLayout = ({
@@ -167,7 +171,7 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
-  workspaceWrapper, // abstraction, add props for state manipulation, open props up for fully controlled
+  workspace,
 }) => {
   const applicationConcept = React.useContext(ApplicationConceptContext);
 
@@ -303,11 +307,8 @@ const PrimaryNavigationLayout = ({
         </div>
         <div ref={contentElementRef} className={cx('layout-content')}>
           <WorkspaceLayout
-            id={`workspace-layout-${id}`}
-            workspace={workspaceWrapper}
-            renderLayout={renderLayout}
-            renderPage={renderPage}
-            activeNavigationKey={activeNavigationKey} // TODO: confirm this
+            parentId={id}
+            workspace={workspace}
           >
             {content}
           </WorkspaceLayout>

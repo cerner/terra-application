@@ -55,5 +55,8 @@
 
   "TODO": "translations needed for the below",
   "terraApplication.skipToLink.prefix": "Skip to {description}",
-  "terraApplication.mainContainer.skipToLabel": "Content"
+  "terraApplication.mainContainer.skipToLabel": "Content",
+  "terraApplication.workspaceLayout.toggle": "Toggle Workspace Panel ${description}",
+  "terraApplication.workspaceLayout.toggle.closed": "Closed",
+  "terraApplication.workspaceLayout.toggle.open": "Open"
 }

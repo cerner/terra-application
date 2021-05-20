@@ -1,15 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Workspace from '../Workspace';
-import WorkspaceItem from '../WorkspaceItem';
+import Workspace, { WorkspaceItem } from '../../workspace';
 
 const propTypes = {
+  /**
+   * Callback function triggering when the workspace size changes.
+   */
   onSizeChange: PropTypes.func,
+  /**
+   * Callback function triggering when the presentation state changes.
+   */
   onPresentationStateChange: PropTypes.func,
+  /**
+   * Callback function triggering when the active.
+   */
   onActiveItemChange: PropTypes.func,
+  /**
+   * Id string to apply to the workspace
+   */
   initialActiveItemKey: PropTypes.string,
+  /**
+   * Id string to apply to the workspace
+   */
   children: PropTypes.node,
-
   /**
    * @private
    * Id string to apply to the workspace

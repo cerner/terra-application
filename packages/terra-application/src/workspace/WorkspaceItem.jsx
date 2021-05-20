@@ -18,6 +18,10 @@ const propTypes = {
    */
   metaData: PropTypes.object,
   /**
+   * The render block for the workspace item
+   */
+  render: PropTypes.func,
+  /**
    * @private
    * The id of the tab.
    */

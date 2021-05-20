@@ -16,6 +16,8 @@ const propTypes = {
   onResizeStop: PropTypes.func,
 };
 
+const MINIMUM_WORKSPACE_WIDTH = 320;
+
 class ResizeHandle extends React.Component {
   /**
    * Click events that occur on the ResizeHandle are not propagated. This prevents clicks on the ResizeHandle from registering
@@ -36,14 +38,14 @@ class ResizeHandle extends React.Component {
   }
 
   handleDragMove(event, data) {
-    const { onResizeMove, allowDragMove } = this.props;
+    const { onResizeMove } = this.props;
 
     const handleNode = data.node;
 
     this.resizeHandleDragPosition += data.deltaX;
 
     const newWidth = data.x * -1 + this.resizeBoundsRef.current.currentWidth;
-    const scale = (newWidth - 320) / this.resizeBoundsRef.current.range; // TODO genericize this?
+    const scale = (newWidth - MINIMUM_WORKSPACE_WIDTH) / this.resizeBoundsRef.current.range; // TODO genericize this?
 
     if (scale >= 0 && scale <= 1) {
       handleNode.style.transform = `translate3d(${this.resizeHandleDragPosition}px, 0, 0)`;

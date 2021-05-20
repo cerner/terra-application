@@ -80,9 +80,9 @@ const terraApplicationConfig = (env = {}) => ({
       titleConfig: {
         title: 'Terra Dev Site - Extended',
       },
-      // additionalSearchDirectories: [
-      //   path.resolve(process.cwd(), 'node_modules', 'terra-list', 'lib', 'terra-dev-site'),
-      // ],
+      additionalSearchDirectories: [
+        path.resolve(process.cwd(), 'packages', 'terra-application-docs', 'lib', 'additionalSearchDirectory'),
+      ],
       headHtml: [
         '<script> console.log("Inline head html script") </script>',
         html,

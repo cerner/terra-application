@@ -19,16 +19,15 @@ describe('SitePlugin', () => {
       faviconFilePath: 'favicon',
       headHtml: [],
       excludeChunks: [],
+      contentConfig: 'content',
     };
     const siteConfig = {
       config,
       entry: 'entry',
-      contentDirectory: 'terra-dev-site',
     };
     const plug = new SitePlugin(siteConfig);
     expect(plug.entry).toEqual(siteConfig.entry);
     expect(plug.siteConfig).toEqual(config);
-    expect(plug.contentDirectory).toEqual(siteConfig.contentDirectory);
     expect(plug.entryKey).toEqual('pathPrefix/index');
     expect(plug.resourceQuery).toEqual('?pathPrefix-terra-entry');
     expect(plug.htmlFileName).toEqual('pathPrefix/index.html');
@@ -116,16 +115,15 @@ describe('SitePlugin', () => {
       faviconFilePath: 'favicon',
       headHtml: [],
       excludeChunks: ['chunk'],
+      contentConfig: 'content',
     };
     const siteConfig = {
       config,
       entry: 'entry',
-      contentDirectory: 'terra-dev-site',
     };
     const plug = new SitePlugin(siteConfig);
     expect(plug.siteConfig).toEqual(config);
     expect(plug.entry).toEqual(siteConfig.entry);
-    expect(plug.contentDirectory).toEqual(siteConfig.contentDirectory);
     expect(plug.entryKey).toEqual('index');
     expect(plug.resourceQuery).toEqual('?terra-entry');
     expect(plug.htmlFileName).toEqual('index.html');

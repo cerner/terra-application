@@ -9,7 +9,6 @@ class TerraDevSite {
     this.sitePlugin = new SitePlugin({
       config: applyDefaults(config),
       entry: '@cerner/terra-dev-site/lib/site',
-      contentDirectory: 'terra-dev-site',
     });
   }
 

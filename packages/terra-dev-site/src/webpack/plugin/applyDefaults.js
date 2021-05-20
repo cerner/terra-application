@@ -53,6 +53,7 @@ const applyDefaults = ({
   enableDebugLogging = false,
   additionalConfig = {},
   excludeChunks = [],
+  contentDirectory = 'terra-dev-site',
 } = {}) => ({
   primaryNavigationItems,
   additionalSearchDirectories,
@@ -71,6 +72,7 @@ const applyDefaults = ({
   namespace: npmPackage.name,
   additionalConfig,
   excludeChunks,
+  contentDirectory,
 });
 
 module.exports = applyDefaults;

@@ -17,11 +17,12 @@ Array [
             "loader": "devSiteEntry",
             "options": Object {
               "basename": "/pathPrefix",
-              "contentDirectory": "terra-dev-site",
+              "contentDirectory": undefined,
               "entryPath": "entry",
               "isLernaMonoRepo": true,
               "resolveExtensions": undefined,
               "siteConfig": Object {
+                "contentConfig": "content",
                 "defaultDirection": "rtl",
                 "distributionFolder": "lib",
                 "excludeChunks": Array [],
@@ -202,11 +203,12 @@ Array [
             "loader": "devSiteEntry",
             "options": Object {
               "basename": "",
-              "contentDirectory": "terra-dev-site",
+              "contentDirectory": undefined,
               "entryPath": "entry",
               "isLernaMonoRepo": true,
               "resolveExtensions": undefined,
               "siteConfig": Object {
+                "contentConfig": "content",
                 "defaultDirection": "rtl",
                 "distributionFolder": "lib",
                 "excludeChunks": Array [

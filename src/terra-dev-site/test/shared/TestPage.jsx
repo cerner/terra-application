@@ -26,14 +26,6 @@ const TestPage = ({
 
   const metaData = React.useRef({ test: index });
 
-  const actions = (
-    <Page.Actions>
-      <Page.Action actionKey="action-1" label="Action 1" onSelect={() => { console.log('action-1'); }} icon={<IconSearch />} />
-      {index % 2 === 0 && <Page.Action actionKey="action-2" label="Action 2 With A Really Long Label To See How It Wraps" onSelect={() => { console.log('action-2'); }} icon={<IconAdd />} />}
-      {index % 2 === 0 && <Page.Action isDisabled actionKey="action-3" label="Action 3" onSelect={() => { console.log('action-3'); }} icon={<IconPerson />} />}
-    </Page.Actions>
-  );
-
   return (
     <Page
       label={showLongText ? (
@@ -41,11 +33,42 @@ const TestPage = ({
       ) : label}
       metaData={metaData.current}
       onRequestClose={onRequestDismiss}
-      actions={actions}
+      actions={(
+        <Page.Actions>
+          <Page.Action
+            label="Action 1"
+            onSelect={() => { console.log('action-1'); }}
+            icon={<IconSearch />}
+          />
+          {index % 2 === 0 && (
+            <Page.Action
+              label="Action 2 With A Really Long Label To See How It Wraps"
+              onSelect={() => { console.log('action-2'); }}
+              icon={<IconAdd />}
+            />
+          )}
+          {index % 2 === 0 && (
+            <Page.Action
+              label="Disabled Action"
+              icon={<IconPerson />}
+            />
+          )}
+        </Page.Actions>
+      )}
       toolbar={showToolbar ? (
         <Page.Toolbar>
-          <Button isIconOnly variant="utility" text="Edit" icon={<IconEdit />} onClick={() => { console.log('edit'); }} />
-          <Button text="Attach" icon={<IconAttachment />} onClick={() => { console.log('attach'); }} />
+          <Button
+            isIconOnly
+            variant="utility"
+            text="Edit"
+            icon={<IconEdit />}
+            onClick={() => { console.log('edit'); }}
+          />
+          <Button
+            text="Attach"
+            icon={<IconAttachment />}
+            onClick={() => { console.log('attach'); }}
+          />
         </Page.Toolbar>
       ) : undefined}
     >
@@ -130,16 +153,12 @@ const TestPage = ({
             onRequestClose={() => { setShowHazardLow(false); }}
           />
         )}
-        <p>Paragraph 1</p>
-        <p>Paragraph 2</p>
-        <p>Paragraph 3</p>
-        <p>Paragraph 4</p>
-        <p>Paragraph 5</p>
-        <p>Paragraph 6</p>
-        <p>Paragraph 7</p>
-        <p>Paragraph 8</p>
         {showChildPage ? (
-          <TestPage testLabel={testLabel} index={index + 1} onRequestDismiss={() => { setShowChildPage(false); }} />
+          <TestPage
+            testLabel={testLabel}
+            index={index + 1}
+            onRequestDismiss={() => { setShowChildPage(false); }}
+          />
         ) : undefined}
       </div>
     </Page>

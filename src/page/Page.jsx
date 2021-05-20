@@ -78,10 +78,10 @@ const Page = ({
 
   // An NavigationPromptCheckpoint is used to detect unsaved changes within
   // the Page's content.
-  const unsavedChangesCheckpointRef = React.useRef();
+  const checkpointRef = React.useRef();
 
   // A Provider/Presenter pair is generated to manage NotificationBanner
-  // presentation within the Page.
+  // rendering within the Page.
   const {
     NotificationBannerProvider,
     NotificationBanners,
@@ -106,7 +106,7 @@ const Page = ({
                 return;
               }
 
-              unsavedChangesCheckpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
+              checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
                 onRequestClose();
               });
             } : undefined}
@@ -117,7 +117,7 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
-          <NavigationPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+          <NavigationPromptCheckpoint ref={checkpointRef}>
             <NotificationBannerProvider>
               {children}
             </NotificationBannerProvider>
@@ -129,7 +129,6 @@ const Page = ({
 };
 
 Page.propTypes = propTypes;
-
 Page.Actions = PageActions;
 Page.Action = PageAction;
 Page.Toolbar = PageToolbar;

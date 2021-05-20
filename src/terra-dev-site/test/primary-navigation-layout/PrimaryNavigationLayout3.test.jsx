@@ -15,10 +15,10 @@ const PrimaryNavigationLayout3 = () => (
       <LayoutActionsContext.Provider
         value={{
           actions: [{
-            key: '2',
-            label: 'Layout Action 2',
-            onSelect: () => {},
-            icon: IconPanelRight,
+            key: '1',
+            label: 'Layout Action 1',
+            onSelect: () => { console.log('layout action 1'); },
+            icon: <IconPanelRight />,
           }],
         }}
       >

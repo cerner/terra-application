@@ -9,7 +9,7 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * The text for the button's aria-label and title attributes.
+   * The text for the button's aria-label attribute.
    */
   ariaLabel: PropTypes.string.isRequired,
   /**

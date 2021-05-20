@@ -9,6 +9,7 @@ import ActionMenu, { ActionMenuItem } from '../action-menu';
 import { useTransientPresentationState } from '../utils/transient-presentations';
 import useElementSize, { breakpointFilter } from '../shared/useElementSize';
 import PageContainerContext from '../page-container/PageContainerContext';
+import { ApplicationIntlContext } from '../application-intl';
 
 import PageHeaderButton from './PageHeaderButton';
 
@@ -50,6 +51,7 @@ const propTypes = {
 const PageHeader = ({
   actions, id, label, NotificationBanners, onSelectBack, toolbar,
 }) => {
+  const intl = React.useContext(ApplicationIntlContext);
   const pageContainerContext = React.useContext(PageContainerContext);
 
   const headerContainerRef = React.useRef();
@@ -77,10 +79,8 @@ const PageHeader = ({
         key={action.key}
         refCallback={action.props.refCallback}
         icon={action.props.icon}
-        ariaLabel={action.props.label}
-        onSelect={!action.props.isDisabled ? () => {
-          action.props.onSelect();
-        } : undefined}
+        ariaLabel={`${action.props.label}, ${label}`}
+        onSelect={action.props.onSelect}
       />
     ));
   }
@@ -99,7 +99,9 @@ const PageHeader = ({
         }}
         className={cx('header-button')}
         icon={<IconRollup />}
-        ariaLabel="Show Actions" // TODO intl
+        ariaLabel={intl.formatMessage({
+          id: 'terraApplication.pageHeader.moreActions',
+        }, { label })}
         onSelect={() => {
           setShowMenu(true);
         }}
@@ -121,17 +123,17 @@ const PageHeader = ({
         popupContentRole="none"
       >
         <ActionMenu
-          label="Actions" // TODO intl
-          onRequestClose={() => {
-            setShowMenu(false);
-          }}
+          label={intl.formatMessage({
+            id: 'terraApplication.pageHeader.actionsMenu',
+          }, { label })}
+          onRequestClose={() => { setShowMenu(false); }}
         >
           {validActions.map((action) => (
             <ActionMenuItem
               key={action.key}
               actionKey={action.key}
               label={action.props.label}
-              isDisabled={action.props.isDisabled}
+              isDisabled={!action.props.onSelect}
               icon={action.props.icon}
               onAction={() => {
                 setShowMenu(false);
@@ -160,7 +162,7 @@ const PageHeader = ({
     return (
       <PageHeaderButton
         icon={<IconLeft />}
-        ariaLabel="Back" // TODO intl
+        ariaLabel={intl.formatMessage({ id: 'terraApplication.pageHeader.back' })}
         onSelect={onSelectBack}
       />
     );
@@ -173,11 +175,11 @@ const PageHeader = ({
         {pageContainerContext?.containerActions.length ? (
           <>
             {validActions.length ? <div className={cx('actions-divider')} /> : undefined}
-            {pageContainerContext.containerActions.map(({ icon: Icon, ...action }) => (
+            {pageContainerContext.containerActions.map((action) => (
               <PageHeaderButton
                 key={action.key}
                 ariaLabel={action.label}
-                icon={<Icon />}
+                icon={action.icon}
                 onSelect={action.onSelect}
                 isDisabled={!action.onSelect}
               />

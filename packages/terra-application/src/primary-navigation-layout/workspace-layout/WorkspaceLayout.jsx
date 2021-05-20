@@ -130,20 +130,12 @@ const WorkspaceLayout = ({
   const layoutActionsContextValue = React.useMemo(() => {
     let newActions = parentLayoutActions.actions || [];
 
-    let labelState;
+    let actionLabel;
     if (workspaceIsVisible) {
-      labelState = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.closed' });
+      actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.hide' });
     } else {
-      labelState = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.open' });
+      actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.show' });
     }
-
-    const actionLabel = applicationIntl.formatMessage(
-      {
-        id: 'terraApplication.workspaceLayout.toggle',
-      }, {
-        description: labelState,
-      }
-    );
 
     if (workspace) {
       newActions = [...newActions, {

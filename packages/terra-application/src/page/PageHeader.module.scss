@@ -2,7 +2,7 @@
 
 :local {
   .page-header-container {
-    box-shadow: inset -3px -4px 0px -3px #fff, inset -3px -5px 0px -3px #C8CACB;
+    box-shadow: inset -3px -4px 0 -3px #fff, inset -3px -5px 0 -3px #c8cacb;
     margin: 0 0.625rem;
     padding: 0.3125rem 0 0.5rem;
   }
@@ -26,13 +26,13 @@
 
   .label-container {
     color: #383f42;
-    font-weight: bold;
     flex: 1 1 auto;
+    font-weight: bold;
     hyphens: auto;
     margin-top: 0.3571rem;
-    padding-left: 0.5rem;
     overflow: hidden;
     overflow-wrap: break-word;
+    padding-left: 0.5rem;
     word-wrap: break-word;
   }
 
@@ -49,7 +49,7 @@
 
   .actions-divider {
     align-self: stretch;
-    box-shadow: inset -3px 0px 0px -2px#fefffe, inset -4px 0px 0px -2px #C7CACB;
+    box-shadow: inset -3px 0 0 -2px#fefffe, inset -4px 0 0 -2px #c7cacb;
     flex: 0 0 auto;
     margin: 0.3125rem 0.1875rem;
     width: 2px;

@@ -16,7 +16,9 @@ const PrimaryNavigationLayout3 = () => (
           actions: [{
             key: '1',
             label: 'Layout Action 1',
-            onSelect: () => { console.log('layout action 1'); },
+            onSelect: () => {
+              console.log('layout action 1'); // eslint-disable-line no-console
+            },
             icon: <IconPanelRight />,
           }],
         }}

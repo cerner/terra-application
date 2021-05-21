@@ -13,11 +13,10 @@
     height: 100%;
     justify-content: center;
     margin: 0;
-    padding: 0;
     outline: none;
+    padding: 0;
     position: relative;
     text-align: start;
-    -webkit-appearance: button;
   
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
@@ -60,7 +59,7 @@
       width: var(--terra-application-page-header-button-button-image-width, 1rem);
     }
   
-    .button-image > svg {
+    .button-image > svg { // stylelint-disable-line selector-max-compound-selectors
       height: 100%;
       position: absolute;
       width: 100%;

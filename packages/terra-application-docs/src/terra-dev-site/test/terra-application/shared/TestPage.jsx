@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
 import Button from 'terra-button';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
@@ -11,6 +12,11 @@ import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
 import NotificationBanner from '@cerner/terra-application/lib/notification-banner';
 import Page from '@cerner/terra-application/lib/page';
 
+import styles from './TestPage.module.scss';
+
+const cx = classNames.bind(styles);
+
+/* eslint-disable no-console */
 const TestPage = ({
   index, testLabel, onRequestDismiss,
 }) => {
@@ -71,7 +77,7 @@ const TestPage = ({
         </Page.Toolbar>
       ) : undefined}
     >
-      <div style={{ padding: '15px', height: '100%', overflow: 'auto' }}>
+      <div className={cx('layout')}>
         <p>{testLabel}</p>
         <button type="button" onClick={() => { setShowChildPage(true); }}>Show Child</button>
         <p>
@@ -163,6 +169,7 @@ const TestPage = ({
     </Page>
   );
 };
+/* eslint-enable no-console */
 
 TestPage.propTypes = {
   index: PropTypes.number,

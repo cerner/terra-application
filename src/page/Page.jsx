@@ -69,11 +69,11 @@ const Page = ({
   const intl = React.useContext(ApplicationIntlContext);
 
   if (actions && actions.type !== PageActions) {
-    throw new Error(`[terra-application] Page.Actions must be used to define actions for Page ${label}.`);
+    throw new Error(`[terra-application] Page.Actions must be used to define actions for ${label}.`);
   }
 
   if (toolbar && toolbar.type !== PageToolbar) {
-    throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for Page ${label}.`);
+    throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for ${label}.`);
   }
 
   // An NavigationPromptCheckpoint is used to detect unsaved changes within

@@ -3,8 +3,8 @@ import { renderHook } from '@testing-library/react-hooks/dom';
 import '@testing-library/jest-dom/extend-expect';
 import 'resize-observer-polyfill';
 
-import { activeBreakpointForSize } from '../../../../src/breakpoints';
-import useElementSize, { breakpointFilter } from '../../../../src/notification-banner/private/useElementSize';
+import { activeBreakpointForSize } from '../../../src/breakpoints';
+import useElementSize, { breakpointFilter } from '../../../src/shared/useElementSize';
 
 // The resize observer is mocked here, with a external reference
 // populated in order to trigger size updates externally.
@@ -23,7 +23,7 @@ jest.mock('resize-observer-polyfill', () => ({
 }));
 
 // Breakpoint retrieval is mocked to limit test exposure.
-jest.mock('../../../../src/breakpoints', () => ({
+jest.mock('../../../src/breakpoints', () => ({
   __esModule: true,
   default: jest.fn(),
   activeBreakpointForSize: jest.fn().mockImplementation(() => 'test-breakpoint'),

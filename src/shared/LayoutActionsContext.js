@@ -24,7 +24,7 @@ const actionShape = PropTypes.shape({
    * A graphic representing the action. This may be used by the context consumer
    * to render controls for the action.
    */
-  icon: PropTypes.elementType,
+  icon: PropTypes.element,
   /**
    * A function executed upon selection of the action.
    */

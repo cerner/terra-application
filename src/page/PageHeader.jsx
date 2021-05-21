@@ -68,7 +68,7 @@ const PageHeader = ({
   }
 
   if (validActions.length > 3) {
-    throw new Error(`[terra-application] Page ${label} cannot render more than three actions.`);
+    throw new Error(`[terra-application] ${label} cannot render more than three actions.`);
   }
 
   const actionsAreCollapsed = activeBreakpoint === 'tiny' && validActions.length > 1;
@@ -79,7 +79,7 @@ const PageHeader = ({
         key={action.key}
         refCallback={action.props.refCallback}
         icon={action.props.icon}
-        ariaLabel={`${action.props.label}, ${label}`}
+        ariaLabel={action.props.label}
         onSelect={action.props.onSelect}
       />
     ));
@@ -101,7 +101,7 @@ const PageHeader = ({
         icon={<IconRollup />}
         ariaLabel={intl.formatMessage({
           id: 'terraApplication.pageHeader.moreActions',
-        }, { label })}
+        })}
         onSelect={() => {
           setShowMenu(true);
         }}

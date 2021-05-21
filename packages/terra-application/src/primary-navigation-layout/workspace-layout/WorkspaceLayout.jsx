@@ -388,7 +388,7 @@ const WorkspaceLayout = ({
 
   const renderContent = () => (
     <div
-      className={cx('page-body')}
+      className={cx('content-body')}
       style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
       inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
     >
@@ -408,7 +408,7 @@ const WorkspaceLayout = ({
         {renderResizeHandle()}
         <div
           ref={workspacePanelRef}
-          className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
+          className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
           aria-labelledby={`${parentId}-workspace-container`}

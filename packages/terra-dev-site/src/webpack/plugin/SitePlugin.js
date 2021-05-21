@@ -22,11 +22,9 @@ class SitePlugin {
   constructor({
     entry,
     config,
-    contentDirectory,
   }) {
     // Apply defaults to the config.
     this.siteConfig = config;
-    this.contentDirectory = contentDirectory;
     const { pathPrefix, titleConfig } = this.siteConfig;
     this.entry = entry;
 
@@ -284,7 +282,7 @@ class SitePlugin {
                   basename,
                   resolveExtensions: compiler.options.resolve.extensions,
                   isLernaMonoRepo,
-                  contentDirectory: this.contentDirectory,
+                  contentDirectory: this.siteConfig.contentDirectory,
                 },
               },
             ],

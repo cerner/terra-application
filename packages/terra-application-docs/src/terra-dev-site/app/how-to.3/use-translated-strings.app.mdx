@@ -1,0 +1,34 @@
+# How To Use Translated Strings
+
+> Please review Terra's [Internationalization](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/internationalization-intro)
+> documentation to ensure your application is configured to support i18n.
+
+Every child of [ApplicationBase](/application/cerner-terra-application-docs/components/application-base) has access to the
+application's translated strings. Please review Terra's [recommended consumption guides](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/building-components-which-include-translations)
+for more information.
+
+
+```jsx
+import React, { useContext } from 'react';
+import { useIntl } from 'react-intl';
+
+const ExampleComponent = () => {
+  const applicationIntl = useIntl();
+
+  return (
+    <div>
+      <p>This button requires multiple translated strings to render appropriately.</p>
+      <button
+        aria-label={applicationIntl.formatMessage({ id: 'example-component.button-label'})}
+      >
+        {applicationIntl.formatMessage({ id: 'example-component.button-text'})}
+      </button>
+    </div>
+  );
+});
+
+export default ExampleComponent;
+```
+
+> Accessing react-intl's [legacy context value](https://reactjs.org/docs/legacy-context.html) directly is **not recommended**.
+> This API is deprecated and not provided by react-intl v3.x. Terra's recommended usage patterns are supported by versions 5.x of react-intl.

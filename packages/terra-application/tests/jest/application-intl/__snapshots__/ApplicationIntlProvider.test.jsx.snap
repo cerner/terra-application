@@ -13,6 +13,7 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
         "formatDateToParts": [Function],
         "formatDisplayName": [Function],
         "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
         "formatNumberToParts": [Function],

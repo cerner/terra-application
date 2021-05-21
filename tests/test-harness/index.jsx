@@ -3,16 +3,16 @@ import ReactDOM from 'react-dom';
 
 import useForceUpdate from '../../packages/terra-application/src/shared/useForceUpdate';
 
-import Workspace from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/workspace/Workspace';
-import OverlayWorkspace from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/workspace/OverlayWorkspace';
-import PrimaryNavigationLayout1 from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout1';
-import PrimaryNavigationLayout2 from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout2';
-import PrimaryNavigationLayout3 from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout3';
-import PrimaryNavigationLayout4 from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout4';
-import PrimaryNavigationLayout5 from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout5';
-import SkipToLinks from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/application-container/SkipToLinks';
-import MainContainerSimple from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/main-container/MainContainerSimple';
-import MainContainerNavigation from '../../packages/terra-application/lib/terra-dev-site/test/terra-application/main-container/MainContainerNavigation';
+import Workspace from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/workspace/Workspace';
+import OverlayWorkspace from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/workspace/OverlayWorkspace';
+import PrimaryNavigationLayout1 from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout1';
+import PrimaryNavigationLayout2 from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout2';
+import PrimaryNavigationLayout3 from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout3';
+import PrimaryNavigationLayout4 from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout4';
+import PrimaryNavigationLayout5 from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/primary-navigation-layout/PrimaryNavigationLayout5';
+import SkipToLinks from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/application-container/SkipToLinks';
+import MainContainerSimple from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/main-container/MainContainerSimple';
+import MainContainerNavigation from '../../packages/terra-application-docs/lib/terra-dev-site/test/terra-application/main-container/MainContainerNavigation';
 
 const testMap = {
   '#/workspace': Workspace,

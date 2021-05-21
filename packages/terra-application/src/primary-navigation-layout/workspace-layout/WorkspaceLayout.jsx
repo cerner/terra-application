@@ -9,8 +9,10 @@ import { ActiveBreakpointContext } from '../../breakpoints';
 import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
 import LayoutActionsContext from '../../shared/LayoutActionsContext';
 import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
-import { deferExecution } from '../../utils/defer-execution';
+import deferExecution from '../../utils/defer-execution';
 import ResizeHandle from './ResizeHandle';
+import { ApplicationIntlContext } from '../../application-intl';
+
 
 import styles from './WorkspaceLayout.module.scss';
 
@@ -88,7 +90,6 @@ const getActiveSizeForWorkspaceSize = workspaceSize => {
   return undefined;
 };
 
-// TODO: determine if this should be specific or generalized to use elsewhere in the file
 const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
   if (breakpoint === 'large' || breakpoint === 'huge' || breakpoint === 'enormous') {
     return true;
@@ -104,6 +105,7 @@ const WorkspaceLayout = ({
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const parentLayoutActions = React.useContext(LayoutActionsContext);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
 
   const pageContainerRef = React.useRef();
   const layoutBodyRef = React.useRef();

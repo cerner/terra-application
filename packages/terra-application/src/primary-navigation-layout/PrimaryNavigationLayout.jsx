@@ -9,7 +9,7 @@ import NavigationItem from '../navigation-item';
 import { MainPageContainer } from '../page-container';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
-import WorkspaceLayout from '../workspace/layout/WorkspaceLayout';
+import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 import {
   titleConfigPropType,

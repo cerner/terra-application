@@ -14,6 +14,8 @@ const propTypes = {
    * as arguments. Parameters: `onResizeStop(resizeHandleId, positionDelta)`
    */
   onResizeStop: PropTypes.func,
+  onResizeMove: PropTypes.func,
+  onResizeStart: PropTypes.func,
 };
 
 const MINIMUM_WORKSPACE_WIDTH = 320;

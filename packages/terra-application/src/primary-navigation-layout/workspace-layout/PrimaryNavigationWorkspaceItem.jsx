@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+// eslint-disable no-unused-vars, react/no-unused-prop-types
 const propTypes = {
   /**
    * Key to match with the activeItemKey to handle the display of selection.
@@ -20,7 +21,7 @@ const propTypes = {
   render: PropTypes.func,
 };
 
-const PrimaryNavigationWorkspaceItem = (props) => <div />;
+const PrimaryNavigationWorkspaceItem = () => <div />;
 
 PrimaryNavigationWorkspaceItem.propTypes = propTypes;
 

@@ -1,11 +1,12 @@
 import React from 'react';
 
-import ApplicationBase from '../../../../application-base';
-import ApplicationContainer from '../../../../application-container';
-import PrimaryNavigationLayout, { NavigationItem } from '../../../../primary-navigation-layout';
-import WorkspaceWrapper from '../../../../workspace/layout/WorkspaceWrapper';
-import WorkspaceTab from '../../../../workspace/layout/WorkspaceTab';
-import { WorkspaceContent } from '../../../../workspace';
+import ApplicationBase from '@cerner/terra-application/lib/application-base';
+import ApplicationContainer from '@cerner/terra-application/lib/application-container';
+import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
+
+import WorkspaceWrapper from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
+import WorkspaceTab from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
+import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
 
 import TestPage from '../shared/TestPage';
 
@@ -81,7 +82,7 @@ const PrimaryNavigationLayout5 = () => {
           // renderPage={() => (
           //   <TestPage index={0} testLabel="Nav 1 Test Page" />
           // )}
-          workspaceWrapper={wrapper}
+          workspace={wrapper}
         >
           <NavigationItem
             navigationKey="1"

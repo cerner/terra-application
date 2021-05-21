@@ -16,13 +16,21 @@ const propTypes = {
    */
   onActiveItemChange: PropTypes.func,
   /**
-   * Id string to apply to the workspace
+   * The string key linked to the action workspace.
    */
   initialActiveItemKey: PropTypes.string,
   /**
-   * Id string to apply to the workspace
+   * Child content to be placed within the main content region.
    */
   children: PropTypes.node,
+  /**
+   * Whether or not the workspace should initially display as open.
+   */
+  initialIsOpen: PropTypes.bool,
+  /**
+   * The size string value matching the active size option.
+   */
+  initialSize: PropTypes.string,
   /**
    * @private
    * Id string to apply to the workspace
@@ -75,6 +83,8 @@ const WorkspaceWrapper = ({
   onActiveItemChange,
   initialActiveItemKey,
   children,
+  initialIsOpen, // eslint-disable-line no-unused-vars, react/no-unused-prop-types
+  initialSize, // eslint-disable-line no-unused-vars, react/no-unused-prop-types
 
   // private injected props
   id,
@@ -86,7 +96,7 @@ const WorkspaceWrapper = ({
   sizeOptions,
   onRequestSizeChange,
 }) => {
-  const [activeItemKey, setActiveItemKey] = React.useState(initialActiveItemKey); // TODO do we need to externalize this for manipulation
+  const [activeItemKey, setActiveItemKey] = React.useState(initialActiveItemKey);
 
   React.useEffect(() => {
     if (onSizeChange && sizeScalar !== undefined) {
@@ -110,7 +120,7 @@ const WorkspaceWrapper = ({
     <Workspace
       id={id || 'test-id'}
       activeItemKey={activeItemKey}
-      onRequestActivate={(itemKey, metaData) => {
+      onRequestActivate={itemKey => {
         setActiveItemKey(itemKey);
       }}
       activeSize={activeSize}

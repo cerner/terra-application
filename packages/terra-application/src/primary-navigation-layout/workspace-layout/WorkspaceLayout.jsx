@@ -13,7 +13,6 @@ import deferExecution from '../../utils/defer-execution';
 import ResizeHandle from './ResizeHandle';
 import { ApplicationIntlContext } from '../../application-intl';
 
-
 import styles from './WorkspaceLayout.module.scss';
 
 const cx = classNames.bind(styles);
@@ -149,11 +148,11 @@ const WorkspaceLayout = ({
         },
       }];
     }
-  
+
     return ({
       actions: newActions,
     });
-  }, [parentLayoutActions.actions, workspace, workspaceIsVisible]);
+  }, [parentLayoutActions.actions, workspace, workspaceIsVisible, applicationIntl]);
 
   useDismissTransientPresentationsEffect(() => {
     if (hasOverlayWorkspace) {
@@ -277,22 +276,20 @@ const WorkspaceLayout = ({
     }
   };
 
-  const clonePropsOntoWorkspace = () => {
-    return (
-      React.cloneElement(workspace, {
-        id: `${parentId}-workspace-container`,
-        isOpen: workspaceIsVisible,
-        onRequestClose: () => {
-          setWorkspaceIsVisible(false);
-        },
-        isPresentedAsOverlay: hasOverlayWorkspace,
-        sizeScalar: workspaceSize.scale,
-        activeSize: getActiveSizeForWorkspaceSize(workspaceSize),
-        sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
-        onRequestSizeChange: handleOnRequestSizeChange,
-      })
-    );
-  };
+  const clonePropsOntoWorkspace = () => (
+    React.cloneElement(workspace, {
+      id: `${parentId}-workspace-container`,
+      isOpen: workspaceIsVisible,
+      onRequestClose: () => {
+        setWorkspaceIsVisible(false);
+      },
+      isPresentedAsOverlay: hasOverlayWorkspace,
+      sizeScalar: workspaceSize.scale,
+      activeSize: getActiveSizeForWorkspaceSize(workspaceSize),
+      sizeOptions: getSizeOptionsForBreakpoint(activeBreakpoint),
+      onRequestSizeChange: handleOnRequestSizeChange,
+    })
+  );
 
   const renderWorkspaceSkipToLink = () => {
     if (!workspace) {
@@ -380,27 +377,26 @@ const WorkspaceLayout = ({
     }
 
     return (
-      <div 
+      <div
+        role="none"
         ref={workspaceOverlayRef}
         className={cx('workspace-overlay')}
-        onClick={() => { setWorkspaceIsVisible(false); }}
+        onClick={() => { setWorkspaceIsVisible(false); }} // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       />
     );
   };
 
-  const renderContent = () => {
-    return (
-      <div
-        className={cx('page-body')}
-        style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null}
-        inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
-      >
-        <LayoutActionsContext.Provider value={layoutActionsContextValue}>
-          {children}
-        </LayoutActionsContext.Provider>
-      </div>
-    );
-  }
+  const renderContent = () => (
+    <div
+      className={cx('page-body')}
+      style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
+      inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
+    >
+      <LayoutActionsContext.Provider value={layoutActionsContextValue}>
+        {children}
+      </LayoutActionsContext.Provider>
+    </div>
+  );
 
   const renderWorkspace = () => {
     if (!workspace) {
@@ -413,7 +409,7 @@ const WorkspaceLayout = ({
         <div
           ref={workspacePanelRef}
           className={cx('workspace', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
-          style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null}
+          style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
           aria-labelledby={`${parentId}-workspace-container`}
         >
@@ -430,7 +426,7 @@ const WorkspaceLayout = ({
 
   return (
     <>
-     {renderWorkspaceSkipToLink()}
+      {renderWorkspaceSkipToLink()}
       <div
         className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
         ref={pageContainerRef}

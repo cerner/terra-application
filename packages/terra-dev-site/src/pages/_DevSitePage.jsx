@@ -2,14 +2,15 @@ import React from 'react';
 import { NavigationItemContext } from '@cerner/terra-application/lib/navigation-item';
 import IconStartPresenting from 'terra-icon/lib/icon/IconStartPresenting';
 import { useLocation, useHistory } from 'react-router-dom';
-import Page, {
-  PageActions,
-  Action,
+import Page from '@cerner/terra-application/lib/page';
+
+import {
   CardLayout,
   Card,
   PageActivityOverlay,
   StatusLayout,
 } from '../terra-application-temporary/page';
+
 import Suspense from '../terra-application-temporary/shared/Suspense';
 
 import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigShapes';
@@ -46,14 +47,14 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
   const { pathname } = location;
   const ContentComponent = contentImports[pathname];
   const pageActions = (
-    <PageActions>
-      <Action
+    <Page.Actions>
+      <Page.Action
         actionKey="raw"
         label="Raw"
         icon={<IconStartPresenting />}
         onSelect={() => { history.push(`/raw${pathname}`); }}
       />
-    </PageActions>
+    </Page.Actions>
   );
 
   let loadingOverlay;

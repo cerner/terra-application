@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageContainer } from '@cerner/terra-dev-site/lib/terra-application-temporary/page';
+import { PageContainer } from '@cerner/terra-application/lib/page';
 
 import MyReusablePage from './MyReusablePage';
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
 import NavigationItem, { NavigationItemContext } from '@cerner/terra-application/lib/navigation-item';
-import { PageContainer } from '../terra-application-temporary/page';
+import PageContainer from '@cerner/terra-application/lib/page-container';
 
 import SecondaryNavigationLayout from './secondary-navigation-layout/SecondaryNavigationLayout';
 import SecondaryNavigationGroup from './secondary-navigation-layout/SecondaryNavigationGroup';

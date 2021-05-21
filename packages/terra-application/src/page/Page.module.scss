@@ -1,0 +1,38 @@
+@import '../breakpoints/media-queries';
+
+:local {
+  .page {
+    background-color: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    outline: none;
+    overflow-y: auto;
+    position: relative;
+    width: 100%;
+    z-index: 0;
+
+    .header {
+      flex: 0 0 auto;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .content {
+      flex: 1 1 auto;
+      height: 100%;
+      min-height: 300px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+  }
+
+  .page-toolbar {
+    background: linear-gradient(#e8e9ea, #dedfe0);
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0px 1px 1px 0px rgba(28,31,33,0.2); 
+  }
+}

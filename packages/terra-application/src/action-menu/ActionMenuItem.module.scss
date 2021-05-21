@@ -3,7 +3,7 @@
 
 :local {
   .action-menu-item {
-    align-items: center;
+    align-items: start;
     color: var(--terra-application-action-menu-item-color, #222a2e);
     cursor: pointer;
     display: flex;
@@ -14,7 +14,7 @@
     padding-right: var(--terra-application-action-menu-item-padding-right, 0.7143rem);
     padding-top: var(--terra-application-action-menu-item-padding-top, 0.3571rem);
     position: relative;
-    vertical-align: center;
+    vertical-align: middle;
 
     &:last-child {
       border-bottom: 0;
@@ -26,10 +26,11 @@
   }
 
   .icon {
+    color: var(--terra-application-action-menu-item-icon-color, #007cc3);
     flex: 0 0 auto;
     height: var(--terra-application-action-menu-item-icon-height, 0.8571rem);
     margin-right: var(--terra-application-action-menu-item-icon-margin-right, 0.4286rem);
-    margin-top: var(--terra-application-action-menu-item-icon-margin-top, 0.1429rem);
+    margin-top: var(--terra-application-action-menu-item-icon-margin-top, 0.25rem);
     position: relative;
     width: var(--terra-application-action-menu-item-icon-width, 0.8571rem);
 
@@ -52,6 +53,10 @@
   .is-disabled {
     color: var(--terra-application-action-menu-item-is-disabled-color, #ccc);
     cursor: default;
+
+    .icon {
+      opacity: 0.3;
+    }
   }
 
   .is-actionable {

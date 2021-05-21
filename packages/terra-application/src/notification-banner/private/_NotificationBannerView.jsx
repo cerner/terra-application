@@ -13,7 +13,7 @@ import IconInformation from 'terra-icon/lib/icon/IconInformation';
 import IconSuccess from 'terra-icon/lib/icon/IconSuccess';
 import ThemeContext from 'terra-theme-context';
 
-import useElementSize, { breakpointFilter } from './useElementSize';
+import useElementSize, { breakpointFilter } from '../../shared/useElementSize';
 
 import styles from './NotificationBannerView.module.scss';
 

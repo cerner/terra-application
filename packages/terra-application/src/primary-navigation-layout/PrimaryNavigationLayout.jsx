@@ -307,7 +307,7 @@ const PrimaryNavigationLayout = ({
         </div>
         <div ref={contentElementRef} className={cx('layout-content')}>
           <WorkspaceLayout
-            parentId={id}
+            id={`${id}-workspace-layout`}
             workspace={workspace}
           >
             {content}

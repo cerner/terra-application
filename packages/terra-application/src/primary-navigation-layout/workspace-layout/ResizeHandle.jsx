@@ -14,7 +14,15 @@ const propTypes = {
    * as arguments. Parameters: `onResizeStop(resizeHandleId, positionDelta)`
    */
   onResizeStop: PropTypes.func,
+  /**
+   * Function called upon move of the ResizeHandle.
+   * Parameters: `onResizeMove(node)`
+   */
   onResizeMove: PropTypes.func,
+  /**
+   * Function called upon start of the ResizeHandle.
+   * Parameters: `onResizeStart(resizeHandleId, positionDelta)`
+   */
   onResizeStart: PropTypes.func,
 };
 
@@ -95,7 +103,11 @@ class ResizeHandle extends React.Component {
         onStop={this.handleDragStop}
         onDrag={this.handleDragMove}
       >
-        <div className={cx('resize-handle', theme.className)} onClick={ResizeHandle.preventClickEvent} />
+        <div
+          data-testid="resize-handle"
+          className={cx('resize-handle', theme.className)}
+          onClick={ResizeHandle.preventClickEvent}
+        />
       </DraggableCore>
       /* eslint-enable jsx-a11y/no-static-element-interactions, jsx-a11y/click-events-have-key-events */
     );

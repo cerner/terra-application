@@ -23,9 +23,9 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * Unique id of the parent layout.
+   * Unique id for the layout.
    */
-  parentId: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
   /**
    * Element adhering to the Workspace API.
    */
@@ -99,7 +99,7 @@ const validateInitialWorkspaceSizeForBreakpoint = (breakpoint) => {
 
 const WorkspaceLayout = ({
   children,
-  parentId,
+  id,
   workspace,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
@@ -278,7 +278,7 @@ const WorkspaceLayout = ({
 
   const clonePropsOntoWorkspace = () => (
     React.cloneElement(workspace, {
-      id: `${parentId}-workspace-container`,
+      id: `${id}-workspace-container`,
       isOpen: workspaceIsVisible,
       onRequestClose: () => {
         setWorkspaceIsVisible(false);
@@ -388,6 +388,7 @@ const WorkspaceLayout = ({
 
   const renderContent = () => (
     <div
+      id={`${id}-content-body`}
       className={cx('content-body')}
       style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
       inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
@@ -407,11 +408,12 @@ const WorkspaceLayout = ({
       <>
         {renderResizeHandle()}
         <div
+          id={`${id}-workspace-body`}
           ref={workspacePanelRef}
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
-          aria-labelledby={`${parentId}-workspace-container`}
+          aria-labelledby={`${id}-workspace-container`}
         >
           <div
             className={cx('workspace-inner')}
@@ -428,6 +430,7 @@ const WorkspaceLayout = ({
     <>
       {renderWorkspaceSkipToLink()}
       <div
+        id={id}
         className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
         ref={pageContainerRef}
       >

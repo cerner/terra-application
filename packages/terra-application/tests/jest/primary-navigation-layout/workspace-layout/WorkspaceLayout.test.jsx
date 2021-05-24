@@ -12,10 +12,15 @@ const Item1 = () => (
   </WorkspaceContent>
 );
 
-const testWorkspace = (
+const TestWorkspace = ({
+  isOpen, // eslint-disable-line react/prop-types
+  onRequestClose, // eslint-disable-line react/prop-types
+  sizeScalar, // eslint-disable-line react/prop-types
+  ...customProps
+}) => (
   <Workspace
-    id="test-workspace"
-    activeItemKey="1"
+    {...customProps}
+    activeItemKey="item-1"
     onRequestActivate={() => {}}
   >
     <WorkspaceItem
@@ -27,7 +32,7 @@ const testWorkspace = (
   </Workspace>
 );
 
-const testContent = <p data-testid="mock-content">test content</p>;
+const TestContent = () => <p data-testid="mock-content">test content</p>;
 
 const mockContext = {
   registerLink: jest.fn(), unregisterLink: jest.fn(),
@@ -54,7 +59,7 @@ test('should render with workspace', () => {
       <MockApplication>
         <WorkspaceLayout
           id="test-id"
-          workspace={testWorkspace}
+          workspace={<TestWorkspace />}
         />
       </MockApplication>
     </SkipToLinksContext.Provider>
@@ -73,7 +78,7 @@ test('should render with children', () => {
         <WorkspaceLayout
           id="test-id"
         >
-          {testContent}
+          <TestContent />
         </WorkspaceLayout>
       </MockApplication>
     </SkipToLinksContext.Provider>
@@ -90,9 +95,9 @@ test('should render with workspace and children', () => {
       <MockApplication>
         <WorkspaceLayout
           id="test-id"
-          workspace={testWorkspace}
+          workspace={<TestWorkspace />}
         >
-          {testContent}
+          <TestContent />
         </WorkspaceLayout>
       </MockApplication>
     </SkipToLinksContext.Provider>

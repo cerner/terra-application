@@ -4,7 +4,10 @@ import PrimaryNavigationWorkspaceItem from '../../../../src/primary-navigation-l
 describe('ActionMenuHeader', () => {
   it('should render with minimal props', () => {
     const wrapper = shallow((
-      <PrimaryNavigationWorkspaceItem />
+      <PrimaryNavigationWorkspaceItem
+        itemKey="test key"
+        label="test label"
+      />
     ));
     expect(wrapper).toMatchSnapshot();
   });
@@ -13,7 +16,7 @@ describe('ActionMenuHeader', () => {
     const wrapper = shallow((
       <PrimaryNavigationWorkspaceItem
         itemKey="test-key"
-        label="test=label"
+        label="test label"
         metaData={{ key: 'test-key' }}
         render={() => {}}
       />

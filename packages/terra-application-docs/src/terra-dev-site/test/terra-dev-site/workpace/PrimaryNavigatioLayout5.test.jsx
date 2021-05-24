@@ -4,27 +4,23 @@ import ApplicationBase from '@cerner/terra-application/lib/application-base';
 import ApplicationContainer from '@cerner/terra-application/lib/application-container';
 import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
 
-import PrimaryNavigationWorkspace from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
-import PrimaryNavigationWorkspaceItem from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
-import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
+import WorkspaceWrapper from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
+import WorkspaceTab from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
+import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
 
-import TestPage from '../../terra-application/shared/TestPage';
+import TestPage from '../shared/TestPage';
 
-const Tab1 = ({}) => {
-  return (
-    <WorkspaceContent>
-      <p>Wombat 1</p>
-    </WorkspaceContent>
-  );
-};
+const Tab1 = () => (
+  <WorkspaceContent>
+    <p>Wombat 1</p>
+  </WorkspaceContent>
+);
 
-const Tab2 = ({}) => {
-  return (
-    <WorkspaceContent>
-      <p>Wombat 2</p>
-    </WorkspaceContent>
-  );
-};
+const Tab2 = () => (
+  <WorkspaceContent>
+    <p>Wombat 2</p>
+  </WorkspaceContent>
+);
 
 const PrimaryNavigationLayout5 = () => {
   const [
@@ -33,34 +29,34 @@ const PrimaryNavigationLayout5 = () => {
   ] = React.useState('1');
 
   const wrapper = (
-    <PrimaryNavigationWorkspace
+    <WorkspaceWrapper
       id="derp"
       initialActiveItemKey="tab-1"
       initialSize={{ scale: 0.50 }}
       initialIsOpen
       onActiveItemChange={(newActiveItemKey) => {
-        console.log(`Workspace active item: ${newActiveItemKey}`);
+        console.log(`Workspace active item: ${newActiveItemKey}`); // eslint-disable-line no-console
       }}
       onSizeChange={(size) => {
-        console.log(`Workspace size changed: ${size}`);
+        console.log(`Workspace size changed: ${size}`); // eslint-disable-line no-console
       }}
       onPresentationStateChange={(isPresented) => {
-        console.log(`Workspace presentation changed. isOpen - ${isPresented}`);
+        console.log(`Workspace presentation changed. isOpen - ${isPresented}`); // eslint-disable-line no-console
       }}
     >
-      <PrimaryNavigationWorkspaceItem
+      <WorkspaceTab
         itemKey="tab-1"
         label="Tab 1"
         metaData={{ key: 'tab-1' }}
         render={() => <Tab1 />}
       />
-      <PrimaryNavigationWorkspaceItem
+      <WorkspaceTab
         itemKey="tab-2"
         label="Tab 2"
         metaData={{ key: 'tab-2' }}
         render={() => <Tab2 />}
       />
-    </PrimaryNavigationWorkspace>
+    </WorkspaceWrapper>
   );
 
   return (
@@ -79,9 +75,6 @@ const PrimaryNavigationLayout5 = () => {
             name: 'Demo User',
             detail: 'demouser',
           }}
-          renderPage={() => (
-            <TestPage index={0} testLabel="Nav 1 Test Page" />
-          )}
           workspace={wrapper}
         >
           <NavigationItem

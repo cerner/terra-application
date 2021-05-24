@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenuHeader should render with all props 1`] = `<div />`;
+
+exports[`ActionMenuHeader should render with minimal props 1`] = `<div />`;

@@ -18,11 +18,11 @@ const propTypes = {
   /**
    * The string key linked to the action workspace.
    */
-  initialActiveItemKey: PropTypes.string,
+  initialActiveItemKey: PropTypes.string.isRequired,
   /**
    * Child content to be placed within the main content region.
    */
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
   /**
    * Whether or not the workspace should initially display as open.
    */

@@ -37,7 +37,7 @@
 
   .workspace-body {
     background-color: var(--terra-application-workspace-layout-workspace-body-background-color, #f0f0f2);
-    box-shadow: var(--terra-application-workspace-layout-workspace-body-box-shadow, inset 3px -3px 0px -2px#fefffe, inset 4px 0px 0px -2px #C7CACB);
+    box-shadow: var(--terra-application-workspace-layout-workspace-body-box-shadow, inset 3px -3px 0 -2px#fefffe, inset 4px 0 0 -2px #c7cacb);
     display: none;
     flex: 1 1 320px;
     height: 100%;
@@ -58,11 +58,11 @@
 
     &.overlay {
       border-left: var(--terra-application-workspace-layout-workspace-body-overlay-border-left, 1px solid rgba(0, 0, 0, 0.75));
+      bottom: 0;
       position: absolute;
-      width: calc(100% - 40px);
       right: 0;
       top: 0;
-      bottom: 0;
+      width: calc(100% - 40px);
     }
   }
 
@@ -99,8 +99,8 @@
 
   .resize-handle-frame {
     flex: 0 0 auto;
-    position: relative;
     height: 100%;
+    position: relative;
     width: 0;
     z-index: 3;
   }

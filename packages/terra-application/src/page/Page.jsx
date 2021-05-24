@@ -94,22 +94,26 @@ const Page = ({
     metaData,
   });
 
+  // If onRequestClose is provided, we check for unsaved changes prior to
+  // executing the callback (unless explicitly disabled).
+  const handleOnSelectBack = onRequestClose ? () => {
+    if (dangerouslyDisableUnsavedChangesPromptHandling) {
+      onRequestClose();
+      return;
+    }
+
+    checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
+      onRequestClose();
+    });
+  } : undefined;
+
   return (
     <PagePortal>
       <div className={cx('page')}>
         <div className={cx('header')}>
           <PageHeader
             id={pageId}
-            onSelectBack={onRequestClose ? () => {
-              if (dangerouslyDisableUnsavedChangesPromptHandling) {
-                onRequestClose();
-                return;
-              }
-
-              checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
-                onRequestClose();
-              });
-            } : undefined}
+            onSelectBack={handleOnSelectBack}
             label={label}
             actions={actions}
             toolbar={toolbar}

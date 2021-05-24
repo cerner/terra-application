@@ -73,8 +73,46 @@ const PageHeader = ({
 
   const actionsAreCollapsed = activeBreakpoint === 'tiny' && validActions.length > 1;
 
-  function renderActionButtons() {
-    return validActions.map((action) => (
+  const toolbarContainer = toolbar ? (
+    <div className={cx('toolbar-container')}>
+      {toolbar}
+    </div>
+  ) : undefined;
+
+  const backActionButton = onSelectBack ? (
+    <PageHeaderButton
+      icon={<IconLeft />}
+      ariaLabel={intl.formatMessage({ id: 'terraApplication.pageHeader.back' })}
+      onSelect={onSelectBack}
+    />
+  ) : undefined;
+
+  // Actions are either rendered as buttons or as options in in a menu,
+  // depending on the current header size and the number of actions present. If
+  // a menu is necessary, a single button is rendered to present that menu upon
+  // selection.
+  const pageActions = actionsAreCollapsed ? (
+    <PageHeaderButton
+      refCallback={(ref) => {
+        moreActionsButtonRef.current = ref;
+
+        validActions.forEach((action) => {
+          if (action.props.refCallback) {
+            action.props.refCallback(ref);
+          }
+        });
+      }}
+      className={cx('header-button')}
+      icon={<IconRollup />}
+      ariaLabel={intl.formatMessage({
+        id: 'terraApplication.pageHeader.moreActions',
+      })}
+      onSelect={() => {
+        setShowMenu(true);
+      }}
+    />
+  ) : (
+    validActions.map((action) => (
       <PageHeaderButton
         key={action.key}
         refCallback={action.props.refCallback}
@@ -82,135 +120,88 @@ const PageHeader = ({
         ariaLabel={action.props.label}
         onSelect={action.props.onSelect}
       />
-    ));
-  }
+    ))
+  );
 
-  function renderMenuButton() {
-    return (
-      <PageHeaderButton
-        refCallback={(ref) => {
-          moreActionsButtonRef.current = ref;
-
-          validActions.forEach((action) => {
-            if (action.props.refCallback) {
-              action.props.refCallback(ref);
-            }
-          });
-        }}
-        className={cx('header-button')}
-        icon={<IconRollup />}
-        ariaLabel={intl.formatMessage({
-          id: 'terraApplication.pageHeader.moreActions',
-        })}
-        onSelect={() => {
-          setShowMenu(true);
-        }}
-      />
-    );
-  }
-
-  function renderMenu() {
-    return (
-      <Popup
-        isOpen={showMenu}
-        targetRef={() => moreActionsButtonRef.current}
-        onRequestClose={() => { setShowMenu(false); }}
-        contentHeight="auto"
-        contentWidth="auto"
-        contentAttachment="top right"
-        isContentFocusDisabled
-        isHeaderDisabled
-        popupContentRole="none"
-      >
-        <ActionMenu
-          label={intl.formatMessage({
-            id: 'terraApplication.pageHeader.actionsMenu',
-          }, { label })}
-          onRequestClose={() => { setShowMenu(false); }}
-        >
-          {validActions.map((action) => (
-            <ActionMenuItem
+  // The actions defined by the page container are rendered next to the
+  // consumer-provided actions, with a divider included only if both page and
+  // container actions are present.
+  const endActions = (
+    <>
+      {pageActions}
+      {pageContainerContext?.containerActions.length ? (
+        <>
+          {validActions.length ? <div className={cx('actions-divider')} /> : undefined}
+          {pageContainerContext.containerActions.map((action) => (
+            <PageHeaderButton
               key={action.key}
-              actionKey={action.key}
-              label={action.props.label}
-              isDisabled={!action.props.onSelect}
-              icon={action.props.icon}
-              onAction={() => {
-                setShowMenu(false);
-                action.props.onSelect();
-              }}
+              ariaLabel={action.label}
+              icon={action.icon}
+              onSelect={action.onSelect}
+              isDisabled={!action.onSelect}
             />
           ))}
-        </ActionMenu>
-      </Popup>
-    );
-  }
+        </>
+      ) : undefined}
+    </>
+  );
 
-  function renderToolbar() {
-    return toolbar ? (
-      <div className={cx('toolbar-container')}>
-        {toolbar}
-      </div>
-    ) : undefined;
-  }
-
-  function renderStartActions() {
-    if (!onSelectBack) {
-      return undefined;
-    }
-
-    return (
-      <PageHeaderButton
-        icon={<IconLeft />}
-        ariaLabel={intl.formatMessage({ id: 'terraApplication.pageHeader.back' })}
-        onSelect={onSelectBack}
-      />
-    );
-  }
-
-  function renderEndActions() {
-    return (
-      <>
-        {actionsAreCollapsed ? renderMenuButton() : renderActionButtons()}
-        {pageContainerContext?.containerActions.length ? (
-          <>
-            {validActions.length ? <div className={cx('actions-divider')} /> : undefined}
-            {pageContainerContext.containerActions.map((action) => (
-              <PageHeaderButton
-                key={action.key}
-                ariaLabel={action.label}
-                icon={action.icon}
-                onSelect={action.onSelect}
-                isDisabled={!action.onSelect}
-              />
-            ))}
-          </>
-        ) : undefined}
-      </>
-    );
-  }
+  const actionsMenu = showMenu ? (
+    <Popup
+      isOpen
+      targetRef={() => moreActionsButtonRef.current}
+      onRequestClose={() => { setShowMenu(false); }}
+      contentHeight="auto"
+      contentWidth="auto"
+      contentAttachment="top right"
+      isContentFocusDisabled
+      isHeaderDisabled
+      popupContentRole="none"
+    >
+      <ActionMenu
+        label={intl.formatMessage({
+          id: 'terraApplication.pageHeader.actionsMenu',
+        }, { label })}
+        onRequestClose={() => { setShowMenu(false); }}
+      >
+        {validActions.map((action) => (
+          <ActionMenuItem
+            key={action.key}
+            actionKey={action.key}
+            label={action.props.label}
+            isDisabled={!action.props.onSelect}
+            icon={action.props.icon}
+            onAction={() => {
+              setShowMenu(false);
+              action.props.onSelect();
+            }}
+          />
+        ))}
+      </ActionMenu>
+    </Popup>
+  ) : undefined;
 
   return (
     <div ref={headerContainerRef} className={cx('page-header-container')}>
       <div className={cx('page-header')}>
         <div className={cx('start-actions-container')}>
-          {renderStartActions()}
+          {backActionButton}
         </div>
         <div className={cx('label-container')} role="heading" aria-level={1}>
           {label}
         </div>
         <div className={cx('end-actions-container')}>
-          {renderEndActions()}
+          {endActions}
         </div>
       </div>
-      {renderToolbar()}
+      {toolbarContainer}
       <NotificationBanners
         id={id}
         label={label}
         activeClassName={cx('notification-banners-container')}
         bannerClassName={cx('notification-banner')}
       />
-      {renderMenu()}
+      {actionsMenu}
     </div>
   );
 };

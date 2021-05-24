@@ -25,10 +25,6 @@ const propTypes = {
    * Ref callback for button.
    */
   refCallback: PropTypes.func,
-  /**
-   * Identifier for use during tests
-   */
-  testId: PropTypes.string,
 };
 
 const PageHeaderButton = ({
@@ -36,7 +32,6 @@ const PageHeaderButton = ({
   icon,
   onSelect,
   refCallback,
-  testId,
 }) => {
   const theme = React.useContext(ThemeContext);
   const buttonClassNames = cx(
@@ -62,7 +57,6 @@ const PageHeaderButton = ({
       disabled={!onSelect}
       data-focus-styles-enabled
       ref={refCallback}
-      data-testid={testId}
     >
       <div aria-hidden className={cx('button-inner')}>
         <div className={cx('button-image')} title={ariaLabel}>

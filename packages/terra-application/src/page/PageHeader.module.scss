@@ -25,20 +25,19 @@
   }
 
   .label-container {
+    align-items: center;
     color: #383f42;
+    display: flex;
     flex: 1 1 auto;
     font-weight: bold;
     hyphens: auto;
-    padding-top: 0.1429rem;
+    min-height: 2rem;
+    min-width: 0;
     overflow: hidden;
     overflow-wrap: break-word;
     padding-left: 0.5rem;
+    padding-top: 0.1429rem;
     word-wrap: break-word;
-
-    min-height: 28px;
-    min-width: 0;
-    display: flex;
-    align-items: center;
   }
 
   .end-actions-container {

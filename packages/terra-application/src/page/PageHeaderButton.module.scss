@@ -25,6 +25,7 @@
     }
 
     &:disabled {
+      color: #222a2e;
       cursor: default;
       opacity: var(--terra-application-page-header-button-is-disabled-opacity, 0.3);
       pointer-events: none;

@@ -31,7 +31,7 @@ const propTypes = {
  *
  * The PageAction component should not be rendered directly.
  */
-const PageAction = () => <div />;
+const PageAction = () => <React.Fragment />;
 
 PageAction.propTypes = propTypes;
 

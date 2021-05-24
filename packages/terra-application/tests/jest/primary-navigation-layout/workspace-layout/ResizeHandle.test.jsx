@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import ResizeHandle from '../../../../src/primary-navigation-layout/workspace-layout/ResizeHandle';
 
 test('should render with minimal props', () => {
-  render((
-    <ResizeHandle/>
+  const testView = render((
+    <ResizeHandle />
   ));
 
   // Expect container element to be rendered

@@ -1,19 +1,16 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import MockApplication from '../../MockApplication';
 import WorkspaceLayout from '../../../../src/primary-navigation-layout/workspace-layout/WorkspaceLayout';
 import SkipToLinksContext from '../../../../src/application-container/private/skip-to-links/SkipToLinksContext';
 import Workspace, { WorkspaceItem, WorkspaceContent } from '../../../../src/workspace';
 
-const Item1 = ({}) => {
-  return (
-    <WorkspaceContent>
-      <div data-testid="mock-workspace-item" />
-    </WorkspaceContent>
-  );
-};
+const Item1 = () => (
+  <WorkspaceContent>
+    <div data-testid="mock-workspace-item" />
+  </WorkspaceContent>
+);
 
 const testWorkspace = (
   <Workspace
@@ -37,7 +34,7 @@ const mockContext = {
 };
 
 test('should render with minimal props', () => {
-  const testView = render((
+  render((
     <SkipToLinksContext.Provider value={mockContext}>
       <MockApplication>
         <WorkspaceLayout

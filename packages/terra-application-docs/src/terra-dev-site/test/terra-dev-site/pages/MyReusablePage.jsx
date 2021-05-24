@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavigationItemContext } from '@cerner/terra-application/lib/navigation-item';
-import ApplicationPage from '@cerner/terra-dev-site/lib/terra-application-temporary/page';
+import ApplicationPage from '@cerner/terra-application/lib/page';
 
 const propTypes = {
   /**

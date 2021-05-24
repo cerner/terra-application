@@ -1,6 +1,6 @@
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { activeBreakpointForSize } from '../../breakpoints';
+import { activeBreakpointForSize } from '../breakpoints';
 
 /**
  * Takes the given rect value and translates it into the shape desired by the useElementSize hook.

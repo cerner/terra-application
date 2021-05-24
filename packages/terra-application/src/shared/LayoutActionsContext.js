@@ -24,7 +24,7 @@ const actionShape = PropTypes.shape({
    * A graphic representing the action. This may be used by the context consumer
    * to render controls for the action.
    */
-  icon: PropTypes.elementType,
+  icon: PropTypes.element,
   /**
    * A function executed upon selection of the action.
    */
@@ -33,15 +33,9 @@ const actionShape = PropTypes.shape({
 
 const contextShape = {
   /**
-   * Action definitions related to actions that are relevant to the Layout's
-   * leading (as determined by LTR/RTL) side.
+   * Action definitions for the layout.
    */
-  startActions: PropTypes.arrayOf(actionShape),
-  /**
-   * Action definitions related to actions that are relevant to the Layout's
-   * trailing (as determined by LTR/RTL) side.
-   */
-  endActions: PropTypes.arrayOf(actionShape),
+  actions: PropTypes.arrayOf(actionShape),
 };
 
 export default LayoutActionsContext;

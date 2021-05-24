@@ -3,7 +3,7 @@ import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 // import IconSearch from 'terra-icon/lib/icon/IconSearch';
 // import IconTile from 'terra-icon/lib/icon/IconTile';
 import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
-import { PageContainer } from '../terra-application-temporary/page';
+import PageContainer from '@cerner/terra-application/lib/page-container';
 
 import DevSitePage from '../pages/_DevSitePage';
 import NotFoundPage from '../pages/_NotFoundPage';

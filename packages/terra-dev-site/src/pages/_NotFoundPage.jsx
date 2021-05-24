@@ -3,7 +3,11 @@ import {
   useHistory,
 } from 'react-router-dom';
 import { NavigationItemContext } from '@cerner/terra-application/lib/navigation-item';
-import Page, { StatusLayout } from '../terra-application-temporary/page';
+import Page from '@cerner/terra-application/lib/page';
+
+import {
+  StatusLayout,
+} from '../terra-application-temporary/page';
 
 const NotFoundPage = () => {
   const history = useHistory();

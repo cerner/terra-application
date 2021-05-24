@@ -1,8 +1,8 @@
-@import '@cerner/terra-application/lib/breakpoints/media-queries';
+@import '../breakpoints/media-queries';
 
 :local {
   .page {
-    background-color: #f3f4f3;
+    background-color: #f4f4f4;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -27,5 +27,12 @@
       width: 100%;
       z-index: 1;
     }
+  }
+
+  .page-toolbar {
+    background: linear-gradient(#e8e9ea, #dedfe0);
+    border: 0;
+    border-radius: 3px;
+    box-shadow: 0 1px 1px 0 rgba(28, 31, 33, 0.2); 
   }
 }

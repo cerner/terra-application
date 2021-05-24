@@ -56,6 +56,9 @@
   "TODO": "translations needed for the below",
   "terraApplication.skipToLink.prefix": "Skip to {description}",
   "terraApplication.mainContainer.skipToLabel": "Content",
+  "terraApplication.pageHeader.moreActions": "More Actions",
+  "terraApplication.pageHeader.actionsMenu": "{label} Actions",
+  "terraApplication.pageHeader.back": "Back",
   "terraApplication.workspaceLayout.toggle.show": "Show Workspace",
   "terraApplication.workspaceLayout.toggle.hide": "Hide Workspace"
 }

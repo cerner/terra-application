@@ -23,6 +23,10 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
+   * React ref mapping to back to portaling of the child content.
+   */
+  contentElementRef: PropTypes.func,
+  /**
    * Unique id for the layout.
    */
   id: PropTypes.string.isRequired,

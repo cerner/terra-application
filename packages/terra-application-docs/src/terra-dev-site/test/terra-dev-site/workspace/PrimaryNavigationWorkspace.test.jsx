@@ -11,6 +11,8 @@ import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
 
 import TestPage from './NavigationTestPage';
 
+/* eslint-disable react/prop-types */
+
 const Tab1 = ({ activeMain }) => (
   <WorkspaceContent>
     Workspace 1
@@ -103,14 +105,14 @@ const PrimaryNavigationLayout5 = () => {
             navigationKey="1"
             label="Nav 1"
             renderPage={() => (
-              <TestPage pageKey="nav-1" label="Nav 1"/>
+              <TestPage pageKey="nav-1" label="Nav 1" />
             )}
           />
           <NavigationItem
             navigationKey="2"
             label="Nav 2"
             renderPage={() => (
-              <TestPage pageKey="nav-2" label="Nav 2"/>
+              <TestPage pageKey="nav-2" label="Nav 2" />
             )}
           />
         </PrimaryNavigationLayout>

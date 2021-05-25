@@ -4,9 +4,8 @@ import { NavigationItemContext } from '@cerner/terra-application/lib/navigation-
 import ApplicationPage from '@cerner/terra-application/lib/page';
 
 const propTypes = {
-  /**
-   * Function called when close is requested.
-   */
+  pageKey: PropTypes.string,
+  label: PropTypes.string,
   onRequestClose: PropTypes.func,
 };
 

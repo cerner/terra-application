@@ -25,7 +25,7 @@ const propTypes = {
   /**
    * React ref mapping to back to portaling of the child content.
    */
-  contentElementRef: PropTypes.func,
+  contentElementRef: PropTypes.object,
   /**
    * Unique id for the layout.
    */

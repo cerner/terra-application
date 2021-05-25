@@ -83,6 +83,7 @@ const WorkspaceWrapper = ({
   onActiveItemChange,
   initialActiveItemKey,
   children,
+  // These props are read by the parent to determine the controlled values to pass down.
   initialIsOpen, // eslint-disable-line no-unused-vars, react/no-unused-prop-types
   initialSize, // eslint-disable-line no-unused-vars, react/no-unused-prop-types
 
@@ -118,7 +119,7 @@ const WorkspaceWrapper = ({
 
   return (
     <Workspace
-      id={id || 'test-id'}
+      id={id}
       activeItemKey={activeItemKey}
       onRequestActivate={itemKey => {
         setActiveItemKey(itemKey);

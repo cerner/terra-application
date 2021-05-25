@@ -13,6 +13,7 @@ import TestPage from './NavigationTestPage';
 
 const Tab1 = ({ activeMain }) => (
   <WorkspaceContent>
+    Workspace 1
     <p>
       Active Main Label:
       {' '}
@@ -26,9 +27,19 @@ const Tab1 = ({ activeMain }) => (
   </WorkspaceContent>
 );
 
-const Tab2 = () => (
+const Tab2 = ({ activeMain }) => (
   <WorkspaceContent>
-    <p>Wombat 2</p>
+    Workspace 2
+    <p>
+      Active Main Label:
+      {' '}
+      {activeMain?.label}
+    </p>
+    <p>
+      Active Main MetaData:
+      {' '}
+      {`${JSON.stringify(activeMain?.metaData)}`}
+    </p>
   </WorkspaceContent>
 );
 

@@ -48,7 +48,7 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
 
     if (dataForActivePortal?.element) {
       /**
-       * If the activePortalKey matches a known element, that element iis appended to the
+       * If the activePortalKey matches a known element, that element is appended to the
        * container and any previously recorded scroll positions are applied.
        */
       containerRef.current.appendChild(dataForActivePortal.element);

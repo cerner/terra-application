@@ -30,7 +30,7 @@ const propTypes = {
   /**
    * The size string value matching the active size option.
    */
-  initialSize: PropTypes.string,
+  initialSize: PropTypes.object,
   /**
    * @private
    * Id string to apply to the workspace
@@ -128,6 +128,7 @@ const WorkspaceWrapper = ({
       onRequestSizeChange={onRequestSizeChange}
       onRequestDismiss={onRequestClose}
       dismissButtonIsVisible={isPresentedAsOverlay}
+      isPresentedAsOverlay={isPresentedAsOverlay}
     >
       {React.Children.map(children, (child) => (
         <WorkspaceItem

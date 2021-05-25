@@ -101,6 +101,7 @@ const WorkspaceLayout = ({
   children,
   id,
   workspace,
+  contentElementRef,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const parentLayoutActions = React.useContext(LayoutActionsContext);
@@ -390,6 +391,7 @@ const WorkspaceLayout = ({
     <div
       id={`${id}-content-body`}
       className={cx('content-body')}
+      ref={contentElementRef}
       style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
       inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
     >

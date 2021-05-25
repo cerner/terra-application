@@ -305,10 +305,11 @@ const PrimaryNavigationLayout = ({
         <div className={cx('concept-banner-container')}>
           {applicationConcept?.layoutBanner}
         </div>
-        <div ref={contentElementRef} className={cx('layout-content')}>
+        <div className={cx('layout-content')}>
           <WorkspaceLayout
             id={`${id}-workspace-layout`}
             workspace={workspace}
+            contentElementRef={contentElementRef}
           >
             {content}
           </WorkspaceLayout>

@@ -3,16 +3,26 @@ import React from 'react';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
 import ApplicationContainer from '@cerner/terra-application/lib/application-container';
 import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
+import { useActiveMain } from '@cerner/terra-application/lib/main-container';
 
 import PrimaryNavigationWorkspace from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
 import PrimaryNavigationWorkspaceItem from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
 import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
 
-import TestPage from '../pages/MyReusablePage';
+import TestPage from './NavigationTestPage';
 
-const Tab1 = () => (
+const Tab1 = ({ activeMain }) => (
   <WorkspaceContent>
-    <p>Wombat 1</p>
+    <p>
+      Active Main Label:
+      {' '}
+      {activeMain?.label}
+    </p>
+    <p>
+      Active Main MetaData:
+      {' '}
+      {`${JSON.stringify(activeMain?.metaData)}`}
+    </p>
   </WorkspaceContent>
 );
 
@@ -27,6 +37,7 @@ const PrimaryNavigationLayout5 = () => {
     activeNavigationItemKey,
     setActiveNavigationItemKey,
   ] = React.useState('1');
+  const activeMain = useActiveMain();
 
   const wrapper = (
     <PrimaryNavigationWorkspace
@@ -48,13 +59,13 @@ const PrimaryNavigationLayout5 = () => {
         itemKey="tab-1"
         label="Tab 1"
         metaData={{ key: 'tab-1' }}
-        render={() => <Tab1 />}
+        render={() => <Tab1 activeMain={activeMain} />}
       />
       <PrimaryNavigationWorkspaceItem
         itemKey="tab-2"
         label="Tab 2"
         metaData={{ key: 'tab-2' }}
-        render={() => <Tab2 />}
+        render={() => <Tab2 activeMain={activeMain} />}
       />
     </PrimaryNavigationWorkspace>
   );
@@ -81,7 +92,14 @@ const PrimaryNavigationLayout5 = () => {
             navigationKey="1"
             label="Nav 1"
             renderPage={() => (
-              <TestPage />
+              <TestPage pageKey="nav-1" label="Nav 1"/>
+            )}
+          />
+          <NavigationItem
+            navigationKey="2"
+            label="Nav 2"
+            renderPage={() => (
+              <TestPage pageKey="nav-2" label="Nav 2"/>
             )}
           />
         </PrimaryNavigationLayout>

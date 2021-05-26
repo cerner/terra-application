@@ -21,7 +21,7 @@ class MockPromptBase extends React.Component {
 
 const MockPrompt = withPromptRegistration(MockPromptBase);
 
-describe('NavigationPrompt', () => {
+describe('UnsavedChangesPrompt', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
       const wrapper = shallow((

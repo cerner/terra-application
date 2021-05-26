@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`NavigationPrompt Snapshots should render the NotificationDialog when state is present 1`] = `
+exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog when state is present 1`] = `
 <ContextProvider
   value={
     Object {
@@ -30,7 +30,7 @@ exports[`NavigationPrompt Snapshots should render the NotificationDialog when st
 </ContextProvider>
 `;
 
-exports[`NavigationPrompt Snapshots should render the NotificationDialog with accept as the primary action 1`] = `
+exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog with accept as the primary action 1`] = `
 <ContextProvider
   value={
     Object {
@@ -61,7 +61,7 @@ exports[`NavigationPrompt Snapshots should render the NotificationDialog with ac
 </ContextProvider>
 `;
 
-exports[`NavigationPrompt Snapshots should render the NotificationDialog with reject as the primary action 1`] = `
+exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog with reject as the primary action 1`] = `
 <ContextProvider
   value={
     Object {
@@ -92,7 +92,7 @@ exports[`NavigationPrompt Snapshots should render the NotificationDialog with re
 </ContextProvider>
 `;
 
-exports[`NavigationPrompt Snapshots should render with children 1`] = `
+exports[`UnsavedChangesPrompt Snapshots should render with children 1`] = `
 <ContextProvider
   value={
     Object {
@@ -105,7 +105,7 @@ exports[`NavigationPrompt Snapshots should render with children 1`] = `
 </ContextProvider>
 `;
 
-exports[`NavigationPrompt Snapshots should render with minimal props 1`] = `
+exports[`UnsavedChangesPrompt Snapshots should render with minimal props 1`] = `
 <ContextProvider
   value={
     Object {

@@ -1,11 +1,11 @@
 import UnsavedChangesPrompt, { UnsavedChangesPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/unsaved-changes-prompt';
 
-describe('navigation-prompt/index', () => {
-  it('should export NavigationPrompt', () => {
+describe('unsaved-changes-prompt/index', () => {
+  it('should export UnsavedChangesPrompt', () => {
     expect(UnsavedChangesPrompt).toBeDefined();
   });
 
-  it('should export NavigationPromptCheckpoint', () => {
+  it('should export UnsavedChangesPromptCheckpoint', () => {
     expect(UnsavedChangesPromptCheckpoint).toBeDefined();
   });
 

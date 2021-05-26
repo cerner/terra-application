@@ -1,0 +1,82 @@
+import UnsavedChangesPromptCheckpointProps from '@cerner/terra-application/src/unsaved-changes-prompt/UnsavedChangesPromptCheckpoint?dev-site-props-table';
+
+# UnsavedChangesPromptCheckpoint
+
+The UnsavedChangesPromptCheckpoint serves as a registration gateway for [UnsavedChangesPrompts](/application/cerner-terra-application-docs/components/unsaved-changes-prompt)
+rendered within it. Any UnsavedChangesPrompt rendered within the context of a UnsavedChangesPromptCheckpoint will register itself with the UnsavedChangesPromptCheckpoint
+(and any other anscestor checkpoints). The component that implements the UnsavedChangesPromptCheckpoint can use the presence of registered UnsavedChangesPrompts to
+influence its navigational workflows as necessary.
+
+## Usage
+
+```jsx
+import { UnsavedChangesPromptCheckpoint } from '@cerner/terra-application/lib/unsaved-changes-prompt';
+```
+
+## Props
+
+<UnsavedChangesPromptCheckpointProps />
+
+## Details
+
+Any component that navigates between stateful child components should render UnsavedChangesPromptCheckpoints around those children.
+Each UnsavedChangesPrompt rendered by a child will be registered to the UnsavedChangesPromptCheckpoints above it in the component tree.
+The implementer of each UnsavedChangesPromptCheckpoint can use the registered data to prompt the user before navigating or prevent navigation altogether.
+
+### `onPromptChange`
+
+The `onPromptChange` function prop is used to communicate UnsavedChangesPrompt registrations to the implementer of a UnsavedChangesPromptCheckpoint.
+The function is called with an array of objects containing each registered UnsavedChangesPrompt's `description` and `metaData` properties.
+
+> Note: The `onPromptChange` prop will be called after each UnsavedChangesPrompt registration and removal.
+> It may be called more than once with the same array of UnsavedChangesPrompt data. Calls to `setState` within onPromptChange
+> should be performed only when necessary to minimize component updates.
+
+### `resolvePrompts`
+
+The `resolvePrompts` function can be accessed from the ref to a UnsavedChangesPromptCheckpoint. Calling `resolvePrompts` results in a
+Promise being returned and a NotificationDialog being presented to the user with options to either confirm or cancel their action.
+If the user confirms the action, the dialog will close, and the returned Promise will be resolved. If the user cancels the action,
+the dialog will close, and the returned Promise will be rejected. If no UnsavedChangesPrompts are detected, no dialog is presented, and
+the returned Promise will be resolved.
+
+`resolvePrompts` accepts either an Object or function argument. The Object should contain the text strings used to render the NotificationDialog.
+The function should return an Object containing the text strings used to render the NotificationDialog. Additionally, the function will receive
+an array of registered UnsavedChangesPrompts as an argument. The array of prompts can be used to create dynamic strings based on the current set of registered prompts.
+
+The keys expected in the resolvePrompts Object or return value include:
+
+|Key|Type|Description|
+|---|---|---|
+|`title`|String|The title of the NotificationDialog.|
+|`startMessage`|String|The starting message of the NotificationDialog.|
+|`content`|Node|The content of the NotificationDialog.|
+|`endMessage`|String|The ending message of the NotificationDialog.|
+|`acceptButtonText`|String|The text to render within the NotificationDialog's accept button.|
+|`rejectButtonText`|String|The text to render within the NotificationDialog's reject button.|
+|`buttonOrder`|String|A string indicating which action should be rendered first, required. Supported values include: `acceptFirst`, `rejectFirst`.|
+|`emphasizedAction`|String|A string indicating which action should be rendered as emphasized. Supported values include: `accept`, `reject`, and `none`. Defaults to `none`.|
+
+A utility function called `getUnsavedChangesPromptOptions` allows direct consumers of the UnsavedChangesPromptCheckpoint
+to match the prompt messaging provided by the components within `terra-application`.
+
+```jsx
+import React, { useContext, useRef } from 'react';
+import { UnsavedChangesPromptCheckpoint, getUnsavedChangesPromptOptions } from '@cerner/terra-application/lib/unsaved-changes-prompt';
+
+const ExampleComponent = () => {
+  const checkpointRef = useRef();
+
+  function resolvePrompts() {
+    checkpointRef.current.resolvePrompts().then(() => { ... });
+  }
+
+  return (
+    <UnsavedChangesPromptCheckpoint
+      ref={checkpointRef}
+    >
+      {...}
+    </UnsavedChangesPromptCheckpoint>
+  );
+}
+```

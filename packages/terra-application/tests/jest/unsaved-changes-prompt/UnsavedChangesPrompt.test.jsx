@@ -4,7 +4,7 @@ import UnsavedChangesPromptHOC from '../../../src/unsaved-changes-prompt/Unsaved
 
 const UnsavedChangesPrompt = UnsavedChangesPromptHOC.WrappedComponent;
 
-describe('NavigationPrompt', () => {
+describe('UnsavedChangesPrompt', () => {
   describe('render', () => {
     it('should render null', () => {
       const wrapper = shallow((

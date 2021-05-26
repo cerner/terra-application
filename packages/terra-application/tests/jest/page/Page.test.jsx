@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import userEvent from '@testing-library/user-event';
-import NavigationPrompt from '../../../src/navigation-prompt';
+import UnsavedChangesPrompt from '../../../src/unsaved-changes-prompt';
 
 import ApplicationContainer from '../../../src/application-container';
 import MainPageContainer from '../../../src/page-container/MainPageContainer';
@@ -251,7 +251,7 @@ test('disregards prompts when disabled', async () => {
       onRequestClose={mockOnRequestClose}
       dangerouslyDisableUnsavedChangesPromptHandling
     >
-      <NavigationPrompt description="Test Prompt" />
+      <UnsavedChangesPrompt description="Test Prompt" />
     </TestPage>
   ));
 
@@ -273,7 +273,7 @@ test('disregards prompts when disabled', async () => {
       onRequestClose={mockOnRequestClose}
       dangerouslyDisableUnsavedChangesPromptHandling
     >
-      <NavigationPrompt description="Test Prompt" />
+      <UnsavedChangesPrompt description="Test Prompt" />
     </TestPage>
   ));
 

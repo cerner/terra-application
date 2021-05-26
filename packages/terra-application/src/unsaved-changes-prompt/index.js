@@ -1,7 +1,10 @@
 import PropTypes from 'prop-types';
+import UnsavedChangesPrompt from './UnsavedChangesPrompt';
+import UnsavedChangesPromptCheckpoint from './UnsavedChangesPromptCheckpoint';
+import PromptRegistrationContext from './PromptRegistrationContext';
 import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';
 
-const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
+const unsavedChangesPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.shape({
   /**
    * The title string for the NotificationDialog.
    */
@@ -36,6 +39,6 @@ const navigationPromptResolutionOptionsShape = PropTypes.oneOfType([PropTypes.sh
   buttonOrder: PropTypes.oneOf(['acceptFirst', 'rejectFirst']),
 }), PropTypes.func]);
 
-export { default } from 'terra-navigation-prompt';
-export { NavigationPromptCheckpoint, PromptRegistrationContext } from 'terra-navigation-prompt';
-export { navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };
+export default UnsavedChangesPrompt;
+export { UnsavedChangesPromptCheckpoint, PromptRegistrationContext };
+export { unsavedChangesPromptResolutionOptionsShape, getUnsavedChangesPromptOptions };

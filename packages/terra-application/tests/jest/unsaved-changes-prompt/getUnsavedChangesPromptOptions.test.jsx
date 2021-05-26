@@ -1,6 +1,6 @@
 import { mockIntl } from '@cerner/terra-enzyme-intl';
 
-import getUnsavedChangesPromptOptions from '../../../src/navigation-prompt/getUnsavedChangesPromptOptions';
+import getUnsavedChangesPromptOptions from '../../../src/unsaved-changes-prompt/getUnsavedChangesPromptOptions';
 
 describe('getUnsavedChangesPromptOptions', () => {
   it('generates a function that provides appropriate messaging for a single prompt', () => {

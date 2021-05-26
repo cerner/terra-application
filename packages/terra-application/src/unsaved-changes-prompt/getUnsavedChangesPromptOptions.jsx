@@ -2,7 +2,7 @@ import React from 'react';
 import { ContentLayoutAsList } from 'terra-notification-dialog';
 
 /**
- * Generates an Object containing properties used to define messages for NavigationPromptCheckpoint-based user prompting.
+ * Generates an Object containing properties used to define messages for UnsavedChangesPromptCheckpoint-based user prompting.
  * @param {Object} intl - The react-intl provided intl object used to look up translated string definitions.
  */
 export default intl => (prompts) => {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import { NavigationPromptCheckpoint } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import WindowManager from '../utils/window-manager';
 import ActiveMainProvider from '../main-container/private/ActiveMainProvider';
 
@@ -32,9 +32,9 @@ const propTypes = {
 const ApplicationContainer = ({
   children, unloadPromptIsDisabled,
 }) => {
-  // The NavigationPrompts registered to the ApplicationContainer's checkpoint
+  // The UnsavedChangesPrompts registered to the ApplicationContainer's checkpoint
   // are stored in this ref. This ref is then queried during the unload event to
-  // determine whether NavigationPrompts are currently registered.
+  // determine whether UnsavedChangesPrompts are currently registered.
   const registeredPromptsRef = React.useRef();
 
   // Skip-to links are provided by the ApplicationContainer to ensure proper
@@ -56,7 +56,7 @@ const ApplicationContainer = ({
   }, [unloadPromptIsDisabled]);
 
   return (
-    <NavigationPromptCheckpoint
+    <UnsavedChangesPromptCheckpoint
       onPromptChange={(registeredPrompts) => {
         registeredPromptsRef.current = registeredPrompts;
       }}
@@ -71,7 +71,7 @@ const ApplicationContainer = ({
           </ActiveMainProvider>
         </SkipToLinksProvider>
       </div>
-    </NavigationPromptCheckpoint>
+    </UnsavedChangesPromptCheckpoint>
   );
 };
 

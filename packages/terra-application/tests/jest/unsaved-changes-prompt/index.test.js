@@ -1,12 +1,12 @@
-import NavigationPrompt, { NavigationPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/navigation-prompt';
+import UnsavedChangesPrompt, { UnsavedChangesPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/unsaved-changes-prompt';
 
 describe('navigation-prompt/index', () => {
   it('should export NavigationPrompt', () => {
-    expect(NavigationPrompt).toBeDefined();
+    expect(UnsavedChangesPrompt).toBeDefined();
   });
 
   it('should export NavigationPromptCheckpoint', () => {
-    expect(NavigationPromptCheckpoint).toBeDefined();
+    expect(UnsavedChangesPromptCheckpoint).toBeDefined();
   });
 
   it('should export PromptRegistrationContext', () => {

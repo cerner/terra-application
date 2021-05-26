@@ -9,7 +9,7 @@ import DisclosureManagerContext from 'terra-disclosure-manager/lib/DisclosureMan
 import DisclosureManagerDelegate from 'terra-disclosure-manager/lib/DisclosureManagerDelegate';
 
 import { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
-import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint, unsavedChangesPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../unsaved-changes-prompt';
 import ApplicationErrorBoundary from '../application-error-boundary';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import { addCallback, removeCallback } from './_disclosureCallbacks';
@@ -24,7 +24,7 @@ const propTypes = {
    * used to prompt the user when disclosure dismissal occurs when pending state
    * is present.
    */
-  navigationPromptResolutionOptions: navigationPromptResolutionOptionsShape,
+  navigationPromptResolutionOptions: unsavedChangesPromptResolutionOptionsShape,
 };
 
 /**
@@ -81,7 +81,7 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
     <DisclosureManagerContext.Provider value={overrideDisclosureManagerContext}>
       <ApplicationErrorBoundary>
         <ApplicationLoadingOverlayProvider>
-          <NavigationPromptCheckpoint
+          <UnsavedChangesPromptCheckpoint
             ref={promptCheckpointRef}
           >
             <ContentContainer header={<NotificationBanners />} fill>
@@ -89,7 +89,7 @@ const DisclosureContainer = injectIntl(({ intl, children, navigationPromptResolu
                 {children}
               </NotificationBannerProvider>
             </ContentContainer>
-          </NavigationPromptCheckpoint>
+          </UnsavedChangesPromptCheckpoint>
         </ApplicationLoadingOverlayProvider>
       </ApplicationErrorBoundary>
     </DisclosureManagerContext.Provider>

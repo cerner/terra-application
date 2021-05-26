@@ -2,10 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import { NavigationPromptCheckpoint, getUnsavedChangesPromptOptions } from '../navigation-prompt';
+import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import usePagePortal from '../page-container/usePagePortal';
-import { ApplicationIntlContext } from '../application-intl';
 
 import PageHeader from './PageHeader';
 import PageActions from './PageActions';
@@ -66,8 +65,6 @@ const Page = ({
   dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
-  const intl = React.useContext(ApplicationIntlContext);
-
   if (actions && actions.type !== PageActions) {
     throw new Error(`[terra-application] Page.Actions must be used to define actions for ${label}.`);
   }
@@ -76,9 +73,9 @@ const Page = ({
     throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for ${label}.`);
   }
 
-  // An NavigationPromptCheckpoint is used to detect unsaved changes within
+  // An UnsavedChangesPromptCheckpoint is used to detect unsaved changes within
   // the Page's content.
-  const checkpointRef = React.useRef();
+  const unsavedChangesCheckpointRef = React.useRef();
 
   // A Provider/Presenter pair is generated to manage NotificationBanner
   // rendering within the Page.
@@ -102,7 +99,7 @@ const Page = ({
       return;
     }
 
-    checkpointRef.current.resolvePrompts(getUnsavedChangesPromptOptions(intl)).then(() => {
+    unsavedChangesCheckpointRef.current.resolvePrompts().then(() => {
       onRequestClose();
     });
   } : undefined;
@@ -121,11 +118,11 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
-          <NavigationPromptCheckpoint ref={checkpointRef}>
+          <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
             <NotificationBannerProvider>
               {children}
             </NotificationBannerProvider>
-          </NavigationPromptCheckpoint>
+          </UnsavedChangesPromptCheckpoint>
         </div>
       </div>
     </PagePortal>

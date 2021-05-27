@@ -9,6 +9,7 @@ import NavigationItem from '../navigation-item';
 import { MainPageContainer } from '../page-container';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import PrimaryNavigationWorkspace from './workspace-layout/PrimaryNavigationWorkspace';
 import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 import {
@@ -173,6 +174,10 @@ const PrimaryNavigationLayout = ({
   utilityItems,
   workspace,
 }) => {
+  if (workspace && workspace.type !== PrimaryNavigationWorkspace) {
+    throw new Error('[terra-application] PrimaryNavigationWorkspace must be used to define a workspace for the PrimarayNavigationLayout.');
+  }
+
   const applicationConcept = React.useContext(ApplicationConceptContext);
 
   // The set of NavigationItems rendered in the last update are stored in this

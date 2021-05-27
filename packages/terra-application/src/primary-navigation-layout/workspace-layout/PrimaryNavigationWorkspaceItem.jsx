@@ -21,7 +21,7 @@ const propTypes = {
   render: PropTypes.func,
 };
 
-const PrimaryNavigationWorkspaceItem = () => <div />;
+const PrimaryNavigationWorkspaceItem = () => <React.Fragment />;
 
 PrimaryNavigationWorkspaceItem.propTypes = propTypes;
 

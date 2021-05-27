@@ -60,5 +60,6 @@
   "terraApplication.pageHeader.actionsMenu": "{label} Actions",
   "terraApplication.pageHeader.back": "Back",
   "terraApplication.workspaceLayout.toggle.show": "Show Workspace",
-  "terraApplication.workspaceLayout.toggle.hide": "Hide Workspace"
+  "terraApplication.workspaceLayout.toggle.hide": "Hide Workspace",
+  "terraApplication.workspacelayout.skipToLabel": "Workspace"
 }

@@ -76,7 +76,7 @@ const propTypes = {
   onRequestSizeChange: PropTypes.func,
 };
 
-const WorkspaceWrapper = ({
+const PrimaryNavigationWorkspace = ({
   // consumer props
   onSizeChange,
   onPresentationStateChange,
@@ -143,6 +143,6 @@ const WorkspaceWrapper = ({
   );
 };
 
-WorkspaceWrapper.propTypes = propTypes;
+PrimaryNavigationWorkspace.propTypes = propTypes;
 
-export default WorkspaceWrapper;
+export default PrimaryNavigationWorkspace;

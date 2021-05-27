@@ -132,6 +132,7 @@ const WorkspaceLayout = ({
   const hasOverlayWorkspace = activeBreakpoint === 'tiny' || activeBreakpoint === 'small' || workspaceSize.type === 'overlay';
   const isLargeFormFactor = activeBreakpoint === 'large' || activeBreakpoint === 'huge' || activeBreakpoint === 'enormous';
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
+  const hasWorkspace = !!workspace;
 
   const layoutActionsContextValue = React.useMemo(() => {
     let newActions = parentLayoutActions.actions || [];
@@ -143,7 +144,7 @@ const WorkspaceLayout = ({
       actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.show' });
     }
 
-    if (workspace) {
+    if (hasWorkspace) {
       newActions = [...newActions, {
         key: 'workspace-layout-toggle-workspace-panel',
         label: actionLabel,
@@ -157,7 +158,7 @@ const WorkspaceLayout = ({
     return ({
       actions: newActions,
     });
-  }, [parentLayoutActions.actions, workspace, workspaceIsVisible, applicationIntl]);
+  }, [parentLayoutActions.actions, hasWorkspace, workspaceIsVisible, applicationIntl]);
 
   useDismissTransientPresentationsEffect(() => {
     if (hasOverlayWorkspace) {
@@ -303,7 +304,9 @@ const WorkspaceLayout = ({
 
     return (
       <SkipToLink
-        description="Workspace"
+        description={applicationIntl.formatMessage({
+          id: 'terraApplication.workspacelayout.skipToLabel',
+        })}
         onSelect={() => {
           if (!workspaceIsVisible) {
             setWorkspaceIsVisible(true);

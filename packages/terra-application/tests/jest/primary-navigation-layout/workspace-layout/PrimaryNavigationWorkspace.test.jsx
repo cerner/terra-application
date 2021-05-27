@@ -43,7 +43,10 @@ test('should render with full props', () => {
         onActiveItemChange={mockActive}
         initialActiveItemKey="test key"
         initialIsOpen
-        initialSize="small"
+        initialSize={{
+          scale: undefined,
+          type: undefined,
+        }}
         id="test-id"
         isOpen
         onRequestClose={jest.fn()}
@@ -78,7 +81,10 @@ test('should render with full props', () => {
         onActiveItemChange={mockActive}
         initialActiveItemKey="test key"
         initialIsOpen
-        initialSize="small"
+        initialSize={{
+          scale: undefined,
+          type: undefined,
+        }}
         id="test-id"
         onRequestClose={jest.fn()}
         isPresentedAsOverlay
@@ -111,7 +117,10 @@ test('should render with full props', () => {
         onActiveItemChange={mockActive}
         initialActiveItemKey="test key"
         initialIsOpen
-        initialSize="small"
+        initialSize={{
+          scale: undefined,
+          type: undefined,
+        }}
         id="test-id"
         onRequestClose={jest.fn()}
         isPresentedAsOverlay

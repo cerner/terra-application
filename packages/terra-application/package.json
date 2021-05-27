@@ -58,7 +58,7 @@
     "mutationobserver-shim": "^0.3.3",
     "prop-types": "^15.5.8",
     "react-draggable": "^4.4.3",
-    "react-onclickoutside": ">=6.7.1 <6.11.0",
+    "react-onclickoutside": "^6.7.1",
     "resize-observer-polyfill": "^1.5.1",
     "terra-action-footer": "^2.52.0",
     "terra-action-header": "^2.62.0",

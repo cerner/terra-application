@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom/extend-expect';
 import PrimaryNavigationWorkspace from '../../../../src/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
 import MockApplication from '../../MockApplication';

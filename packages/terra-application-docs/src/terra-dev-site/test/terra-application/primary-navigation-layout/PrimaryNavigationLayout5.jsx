@@ -28,7 +28,7 @@ const PrimaryNavigationLayout5 = () => {
     setActiveNavigationItemKey,
   ] = React.useState('1');
 
-  const wrapper = (
+  const workspace = (
     <PrimaryNavigationWorkspace
       id="derp"
       initialActiveItemKey="tab-1"
@@ -75,7 +75,7 @@ const PrimaryNavigationLayout5 = () => {
             name: 'Demo User',
             detail: 'demouser',
           }}
-          workspace={wrapper}
+          workspace={workspace}
         >
           <NavigationItem
             navigationKey="1"

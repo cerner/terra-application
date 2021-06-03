@@ -17,43 +17,43 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
     });
 
     it('should render with no-data variant', () => {
-      browser.click('#no-data-button');
+      $('#no-data-button').click();
 
       Terra.validates.element('no-data', { selector: '#root' });
     });
 
     it('should render with error variant', () => {
-      browser.click('#reset-button');
-      browser.click('#error-button');
+      $('#reset-button').click();
+      $('#error-button').click();
 
       Terra.validates.element('error', { selector: '#root' });
     });
 
     it('should render with no-matching-results variant', () => {
-      browser.click('#reset-button');
-      browser.click('#no-matching-results-button');
+      $('#reset-button').click();
+      $('#no-matching-results-button').click();
 
       Terra.validates.element('no-matching-results', { selector: '#root' });
     });
 
     it('should render with not-authorized variant', () => {
-      browser.click('#reset-button');
-      browser.click('#not-authorized-button');
+      $('#reset-button').click();
+      $('#not-authorized-button').click();
 
       Terra.validates.element('not-authorized', { selector: '#root' });
     });
 
     it('should make background elements inert when status view is overlaid', () => {
-      browser.click('#reset-button');
-      browser.click('#error-button');
-      expect(browser.getAttribute('#test-status-view-container > [data-status-overlay-container-content="true"]', 'inert')).to.be.oneOf(['', 'true']); // chrome returns true, firefox returns ''
-      expect(browser.getAttribute('#test-status-view-container > [data-status-overlay-container-content="true"]', 'aria-hidden')).to.equal('true');
+      $('#reset-button').click();
+      $('#error-button').click();
+      expect(['', 'true']).toContain($('#test-status-view-container > [data-status-overlay-container-content="true"]').getAttribute('inert')); // chrome returns true, firefox returns ''
+      expect($('#test-status-view-container > [data-status-overlay-container-content="true"]').getAttribute('aria-hidden')).toEqual('true');
     });
 
     it('should enable interaction of background elements once status view is removed', () => {
-      browser.click('#reset-button');
-      expect(browser.getAttribute('#test-status-view-container > [data-status-overlay-container-content="true"]', 'inert')).to.be.oneOf([null, 'false']); // chrome returns false, firefox returns null
-      expect(browser.getAttribute('#test-status-view-container > [data-status-overlay-container-content="true"]', 'aria-hidden')).to.equal(null);
+      $('#reset-button').click();
+      expect([null, 'false']).toContain($('#test-status-view-container > [data-status-overlay-container-content="true"]').getAttribute('inert')); // chrome returns false, firefox returns null
+      expect($('#test-status-view-container > [data-status-overlay-container-content="true"]').getAttribute('aria-hidden')).toEqual(null);
     });
   });
 
@@ -63,20 +63,20 @@ Terra.describeViewports('ApplicationStatusOverlay', ['large'], () => {
     });
 
     it('should render with last registered status view', () => {
-      browser.click('#show-status');
+      $('#show-status').click();
 
-      Terra.validates.element('initial', { selector: '#root' });
+      Terra.validates.element('last registered status view', { selector: '#root' });
     });
 
     it('should render with same last registered status view even after updates to other status views', () => {
-      browser.click('#button1');
-      browser.click('#button2');
+      $('#button1').click();
+      $('#button2').click();
 
       Terra.validates.element('other status view updates', { selector: '#root' });
     });
 
     it('should render with updated last registered status view', () => {
-      browser.click('#button3');
+      $('#button3').click();
 
       Terra.validates.element('updated last registered status view', { selector: '#root' });
     });

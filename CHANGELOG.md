@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+* Changed
+  * Removed terra-toolkit as a dependency
+  * Upgraded to WebDriverIO v6 and terra-functional-testing
+  * Upgraded to @cerner/webpack-config-terra
+
 ## 1.47.1 - (April 27, 2021)
 
 * Fixed

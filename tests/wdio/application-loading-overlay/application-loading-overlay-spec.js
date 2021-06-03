@@ -2,7 +2,7 @@ Terra.describeViewports('ApplicationLoadingOverlay', ['large'], () => {
   before(() => {
     browser.url('/raw/tests/terra-application/application-loading-overlay/loading-overlay-test');
     browser.disableCSSAnimations();
-    browser.moveToObject('#root', 0, 0);
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
   });
 
   it('should render the initial page', () => {
@@ -10,21 +10,21 @@ Terra.describeViewports('ApplicationLoadingOverlay', ['large'], () => {
   });
 
   it('should render the clear overlay', () => {
-    browser.click('#clear-button');
+    $('#clear-button').click();
 
     Terra.validates.element('clear overlay', { selector: '#root' });
   });
 
   it('should render the light overlay', () => {
-    browser.click('#reset-button');
-    browser.click('#light-button');
+    $('#reset-button').click();
+    $('#light-button').click();
 
     Terra.validates.element('light overlay', { selector: '#root' });
   });
 
   it('should render the dark overlay', () => {
-    browser.click('#reset-button');
-    browser.click('#dark-button');
+    $('#reset-button').click();
+    $('#dark-button').click();
 
     Terra.validates.element('dark overlay', { selector: '#root' });
   });

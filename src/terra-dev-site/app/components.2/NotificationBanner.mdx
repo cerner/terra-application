@@ -60,7 +60,7 @@ The Notification Banner has the following data attribute available for browser t
 describe('Notification Banner', () => {
   it('renders a notification banner', () => {
     $('#triggerErrorNotificationBanner').click();
-    browser.waitForExist('[data-terra-application-notification-banner="error]');
+    $('[data-terra-application-notification-banner="error]').waitForExist();
     Terra.validates.element('shows error banner', { selector: '#root' });
   });
 });

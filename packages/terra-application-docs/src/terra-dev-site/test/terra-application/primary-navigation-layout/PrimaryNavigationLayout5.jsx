@@ -6,19 +6,19 @@ import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-applicati
 
 import PrimaryNavigationWorkspace from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
 import PrimaryNavigationWorkspaceItem from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
-import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
+import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
 
 import TestPage from '../shared/TestPage';
 
 const Tab1 = () => (
   <WorkspaceContent>
-    <p>Wombat 1</p>
+    <p>Example Workspace Content 1</p>
   </WorkspaceContent>
 );
 
 const Tab2 = () => (
   <WorkspaceContent>
-    <p>Wombat 2</p>
+    <p>Example Workspace Content 2</p>
   </WorkspaceContent>
 );
 
@@ -30,7 +30,7 @@ const PrimaryNavigationLayout5 = () => {
 
   const workspace = (
     <PrimaryNavigationWorkspace
-      id="derp"
+      id="primary-workspace-example"
       initialActiveItemKey="tab-1"
       initialSize={{ scale: 0.50 }}
       initialIsOpen

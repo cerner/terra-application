@@ -111,7 +111,7 @@ const WorkspaceLayout = ({
   const parentLayoutActions = React.useContext(LayoutActionsContext);
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
-  const pageContainerRef = React.useRef();
+  const layoutContainerRef = React.useRef();
   const layoutBodyRef = React.useRef();
   const workspacePanelRef = React.useRef();
   const workspaceResizeBoundsRef = React.useRef();
@@ -229,7 +229,7 @@ const WorkspaceLayout = ({
 
     function handleKeydown(e) {
       if (e.keyCode === KEY_ESCAPE) {
-        if (e.target === pageContainerRef.current || pageContainerRef.current.contains(e.target)) {
+        if (e.target === layoutContainerRef.current || layoutContainerRef.current.contains(e.target)) {
           setWorkspaceIsVisible(false);
         }
       }
@@ -441,7 +441,7 @@ const WorkspaceLayout = ({
       <div
         id={id}
         className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
-        ref={pageContainerRef}
+        ref={layoutContainerRef}
       >
         <div
           ref={resizeOverlayRef}

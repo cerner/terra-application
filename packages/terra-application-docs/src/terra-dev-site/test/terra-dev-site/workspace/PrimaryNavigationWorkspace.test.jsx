@@ -7,7 +7,7 @@ import { useActiveMain } from '@cerner/terra-application/lib/main-container';
 
 import PrimaryNavigationWorkspace from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
 import PrimaryNavigationWorkspaceItem from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
-import { WorkspaceContent } from '@cerner/terra-application/lib//workspace';
+import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
 
 import TestPage from './NavigationTestPage';
 

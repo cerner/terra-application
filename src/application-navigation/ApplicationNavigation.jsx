@@ -12,6 +12,7 @@ import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '..
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 const propTypes = {
   /**
@@ -116,6 +117,7 @@ const propTypes = {
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
   utilityItems: utilityItemsPropType,
+  workspace: PropTypes.element,
 };
 
 const ApplicationNavigation = ({
@@ -138,6 +140,7 @@ const ApplicationNavigation = ({
   titleConfig,
   userConfig,
   utilityItems,
+  workspace,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
@@ -183,19 +186,24 @@ const ApplicationNavigation = ({
       onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
     >
-      <ApplicationLoadingOverlayProvider>
-        <ApplicationStatusOverlayProvider>
-          <NavigationPromptCheckpoint
-            ref={navigationPromptCheckpointRef}
-          >
-            <ApplicationErrorBoundary>
-              <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
-                {children}
-              </Suspense>
-            </ApplicationErrorBoundary>
-          </NavigationPromptCheckpoint>
-        </ApplicationStatusOverlayProvider>
-      </ApplicationLoadingOverlayProvider>
+      <WorkspaceLayout
+        id={'test'}
+        workspace={workspace}
+      >
+        <ApplicationLoadingOverlayProvider>
+          <ApplicationStatusOverlayProvider>
+            <NavigationPromptCheckpoint
+              ref={navigationPromptCheckpointRef}
+            >
+              <ApplicationErrorBoundary>
+                <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
+                  {children}
+                </Suspense>
+              </ApplicationErrorBoundary>
+            </NavigationPromptCheckpoint>
+          </ApplicationStatusOverlayProvider>
+        </ApplicationLoadingOverlayProvider>
+      </WorkspaceLayout>
     </TerraApplicationNavigation>
   );
 };

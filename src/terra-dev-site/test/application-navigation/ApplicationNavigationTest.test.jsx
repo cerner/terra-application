@@ -5,6 +5,10 @@ import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
 import NavigationPrompt from '../../../navigation-prompt';
+import WorkspaceWrapper from '../../../application-navigation/workspace-layout/WorkspaceWrapper';
+import WorkspaceWrapperItem from '../../../application-navigation/workspace-layout/WorkspaceWrapperItem';
+import { WorkspaceContent } from '../../../workspace';
+import WorkspaceLayoutContext from '../../../application-navigation/workspace-layout/WorkspaceLayoutContext';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
   <p>
@@ -29,6 +33,7 @@ PendingAction.propTypes = {
 const PageContent = ({ title }) => {
   const [hasPendingAction1, setHasPendingAction1] = useState(false);
   const [hasPendingAction2, setHasPendingAction2] = useState(false);
+  const layoutContext = React.useContext(WorkspaceLayoutContext);
 
   return (
     <div data-nav-test-content>
@@ -49,6 +54,12 @@ const PageContent = ({ title }) => {
       />
       {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
       {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
+      <button
+        type="button"
+        onClick={layoutContext.workspaceIsVisible ? layoutContext.hide : layoutContext.show}
+      >
+        {layoutContext.workspaceIsVisible ? 'Hide Workspace' : 'Show Workspace'}
+      </button>
     </div>
   );
 };
@@ -56,6 +67,49 @@ const PageContent = ({ title }) => {
 PageContent.propTypes = {
   title: PropTypes.string,
 };
+
+const Tab1 = () => (
+  <WorkspaceContent>
+    <p>Wombat 1</p>
+  </WorkspaceContent>
+);
+
+const Tab2 = () => (
+  <WorkspaceContent>
+    <p>Wombat 2</p>
+  </WorkspaceContent>
+);
+
+const workspaceWrapper = (
+  <WorkspaceWrapper
+    id="derp"
+    initialActiveItemKey="tab-1"
+    initialSize={{ scale: 0.50 }}
+    initialIsOpen
+    onActiveItemChange={(newActiveItemKey) => {
+      console.log(`Workspace active item: ${newActiveItemKey}`); // eslint-disable-line no-console
+    }}
+    onSizeChange={(size) => {
+      console.log(`Workspace size changed: ${size}`); // eslint-disable-line no-console
+    }}
+    onPresentationStateChange={(isPresented) => {
+      console.log(`Workspace presentation changed. isOpen - ${isPresented}`); // eslint-disable-line no-console
+    }}
+  >
+    <WorkspaceWrapperItem
+      itemKey="tab-1"
+      label="Tab 1"
+      metaData={{ key: 'tab-1' }}
+      render={() => <Tab1 />}
+    />
+    <WorkspaceWrapperItem
+      itemKey="tab-2"
+      label="Tab 2"
+      metaData={{ key: 'tab-2' }}
+      render={() => <Tab2 />}
+    />
+  </WorkspaceWrapper>
+);
 
 const ApplicationNavigationTest = () => {
   const applicationIntl = useContext(ApplicationIntlContext);
@@ -88,6 +142,7 @@ const ApplicationNavigationTest = () => {
           onSelectLogout={() => {
             setLoggedOut(true);
           }}
+          workspace={workspaceWrapper}
         >
           <PageContent key={activeNavItem} title={activeNavItem} />
         </ApplicationNavigation>

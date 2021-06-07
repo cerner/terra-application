@@ -10,8 +10,6 @@ const cx = classNames.bind(styles);
 const propTypes = {
   initialCount: PropTypes.number,
   title: PropTypes.string,
-  onShowActivityOverlay: PropTypes.func,
-  onShowStatusOverlay: PropTypes.func,
 };
 
 const MockContent = ({ fruit = "" }) => {

@@ -132,41 +132,15 @@ const Workspace = ({
     id: "terraApplication.workspace.workspaceLabel",
   });
 
-  const tabData = React.Children.map(children, (child) => {
-    let childLabel = "";
-    switch (child.props.label) {
-      case "Tab 1":
-        childLabel = "Apples";
-        break;
-      case "Tab 2":
-        childLabel = "Oranges";
-        break;
-      case "Tab 3":
-        childLabel = "Strawberries";
-        break;
-      case "Tab 4":
-        childLabel = "Pineapples";
-        break;
-      case "Tab 5":
-        childLabel = "Lemons";
-        break;
-      case "Tab 6":
-        childLabel = "Kiwis";
-        break;
-      default:
-        childLabel = "Generic Tab";
-        break;
-    }
-    return {
-      id: getTabId(id, child.props.itemKey),
-      itemKey: child.props.itemKey,
-      associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
-      label: childLabel,
-      isSelected: child.props.itemKey === activeItemKey,
-      onSelect: onRequestActivate,
-      metaData: child.props.metaData,
-    };
-  });
+  const tabData = React.Children.map(children, (child) => ({
+    id: getTabId(id, child.props.itemKey),
+    itemKey: child.props.itemKey,
+    associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
+    label: child.props.label,
+    isSelected: child.props.itemKey === activeItemKey,
+    onSelect: onRequestActivate,
+    metaData: child.props.metaData,
+  }));
 
   let dismissButton;
   if (dismissButtonIsVisible && onRequestDismiss) {

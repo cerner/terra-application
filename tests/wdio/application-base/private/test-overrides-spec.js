@@ -14,6 +14,6 @@ Terra.describeViewports('TestOverrides', ['small'], () => {
   before(() => browser.url('/raw/tests/terra-application/application-base/private/test-overrides-test'));
   it('updates the locale of ApplicationBase from `en` to `pt` via custom event', () => {
     dispatchCustomEvent('applicationBase.testOverride', { locale: 'pt' });
-    Terra.validates.element({ selector: '#root' });
+    Terra.validates.element('test overrides', { selector: '#root' });
   });
 });

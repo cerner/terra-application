@@ -1,16 +1,8 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-const defaultWdioConfig = require('terra-toolkit/config/wdio/wdio.conf');
+const { config } = require('@cerner/terra-functional-testing');
 
-const wdioConfig = defaultWdioConfig.config;
-
-const travis = process.env.TRAVIS;
-
-if (travis) {
-  wdioConfig.host = 'localhost';
-}
-
-const defaultBefore = wdioConfig.before;
-wdioConfig.before = () => {
+const defaultBefore = config.before;
+config.before = () => {
   if (defaultBefore) {
     defaultBefore();
   }
@@ -36,18 +28,16 @@ wdioConfig.before = () => {
   });
 
   global.browser.addCommand('clickWithTestId', (testId) => {
-    const selector = `[data-testid="${testId}"]`;
-
-    global.browser.waitForVisible(selector);
-    global.browser.click(selector);
+    const selector = global.browser.$(`[data-testid="${testId}"]`);
+    selector.waitForDisplayed();
+    selector.click();
   });
 
   global.browser.addCommand('clickWithAttribute', (key, value) => {
-    const selector = `[${key}=${value}]`;
-
-    global.browser.waitForVisible(selector);
-    global.browser.click(selector);
+    const selector = global.browser.$(`[${key}=${value}]`);
+    selector.waitForDisplayed();
+    selector.click();
   });
 };
 
-exports.config = wdioConfig;
+exports.config = config;

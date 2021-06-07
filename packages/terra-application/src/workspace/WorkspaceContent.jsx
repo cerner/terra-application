@@ -10,6 +10,9 @@ import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
 import styles from './WorkspaceContent.module.scss';
 
+import WorkspaceContentActivityOverlay from './overlays/WorkspaceContentActivityOverlay';
+import WorkspaceContentStatusOverlay from './overlays/WorkspaceContentStatusOverlay';
+
 const cx = classNamesBind.bind(styles);
 
 const propTypes = {
@@ -112,5 +115,7 @@ const WorkspaceContent = ({
 };
 
 WorkspaceContent.propTypes = propTypes;
+WorkspaceContent.ActivityOverlay = WorkspaceContentActivityOverlay;
+WorkspaceContent.StatusOverlay = WorkspaceContentStatusOverlay;
 
 export default WorkspaceContent;

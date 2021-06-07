@@ -4,7 +4,7 @@ import Button from 'terra-button';
 import IconEdit from 'terra-icon/lib/icon/IconEdit';
 import IconAdd from 'terra-icon/lib/icon/IconAdd';
 
-import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '@cerner/terra-application/lib/workspace';
+import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
 
 import MockContent from './MockContent';
 
@@ -20,8 +20,8 @@ const Tab3 = () => {
           <Button text="Add" variant="utility" icon={<IconAdd />} />
         </Toolbar>
     )}
-      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
-      statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
+      activityOverlay={isLoading ? <WorkspaceContent.ActivityOverlay variant="loading" /> : undefined}
+      statusOverlay={showStatusOverlay ? <WorkspaceContent.StatusOverlay variant="not-authorized" /> : undefined}
     >
       <MockContent title="Tab 3" onShowActivityOverlay={setIsLoading} onShowStatusOverlay={setShowStatusOverlay} />
     </WorkspaceContent>

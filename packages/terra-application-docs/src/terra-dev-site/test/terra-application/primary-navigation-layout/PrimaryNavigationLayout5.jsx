@@ -4,8 +4,6 @@ import ApplicationBase from '@cerner/terra-application/lib/application-base';
 import ApplicationContainer from '@cerner/terra-application/lib/application-container';
 import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
 
-import PrimaryNavigationWorkspace from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspace';
-import PrimaryNavigationWorkspaceItem from '@cerner/terra-application/lib/primary-navigation-layout/workspace-layout/PrimaryNavigationWorkspaceItem';
 import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
 
 import TestPage from '../shared/TestPage';
@@ -29,7 +27,7 @@ const PrimaryNavigationLayout5 = () => {
   ] = React.useState('1');
 
   const workspace = (
-    <PrimaryNavigationWorkspace
+    <PrimaryNavigationLayout.Workspace
       id="primary-workspace-example"
       initialActiveItemKey="tab-1"
       initialSize={{ scale: 0.50 }}
@@ -44,19 +42,19 @@ const PrimaryNavigationLayout5 = () => {
         console.log(`Workspace presentation changed. isOpen - ${isPresented}`); // eslint-disable-line no-console
       }}
     >
-      <PrimaryNavigationWorkspaceItem
+      <PrimaryNavigationLayout.Workspace.Item
         itemKey="tab-1"
         label="Tab 1"
         metaData={{ key: 'tab-1' }}
         render={() => <Tab1 />}
       />
-      <PrimaryNavigationWorkspaceItem
+      <PrimaryNavigationLayout.Workspace.Item
         itemKey="tab-2"
         label="Tab 2"
         metaData={{ key: 'tab-2' }}
         render={() => <Tab2 />}
       />
-    </PrimaryNavigationWorkspace>
+    </PrimaryNavigationLayout.Workspace>
   );
 
   return (

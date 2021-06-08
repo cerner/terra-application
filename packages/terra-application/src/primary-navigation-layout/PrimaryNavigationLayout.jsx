@@ -325,5 +325,6 @@ const PrimaryNavigationLayout = ({
 };
 
 PrimaryNavigationLayout.propTypes = propTypes;
+PrimaryNavigationLayout.Workspace = PrimaryNavigationWorkspace;
 
 export default PrimaryNavigationLayout;

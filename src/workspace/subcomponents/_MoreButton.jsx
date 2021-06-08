@@ -62,6 +62,7 @@ const MoreButton = ({
   refCallback,
   tabIds,
   zIndex,
+  label,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -105,7 +106,7 @@ const MoreButton = ({
     >
       <div className={cx("inner")}>
         <div className={cx("icon")}>
-          More <IconCaretDown />
+          {label} <IconCaretDown />
         </div>
       </div>
     </div>

@@ -294,6 +294,7 @@ class Tabs extends React.Component {
         {visibleTabs}
         {this.showMoreButton ? (
           <MoreButton
+            label="More"
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}

@@ -118,6 +118,7 @@ const Workspace = ({
   onRequestSizeChange,
   onRequestDismiss,
   sizeOptions,
+  extraConfig,
   ...customProps
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -247,14 +248,9 @@ const Workspace = ({
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      CHOTO
       <div className={cx("workspace")} role="none">
-        <div aria-hidden className={cx("body-shadow-container")}>
-          <div className={cx("body-shadow")} />
-        </div>
         <div role="none" className={cx("button-header")}>
-          {dismissButton}
-          <div className={cx("fill-element")} />
+          {extraConfig && <span aria-hidden></span>}
           {sizeButton}
         </div>
         <div

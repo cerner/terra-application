@@ -61,6 +61,7 @@ const WorkspaceTest = () => {
           ]}
           onRequestSizeChange={onRequestSizeChange}
           onRequestDismiss={onRequestClose}
+          extraConfig={false}
         >
           <WorkspaceItem
             itemKey="tab-1"

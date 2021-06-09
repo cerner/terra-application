@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNamesBind from 'classnames/bind';
-import ThemeContext from 'terra-theme-context';
+import React from "react";
+import PropTypes from "prop-types";
+import classNamesBind from "classnames/bind";
+import ThemeContext from "terra-theme-context";
 
-import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
+import useNotificationBanners from "../notification-banner/private/useNotificationBanners";
 
-import DynamicOverlayContainer from './shared/DynamicOverlayContainer';
-import TabContext from './subcomponents/_TabContext';
-import TabHeader from './subcomponents/_TabHeader';
-import styles from './WorkspaceContent.module.scss';
+import DynamicOverlayContainer from "./shared/DynamicOverlayContainer";
+import TabContext from "./subcomponents/_TabContext";
+import TabHeader from "./subcomponents/_TabHeader";
+import styles from "./WorkspaceContent.module.scss";
 
 const cx = classNamesBind.bind(styles);
 
@@ -45,21 +45,22 @@ const WorkspaceContent = ({
 }) => {
   const theme = React.useContext(ThemeContext);
   const { panelId, tabId, label: tabLabel } = React.useContext(TabContext);
-  const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();
+  const { NotificationBannerProvider, NotificationBanners } =
+    useNotificationBanners();
 
   const overlays = React.useMemo(() => {
     const overlaysToRender = [];
 
     if (statusOverlay) {
       overlaysToRender.push({
-        key: 'status-overlay',
+        key: "status-overlay",
         component: statusOverlay,
       });
     }
 
     if (activityOverlay) {
       overlaysToRender.push({
-        key: 'activity-overlay',
+        key: "activity-overlay",
         component: activityOverlay,
       });
     }
@@ -69,31 +70,29 @@ const WorkspaceContent = ({
 
   const labelDisplay = label || tabLabel;
   return (
-    <div
-      className={cx('panel', theme.className)}
-      role="none"
-    >
+    <div className={cx("panel", theme.className)} role="none">
+      Opt3
       <div
-        className={cx('panel-header')}
+        className={cx("panel-header")}
         role="none"
         data-testid="workspace-content-heading"
       >
         <TabHeader title={labelDisplay} />
-        { toolbar ? (
-          <div className={cx('toolbar', 'rounded')}>
-            {toolbar}
-          </div>
+        {toolbar ? (
+          <div className={cx("toolbar", "rounded")}>{toolbar}</div>
         ) : undefined}
         <NotificationBanners
           id={`${panelId}-notifications`}
           label={`Workspace ${labelDisplay}`}
-          activeClassName={cx('notification-banners-container')}
-          bannerClassName={cx('notification-banner', 'rounded')}
+          activeClassName={cx("notification-banners-container")}
+          bannerClassName={cx("notification-banner", "rounded")}
         />
       </div>
-      <div role="none" className={cx('panel-content')}>
+      <div role="none" className={cx("panel-content")}>
         <div
-          className={cx('panel-overflow', { 'disable-overflow': overlays.length })}
+          className={cx("panel-overflow", {
+            "disable-overflow": overlays.length,
+          })}
           role="tabpanel"
           tabIndex="0"
           id={panelId}
@@ -101,9 +100,7 @@ const WorkspaceContent = ({
           data-application-overflow-container
         >
           <DynamicOverlayContainer overlays={overlays}>
-            <NotificationBannerProvider>
-              {children}
-            </NotificationBannerProvider>
+            <NotificationBannerProvider>{children}</NotificationBannerProvider>
           </DynamicOverlayContainer>
         </div>
       </div>

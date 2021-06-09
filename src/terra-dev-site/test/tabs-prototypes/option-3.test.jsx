@@ -1,12 +1,12 @@
 import React from "react";
 import Workspace, { WorkspaceItem } from "../../../workspace-3";
 import ActiveMainPageContext from "../../../application-container/private/active-main-page/ActiveMainPageContext";
-import Tab1 from "./Tab1";
-import Tab2 from "./Tab2";
-import Tab3 from "./Tab3";
-import Tab4 from "./Tab4";
-import Tab5 from "./Tab5";
-import Tab6 from "./Tab6";
+import Tab1 from "./option-3-tabs/Tab1";
+import Tab2 from "./option-3-tabs/Tab2";
+import Tab3 from "./option-3-tabs/Tab3";
+import Tab4 from "./option-3-tabs/Tab4";
+import Tab5 from "./option-3-tabs/Tab5";
+import Tab6 from "./option-3-tabs/Tab6";
 
 const sizeMap = {
   small: "320px",

@@ -28,5 +28,21 @@
   "terraApplication.notifications.totalCountLabel": "Total {label} de notificaciones: {count}",
   "terraApplication.notifications.newNotificationLabel": "Nueva {label} notificación. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Notificación {label} quitada. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Cerrar"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Cerrar",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "Más opciones de navegación",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Más opciones de navegación",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Configuración del usuario para: {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Opciones",
+  "terraApplication.navigation.drawerMenu.navigation": "Elementos de navegación",
+  "terraApplication.navigation.drawerMenu.utilities": "Elementos de utilidades",
+  "terraApplication.navigation.utilityMenu.logout": "Cerrar sesión",
+  "terraApplication.navigation.utilityMenu.settings": "Configuración",
+  "terraApplication.navigation.utilityMenu.help": "Ayuda",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Utilidades",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "Más",
+  "terraApplication.navigation.notifications.new": "Nuevo",
+  "terraApplication.navigation.header.skipToContentTitle": "Saltar al contenido",
+  "terraApplication.navigation.header.menuButtonTitle": "Menú"
 }

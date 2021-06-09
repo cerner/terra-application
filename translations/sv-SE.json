@@ -28,5 +28,21 @@
   "terraApplication.notifications.totalCountLabel": "Totalt antal meddelanden på {label}: {count}",
   "terraApplication.notifications.newNotificationLabel": "Nytt meddelande på {label}. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Tog bort meddelande på {label}. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Stäng"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Stäng",
+  "terraApplication.navigation.utilityMenu.logout": "Logga ut",
+  "terraApplication.navigation.utilityMenu.settings": "Inställningar",
+  "terraApplication.navigation.utilityMenu.help": "Hjälp",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Verktyg",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Ytterligare objekt",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Ytterligare objekt",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "Mer",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "Fler navigeringslänkar",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Ytterligare avsnitt",
+  "terraApplication.navigation.notifications.new": "Nytt",
+  "terraApplication.navigation.header.skipToContentTitle": "Gå till Innehåll",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Användarinställningar för: {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Alternativ",
+  "terraApplication.navigation.header.menuButtonTitle": "Växla meny",
+  "terraApplication.navigation.drawerMenu.navigation": "Navigeringsobjekt",
+  "terraApplication.navigation.drawerMenu.utilities": "Verktygsobjekt"
 }

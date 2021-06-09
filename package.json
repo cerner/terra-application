@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/emileond/terra-application"
+    "url": "https://github.com/emileond/terra-application/"
   },
   "keywords": [
     "Cerner",
@@ -75,7 +75,7 @@
     "compile:prod": "rm -rf ./build; NODE_ENV=production webpack -p",
     "compile:lowlight": "rm -rf ./build; THEME=clinical-lowlight-theme webpack -p",
     "compile:fusion": "rm -rf ./build; THEME=orion-fusion-theme webpack -p",
-    "deploy": "npm run compile:prod && gh-pages -d build",
+    "deploy": "TERRA_DEV_SITE_PUBLIC_PATH='/terra-application/' npm run compile:prod && gh-pages -d build",
     "heroku-postbuild": "npm install --only=dev && npm run compile:prod",
     "jest": "jest --config jestconfig.js",
     "jest:coverage": "jest --coverage --config jestconfig.js",

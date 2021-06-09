@@ -1,5 +1,5 @@
 import React from "react";
-import Workspace, { WorkspaceItem } from "../../../workspace";
+import Workspace, { WorkspaceItem } from "../../../workspace-3";
 import ActiveMainPageContext from "../../../application-container/private/active-main-page/ActiveMainPageContext";
 import Tab1 from "./Tab1";
 import Tab2 from "./Tab2";

@@ -71,7 +71,6 @@ const WorkspaceContent = ({
   const labelDisplay = label || tabLabel;
   return (
     <div className={cx("panel", theme.className)} role="none">
-      Opt3
       <div
         className={cx("panel-header")}
         role="none"

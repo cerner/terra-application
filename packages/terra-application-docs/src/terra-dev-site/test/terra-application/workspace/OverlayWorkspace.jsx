@@ -1,6 +1,6 @@
 import React from 'react';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
-import Workspace, { WorkspaceItem } from '@cerner/terra-application/lib/workspace';
+import Workspace from '@cerner/terra-application/lib/workspace';
 import ActiveMainContext from '@cerner/terra-application/lib/main-container/ActiveMainContext';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
@@ -60,32 +60,32 @@ const WorkspaceTest = () => {
             onRequestSizeChange={onRequestSizeChange}
             onRequestDismiss={onRequestClose}
           >
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-1"
               label="Tab 1"
               render={() => <Tab1 />}
             />
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-2"
               label="Tab 2"
               render={() => <Tab2 />}
             />
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-3"
               label="Tab 3"
               render={() => <Tab3 />}
             />
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-4"
               label="Tab 4"
               render={() => <Tab4 />}
             />
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-5"
               label="Tab 5"
               render={() => <Tab5 />}
             />
-            <WorkspaceItem
+            <Workspace.Item
               itemKey="tab-6"
               label="Tab 6"
               render={() => <Tab6 />}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Workspace, { WorkspaceItem } from '../../workspace';
+import PrimaryNavigationWorkspaceItem from './PrimaryNavigationWorkspaceItem';
 
 const propTypes = {
   /**
@@ -144,5 +145,6 @@ const PrimaryNavigationWorkspace = ({
 };
 
 PrimaryNavigationWorkspace.propTypes = propTypes;
+PrimaryNavigationWorkspace.Item = PrimaryNavigationWorkspaceItem;
 
 export default PrimaryNavigationWorkspace;

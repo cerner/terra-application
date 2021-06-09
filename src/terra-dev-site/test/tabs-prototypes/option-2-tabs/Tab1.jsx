@@ -1,8 +1,8 @@
 import React from "react";
 
-import { WorkspaceContent } from "../../../workspace";
+import { WorkspaceContent } from "../../../../workspace-2";
 
-import MockContent from "./MockContent";
+import MockContent from "./../MockContent";
 
 const Tab1 = () => {
   return (

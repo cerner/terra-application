@@ -249,7 +249,7 @@ class Tabs extends React.Component {
         }}
         tabRef={this.rollupTabRef}
         innerRef={this.rollupInnerRef}
-        text={intl.formatMessage({ id: 'Terra.applicationNavigation.tabs.rollupButtonTitle' })}
+        text={intl.formatMessage({ id: 'terraApplication.navigation.tabs.rollupButtonTitle' })}
         isSelected={tabRollupIsSelected}
         hasChildNotifications={hasChildNotifications}
         data-application-tabs-more
@@ -275,7 +275,7 @@ class Tabs extends React.Component {
         isContentFocusDisabled
       >
         <PopupMenu
-          title={intl.formatMessage({ id: 'Terra.applicationNavigation.tabs.rollupMenuHeaderTitle' })}
+          title={intl.formatMessage({ id: 'terraApplication.navigation.tabs.rollupMenuHeaderTitle' })}
           role="list"
           menuItems={hiddenTabs.map(tab => ({
             id: id && navigationItemId(id, tab.key),

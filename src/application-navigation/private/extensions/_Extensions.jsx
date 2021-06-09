@@ -116,7 +116,7 @@ const Extensions = ({
         isContentFocusDisabled
       >
         <PopupMenu
-          title={intl.formatMessage({ id: 'Terra.applicationNavigation.extensions.rollupMenuHeaderTitle' })}
+          title={intl.formatMessage({ id: 'terraApplication.navigation.extensions.rollupMenuHeaderTitle' })}
           role="menu"
           menuItems={hiddenExtensions.map(item => ({
             id: id && extensionItemId(id, item.key),

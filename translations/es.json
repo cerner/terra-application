@@ -34,7 +34,7 @@
   "terraApplication.navigation.header.utilityButtonTitleUser": "Configuración del usuario para: {currentUserName}",
   "terraApplication.navigation.header.utilityButtonTitleNoUser": "Opciones",
   "terraApplication.navigation.drawerMenu.navigation": "Elementos de navegación",
-  "Terra.applicationNavigation.drawerMenu.utilities": "Elementos de utilidades",
+  "terraApplication.navigation.drawerMenu.utilities": "Elementos de utilidades",
   "terraApplication.navigation.utilityMenu.logout": "Cerrar sesión",
   "terraApplication.navigation.utilityMenu.settings": "Configuración",
   "terraApplication.navigation.utilityMenu.help": "Ayuda",

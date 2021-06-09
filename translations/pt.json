@@ -31,7 +31,7 @@
   "terraApplication.actionMenu.headerCloseButtonLabel": "Fechar",
   "terraApplication.navigation.tabs.rollupButtonDescription": "Mais navegação",
   "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Mais navegação",
-  "Terra.applicationNavigation.header.utilityButtonTitleUser": "Configurações do usuário para: {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Configurações do usuário para: {currentUserName}",
   "terraApplication.navigation.header.utilityButtonTitleNoUser": "Opções",
   "terraApplication.navigation.drawerMenu.navigation": "Itens de navegação",
   "terraApplication.navigation.drawerMenu.utilities": "Itens de utilitários",

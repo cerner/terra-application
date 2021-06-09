@@ -119,7 +119,7 @@ const DrawerMenu = ({
       <DrawerMenuFooterButton
         id={id && logoutUtilityItemId(id)}
         onClick={onSelectLogout}
-        text={intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.logout' })}
+        text={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.logout' })}
         data-navigation-drawer-item-logout
       />
     </div>
@@ -135,7 +135,7 @@ const DrawerMenu = ({
       <div role="navigation">
         <ul
           className={cx('navigation-item-list')}
-          aria-label={intl.formatMessage({ id: 'Terra.applicationNavigation.drawerMenu.navigation' })}
+          aria-label={intl.formatMessage({ id: 'terraApplication.navigation.drawerMenu.navigation' })}
         >
           {navigationItems.map(item => (
             <DrawerMenuLinkItem
@@ -159,7 +159,7 @@ const DrawerMenu = ({
       <ul
         className={cx('utility-item-list')}
         role="listbox"
-        aria-label={intl.formatMessage({ id: 'Terra.applicationNavigation.drawerMenu.utilities' })}
+        aria-label={intl.formatMessage({ id: 'terraApplication.navigation.drawerMenu.utilities' })}
       >
         {utilityItems.map(item => (
           <DrawerMenuListItem
@@ -173,7 +173,7 @@ const DrawerMenu = ({
         {onSelectSettings ? (
           <DrawerMenuListItem
             id={id && settingsUtilityItemId(id)}
-            text={intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.settings' })}
+            text={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.settings' })}
             icon={<IconSettings />}
             onSelect={onSelectSettings}
             data-navigation-drawer-item-settings
@@ -182,7 +182,7 @@ const DrawerMenu = ({
         {onSelectHelp ? (
           <DrawerMenuListItem
             id={id && helpUtilityItemId(id)}
-            text={intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.help' })}
+            text={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.help' })}
             icon={<IconQuestionOutline />}
             onSelect={onSelectHelp}
             data-navigation-drawer-item-help

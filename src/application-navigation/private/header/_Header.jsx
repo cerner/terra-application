@@ -201,7 +201,7 @@ const Header = ({
   return (
     <header role="banner" className={cx('header')}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
-        {intl.formatMessage({ id: 'Terra.applicationNavigation.header.skipToContentTitle' })}
+        {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>
       <div className={cx('title-container')}>
         {renderTitle()}

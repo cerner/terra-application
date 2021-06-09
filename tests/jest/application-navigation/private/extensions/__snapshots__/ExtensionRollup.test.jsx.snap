@@ -3,7 +3,7 @@
 exports[`ExtensionRollup should render default element 1`] = `
 <div
   aria-haspopup={true}
-  aria-label="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  aria-label="terraApplication.navigation.extensions.rollupButtonDescription"
   className="extension-rollup"
   data-application-extension-rollup={true}
   data-focus-styles-enabled={true}
@@ -11,7 +11,7 @@ exports[`ExtensionRollup should render default element 1`] = `
   onMouseDown={[Function]}
   role="button"
   tabIndex="0"
-  title="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  title="terraApplication.navigation.extensions.rollupButtonDescription"
 >
   <div
     className="extension-rollup-inner"
@@ -31,7 +31,7 @@ exports[`ExtensionRollup should render default element 1`] = `
 exports[`ExtensionRollup should render prop data 1`] = `
 <div
   aria-haspopup={true}
-  aria-label="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  aria-label="terraApplication.navigation.extensions.rollupButtonDescription"
   className="extension-rollup"
   data-application-extension-rollup={true}
   data-focus-styles-enabled={true}
@@ -39,7 +39,7 @@ exports[`ExtensionRollup should render prop data 1`] = `
   onMouseDown={[Function]}
   role="button"
   tabIndex="0"
-  title="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  title="terraApplication.navigation.extensions.rollupButtonDescription"
 >
   <div
     className="extension-rollup-inner"
@@ -64,7 +64,7 @@ exports[`ExtensionRollup should render prop data 1`] = `
 exports[`ExtensionRollup should render with ref 1`] = `
 <div
   aria-haspopup={true}
-  aria-label="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  aria-label="terraApplication.navigation.extensions.rollupButtonDescription"
   className="extension-rollup"
   data-application-extension-rollup={true}
   data-focus-styles-enabled={true}
@@ -72,7 +72,7 @@ exports[`ExtensionRollup should render with ref 1`] = `
   onMouseDown={[Function]}
   role="button"
   tabIndex="0"
-  title="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  title="terraApplication.navigation.extensions.rollupButtonDescription"
 >
   <div
     className="extension-rollup-inner"
@@ -92,7 +92,7 @@ exports[`ExtensionRollup should render with ref 1`] = `
 exports[`ExtensionRollup should render with selection callback 1`] = `
 <div
   aria-haspopup={true}
-  aria-label="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  aria-label="terraApplication.navigation.extensions.rollupButtonDescription"
   className="extension-rollup"
   data-application-extension-rollup={true}
   data-focus-styles-enabled={true}
@@ -102,7 +102,7 @@ exports[`ExtensionRollup should render with selection callback 1`] = `
   onMouseDown={[Function]}
   role="button"
   tabIndex="0"
-  title="Terra.applicationNavigation.extensions.rollupButtonDescription"
+  title="terraApplication.navigation.extensions.rollupButtonDescription"
 >
   <div
     className="extension-rollup-inner"

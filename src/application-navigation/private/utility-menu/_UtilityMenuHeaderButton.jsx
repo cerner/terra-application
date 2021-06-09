@@ -39,7 +39,7 @@ const UtilityMenuHeaderButton = ({
   let ariaLabel;
   let content;
   if (userConfig) {
-    ariaLabel = intl.formatMessage({ id: 'Terra.applicationNavigation.header.utilityButtonTitleUser' }, { currentUserName: userConfig.name });
+    ariaLabel = intl.formatMessage({ id: 'terraApplication.navigation.header.utilityButtonTitleUser' }, { currentUserName: userConfig.name });
     content = (
       <React.Fragment>
         <div className={cx('image')}>
@@ -55,7 +55,7 @@ const UtilityMenuHeaderButton = ({
       </React.Fragment>
     );
   } else {
-    ariaLabel = intl.formatMessage({ id: 'Terra.applicationNavigation.header.utilityButtonTitleNoUser' });
+    ariaLabel = intl.formatMessage({ id: 'terraApplication.navigation.header.utilityButtonTitleNoUser' });
     content = <div className={cx('no-user-image')}><IconRollup className={cx('rollup-icon')} /></div>;
   }
 

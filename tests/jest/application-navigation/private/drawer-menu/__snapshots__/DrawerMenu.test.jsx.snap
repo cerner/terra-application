@@ -43,7 +43,7 @@ exports[`DrawerMenu should render Help utility item when it is the only utility 
         role="navigation"
       >
         <ul
-          aria-label="Terra.applicationNavigation.drawerMenu.navigation"
+          aria-label="terraApplication.navigation.drawerMenu.navigation"
           className="navigation-item-list"
         >
           <DrawerMenuLinkItem
@@ -55,7 +55,7 @@ exports[`DrawerMenu should render Help utility item when it is the only utility 
         </ul>
       </div>
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.navigation.drawerMenu.utilities"
         className="utility-item-list"
         role="listbox"
       >
@@ -68,7 +68,7 @@ exports[`DrawerMenu should render Help utility item when it is the only utility 
             />
           }
           onSelect={[MockFunction]}
-          text="Terra.applicationNavigation.utilityMenu.help"
+          text="terraApplication.navigation.utilityMenu.help"
         />
       </ul>
     </div>
@@ -147,7 +147,7 @@ exports[`DrawerMenu should render with function callbacks 1`] = `
         role="navigation"
       >
         <ul
-          aria-label="Terra.applicationNavigation.drawerMenu.navigation"
+          aria-label="terraApplication.navigation.drawerMenu.navigation"
           className="navigation-item-list"
         >
           <DrawerMenuLinkItem
@@ -159,7 +159,7 @@ exports[`DrawerMenu should render with function callbacks 1`] = `
         </ul>
       </div>
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.navigation.drawerMenu.utilities"
         className="utility-item-list"
         role="listbox"
       >
@@ -183,7 +183,7 @@ exports[`DrawerMenu should render with function callbacks 1`] = `
             />
           }
           onSelect={[MockFunction]}
-          text="Terra.applicationNavigation.utilityMenu.settings"
+          text="terraApplication.navigation.utilityMenu.settings"
         />
         <DrawerMenuListItem
           data-navigation-drawer-item-help={true}
@@ -194,7 +194,7 @@ exports[`DrawerMenu should render with function callbacks 1`] = `
             />
           }
           onSelect={[MockFunction]}
-          text="Terra.applicationNavigation.utilityMenu.help"
+          text="terraApplication.navigation.utilityMenu.help"
         />
       </ul>
     </div>
@@ -204,7 +204,7 @@ exports[`DrawerMenu should render with function callbacks 1`] = `
       <DrawerMenuFooterButton
         data-navigation-drawer-item-logout={true}
         onClick={[MockFunction]}
-        text="Terra.applicationNavigation.utilityMenu.logout"
+        text="terraApplication.navigation.utilityMenu.logout"
       />
     </div>
   </div>
@@ -257,7 +257,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
         role="navigation"
       >
         <ul
-          aria-label="Terra.applicationNavigation.drawerMenu.navigation"
+          aria-label="terraApplication.navigation.drawerMenu.navigation"
           className="navigation-item-list"
         >
           <DrawerMenuLinkItem
@@ -270,7 +270,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
         </ul>
       </div>
       <ul
-        aria-label="Terra.applicationNavigation.drawerMenu.utilities"
+        aria-label="terraApplication.navigation.drawerMenu.utilities"
         className="utility-item-list"
         role="listbox"
       >
@@ -296,7 +296,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
           }
           id="test-application-UtilityItem-TerraSettings"
           onSelect={[MockFunction]}
-          text="Terra.applicationNavigation.utilityMenu.settings"
+          text="terraApplication.navigation.utilityMenu.settings"
         />
         <DrawerMenuListItem
           data-navigation-drawer-item-help={true}
@@ -308,7 +308,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
           }
           id="test-application-UtilityItem-TerraHelp"
           onSelect={[MockFunction]}
-          text="Terra.applicationNavigation.utilityMenu.help"
+          text="terraApplication.navigation.utilityMenu.help"
         />
       </ul>
     </div>
@@ -319,7 +319,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
         data-navigation-drawer-item-logout={true}
         id="test-application-UtilityItem-TerraLogout"
         onClick={[MockFunction]}
-        text="Terra.applicationNavigation.utilityMenu.logout"
+        text="terraApplication.navigation.utilityMenu.logout"
       />
     </div>
   </div>

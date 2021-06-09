@@ -83,7 +83,7 @@ const UtilityMenu = ({
     menuItems.push({
       id: id && settingsUtilityItemId(id),
       key: utilityMenuSettingsKey,
-      text: intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.settings' }),
+      text: intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.settings' }),
       icon: <IconSettings />,
       dataAttrs: { 'data-navigation-utility-item-settings': 'true' },
     });
@@ -93,7 +93,7 @@ const UtilityMenu = ({
     menuItems.push({
       id: id && helpUtilityItemId(id),
       key: utilityMenuHelpKey,
-      text: intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.help' }),
+      text: intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.help' }),
       icon: <IconQuestionOutline />,
       dataAttrs: { 'data-navigation-utility-item-help': 'true' },
     });
@@ -102,8 +102,8 @@ const UtilityMenu = ({
   return (
     <PopupMenu
       role="listbox"
-      title={intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.headerTitle' })}
-      footerText={intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.logout' })}
+      title={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.headerTitle' })}
+      footerText={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.logout' })}
       onSelectFooterItem={onSelectLogout}
       userConfig={userConfig}
       customContent={hero}

@@ -193,7 +193,7 @@ const CompactHeader = ({
       <div
         role="button"
         className={cx('menu-button')}
-        aria-label={intl.formatMessage({ id: 'Terra.applicationNavigation.header.menuButtonTitle' })}
+        aria-label={intl.formatMessage({ id: 'terraApplication.navigation.header.menuButtonTitle' })}
         onClick={onSelectMenuButton}
         onBlur={enableFocusStyles}
         onKeyDown={generateKeyDownSelection(onSelectMenuButton)}
@@ -310,7 +310,7 @@ const CompactHeader = ({
     return (
       <ul
         role="listbox"
-        aria-label={intl.formatMessage({ id: 'Terra.applicationNavigation.drawerMenu.utilities' })}
+        aria-label={intl.formatMessage({ id: 'terraApplication.navigation.drawerMenu.utilities' })}
         className={cx('hidden-utils', { 'is-open': utilitiesIsOpen })}
         tabIndex="-1"
         onFocus={() => setUtilitiesIsOpen(true)}
@@ -321,13 +321,13 @@ const CompactHeader = ({
           return buildUtilityItem(item.text, item.key, onSelect, utilitiesIsOpen, id);
         })}
         {onSelectSettings ? (
-          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.settings' }), 'app-menu-settings', generateCloseUtilsFunc(onSelectSettings), utilitiesIsOpen, id)
+          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.settings' }), 'app-menu-settings', generateCloseUtilsFunc(onSelectSettings), utilitiesIsOpen, id)
         ) : null}
         {onSelectHelp ? (
-          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.help' }), 'app-menu-help', generateCloseUtilsFunc(onSelectHelp), utilitiesIsOpen, id)
+          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.help' }), 'app-menu-help', generateCloseUtilsFunc(onSelectHelp), utilitiesIsOpen, id)
         ) : null}
         {onSelectLogout ? (
-          buildUtilityItem(intl.formatMessage({ id: 'Terra.applicationNavigation.utilityMenu.logout' }), 'app-menu-logout', generateCloseUtilsFunc(onSelectLogout), utilitiesIsOpen, id)
+          buildUtilityItem(intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.logout' }), 'app-menu-logout', generateCloseUtilsFunc(onSelectLogout), utilitiesIsOpen, id)
         ) : null}
       </ul>
     );
@@ -336,7 +336,7 @@ const CompactHeader = ({
   return (
     <header role="banner" className={cx('compact-header')}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
-        {intl.formatMessage({ id: 'Terra.applicationNavigation.header.skipToContentTitle' })}
+        {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>
       {renderMenuButton()}
       <div className={cx('title-container')}>

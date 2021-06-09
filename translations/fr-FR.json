@@ -34,7 +34,7 @@
   "terraApplication.navigation.header.utilityButtonTitleUser": "Paramètres utilisateur pour : {currentUserName}",
   "terraApplication.navigation.header.utilityButtonTitleNoUser": "Options",
   "terraApplication.navigation.drawerMenu.navigation": "Éléments de navigation",
-  "Terra.applicationNavigation.drawerMenu.utilities": "Éléments de l'utilitaire",
+  "terraApplication.navigation.drawerMenu.utilities": "Éléments de l'utilitaire",
   "terraApplication.navigation.utilityMenu.logout": "Déconnexion",
   "terraApplication.navigation.utilityMenu.settings": "Paramètres",
   "terraApplication.navigation.utilityMenu.help": "Aide",

@@ -4,7 +4,7 @@
   "version": "1.47.1",
   "description": "A framework to support application development with Terra components",
   "engines": {
-    "node": ">=10 <15"
+    "node": ">=8.9.2 <15"
   },
   "repository": {
     "type": "git",

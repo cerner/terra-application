@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Added
+  * Locale file inclusion of terra-application-navigation
 
 * Changed
   * Removed terra-toolkit as a dependency

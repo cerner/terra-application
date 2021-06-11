@@ -11,10 +11,31 @@ import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
 import NotificationBanner from '@cerner/terra-application/lib/notification-banner';
 import Page from '@cerner/terra-application/lib/page';
+import useLayerPortal from '@cerner/terra-application/src/layer-manager/useLayerPortal';
 
 import styles from './TestPage.module.scss';
 
 const cx = classNames.bind(styles);
+
+const TestModal = ({ children }) => {
+  const { LayerPortal } = useLayerPortal({ layerType: 'modal' });
+
+  return (
+    <LayerPortal>
+      {children}
+    </LayerPortal>
+  );
+};
+
+const TestDialog = ({ children }) => {
+  const { LayerPortal } = useLayerPortal({ layerType: 'notificationDialog' });
+
+  return (
+    <LayerPortal>
+      {children}
+    </LayerPortal>
+  );
+};
 
 /* eslint-disable no-console */
 const TestPage = ({
@@ -166,6 +187,27 @@ const TestPage = ({
           />
         ) : undefined}
       </div>
+      <TestModal>
+        1
+        <TestModal>
+          1A
+          <TestModal>
+            1A'
+          </TestModal>
+        </TestModal>
+      </TestModal>
+      <TestModal>
+        2
+      </TestModal>
+      <TestModal>
+        3
+      </TestModal>
+      {/* <TestDialog>
+        1
+      </TestDialog>
+      <TestDialog>
+        2
+      </TestDialog> */}
     </Page>
   );
 };

@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationNavigation from '../../../ApplicationNavigation';
+import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 
 // TODO: remove terra-application after it is incorporated into dev-site for themes or themes are co-located
 const NoCustomUtilityItemsTest = () => (

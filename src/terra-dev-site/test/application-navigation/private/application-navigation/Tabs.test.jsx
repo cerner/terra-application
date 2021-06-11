@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationNavigation from '../../../ApplicationNavigation';
+import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 
 const navigationItems = [
   {

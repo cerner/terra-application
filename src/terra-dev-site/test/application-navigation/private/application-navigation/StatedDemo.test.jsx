@@ -10,7 +10,7 @@ import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
 import IconBookmark from 'terra-icon/lib/icon/IconBookmark';
 import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 import PageContent from '../common/PageContent';
-import ApplicationNavigation from '../../../ApplicationNavigation';
+import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 
 const titleConfig = {
   title: 'My Application',

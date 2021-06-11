@@ -2,7 +2,7 @@ import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mockIntl } from 'terra-enzyme-intl';
 
-import TabRollup from '../../../src/tabs/_TabRollup';
+import TabRollup from '../../../../../src/application-navigation/private/tabs/_TabRollup';
 
 describe('TabRollup', () => {
   it('should render default element', () => {

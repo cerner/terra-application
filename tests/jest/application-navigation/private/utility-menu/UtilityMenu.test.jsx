@@ -1,7 +1,7 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
 import { mountWithIntl } from 'terra-enzyme-intl';
-import UtilityMenu from '../../../src/utility-menu/_UtilityMenu';
+import UtilityMenu from '../../../../../src/application-navigation/private/utility-menu/_UtilityMenu';
 
 describe('UtilityMenu', () => {
   it('should render default element', () => {

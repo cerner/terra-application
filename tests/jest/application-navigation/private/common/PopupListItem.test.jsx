@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupMenuListItem from '../../../src/common/_PopupMenuListItem';
+import PopupMenuListItem from '../../../../../src/application-navigation/private/common/_PopupMenuListItem';
 
 describe('PopupMenuListItem', () => {
   it('should render with required prop data', () => {

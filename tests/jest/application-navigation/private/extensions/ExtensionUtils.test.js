@@ -1,4 +1,4 @@
-import { sliceIndexForBreakpoint } from '../../../src/extensions/_ExtensionUtils';
+import { sliceIndexForBreakpoint } from '../../../../../src/application-navigation/private/extensions/_ExtensionUtils';
 
 describe('ExtensionUtils', () => {
   it('sliceIndexForBreakpointshould return correct indexes', () => {

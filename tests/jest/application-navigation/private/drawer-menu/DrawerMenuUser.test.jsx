@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerMenuUser from '../../../src/drawer-menu/_DrawerMenuUser';
+import DrawerMenuUser from '../../../../../src/application-navigation/private/drawer-menu/_DrawerMenuUser';
 
 describe('DrawerMenuUser', () => {
   it('should render default element', () => {

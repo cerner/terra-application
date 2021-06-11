@@ -1,5 +1,5 @@
 import React from 'react';
-import Extension from '../../../src/extensions/_Extension';
+import Extension from '../../../../../src/application-navigation/private/extensions/_Extension';
 
 describe('Extension', () => {
   it('should render with required prop data', () => {

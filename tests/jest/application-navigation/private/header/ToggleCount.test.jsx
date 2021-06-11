@@ -1,5 +1,5 @@
 import React from 'react';
-import ToggleCount from '../../../src/header/_ToggleCount';
+import ToggleCount from '../../../../../src/application-navigation/private/header/_ToggleCount';
 
 describe('ToggleCount', () => {
   it('should render default element', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupMenuUser from '../../../src/common/_PopupMenuUser';
+import PopupMenuUser from '../../../../../src/application-navigation/private/common/_PopupMenuUser';
 
 describe('PopupMenuUser', () => {
   it('should render default element', () => {

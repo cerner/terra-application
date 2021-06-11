@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerMenuFooterButton from '../../../src/drawer-menu/_DrawerMenuFooterButton';
+import DrawerMenuFooterButton from '../../../../../src/application-navigation/private/drawer-menu/_DrawerMenuFooterButton';
 
 describe('DrawerMenuFooterButton', () => {
   it('should render default element', () => {

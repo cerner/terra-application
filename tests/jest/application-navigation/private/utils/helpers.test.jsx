@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { act } from 'react-dom/test-utils';
-import { shouldRenderCompactNavigation, useAnimatedCount } from '../../../src/utils/helpers';
+import { shouldRenderCompactNavigation, useAnimatedCount } from '../../../../../src/application-navigation/private/utils/helpers';
 
 describe('helpers', () => {
   it('shouldRenderCompactNavigation return correct values', () => {

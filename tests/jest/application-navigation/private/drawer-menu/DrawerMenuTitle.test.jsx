@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerMenuTitle from '../../../src/drawer-menu/_DrawerMenuTitle';
+import DrawerMenuTitle from '../../../../../src/application-navigation/private/drawer-menu/_DrawerMenuTitle';
 
 describe('DrawerMenuTitle', () => {
   it('should render default element', () => {

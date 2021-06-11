@@ -1,5 +1,5 @@
 import React from 'react';
-import PopupCount from '../../../src/common/_PopupCount';
+import PopupCount from '../../../../../src/application-navigation/private/common/_PopupCount';
 
 describe('PopupCount', () => {
   it('should render default element', () => {

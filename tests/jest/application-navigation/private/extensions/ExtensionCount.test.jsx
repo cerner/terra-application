@@ -1,5 +1,5 @@
 import React from 'react';
-import ExtensionCount from '../../../src/extensions/_ExtensionCount';
+import ExtensionCount from '../../../../../src/application-navigation/private/extensions/_ExtensionCount';
 
 describe('ExtensionCount', () => {
   it('should render default element', () => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerMenuListItem from '../../../src/drawer-menu/_DrawerMenuListItem';
+import DrawerMenuListItem from '../../../../../src/application-navigation/private/drawer-menu/_DrawerMenuListItem';
 
 describe('DrawerMenuListItem', () => {
   it('should render with required prop data', () => {

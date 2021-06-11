@@ -1,5 +1,5 @@
 import React from 'react';
-import Tab from '../../../src/tabs/_Tab';
+import Tab from '../../../../../src/application-navigation/private/tabs/_Tab';
 
 describe('Tab', () => {
   it('should render with required prop data', () => {

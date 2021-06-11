@@ -1,5 +1,5 @@
 import React from 'react';
-import DrawerCount from '../../../src/drawer-menu/_DrawerCount';
+import DrawerCount from '../../../../../src/application-navigation/private/drawer-menu/_DrawerCount';
 
 describe('DrawerCount', () => {
   it('should render default element', () => {

@@ -13,6 +13,7 @@
   * Adding MainContainer
   * Adding PageContainer and integrating throughout
   * Adding WorkspaceLayout
+  * Adding LayerManager
 
 ## Unreleased
 

@@ -8,33 +8,55 @@ import styles from './LayerManager.module.scss';
 
 const cx = classNames.bind(styles);
 
-const LayerTypes = {
-  modal: 1,
-  blockingOverlay: 2,
-  notificationDialog: 3,
-  frameworkDialog: 4,
-};
-
-const orderedLayers = [
+// The supported layer types are defined here, with the array order specifying
+// the stacking order of the layers when more than one type is presented. The
+// higher the index, the higher the layer type will render in the stack.
+const LAYER_TYPES = [
   'modal',
-  'blockingOverlay',
   'notificationDialog',
-  'frameworkDialog',
 ];
 
 /**
+ * A custom hook used to manage the presentation of layers within the given
+ * element references.
+ * @param {Object} rootContainerRef A React ref pointing to the element within
+ * which all layer containers are to be injected.
+ * @param {Object} baseContentLayerRef A React ref pointing to the element within
+ * the root container that contains the base content over which all layers
+ * will display.
  */
 const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
-  const layerContainersRef = React.useRef({});
+  // A ref containing the mapping of layer types to the hook-generated element
+  // acting as a container for that type. These containers are injected into the
+  // root container. We store these elements here to limit the amount of DOM
+  // queries during our layout phase.
+  const typeContainersRef = React.useRef({});
+
+  // A ref containing the mapping of all registered layers.
   const layerRegisterRef = React.useRef({});
+
+  // A ref containing the mapping of all duplicate layers presented from a single
+  // parent. As duplicates are detected, they are stored in this ref so that we
+  // can easily present them when it is possible to do so due to the dismissal of
+  // sibling layers.
   const fallbackQueueRef = React.useRef({});
 
+  // A ref containing a function that when executed will set focus to the last
+  // focused element within the base content element. This ref is populated prior
+  // to inerting the base content and is executed upon re-activation.
+  const reapplyBaseContentFocusRef = React.useRef();
+
+  // A ref containing the last collection of layers that were laid out within
+  // the root container. This ref is used to detect differences between renders
+  // and to clean up layers that may have been removed.
   const lastActiveLayersRef = React.useRef({
     modal: [],
     notificationDialog: [],
     blockingOverlay: [],
     frameworkDialog: [],
   });
+
+  // A state property containing the active layers to be rendered.
   const [activeLayers, setActiveLayers] = React.useState({
     modal: [],
     notificationDialog: [],
@@ -42,8 +64,24 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
     frameworkDialog: [],
   });
 
-  const layerManagerContextValue = React.useMemo(() => {
-    const registerLayer = ({
+  // A ref containing the static registration API for use by layer
+  // implementations.
+  const layerManagerContextValueRef = React.useRef({
+    /**
+     * Registers the provided layer information with the layer manager. The layer
+     * will be enqueued for presentation based on the current registrations state.
+     * @param {Object} registrationData Object containing layer registration data
+     * @param {HTMLElement} registrationData.portalElement The element into which
+     * the layers content will be portaled. The layer manager will ensure this
+     * element is placed in the DOM.
+     * @param {String} registrationData.layerId The unique identifier for the layer.
+     * @param {String} registrationData.layerType The associated type for the layer.
+     * @param {String} registrationData.parentLayerId The identifier for a
+     * parent layer associated with the new layer. Used to define stacking within
+     * a given layer type container.
+     * @returns A function that will unregister the layer with the layer manager.
+     */
+    registerLayer: ({
       portalElement,
       layerId,
       layerType,
@@ -57,15 +95,15 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
       };
 
       setActiveLayers((currentActiveLayers) => {
-        // If the specified Layer is already present in the render order,
+        // If the specified layer is already present in the render order,
         // it can stay where it is. The state is updated to ensure that any changed
-        // page values (label/metaData) are communicated to the other effects.
+        // layer values are communicated to the other effects.
         if (currentActiveLayers[layerType].indexOf(layerId) >= 0) {
           return { ...currentActiveLayers };
         }
 
-        // If there are currently no registered Layers, we initialize the state
-        // with the single new entry.
+        // If there are currently no registered layers for the type, we initialize
+        // the state with the single new entry.
         if (!currentActiveLayers[layerType].length) {
           return {
             ...currentActiveLayers,
@@ -73,13 +111,12 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
           };
         }
 
-        // If no ancestor Layer is specified, but there are known active Pages,
-        // this new Page must be a duplicate at the root of the PageContainer.
-        // This new Page is not queued for rendering and is ignored.
+        // If no parent layer exists but layers are already registered for the
+        // current type...
         if (!parentLayerId) {
-          // We need to perform a separate check to see if the new Layer should
+          // We need to perform a separate check to see if the new layer should
           // be inserted into the existing ordering, likely due to a series of
-          // Layers mounting at the same time.
+          // nested layers mounting at the same time.
           const existingChild = layerRegisterRef.current[currentActiveLayers[layerType][0]];
           if (existingChild && existingChild.parentLayerId === layerId) {
             return {
@@ -88,23 +125,22 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
             };
           }
 
-          // If a Layer for the parent is already established, we store the
-          // layerId in the fallback queue to be presented when possible.
+          // If the layer is the start of a new layer branch, we store it in the
+          // fallback queue for future rendering.
           if (!fallbackQueueRef.current[layerType]) {
             fallbackQueueRef.current[layerType] = [];
           }
           fallbackQueueRef.current[layerType].push(layerId);
 
-          // Logger.warn(`[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page ${label} will not be displayed.`);
+          Logger.warn(`[terra-application] Multiple ${layerType} layers are rendered for the same parent. Layers will be rendered one at a time.`);
           return currentActiveLayers;
         }
 
-        // If the new Layer's parent has already been registered, the new
-        // Layer is injected into the array immediately after the parent. If
-        // the parent is found to already have descendant Layers, the new Page
-        // is not queued for rendering and is ignored.
+        // If the new layer's parent has already been registered...
         const indexOfParentLayer = currentActiveLayers[layerType].indexOf(parentLayerId);
         if (indexOfParentLayer >= 0) {
+          // The layer is injected after the parent layer if existing child layers
+          // do not exist.
           if (indexOfParentLayer === currentActiveLayers[layerType].length - 1) {
             return {
               ...currentActiveLayers,
@@ -112,9 +148,9 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
             };
           }
 
-          // We need to perform a separate check to see if the new Layer should
+          // We need to perform a separate check to see if the new layer should
           // be inserted into the existing order. This can can occur when a
-          // series of nested Layers are mounted at the same time.
+          // series of nested layers are mounted at the same time.
           const existingChild = layerRegisterRef.current[currentActiveLayers[layerType][indexOfParentLayer + 1]];
           if (existingChild.parentLayerId === layerId) {
             const newLayers = [...currentActiveLayers[layerType]];
@@ -126,21 +162,21 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
             };
           }
 
-          // If a Layer for the parent is already established, we store the
-          // layerId in the fallback queue to be presented when possible.
+          // If the layer is the start of a new layer branch within the parent,
+          // we store it in the fallback queue for future rendering.
           if (!fallbackQueueRef.current[parentLayerId]) {
             fallbackQueueRef.current[parentLayerId] = [];
           }
           fallbackQueueRef.current[parentLayerId].push(layerId);
 
-          // Logger.warn(`[terra-application] A PageContainer cannot render multiple Pages with a shared parent. The redundant Page ${label} will not be displayed.`);
+          Logger.warn(`[terra-application] Multiple ${layerType} layers are rendered for the same parent. Layers will be rendered one at a time.`);
           return currentActiveLayers;
         }
 
-        // If a series of nested Layers are mounted at the same time, the child
+        // If a series of nested layers are mounted at the same time, the child
         // layers will be registered and processed prior to their ancestors. In
-        // this case, we need to ensure that the Layer order managed in state
-        // reflects the Layer component hierarchy.
+        // this case, we need to ensure that the layer order managed in state
+        // reflects the layer component hierarchy.
         const earlyDescendantId = Object.keys(layerRegisterRef.current).find((registeredLayerId) => (
           layerRegisterRef.current[registeredLayerId].parentLayerId === layerId));
         if (earlyDescendantId) {
@@ -154,9 +190,9 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
         }
 
         // If neither a parent nor an early descendant can be found for the
-        // new Layer, we assume that the parent will be coming in a subsequent
-        // update. Given the protections above for duplicate Layer detection, we
-        // can be optimistic and push the Page to the front of the line to prepare
+        // new layer, we assume that the parent will be coming in a subsequent
+        // update. Given the protections above for duplicate layer detection, we
+        // can be optimistic and push the layer to the front of the queue to prepare
         // it for rendering. If the specified parent never gets registered,
         // something has gone very wrong.
         const newLayers = [...currentActiveLayers[layerType]];
@@ -168,9 +204,9 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
         };
       });
 
+      // A function is returned that removes the previously given pageId from
+      // the array of active pages.
       return () => {
-        // A function is returned that removes the previously given pageId from
-        // the array of active pages.
         const entryForLayerId = layerRegisterRef.current[layerId];
         if (!entryForLayerId) {
           return;
@@ -192,25 +228,21 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
         // inserted into the render order here.
         let fallbackEntryId;
         if (entryForLayerId.parentLayerId) {
-          if (fallbackQueueRef.current[entryForLayerId.parentLayerId] && fallbackQueueRef.current[entryForLayerId.parentLayerId].length) {
+          if (fallbackQueueRef.current[entryForLayerId.parentLayerId]
+            && fallbackQueueRef.current[entryForLayerId.parentLayerId].length) {
             fallbackEntryId = fallbackQueueRef.current[entryForLayerId.parentLayerId].shift();
 
             if (!fallbackQueueRef.current[entryForLayerId.parentLayerId].length) {
               delete fallbackQueueRef.current[entryForLayerId.parentLayerId];
             }
           }
-        } else {
-          for (let i = 0; i < fallbackQueueRef.current[layerType].length; i += 1) {
-            if (fallbackQueueRef.current[layerType][i].layerType === layerType) {
-              fallbackEntryId = fallbackQueueRef.current[layerType][i];
-              fallbackQueueRef.current[layerType].splice(i, 1);
+        } else if (fallbackQueueRef.current[layerType]
+          && fallbackQueueRef.current[layerType].length) {
+          fallbackEntryId = fallbackQueueRef.current[layerType][0]; // eslint-disable-line prefer-destructuring
+          fallbackQueueRef.current[layerType].splice(0, 1);
 
-              if (!fallbackQueueRef.current[layerType].length) {
-                delete fallbackQueueRef.current[layerType];
-              }
-
-              break;
-            }
+          if (!fallbackQueueRef.current[layerType].length) {
+            delete fallbackQueueRef.current[layerType];
           }
         }
 
@@ -231,47 +263,33 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
           };
         });
       };
-    };
+    },
+  });
 
-    return {
-      registerLayer,
-    };
-  }, []);
-
+  // This effect is responsible for creating container elements for each layer
+  // type and injecting them into the provided root element.
   React.useLayoutEffect(() => {
     const layersContainerElement = rootContainerRef.current;
-    const layerContainersRegistry = layerContainersRef.current;
+    const typeContainers = typeContainersRef.current;
 
-    orderedLayers.forEach((type, index) => {
+    LAYER_TYPES.forEach((type, index) => {
       const layerContainer = document.createElement('div');
-      let overlayElement;
 
-      layerContainer.setAttribute('data-layer-manager-type', type);
+      layerContainer.setAttribute('data-layer-type', type);
       layerContainer.style['z-index'] = `${index + 1}`;
-      // layerContainer.style.display = 'none';
+      layerContainer.style.display = 'none';
       layerContainer.classList.add(cx('layer-container'));
-
-      // if (type !== 'blockingOverlay') {
-      //   overlayElement = document.createElement('div');
-      //   overlayElement.setAttribute('data-layer-manager-overlay', true);
-      //   overlayElement.classList.add(cx('overlay'));
-      //   overlayElement.style['z-index'] = '0';
-      //   overlayElement.style.display = 'none';
-
-      //   layerContainer.appendChild(overlayElement);
-      // }
 
       layersContainerElement.appendChild(layerContainer);
 
-      layerContainersRegistry[type] = {
+      typeContainers[type] = {
         element: layerContainer,
-        overlay: overlayElement,
       };
     });
 
     return () => {
-      Object.keys(layerContainersRegistry).forEach((layerType) => {
-        const layerElement = layerContainersRegistry[layerType].element;
+      Object.keys(typeContainers).forEach((layerType) => {
+        const layerElement = typeContainers[layerType].element;
 
         if (layersContainerElement.contains(layerElement)) {
           layersContainerElement.removeChild(layerElement);
@@ -281,11 +299,16 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
   }, [rootContainerRef]);
 
   React.useLayoutEffect(() => {
-    const danglingLayerIds = orderedLayers.reduce((reducedValue, layerType) => [...reducedValue, ...lastActiveLayersRef.current[layerType]], []);
+    // We reduce the last rendered layers into a linear array. This will
+    // easily allow us to determine differences and remove layers that are no
+    // longer registered.
+    const danglingLayerIds = LAYER_TYPES.reduce((reducedValue, layerType) => (
+      [...reducedValue, ...lastActiveLayersRef.current[layerType]]
+    ), []);
 
-    let activeLayerFound = false;
-    [...orderedLayers].reverse().forEach((layerType) => {
-      const layerContainer = layerContainersRef.current[layerType];
+    let activeLayerTypeFound = false;
+    [...LAYER_TYPES].reverse().forEach((layerType) => {
+      const layerContainer = typeContainersRef.current[layerType];
       const activeLayersForType = activeLayers[layerType];
 
       if (activeLayersForType.length) {
@@ -298,22 +321,23 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
             layerContainer.element.appendChild(layerData.portalElement);
           }
 
-          if (index < activeLayersForType.length - 1) {
+          if (activeLayerTypeFound || index < activeLayersForType.length - 1) {
             if (!layerData.portalElement.inert) {
               const currentActiveElement = document.activeElement;
-              layerData.applyFocus = () => {
+              layerData.reapplyFocus = () => {
                 if (layerData.portalElement.contains(currentActiveElement)) {
                   currentActiveElement.focus();
                 }
               };
-              layerData.portalElement.inert = true;
             }
-          } else {
-            layerData.portalElement.inert = activeLayerFound;
 
-            if (!activeLayerFound && layerData.applyFocus) {
-              layerData.applyFocus();
-              layerData.applyFocus = undefined;
+            layerData.portalElement.inert = true;
+          } else {
+            layerData.portalElement.inert = false;
+
+            if (layerData.reapplyFocus) {
+              layerData.reapplyFocus();
+              layerData.reapplyFocus = undefined;
             }
           }
 
@@ -325,27 +349,41 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
           }
         });
 
-        activeLayerFound = true;
+        activeLayerTypeFound = true;
       } else {
         layerContainer.element.style.display = 'none';
       }
     });
 
     const baseContentElement = baseContentLayerRef.current;
-    if (activeLayerFound) {
+    if (activeLayerTypeFound) {
+      if (!baseContentElement.inert) {
+        const currentActiveElement = document.activeElement;
+        reapplyBaseContentFocusRef.current = () => {
+          if (baseContentElement.contains(currentActiveElement)) {
+            currentActiveElement.focus();
+          }
+        };
+      }
+
       baseContentElement.inert = true;
     } else {
       baseContentElement.inert = false;
+
+      if (reapplyBaseContentFocusRef.current) {
+        reapplyBaseContentFocusRef.current();
+        reapplyBaseContentFocusRef.current = undefined;
+      }
     }
 
     for (let i = 0, count = danglingLayerIds.length; i < count; i += 1) {
-      // If a previously registered Layer is no longer present, we can safely
+      // If a previously registered layer is no longer present, we can safely
       // delete our reference to it after removing it from the container, if
       // necessary.
       const danglingLayerData = layerRegisterRef.current[danglingLayerIds[i]];
-      const containerForLayerType = layerContainersRef.current[danglingLayerData.layerType];
-      if (containerForLayerType.current.contains(danglingLayerData.portalElement)) {
-        containerForLayerType.current.removeChild(danglingLayerData.portalElement);
+      const containerForLayerType = typeContainersRef.current[danglingLayerData.layerType];
+      if (containerForLayerType.element.contains(danglingLayerData.portalElement)) {
+        containerForLayerType.element.removeChild(danglingLayerData.portalElement);
       }
 
       delete layerRegisterRef.current[danglingLayerIds[i]];
@@ -357,13 +395,12 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
   // We expose a dynamic component from the hook so that we do not need to
   // expose the context or context value.
   const layerManagerRef = React.useRef(({ children }) => (
-    <LayerManagerContext.Provider value={layerManagerContextValue}>
+    <LayerManagerContext.Provider value={layerManagerContextValueRef.current}>
       {children}
     </LayerManagerContext.Provider>
   ));
 
   return {
-    // inertRegions: pageRegisterRef.current[activePageArray[activePageArray.length - 1]],
     LayerManager: layerManagerRef.current,
   };
 };

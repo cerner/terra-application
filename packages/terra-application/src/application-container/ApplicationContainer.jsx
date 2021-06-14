@@ -5,7 +5,7 @@ import classNames from 'classnames/bind';
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import WindowManager from '../utils/window-manager';
 import ActiveMainProvider from '../main-container/private/ActiveMainProvider';
-import LayerContainer from '../layer-manager/LayerContainer';
+import RootLayerContainer from '../layer-manager/RootLayerContainer';
 
 import ApplicationContainerErrorBoundary from './private/ApplicationContainerErrorBoundary';
 import useSkipToLinks from './private/skip-to-links/useSkipToLinks';
@@ -65,12 +65,12 @@ const ApplicationContainer = ({
       <div className={cx('application-container')} data-testid="application-container">
         <ActiveMainProvider>
           <ApplicationContainerErrorBoundary>
-            <LayerContainer>
+            <RootLayerContainer>
               <SkipToLinks />
               <SkipToLinksProvider>
                 {children}
               </SkipToLinksProvider>
-            </LayerContainer>
+            </RootLayerContainer>
           </ApplicationContainerErrorBoundary>
         </ActiveMainProvider>
       </div>

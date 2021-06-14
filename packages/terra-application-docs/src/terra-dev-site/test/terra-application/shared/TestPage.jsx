@@ -8,7 +8,7 @@ import IconPerson from 'terra-icon/lib/icon/IconPerson';
 import IconEdit from 'terra-icon/lib/icon/IconEdit';
 import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 
-import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 import NotificationBanner from '@cerner/terra-application/lib/notification-banner';
 import Page from '@cerner/terra-application/lib/page';
 
@@ -97,7 +97,7 @@ const TestPage = ({
           {' '}
           <button type="button" onClick={() => setHasUnsavedChanges(state => !state)}>Toggle</button>
         </p>
-        {hasUnsavedChanges ? <NavigationPrompt description={label} /> : undefined}
+        {hasUnsavedChanges ? <UnsavedChangesPrompt description={label} /> : undefined}
         <p>
           Show Toolbar:
           {' '}

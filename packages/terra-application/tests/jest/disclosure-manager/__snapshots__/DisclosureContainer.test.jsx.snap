@@ -10,7 +10,7 @@ exports[`DisclosureContainer should render the provided children 1`] = `
 >
   <injectIntl(ApplicationErrorBoundary)>
     <ApplicationLoadingOverlayProvider>
-      <withPromptRegistration(NavigationPromptCheckpoint)>
+      <withPromptRegistration(UnsavedChangesPromptCheckpoint)>
         <ContentContainer
           fill={true}
           header={<injectIntl(NotificationBanners) />}
@@ -21,7 +21,7 @@ exports[`DisclosureContainer should render the provided children 1`] = `
             </div>
           </NotificationBannerProvider>
         </ContentContainer>
-      </withPromptRegistration(NavigationPromptCheckpoint)>
+      </withPromptRegistration(UnsavedChangesPromptCheckpoint)>
     </ApplicationLoadingOverlayProvider>
   </injectIntl(ApplicationErrorBoundary)>
 </ContextProvider>

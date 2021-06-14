@@ -1,5 +1,5 @@
 import React from 'react';
-import { WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay } from '@cerner/terra-application/lib/workspace';
+import { WorkspaceContent } from '@cerner/terra-application/lib/workspace';
 
 import MockContent from './MockContent';
 
@@ -9,8 +9,8 @@ const Tab2 = () => {
 
   return (
     <WorkspaceContent
-      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
-      statusOverlay={showStatusOverlay ? <WorkspaceContentStatusOverlay variant="not-authorized" /> : undefined}
+      activityOverlay={isLoading ? <WorkspaceContent.ActivityOverlay variant="loading" /> : undefined}
+      statusOverlay={showStatusOverlay ? <WorkspaceContent.StatusOverlay variant="not-authorized" /> : undefined}
     >
       <MockContent title="Tab 2" onShowActivityOverlay={setIsLoading} onShowStatusOverlay={setShowStatusOverlay} />
     </WorkspaceContent>

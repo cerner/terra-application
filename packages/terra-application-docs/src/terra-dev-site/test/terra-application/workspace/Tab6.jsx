@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  WorkspaceContent, WorkspaceContentActivityOverlay,
+  WorkspaceContent,
 } from '@cerner/terra-application/lib/workspace';
 
 const Tab6 = () => (
   <WorkspaceContent
-    activityOverlay={<WorkspaceContentActivityOverlay variant="loading" />}
+    activityOverlay={<WorkspaceContent.ActivityOverlay variant="loading" />}
     label="Tab 6 with Jam and Bread"
   />
 );

@@ -9,6 +9,8 @@ import NavigationItem from '../navigation-item';
 import { MainPageContainer } from '../page-container';
 
 import ApplicationNavigation from './terra-application-navigation/ApplicationNavigation';
+import PrimaryNavigationWorkspace from './workspace-layout/PrimaryNavigationWorkspace';
+import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 import {
   titleConfigPropType,
@@ -145,6 +147,10 @@ const propTypes = {
    * breakpoints.
    */
   utilityItems: utilityItemsPropType,
+  /**
+   * A PrimaryNavigationWorkspace element composed of PrimaryNavigationWorkspaceItem(s).
+   */
+  workspace: PropTypes.element,
 };
 
 const PrimaryNavigationLayout = ({
@@ -166,7 +172,12 @@ const PrimaryNavigationLayout = ({
   titleConfig,
   userConfig,
   utilityItems,
+  workspace,
 }) => {
+  if (workspace && workspace.type !== PrimaryNavigationWorkspace) {
+    throw new Error('[terra-application] PrimaryNavigationWorkspace must be used to define a workspace for the PrimarayNavigationLayout.');
+  }
+
   const applicationConcept = React.useContext(ApplicationConceptContext);
 
   // The set of NavigationItems rendered in the last update are stored in this
@@ -299,8 +310,14 @@ const PrimaryNavigationLayout = ({
         <div className={cx('concept-banner-container')}>
           {applicationConcept?.layoutBanner}
         </div>
-        <div ref={contentElementRef} className={cx('layout-content')}>
-          {content}
+        <div className={cx('layout-content')}>
+          <WorkspaceLayout
+            id={`${id}-workspace-layout`}
+            workspace={workspace}
+            contentElementRef={contentElementRef}
+          >
+            {content}
+          </WorkspaceLayout>
         </div>
       </div>
     </ApplicationNavigation>
@@ -308,5 +325,6 @@ const PrimaryNavigationLayout = ({
 };
 
 PrimaryNavigationLayout.propTypes = propTypes;
+PrimaryNavigationLayout.Workspace = PrimaryNavigationWorkspace;
 
 export default PrimaryNavigationLayout;

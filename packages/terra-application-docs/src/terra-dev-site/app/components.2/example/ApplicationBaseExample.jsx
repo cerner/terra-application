@@ -3,7 +3,7 @@ import { useIntl } from 'react-intl';
 import { ActiveBreakpointContext } from '@cerner/terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from '@cerner/terra-application/lib/application-loading-overlay';
 import ApplicationBase from '@cerner/terra-application/lib/application-base';
-import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 const ApplicationContentExample = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -52,7 +52,7 @@ const ApplicationContentExample = () => {
     </>
   );
 
-  const navigationPromptExample = (
+  const unsavedChangesPromptExample = (
     <>
       <p>
         Prompt on window close:
@@ -65,7 +65,7 @@ const ApplicationContentExample = () => {
           }}
         />
       </p>
-      {blockUnload ? <NavigationPrompt description="Testing ApplicationBase's navigation prompt handling" /> : undefined}
+      {blockUnload ? <UnsavedChangesPrompt description="Testing ApplicationBase's unsaved changes prompt handling" /> : undefined}
     </>
   );
 
@@ -75,7 +75,7 @@ const ApplicationContentExample = () => {
       {intlExample}
       {errorBoundaryExample}
       {loadingOverlayExample}
-      {navigationPromptExample}
+      {unsavedChangesPromptExample}
     </div>
   );
 };

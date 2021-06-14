@@ -16,6 +16,7 @@ import ActionMenu, {
 import { ApplicationIntlContext } from '../application-intl';
 import usePortalManager, { getPortalElement } from '../shared/usePortalManager';
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
+import WorkspaceItem from './WorkspaceItem';
 
 import Tabs from './subcomponents/_Tabs';
 
@@ -278,5 +279,6 @@ const Workspace = ({
 };
 
 Workspace.propTypes = propTypes;
+Workspace.Item = WorkspaceItem;
 
 export default Workspace;

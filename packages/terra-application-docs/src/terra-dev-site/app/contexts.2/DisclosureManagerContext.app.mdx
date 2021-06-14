@@ -129,17 +129,17 @@ In addition to a `disclose` function, a number of other functions are exposed to
 |`minimize`|Allows a component to minimize its presentation size. This is only provided if the component is currently maximized.|
 |`requestFocus`|Allows a component to request focus from the disclosure in the event that the disclosure mechanism in use utilizes a focus trap. This can be integrated with the Popup and similar focus-stealing controls.|
 |`releaseFocus`|Allows a component to release focus from itself and return it to the disclosure. This can be integrated with the Popup and similar focus-stealing controls.|
-|`registerDismissCheck`|Allows a component to register a function with the DisclosureManager that will be called before the component is dismissed. Calling this function will override the default implementation that checks for the presence of NavigationPrompts.|
+|`registerDismissCheck`|Allows a component to register a function with the DisclosureManager that will be called before the component is dismissed. Calling this function will override the default implementation that checks for the presence of UnsavedChangesPrompts.|
 
 Each of these functions returns a Promise that can be used for chaining, if necessary.
 
 #### A Note on `registerDismissCheck`
 
-By default, the DisclosureManager monitors its disclosed content for the presence of [NavigationPrompts](/application/cerner-terra-application-docs/components/navigation-prompt).
-The user will be prompted if they attempt to close the dismiss the disclosure while NavigationPrompts are present.
+By default, the DisclosureManager monitors its disclosed content for the presence of [UnsavedChangesPrompts](/application/cerner-terra-application-docs/components/unsaved-changes-prompt).
+The user will be prompted if they attempt to close the dismiss the disclosure while UnsavedChangesPrompts are present.
 
-If the modal content calls `registerDismissCheck` to add its own pre-dismissal logic, the default NavigationPrompt handling will be **disabled**.
-Any component that uses `registerDismissCheck` should check for the presence of NavigationPrompts (using a [NavigationPromptCheckpoint](/application/cerner-terra-application-docs/components/navigation-prompt-checkpoint))
+If the modal content calls `registerDismissCheck` to add its own pre-dismissal logic, the default UnsavedChangesPrompt handling will be **disabled**.
+Any component that uses `registerDismissCheck` should check for the presence of UnsavedChangesPrompts (using a [UnsavedChangesPromptCheckpoint](/application/cerner-terra-application-docs/components/unsaved-changes-prompt-checkpoint))
 in addition to whatever custom logic is required.
 
 Given this complexity, usage of the `registerDismissCheck` API is **not recommended**.

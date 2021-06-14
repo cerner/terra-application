@@ -58,5 +58,6 @@ const WorkspaceContentStatusOverlay = ({ variant, message, children }) => {
 };
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
+WorkspaceContentStatusOverlay.Button = WorkspaceContentStatusOverlayButton;
 
 export default WorkspaceContentStatusOverlay;

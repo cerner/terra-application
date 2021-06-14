@@ -12,6 +12,7 @@
   * Adding SkipToLink
   * Adding MainContainer
   * Adding PageContainer and integrating throughout
+  * Adding WorkspaceLayout
 
 ## Unreleased
 

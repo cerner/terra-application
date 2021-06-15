@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Added
+  * Added ApplicationNavigationActionsContext to application-navigation
 
 * Changed
   * Removed terra-toolkit as a dependency

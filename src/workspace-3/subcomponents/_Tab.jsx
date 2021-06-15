@@ -101,7 +101,6 @@ const Tab = ({
   attributes["data-focus-styles-enabled"] = true;
   attributes["aria-selected"] = isSelected;
   attributes.style = { zIndex };
-  console.log("POLLO: ", label, attributes.tabIndex);
   return (
     <div
       {...attributes}

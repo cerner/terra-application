@@ -46,8 +46,9 @@ const propTypes = {
        * The metaData to return with the onSelect callback.
        */
       metaData: PropTypes.object,
-    })
+    }),
   ).isRequired,
+  activeSize: PropTypes.string,
 };
 
 class Tabs extends React.Component {
@@ -68,7 +69,7 @@ class Tabs extends React.Component {
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
-    this.state = { tabData: this.props.tabData };
+    this.state = { tabData: this.props.tabData, visibleT: [] };
     this.resetCache();
   }
 
@@ -272,20 +273,29 @@ class Tabs extends React.Component {
   wrapOnSelectHidden(onSelect) {
     return (itemKey, metaData) => {
       const activeTabIndex = this.state.tabData.findIndex(
-        (tab) => tab.isSelected
+        (tab) => tab.isSelected,
       );
       const selectedTab = this.state.tabData.find(
-        (tab) => tab.itemKey === itemKey
+        (tab) => tab.itemKey === itemKey,
       );
       const selectedIndex = this.state.tabData.findIndex(
-        (tab) => tab.itemKey === itemKey
+        (tab) => tab.itemKey === itemKey,
       );
+
+      const { activeSize } = this.props;
 
       this.state.tabData[activeTabIndex].isSelected = false;
       this.state.tabData.splice(selectedIndex, 1);
 
-      this.state.tabData.splice(0, 0, selectedTab);
-      this.state.tabData[0].isSelected = true;
+      if (activeSize === 'medium') {
+        this.state.tabData.splice(3, 0, selectedTab);
+        this.state.tabData[3].isSelected = true;
+      }
+
+      if (activeSize === 'small') {
+        this.state.tabData.splice(1, 0, selectedTab);
+        this.state.tabData[1].isSelected = true;
+      }
 
       if (this.isOpen) {
         onSelect(itemKey, metaData);
@@ -314,7 +324,7 @@ class Tabs extends React.Component {
             tabIds={ids}
             onSelect={this.wrapOnSelect(tab.onSelect)}
             zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
+          />,
         );
       } else {
         hiddenTabs.push(
@@ -360,7 +370,7 @@ class Tabs extends React.Component {
         {visibleTabs}
         {this.showMoreButton ? (
           <MoreButton
-            label="More"
+            label={`${hiddenTabs.length} More`}
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}

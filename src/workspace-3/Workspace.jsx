@@ -124,6 +124,7 @@ const Workspace = ({
   const theme = React.useContext(ThemeContext);
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
+  console.log(activeSize);
 
   const [workspaceContainerRef, workspacePortalsRef] =
     usePortalManager(activeItemKey);
@@ -262,7 +263,7 @@ const Workspace = ({
             "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
           })}
         >
-          <Tabs ariaLabel={ariaLabel} tabData={tabData} />
+          <Tabs activeSize={activeSize} ariaLabel={ariaLabel} tabData={tabData} />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

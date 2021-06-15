@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.48.0 - (June 15, 2021)
+
 * Changed
   * Removed terra-toolkit as a dependency
   * Upgraded to WebDriverIO v6 and terra-functional-testing

@@ -1,0 +1,607 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a series of nested layers after initial rendering 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-1"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders a series of nested layers after initial rendering 2`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-1"
+        />
+      </div>
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-nested-modal-child-1"
+        />
+      </div>
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-nested-modal-child-2"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders complex layer registration on initial mount 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-1"
+        />
+      </div>
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-2"
+        />
+      </div>
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-3"
+        />
+      </div>
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-4"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-notification-dialog-child-1"
+        />
+      </div>
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-notification-dialog-child-2"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders duplicate layers to the render queue 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-1"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders duplicate layers to the render queue 2`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-2"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders layers along with children 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders layers along with children 2`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: none;"
+    />
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders multiple layer types appropriately 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-notification-dialog-child"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders multiple layer types appropriately 2`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: none;"
+    />
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-notification-dialog-child"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders multiple layer types appropriately 3`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child-again"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-notification-dialog-child"
+        />
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders nested layers appropriately 1`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders nested layers appropriately 2`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-nested-modal-child-1"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders nested layers appropriately 3`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-nested-modal-child-1"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders nested layers appropriately 4`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+      inert="true"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: block;"
+    >
+      <div
+        inert="true"
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-modal-child"
+        />
+      </div>
+      <div
+        style="position: absolute; height: 100%; width: 100%; z-index: 0;"
+      >
+        <div
+          data-testid="test-nested-modal-child-2"
+        />
+      </div>
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`renders nested layers appropriately 5`] = `
+<DocumentFragment>
+  <div
+    class="root"
+  >
+    <div
+      class="base-container"
+    >
+      <div
+        data-testid="test-child"
+      />
+    </div>
+    <div
+      class="layer-container"
+      data-layer-type="modal"
+      style="z-index: 1; display: none;"
+    />
+    <div
+      class="layer-container"
+      data-layer-type="notificationDialog"
+      style="z-index: 2; display: none;"
+    />
+  </div>
+</DocumentFragment>
+`;

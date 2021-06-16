@@ -52,16 +52,12 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
   const lastActiveLayersRef = React.useRef({
     modal: [],
     notificationDialog: [],
-    blockingOverlay: [],
-    frameworkDialog: [],
   });
 
   // A state property containing the active layers to be rendered.
   const [activeLayers, setActiveLayers] = React.useState({
     modal: [],
     notificationDialog: [],
-    blockingOverlay: [],
-    frameworkDialog: [],
   });
 
   // A ref containing the static registration API for use by layer
@@ -88,6 +84,7 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
       parentLayerId,
     }) => {
       layerRegisterRef.current[layerId] = {
+        ...(layerRegisterRef.current[layerId] || {}),
         portalElement,
         layerId,
         layerType,
@@ -181,7 +178,7 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
           layerRegisterRef.current[registeredLayerId].parentLayerId === layerId));
         if (earlyDescendantId) {
           const newLayers = [...currentActiveLayers[layerType]];
-          newLayers.splice(currentActiveLayers[layerType].indexOf(earlyDescendantId) - 1, 0, layerId);
+          newLayers.splice(currentActiveLayers[layerType].indexOf(earlyDescendantId), 0, layerId);
 
           return {
             ...currentActiveLayers,

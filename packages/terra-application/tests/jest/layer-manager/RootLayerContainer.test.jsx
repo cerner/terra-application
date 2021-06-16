@@ -1,9 +1,8 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import RootLayerContainer from '../../../src/layer-manager/RootLayerContainer';
-import Logger from '../../../src/utils/logger';
 
 import MockApplication from '../MockApplication';
 import MockLayer from '../MockLayer';

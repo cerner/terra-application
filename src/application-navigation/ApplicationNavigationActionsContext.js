@@ -2,10 +2,9 @@ import { createContext } from 'react';
 import PropTypes from 'prop-types';
 
 /**
- * The ApplicationNavigationActionsContext can be used by Layout implementations to define
- * actions to be rendered by content rendered within the Layout. It is up
- * to the context's consumer to determine how and where these action controls
- * are rendered.
+ * The ApplicationNavigationActionsContext can be used by content within the main region
+ * to have access to and set actions would can be rendered within that main content region.
+ * If leveraged it is the responsibility of that content to render said actions.
  */
 const ApplicationNavigationActionsContext = createContext({});
 

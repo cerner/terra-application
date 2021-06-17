@@ -72,6 +72,7 @@ const Tab = ({
   tabIds,
   zIndex,
   singleTab,
+  checkWhenArrowing,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
@@ -89,6 +90,7 @@ const Tab = ({
     } else {
       handleArrows(event, index, tabIds);
     }
+    checkWhenArrowing(tabRef);
   }
 
   function onClick() {

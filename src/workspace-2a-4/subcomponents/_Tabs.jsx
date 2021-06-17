@@ -286,6 +286,7 @@ class Tabs extends React.Component {
           onSelect={this.wrapOnSelect(tab.onSelect)}
           zIndex={tab.isSelected ? tabData.length : tabData.length - index}
           singleTab={this.props.singleTab}
+          checkWhenArrowing={this.props.checkWhenArrowing}
         />
       );
       hiddenTabs.push(
@@ -328,7 +329,7 @@ class Tabs extends React.Component {
         >
           {visibleTabs}
           <MoreButton
-            label={"Tabs Menu"}
+            label={""}
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}

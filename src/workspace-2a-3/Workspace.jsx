@@ -280,7 +280,7 @@ const Workspace = ({
       ).filter((tab) => tab.id === tabRefVal.current.id);
 
       lastTabActive =
-        slideMainRef.current.children[2].children[0].children[6].getBoundingClientRect()
+        slideMainRef.current.children[2].children[0].children[5].getBoundingClientRect()
           .right;
 
       activeTabPosLeft = activeTabFromMenu[0].getBoundingClientRect().left;
@@ -366,52 +366,6 @@ const Workspace = ({
     }
   };
 
-  const checkWhenArrowing = (refVal) => {
-    let currentTabNext = "",
-      currentTab = "",
-      lastTab = "",
-      firstTab = "";
-    let tabsContainerPosRight = 0,
-      tabsContainerPosLeft = 0,
-      currentTabPos = 0,
-      tabMenu = 0;
-
-    if (refVal.current && slideMainRef.current) {
-      currentTabNext = refVal.current.nextSibling.id;
-      currentTab = refVal.current.previousSibling.id;
-      lastTab = slideRef.current.children[0].children[6].id;
-      firstTab = slideRef.current.children[0].children[1].id;
-
-      if (currentTabNext === lastTab) {
-        currentTabPos =
-          refVal.current.nextSibling.getBoundingClientRect().right;
-        tabsContainerPosRight =
-          slideMainRef.current.getBoundingClientRect().right;
-
-        if (currentTabPos > tabsContainerPosRight) {
-          slideRef.current.scrollBy({
-            top: 0,
-            left: 100,
-            behaviour: "smooth",
-          });
-        }
-      } else if (currentTab === firstTab) {
-        tabMenu =
-          slideRef.current.children[0].children[0].getBoundingClientRect().left;
-        tabsContainerPosLeft =
-          slideMainRef.current.getBoundingClientRect().left;
-
-        if (tabMenu < tabsContainerPosLeft) {
-          slideRef.current.scrollBy({
-            top: 0,
-            left: -100,
-            behaviour: "smooth",
-          });
-        }
-      }
-    }
-  };
-
   const singleTab = (refVal) => {
     let tabRefVal = 0;
     let tabRefElem;
@@ -451,7 +405,6 @@ const Workspace = ({
             tabData={tabData}
             scrollTabs={scrollTabs}
             singleTab={singleTab}
-            checkWhenArrowing={checkWhenArrowing}
             jumpToActiveTab={jumpToActiveTab}
             activeSize={activeSize}
           />

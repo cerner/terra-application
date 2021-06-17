@@ -295,6 +295,9 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
     };
   }, [rootContainerRef]);
 
+  // This effect is responsible for responding to changes in the activeLayers
+  // state and ensuring the appropriate layers are added/removed and are
+  // appropriately accessible.
   React.useLayoutEffect(() => {
     // We reduce the last rendered layers into a linear array. This will
     // easily allow us to determine differences and remove layers that are no
@@ -303,6 +306,10 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
       [...reducedValue, ...lastActiveLayersRef.current[layerType]]
     ), []);
 
+    // We iterate over each defined layer type from front to back, ensuring
+    // that the active layers for each type are present and displayed in the
+    // appropriate order. Once an active layer is found for a single type, all
+    // subsequent layers will be rendered inert.
     let activeLayerTypeFound = false;
     [...LAYER_TYPES].reverse().forEach((layerType) => {
       const layerContainer = typeContainersRef.current[layerType];
@@ -352,6 +359,8 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
       }
     });
 
+    // We ensure that the base content is rendered inert in the presence of
+    // any active layer above it.
     const baseContentElement = baseContentLayerRef.current;
     if (activeLayerTypeFound) {
       if (!baseContentElement.inert) {
@@ -373,10 +382,11 @@ const useLayerManager = (rootContainerRef, baseContentLayerRef) => {
       }
     }
 
+    // At this point, danglingLayerIds contains the ids of layers that were
+    // active during the last render but are no longer registered with the
+    // LayerManager. We take the opportunity here to remove those layers from
+    // the container and delete our reference to them.
     for (let i = 0, count = danglingLayerIds.length; i < count; i += 1) {
-      // If a previously registered layer is no longer present, we can safely
-      // delete our reference to it after removing it from the container, if
-      // necessary.
       const danglingLayerData = layerRegisterRef.current[danglingLayerIds[i]];
       const containerForLayerType = typeContainersRef.current[danglingLayerData.layerType];
       if (containerForLayerType.element.contains(danglingLayerData.portalElement)) {

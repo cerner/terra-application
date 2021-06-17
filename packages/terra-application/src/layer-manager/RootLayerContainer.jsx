@@ -33,6 +33,7 @@ const RootLayerContainer = ({ children }) => {
         <div className={cx('base-container')} ref={baseContentRef}>
           {children}
         </div>
+        {/* Additional layer container elements will be inserted here by the LayerManager */}
       </div>
     </LayerManager>
   );

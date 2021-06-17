@@ -124,7 +124,6 @@ const Workspace = ({
   const theme = React.useContext(ThemeContext);
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
-  console.log(activeSize);
 
   const [workspaceContainerRef, workspacePortalsRef] =
     usePortalManager(activeItemKey);

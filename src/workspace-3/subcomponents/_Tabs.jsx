@@ -69,7 +69,7 @@ class Tabs extends React.Component {
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
-    this.state = { tabData: this.props.tabData, visibleT: [] };
+    this.state = { tabData: this.props.tabData, visibleT: [], hiddenT: [] };
     this.resetCache();
   }
 
@@ -282,20 +282,25 @@ class Tabs extends React.Component {
         (tab) => tab.itemKey === itemKey,
       );
 
-      const { activeSize } = this.props;
+      const visibleCount = this.state.visibleT.length - 1;
 
       this.state.tabData[activeTabIndex].isSelected = false;
+
       this.state.tabData.splice(selectedIndex, 1);
+      this.state.tabData.splice(visibleCount, 0, selectedTab);
+      this.state.tabData[visibleCount].isSelected = true;
 
-      if (activeSize === 'medium') {
-        this.state.tabData.splice(3, 0, selectedTab);
-        this.state.tabData[3].isSelected = true;
-      }
+      // const { activeSize } = this.props;
 
-      if (activeSize === 'small') {
-        this.state.tabData.splice(1, 0, selectedTab);
-        this.state.tabData[1].isSelected = true;
-      }
+      // if (activeSize === 'medium') {
+      //   this.state.tabData.splice(3, 0, selectedTab);
+      //   this.state.tabData[3].isSelected = true;
+      // }
+
+      // if (activeSize === 'small') {
+      //   this.state.tabData.splice(1, 0, selectedTab);
+      //   this.state.tabData[1].isSelected = true;
+      // }
 
       if (this.isOpen) {
         onSelect(itemKey, metaData);
@@ -313,6 +318,7 @@ class Tabs extends React.Component {
     const visibleTabs = [];
     const hiddenTabs = [];
     let isHiddenSelected = false;
+
 
     tabData.forEach((tab, index) => {
       if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
@@ -344,6 +350,7 @@ class Tabs extends React.Component {
           isHiddenSelected = true;
         }
       }
+      this.state.visibleT = [...visibleTabs];
     });
 
     if (this.showMoreButton && this.dropdownRef.current) {

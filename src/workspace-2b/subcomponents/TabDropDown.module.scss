@@ -60,4 +60,22 @@
       5px
     );
   }
+
+  .dropdownSm,
+  .dropdownMd {
+    left: 10px !important;
+  }
+
+  .dropdownSm {
+    top: 127px;
+  }
+
+  .dropdownMd {
+    top: 109px;
+  }
+
+  .dropdownLg {
+    top: 106px;
+    left: 32px !important;
+  }
 }

@@ -285,9 +285,10 @@ class Tabs extends React.Component {
           tabIds={ids}
           onSelect={this.wrapOnSelect(tab.onSelect)}
           zIndex={tab.isSelected ? tabData.length : tabData.length - index}
+          singleTab={this.props.singleTab}
+          checkWhenArrowing={this.props.checkWhenArrowing}
         />
       );
-
       hiddenTabs.push(
         <HiddenTab
           {...tab}
@@ -297,6 +298,7 @@ class Tabs extends React.Component {
           onSelect={this.wrapOnSelectHidden(tab.onSelect)}
           onFocus={this.handleHiddenFocus}
           onBlur={this.handleHiddenBlur}
+          jumpToActiveTab={this.props.jumpToActiveTab}
         />
       );
       hiddenIds.push(tab.id);
@@ -318,41 +320,43 @@ class Tabs extends React.Component {
     }
 
     return (
-      <div
-        {...attrs}
-        className={cx("tab-container", theme.className)}
-        ref={this.containerRef}
-        role="tablist"
-        aria-label={ariaLabel}
-        aria-orientation="horizontal"
-        aria-owns={hiddenIds.join(" ")}
-      >
-        {visibleTabs}
-        <MoreButton
-          label="More"
-          isOpen={this.isOpen}
-          hiddenIndex={this.hiddenStartIndex}
-          isActive={isHiddenSelected}
-          zIndex={tabData.length - this.hiddenStartIndex}
-          onBlur={this.handleMoreButtonBlur}
-          onSelect={this.handleMoreButtonSelect}
-          refCallback={(node) => {
-            this.moreButtonRef.current = node;
-          }}
-          tabIds={ids}
-        />
-        <TabDropDown
-          onFocus={this.handleHiddenFocus}
-          onBlur={this.handleHiddenBlur}
-          isOpen={this.isOpen}
-          onRequestClose={this.handleOutsideClick}
-          refCallback={(node) => {
-            this.dropdownRef.current = node;
-          }}
+      <>
+        <div
+          {...attrs}
+          className={cx("tab-container", theme.className)}
+          ref={this.containerRef}
+          role="tablist"
         >
-          {hiddenTabs}
-        </TabDropDown>
-      </div>
+          <MoreButton
+            label={"Tabs Menu"}
+            isOpen={this.isOpen}
+            hiddenIndex={this.hiddenStartIndex}
+            isActive={isHiddenSelected}
+            zIndex={tabData.length - this.hiddenStartIndex}
+            onBlur={this.handleMoreButtonBlur}
+            onSelect={this.handleMoreButtonSelect}
+            refCallback={(node) => {
+              this.moreButtonRef.current = node;
+            }}
+            tabIds={ids}
+            activeSize={this.props.activeSize}
+          />
+
+          <TabDropDown
+            onFocus={this.handleHiddenFocus}
+            onBlur={this.handleHiddenBlur}
+            isOpen={this.isOpen}
+            onRequestClose={this.handleOutsideClick}
+            refCallback={(node) => {
+              this.dropdownRef.current = node;
+            }}
+            activeSize={this.props.activeSize}
+          >
+            {hiddenTabs}
+          </TabDropDown>
+          {visibleTabs}
+        </div>
+      </>
     );
   }
 }

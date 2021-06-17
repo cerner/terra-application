@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import ThemeContext from "terra-theme-context";
@@ -79,9 +79,11 @@ const HiddenTab = ({
   onFocus,
   onSelect,
   tabIds,
+  jumpToActiveTab,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
+  const tabRef = useRef(null);
   const hiddenClassNames = cx(
     "hidden",
     { "is-active": isSelected },
@@ -112,6 +114,7 @@ const HiddenTab = ({
     e.preventDefault();
     e.stopPropagation();
     handleOnSelect(e);
+    jumpToActiveTab(tabRef);
   };
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = (e) => {
@@ -130,6 +133,7 @@ const HiddenTab = ({
       aria-controls={associatedPanelId}
       role="tab"
       className={hiddenClassNames}
+      ref={tabRef}
     >
       <div className={cx("checkbox")}>
         {isSelected ? <IconCheckmark /> : null}

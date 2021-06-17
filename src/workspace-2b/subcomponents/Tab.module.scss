@@ -3,6 +3,32 @@
 @import "../orion-fusion-theme/Tab.module";
 
 :local {
+  .tab-dropdown-button {
+    border-radius: 3px;
+    background-color: #fff !important;
+    border: 1px solid #868a8c !important;
+    background-image: none !important;
+    margin-bottom: 20px;
+    position: absolute !important;
+    top: 105px;
+    width: 150px;
+
+    .tab-dropdown-button-inner {
+      color: #434a4d !important;
+    }
+  }
+  .dropdownSmButton,
+  .dropdownMdButton {
+    left: 10px;
+  }
+  .dropdownSmButton {
+    top: 126px;
+  }
+
+  .dropdownMdButton {
+    margin: 3px 0;
+  }
+
   .tab,
   .tab-menu {
     background-color: var(
@@ -29,6 +55,7 @@
     height: var(--terra-application-workspace-tab-height, 33px);
     margin-right: var(--terra-application-workspace-tab-margin-right, 2px);
     min-width: 0;
+    outline: none;
     position: relative;
 
     .inner {

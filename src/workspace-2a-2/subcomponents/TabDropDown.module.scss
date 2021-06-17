@@ -61,14 +61,17 @@
     );
   }
 
+  .dropdownSm,
+  .dropdownMd {
+    top: 162px;
+  }
+
   .dropdownSm {
-    top: 160px;
-    left: 269px !important;
+    left: 170px !important;
   }
 
   .dropdownMd {
-    top: 160px;
-    left: 468px !important;
+    left: 350px !important;
   }
 
   .dropdownLg {

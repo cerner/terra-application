@@ -246,20 +246,283 @@ const Workspace = ({
     customProps.className
   );
 
+  let newResizeClass = "",
+    sliderMainClass = "",
+    sliderItemsClass = "";
+
+  let slideRef = useRef(null);
+  let slideMainRef = useRef(null);
+
+  if (activeSize === "small") {
+    newResizeClass = "small-adjustment-css";
+    sliderMainClass = "slider-main-container-sm";
+    sliderItemsClass = "slider-items-container";
+  } else if (activeSize === "medium") {
+    newResizeClass = "small-adjustment-css";
+    sliderMainClass = "slider-main-container-md";
+    sliderItemsClass = "slider-items-container";
+  } else if (activeSize === "large") {
+    newResizeClass = "";
+    sliderMainClass = "slider-main-container-lg";
+    sliderItemsClass = "";
+  }
+
+  const jumpToActiveTab = (tabRefVal) => {
+    let activeTabFromMenu, lastTabActive;
+    let activeTabPosLeft = 0,
+      slideMainPosLeft = 0,
+      activeTabPosRight = 0,
+      slideMainPosRight = 0;
+    console.log("jump");
+    if (tabRefVal.current && slideMainRef.current) {
+      activeTabFromMenu = Array.from(
+        slideMainRef.current.children[2].children[0].children
+      ).filter((tab) => tab.id === tabRefVal.current.id);
+
+      lastTabActive =
+        slideMainRef.current.children[2].children[0].children[6].getBoundingClientRect()
+          .right;
+
+      activeTabPosLeft = activeTabFromMenu[0].getBoundingClientRect().left;
+      slideMainPosLeft = slideMainRef.current.getBoundingClientRect().left;
+      activeTabPosRight = activeTabFromMenu[0].getBoundingClientRect().right;
+      slideMainPosRight = slideMainRef.current.getBoundingClientRect().right;
+
+      if (activeTabPosLeft < slideMainPosLeft) {
+      } else if (activeTabPosRight > slideMainPosRight) {
+        if (lastTabActive > slideMainPosRight) {
+          slideRef.current.scrollBy({
+            top: 0,
+            left: 300,
+            behaviour: "smooth",
+          });
+        } else {
+          slideRef.current.scrollBy({
+            top: 0,
+            left: 100,
+            behaviour: "smooth",
+          });
+        }
+      }
+    }
+  };
+
+  const scrollTabs = (tabRefVal, tabRefElem) => {
+    let secondTab = "",
+      selectedTab = "";
+    let sliderContainerPos = 0,
+      firstTabPos = 0,
+      secondChild = 0;
+    let tabPos;
+
+    if (slideMainRef.current && slideRef.current) {
+      sliderContainerPos = slideMainRef.current.getBoundingClientRect();
+      tabPos = tabRefVal;
+      secondTab = slideRef.current.children[0].children[1].id;
+      selectedTab = tabRefElem.id;
+      firstTabPos =
+        slideRef.current.children[0].firstChild.getBoundingClientRect().left;
+      secondChild =
+        slideRef.current.children[0].children[1].getBoundingClientRect().left;
+
+      if (
+        firstTabPos < sliderContainerPos.left &&
+        secondChild > sliderContainerPos.left &&
+        secondTab === selectedTab
+      ) {
+        slideRef.current.scrollBy({
+          top: 0,
+          left: -100,
+          behaviour: "smooth",
+        });
+      } else if (
+        firstTabPos < sliderContainerPos.left &&
+        secondChild < sliderContainerPos.left &&
+        secondTab === selectedTab
+      ) {
+        slideRef.current.scrollBy({
+          top: 0,
+          left: -200,
+          behaviour: "smooth",
+        });
+      } else if (tabRefVal.left < sliderContainerPos.left) {
+        slideRef.current.scrollBy({
+          top: 0,
+          left: -100,
+          behaviour: "smooth",
+        });
+      } else if (tabRefVal.right > sliderContainerPos.right) {
+        slideRef.current.scrollBy({
+          top: 0,
+          left: 100,
+          behaviour: "smooth",
+        });
+      }
+    }
+  };
+
+  const checkWhenArrowing = (refVal) => {
+    let currentTabNext = "",
+      currentTab = "",
+      lastTab = "",
+      firstTab = "";
+    let tabsContainerPosRight = 0,
+      tabsContainerPosLeft = 0,
+      currentTabPos = 0,
+      tabMenu = 0;
+
+    if (refVal.current && slideMainRef.current) {
+      currentTabNext = refVal.current.nextSibling.id;
+      currentTab = refVal.current.previousSibling.id;
+      lastTab = slideRef.current.children[0].children[6].id;
+      firstTab = slideRef.current.children[0].children[1].id;
+
+      if (currentTabNext === lastTab) {
+        currentTabPos =
+          refVal.current.nextSibling.getBoundingClientRect().right;
+        tabsContainerPosRight =
+          slideMainRef.current.getBoundingClientRect().right;
+
+        if (currentTabPos > tabsContainerPosRight) {
+          slideRef.current.scrollBy({
+            top: 0,
+            left: 100,
+            behaviour: "smooth",
+          });
+        }
+      } else if (currentTab === firstTab) {
+        tabMenu =
+          slideRef.current.children[0].children[0].getBoundingClientRect().left;
+        tabsContainerPosLeft =
+          slideMainRef.current.getBoundingClientRect().left;
+
+        if (tabMenu < tabsContainerPosLeft) {
+          slideRef.current.scrollBy({
+            top: 0,
+            left: -100,
+            behaviour: "smooth",
+          });
+        }
+      }
+    }
+  };
+
+  const singleTab = (refVal) => {
+    let tabRefVal = 0;
+    let tabRefElem;
+    if (refVal.current) {
+      tabRefElem = refVal.current;
+      tabRefVal = tabRefElem.getBoundingClientRect();
+      scrollTabs(tabRefVal, tabRefElem);
+    }
+  };
+
+  const [styleVariants, setstyleVariant] = useState({
+    variant: "",
+    variantChild: "",
+  });
+
+  const stylesButtons = (value) => {
+    console.log("Style: ", value);
+    switch (value) {
+      case 1:
+        setstyleVariant({
+          variant: "style-variant-one",
+          variantChild: "style-variant-one-inner",
+        });
+        break;
+      case 2:
+        setstyleVariant({
+          variant: "style-variant-two",
+          variantChild: "style-variant-two-inner",
+        });
+        break;
+      case 3:
+        setstyleVariant({
+          variant: "style-variant-three",
+          variantChild: "style-variant-three-inner",
+        });
+        break;
+      default:
+        break;
+    }
+  };
+  console.log("Lieto: ", styleVariants.active);
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      <div className={cx("workspace")} role="none">
+      <div
+        className={cx("workspace", sliderMainClass)}
+        ref={slideMainRef}
+        role="none"
+      >
+        <div aria-hidden className={cx("textLegend")}>
+          <p>
+            <strong>Option A:</strong> Only the tabs are keyboard accesible, the
+            dropdown is for visual users
+          </p>
+          <div className={cx("btnsContainer")}>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-one"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(1);
+              }}
+            >
+              Style 1
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-two"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(2);
+              }}
+            >
+              Style 2
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-three"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(3);
+              }}
+            >
+              Style 3
+            </div>
+          </div>
+        </div>
         <div role="none" className={cx("button-header")}>
           {extraConfig && <span aria-hidden></span>}
           {sizeButton}
         </div>
         <div
           role="none"
-          className={cx("tab-header", {
+          className={cx("tab-header", newResizeClass, sliderItemsClass, {
             "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
           })}
+          ref={slideRef}
         >
-          <Tabs ariaLabel={ariaLabel} tabData={tabData} />
+          <Tabs
+            ariaLabel={ariaLabel}
+            tabData={tabData}
+            scrollTabs={scrollTabs}
+            singleTab={singleTab}
+            checkWhenArrowing={checkWhenArrowing}
+            jumpToActiveTab={jumpToActiveTab}
+            activeSize={activeSize}
+            styleVariants={styleVariants}
+          />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

@@ -63,6 +63,7 @@ const MoreButton = ({
   tabIds,
   zIndex,
   label,
+  styleVariants,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -85,26 +86,23 @@ const MoreButton = ({
     }
   };
 
+  const { variant, variantChild } = styleVariants;
+  console.log("Kio: ", variant, variantChild);
+
   /* eslint-disable react/forbid-dom-props */
+
   return (
     <div
-      aria-hidden
-      role="button"
       ref={refCallback}
       onClick={handleOnSelect}
       onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
-      className={cx(
-        "tab-menu",
-        { "is-active": isOpen || isActive },
-        { "is-open": isOpen },
-        theme.className
-      )}
-      style={{ zIndex: isOpen ? "100" : zIndex }}
+      className={cx(variant || "tab-menu", theme.className)}
+      style={{ zIndex: isOpen && "0" }}
       data-testid="workspace-tabs-more-button"
     >
-      <div className={cx("inner")}>
+      <div className={cx("inner", variantChild)}>
         <div className={cx("icon")}>
           {label} <IconCaretDown />
         </div>

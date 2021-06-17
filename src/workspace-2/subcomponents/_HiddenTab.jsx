@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import ThemeContext from 'terra-theme-context';
-import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
-import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import ThemeContext from "terra-theme-context";
+import IconCheckmark from "terra-icon/lib/icon/IconCheckmark";
+import { KEY_SPACE, KEY_RETURN } from "keycode-js";
 import {
   enableFocusStyles,
   disableFocusStyles,
   handleArrows,
-} from './_TabUtils';
+} from "./_TabUtils";
 
-import styles from './HiddenTab.module.scss';
+import styles from "./HiddenTab.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -79,13 +79,15 @@ const HiddenTab = ({
   onFocus,
   onSelect,
   tabIds,
+  jumpToActiveTab,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
+  const tabRef = useRef(null);
   const hiddenClassNames = cx(
-    'hidden',
-    { 'is-active': isSelected },
-    theme.className,
+    "hidden",
+    { "is-active": isSelected },
+    theme.className
   );
 
   const handleOnSelect = (event) => {
@@ -97,32 +99,35 @@ const HiddenTab = ({
   };
 
   const onKeyDown = (event) => {
-    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
+    if (
+      event.nativeEvent.keyCode === KEY_RETURN ||
+      event.nativeEvent.keyCode === KEY_SPACE
+    ) {
       handleOnSelect(event);
     } else {
       handleArrows(event, index, tabIds);
     }
   };
 
-  attributes.tabIndex = isSelected ? 0 : -1;
-  attributes.onClick = e => { e.preventDefault(); e.stopPropagation(); handleOnSelect(e); };
-  attributes.onKeyDown = onKeyDown;
-  attributes.onBlur = e => { enableFocusStyles(e); onBlur(e); };
-  attributes.onFocus = onFocus;
-  attributes.onMouseDown = disableFocusStyles;
-  attributes['data-focus-styles-enabled'] = true;
-  attributes['aria-selected'] = isSelected;
+  attributes.onClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleOnSelect(e);
+    jumpToActiveTab(tabRef);
+  };
 
   return (
     <div
       {...attributes}
       id={id}
-      aria-controls={associatedPanelId}
-      role="tab"
+      role="none"
       className={hiddenClassNames}
+      ref={tabRef}
     >
-      <div className={cx('checkbox')}>{isSelected ? <IconCheckmark /> : null}</div>
-      <div className={cx('label')}>{label}</div>
+      <div className={cx("checkbox")}>
+        {isSelected ? <IconCheckmark /> : null}
+      </div>
+      <div className={cx("label")}>{label}</div>
     </div>
   );
 };

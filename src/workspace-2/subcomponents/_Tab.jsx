@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import ThemeContext from "terra-theme-context";
@@ -71,10 +71,13 @@ const Tab = ({
   onSelect,
   tabIds,
   zIndex,
+  singleTab,
+  checkWhenArrowing,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
   const tabClassNames = cx("tab", { "is-active": isSelected }, theme.className);
+  const tabRef = useRef(null);
 
   function onKeyDown(event) {
     if (
@@ -87,9 +90,11 @@ const Tab = ({
     } else {
       handleArrows(event, index, tabIds);
     }
+    checkWhenArrowing(tabRef);
   }
 
   function onClick() {
+    singleTab(tabRef);
     onSelect(itemKey, metaData);
   }
 
@@ -101,7 +106,7 @@ const Tab = ({
   attributes["data-focus-styles-enabled"] = true;
   attributes["aria-selected"] = isSelected;
   attributes.style = { zIndex };
-  console.log("POLLO: ", label, attributes.tabIndex);
+
   return (
     <div
       {...attributes}
@@ -110,6 +115,7 @@ const Tab = ({
       role="tab"
       className={tabClassNames}
       title={label}
+      ref={tabRef}
     >
       <div className={cx("inner")}>
         <div className={cx("label")}>{label}</div>

@@ -456,8 +456,8 @@ const Workspace = ({
       >
         <div aria-hidden className={cx("textLegend")}>
           <p>
-            <strong>Option A, variation 1:</strong> Only the tabs are keyboard
-            accesible, the dropdown is for visual users
+            <strong>Option A, variation 1:</strong> Only tabs are keyboard
+            accessible, the dropdown is for visual users.
           </p>
           <div className={cx("btnsContainer")}>
             <div

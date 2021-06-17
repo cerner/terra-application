@@ -3,18 +3,23 @@
 @import "../orion-fusion-theme/Tab.module";
 
 :local {
-  .style-variant-two {
-    background: none;
-    border: none;
-    padding: 8px 13px;
-    min-width: 114px;
-    .style-variant-two-inner {
-      color: #0059a8;
-      text-decoration: underline;
-      &:hover {
-        color: #003564;
-      }
+  .tab-dropdown-button {
+    border-radius: 3px;
+    background-color: #fff !important;
+    border: 1px solid #868a8c !important;
+    background-image: none !important;
+    margin-bottom: 20px;
+    position: absolute !important;
+    top: 105px;
+    width: 150px;
+
+    .tab-dropdown-button-inner {
+      color: #434a4d !important;
     }
+  }
+  .dropdownSmMdButton {
+    left: 10px;
+    top: 126px;
   }
   .tab,
   .tab-menu {

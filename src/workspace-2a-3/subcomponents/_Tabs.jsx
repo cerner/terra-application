@@ -321,43 +321,39 @@ class Tabs extends React.Component {
 
     return (
       <>
-        <MoreButton
-          label={
-            this.props.styleVariants.variant === "style-variant-three"
-              ? ""
-              : "Tabs Menu"
-          }
-          isOpen={this.isOpen}
-          hiddenIndex={this.hiddenStartIndex}
-          isActive={isHiddenSelected}
-          zIndex={tabData.length - this.hiddenStartIndex}
-          onBlur={this.handleMoreButtonBlur}
-          onSelect={this.handleMoreButtonSelect}
-          refCallback={(node) => {
-            this.moreButtonRef.current = node;
-          }}
-          tabIds={ids}
-          styleVariants={this.props.styleVariants}
-        />
-
-        <TabDropDown
-          onFocus={this.handleHiddenFocus}
-          onBlur={this.handleHiddenBlur}
-          isOpen={this.isOpen}
-          onRequestClose={this.handleOutsideClick}
-          refCallback={(node) => {
-            this.dropdownRef.current = node;
-          }}
-          activeSize={this.props.activeSize}
-        >
-          {hiddenTabs}
-        </TabDropDown>
         <div
           {...attrs}
           className={cx("tab-container", theme.className)}
           ref={this.containerRef}
           role="tablist"
         >
+          <MoreButton
+            label={"Tabs Menu"}
+            isOpen={this.isOpen}
+            hiddenIndex={this.hiddenStartIndex}
+            isActive={isHiddenSelected}
+            zIndex={tabData.length - this.hiddenStartIndex}
+            onBlur={this.handleMoreButtonBlur}
+            onSelect={this.handleMoreButtonSelect}
+            refCallback={(node) => {
+              this.moreButtonRef.current = node;
+            }}
+            tabIds={ids}
+            activeSize={this.props.activeSize}
+          />
+
+          <TabDropDown
+            onFocus={this.handleHiddenFocus}
+            onBlur={this.handleHiddenBlur}
+            isOpen={this.isOpen}
+            onRequestClose={this.handleOutsideClick}
+            refCallback={(node) => {
+              this.dropdownRef.current = node;
+            }}
+            activeSize={this.props.activeSize}
+          >
+            {hiddenTabs}
+          </TabDropDown>
           {visibleTabs}
         </div>
       </>

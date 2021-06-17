@@ -63,7 +63,7 @@ const MoreButton = ({
   tabIds,
   zIndex,
   label,
-  styleVariants,
+  activeSize,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -86,10 +86,13 @@ const MoreButton = ({
     }
   };
 
-  const { variant, variantChild } = styleVariants;
-  const stylesButtonClass =
-    variant === "style-variant-two" ? "style-variant-two" : "tab-menu";
   /* eslint-disable react/forbid-dom-props */
+
+  let classSizes = "";
+
+  if (activeSize === "small" || activeSize === "medium") {
+    classSizes = "dropdownSmMdButton";
+  }
 
   return (
     <div
@@ -98,12 +101,17 @@ const MoreButton = ({
       onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
-      className={cx(stylesButtonClass, theme.className)}
+      className={cx(
+        "tab-menu",
+        "tab-dropdown-button",
+        classSizes,
+        theme.className
+      )}
       style={{ zIndex: isOpen && "0" }}
       data-testid="workspace-tabs-more-button"
     >
-      <div className={cx("inner", variantChild)}>
-        <div className={cx("icon")}>
+      <div className={cx("inner")}>
+        <div className={cx("icon", "tab-dropdown-button-inner")}>
           {label} <IconCaretDown />
         </div>
       </div>

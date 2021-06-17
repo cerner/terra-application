@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import ThemeContext from "terra-theme-context";
+import IconCheckmark from "terra-icon/lib/icon/IconCheckmark";
 import { KEY_SPACE, KEY_RETURN } from "keycode-js";
 import {
   enableFocusStyles,
@@ -9,7 +10,7 @@ import {
   handleArrows,
 } from "./_TabUtils";
 
-import styles from "./Tab.module.scss";
+import styles from "./HiddenTab.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -35,72 +36,95 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
+   * Identifer for the Tab to be returned with onSelect.
+   */
+  itemKey: PropTypes.string.isRequired,
+  /**
+   * Object to be returned in the onSelect.
+   */
+  metaData: PropTypes.object,
+  /**
    * Callback function triggering on selection. onSelect(itemKey, metaData)
    */
   onSelect: PropTypes.func.isRequired,
-  /**
-   * Identifier for the workspace item represented by the Tab. Returned with onSelect.
-   */
-  itemKey: PropTypes.string,
-  /**
-   * Data for the workspace item represented by the Tab. Returned with onSelect.
-   */
-  metaData: PropTypes.object,
   /**
    * Array of id strings,
    */
   tabIds: PropTypes.arrayOf(PropTypes.string).isRequired,
   /**
-   * The z-index style to apply to the tab based upon order and state.
+   * @private
+   * The function callback when an event occurs.
    */
-  zIndex: PropTypes.number,
+  onBlur: PropTypes.func.isRequired,
+  /**
+   * @private
+   * The function callback when an event occurs.
+   */
+  onFocus: PropTypes.func.isRequired,
 };
 
 const defaultProps = {
   isSelected: false,
 };
 
-const Tab = ({
+const HiddenTab = ({
   id,
   associatedPanelId,
-  itemKey,
   index,
   isSelected,
   label,
+  itemKey,
   metaData,
+  onBlur,
+  onFocus,
   onSelect,
   tabIds,
-  zIndex,
+  jumpToActiveTab,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
-  const tabClassNames = cx("tab", { "is-active": isSelected }, theme.className);
+  const tabRef = useRef(null);
+  const hiddenClassNames = cx(
+    "hidden",
+    { "is-active": isSelected },
+    theme.className
+  );
 
-  function onKeyDown(event) {
+  const handleOnSelect = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    enableFocusStyles(event);
+    onSelect(itemKey, metaData);
+  };
+
+  const onKeyDown = (event) => {
     if (
       event.nativeEvent.keyCode === KEY_RETURN ||
       event.nativeEvent.keyCode === KEY_SPACE
     ) {
-      event.preventDefault();
-      event.stopPropagation();
-      onSelect(itemKey, metaData);
+      handleOnSelect(event);
     } else {
       handleArrows(event, index, tabIds);
     }
-  }
-
-  function onClick() {
-    onSelect(itemKey, metaData);
-  }
+  };
 
   attributes.tabIndex = isSelected ? 0 : -1;
-  attributes.onClick = onClick;
+  attributes.onClick = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    handleOnSelect(e);
+    jumpToActiveTab(tabRef);
+  };
   attributes.onKeyDown = onKeyDown;
-  attributes.onBlur = enableFocusStyles;
+  attributes.onBlur = (e) => {
+    enableFocusStyles(e);
+    onBlur(e);
+  };
+  attributes.onFocus = onFocus;
   attributes.onMouseDown = disableFocusStyles;
   attributes["data-focus-styles-enabled"] = true;
   attributes["aria-selected"] = isSelected;
-  attributes.style = { zIndex };
 
   return (
     <div
@@ -108,17 +132,18 @@ const Tab = ({
       id={id}
       aria-controls={associatedPanelId}
       role="tab"
-      className={tabClassNames}
-      title={label}
+      className={hiddenClassNames}
+      ref={tabRef}
     >
-      <div className={cx("inner")}>
-        <div className={cx("label")}>{label}</div>
+      <div className={cx("checkbox")}>
+        {isSelected ? <IconCheckmark /> : null}
       </div>
+      <div className={cx("label")}>{label}</div>
     </div>
   );
 };
 
-Tab.propTypes = propTypes;
-Tab.defaultProps = defaultProps;
+HiddenTab.propTypes = propTypes;
+HiddenTab.defaultProps = defaultProps;
 
-export default Tab;
+export default HiddenTab;

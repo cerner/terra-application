@@ -34,5 +34,22 @@
   "terraApplication.notifications.newNotificationLabel": "New {label} notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Removed {label} notification. {bannerType} {bannerDescription}.",
 
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Close"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
+
+  "terraApplication.navigation.utilityMenu.logout": "Logout",
+  "terraApplication.navigation.utilityMenu.settings": "Settings",
+  "terraApplication.navigation.utilityMenu.help": "Help",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Utilities",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "More",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "More Navigation",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "More Navigation",
+  "terraApplication.navigation.notifications.new": "New",
+  "terraApplication.navigation.header.skipToContentTitle": "Skip to Content",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "User Settings for: {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Options",
+  "terraApplication.navigation.header.menuButtonTitle": "Menu",
+  "terraApplication.navigation.drawerMenu.navigation": "Navigation Items",
+  "terraApplication.navigation.drawerMenu.utilities": "Utility Items"
 }

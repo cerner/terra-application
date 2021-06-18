@@ -28,5 +28,21 @@
   "terraApplication.notifications.totalCountLabel": "Total des notifications {label} : {count}",
   "terraApplication.notifications.newNotificationLabel": "Nouvelle notification {label}. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Notification {label} supprimée. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Fermer"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Fermer",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "Liens de navigation supplémentaires",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Liens de navigation supplémentaires",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Paramètres utilisateur pour : {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Options",
+  "terraApplication.navigation.drawerMenu.navigation": "Éléments de navigation",
+  "terraApplication.navigation.drawerMenu.utilities": "Éléments de l'utilitaire",
+  "terraApplication.navigation.utilityMenu.logout": "Déconnexion",
+  "terraApplication.navigation.utilityMenu.settings": "Paramètres",
+  "terraApplication.navigation.utilityMenu.help": "Aide",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Utilitaires",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "Plus",
+  "terraApplication.navigation.notifications.new": "Nouveau",
+  "terraApplication.navigation.header.skipToContentTitle": "Accéder au contenu",
+  "terraApplication.navigation.header.menuButtonTitle": "Menu"
 }

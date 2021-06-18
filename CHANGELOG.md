@@ -2,6 +2,7 @@
 
 ## Unreleased
 * Added
+  * Local file inclusion of terra-application-navigation
   * Added ApplicationNavigationActionsContext to application-navigation
 
 ## 1.48.0 - (June 15, 2021)

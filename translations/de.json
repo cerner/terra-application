@@ -28,5 +28,21 @@
   "terraApplication.notifications.totalCountLabel": "{label}-Benachrichtigungen gesamt: {count}",
   "terraApplication.notifications.newNotificationLabel": "{label}-Benachrichtigung neu. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "{label}-Benachrichtigung entfernt. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Schließen"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Schließen",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "Mehr Navigation",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Mehr Navigation",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Benutzereinstellungen",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Optionen",
+  "terraApplication.navigation.drawerMenu.navigation": "Navigationselemente",
+  "terraApplication.navigation.drawerMenu.utilities": "Dienstprogrammelemente",
+  "terraApplication.navigation.utilityMenu.logout": "Abmelden",
+  "terraApplication.navigation.utilityMenu.settings": "Einstellungen",
+  "terraApplication.navigation.utilityMenu.help": "Hilfe",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Dienstprogramme",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "Mehr",
+  "terraApplication.navigation.notifications.new": "Neu",
+  "terraApplication.navigation.header.skipToContentTitle": "Zum Inhalt",
+  "terraApplication.navigation.header.menuButtonTitle": "Menü"
 }

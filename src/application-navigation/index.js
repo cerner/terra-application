@@ -1,6 +1,6 @@
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from 'terra-application-navigation/lib/utils/propTypes';
+} from './private/utils/propTypes';
 import ApplicationNavigation from './ApplicationNavigation';
 
 export default ApplicationNavigation;

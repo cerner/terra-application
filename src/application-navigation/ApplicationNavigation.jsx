@@ -2,10 +2,10 @@ import React, {
   useRef, useCallback, Suspense,
 } from 'react';
 import PropTypes from 'prop-types';
-import TerraApplicationNavigation from 'terra-application-navigation';
+import TerraApplicationNavigation from './private/ApplicationNavigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from 'terra-application-navigation/lib/utils/propTypes';
+} from './private/utils/propTypes';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';

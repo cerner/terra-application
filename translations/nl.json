@@ -28,5 +28,21 @@
   "terraApplication.notifications.totalCountLabel": "Totaal {label}-meldingen:{count}",
   "terraApplication.notifications.newNotificationLabel": "Nieuwe {label}-melding. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Verwijderde {label}-melding. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Sluiten"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Sluiten",
+  "terraApplication.navigation.tabs.rollupButtonDescription": "Meer navigatie",
+  "terraApplication.navigation.tabs.rollupMenuHeaderTitle": "Meer navigatie",
+  "terraApplication.navigation.header.utilityButtonTitleUser": "Gebruikersinstellingen voor {currentUserName}",
+  "terraApplication.navigation.header.utilityButtonTitleNoUser": "Opties",
+  "terraApplication.navigation.drawerMenu.navigation": "Navigatie-items",
+  "terraApplication.navigation.drawerMenu.utilities": "Hulp-items",
+  "terraApplication.navigation.utilityMenu.logout": "Afmelden",
+  "terraApplication.navigation.utilityMenu.settings": "Instellingen",
+  "terraApplication.navigation.utilityMenu.help": "Help",
+  "terraApplication.navigation.utilityMenu.headerTitle": "Hulpprogramma's",
+  "terraApplication.navigation.extensions.rollupButtonDescription": "Additional Tools",
+  "terraApplication.navigation.extensions.rollupMenuHeaderTitle": "Additional Tools",
+  "terraApplication.navigation.tabs.rollupButtonTitle": "Meer",
+  "terraApplication.navigation.notifications.new": "Nieuw",
+  "terraApplication.navigation.header.skipToContentTitle": "Doorgaan naar content",
+  "terraApplication.navigation.header.menuButtonTitle": "Menu"
 }

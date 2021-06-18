@@ -1,5 +1,5 @@
-// @import '../clinical-lowlight-theme/WorkspaceButton.module';
-// @import '../orion-fusion-theme/WorkspaceButton.module';
+@import './clinical-lowlight-theme/PageHeaderButton.module';
+@import './orion-fusion-theme/PageHeaderButton.module';
 
 :local {
   .page-header-button {
@@ -20,14 +20,16 @@
   
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
       &:hover {
+        background-color: var(--terra-application-page-header-button-hover-background-color);
+        border-radius: var(--terra-application-page-header-button-hover-border-radius, 3px);
         color: var(--terra-application-page-header-button-hover-color, #004c75);
       }
     }
 
     &:disabled {
-      color: #222a2e;
+      color: var(--terra-application-page-header-button-disabled-color, #222a2e);
       cursor: default;
-      opacity: var(--terra-application-page-header-button-is-disabled-opacity, 0.3);
+      opacity: var(--terra-application-page-header-button-disabled-opacity, 0.3);
       pointer-events: none;
     }
   

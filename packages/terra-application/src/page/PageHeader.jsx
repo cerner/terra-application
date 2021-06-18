@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import IconLeft from 'terra-icon/lib/icon/IconLeft';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import Popup from 'terra-popup';
+import ThemeContext from 'terra-theme-context';
 
 import ActionMenu, { ActionMenuItem } from '../action-menu';
 import { useTransientPresentationState } from '../utils/transient-presentations';
@@ -53,6 +54,7 @@ const PageHeader = ({
 }) => {
   const intl = React.useContext(ApplicationIntlContext);
   const pageContainerContext = React.useContext(PageContainerContext);
+  const theme = React.useContext(ThemeContext);
 
   const headerContainerRef = React.useRef();
   const moreActionsButtonRef = React.useRef();
@@ -181,8 +183,10 @@ const PageHeader = ({
     </Popup>
   ) : undefined;
 
+  const pageHeaderClassNames = cx('page-header-container', theme.className);
+
   return (
-    <div ref={headerContainerRef} className={cx('page-header-container')}>
+    <div ref={headerContainerRef} className={pageHeaderClassNames}>
       <div className={cx('page-header')}>
         <div className={cx('start-actions-container')}>
           {backActionButton}

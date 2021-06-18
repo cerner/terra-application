@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Toolbar from 'terra-toolbar';
+import ThemeContext from 'terra-theme-context';
 
 import styles from './PageToolbar.module.scss';
 
@@ -21,11 +22,15 @@ const propTypes = {
 /**
  * PageToolbar adds Page-specific styling to the default Terra toolbar.
  */
-const PageToolbar = ({ align, children }) => (
-  <Toolbar className={cx('page-toolbar')} align={align}>
-    {children}
-  </Toolbar>
-);
+const PageToolbar = ({ align, children }) => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <Toolbar className={cx('page-toolbar', theme.className)} align={align}>
+      {children}
+    </Toolbar>
+  );
+};
 
 PageToolbar.propTypes = propTypes;
 

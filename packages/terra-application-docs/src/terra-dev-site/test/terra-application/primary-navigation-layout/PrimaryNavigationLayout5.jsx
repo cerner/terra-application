@@ -58,7 +58,7 @@ const PrimaryNavigationLayout5 = () => {
   );
 
   return (
-    <ApplicationBase locale="en-US">
+    <ApplicationBase locale="en-US" themeName="clinical-lowlight-theme">
       <ApplicationContainer>
         <PrimaryNavigationLayout
           id="primary-nav-test-1"

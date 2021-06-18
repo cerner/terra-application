@@ -4,10 +4,16 @@
 * Added
   * Local file inclusion of terra-application-navigation
 
+## 1.48.0 - (June 15, 2021)
+
 * Changed
   * Removed terra-toolkit as a dependency
   * Upgraded to WebDriverIO v6 and terra-functional-testing
   * Upgraded to @cerner/webpack-config-terra
+  * Upgraded to support Node 12
+
+* Fixed
+  * Ignore docker_images folder when publishing
 
 ## 1.47.1 - (April 27, 2021)
 
@@ -17,7 +23,7 @@
 ## 1.47.0 - (April 13, 2021)
 
 * Added
-  * Added fallback locale logic that takes locale from preferred unsupported regional locale. 
+  * Added fallback locale logic that takes locale from preferred unsupported regional locale.
 
 ## 1.46.0 - (March 30, 2021)
 

@@ -125,7 +125,11 @@ const usePageManager = (rootContainerRef) => {
 
         setActivePageArray((activePages) => {
           const newPages = [...activePages];
-          newPages.splice(activePages.indexOf(pageId), 1);
+
+          if (activePages.indexOf(pageId) >= 0) {
+            newPages.splice(activePages.indexOf(pageId), 1);
+          }
+
           return newPages;
         });
       };
@@ -161,7 +165,10 @@ const usePageManager = (rootContainerRef) => {
 
       // Remove the current Page data from the dangling data set, as we know
       // its present and thus not dangling
-      danglingPages.splice(danglingPages.indexOf(activePageArray[i]), 1);
+      const indexOfActivePage = danglingPages.indexOf(activePageArray[i]);
+      if (indexOfActivePage >= 0) {
+        danglingPages.splice(indexOfActivePage, 1);
+      }
     }
 
     for (let i = 0, count = danglingPages.length; i < count; i += 1) {

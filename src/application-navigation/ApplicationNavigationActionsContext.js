@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 /**
  * The ApplicationNavigationActionsContext can be used by content within the main region
- * to have access to and set actions would can be rendered within that main content region.
+ * to have access to and set actions that can be rendered within that main content region.
  * If leveraged it is the responsibility of that content to render said actions.
  */
 const ApplicationNavigationActionsContext = createContext({});
@@ -15,8 +15,8 @@ const actionShape = PropTypes.shape({
    */
   key: PropTypes.string.isRequired,
   /**
-   * A string description for the action. This will accessible to users and
-   * should be translated sif necessary.
+   * A string description for the action. This will be presented to users and
+   * should be translated if necessary.
    */
   label: PropTypes.string.isRequired,
   /**

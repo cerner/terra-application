@@ -6,7 +6,7 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
+// import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
 import LayoutActionsContext from '../../shared/LayoutActionsContext';
 import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
 import deferExecution from '../../utils/defer-execution';
@@ -108,7 +108,6 @@ const WorkspaceLayout = ({
   contentElementRef,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  const parentLayoutActions = React.useContext(LayoutActionsContext);
   const applicationIntl = React.useContext(ApplicationIntlContext);
 
   const layoutContainerRef = React.useRef();
@@ -134,9 +133,8 @@ const WorkspaceLayout = ({
   const [workspaceIsVisible, setWorkspaceIsVisible] = React.useState(!hasOverlayWorkspace && workspace && workspace.props.initialIsOpen);
   const hasWorkspace = !!workspace;
 
-  const layoutActionsContextValue = React.useMemo(() => {
-    let newActions = parentLayoutActions.actions || [];
-
+  const actionsContextValue = React.useMemo(() => {
+    let actions = [];
     let actionLabel;
     if (workspaceIsVisible) {
       actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspaceLayout.toggle.hide' });
@@ -145,7 +143,7 @@ const WorkspaceLayout = ({
     }
 
     if (hasWorkspace) {
-      newActions = [...newActions, {
+      actions = [...actions, {
         key: 'workspace-layout-toggle-workspace-panel',
         label: actionLabel,
         icon: workspaceIsVisible ? <IconPanelRight /> : <IconPanelLeft />,
@@ -156,9 +154,9 @@ const WorkspaceLayout = ({
     }
 
     return ({
-      actions: newActions,
+      actions,
     });
-  }, [parentLayoutActions.actions, hasWorkspace, workspaceIsVisible, applicationIntl]);
+  }, [hasWorkspace, workspaceIsVisible, applicationIntl]);
 
   useDismissTransientPresentationsEffect(() => {
     if (hasOverlayWorkspace) {
@@ -297,28 +295,28 @@ const WorkspaceLayout = ({
     })
   );
 
-  const renderWorkspaceSkipToLink = () => {
-    if (!workspace) {
-      return undefined;
-    }
+  // const renderWorkspaceSkipToLink = () => {
+  //   if (!workspace) {
+  //     return undefined;
+  //   }
 
-    return (
-      <SkipToLink
-        description={applicationIntl.formatMessage({
-          id: 'terraApplication.workspacelayout.skipToLabel',
-        })}
-        onSelect={() => {
-          if (!workspaceIsVisible) {
-            setWorkspaceIsVisible(true);
-          } else {
-            deferExecution(() => {
-              workspacePanelRef.current.focus();
-            });
-          }
-        }}
-      />
-    );
-  };
+  //   return (
+  //     <SkipToLink
+  //       description={applicationIntl.formatMessage({
+  //         id: 'terraApplication.workspacelayout.skipToLabel',
+  //       })}
+  //       onSelect={() => {
+  //         if (!workspaceIsVisible) {
+  //           setWorkspaceIsVisible(true);
+  //         } else {
+  //           deferExecution(() => {
+  //             workspacePanelRef.current.focus();
+  //           });
+  //         }
+  //       }}
+  //     />
+  //   );
+  // };
 
   const renderResizeHandle = () => {
     if (!isLargeFormFactor) {
@@ -436,8 +434,8 @@ const WorkspaceLayout = ({
   };
 
   return (
-    <>
-      {renderWorkspaceSkipToLink()}
+    // <>
+    //   {renderWorkspaceSkipToLink()}
       <div
         id={id}
         className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
@@ -448,11 +446,13 @@ const WorkspaceLayout = ({
           className={cx('resize-overlay')}
         />
         <div ref={layoutBodyRef} className={cx('layout-body')}>
-          {renderContent()}
-          {renderWorkspace()}
+          <ApplicationNavigationActionsContext.Provider value={actionsContextValue}>
+            {renderContent()}
+            {renderWorkspace()}
+          </ApplicationNavigationActionsContext.Provider>
         </div>
       </div>
-    </>
+    // </>
   );
 };
 

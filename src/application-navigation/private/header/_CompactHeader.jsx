@@ -333,6 +333,8 @@ const CompactHeader = ({
     );
   }
 
+  // TODO: kasper here, for skip to
+
   return (
     <header role="banner" className={cx('compact-header')}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>

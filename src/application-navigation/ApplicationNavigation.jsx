@@ -116,6 +116,10 @@ const propTypes = {
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
   utilityItems: utilityItemsPropType,
+  /**
+   * A PrimaryNavigationWorkspace element and it's associated PrimaryNavigationWorkspace.
+   */
+  workspace: PropTypes.element,
 };
 
 const ApplicationNavigation = ({
@@ -182,6 +186,7 @@ const ApplicationNavigation = ({
       onSelectHelp={onSelectHelp}
       onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
+      workspace={workspace}
     >
       <ApplicationLoadingOverlayProvider>
         <ApplicationStatusOverlayProvider>

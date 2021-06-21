@@ -17,6 +17,7 @@ import { shouldRenderCompactNavigation } from './utils/helpers';
 import {
   titleConfigPropType, userConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType,
 } from './utils/propTypes';
+import WorkspaceLayout from '../workspace-layout/WorkspaceLayout';
 
 import styles from './ApplicationNavigation.module.scss';
 
@@ -441,6 +442,27 @@ const ApplicationNavigation = ({
   };
   const theme = React.useContext(ThemeContext);
   const appNavClassNames = cx('application-navigation', theme.className);
+
+  const renderMain = () => {
+    return (
+      <WorkspaceLayout
+        id={`${id}-workspace-layout`}
+        workspace={workspace}
+        contentElementRef={contentElementRef}
+      >
+        <main
+          ref={mainContainerRef}
+          tabIndex="-1"
+          role="main"
+          className={cx('main-container')}
+          aria-labelledby={hiddenMainTitle ? 'main-inner-title' : null}
+        >
+          {hiddenMainTitle}
+          {children}
+        </main>
+      </WorkspaceLayout>
+    );
+  };
 
   return (
     <div className={appNavClassNames}>

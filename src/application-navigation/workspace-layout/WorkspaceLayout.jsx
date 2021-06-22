@@ -7,11 +7,11 @@ import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
 // import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
-import LayoutActionsContext from '../../shared/LayoutActionsContext';
-import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
-import deferExecution from '../../utils/defer-execution';
+// import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
+// import deferExecution from '../../utils/defer-execution';
 import ResizeHandle from './ResizeHandle';
 import { ApplicationIntlContext } from '../../application-intl';
+import ApplicationNavigationActionsContext from '../ApplicationNavigationActionsContext';
 
 import styles from './WorkspaceLayout.module.scss';
 
@@ -158,11 +158,11 @@ const WorkspaceLayout = ({
     });
   }, [hasWorkspace, workspaceIsVisible, applicationIntl]);
 
-  useDismissTransientPresentationsEffect(() => {
-    if (hasOverlayWorkspace) {
-      setWorkspaceIsVisible(false);
-    }
-  });
+  // useDismissTransientPresentationsEffect(() => {
+  //   if (hasOverlayWorkspace) {
+  //     setWorkspaceIsVisible(false);
+  //   }
+  // });
 
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {
@@ -203,22 +203,22 @@ const WorkspaceLayout = ({
     }
   }, [workspaceSize, activeBreakpoint]);
 
-  const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
-  React.useEffect(() => {
-    if (workspaceIsVisible && !lastWorkspaceOpenState.current) {
-      deferExecution(() => { workspacePanelRef.current.focus(); });
-    } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
-      deferExecution(() => {
-        // TODO: evaluate flexing focus element based on overlay state or previous active element
-        const mainElement = document.querySelector('main');
-        if (mainElement) {
-          mainElement.focus();
-        }
-      });
-    }
+  // const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
+  // React.useEffect(() => {
+  //   if (workspaceIsVisible && !lastWorkspaceOpenState.current) {
+  //     deferExecution(() => { workspacePanelRef.current.focus(); });
+  //   } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
+  //     deferExecution(() => {
+  //       // TODO: evaluate flexing focus element based on overlay state or previous active element
+  //       const mainElement = document.querySelector('main');
+  //       if (mainElement) {
+  //         mainElement.focus();
+  //       }
+  //     });
+  //   }
 
-    lastWorkspaceOpenState.current = workspaceIsVisible;
-  }, [workspaceIsVisible]);
+  //   lastWorkspaceOpenState.current = workspaceIsVisible;
+  // }, [workspaceIsVisible]);
 
   React.useEffect(() => {
     if (!workspaceIsVisible || !hasOverlayWorkspace) {
@@ -400,9 +400,9 @@ const WorkspaceLayout = ({
       style={workspaceSize.scale !== undefined && workspaceIsVisible ? { flexGrow: `${1 - workspaceSize.scale}`, msFlexPositive: `${1 - workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
       inert={hasOverlayWorkspace && workspaceIsVisible ? 'true' : null}
     >
-      <LayoutActionsContext.Provider value={layoutActionsContextValue}>
+      <ApplicationNavigationActionsContext.Provider value={actionsContextValue}>
         {children}
-      </LayoutActionsContext.Provider>
+      </ApplicationNavigationActionsContext.Provider>
     </div>
   );
 
@@ -446,10 +446,8 @@ const WorkspaceLayout = ({
           className={cx('resize-overlay')}
         />
         <div ref={layoutBodyRef} className={cx('layout-body')}>
-          <ApplicationNavigationActionsContext.Provider value={actionsContextValue}>
-            {renderContent()}
-            {renderWorkspace()}
-          </ApplicationNavigationActionsContext.Provider>
+          {renderContent()}
+          {renderWorkspace()}
         </div>
       </div>
     // </>

@@ -142,6 +142,7 @@ const ApplicationNavigation = ({
   titleConfig,
   userConfig,
   utilityItems,
+  workspace,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
 

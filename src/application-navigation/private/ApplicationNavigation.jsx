@@ -109,6 +109,10 @@ const propTypes = {
    * A collection of child elements to render within the ApplicationNavigation body.
    */
   children: PropTypes.node,
+  /**
+   * TODO: workspace desc
+   */
+  workspace: PropTypes.element,
 };
 
 const defaultProps = {
@@ -135,6 +139,7 @@ const ApplicationNavigation = ({
   onSelectUtilityItem,
   notifications,
   children,
+  workspace,
 }) => {
   const drawerMenuRef = useRef();
   const contentLayoutRef = useRef();
@@ -448,7 +453,7 @@ const ApplicationNavigation = ({
       <WorkspaceLayout
         id={`${id}-workspace-layout`}
         workspace={workspace}
-        contentElementRef={contentElementRef}
+        // contentElementRef={contentElementRef}
       >
         <main
           ref={mainContainerRef}
@@ -479,16 +484,7 @@ const ApplicationNavigation = ({
         className={cx('content-layout', { 'drawer-menu-is-open': drawerMenuIsOpen })}
       >
         {shouldRenderCompactNavigation(activeBreakpoint) ? renderCompactHeader() : renderHeader()}
-        <main
-          ref={mainContainerRef}
-          tabIndex="-1"
-          role="main"
-          className={cx('main-container')}
-          aria-labelledby={hiddenMainTitle ? 'main-inner-title' : null}
-        >
-          {hiddenMainTitle}
-          {children}
-        </main>
+        {renderMain()}
         <Overlay
           className={cx('overlay')}
           isOpen={drawerMenuIsOpen}

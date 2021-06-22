@@ -1,11 +1,11 @@
 :local {
   .clinical-lowlight-theme {
-    --terra-application-page-header-container-box-shadow: inset 0 -1px 0 0 #181b1d, inset 0 -2px 0 0 #08090a;
+    --terra-application-page-header-container-box-shadow: inset 0 -1px 0 0 #181b1d, inset 0 -2px 0 0 #08090a; // TODO validate border color
     --terra-application-page-header-container-margin-bottom: 0;
     --terra-application-page-header-container-margin-left: 0.7143rem;
     --terra-application-page-header-container-margin-right: 0.7143rem;
     --terra-application-page-header-container-margin-top: 0;
-    --terra-application-page-header-container-padding-bottom: 0.4286rem;
+    --terra-application-page-header-container-padding-bottom: 0.5714rem;
     --terra-application-page-header-container-padding-left: 0;
     --terra-application-page-header-container-padding-right: 0;
     --terra-application-page-header-container-padding-top: 0.3571rem;

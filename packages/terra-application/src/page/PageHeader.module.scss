@@ -9,7 +9,7 @@
     margin-left: var(--terra-application-page-header-container-margin-left, 0.7143rem);
     margin-right: var(--terra-application-page-header-container-margin-right, 0.7143rem);
     margin-top: var(--terra-application-page-header-container-margin-top, 0);
-    padding-bottom: var(--terra-application-page-header-container-padding-bottom, 0.4286rem);
+    padding-bottom: var(--terra-application-page-header-container-padding-bottom, 0.6429rem);
     padding-left: var(--terra-application-page-header-container-padding-left, 0);
     padding-right: var(--terra-application-page-header-container-padding-right, 0);
     padding-top: var(--terra-application-page-header-container-padding-top, 0.3571rem);
@@ -39,12 +39,11 @@
     flex: 1 1 auto;
     font-weight: bold;
     hyphens: auto;
-    min-height: 2rem;
+    min-height: 2.143rem; // must match height of buttons in header
     min-width: 0;
     overflow: hidden;
     overflow-wrap: break-word;
     padding-left: var(--terra-application-page-header-label-container-padding-left, 0.5rem);
-    padding-top: var(--terra-application-page-header-label-container-padding-top, 0.1429rem);
     word-wrap: break-word;
   }
 

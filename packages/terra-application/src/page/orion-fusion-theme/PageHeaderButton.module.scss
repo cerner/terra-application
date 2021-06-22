@@ -1,6 +1,20 @@
 :local {
   .orion-fusion-theme {
-    --terra-application-page-header-button-color: #6f7477;
-    --terra-application-page-header-button-hover-color: #6f7477;
+    --terra-application-page-header-button-color: #64696c;
+    --terra-application-page-header-button-hover-background-color: none;
+    --terra-application-page-header-button-hover-border-radius: 0;
+    --terra-application-page-header-button-hover-color: #0065a3;
+    --terra-application-page-header-button-active-background-color: none;
+    --terra-application-page-header-button-active-border-radius: 0;
+    --terra-application-page-header-button-active-color: #004c76;
+    --terra-application-page-header-button-disabled-color: #64696c;
+    --terra-application-page-header-button-disabled-opacity: 0.3;
+    --terra-application-page-header-button-focus-color: #64696c;
+    --terra-application-page-header-button-focus-button-inner-box-shadow: none;
+    --terra-application-page-header-button-focus-button-inner-outline: 2px dashed #000;
+    --terra-application-page-header-button-focus-button-inner-outline-offset: -2px;
+    --terra-application-page-header-button-button-inner-padding: 0.5714rem;
+    --terra-application-page-header-button-button-image-height: 1rem;
+    --terra-application-page-header-button-button-image-width: 1rem;
   }
 }

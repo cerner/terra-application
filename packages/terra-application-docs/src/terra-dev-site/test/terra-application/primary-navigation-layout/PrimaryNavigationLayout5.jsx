@@ -58,7 +58,7 @@ const PrimaryNavigationLayout5 = () => {
   );
 
   return (
-    <ApplicationBase locale="en-US" themeName="clinical-lowlight-theme">
+    <ApplicationBase locale="en-US" themeName="orion-fusion-theme">
       <ApplicationContainer>
         <PrimaryNavigationLayout
           id="primary-nav-test-1"

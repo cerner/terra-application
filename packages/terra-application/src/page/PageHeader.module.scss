@@ -1,6 +1,7 @@
 @import '~terra-mixins/lib/Mixins';
 
 @import './clinical-lowlight-theme/PageHeader.module';
+@import './orion-fusion-theme/PageHeader.module';
 
 :local {
   .page-header-container {
@@ -66,7 +67,7 @@
     margin-left: var(--terra-application-page-header-actions-divider-margin-left, 0.2143rem);
     margin-right: var(--terra-application-page-header-actions-divider-margin-right, 0.2143rem);
     margin-top: var(--terra-application-page-header-actions-divider-margin-top, 0.3571rem);
-    width: 2px;
+    width: var(--terra-application-page-header-actions-divider-width, 2px);
   }
 
   .toolbar-container {

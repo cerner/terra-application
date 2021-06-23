@@ -18,6 +18,7 @@
   "terraApplication.workspace.hideWorkspaceLabel": "Hide Workspace",
   "terraApplication.workspace.workspaceSettingsLabel": "Workspace Settings",
   "terraApplication.workspace.activityOverlay.loading": "Loading...",
+  "terraApplication.workspace.skipToLabel": "Skip To Workspace",
 
   "terraApplication.notificationBanner.dismiss": "Dismiss",
   "terraApplication.notificationBanner.info": "Information.",

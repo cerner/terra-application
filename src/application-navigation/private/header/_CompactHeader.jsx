@@ -121,6 +121,10 @@ const propTypes = {
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType,
+  /**
+   * Action to tie to the skipToLink for workspace.
+   */
+  skipToWorkspaceAction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -169,6 +173,7 @@ const CompactHeader = ({
   intl,
   hero,
   userConfig,
+  skipToWorkspaceAction,
 }) => {
   const [navigationIsOpen, setNavigationIsOpen] = useState(false);
   const [utilitiesIsOpen, setUtilitiesIsOpen] = useState(false);
@@ -333,13 +338,24 @@ const CompactHeader = ({
     );
   }
 
-  // TODO: kasper here, for skip to
+  function renderSkipToWorkspace() {
+    if (!skipToWorkspaceAction) {
+      return undefined;
+    }
+
+    return (
+      <button type="button" role="link" onClick={skipToWorkspaceAction} className={cx('skip-content-button')}>
+        {intl.formatMessage({ id: 'terraApplication.workspace.skipToLabel' })}
+      </button>
+    );
+  };
 
   return (
     <header role="banner" className={cx('compact-header')}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>
+      {renderSkipToWorkspace()}
       {renderMenuButton()}
       <div className={cx('title-container')}>
         {renderTitle()}

@@ -151,9 +151,11 @@ const ApplicationNavigation = ({
   const drawerMenuIsOpenRef = useRef(false);
   const closeMenuCallbackRef = useRef();
   const renderedNavItemKeyRef = useRef(activeNavigationItemKey);
+  const skipToWorkspaceActionRef = useRef();
 
   const [drawerMenuIsOpen, setDrawerMenuIsOpen] = useState(false);
   const [popupMenuIsOpen, setPopupMenuIsOpen] = useState(false);
+  const [renderSkipToWorkspace, setRenderSkipToWorkspace] = useState(false);
 
   const closeMenuEvent = 'terra-application-navigation.dismiss-menu';
 
@@ -301,6 +303,7 @@ const ApplicationNavigation = ({
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
         id={id}
+        skipToWorkspaceAction={skipToWorkspaceActionRef.current}
       />
     );
   }
@@ -327,6 +330,7 @@ const ApplicationNavigation = ({
         onSelectSettings={onSelectSettings}
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
+        skipToWorkspaceAction={skipToWorkspaceActionRef.current}
       />
     );
   }
@@ -449,11 +453,20 @@ const ApplicationNavigation = ({
   const appNavClassNames = cx('application-navigation', theme.className);
 
   const renderMain = () => {
+    const skipToCallback = action => {
+      skipToWorkspaceActionRef.current = action;
+
+      if (action && !renderSkipToWorkspace) {
+        setRenderSkipToWorkspace(true);
+      }
+    };
+
     return (
       <WorkspaceLayout
         id={`${id}-workspace-layout`}
         workspace={workspace}
         // contentElementRef={contentElementRef}
+        skipToCallback={skipToCallback}
       >
         <main
           ref={mainContainerRef}

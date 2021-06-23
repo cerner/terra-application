@@ -8,7 +8,6 @@ import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import { ActiveBreakpointContext } from '../../breakpoints';
 // import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
 // import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
-// import deferExecution from '../../utils/defer-execution';
 import ResizeHandle from './ResizeHandle';
 import { ApplicationIntlContext } from '../../application-intl';
 import ApplicationNavigationActionsContext from '../ApplicationNavigationActionsContext';
@@ -34,6 +33,10 @@ const propTypes = {
    * Element adhering to the Workspace API.
    */
   workspace: PropTypes.element,
+  /**
+   * Returns the composed skipTo action function if workspace is present.
+   */
+  skipToCallback: PropTypes.func,
 };
 
 const MINIMUM_WORKSPACE_WIDTH = 320;
@@ -106,6 +109,7 @@ const WorkspaceLayout = ({
   id,
   workspace,
   contentElementRef,
+  skipToCallback,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const applicationIntl = React.useContext(ApplicationIntlContext);
@@ -164,6 +168,26 @@ const WorkspaceLayout = ({
   //   }
   // });
 
+  const skipToAction = React.useMemo(() => {
+    return () => {
+      if (!workspaceIsVisible) {
+        setWorkspaceIsVisible(true);
+      } else {
+        setTimeout(() => {
+          workspacePanelRef.current.focus();
+        }, 0);
+      }
+    };
+  }, [workspaceIsVisible, workspacePanelRef.current]);
+
+  React.useLayoutEffect(() => {
+    if (!skipToCallback) {
+      return;
+    }
+
+    skipToCallback(skipToAction);
+  }, [skipToCallback, skipToAction]);
+
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {
       lastActiveSizeRef.current = activeBreakpoint;
@@ -203,22 +227,22 @@ const WorkspaceLayout = ({
     }
   }, [workspaceSize, activeBreakpoint]);
 
-  // const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
-  // React.useEffect(() => {
-  //   if (workspaceIsVisible && !lastWorkspaceOpenState.current) {
-  //     deferExecution(() => { workspacePanelRef.current.focus(); });
-  //   } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
-  //     deferExecution(() => {
-  //       // TODO: evaluate flexing focus element based on overlay state or previous active element
-  //       const mainElement = document.querySelector('main');
-  //       if (mainElement) {
-  //         mainElement.focus();
-  //       }
-  //     });
-  //   }
+  const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
+  React.useEffect(() => {
+    if (workspaceIsVisible && !lastWorkspaceOpenState.current && workspacePanelRef.current) {
+      setTimeout(() => { workspacePanelRef.current.focus(); }, 0);
+    } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
+      setTimeout(() => {
+        // TODO: evaluate flexing focus element based on overlay state or previous active element
+        const mainElement = document.querySelector('main');
+        if (mainElement) {
+          mainElement.focus();
+        }
+      }, 0);
+    }
 
-  //   lastWorkspaceOpenState.current = workspaceIsVisible;
-  // }, [workspaceIsVisible]);
+    lastWorkspaceOpenState.current = workspaceIsVisible;
+  }, [workspaceIsVisible]);
 
   React.useEffect(() => {
     if (!workspaceIsVisible || !hasOverlayWorkspace) {

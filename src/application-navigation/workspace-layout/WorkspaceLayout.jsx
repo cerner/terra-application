@@ -6,8 +6,6 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
 import { ActiveBreakpointContext } from '../../breakpoints';
-// import SkipToLink from '../../application-container/private/skip-to-links/SkipToLink';
-// import { useDismissTransientPresentationsEffect } from '../../utils/transient-presentations';
 import ResizeHandle from './ResizeHandle';
 import { ApplicationIntlContext } from '../../application-intl';
 import ApplicationNavigationActionsContext from '../ApplicationNavigationActionsContext';
@@ -162,32 +160,6 @@ const WorkspaceLayout = ({
     });
   }, [hasWorkspace, workspaceIsVisible, applicationIntl]);
 
-  // useDismissTransientPresentationsEffect(() => {
-  //   if (hasOverlayWorkspace) {
-  //     setWorkspaceIsVisible(false);
-  //   }
-  // });
-
-  const skipToAction = React.useMemo(() => {
-    return () => {
-      if (!workspaceIsVisible) {
-        setWorkspaceIsVisible(true);
-      } else {
-        setTimeout(() => {
-          workspacePanelRef.current.focus();
-        }, 0);
-      }
-    };
-  }, [workspaceIsVisible, workspacePanelRef.current]);
-
-  React.useLayoutEffect(() => {
-    if (!skipToCallback) {
-      return;
-    }
-
-    skipToCallback(skipToAction);
-  }, [skipToCallback, skipToAction]);
-
   React.useEffect(() => {
     if (!lastActiveSizeRef.current) {
       lastActiveSizeRef.current = activeBreakpoint;
@@ -319,28 +291,23 @@ const WorkspaceLayout = ({
     })
   );
 
-  // const renderWorkspaceSkipToLink = () => {
-  //   if (!workspace) {
-  //     return undefined;
-  //   }
+  React.useEffect(() => {
+    if (!skipToCallback) {
+      return;
+    }
 
-  //   return (
-  //     <SkipToLink
-  //       description={applicationIntl.formatMessage({
-  //         id: 'terraApplication.workspacelayout.skipToLabel',
-  //       })}
-  //       onSelect={() => {
-  //         if (!workspaceIsVisible) {
-  //           setWorkspaceIsVisible(true);
-  //         } else {
-  //           deferExecution(() => {
-  //             workspacePanelRef.current.focus();
-  //           });
-  //         }
-  //       }}
-  //     />
-  //   );
-  // };
+    const skipToAction = () => {
+      if (!workspaceIsVisible) {
+        setWorkspaceIsVisible(true);
+      } else {
+        setTimeout(() => {
+          workspacePanelRef.current.focus();
+        }, 0);
+      }
+    };
+
+    skipToCallback(skipToAction);
+  }, [skipToCallback, workspaceIsVisible]);
 
   const renderResizeHandle = () => {
     if (!isLargeFormFactor) {
@@ -458,23 +425,20 @@ const WorkspaceLayout = ({
   };
 
   return (
-    // <>
-    //   {renderWorkspaceSkipToLink()}
+    <div
+      id={id}
+      className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
+      ref={layoutContainerRef}
+    >
       <div
-        id={id}
-        className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
-        ref={layoutContainerRef}
-      >
-        <div
-          ref={resizeOverlayRef}
-          className={cx('resize-overlay')}
-        />
-        <div ref={layoutBodyRef} className={cx('layout-body')}>
-          {renderContent()}
-          {renderWorkspace()}
-        </div>
+        ref={resizeOverlayRef}
+        className={cx('resize-overlay')}
+      />
+      <div ref={layoutBodyRef} className={cx('layout-body')}>
+        {renderContent()}
+        {renderWorkspace()}
       </div>
-    // </>
+    </div>
   );
 };
 

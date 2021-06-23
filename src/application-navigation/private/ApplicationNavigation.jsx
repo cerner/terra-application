@@ -281,6 +281,19 @@ const ApplicationNavigation = ({
     );
   }
 
+  function createWorkspaceAction() {
+    let skipToAction;
+    if (renderSkipToWorkspace) {
+      skipToAction = () => {
+        if (!skipToWorkspaceActionRef.current) {
+          return;
+        }
+        skipToWorkspaceActionRef.current();
+      };
+    }
+    return skipToAction;
+  }
+
   function renderCompactHeader() {
     return (
       <CompactHeader
@@ -303,7 +316,7 @@ const ApplicationNavigation = ({
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
         id={id}
-        skipToWorkspaceAction={skipToWorkspaceActionRef.current}
+        skipToWorkspaceAction={createWorkspaceAction()}
       />
     );
   }
@@ -330,7 +343,7 @@ const ApplicationNavigation = ({
         onSelectSettings={onSelectSettings}
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
-        skipToWorkspaceAction={skipToWorkspaceActionRef.current}
+        skipToWorkspaceAction={createWorkspaceAction()}
       />
     );
   }
@@ -465,7 +478,6 @@ const ApplicationNavigation = ({
       <WorkspaceLayout
         id={`${id}-workspace-layout`}
         workspace={workspace}
-        // contentElementRef={contentElementRef}
         skipToCallback={skipToCallback}
       >
         <main

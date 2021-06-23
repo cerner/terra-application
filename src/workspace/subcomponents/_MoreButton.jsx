@@ -1,11 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import ThemeContext from "terra-theme-context";
-import IconCaretDown from "terra-icon/lib/icon/IconCaretDown";
-import { handleMoreButtonArrows } from "./_TabUtils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
+import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
+import {
+  handleMoreButtonArrows,
+} from './_TabUtils';
 
-import styles from "./Tab.module.scss";
+import styles from './Tab.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -44,13 +46,13 @@ const propTypes = {
   zIndex: PropTypes.number,
 };
 
-const setFocus = (event) => {
-  event.currentTarget.setAttribute("tabindex", "-1");
+const setFocus = event => {
+  event.currentTarget.setAttribute('tabindex', '-1');
   event.currentTarget.focus();
 };
 
-const removeFocus = (event) => {
-  event.currentTarget.removeAttribute("tabindex");
+const removeFocus = event => {
+  event.currentTarget.removeAttribute('tabindex');
 };
 
 const MoreButton = ({
@@ -62,23 +64,21 @@ const MoreButton = ({
   refCallback,
   tabIds,
   zIndex,
-  label,
 }) => {
   const theme = React.useContext(ThemeContext);
 
-  const handleOnKeyDown = (event) =>
-    handleMoreButtonArrows(event, hiddenIndex, tabIds);
+  const handleOnKeyDown = event => handleMoreButtonArrows(event, hiddenIndex, tabIds);
 
-  const handleOnMouseDown = (event) => setFocus(event);
+  const handleOnMouseDown = event => setFocus(event);
 
-  const handleOnSelect = (event) => {
+  const handleOnSelect = event => {
     setFocus(event);
     if (onSelect) {
       onSelect(event);
     }
   };
 
-  const handleOnBlur = (event) => {
+  const handleOnBlur = event => {
     removeFocus(event);
     if (onBlur) {
       onBlur(event);
@@ -95,18 +95,13 @@ const MoreButton = ({
       onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
-      className={cx(
-        "tab-menu",
-        { "is-active": isOpen || isActive },
-        { "is-open": isOpen },
-        theme.className
-      )}
-      style={{ zIndex: isOpen ? "100" : zIndex }}
+      className={cx('tab-menu', { 'is-active': isOpen || isActive }, { 'is-open': isOpen }, theme.className)}
+      style={{ zIndex: isOpen ? '100' : zIndex }}
       data-testid="workspace-tabs-more-button"
     >
-      <div className={cx("inner")}>
-        <div className={cx("icon")}>
-          {label} <IconCaretDown />
+      <div className={cx('inner')}>
+        <div className={cx('icon')}>
+          <IconCaretDown />
         </div>
       </div>
     </div>

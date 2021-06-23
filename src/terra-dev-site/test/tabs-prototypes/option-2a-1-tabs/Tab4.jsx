@@ -7,6 +7,9 @@ import MockContent from "./../MockContent";
 const Tab4 = () => {
   return (
     <WorkspaceContent label="Pineapples">
+      <div aria-live="polite" style={{ color: "#fff" }}>
+        Pineapples selected
+      </div>
       <MockContent fruit="pineapples" />
     </WorkspaceContent>
   );

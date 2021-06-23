@@ -110,6 +110,7 @@ const createOptions = (options, size, onRequestSizeChange, onDismissMenu) =>
 const Workspace = ({
   id,
   activeItemKey,
+  tabNumber,
   tabType,
   visibleItems,
   activeSize,
@@ -126,6 +127,7 @@ const Workspace = ({
   const theme = React.useContext(ThemeContext);
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
+  let swapTabTemp = {};
 
   const [workspaceContainerRef, workspacePortalsRef] =
     usePortalManager(activeItemKey);
@@ -141,11 +143,18 @@ const Workspace = ({
       itemKey: child.props.itemKey,
       associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
       label: child.props.label,
-      isSelected: child.props.itemKey === activeItemKey,
+      isSelected: child.props.itemKey === tabNumber,
       onSelect: onRequestActivate,
       metaData: child.props.metaData,
     };
   });
+
+  if (activeItemKey !== "tab-1" && tabType === "hidden") {
+    const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
+    swapTabTemp = tabData[visibleItems - 1].label;
+    tabData[visibleItems - 1].label = tabData[activeItemIndex].label;
+    tabData[activeItemIndex].label = swapTabTemp;
+  }
 
   let dismissButton;
   if (dismissButtonIsVisible && onRequestDismiss) {

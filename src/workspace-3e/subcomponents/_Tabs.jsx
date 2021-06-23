@@ -156,6 +156,7 @@ class Tabs extends React.Component {
       const tabMinWidth = parseFloat(tabStyle.getPropertyValue("min-width"));
 
       calcMinWidth += tabMinWidth + tabMarginLeft + tabMarginRight;
+
       if (
         calcMinWidth > availableWidth &&
         !(i === tabCount - 1 && calcMinWidth <= width)
@@ -303,7 +304,7 @@ class Tabs extends React.Component {
     visibleItems - 1 determines where the activeItemKey (the tab selected) will be placed, right now is
     set to be placed at the latest visual position.
     */
-    if (this.updateTabsSwap) {
+    /*if (this.updateTabsSwap) {
       if (activeItemKey !== "tab-1" && tabType === "hidden") {
         const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
         swapTabTemp = tabData[visibleItems - 1];
@@ -311,7 +312,7 @@ class Tabs extends React.Component {
         tabData[activeItemIndex] = swapTabTemp;
         this.updateTabsSwap = false;
       }
-    }
+    }*/
 
     tabData.forEach((tab, index) => {
       if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {

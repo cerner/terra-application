@@ -17,6 +17,7 @@ const sizeMap = {
 const WorkspaceTest = () => {
   const [activeItemKey, setActiveItemKey] = React.useState({
     tabNumber: "tab-1",
+    tabActive: "tab-1",
     visibleItems: 0,
     tabType: "none",
   });
@@ -37,7 +38,7 @@ const WorkspaceTest = () => {
     console.log("onRequestClose"); // eslint-disable-line no-console
   };
 
-  const { tabNumber, visibleItems, tabType } = activeItemKey;
+  const { tabNumber, tabActive, visibleItems, tabType } = activeItemKey;
 
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
@@ -48,13 +49,15 @@ const WorkspaceTest = () => {
           id="overlay-test-id"
           dismissButtonIsVisible
           isPresentedAsOverlay
-          activeItemKey={tabNumber}
+          activeItemKey={tabActive}
+          tabNumber={tabNumber}
           tabType={tabType}
           visibleItems={visibleItems}
           onRequestActivate={(key, metaData, tabType) => {
             // metaData shows howmany visilbe tabs exist, I did not change the name of the variable because that it was the way it was created
             setActiveItemKey({
-              tabNumber: key,
+              tabNumber: metaData ? "tab-" + metaData : key,
+              tabActive: key,
               visibleItems: metaData,
               tabType,
             });

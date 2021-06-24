@@ -343,7 +343,6 @@ const Workspace = ({
           behaviour: "smooth",
         });
       } else if (tabRefVal.right > sliderContainerPos.right) {
-        console.log("Lete: ", tabRefVal);
         slideRef.current.scrollBy({
           top: 0,
           left: 300,

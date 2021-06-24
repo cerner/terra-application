@@ -89,7 +89,7 @@ const TabDropDown = ({
   const theme = React.useContext(ThemeContext);
   const dropDownClassNames = cx(
     "drop-down",
-    { "is-open": isOpen },
+    { "is-open": true },
     classSizes,
     theme.className
   );

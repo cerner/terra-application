@@ -66,10 +66,11 @@ class Tabs extends React.Component {
     this.handleMoreButtonBlur = this.handleMoreButtonBlur.bind(this);
     this.handleMoreButtonSelect = this.handleMoreButtonSelect.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
+    this.forceTabVisibility = this.forceTabVisibility.bind(this);
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
-    this.state = { tabData: this.props.tabData};
+    this.state = { tabData: this.props.tabData, visibleT: [], hiddenT: [] };
     this.resetCache();
   }
 
@@ -253,17 +254,31 @@ class Tabs extends React.Component {
     this.dropdownRef.current.style.left = `${offset}px`;
   }
 
+  forceTabVisibility(currentIndex, targetIndex) {
+      // const { activeSize } = this.props;
+
+      // if (activeSize === 'medium') {
+        this.state.tabData.splice(targetIndex, 0, currentIndex);
+      //   this.state.tabData[3].isSelected = true;
+      // }
+
+      // if (activeSize === 'small') {
+      //   this.state.tabData.splice(1, 0, selectedTab);
+      //   this.state.tabData[1].isSelected = true;
+      // }
+  }
+
   wrapOnSelect(onSelect) {
     return (itemKey, metaData) => {
-      // const activeTabIndex = this.state.tabData.findIndex(
-      //   (tab) => tab.isSelected
-      // );
-      // const selectedIndex = this.state.tabData.findIndex(
-      //   (tab) => tab.itemKey === itemKey
-      // );
+      const activeTabIndex = this.state.tabData.findIndex(
+        (tab) => tab.isSelected
+      );
+      const selectedIndex = this.state.tabData.findIndex(
+        (tab) => tab.itemKey === itemKey
+      );
 
-      // this.state.tabData[activeTabIndex].isSelected = false;
-      // this.state.tabData[selectedIndex].isSelected = true;
+      this.state.tabData[activeTabIndex].isSelected = false;
+      this.state.tabData[selectedIndex].isSelected = true;
 
       this.setIsOpen(false);
       onSelect(itemKey, metaData);
@@ -272,36 +287,23 @@ class Tabs extends React.Component {
 
   wrapOnSelectHidden(onSelect) {
     return (itemKey, metaData) => {
-      // const activeTabIndex = this.state.tabData.findIndex(
-      //   (tab) => tab.isSelected,
-      // );
-      // const selectedTab = this.state.tabData.find(
-      //   (tab) => tab.itemKey === itemKey,
-      // );
-      // const selectedIndex = this.state.tabData.findIndex(
-      //   (tab) => tab.itemKey === itemKey,
-      // );
+      const activeTabIndex = this.state.tabData.findIndex(
+        (tab) => tab.isSelected,
+      );
+      const selectedTab = this.state.tabData.find(
+        (tab) => tab.itemKey === itemKey,
+      );
+      const selectedIndex = this.state.tabData.findIndex(
+        (tab) => tab.itemKey === itemKey,
+      );
 
-      // const visibleCount = this.state.visibleT.length - 1;
+      const visibleCount = this.state.visibleT.length - 1;
 
-      // this.state.tabData[activeTabIndex].isSelected = false;
+      this.state.tabData[activeTabIndex].isSelected = false;
 
-      // this.state.tabData.splice(selectedIndex, 1);
-      // this.state.tabData.splice(visibleCount, 0, selectedTab);
-      // this.state.tabData[visibleCount].isSelected = true;
-
-      // const { activeSize } = this.props;
-
-      // if (activeSize === 'medium') {
-      //   console.log('size changed to md')
-      //   // this.state.tabData.splice(3, 0, selectedTab);
-      //   // this.state.tabData[3].isSelected = true;
-      // }
-
-      // if (activeSize === 'small') {
-      //   this.state.tabData.splice(1, 0, selectedTab);
-      //   this.state.tabData[1].isSelected = true;
-      // }
+      this.state.tabData.splice(selectedIndex, 1);
+      this.state.tabData.splice(visibleCount, 0, selectedTab);
+      this.state.tabData[visibleCount].isSelected = true;
 
       if (this.isOpen) {
         onSelect(itemKey, metaData);
@@ -311,14 +313,18 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { tabData } = this.props;
-    const { ariaLabel, activeSize } = this.props;
+    const { tabData } = this.state;
+    const { ariaLabel } = this.props;
     const theme = this.context;
     const ids = tabData.map((tab) => tab.id);
     const hiddenIds = [];
     const visibleTabs = [];
     const hiddenTabs = [];
     let isHiddenSelected = false;
+    const currentActiveIndex = this.state.tabData.findIndex(
+      (tab) => tab.isSelected,
+    );
+
 
     tabData.forEach((tab, index) => {
       if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
@@ -363,6 +369,10 @@ class Tabs extends React.Component {
         "data-tab-is-calculating": "true",
       };
     }
+
+    // if (this.props.activeSize === 'medium' && currentActiveIndex > visibleTabs.length - 1) {
+    //   this.forceTabVisibility(currentActiveIndex, visibleTabs.length - 1);
+    // }
 
     return (
       <div

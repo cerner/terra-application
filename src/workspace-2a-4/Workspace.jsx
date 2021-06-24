@@ -312,100 +312,73 @@ const Workspace = ({
     }
   };
 
-  const scrollTabs = (tabRefVal, tabRefElem) => {
-    console.log("Scrolll:");
-    let secondTab = "",
-      selectedTab = "";
-    let sliderContainerPos = 0,
-      firstTabPos = 0,
-      secondChild = 0;
-    let tabPos;
-
-    if (slideMainRef.current && slideRef.current) {
-      console.log("Scrolll:");
-      sliderContainerPos = slideMainRef.current.getBoundingClientRect();
-      tabPos = tabRefVal;
-      secondTab = slideRef.current.children[0].children[1].id;
-      selectedTab = tabRefElem.id;
-      firstTabPos =
-        slideRef.current.children[0].firstChild.getBoundingClientRect().left;
-      secondChild =
-        slideRef.current.children[0].children[1].getBoundingClientRect().left;
-
-      /*if (
-        firstTabPos < sliderContainerPos.left &&
-        secondChild > sliderContainerPos.left &&
-        secondTab === selectedTab
-      ) {
-        slideRef.current.scrollBy({
-          top: 0,
-          left: -100,
-          behaviour: "smooth",
-        });
-      } else if (
-        firstTabPos < sliderContainerPos.left &&
-        secondChild < sliderContainerPos.left &&
-        secondTab === selectedTab
-      ) {
-        slideRef.current.scrollBy({
-          top: 0,
-          left: -200,
-          behaviour: "smooth",
-        });
-      } else if (tabRefVal.left < sliderContainerPos.left) {
-        slideRef.current.scrollBy({
-          top: 0,
-          left: -100,
-          behaviour: "smooth",
-        });
-      } else if (tabRefVal.right > sliderContainerPos.right) {
-        slideRef.current.scrollBy({
-          top: 0,
-          left: 100,
-          behaviour: "smooth",
-        });
-      }*/
-    }
+  const slideTabs = (val) => {
+    slideRef.current.scrollBy({
+      top: 0,
+      left: val,
+      behaviour: "smooth",
+    });
   };
 
-  const checkWhenArrowing = (refVal) => {
-    let currentTabNext = "",
-      lastTab = "";
+  const checkWhenArrowing = (refVal, keyCode) => {
     let tabsContainerPosRight = 0,
-      lastTabPos = 0;
-
-    const currentActiveTab = refVal.current.nextSibling;
-    const generalFixedElement = slideRef.current.children[0];
+      tabsContainerPosLeft = 0;
+    let currentActiveTab;
 
     if (refVal.current && slideMainRef.current) {
-      currentTabNext = currentActiveTab.id;
-      lastTab = generalFixedElement.children[5].id;
+      tabsContainerPosRight =
+        slideMainRef.current.getBoundingClientRect().right;
+      tabsContainerPosLeft = slideMainRef.current.getBoundingClientRect().left;
+      if (keyCode === 39 || keyCode === 40) {
+        currentActiveTab =
+          refVal.current.nextSibling.getBoundingClientRect().right;
 
-      if (currentTabNext === lastTab) {
-        tabsContainerPosRight =
-          slideMainRef.current.getBoundingClientRect().right;
-
-        lastTabPos =
-          generalFixedElement.children[6].getBoundingClientRect().right;
-
-        if (lastTabPos < tabsContainerPosRight) {
-          slideRef.current.scrollBy({
-            top: 0,
-            left: -200,
-            behaviour: "smooth",
-          });
+        if (currentActiveTab > tabsContainerPosRight) {
+          slideTabs(200);
+        }
+      } else if (keyCode === 37 || keyCode === 38) {
+        if (refVal.current.previousSibling) {
+          currentActiveTab =
+            refVal.current.previousSibling.getBoundingClientRect().left;
+          if (currentActiveTab < tabsContainerPosLeft) {
+            slideTabs(-100);
+          }
         }
       }
     }
   };
 
-  const singleTab = (refVal) => {
-    let tabRefVal = 0;
-    let tabRefElem;
-    if (refVal.current) {
-      tabRefElem = refVal.current;
-      tabRefVal = tabRefElem.getBoundingClientRect();
-      scrollTabs(tabRefVal, tabRefElem);
+  const [styleVariants, setstyleVariant] = useState({
+    variant: "style-variant-one",
+    variantChild: "",
+    dismissButton: "",
+  });
+
+  const stylesButtons = (value) => {
+    switch (value) {
+      case 1:
+        setstyleVariant({
+          variant: "style-variant-one",
+          variantChild: "",
+          dismissButton: "",
+        });
+        break;
+      case 2:
+        setstyleVariant({
+          variant: "style-variant-two",
+          variantChild: "",
+          dismissButton: "dismiss-button-adjustment",
+        });
+        break;
+      case 3:
+        setstyleVariant({
+          variant: "style-variant-three",
+          variantChild: "",
+          dismissButton: "",
+        });
+        break;
+      default:
+        break;
     }
   };
 
@@ -421,6 +394,47 @@ const Workspace = ({
             <strong>Option A, variation 3:</strong> Only tabs are keyboard
             accessible, the dropdown is for visual users.
           </p>
+          <div className={cx("btnsContainer")}>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-one"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(1);
+              }}
+            >
+              MenuLabel
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-two"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(2);
+              }}
+            >
+              NoLabel
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-three"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(3);
+              }}
+            >
+              MenuRight
+            </div>
+          </div>
         </div>
         <div role="none" className={cx("button-header")}>
           {extraConfig && <span aria-hidden></span>}
@@ -428,19 +442,24 @@ const Workspace = ({
         </div>
         <div
           role="none"
-          className={cx("tab-header", newResizeClass, sliderItemsClass, {
-            "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
-          })}
+          className={cx(
+            "tab-header",
+            newResizeClass,
+            sliderItemsClass,
+            styleVariants.dismissButton,
+            {
+              "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
+            }
+          )}
           ref={slideRef}
         >
           <Tabs
             ariaLabel={ariaLabel}
             tabData={tabData}
-            scrollTabs={scrollTabs}
-            singleTab={singleTab}
             jumpToActiveTab={jumpToActiveTab}
             activeSize={activeSize}
             checkWhenArrowing={checkWhenArrowing}
+            styleVariants={styleVariants}
           />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>

@@ -1,25 +1,25 @@
-import React, { useRef, useState } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import classNamesBind from 'classnames/bind';
-import ThemeContext from 'terra-theme-context';
-import IconSettings from 'terra-icon/lib/icon/IconSettings';
-import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
-import Popup from 'terra-popup';
+import React, { useRef, useState } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import classNamesBind from "classnames/bind";
+import ThemeContext from "terra-theme-context";
+import IconSettings from "terra-icon/lib/icon/IconSettings";
+import IconPanelRight from "terra-icon/lib/icon/IconPanelRight";
+import Popup from "terra-popup";
 
 import ActionMenu, {
   ActionMenuDivider,
   ActionMenuItem,
   ActionMenuGroup,
   ActionMenuRadio,
-} from '../action-menu';
-import { ApplicationIntlContext } from '../application-intl';
-import usePortalManager, { getPortalElement } from './shared/usePortalManager';
-import WorkspaceButton from './subcomponents/_WorkspaceButton';
+} from "../action-menu";
+import { ApplicationIntlContext } from "../application-intl";
+import usePortalManager, { getPortalElement } from "./shared/usePortalManager";
+import WorkspaceButton from "./subcomponents/_WorkspaceButton";
 
-import Tabs from './subcomponents/_Tabs';
+import Tabs from "./subcomponents/_Tabs";
 
-import styles from './Workspace.module.scss';
+import styles from "./Workspace.module.scss";
 
 const cx = classNamesBind.bind(styles);
 
@@ -91,17 +91,21 @@ const getTabId = (id, itemKey) => `${id}-${itemKey}`;
 
 const getAssociatedPanelId = (id, itemKey) => `${getTabId(id, itemKey)}-panel`;
 
-const createOptions = (options, size, onRequestSizeChange, onDismissMenu) => options.map(option => (
-  <ActionMenuRadio
-    key={option.key}
-    actionKey={option.key}
-    label={option.text}
-    icon={option.icon}
-    isChecked={option.key === size}
-    isDisabled={option.isDisabled}
-    onAction={() => { onDismissMenu(); onRequestSizeChange(option.key); }}
-  />
-));
+const createOptions = (options, size, onRequestSizeChange, onDismissMenu) =>
+  options.map((option) => (
+    <ActionMenuRadio
+      key={option.key}
+      actionKey={option.key}
+      label={option.text}
+      icon={option.icon}
+      isChecked={option.key === size}
+      isDisabled={option.isDisabled}
+      onAction={() => {
+        onDismissMenu();
+        onRequestSizeChange(option.key);
+      }}
+    />
+  ));
 
 const Workspace = ({
   id,
@@ -121,11 +125,14 @@ const Workspace = ({
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
 
-  const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);
+  const [workspaceContainerRef, workspacePortalsRef] =
+    usePortalManager(activeItemKey);
 
-  const ariaLabel = intl.formatMessage({ id: 'terraApplication.workspace.workspaceLabel' });
+  const ariaLabel = intl.formatMessage({
+    id: "terraApplication.workspace.workspaceLabel",
+  });
 
-  const tabData = React.Children.map(children, child => ({
+  const tabData = React.Children.map(children, (child) => ({
     id: getTabId(id, child.props.itemKey),
     itemKey: child.props.itemKey,
     associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
@@ -139,7 +146,9 @@ const Workspace = ({
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (
       <WorkspaceButton
-        ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
+        ariaLabel={intl.formatMessage({
+          id: "terraApplication.workspace.hideWorkspaceLabel",
+        })}
         icon={<IconPanelRight />}
         onActivate={onRequestDismiss}
       />
@@ -153,16 +162,23 @@ const Workspace = ({
     let dividerItem;
 
     if (sizeOptions && sizeOptions.length) {
-      sizeItems = createOptions(sizeOptions, activeSize, onRequestSizeChange, () => {
-        setIsMenuOpen(false);
-      });
+      sizeItems = createOptions(
+        sizeOptions,
+        activeSize,
+        onRequestSizeChange,
+        () => {
+          setIsMenuOpen(false);
+        }
+      );
     }
 
     if (onRequestDismiss) {
       dismissItem = (
         <ActionMenuItem
           actionKey="workspace-dismiss-action"
-          label={intl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' })}
+          label={intl.formatMessage({
+            id: "terraApplication.workspace.hideWorkspaceLabel",
+          })}
           onAction={() => {
             setIsMenuOpen(false);
             onRequestDismiss();
@@ -172,21 +188,21 @@ const Workspace = ({
     }
 
     if (sizeOptions && dismissItem) {
-      sizeItems = (
-        <ActionMenuGroup>
-          {sizeItems}
-        </ActionMenuGroup>
-      );
+      sizeItems = <ActionMenuGroup>{sizeItems}</ActionMenuGroup>;
       dividerItem = <ActionMenuDivider />;
     }
 
     sizeButton = (
       <>
         <WorkspaceButton
-          ariaLabel={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+          ariaLabel={intl.formatMessage({
+            id: "terraApplication.workspace.workspaceSettingsLabel",
+          })}
           icon={<IconSettings />}
           onActivate={() => setIsMenuOpen(true)}
-          refCallback={node => { sizeMenuRef.current = node; }}
+          refCallback={(node) => {
+            sizeMenuRef.current = node;
+          }}
           testId={`workspace-${id}-settings-button`}
         />
         <Popup
@@ -204,7 +220,9 @@ const Workspace = ({
         >
           <ActionMenu
             isHeaderDisplayed
-            label={intl.formatMessage({ id: 'terraApplication.workspace.workspaceSettingsLabel' })}
+            label={intl.formatMessage({
+              id: "terraApplication.workspace.workspaceSettingsLabel",
+            })}
             onRequestClose={() => {
               setIsMenuOpen(false);
             }}
@@ -220,56 +238,51 @@ const Workspace = ({
 
   const containerClassNames = classNames(
     cx(
-      'workspace-container',
-      { 'is-overlay': isPresentedAsOverlay },
-      theme.className,
+      "workspace-container",
+      { "is-overlay": isPresentedAsOverlay },
+      theme.className
     ),
-    customProps.className,
+    customProps.className
   );
 
   return (
-    <div
-      {...customProps}
-      id={id}
-      className={containerClassNames}
-      role="none"
-    >
-      <div
-        className={cx('workspace')}
-        role="none"
-      >
-        <div aria-hidden className={cx('body-shadow-container')}>
-          <div className={cx('body-shadow')} />
+    <div {...customProps} id={id} className={containerClassNames} role="none">
+      <div className={cx("workspace")} role="none">
+        <div aria-hidden className={cx("body-shadow-container")}>
+          <div className={cx("body-shadow")} />
         </div>
-        <div role="none" className={cx('button-header')}>
-          {dismissButton}
-          <div className={cx('fill-element')} />
+        <div role="none" className={cx("button-header")}>
+          <div className={cx("fill-element")} />
           {sizeButton}
         </div>
-        <div role="none" className={cx('tab-header', { 'has-dismiss-button': onRequestDismiss && dismissButtonIsVisible })}>
+        <div
+          role="none"
+          className={cx("tab-header", {
+            "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
+          })}
+        >
           <Tabs ariaLabel={ariaLabel} tabData={tabData} />
         </div>
-        <div role="none" className={cx('body')} ref={workspaceContainerRef}>
-          {React.Children.map(children, child => {
-            let portalElement = workspacePortalsRef.current[child.props.itemKey]?.element;
+        <div role="none" className={cx("body")} ref={workspaceContainerRef}>
+          {React.Children.map(children, (child) => {
+            let portalElement =
+              workspacePortalsRef.current[child.props.itemKey]?.element;
             if (!portalElement) {
               portalElement = getPortalElement();
-              portalElement.setAttribute('role', 'none');
+              portalElement.setAttribute("role", "none");
 
               workspacePortalsRef.current[child.props.itemKey] = {
                 element: portalElement,
               };
             }
 
-            return (
-              React.cloneElement(child, {
-                key: child.props.itemKey,
-                id: getTabId(id, child.props.itemKey),
-                associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
-                isActive: child.props.itemKey === activeItemKey,
-                portalElement,
-              })
-            );
+            return React.cloneElement(child, {
+              key: child.props.itemKey,
+              id: getTabId(id, child.props.itemKey),
+              associatedPanelId: getAssociatedPanelId(id, child.props.itemKey),
+              isActive: child.props.itemKey === activeItemKey,
+              portalElement,
+            });
           })}
         </div>
       </div>

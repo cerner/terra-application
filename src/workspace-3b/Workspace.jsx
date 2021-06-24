@@ -142,28 +142,6 @@ const Workspace = ({
     metaData: child.props.metaData,
   }));
 
-  if (activeItemKey !== "tab-1") {
-    const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
-    console.log(activeItemIndex);
-
-    if (activeSize === 'medium' && activeItemIndex > 3) {
-      const splicedTab = tabData.splice(activeItemIndex, 1);
-      console.log(splicedTab[0]);
-      tabData.splice(3, 0, splicedTab[0]);
-    }
-
-    if (activeSize === 'small' && activeItemIndex > 1) {
-      const splicedTab = tabData.splice(activeItemIndex, 1);
-      console.log(splicedTab[0]);
-      tabData.splice(1, 0, splicedTab[0]);
-    }
-
-    // const lastVisibleTab = tabData[activeItemIndex]
-    // tabData[visibleItems - 1] = tabData[activeItemIndex]
-    // tabData[activeItemIndex] = lastVisibleTab
-
-  }
-
   let dismissButton;
   if (dismissButtonIsVisible && onRequestDismiss) {
     dismissButton = (

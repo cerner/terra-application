@@ -7,33 +7,37 @@ import {
   KEY_END,
   KEY_RETURN,
   KEY_SPACE,
-} from 'keycode-js';
+} from "keycode-js";
 
 /**
  * Returns a function that will execute the provided function upon detection of a KEY_RETURN or KEY_SPACE keydown event.
  * @param {Function} onSelect The function to be executed after event detection.
  */
-const generateKeyDownSelection = onSelect => (
-  onSelect ? (event) => {
-    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
-      event.preventDefault();
-      onSelect();
-    }
-  } : undefined
-);
+const generateKeyDownSelection = (onSelect) =>
+  onSelect
+    ? (event) => {
+        if (
+          event.nativeEvent.keyCode === KEY_RETURN ||
+          event.nativeEvent.keyCode === KEY_SPACE
+        ) {
+          event.preventDefault();
+          onSelect();
+        }
+      }
+    : undefined;
 
 /**
  * Enables focus styles for the target of the given event. Typically used as an onBlur callback on selectable elements.
  */
 const enableFocusStyles = (event) => {
-  event.currentTarget.setAttribute('data-focus-styles-enabled', 'true');
+  event.currentTarget.setAttribute("data-focus-styles-enabled", "true");
 };
 
 /**
  * Disables focus styles for the target of the given event. Typically used as an onMouseDown callback on selectable elements.
  */
 const disableFocusStyles = (event) => {
-  event.currentTarget.setAttribute('data-focus-styles-enabled', 'false');
+  event.currentTarget.setAttribute("data-focus-styles-enabled", "false");
 };
 
 /**
@@ -129,12 +133,19 @@ const lastFocus = (event, index, ids) => {
  * @param {array} ids The array of id strings.
  */
 const handleArrows = (event, index, ids) => {
-  const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
+  const isRTL =
+    document.getElementsByTagName("html")[0].getAttribute("dir") === "rtl";
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
   const previousKey = !isRTL ? KEY_LEFT : KEY_RIGHT;
-  if (event.nativeEvent.keyCode === nextKey || event.nativeEvent.keyCode === KEY_DOWN) {
+  if (
+    event.nativeEvent.keyCode === nextKey ||
+    event.nativeEvent.keyCode === KEY_DOWN
+  ) {
     nextFocus(event, index, ids);
-  } else if (event.nativeEvent.keyCode === previousKey || event.nativeEvent.keyCode === KEY_UP) {
+  } else if (
+    event.nativeEvent.keyCode === previousKey ||
+    event.nativeEvent.keyCode === KEY_UP
+  ) {
     previousFocus(event, index, ids);
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, index, ids);
@@ -150,11 +161,15 @@ const handleArrows = (event, index, ids) => {
  * @param {array} ids The array of id strings.
  */
 const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
-  const isRTL = document.getElementsByTagName('html')[0].getAttribute('dir') === 'rtl';
+  const isRTL =
+    document.getElementsByTagName("html")[0].getAttribute("dir") === "rtl";
   const nextKey = !isRTL ? KEY_RIGHT : KEY_LEFT;
   const previousKey = !isRTL ? KEY_LEFT : KEY_RIGHT;
 
-  if (event.nativeEvent.keyCode === nextKey || event.nativeEvent.keyCode === KEY_DOWN) {
+  if (
+    event.nativeEvent.keyCode === nextKey ||
+    event.nativeEvent.keyCode === KEY_DOWN
+  ) {
     event.preventDefault();
     event.stopPropagation();
 
@@ -164,7 +179,11 @@ const handleMoreButtonArrows = (event, hiddenIndex, ids) => {
     }
   } else if (event.nativeEvent.keyCode === KEY_HOME) {
     firstFocus(event, -1, ids);
-  } else if (event.nativeEvent.keyCode === previousKey || event.nativeEvent.keyCode === KEY_UP || event.nativeEvent.keyCode === KEY_END) {
+  } else if (
+    event.nativeEvent.keyCode === previousKey ||
+    event.nativeEvent.keyCode === KEY_UP ||
+    event.nativeEvent.keyCode === KEY_END
+  ) {
     lastFocus(event, -1, ids);
   }
 };

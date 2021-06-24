@@ -64,6 +64,7 @@ const MoreButton = ({
   zIndex,
   label,
   activeSize,
+  styleVariants,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -98,6 +99,10 @@ const MoreButton = ({
     classSizes = "dropdownLgButton";
   }
 
+  const { variant, variantChild } = styleVariants;
+  const stylesButtonClass =
+    variant === "style-variant-two" ? "style-variant-two" : "tab-menu";
+
   return (
     <div
       ref={refCallback}
@@ -114,7 +119,7 @@ const MoreButton = ({
       style={{ zIndex: isOpen && "0" }}
       data-testid="workspace-tabs-more-button"
     >
-      <div className={cx("inner")}>
+      <div className={cx("inner", variant)}>
         <div className={cx("icon", "tab-dropdown-button-inner")}>
           {label} <IconCaretDown />
         </div>

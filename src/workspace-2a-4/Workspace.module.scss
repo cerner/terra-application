@@ -215,10 +215,7 @@
     z-index: 50;
 
     &.has-dismiss-button {
-      padding-left: var(
-        --terra-application-workspace-tab-header-has-dismiss-margin-left,
-        2.286rem
-      );
+      padding-left: 7.85rem;
       width: calc(
         100% -
           var(
@@ -228,8 +225,12 @@
       );
     }
 
+    &.dismiss-button-adjustment {
+      padding-left: 1.7rem;
+    }
+
     &.small-adjustment-css {
-      padding-bottom: 5px;
+      min-height: 32px;
       width: 100%;
     }
   }

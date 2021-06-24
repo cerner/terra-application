@@ -285,7 +285,6 @@ class Tabs extends React.Component {
           tabIds={ids}
           onSelect={this.wrapOnSelect(tab.onSelect)}
           zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          singleTab={this.props.singleTab}
           checkWhenArrowing={this.props.checkWhenArrowing}
         />
       );
@@ -329,7 +328,11 @@ class Tabs extends React.Component {
         >
           {visibleTabs}
           <MoreButton
-            label={""}
+            label={
+              this.props.styleVariants.variant === "style-variant-two"
+                ? ""
+                : "Tabs Menu"
+            }
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
@@ -341,6 +344,7 @@ class Tabs extends React.Component {
             }}
             tabIds={ids}
             activeSize={this.props.activeSize}
+            styleVariants={this.props.styleVariants}
           />
 
           <TabDropDown

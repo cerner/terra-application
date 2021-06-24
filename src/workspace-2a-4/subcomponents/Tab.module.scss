@@ -10,7 +10,6 @@
     background-image: none !important;
     box-shadow: -11px 0px 11px -12px rgba(0, 0, 0, 1);
     margin-bottom: 20px;
-    max-width: 28px;
     position: absolute !important;
     z-index: 1000 !important;
     left: 0;
@@ -27,6 +26,10 @@
   .dropdownMdButton {
   }
   .dropdownLgButton {
+  }
+
+  .style-variant-two {
+    max-width: 28px !important;
   }
 
   .tab,

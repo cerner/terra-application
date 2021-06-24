@@ -90,11 +90,10 @@ const Tab = ({
     } else {
       handleArrows(event, index, tabIds);
     }
-    checkWhenArrowing(tabRef);
+    checkWhenArrowing(tabRef, event.nativeEvent.keyCode);
   }
 
   function onClick() {
-    singleTab(tabRef);
     onSelect(itemKey, metaData);
   }
 

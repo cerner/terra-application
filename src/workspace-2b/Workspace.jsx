@@ -377,10 +377,9 @@ const Workspace = ({
         ref={slideMainRef}
         role="none"
       >
-        <div aria-hidden className={cx("textLegend")}>
-          <p>
-            <strong>Option B:</strong> Only menu is keyboard accessible.
-          </p>
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 2 B</h1>
+          <p aria-hidden>This option currently is not working</p>
         </div>
         <div role="none" className={cx("button-header")}>
           {extraConfig && <span aria-hidden></span>}

@@ -445,12 +445,12 @@ const Workspace = ({
         ref={slideMainRef}
         role="none"
       >
-        <div aria-hidden className={cx("textLegend")}>
-          <p>
-            <strong>Option A, variation 4:</strong> Only tabs are keyboard
-            accessible, the dropdown is for visual users.
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 2 A</h1>
+          <p aria-hidden>
+            Only tabs are keyboard accessible, the dropdown is for visual users.
           </p>
-          <div className={cx("btnsContainer")}>
+          <div aria-hidden className={cx("btnsContainer")}>
             <div
               className={cx(
                 "btns",

@@ -394,6 +394,10 @@ const Workspace = ({
             <strong>Option A, variation 3:</strong> Only tabs are keyboard
             accessible, the dropdown is for visual users.
           </p>
+          <p>
+            It works like Photoshop but it has a slide functionality when
+            arrowing the tabs.
+          </p>
           <div className={cx("btnsContainer")}>
             <div
               className={cx(

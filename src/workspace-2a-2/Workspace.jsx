@@ -436,6 +436,9 @@ const Workspace = ({
             <strong>Option A, variation 2:</strong> Only tabs are keyboard
             accessible, the dropdown is for visual users.
           </p>
+          <p>
+            It contains a hack to force VoiceOver to say the TabName Selected.
+          </p>
           <div className={cx("btnsContainer")}>
             <div
               className={cx(

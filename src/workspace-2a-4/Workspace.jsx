@@ -332,7 +332,7 @@ const Workspace = ({
       secondChild =
         slideRef.current.children[0].children[1].getBoundingClientRect().left;
 
-      if (
+      /*if (
         firstTabPos < sliderContainerPos.left &&
         secondChild > sliderContainerPos.left &&
         secondTab === selectedTab
@@ -364,7 +364,7 @@ const Workspace = ({
           left: 100,
           behaviour: "smooth",
         });
-      }
+      }*/
     }
   };
 

@@ -69,7 +69,7 @@ class Tabs extends React.Component {
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
-    this.state = { tabData: this.props.tabData, visibleT: [], hiddenT: [] };
+    this.state = { tabData: this.props.tabData};
     this.resetCache();
   }
 
@@ -255,15 +255,15 @@ class Tabs extends React.Component {
 
   wrapOnSelect(onSelect) {
     return (itemKey, metaData) => {
-      const activeTabIndex = this.state.tabData.findIndex(
-        (tab) => tab.isSelected
-      );
-      const selectedIndex = this.state.tabData.findIndex(
-        (tab) => tab.itemKey === itemKey
-      );
+      // const activeTabIndex = this.state.tabData.findIndex(
+      //   (tab) => tab.isSelected
+      // );
+      // const selectedIndex = this.state.tabData.findIndex(
+      //   (tab) => tab.itemKey === itemKey
+      // );
 
-      this.state.tabData[activeTabIndex].isSelected = false;
-      this.state.tabData[selectedIndex].isSelected = true;
+      // this.state.tabData[activeTabIndex].isSelected = false;
+      // this.state.tabData[selectedIndex].isSelected = true;
 
       this.setIsOpen(false);
       onSelect(itemKey, metaData);
@@ -272,29 +272,30 @@ class Tabs extends React.Component {
 
   wrapOnSelectHidden(onSelect) {
     return (itemKey, metaData) => {
-      const activeTabIndex = this.state.tabData.findIndex(
-        (tab) => tab.isSelected,
-      );
-      const selectedTab = this.state.tabData.find(
-        (tab) => tab.itemKey === itemKey,
-      );
-      const selectedIndex = this.state.tabData.findIndex(
-        (tab) => tab.itemKey === itemKey,
-      );
+      // const activeTabIndex = this.state.tabData.findIndex(
+      //   (tab) => tab.isSelected,
+      // );
+      // const selectedTab = this.state.tabData.find(
+      //   (tab) => tab.itemKey === itemKey,
+      // );
+      // const selectedIndex = this.state.tabData.findIndex(
+      //   (tab) => tab.itemKey === itemKey,
+      // );
 
-      const visibleCount = this.state.visibleT.length - 1;
+      // const visibleCount = this.state.visibleT.length - 1;
 
-      this.state.tabData[activeTabIndex].isSelected = false;
+      // this.state.tabData[activeTabIndex].isSelected = false;
 
-      this.state.tabData.splice(selectedIndex, 1);
-      this.state.tabData.splice(visibleCount, 0, selectedTab);
-      this.state.tabData[visibleCount].isSelected = true;
+      // this.state.tabData.splice(selectedIndex, 1);
+      // this.state.tabData.splice(visibleCount, 0, selectedTab);
+      // this.state.tabData[visibleCount].isSelected = true;
 
       // const { activeSize } = this.props;
 
       // if (activeSize === 'medium') {
-      //   this.state.tabData.splice(3, 0, selectedTab);
-      //   this.state.tabData[3].isSelected = true;
+      //   console.log('size changed to md')
+      //   // this.state.tabData.splice(3, 0, selectedTab);
+      //   // this.state.tabData[3].isSelected = true;
       // }
 
       // if (activeSize === 'small') {
@@ -310,15 +311,14 @@ class Tabs extends React.Component {
   }
 
   render() {
-    const { tabData } = this.state;
-    const { ariaLabel } = this.props;
+    const { tabData } = this.props;
+    const { ariaLabel, activeSize } = this.props;
     const theme = this.context;
     const ids = tabData.map((tab) => tab.id);
     const hiddenIds = [];
     const visibleTabs = [];
     const hiddenTabs = [];
     let isHiddenSelected = false;
-
 
     tabData.forEach((tab, index) => {
       if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {

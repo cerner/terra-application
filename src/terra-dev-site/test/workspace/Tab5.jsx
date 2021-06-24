@@ -1,16 +1,26 @@
-import React from 'react';
+import React from "react";
 import {
-  WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay, WorkspaceContentStatusOverlayButton,
-} from '../../../workspace';
+  WorkspaceContent,
+  WorkspaceContentActivityOverlay,
+  WorkspaceContentStatusOverlay,
+  WorkspaceContentStatusOverlayButton,
+} from "../../../workspace";
 
 const Tab5 = () => {
   const [isLoading, setIsLoading] = React.useState();
 
   return (
     <WorkspaceContent
-      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
-      statusOverlay={(
-        <WorkspaceContentStatusOverlay variant="error" message="This is an error message.">
+      activityOverlay={
+        isLoading ? (
+          <WorkspaceContentActivityOverlay variant="loading" />
+        ) : undefined
+      }
+      statusOverlay={
+        <WorkspaceContentStatusOverlay
+          variant="error"
+          message="This is an error message."
+        >
           <WorkspaceContentStatusOverlayButton
             text="Retry"
             onClick={() => {
@@ -22,11 +32,11 @@ const Tab5 = () => {
             }}
           />
         </WorkspaceContentStatusOverlay>
-      )}
+      }
     />
   );
 };
 
-Tab5.titleKey = 'derp';
+Tab5.titleKey = "derp";
 
 export default Tab5;

@@ -356,6 +356,7 @@ class Tabs extends React.Component {
               this.dropdownRef.current = node;
             }}
             activeSize={this.props.activeSize}
+            styleVariants={this.props.styleVariants}
           >
             {hiddenTabs}
           </TabDropDown>

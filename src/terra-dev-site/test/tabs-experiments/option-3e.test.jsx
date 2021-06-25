@@ -1,12 +1,12 @@
 import React from "react";
-import Workspace, { WorkspaceItem } from "../../../workspace-2b";
+import Workspace, { WorkspaceItem } from "../../../workspace-3e";
 import ActiveMainPageContext from "../../../application-container/private/active-main-page/ActiveMainPageContext";
-import Tab1 from "./option-2b-tabs/Tab2";
-import Tab2 from "./option-2b-tabs/Tab2";
-import Tab3 from "./option-2b-tabs/Tab3";
-import Tab4 from "./option-2b-tabs/Tab4";
-import Tab5 from "./option-2b-tabs/Tab5";
-import Tab6 from "./option-2b-tabs/Tab6";
+import Tab1 from "./option-3e-tabs/Tab1";
+import Tab2 from "./option-3e-tabs/Tab2";
+import Tab3 from "./option-3e-tabs/Tab3";
+import Tab4 from "./option-3e-tabs/Tab4";
+import Tab5 from "./option-3e-tabs/Tab5";
+import Tab6 from "./option-3e-tabs/Tab6";
 
 const sizeMap = {
   small: "320px",
@@ -15,7 +15,12 @@ const sizeMap = {
 };
 
 const WorkspaceTest = () => {
-  const [activeItemKey, setActiveItemKey] = React.useState("tab-1");
+  const [activeItemKey, setActiveItemKey] = React.useState({
+    tabNumber: "tab-1",
+    tabActive: "tab-1",
+    visibleItems: 0,
+    tabType: "none",
+  });
   const [workspaceSize, setWorkspaceSize] = React.useState("large");
   const activeMainPageRef = React.useRef({
     pageKey: "page-1",
@@ -33,6 +38,8 @@ const WorkspaceTest = () => {
     console.log("onRequestClose"); // eslint-disable-line no-console
   };
 
+  const { tabNumber, tabActive, visibleItems, tabType } = activeItemKey;
+
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
       <div
@@ -42,8 +49,19 @@ const WorkspaceTest = () => {
           id="overlay-test-id"
           dismissButtonIsVisible
           isPresentedAsOverlay
-          activeItemKey={activeItemKey}
-          onRequestActivate={(key) => setActiveItemKey(key)}
+          activeItemKey={tabActive}
+          tabNumber={tabNumber}
+          tabType={tabType}
+          visibleItems={visibleItems}
+          onRequestActivate={(key, metaData, tabType) => {
+            // metaData shows howmany visilbe tabs exist, I did not change the name of the variable because that it was the way it was created
+            setActiveItemKey({
+              tabNumber: metaData ? "tab-" + metaData : key,
+              tabActive: key,
+              visibleItems: metaData,
+              tabType,
+            });
+          }}
           activeSize={workspaceSize}
           sizeOptions={[
             {
@@ -61,7 +79,6 @@ const WorkspaceTest = () => {
           ]}
           onRequestSizeChange={onRequestSizeChange}
           onRequestDismiss={onRequestClose}
-          extraConfig={false}
         >
           <WorkspaceItem
             itemKey="tab-1"

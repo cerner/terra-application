@@ -8,7 +8,7 @@
     background-color: #fff !important;
     border: 1px solid #868a8c !important;
     background-image: none !important;
-    box-shadow: -11px 0px 11px -12px rgba(0, 0, 0, 1);
+    // box-shadow: -11px 0px 11px -12px rgba(0, 0, 0, 1);
     margin-bottom: 20px;
     position: absolute !important;
     z-index: 1000 !important;
@@ -16,8 +16,24 @@
 
     .tab-dropdown-button-inner {
       color: #434a4d !important;
+      .slim-arrow {
+        width: 0.9rem;
+        position: absolute;
+        margin: 6px 0 0 5px;
+      }
+      .slim-arrow2 {
+        margin: 3px 0 0 5px;
+        position: absolute;
+        width: 1rem;
+      }
+      .slim-arrow3 {
+        margin: 3px 0 0 8px;
+        position: absolute;
+        width: 0.5rem;
+      }
     }
   }
+
   .dropdownSmButton,
   .dropdownMdButton {
   }
@@ -28,8 +44,28 @@
   .dropdownLgButton {
   }
 
+  .style-variant-one {
+  }
+
   .style-variant-two {
     max-width: 28px !important;
+  }
+
+  .style-variant-three,
+  .style-variant-four,
+  .style-variant-five {
+    padding-left: 0 !important;
+  }
+
+  .variant-parent-three,
+  .variant-parent-four,
+  .variant-parent-five {
+    width: 118px;
+  }
+
+  .variant-parent-six {
+    right: 0;
+    left: unset;
   }
 
   .tab,

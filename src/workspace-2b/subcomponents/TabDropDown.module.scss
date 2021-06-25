@@ -29,7 +29,7 @@
     top: var(--terra-application-workspace-tab-drop-down-top, 50px);
     z-index: 50;
     left: 0 !important;
-    margin-top: 31px !important;
+    margin-top: 30px !important;
   }
 
   .is-open {
@@ -61,21 +61,20 @@
     );
   }
 
-  .dropdownSm,
-  .dropdownMd {
-    left: 10px !important;
-  }
-
   .dropdownSm {
-    top: 127px;
+    top: 134px;
   }
 
   .dropdownMd {
-    top: 109px;
+    top: 134px;
   }
 
   .dropdownLg {
-    top: 106px;
-    left: 32px !important;
+    top: 115px;
+  }
+
+  .dropdown-variant-six {
+    left: unset !important;
+    right: 0;
   }
 }

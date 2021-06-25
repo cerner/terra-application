@@ -1,12 +1,15 @@
 import React from "react";
 
-import { WorkspaceContent } from "../../../../workspace-2b";
+import { WorkspaceContent } from "../../../../workspace-2a-1";
 
-import MockContent from "../MockContent";
+import MockContent from "../../tabs-prototypes/MockContent";
 
 const Tab4 = () => {
   return (
     <WorkspaceContent label="Pineapples">
+      <div aria-live="polite" style={{ color: "#fff" }}>
+        Pineapples selected
+      </div>
       <MockContent fruit="pineapples" />
     </WorkspaceContent>
   );

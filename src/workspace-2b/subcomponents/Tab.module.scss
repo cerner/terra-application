@@ -8,10 +8,11 @@
     background-color: #fff !important;
     border: 1px solid #868a8c !important;
     background-image: none !important;
+    box-shadow: -11px 0px 11px -12px rgba(0, 0, 0, 1);
     margin-bottom: 20px;
     position: absolute !important;
-    top: 105px;
-    width: 150px;
+    z-index: 1000 !important;
+    left: 0;
 
     .tab-dropdown-button-inner {
       color: #434a4d !important;
@@ -19,14 +20,12 @@
   }
   .dropdownSmButton,
   .dropdownMdButton {
-    left: 10px;
   }
   .dropdownSmButton {
-    top: 126px;
   }
-
   .dropdownMdButton {
-    margin: 3px 0;
+  }
+  .dropdownLgButton {
   }
 
   .tab,

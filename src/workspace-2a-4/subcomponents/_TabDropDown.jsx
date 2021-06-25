@@ -47,6 +47,7 @@ const TabDropDown = ({
   disableOnClickOutside,
   enableOnClickOutside,
   activeSize,
+  styleVariants,
 }) => {
   const dropDownRef = useRef();
   const handleKeyDown = useCallback(
@@ -77,6 +78,7 @@ const TabDropDown = ({
   TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
   let classSizes = "";
+  const { dropdownVariant } = styleVariants;
 
   if (activeSize === "small") {
     classSizes = "dropdownSm";
@@ -91,6 +93,7 @@ const TabDropDown = ({
     "drop-down",
     { "is-open": isOpen },
     classSizes,
+    dropdownVariant,
     theme.className
   );
 

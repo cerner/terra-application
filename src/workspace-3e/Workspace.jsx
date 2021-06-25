@@ -150,7 +150,7 @@ const Workspace = ({
     };
   });
 
-  const reFocus = (target, target2) => {
+  const reFocus = (target2) => {
     if (refTabsContainer.current) {
       const tabsCollection =
         refTabsContainer.current.children[2].children[0].children;
@@ -158,10 +158,8 @@ const Workspace = ({
 
       for (let i = 0; i < tabsCollection.length; i++) {
         const tabId = tabsCollection[i].id.split("-").pop();
-        console.log("Tamaloco: ", tabId);
         if (tabId == target2) {
           selectedTab = tabsCollection[i + 1];
-          console.log("Pupirito: ", selectedTab);
           selectedTab.focus();
           break;
         }
@@ -176,7 +174,7 @@ const Workspace = ({
     swapTabTemp = tabData[visibleItemsIndex].label;
     tabData[visibleItems - 1].label = tabData[activeItemIndex].label;
     tabData[activeItemIndex].label = swapTabTemp;
-    reFocus(activeItemKey, visibleItemsIndex);
+    reFocus(visibleItemsIndex);
   }
 
   let dismissButton;

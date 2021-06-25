@@ -95,13 +95,7 @@ const HiddenTab = ({
     event.preventDefault();
     event.stopPropagation();
     onSelect(itemKey, metaData, "hidden");
-    if (activeItemKey !== "tab-1") {
-      console.log("Hidden Reofc");
-      //reFocus(activeItemKey);
-    } else {
-      console.log("Hidden normal");
-      enableFocusStyles(event);
-    }
+    enableFocusStyles(event);
     hiddenTabActivate();
   };
 

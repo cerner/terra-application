@@ -61,18 +61,20 @@
     );
   }
 
-  .dropdownSm,
+  .dropdownSm {
+    top: 207px;
+  }
+
   .dropdownMd {
     top: 162px;
   }
 
-  .dropdownSm {
-  }
-
-  .dropdownMd {
-  }
-
   .dropdownLg {
     top: 143px;
+  }
+
+  .dropdown-variant-six {
+    left: unset !important;
+    right: 0;
   }
 }

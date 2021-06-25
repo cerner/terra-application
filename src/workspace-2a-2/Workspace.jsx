@@ -343,7 +343,6 @@ const Workspace = ({
           behaviour: "smooth",
         });
       } else if (tabRefVal.right > sliderContainerPos.right) {
-        console.log("Lete: ", tabRefVal);
         slideRef.current.scrollBy({
           top: 0,
           left: 300,
@@ -435,6 +434,9 @@ const Workspace = ({
           <p>
             <strong>Option A, variation 2:</strong> Only tabs are keyboard
             accessible, the dropdown is for visual users.
+          </p>
+          <p>
+            It contains a hack to force VoiceOver to say the TabName Selected.
           </p>
           <div className={cx("btnsContainer")}>
             <div

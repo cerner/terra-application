@@ -79,6 +79,7 @@
     .btnsContainer {
       display: flex;
       justify-content: center;
+      flex-wrap: wrap;
       gap: 1rem;
     }
 
@@ -226,7 +227,18 @@
     }
 
     &.dismiss-button-adjustment {
-      padding-left: 1.7rem;
+      padding-left: 2.3rem !important;
+    }
+
+    &.dismiss-button-adjustment6 {
+      padding-left: 0 !important;
+      margin-left: 1px;
+    }
+
+    &.dismiss-button-sm,
+    &.dismiss-button-md {
+      padding-left: 8.2rem;
+      margin-left: 1px;
     }
 
     &.small-adjustment-css {
@@ -260,5 +272,14 @@
       height: 100%;
       width: 100%;
     }
+  }
+  .slim-arrow-workspace {
+    width: 0.9rem;
+  }
+  .slim-arrow2-workspace {
+    width: 1rem;
+  }
+  .slim-arrow3-workspace {
+    width: 0.5rem;
   }
 }

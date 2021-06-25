@@ -99,9 +99,7 @@ const MoreButton = ({
     classSizes = "dropdownLgButton";
   }
 
-  const { variant, variantChild } = styleVariants;
-  const stylesButtonClass =
-    variant === "style-variant-two" ? "style-variant-two" : "tab-menu";
+  const { variantParent, variant, varianNumb } = styleVariants;
 
   return (
     <div
@@ -114,6 +112,7 @@ const MoreButton = ({
         "tab-menu",
         "tab-dropdown-button",
         classSizes,
+        variantParent,
         theme.className
       )}
       style={{ zIndex: isOpen && "0" }}
@@ -121,7 +120,29 @@ const MoreButton = ({
     >
       <div className={cx("inner", variant)}>
         <div className={cx("icon", "tab-dropdown-button-inner")}>
-          {label} <IconCaretDown />
+          {label}
+          {(varianNumb < 3 || varianNumb === 6) && <IconCaretDown />}
+          {varianNumb === 3 && (
+            <img
+              src="http://cdn.onlinewebfonts.com/svg/img_221758.png"
+              alt="Tabs Menu"
+              className={cx("slim-arrow")}
+            />
+          )}
+          {varianNumb === 4 && (
+            <img
+              src="https://cdn.iconscout.com/icon/free/png-256/double-down-arrow-861727.png"
+              alt="Tabs Menu"
+              className={cx("slim-arrow2")}
+            />
+          )}
+          {varianNumb === 5 && (
+            <img
+              src="https://ftipng.com/pngs/small/other/188023_right-arrow-arrow-right-svg.png"
+              alt="Tabs Menu"
+              className={cx("slim-arrow3")}
+            />
+          )}
         </div>
       </div>
     </div>

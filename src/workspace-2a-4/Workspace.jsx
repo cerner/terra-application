@@ -267,6 +267,15 @@ const Workspace = ({
     sliderItemsClass = "";
   }
 
+  const [styleVariants, setstyleVariant] = useState({
+    variantParent: "",
+    variant: "style-variant-one",
+    varianNumb: 0,
+    dismissButton: "",
+    dropdownVariant: "",
+    tabsContainerSlide: "",
+  });
+
   const jumpToActiveTab = (tabRefVal) => {
     let activeTabFromMenu, lastTabActive;
     let activeTabPosLeft = 0,
@@ -322,13 +331,17 @@ const Workspace = ({
 
   const checkWhenArrowing = (refVal, keyCode) => {
     let tabsContainerPosRight = 0,
-      tabsContainerPosLeft = 0;
+      dropdownContainerRight = 0;
     let currentActiveTab;
+    const tabsContainer = slideMainRef.current.children[2];
 
-    if (refVal.current && slideMainRef.current) {
+    if (refVal.current && tabsContainer) {
+      const dropDownMenuTab = tabsContainer.children[0].children[6];
+
       tabsContainerPosRight =
         slideMainRef.current.getBoundingClientRect().right;
-      tabsContainerPosLeft = slideMainRef.current.getBoundingClientRect().left;
+      dropdownContainerRight = dropDownMenuTab.getBoundingClientRect().right;
+
       if (keyCode === 39 || keyCode === 40) {
         currentActiveTab =
           refVal.current.nextSibling.getBoundingClientRect().right;
@@ -340,47 +353,90 @@ const Workspace = ({
         if (refVal.current.previousSibling) {
           currentActiveTab =
             refVal.current.previousSibling.getBoundingClientRect().left;
-          if (currentActiveTab < tabsContainerPosLeft) {
-            slideTabs(-100);
+          if (currentActiveTab < dropdownContainerRight) {
+            slideTabs(-200);
           }
         }
       }
     }
   };
 
-  const [styleVariants, setstyleVariant] = useState({
-    variant: "style-variant-one",
-    variantChild: "",
-    dismissButton: "",
-  });
-
   const stylesButtons = (value) => {
     switch (value) {
       case 1:
         setstyleVariant({
+          variantParent: "",
           variant: "style-variant-one",
-          variantChild: "",
+          varianNumb: value,
           dismissButton: "",
+          dropdownVariant: "",
+          tabsContainerSlide: "",
         });
         break;
       case 2:
         setstyleVariant({
+          variantParent: "",
           variant: "style-variant-two",
-          variantChild: "",
+          varianNumb: value,
           dismissButton: "dismiss-button-adjustment",
+          dropdownVariant: "",
+          tabsContainerSlide: "",
         });
         break;
       case 3:
         setstyleVariant({
+          variantParent: "variant-parent-three",
           variant: "style-variant-three",
-          variantChild: "",
+          varianNumb: value,
           dismissButton: "",
+          dropdownVariant: "",
+          tabsContainerSlide: "",
+        });
+        break;
+      case 4:
+        setstyleVariant({
+          variantParent: "variant-parent-four",
+          variant: "style-variant-four",
+          varianNumb: value,
+          dismissButton: "",
+          dropdownVariant: "",
+          tabsContainerSlide: "",
+        });
+        break;
+      case 5:
+        setstyleVariant({
+          variantParent: "variant-parent-five",
+          variant: "style-variant-five",
+          varianNumb: value,
+          dismissButton: "",
+          dropdownVariant: "",
+          tabsContainerSlide: "",
+        });
+        break;
+      case 6:
+        setstyleVariant({
+          variantParent: "variant-parent-six",
+          variant: "style-variant-six",
+          varianNumb: value,
+          dismissButton: "dismiss-button-adjustment6",
+          dropdownVariant: "dropdown-variant-six",
+          tabsContainerSlide: "",
         });
         break;
       default:
         break;
     }
   };
+
+  let classSizes = "";
+
+  if (activeSize === "small") {
+    classSizes = "dismiss-button-sm";
+  } else if (activeSize === "medium") {
+    classSizes = "dismiss-button-md";
+  } else if (activeSize === "large") {
+    classSizes = "dismiss-button-lg";
+  }
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
@@ -389,12 +445,12 @@ const Workspace = ({
         ref={slideMainRef}
         role="none"
       >
-        <div aria-hidden className={cx("textLegend")}>
-          <p>
-            <strong>Option A, variation 3:</strong> Only tabs are keyboard
-            accessible, the dropdown is for visual users.
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 2 A</h1>
+          <p aria-hidden>
+            Only tabs are keyboard accessible, the dropdown is for visual users.
           </p>
-          <div className={cx("btnsContainer")}>
+          <div aria-hidden className={cx("btnsContainer")}>
             <div
               className={cx(
                 "btns",
@@ -432,6 +488,57 @@ const Workspace = ({
                 stylesButtons(3);
               }}
             >
+              <img
+                src="http://cdn.onlinewebfonts.com/svg/img_221758.png"
+                alt="Style arrow 1"
+                className={cx("slim-arrow-workspace")}
+              />
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-four"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(4);
+              }}
+            >
+              <img
+                src="https://cdn.iconscout.com/icon/free/png-256/double-down-arrow-861727.png"
+                alt="Style arrow 2"
+                className={cx("slim-arrow2-workspace")}
+              />
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-five"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(5);
+              }}
+            >
+              <img
+                src="https://ftipng.com/pngs/small/other/188023_right-arrow-arrow-right-svg.png"
+                alt="Style arrow 3"
+                className={cx("slim-arrow3-workspace")}
+              />
+            </div>
+            <div
+              className={cx(
+                "btns",
+                styleVariants.variant === "style-variant-six"
+                  ? "active-btn"
+                  : ""
+              )}
+              onClick={() => {
+                stylesButtons(6);
+              }}
+            >
               MenuRight
             </div>
           </div>
@@ -447,6 +554,7 @@ const Workspace = ({
             newResizeClass,
             sliderItemsClass,
             styleVariants.dismissButton,
+            classSizes,
             {
               "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
             }

@@ -181,7 +181,7 @@
     top: 0;
     width: 100%;
     z-index: -1;
-    margin-bottom: 47px;
+    margin-bottom: 3px;
 
     .fill-element {
       flex: 1 1 auto;
@@ -216,10 +216,7 @@
     z-index: 50;
 
     &.has-dismiss-button {
-      margin-left: var(
-        --terra-application-workspace-tab-header-has-dismiss-margin-left,
-        2.286rem
-      );
+      padding-left: 7.85rem;
       width: calc(
         100% -
           var(
@@ -230,8 +227,7 @@
     }
 
     &.small-adjustment-css {
-      margin-left: 0;
-      padding-bottom: 8px;
+      min-height: 32px;
       width: 100%;
     }
   }

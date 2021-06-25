@@ -304,6 +304,7 @@ class Tabs extends React.Component {
       this.state.tabData.splice(selectedIndex, 1);
       this.state.tabData.splice(visibleCount, 0, selectedTab);
       this.state.tabData[visibleCount].isSelected = true;
+      console.log(this.state.tabData[visibleCount]);
 
       if (this.isOpen) {
         onSelect(itemKey, metaData);

@@ -7,9 +7,9 @@ import MockContent from "../MockContent";
 const Tab6 = () => {
   return (
     <WorkspaceContent label="Kiwis">
-      <div aria-live="polite" style={{ color: "#fff" }}>
+      {/* <div aria-live="polite" style={{ color: "#fff" }}>
         Kiwis selected
-      </div>
+      </div> */}
       <MockContent fruit="kiwis" />
     </WorkspaceContent>
   );

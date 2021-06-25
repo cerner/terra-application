@@ -1,7 +1,7 @@
 :local {
   .orion-fusion-theme {
-    --terra-application-page-toolbar-background: #e8e9ea;
-    --terra-application-page-toolbar-border-radius: 0;
-    --terra-application-page-toolbar-box-shadow: inset 0 -1px 0 0 #64696c;
+    --terra-application-page-toolbar-background: linear-gradient(#e8e9ea, #dedfe0);
+    --terra-application-page-toolbar-border-radius: 3px;
+    --terra-application-page-toolbar-box-shadow: 0 1px 1px 0 rgba(28, 31, 33, 0.2);
   }
 }

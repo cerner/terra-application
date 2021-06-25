@@ -40,7 +40,7 @@
     flex: 1 1 auto;
     font-weight: bold;
     hyphens: auto;
-    min-height: 2.143rem; // must match height of buttons in header
+    min-height: var(--terra-application-page-header-label-container-min-height, 2.143rem); // must match height of buttons in header
     min-width: 0;
     overflow: hidden;
     overflow-wrap: break-word;

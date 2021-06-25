@@ -7,7 +7,6 @@ import MoreButton from "./_MoreButton";
 import TabDropDown from "./_TabDropDown";
 import Tab from "./_Tab";
 import HiddenTab from "./_HiddenTab";
-// @ts-ignore
 import styles from "./Tabs.module.scss";
 
 const cx = classNames.bind(styles);
@@ -70,8 +69,6 @@ class Tabs extends React.Component {
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
     this.resetCache();
-    this.updateTabsSwap = false;
-    this.hiddenTabActivate = this.hiddenTabActivate.bind(this);
   }
 
   componentDidMount() {
@@ -91,7 +88,6 @@ class Tabs extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.isCalculating) {
       this.isCalculating = false;
-      // @ts-ignore
       this.handleResize(this.contentWidth);
     } else if (this.props.tabData.length !== prevProps.tabData.length) {
       this.resetCache();
@@ -101,7 +97,6 @@ class Tabs extends React.Component {
 
   componentWillUnmount() {
     window.cancelAnimationFrame(this.animationFrameID);
-    // @ts-ignore
     this.resizeObserver.disconnect(this.containerRef.current);
   }
 
@@ -134,16 +129,6 @@ class Tabs extends React.Component {
     let newHideIndex = tabCount;
     let calcMinWidth = 0;
     let showMoreButton = false;
-    // Text is truncated only with stlyes, so first is modify the style to allow to show all the text
-    // then, in order to swap tabs according to width we have to compare texts
-    /*
-       if (tabSelected < lastTabVisible) {
-          justSwapThem
-       } else {
-           // compare as many times necessary to know how many places tabSelected shouldTake
-       }
-       Finally modify the way calcMinWidth works and the value newHideIndex will get
-    */
     for (let i = 0; i < tabCount; i += 1) {
       const tab = this.containerRef.current.children[i];
       const tabStyle = window.getComputedStyle(tab, null);
@@ -156,7 +141,6 @@ class Tabs extends React.Component {
       const tabMinWidth = parseFloat(tabStyle.getPropertyValue("min-width"));
 
       calcMinWidth += tabMinWidth + tabMarginLeft + tabMarginRight;
-
       if (
         calcMinWidth > availableWidth &&
         !(i === tabCount - 1 && calcMinWidth <= width)
@@ -166,7 +150,7 @@ class Tabs extends React.Component {
         break;
       }
     }
-    // newHideIndex shows visible tabs
+
     if (
       this.showMoreButton !== showMoreButton ||
       this.hiddenStartIndex !== newHideIndex
@@ -275,77 +259,51 @@ class Tabs extends React.Component {
   }
 
   wrapOnSelectHidden(onSelect) {
-    // @ts-ignore
-    return (itemKey, metaData, tabType) => {
+    return (itemKey, metaData) => {
       if (this.isOpen) {
-        onSelect(itemKey, this.hiddenStartIndex, tabType);
+        onSelect(itemKey, metaData);
       }
       this.setIsOpen(!this.isOpen);
     };
   }
 
-  hiddenTabActivate() {
-    this.updateTabsSwap = !this.updateTabsSwap;
-  }
-
   render() {
-    const { tabData, ariaLabel, activeItemKey, tabType, visibleItems } =
-      this.props;
+    const { tabData, ariaLabel } = this.props;
     const theme = this.context;
     const ids = tabData.map((tab) => tab.id);
     const hiddenIds = [];
     const visibleTabs = [];
     const hiddenTabs = [];
-    let swapTabTemp = {};
     let isHiddenSelected = false;
 
-    /* updateTabsSwap condition allows swapping only when hidden option is created,
-    because every time you click outside or clicking more button forces update.
-    visibleItems - 1 determines where the activeItemKey (the tab selected) will be placed, right now is
-    set to be placed at the latest visual position.
-    */
-    /*if (this.updateTabsSwap) {
-      if (activeItemKey !== "tab-1" && tabType === "hidden") {
-        const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
-        swapTabTemp = tabData[visibleItems - 1];
-        tabData[visibleItems - 1] = tabData[activeItemIndex];
-        tabData[activeItemIndex] = swapTabTemp;
-        this.updateTabsSwap = false;
-      }
-    }*/
-
     tabData.forEach((tab, index) => {
-      if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
-        visibleTabs.push(
-          <Tab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelect(tab.onSelect)}
-            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
-        );
-      } else {
-        hiddenTabs.push(
-          <HiddenTab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelectHidden(tab.onSelect)}
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-            hiddenTabActivate={this.hiddenTabActivate}
-            activeItemKey={activeItemKey}
-            reFocus={this.props.reFocus}
-          />
-        );
-        hiddenIds.push(tab.id);
+      visibleTabs.push(
+        <Tab
+          {...tab}
+          key={tab.id}
+          index={index}
+          tabIds={ids}
+          onSelect={this.wrapOnSelect(tab.onSelect)}
+          zIndex={tab.isSelected ? tabData.length : tabData.length - index}
+          singleTab={this.props.singleTab}
+        />
+      );
+      hiddenTabs.push(
+        <HiddenTab
+          {...tab}
+          key={tab.id}
+          index={index}
+          tabIds={ids}
+          onSelect={this.wrapOnSelectHidden(tab.onSelect)}
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          jumpToActiveTab={this.props.jumpToActiveTab}
+        />
+      );
+      hiddenIds.push(tab.id);
 
-        if (tab.isSelected) {
-          isHiddenSelected = true;
-        }
+      if (tab.isSelected) {
+        isHiddenSelected = true;
       }
     });
 
@@ -361,19 +319,16 @@ class Tabs extends React.Component {
     }
 
     return (
-      <div
-        {...attrs}
-        className={cx("tab-container", theme.className)}
-        ref={this.containerRef}
-        role="tablist"
-        aria-label={ariaLabel}
-        aria-orientation="horizontal"
-        aria-owns={hiddenIds.join(" ")}
-      >
-        {visibleTabs}
-        {this.showMoreButton ? (
+      <>
+        <div
+          {...attrs}
+          className={cx("tab-container", theme.className)}
+          ref={this.containerRef}
+          role="tablist"
+        >
+          {visibleTabs}
           <MoreButton
-            label="More"
+            label={"Tabs Menu"}
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
@@ -381,26 +336,26 @@ class Tabs extends React.Component {
             onBlur={this.handleMoreButtonBlur}
             onSelect={this.handleMoreButtonSelect}
             refCallback={(node) => {
-              // @ts-ignore
               this.moreButtonRef.current = node;
             }}
             tabIds={ids}
+            activeSize={this.props.activeSize}
           />
-        ) : undefined}
-        <TabDropDown
-          // @ts-ignore
-          onFocus={this.handleHiddenFocus}
-          onBlur={this.handleHiddenBlur}
-          isOpen={this.isOpen}
-          onRequestClose={this.handleOutsideClick}
-          refCallback={(node) => {
-            // @ts-ignore
-            this.dropdownRef.current = node;
-          }}
-        >
-          {hiddenTabs}
-        </TabDropDown>
-      </div>
+
+          <TabDropDown
+            onFocus={this.handleHiddenFocus}
+            onBlur={this.handleHiddenBlur}
+            isOpen={this.isOpen}
+            onRequestClose={this.handleOutsideClick}
+            refCallback={(node) => {
+              this.dropdownRef.current = node;
+            }}
+            activeSize={this.props.activeSize}
+          >
+            {hiddenTabs}
+          </TabDropDown>
+        </div>
+      </>
     );
   }
 }

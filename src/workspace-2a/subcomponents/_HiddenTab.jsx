@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import ThemeContext from "terra-theme-context";
@@ -79,12 +79,11 @@ const HiddenTab = ({
   onFocus,
   onSelect,
   tabIds,
-  hiddenTabActivate,
-  activeItemKey,
-  reFocus,
+  jumpToActiveTab,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
+  const tabRef = useRef(null);
   const hiddenClassNames = cx(
     "hidden",
     { "is-active": isSelected },
@@ -94,15 +93,9 @@ const HiddenTab = ({
   const handleOnSelect = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    onSelect(itemKey, metaData, "hidden");
-    if (activeItemKey !== "tab-1") {
-      console.log("Hidden Reofc");
-      //reFocus(activeItemKey);
-    } else {
-      console.log("Hidden normal");
-      enableFocusStyles(event);
-    }
-    hiddenTabActivate();
+
+    enableFocusStyles(event);
+    onSelect(itemKey, metaData);
   };
 
   const onKeyDown = (event) => {
@@ -116,29 +109,20 @@ const HiddenTab = ({
     }
   };
 
-  attributes.tabIndex = isSelected ? 0 : -1;
   attributes.onClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
     handleOnSelect(e);
+    jumpToActiveTab(tabRef);
   };
-  attributes.onKeyDown = onKeyDown;
-  attributes.onBlur = (e) => {
-    enableFocusStyles(e);
-    onBlur(e);
-  };
-  attributes.onFocus = onFocus;
-  attributes.onMouseDown = disableFocusStyles;
-  attributes["data-focus-styles-enabled"] = true;
-  attributes["aria-selected"] = isSelected;
 
   return (
     <div
       {...attributes}
       id={id}
-      aria-controls={associatedPanelId}
-      role="tab"
+      role="none"
       className={hiddenClassNames}
+      ref={tabRef}
     >
       <div className={cx("checkbox")}>
         {isSelected ? <IconCheckmark /> : null}

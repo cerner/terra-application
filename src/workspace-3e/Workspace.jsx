@@ -128,6 +128,7 @@ const Workspace = ({
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
   let swapTabTemp = {};
+  let refTabsContainer = useRef(null);
 
   const [workspaceContainerRef, workspacePortalsRef] =
     usePortalManager(activeItemKey);
@@ -149,11 +150,33 @@ const Workspace = ({
     };
   });
 
+  const reFocus = (target, target2) => {
+    if (refTabsContainer.current) {
+      const tabsCollection =
+        refTabsContainer.current.children[2].children[0].children;
+      let selectedTab;
+
+      for (let i = 0; i < tabsCollection.length; i++) {
+        const tabId = tabsCollection[i].id.split("-").pop();
+        console.log("Tamaloco: ", tabId);
+        if (tabId == target2) {
+          selectedTab = tabsCollection[i + 1];
+          console.log("Pupirito: ", selectedTab);
+          selectedTab.focus();
+          break;
+        }
+      }
+      // debugger;
+    }
+  };
+
   if (activeItemKey !== "tab-1" && tabType === "hidden") {
     const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
-    swapTabTemp = tabData[visibleItems - 1].label;
+    const visibleItemsIndex = visibleItems - 1;
+    swapTabTemp = tabData[visibleItemsIndex].label;
     tabData[visibleItems - 1].label = tabData[activeItemIndex].label;
     tabData[activeItemIndex].label = swapTabTemp;
+    reFocus(activeItemKey, visibleItemsIndex);
   }
 
   let dismissButton;
@@ -261,7 +284,7 @@ const Workspace = ({
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      <div className={cx("workspace")} role="none">
+      <div ref={refTabsContainer} className={cx("workspace")} role="none">
         <div aria-hidden className={cx("body-shadow-container")}>
           <div className={cx("body-shadow")} />
         </div>
@@ -281,6 +304,7 @@ const Workspace = ({
             activeItemKey={activeItemKey}
             tabType={tabType}
             visibleItems={visibleItems}
+            reFocus={reFocus}
           />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>

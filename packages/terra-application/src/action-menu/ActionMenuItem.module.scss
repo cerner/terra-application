@@ -72,7 +72,7 @@
     }
 
     &:active {
-      background-color: var(--terra-application-action-menu-item-is-actionable-active-background-color, #004165); // TODO validate open source color
+      background-color: var(--terra-application-action-menu-item-is-actionable-active-background-color, #cce9f9);
     }
     
     &[data-focus-styles-enabled='true']:focus {

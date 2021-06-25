@@ -16,7 +16,6 @@ Terra.describeViewports('PrimaryNavigationLayout - Configuration 3', ['small', '
   it('renders with nested Page', () => {
     browser.clickWithTestId('test-page-show-child-page');
     Terra.validates.element('2. render with nested page', { selector });
-    browser.refresh();
   });
 });
 

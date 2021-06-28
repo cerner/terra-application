@@ -1,10 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'terra-application/lib/theme';
-import { ApplicationIntlContext } from '../../../application-intl';
-import ApplicationBase from '../../../application-base';
-import ApplicationNavigation from '../../../application-navigation';
-import NavigationPrompt from '../../../navigation-prompt';
+import classNames from 'classnames/bind';
+import ApplicationNavigation from 'terra-application/lib/application-navigation';
 import {
   ApplicationNavigationActionsContext,
   ApplicationNavigationWorkspace,
@@ -12,51 +9,16 @@ import {
 } from 'terra-application/lib/application-navigation';
 import { WorkspaceContent } from 'terra-application/lib/workspace';
 
-const PendingAction = ({ index, onClick, navDisabled }) => (
-  <p>
-    Toggle pending action
-    {`${index}: `}
-    <button
-      id={`pending-action-toggle-${index}`}
-      type="button"
-      onClick={onClick}
-    >
-      {navDisabled ? 'Disable' : 'Enable'}
-    </button>
-  </p>
-);
+import styles from './ApplicationNavigationExample.module.scss';
 
-PendingAction.propTypes = {
-  index: PropTypes.string,
-  onClick: PropTypes.func,
-  navDisabled: PropTypes.bool,
-};
+const cx = classNames.bind(styles);
 
-const PageContent = ({ title }) => {
-  const [hasPendingAction1, setHasPendingAction1] = useState(false);
-  const [hasPendingAction2, setHasPendingAction2] = useState(false);
-  const [hasPendingAction, setHasPendingAction] = useState(false);
+const ExamplePageContent = ({ title }) => {
   const actionsContext = React.useContext(ApplicationNavigationActionsContext);
 
   return (
-    <div data-nav-test-content>
+    <div className={cx('page-content')}>
       <p>{title}</p>
-      <PendingAction
-        index="1"
-        navDisabled={hasPendingAction1}
-        onClick={() => {
-          setHasPendingAction1(!hasPendingAction1);
-        }}
-      />
-      <PendingAction
-        index="2"
-        navDisabled={hasPendingAction2}
-        onClick={() => {
-          setHasPendingAction2(!hasPendingAction2);
-        }}
-      />
-      {hasPendingAction1 ? <NavigationPrompt description="Pending Action 1" /> : undefined}
-      {hasPendingAction2 ? <NavigationPrompt description="Pending Action 2" /> : undefined}
       <p>
         Layout Actions:
         {' '}
@@ -77,8 +39,24 @@ const PageContent = ({ title }) => {
   );
 };
 
-PageContent.propTypes = {
+ExamplePageContent.propTypes = {
   title: PropTypes.string,
+};
+
+const navigationItems = [{
+  key: 'page_1',
+  text: 'Page 1',
+}, {
+  key: 'page_2',
+  text: 'Page 2',
+}, {
+  key: 'page_3',
+  text: 'Page 3',
+}];
+
+const userConfig = {
+  name: 'Example User',
+  initials: 'EU',
 };
 
 const Tab1 = () => (
@@ -124,31 +102,23 @@ const workspace = (
   </ApplicationNavigationWorkspace>
 );
 
-const ApplicationNavigationTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
-  const theme = React.useContext(ThemeContext);
+const ApplicationNavigationWorkspaceExample = () => {
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);
 
-  const navigationItems = [{
-    key: 'page_1',
-    text: 'Page 1',
-  }, {
-    key: 'page_2',
-    text: 'Page 2',
-  }, {
-    key: 'page_3',
-    text: 'Page 3',
-  }];
-
   return (
-    // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
-    <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale} themeName={theme.className}>
-      {loggedOut ? <p>Logged Out</p> : (
+    <div className={cx('example-container')}>
+      {loggedOut ? (
+        <>
+          <p>Logged Out</p>
+          <button type="button" onClick={() => { setLoggedOut(false); }}>Reset</button>
+        </>
+      ) : (
         <ApplicationNavigation
           titleConfig={{
-            title: 'ApplicationNavigation Test',
+            title: 'ApplicationNavigation Example',
           }}
+          userConfig={userConfig}
           navigationItems={navigationItems}
           activeNavigationItemKey={activeNavItem}
           onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
@@ -157,11 +127,11 @@ const ApplicationNavigationTest = () => {
           }}
           workspace={workspace}
         >
-          <PageContent key={activeNavItem} title={activeNavItem} />
+          <ExamplePageContent key={activeNavItem} title={activeNavItem} />
         </ApplicationNavigation>
       )}
-    </ApplicationBase>
+    </div>
   );
 };
 
-export default ApplicationNavigationTest;
+export default ApplicationNavigationWorkspaceExample;

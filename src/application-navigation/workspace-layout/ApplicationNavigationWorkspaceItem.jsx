@@ -21,8 +21,8 @@ const propTypes = {
   render: PropTypes.func,
 };
 
-const PrimaryNavigationWorkspaceItem = () => <React.Fragment />;
+const ApplicationNavigationWorkspaceItem = () => <React.Fragment />;
 
-PrimaryNavigationWorkspaceItem.propTypes = propTypes;
+ApplicationNavigationWorkspaceItem.propTypes = propTypes;
 
-export default PrimaryNavigationWorkspaceItem;
+export default ApplicationNavigationWorkspaceItem;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Workspace, { WorkspaceItem } from '../../workspace';
-import PrimaryNavigationWorkspaceItem from './PrimaryNavigationWorkspaceItem';
+import ApplicationNavigationWorkspaceItem from './ApplicationNavigationWorkspaceItem';
 
 const propTypes = {
   /**
@@ -77,7 +77,7 @@ const propTypes = {
   onRequestSizeChange: PropTypes.func,
 };
 
-const PrimaryNavigationWorkspace = ({
+const ApplicationNavigationWorkspace = ({
   // consumer props
   onSizeChange,
   onPresentationStateChange,
@@ -144,7 +144,7 @@ const PrimaryNavigationWorkspace = ({
   );
 };
 
-PrimaryNavigationWorkspace.propTypes = propTypes;
-PrimaryNavigationWorkspace.Item = PrimaryNavigationWorkspaceItem;
+ApplicationNavigationWorkspace.propTypes = propTypes;
+ApplicationNavigationWorkspace.Item = ApplicationNavigationWorkspaceItem;
 
-export default PrimaryNavigationWorkspace;
+export default ApplicationNavigationWorkspace;

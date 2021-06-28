@@ -7,8 +7,8 @@ import {
 } from './private/utils/propTypes';
 import ApplicationNavigationActionsContext from './ApplicationNavigationActionsContext';
 import ApplicationNavigation from './ApplicationNavigation';
-import PrimaryNavigationWorkspace from './workspace-layout/PrimaryNavigationWorkspace';
-import PrimaryNavigationWorkspaceItem from './workspace-layout/PrimaryNavigationWorkspaceItem';
+import ApplicationNavigationWorkspace from './workspace-layout/ApplicationNavigationWorkspace;
+import ApplicationNavigationWorkspaceItem from './workspace-layout/ApplicationNavigationWorkspaceItem';
 
 export default ApplicationNavigation;
 export {
@@ -18,6 +18,6 @@ export {
   utilityItemsPropType,
   userConfigPropType,
   ApplicationNavigationActionsContext,
-  PrimaryNavigationWorkspace,
-  PrimaryNavigationWorkspaceItem,
+  ApplicationNavigationWorkspace,
+  ApplicationNavigationWorkspaceItem,
 };

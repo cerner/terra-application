@@ -117,7 +117,7 @@ const propTypes = {
    */
   utilityItems: utilityItemsPropType,
   /**
-   * A PrimaryNavigationWorkspace element and it's associated PrimaryNavigationWorkspace.
+   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspace.
    */
   workspace: PropTypes.element,
 };

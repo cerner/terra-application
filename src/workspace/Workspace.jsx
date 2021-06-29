@@ -248,11 +248,13 @@ const Workspace = ({
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div className={cx("workspace")} role="none">
-        <div aria-hidden className={cx("body-shadow-container")}>
-          <div className={cx("body-shadow")} />
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 1</h1>
+          <p aria-hidden>
+            The only difference is the "more" label and its styles
+          </p>
         </div>
         <div role="none" className={cx("button-header")}>
-          <div className={cx("fill-element")} />
           {sizeButton}
         </div>
         <div
@@ -261,7 +263,11 @@ const Workspace = ({
             "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
           })}
         >
-          <Tabs ariaLabel={ariaLabel} tabData={tabData} />
+          <Tabs
+            ariaLabel={ariaLabel}
+            tabData={tabData}
+            activeSize={activeSize}
+          />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

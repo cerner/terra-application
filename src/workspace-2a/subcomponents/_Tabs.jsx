@@ -277,33 +277,34 @@ class Tabs extends React.Component {
     let isHiddenSelected = false;
 
     tabData.forEach((tab, index) => {
-      visibleTabs.push(
-        <Tab
-          {...tab}
-          key={tab.id}
-          index={index}
-          tabIds={ids}
-          onSelect={this.wrapOnSelect(tab.onSelect)}
-          zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          singleTab={this.props.singleTab}
-        />
-      );
-      hiddenTabs.push(
-        <HiddenTab
-          {...tab}
-          key={tab.id}
-          index={index}
-          tabIds={ids}
-          onSelect={this.wrapOnSelectHidden(tab.onSelect)}
-          onFocus={this.handleHiddenFocus}
-          onBlur={this.handleHiddenBlur}
-          jumpToActiveTab={this.props.jumpToActiveTab}
-        />
-      );
-      hiddenIds.push(tab.id);
+      if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
+        visibleTabs.push(
+          <Tab
+            {...tab}
+            key={tab.id}
+            index={index}
+            tabIds={ids}
+            onSelect={this.wrapOnSelect(tab.onSelect)}
+            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
+          />
+        );
+      } else {
+        hiddenTabs.push(
+          <HiddenTab
+            {...tab}
+            key={tab.id}
+            index={index}
+            tabIds={ids}
+            onSelect={this.wrapOnSelectHidden(tab.onSelect)}
+            onFocus={this.handleHiddenFocus}
+            onBlur={this.handleHiddenBlur}
+          />
+        );
+        hiddenIds.push(tab.id);
 
-      if (tab.isSelected) {
-        isHiddenSelected = true;
+        if (tab.isSelected) {
+          isHiddenSelected = true;
+        }
       }
     });
 
@@ -319,16 +320,18 @@ class Tabs extends React.Component {
     }
 
     return (
-      <>
-        <div
-          {...attrs}
-          className={cx("tab-container", theme.className)}
-          ref={this.containerRef}
-          role="tablist"
-        >
-          {visibleTabs}
+      <div
+        {...attrs}
+        className={cx("tab-container", theme.className)}
+        ref={this.containerRef}
+        role="tablist"
+        aria-label={ariaLabel}
+        aria-orientation="horizontal"
+        aria-owns={hiddenIds.join(" ")}
+      >
+        {visibleTabs}
+        {this.showMoreButton ? (
           <MoreButton
-            label={"Tabs Menu"}
             isOpen={this.isOpen}
             hiddenIndex={this.hiddenStartIndex}
             isActive={isHiddenSelected}
@@ -339,23 +342,21 @@ class Tabs extends React.Component {
               this.moreButtonRef.current = node;
             }}
             tabIds={ids}
-            activeSize={this.props.activeSize}
+            label={this.props.label}
           />
-
-          <TabDropDown
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-            isOpen={this.isOpen}
-            onRequestClose={this.handleOutsideClick}
-            refCallback={(node) => {
-              this.dropdownRef.current = node;
-            }}
-            activeSize={this.props.activeSize}
-          >
-            {hiddenTabs}
-          </TabDropDown>
-        </div>
-      </>
+        ) : undefined}
+        <TabDropDown
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          isOpen={this.isOpen}
+          onRequestClose={this.handleOutsideClick}
+          refCallback={(node) => {
+            this.dropdownRef.current = node;
+          }}
+        >
+          {hiddenTabs}
+        </TabDropDown>
+      </div>
     );
   }
 }

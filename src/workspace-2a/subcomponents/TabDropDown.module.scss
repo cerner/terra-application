@@ -28,8 +28,6 @@
     position: absolute;
     top: var(--terra-application-workspace-tab-drop-down-top, 50px);
     z-index: 50;
-    left: 0 !important;
-    margin-top: 31px !important;
   }
 
   .is-open {
@@ -59,15 +57,7 @@
       --terra-application-workspace-tab-drop-down-padding-bottom,
       5px
     );
-  }
-
-  .dropdownSmMd {
-    top: 127px;
-    left: 10px !important;
-  }
-
-  .dropdownLg {
-    top: 107px;
-    left: 32px !important;
+    // Option 1 styles
+    top: 242px;
   }
 }

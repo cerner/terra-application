@@ -53,6 +53,11 @@
 
   "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
 
+  "terraApplication.notificationDialog.hazard-low": "Information",
+  "terraApplication.notificationDialog.error": "Error",
+  "terraApplication.notificationDialog.hazard-medium": "Warning",
+  "terraApplication.notificationDialog.hazard-high": "Alert",
+
   "TODO": "translations needed for the below",
   "terraApplication.skipToLink.prefix": "Skip to {description}",
   "terraApplication.mainContainer.skipToLabel": "Content",

@@ -1,12 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import AbstractModal from 'terra-abstract-modal';
-import FocusTrap from 'focus-trap-react';
-import Button from 'terra-button';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
-import { injectIntl } from 'react-intl';
+import Button from 'terra-button';
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 import ThemeContext from 'terra-theme-context';
+
+import { ApplicationIntlContext } from '../application-intl';
+import useLayerPortal from '../layer-manager/useLayerPortal';
+import deferExecution from '../utils/defer-execution';
 
 import NotificationIcon from './_NotificationIcon';
 import ContentLayoutAsList from './_ContentLayoutAsList';
@@ -25,25 +27,30 @@ const variants = [
 
 const propTypes = {
   /**
-   * The variant of notification to be rendered. This renders the dialog with the corresponding header and icon to the
-   * variant concept.
+   * The variant of notification to be rendered. This renders the dialog with
+   * the corresponding header and icon to the variant concept.
    */
   variant: PropTypes.oneOf(variants).isRequired,
   /**
-   * The title to describe the high-level overview of why the notification-dialog is being displayed to the user. Use a title that relates directly to the
-   * message/actions provided in the dialog.
+   * The title to describe the high-level overview of why the notification
+   * dialog is being displayed to the user. Use a title that relates directly to
+   * the message/actions provided in the dialog.
    */
   dialogTitle: PropTypes.string,
   /**
-   * The text to provide more detail or defined terminology to be displayed at the start of the notification dialog body. Don’t repeat the title verbatim.
+   * The text to provide more detail or defined terminology to be displayed at
+   * the start of the notification dialog body. Don’t repeat the title verbatim.
    */
   startMessage: PropTypes.string,
   /**
-   * The text to provide more detail or defined terminology to be displayed at the end of the notification dialog body. Don’t repeat the title verbatim.
+   * The text to provide more detail or defined terminology to be displayed at
+   * the end of the notification dialog body. Don’t repeat the title verbatim.
    */
   endMessage: PropTypes.string,
   /**
-   *  The content to be inserted after `startMessage` and/or before `endMessage` to provide more details to the user in the dialog body. Don’t repeat the title verbatim.
+   * The content to be inserted after `startMessage` and/or before `endMessage`
+   * to provide more details to the user in the dialog body. Don’t repeat the
+   * title verbatim.
    */
   content: PropTypes.node,
   /**
@@ -68,7 +75,7 @@ const propTypes = {
     'rejectFirst',
   ]),
   /**
-   * Determines whether acceptAction, rejectAction or neither is emphasizedAction
+   * Determines whether acceptAction, rejectAction or neither is emphasized.
    */
   emphasizedAction: PropTypes.oneOf([
     'none',
@@ -80,19 +87,16 @@ const propTypes = {
    */
   custom: PropTypes.shape({
     /**
-     * The keyword used to represent & emphasis the intention of dialog message that is being shown to the user.
+     * The keyword used to represent & emphasis the intention of dialog message
+     * that is being shown to the user.
      */
     signalWord: PropTypes.string,
     /**
-     * The class name used to set the icon as the background image to be used as the icon in the notification-dialog.
+     * The class name used to set the icon as the background image to be used as
+     * the icon in the notification-dialog.
      */
     iconClassName: PropTypes.string,
   }),
-  /**
-   * @private
-   * The intl object containing translations. This is retrieved from the context automatically by injectIntl.
-   */
-  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 const defaultProps = {
@@ -109,13 +113,27 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
   const actionButtons = [];
 
   if (acceptAction) {
-    const buttonVariant = emphasizedAction === 'accept' ? { variant: 'emphasis' } : {};
-    actionButtons.push(<Button {...buttonVariant} data-terra-notification-dialog-button="accept" key="accept" text={acceptAction.text} onClick={acceptAction.onClick} />);
+    actionButtons.push((
+      <Button
+        key="accept"
+        variant={emphasizedAction === 'accept' ? 'emphasis' : 'neutral'}
+        text={acceptAction.text}
+        onClick={acceptAction.onClick}
+        data-terra-notification-dialog-button="accept"
+      />
+    ));
   }
 
   if (rejectAction) {
-    const buttonVariant = emphasizedAction === 'reject' ? { variant: 'emphasis' } : {};
-    actionButtons.push(<Button {...buttonVariant} data-terra-notification-dialog-button="reject" key="reject" text={rejectAction.text} onClick={rejectAction.onClick} />);
+    actionButtons.push((
+      <Button
+        key="reject"
+        variant={emphasizedAction === 'reject' ? 'emphasis' : 'neutral'}
+        text={rejectAction.text}
+        onClick={rejectAction.onClick}
+        data-terra-notification-dialog-button="reject"
+      />
+    ));
   }
 
   return (
@@ -125,23 +143,26 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
   );
 };
 
-const NotificationDialog = (props) => {
+const NotificationDialog = ({
+  dialogTitle,
+  startMessage,
+  endMessage,
+  content,
+  acceptAction,
+  rejectAction,
+  variant,
+  buttonOrder,
+  emphasizedAction,
+  custom,
+}) => {
   const theme = React.useContext(ThemeContext);
+  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const { LayerPortal, layerId } = useLayerPortal({ layerType: 'notificationDialog' });
+  const dialogContainerRef = React.useRef();
 
-  const {
-    dialogTitle,
-    startMessage,
-    endMessage,
-    content,
-    acceptAction,
-    rejectAction,
-    variant,
-    buttonOrder,
-    emphasizedAction,
-    custom,
-    intl,
-    ...customProps
-  } = props;
+  React.useEffect(() => {
+    dialogContainerRef.current.focus();
+  }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
     throw new Error('Either the `acceptAction` or `rejectAction` props must be provided for Notification dialog');
@@ -151,61 +172,74 @@ const NotificationDialog = (props) => {
     throw new Error('The variant must be provided to the Notification dialog');
   }
 
-  const signalWord = variant === 'custom' ? custom.signalWord : intl.formatMessage({ id: `Terra.notification.dialog.${variant}` });
+  const signalWord = variant === 'custom' ? custom.signalWord : applicationIntl.formatMessage({ id: `terraApplication.notificationDialog.${variant}` });
 
-  /* eslint-disable jsx-a11y/no-noninteractive-tabindex */
+  const dialogClassNames = classNames(
+    cx('notification-dialog', theme.className),
+  );
+
+  // const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
+
+  const signalWordElementId = `${layerId}-signal-word`;
+  const titleElementId = `${layerId}-title`;
+
   return (
-    <AbstractModal
-      ariaLabel={signalWord}
-      aria-labelledby="notification-dialog-signal-word"
-      aria-describedby={dialogTitle ? 'notification-dialog-title' : 'notification-dialog-signal-word'}
-      role="alertdialog"
-      classNameModal={classNames(cx('notification-dialog', theme.className), customProps.className)}
-      isOpen
-      onRequestClose={() => {}}
-      closeOnEsc={false}
-      closeOnOutsideClick={false}
-      zIndex="9000"
-    >
-      <FocusTrap focusTrapOptions={{ returnFocusOnDeactivate: true, clickOutsideDeactivates: false, escapeDeactivates: false }}>
-        <div className={cx('notification-dialog-inner-wrapper')}>
-          <div className={cx('notification-dialog-container')} tabIndex="0" data-terra-notification-dialog>
-            <div className={cx(['floating-header-background', variant])} />
-            <div className={cx(['header'])}>
-              <div className={cx(['header-content'])}>
-                <NotificationIcon variant={variant} iconClassName={custom.iconClassName} />
-                <div className={cx('header-container')}>
-                  <div id="notification-dialog-signal-word" className={cx('signal-word')}>{signalWord}</div>
-                  <div id="notification-dialog-title" className={cx('title')}>{dialogTitle}</div>
+    <LayerPortal>
+      <div
+        aria-labelledby={signalWordElementId}
+        aria-describedby={dialogTitle ? titleElementId : signalWordElementId}
+        role="alertdialog"
+        className={dialogClassNames}
+      >
+        <div
+          role="document"
+          tabIndex="-1"
+          ref={dialogContainerRef}
+        >
+          {/* <VisuallyHiddenText
+            text={applicationIntl.formatMessage({ id: 'Terra.AbstractModal.BeginModalDialog' })}
+          /> */}
+          <div className={cx('notification-dialog-inner-wrapper')}>
+            <div className={cx('notification-dialog-container')} data-terra-notification-dialog>
+              <div className={cx('floating-header-background', variant)} />
+              <div className={cx('header')}>
+                <div className={cx('header-content')}>
+                  <NotificationIcon variant={variant} iconClassName={custom.iconClassName} />
+                  <div className={cx('header-container')}>
+                    <div id={signalWordElementId} className={cx('signal-word')}>{signalWord}</div>
+                    <div id={titleElementId} className={cx('title')}>{dialogTitle}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className={cx('body')}>
-              {(startMessage)
+              <div className={cx('body')}>
+                {(startMessage)
                 && <div className={cx('message')}>{(startMessage)}</div>}
-              {content
+                {content
                 && <div className={cx('message')}>{content}</div>}
-              {endMessage
+                {endMessage
                 && <div className={cx('message')}>{endMessage}</div>}
-            </div>
-            <div className={cx('footer')}>
-              {actionSection(
-                acceptAction,
-                rejectAction,
-                buttonOrder,
-                emphasizedAction,
-              )}
+              </div>
+              <div className={cx('footer')}>
+                {actionSection(
+                  acceptAction,
+                  rejectAction,
+                  buttonOrder,
+                  emphasizedAction,
+                )}
+              </div>
             </div>
           </div>
+          {/* <VisuallyHiddenText
+            text={applicationIntl.formatMessage({ id: 'Terra.AbstractModal.EndModalDialog' })}
+          /> */}
         </div>
-      </FocusTrap>
-    </AbstractModal>
+      </div>
+    </LayerPortal>
   );
-  /* eslint-enable jsx-a11y/no-noninteractive-tabindex */
 };
 
 NotificationDialog.propTypes = propTypes;
 NotificationDialog.defaultProps = defaultProps;
 
 export { ContentLayoutAsList };
-export default injectIntl(NotificationDialog);
+export default NotificationDialog;

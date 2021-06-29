@@ -44,5 +44,9 @@
   "terraApplication.notifications.totalCountLabel": "Total {label} notifications: {count}",
   "terraApplication.notifications.newNotificationLabel": "New {label} notification. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Removed {label} notification. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Close"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Close",
+  "terraApplication.notificationDialog.hazard-low": "Information",
+  "terraApplication.notificationDialog.error": "Error",
+  "terraApplication.notificationDialog.hazard-medium": "Warning",
+  "terraApplication.notificationDialog.hazard-high": "Alert"
 }

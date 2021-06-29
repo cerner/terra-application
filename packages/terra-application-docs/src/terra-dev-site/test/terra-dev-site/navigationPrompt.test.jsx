@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import UnsavedChangesPrompt from '@cerner/terra-dev-site/lib/terra-application-temporary/unsaved-changes-prompt';
+import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 
 const ExampleComponent = () => {
   const [hasPendingState, setHasPendingState] = useState(false);

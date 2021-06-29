@@ -44,5 +44,9 @@
   "terraApplication.notifications.totalCountLabel": "Totaal {label}-meldingen:{count}",
   "terraApplication.notifications.newNotificationLabel": "Nieuwe {label}-melding. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Verwijderde {label}-melding. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Sluiten"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Sluiten",
+  "terraApplication.notificationDialog.hazard-low": "Informatie",
+  "terraApplication.notificationDialog.error": "Fout",
+  "terraApplication.notificationDialog.hazard-medium": "Waarschuwing",
+  "terraApplication.notificationDialog.hazard-high": "Adviserend"
 }

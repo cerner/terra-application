@@ -1,15 +1,11 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames/bind";
-import ThemeContext from "terra-theme-context";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
-import {
-  enableFocusStyles,
-  disableFocusStyles,
-  generateKeyDownSelection,
-} from "./_TabUtils";
+import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from './_TabUtils';
 
-import styles from "./WorkspaceButton.module.scss";
+import styles from './WorkspaceButton.module.scss';
 
 const cx = classNames.bind(styles);
 
@@ -50,9 +46,9 @@ const WorkspaceButton = ({
 }) => {
   const theme = React.useContext(ThemeContext);
   const buttonClassNames = cx(
-    "workspace-button",
-    { "is-active": isActive },
-    theme.className
+    'workspace-button',
+    { 'is-active': isActive },
+    theme.className,
   );
 
   return (
@@ -70,8 +66,11 @@ const WorkspaceButton = ({
       data-testid={testId}
       aria-pressed={isActive}
     >
-      <div aria-hidden className={cx("button-inner")}>
-        <div className={cx("button-image")} title={ariaLabel}>
+      <div aria-hidden className={cx('button-inner')}>
+        <div
+          className={cx('button-image')}
+          title={ariaLabel}
+        >
           {icon}
         </div>
       </div>

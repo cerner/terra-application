@@ -46,6 +46,7 @@ const TabDropDown = ({
   refCallback,
   disableOnClickOutside,
   enableOnClickOutside,
+  activeSize,
 }) => {
   const dropDownRef = useRef();
   const handleKeyDown = useCallback(
@@ -76,6 +77,15 @@ const TabDropDown = ({
   TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
   const theme = React.useContext(ThemeContext);
+
+  let dropDownAdjustmentStyle = {};
+
+  if (activeSize === "small") {
+  } else if (activeSize === "medium") {
+    dropDownAdjustmentStyle = { top: "221px" };
+  } else if (activeSize === "large") {
+  }
+
   const dropDownClassNames = cx(
     "drop-down",
     { "is-open": isOpen },
@@ -90,6 +100,7 @@ const TabDropDown = ({
       }}
       role="none"
       className={dropDownClassNames}
+      style={dropDownAdjustmentStyle}
       onMouseDown={(e) => {
         e.preventDefault();
       }}

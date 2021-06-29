@@ -1,11 +1,11 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import ThemeContext from 'terra-theme-context';
-import onClickOutside from 'react-onclickoutside';
-import { KEY_ESCAPE } from 'keycode-js';
+import React, { useCallback, useEffect, useRef } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import ThemeContext from "terra-theme-context";
+import onClickOutside from "react-onclickoutside";
+import { KEY_ESCAPE } from "keycode-js";
 
-import styles from './TabDropDown.module.scss';
+import styles from "./TabDropDown.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -48,43 +48,51 @@ const TabDropDown = ({
   enableOnClickOutside,
 }) => {
   const dropDownRef = useRef();
-  const handleKeyDown = useCallback(event => {
-    if (event.keyCode === KEY_ESCAPE && onRequestClose) {
-      onRequestClose(event);
-    }
-  }, [onRequestClose]);
+  const handleKeyDown = useCallback(
+    (event) => {
+      if (event.keyCode === KEY_ESCAPE && onRequestClose) {
+        onRequestClose(event);
+      }
+    },
+    [onRequestClose]
+  );
 
   useEffect(() => {
     if (isOpen) {
       enableOnClickOutside();
-      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener("keydown", handleKeyDown);
     } else {
       disableOnClickOutside();
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener("keydown", handleKeyDown);
       dropDownRef.current.scrollTop = 0;
     }
 
-    return (() => {
+    return () => {
       disableOnClickOutside();
-      document.removeEventListener('keydown', handleKeyDown);
-    });
+      document.removeEventListener("keydown", handleKeyDown);
+    };
   }, [isOpen, enableOnClickOutside, disableOnClickOutside, handleKeyDown]);
 
-  TabDropDown.handleClickOutside = event => onRequestClose(event);
+  TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
   const theme = React.useContext(ThemeContext);
   const dropDownClassNames = cx(
-    'drop-down',
-    { 'is-open': isOpen },
-    theme.className,
+    "drop-down",
+    { "is-open": isOpen },
+    theme.className
   );
 
   return (
     <div
-      ref={node => { dropDownRef.current = node; refCallback(node); }}
+      ref={(node) => {
+        dropDownRef.current = node;
+        refCallback(node);
+      }}
       role="none"
       className={dropDownClassNames}
-      onMouseDown={e => { e.preventDefault(); }}
+      onMouseDown={(e) => {
+        e.preventDefault();
+      }}
     >
       {children}
     </div>

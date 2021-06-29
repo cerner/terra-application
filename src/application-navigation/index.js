@@ -7,8 +7,8 @@ import {
 } from './private/utils/propTypes';
 import ApplicationNavigationActionsContext from './ApplicationNavigationActionsContext';
 import ApplicationNavigation from './ApplicationNavigation';
-import ApplicationNavigationWorkspace from './workspace-layout/ApplicationNavigationWorkspace;
-import ApplicationNavigationWorkspaceItem from './workspace-layout/ApplicationNavigationWorkspaceItem';
+import ApplicationNavigationWorkspace from './ApplicationNavigationWorkspace';
+import ApplicationNavigationWorkspaceItem from './ApplicationNavigationWorkspaceItem';
 
 export default ApplicationNavigation;
 export {

@@ -1,11 +1,11 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { ApplicationIntlContext } from '../../../application-intl';
 import {
   ApplicationNavigationActionsContext,
   ApplicationNavigationWorkspace,
   ApplicationNavigationWorkspaceItem,
 } from 'terra-application/lib/application-navigation';
+import WorkspaceLayout from 'terra-application/lib/application-navigation/workspace-layout/WorkspaceLayout';
 import { WorkspaceContent } from 'terra-application/lib/workspace';
 
 const PageContent = ({ title }) => {
@@ -17,18 +17,16 @@ const PageContent = ({ title }) => {
       <p>
         Layout Actions:
         {' '}
-        {actionsContext.actions && actionsContext.actions.map(action => {
-          return (
-            <button
-              key={action.key}
-              type="button"
-              onClick={action.onSelect}
-              aria-label={action.label}
-            >
-              {action.icon}
-            </button>
-          );
-        })}
+        {actionsContext.actions && actionsContext.actions.map(action => (
+          <button
+            key={action.key}
+            type="button"
+            onClick={action.onSelect}
+            aria-label={action.label}
+          >
+            {action.icon}
+          </button>
+        ))}
       </p>
     </div>
   );
@@ -98,8 +96,8 @@ const WorkspaceLayoutTest = () => {
         title="Main Content Region"
         action={isToggleEnabled ? () => actionRef.current() : null}
       />
-    </ApplicationNavigationWorkspace>
+    </WorkspaceLayout>
   );
 };
 
-export default ApplicationNavigationTest;
+export default WorkspaceLayoutTest;

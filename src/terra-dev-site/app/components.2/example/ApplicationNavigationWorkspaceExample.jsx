@@ -22,18 +22,16 @@ const ExamplePageContent = ({ title }) => {
       <p>
         Layout Actions:
         {' '}
-        {actionsContext.actions && actionsContext.actions.map(action => {
-          return (
-            <button
-              key={action.key}
-              type="button"
-              onClick={action.onSelect}
-              aria-label={action.label}
-            >
-              {action.icon}
-            </button>
-          );
-        })}
+        {actionsContext.actions && actionsContext.actions.map(action => (
+          <button
+            key={action.key}
+            type="button"
+            onClick={action.onSelect}
+            aria-label={action.label}
+          >
+            {action.icon}
+          </button>
+        ))}
       </p>
     </div>
   );

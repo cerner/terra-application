@@ -348,7 +348,7 @@ const CompactHeader = ({
         {intl.formatMessage({ id: 'terraApplication.workspace.skipToLabel' })}
       </button>
     );
-  };
+  }
 
   return (
     <header role="banner" className={cx('compact-header')}>

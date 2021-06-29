@@ -1,6 +1,6 @@
 import PropsTable from 'terra-application/lib/application-navigation/ApplicationNavigation?dev-site-props-table';
 import ApplicationNavigationExample from './example/ApplicationNavigationExample?dev-site-example';
-import ApplicationNavigationExample from './example/ApplicationNavigationWorkspaceExample?dev-site-example';
+import ApplicationNavigationWorkspaceExample from './example/ApplicationNavigationWorkspaceExample?dev-site-example';
 import { Notice } from '@cerner/terra-docs';
 
 # ApplicationNavigation
@@ -233,6 +233,13 @@ const myNotifications = {
 #### Is Required: `false`
 
 `onDrawerMenuStateChange` callback allows the consumer to know state changes in Drawer Menu.
+
+### `workspace`
+#### Is Required: `false`
+
+The `workspace` prop allows consumers to display a workspace aside region by providing an ApplicationNavigationWorkspace with associated ApplicationNavigationWorkspaceItems.
+The ApplicationNavigationWorkspace provides the ability to initialize and monitor the state of the WorkspaceLayout through callbacks.
+
 
 ## Responsive Design
 

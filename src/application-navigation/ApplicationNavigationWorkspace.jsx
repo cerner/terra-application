@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Workspace, { WorkspaceItem } from '../../workspace';
+import Workspace, { WorkspaceItem } from '../workspace';
 import ApplicationNavigationWorkspaceItem from './ApplicationNavigationWorkspaceItem';
 
 const propTypes = {

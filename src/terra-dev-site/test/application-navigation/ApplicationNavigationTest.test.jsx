@@ -1,16 +1,17 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'terra-application/lib/theme';
-import { ApplicationIntlContext } from '../../../application-intl';
-import ApplicationBase from '../../../application-base';
-import ApplicationNavigation from '../../../application-navigation';
-import NavigationPrompt from '../../../navigation-prompt';
 import {
   ApplicationNavigationActionsContext,
   ApplicationNavigationWorkspace,
   ApplicationNavigationWorkspaceItem,
 } from 'terra-application/lib/application-navigation';
 import { WorkspaceContent } from 'terra-application/lib/workspace';
+
+import { ApplicationIntlContext } from '../../../application-intl';
+import ApplicationBase from '../../../application-base';
+import ApplicationNavigation from '../../../application-navigation';
+import NavigationPrompt from '../../../navigation-prompt';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
   <p>
@@ -35,7 +36,6 @@ PendingAction.propTypes = {
 const PageContent = ({ title }) => {
   const [hasPendingAction1, setHasPendingAction1] = useState(false);
   const [hasPendingAction2, setHasPendingAction2] = useState(false);
-  const [hasPendingAction, setHasPendingAction] = useState(false);
   const actionsContext = React.useContext(ApplicationNavigationActionsContext);
 
   return (
@@ -60,18 +60,16 @@ const PageContent = ({ title }) => {
       <p>
         Layout Actions:
         {' '}
-        {actionsContext.actions && actionsContext.actions.map(action => {
-          return (
-            <button
-              key={action.key}
-              type="button"
-              onClick={action.onSelect}
-              aria-label={action.label}
-            >
-              {action.icon}
-            </button>
-          );
-        })}
+        {actionsContext.actions && actionsContext.actions.map(action => (
+          <button
+            key={action.key}
+            type="button"
+            onClick={action.onSelect}
+            aria-label={action.label}
+          >
+            {action.icon}
+          </button>
+        ))}
       </p>
     </div>
   );

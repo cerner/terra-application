@@ -6,6 +6,19 @@
 @import './orion-fusion-theme/NotificationDialog.module';
 
 :local {
+  .overlay {
+    background-color: var(--terra-application-notification-dialog-overlay-background-color, rgba(0, 0, 0, 0.4));
+    background-image: var(--terra-application-notification-dialog-overlay-background-image);
+    bottom: 0;
+    color: var(--terra-application-notification-dialog-overlay-foreground-color);
+    left: 0;
+    opacity: var(--terra-application-notification-dialog-overlay-opacity);
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 0;
+  }
+
   .notification-dialog {
     background: var(--terra-application-notification-dialog-background, #fff);
     border: var(--terra-application-notification-dialog-border, none);
@@ -27,7 +40,8 @@
 
     // This will ensure that by default, the notification dialog sizes to the viewport (minus the insets).
     width: calc(100% - 2 * var(--terra-application-notification-dialog-small-horizontal-inset, 17px));
-
+    z-index: 1;
+    
     // This will ensure that above the small breakpoint, a max-width is enforced
     @include terra-mq-small-up {
       max-width: var(--terra-application-notification-dialog-max-width, 500px);

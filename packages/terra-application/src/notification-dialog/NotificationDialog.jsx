@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import Button from 'terra-button';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
 import ThemeContext from 'terra-theme-context';
+import { tabbable } from 'tabbable';
 
 import { ApplicationIntlContext } from '../application-intl';
 import useLayerPortal from '../layer-manager/useLayerPortal';
@@ -119,7 +119,6 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
         variant={emphasizedAction === 'accept' ? 'emphasis' : 'neutral'}
         text={acceptAction.text}
         onClick={acceptAction.onClick}
-        data-terra-notification-dialog-button="accept"
       />
     ));
   }
@@ -131,7 +130,6 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
         variant={emphasizedAction === 'reject' ? 'emphasis' : 'neutral'}
         text={rejectAction.text}
         onClick={rejectAction.onClick}
-        data-terra-notification-dialog-button="reject"
       />
     ));
   }
@@ -141,6 +139,55 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
       {buttonOrder === 'acceptFirst' ? actionButtons : actionButtons.reverse()}
     </div>
   );
+};
+
+const useFocusTrap = (containerRef, initialFocusRef) => {
+  React.useLayoutEffect(() => {
+    if (initialFocusRef && initialFocusRef.current) {
+      initialFocusRef.current.focus();
+      return;
+    }
+
+    const tabbableElements = tabbable(containerRef.current);
+    if (tabbableElements.length) {
+      deferExecution(() => tabbableElements[0].focus());
+    }
+  }, [containerRef, initialFocusRef]);
+
+  React.useEffect(() => {
+    const containerElement = containerRef.current;
+
+    const handleFocusMovement = (event) => {
+      if (event.keyCode === 9) {
+        const tabbableElements = tabbable(containerElement);
+        if (!tabbableElements.length) {
+          return;
+        }
+
+        const indexOfActiveElement = tabbableElements.indexOf(document.activeElement);
+
+        if (event.shiftKey) {
+          if (indexOfActiveElement === -1) {
+            tabbableElements[tabbableElements.length - 1].focus();
+          } else {
+            tabbableElements[indexOfActiveElement === 0 ? tabbableElements.length - 1 : indexOfActiveElement - 1].focus();
+          }
+        } else if (indexOfActiveElement === -1) {
+          tabbableElements[0].focus();
+        } else {
+          tabbableElements[indexOfActiveElement === tabbableElements.length - 1 ? 0 : indexOfActiveElement + 1].focus();
+        }
+
+        event.preventDefault();
+      }
+    };
+
+    containerElement.addEventListener('keydown', handleFocusMovement);
+
+    return () => {
+      containerElement.removeEventListener('keydown', handleFocusMovement);
+    };
+  }, [containerRef]);
 };
 
 const NotificationDialog = ({
@@ -160,16 +207,14 @@ const NotificationDialog = ({
   const { LayerPortal, layerId } = useLayerPortal({ layerType: 'notificationDialog' });
   const dialogContainerRef = React.useRef();
 
-  React.useEffect(() => {
-    dialogContainerRef.current.focus();
-  }, []);
+  useFocusTrap(dialogContainerRef);
 
   if (acceptAction === undefined && rejectAction === undefined) {
     throw new Error('Either the `acceptAction` or `rejectAction` props must be provided for Notification dialog');
   }
 
   if (variant === undefined) {
-    throw new Error('The variant must be provided to the Notification dialog');
+    throw new Error('The variant must be provided to the NotificationDialog');
   }
 
   const signalWord = variant === 'custom' ? custom.signalWord : applicationIntl.formatMessage({ id: `terraApplication.notificationDialog.${variant}` });
@@ -178,13 +223,12 @@ const NotificationDialog = ({
     cx('notification-dialog', theme.className),
   );
 
-  // const platformIsiOS = !!navigator.platform && /iPad|iPhone|iPod/.test(navigator.platform);
-
   const signalWordElementId = `${layerId}-signal-word`;
   const titleElementId = `${layerId}-title`;
 
   return (
     <LayerPortal>
+      <div className={cx('overlay')} />
       <div
         aria-labelledby={signalWordElementId}
         aria-describedby={dialogTitle ? titleElementId : signalWordElementId}
@@ -193,14 +237,10 @@ const NotificationDialog = ({
       >
         <div
           role="document"
-          tabIndex="-1"
           ref={dialogContainerRef}
         >
-          {/* <VisuallyHiddenText
-            text={applicationIntl.formatMessage({ id: 'Terra.AbstractModal.BeginModalDialog' })}
-          /> */}
           <div className={cx('notification-dialog-inner-wrapper')}>
-            <div className={cx('notification-dialog-container')} data-terra-notification-dialog>
+            <div className={cx('notification-dialog-container')}>
               <div className={cx('floating-header-background', variant)} />
               <div className={cx('header')}>
                 <div className={cx('header-content')}>
@@ -229,9 +269,6 @@ const NotificationDialog = ({
               </div>
             </div>
           </div>
-          {/* <VisuallyHiddenText
-            text={applicationIntl.formatMessage({ id: 'Terra.AbstractModal.EndModalDialog' })}
-          /> */}
         </div>
       </div>
     </LayerPortal>

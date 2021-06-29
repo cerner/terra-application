@@ -1,5 +1,9 @@
 :local {
   .clinical-lowlight-theme {
+    --terra-application-notification-dialog-overlay-background-color: rgba(0, 0, 0, 0.4);
+    --terra-application-notification-dialog-overlay-background-image: none;
+    --terra-application-notification-dialog-overlay-foreground-color: none;
+    --terra-application-notification-dialog-overlay-opacity: 1;
     --terra-application-notification-dialog-background: #222a2e;
     --terra-application-notification-dialog-border-radius: 3px;
     --terra-application-notification-dialog-small-horizontal-inset: 17px;

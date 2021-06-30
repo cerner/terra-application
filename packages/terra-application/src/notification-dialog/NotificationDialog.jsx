@@ -204,7 +204,7 @@ const NotificationDialog = ({
   useFocusTrap(dialogContainerRef);
 
   React.useEffect(() => {
-    deferExecution(() => alertDialogRef.current.focus());
+    deferExecution(() => dialogContainerRef.current.focus());
   }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
@@ -231,15 +231,18 @@ const NotificationDialog = ({
 
   return (
     <LayerPortal>
-      <div style={{ height: '100%', width: '100%' }} tabIndex="-1" ref={dialogContainerRef}>
+      <div
+        style={{ height: '100%', width: '100%' }}
+        tabIndex="-1"
+        ref={dialogContainerRef}
+        role="alertdialog"
+        aria-label={`${signalWord} ${dialogTitle}`}
+        aria-describedby="tyler-test tyler-test-2"
+        aria-modal="true"
+      >
         <div className={cx('overlay')} />
         <div
-          role="alertdialog"
-          aria-label={`${signalWord} ${dialogTitle}`}
-          aria-describedby="tyler-test tyler-test-2"
-          aria-modal="true"
           className={dialogClassNames}
-          tabIndex="-1"
           ref={alertDialogRef}
         >
           {/* <div tabIndex="-1" ref={alertDialogRef} /> */}

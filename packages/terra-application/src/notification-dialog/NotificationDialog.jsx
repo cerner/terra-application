@@ -204,7 +204,7 @@ const NotificationDialog = ({
   useFocusTrap(dialogContainerRef);
 
   React.useEffect(() => {
-    deferExecution(() => dialogContainerRef.current.focus());
+    deferExecution(() => alertDialogRef.current.focus());
   }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
@@ -243,9 +243,9 @@ const NotificationDialog = ({
         <div className={cx('overlay')} />
         <div
           className={dialogClassNames}
-          ref={alertDialogRef}
+          // ref={alertDialogRef}
         >
-          {/* <div tabIndex="-1" ref={alertDialogRef} /> */}
+          <div tabIndex="-1" ref={alertDialogRef} />
           <div className={cx('notification-dialog-inner-wrapper')}>
             <div className={cx('notification-dialog-container')}>
               <div className={cx('floating-header-background', variant)} />

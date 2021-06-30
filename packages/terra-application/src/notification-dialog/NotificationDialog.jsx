@@ -141,19 +141,12 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
   );
 };
 
-const useFocusTrap = (containerRef, initialFocusRef) => {
-  React.useLayoutEffect(() => {
-    if (initialFocusRef && initialFocusRef.current) {
-      initialFocusRef.current.focus();
-      return;
-    }
+/**
+ * no described-by, should be supplemental only
+ * hopefully no explicit start/end dialog elements
+ */
 
-    const tabbableElements = tabbable(containerRef.current);
-    if (tabbableElements.length) {
-      deferExecution(() => tabbableElements[0].focus());
-    }
-  }, [containerRef, initialFocusRef]);
-
+const useFocusTrap = (containerRef) => {
   React.useEffect(() => {
     const containerElement = containerRef.current;
 
@@ -206,8 +199,13 @@ const NotificationDialog = ({
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const { LayerPortal, layerId } = useLayerPortal({ layerType: 'notificationDialog' });
   const dialogContainerRef = React.useRef();
+  const alertDialogRef = React.useRef();
 
   useFocusTrap(dialogContainerRef);
+
+  React.useEffect(() => {
+    deferExecution(() => alertDialogRef.current.focus());
+  }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
     throw new Error('Either the `acceptAction` or `rejectAction` props must be provided for Notification dialog');
@@ -226,19 +224,25 @@ const NotificationDialog = ({
   const signalWordElementId = `${layerId}-signal-word`;
   const titleElementId = `${layerId}-title`;
 
+  // let labeledByIdSet = signalWordElementId;
+  // if (dialogTitle) {
+  //   labeledByIdSet = `${labeledByIdSet} ${titleElementId}`;
+  // }
+
   return (
     <LayerPortal>
-      <div className={cx('overlay')} />
-      <div
-        aria-labelledby={signalWordElementId}
-        aria-describedby={dialogTitle ? titleElementId : signalWordElementId}
-        role="alertdialog"
-        className={dialogClassNames}
-      >
+      <div style={{ height: '100%', width: '100%' }} tabIndex="-1" ref={dialogContainerRef}>
+        <div className={cx('overlay')} />
         <div
-          role="document"
-          ref={dialogContainerRef}
+          role="alertdialog"
+          aria-label={`${signalWord} ${dialogTitle}`}
+          aria-describedby="tyler-test tyler-test-2"
+          aria-modal="true"
+          className={dialogClassNames}
+          tabIndex="-1"
+          ref={alertDialogRef}
         >
+          {/* <div tabIndex="-1" ref={alertDialogRef} /> */}
           <div className={cx('notification-dialog-inner-wrapper')}>
             <div className={cx('notification-dialog-container')}>
               <div className={cx('floating-header-background', variant)} />
@@ -251,7 +255,7 @@ const NotificationDialog = ({
                   </div>
                 </div>
               </div>
-              <div className={cx('body')}>
+              <div className={cx('body')} tabIndex="0" id="tyler-test">
                 {(startMessage)
                 && <div className={cx('message')}>{(startMessage)}</div>}
                 {content
@@ -259,7 +263,7 @@ const NotificationDialog = ({
                 {endMessage
                 && <div className={cx('message')}>{endMessage}</div>}
               </div>
-              <div className={cx('footer')}>
+              <div className={cx('footer')} id="tyler-test-2">
                 {actionSection(
                   acceptAction,
                   rejectAction,

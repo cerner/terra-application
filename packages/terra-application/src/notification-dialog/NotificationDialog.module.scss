@@ -24,11 +24,8 @@
     border: var(--terra-application-notification-dialog-border, none);
     border-radius: var(--terra-application-notification-dialog-border-radius, 3px);
     box-shadow: var(--terra-application-notification-dialog-box-shadow, 0 3px 7px rgba(0, 0, 0, 0.3));
-
     color: var(--terra-application-notification-dialog-color, inherit);
     display: block;
-
-    
     left: 50%;
     max-height: calc(100% - 2 * var(--terra-application-notification-dialog-vertical-inset, 10px));
     max-width: calc(100% - 2 * var(--terra-application-notification-dialog-horizontal-inset, 10px));
@@ -145,6 +142,10 @@
     overflow: auto;
     padding: var(--terra-application-notification-dialog-body-padding, 0 1.64285rem);
     width: 100%;
+
+    &:focus {
+      outline: none;
+    }
 
     @media screen and (min-height: 15.5rem) {
       min-height: var(--terra-application-notification-dialog-body-media-small-min-height, 4.5rem);

@@ -354,7 +354,6 @@ class Tabs extends React.Component {
           role="tablist"
           aria-label={ariaLabel}
           aria-orientation="horizontal"
-          aria-owns={hiddenIds.join(" ")}
         >
           {visibleTabs}
         </div>

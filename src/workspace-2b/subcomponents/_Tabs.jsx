@@ -319,21 +319,19 @@ class Tabs extends React.Component {
 
     return (
       <>
-        {this.showMoreButton ? (
-          <MoreButton
-            isOpen={this.isOpen}
-            hiddenIndex={this.hiddenStartIndex}
-            isActive={isHiddenSelected}
-            zIndex={tabData.length - this.hiddenStartIndex}
-            onBlur={this.handleMoreButtonBlur}
-            onSelect={this.handleMoreButtonSelect}
-            refCallback={(node) => {
-              this.moreButtonRef.current = node;
-            }}
-            tabIds={ids}
-            label={this.props.label}
-          />
-        ) : undefined}
+        <MoreButton
+          isOpen={this.isOpen}
+          hiddenIndex={this.hiddenStartIndex}
+          isActive={isHiddenSelected}
+          zIndex={tabData.length - this.hiddenStartIndex}
+          onBlur={this.handleMoreButtonBlur}
+          onSelect={this.handleMoreButtonSelect}
+          refCallback={(node) => {
+            this.moreButtonRef.current = node;
+          }}
+          tabIds={ids}
+          label={this.props.label}
+        />
         <TabDropDown
           onFocus={this.handleHiddenFocus}
           onBlur={this.handleHiddenBlur}

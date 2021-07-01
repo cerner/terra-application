@@ -82,6 +82,8 @@ const TabDropDown = ({
     dropDownAdjustment = "smDropDownPos";
   } else if (activeSize === "medium") {
     dropDownAdjustment = "mdDropDownPos";
+  } else if (activeSize === "large") {
+    dropDownAdjustment = "lgDropDownPos";
   }
 
   const theme = React.useContext(ThemeContext);

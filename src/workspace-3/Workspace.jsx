@@ -164,7 +164,7 @@ const Workspace = ({
   if (activeItemKey !== "tab-1") {
     const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
 
-    if (activeSize === 'medium' && activeItemIndex > 3) {
+    if (activeSize === "medium" && activeItemIndex > 3) {
       // const splicedTab = tabData.splice(activeItemIndex, 1);
       // console.log(splicedTab[0]);
       // tabData.splice(3, 0, splicedTab[0]);
@@ -176,7 +176,7 @@ const Workspace = ({
       reFocus(3);
     }
 
-    if (activeSize === 'small' && activeItemIndex > 1) {
+    if (activeSize === "small" && activeItemIndex > 1) {
       // const splicedTab = tabData.splice(activeItemIndex, 1);
       // console.log(splicedTab[0]);
       // tabData.splice(1, 0, splicedTab[0]);
@@ -299,9 +299,13 @@ const Workspace = ({
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div ref={refTabsContainer} className={cx("workspace")} role="none">
-        <div aria-hidden className={cx("body-shadow-container")}>
-          <div className={cx("body-shadow")} />
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 3</h1>
+          <p aria-hidden>
+            The only difference is the "more" label and its styles
+          </p>
         </div>
+
         <div role="none" className={cx("button-header")}>
           {dismissButton}
           <div className={cx("fill-element")} />
@@ -313,7 +317,11 @@ const Workspace = ({
             "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
           })}
         >
-          <Tabs activeSize={activeSize} ariaLabel={ariaLabel} tabData={tabData} />
+          <Tabs
+            activeSize={activeSize}
+            ariaLabel={ariaLabel}
+            tabData={tabData}
+          />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

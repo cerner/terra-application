@@ -9,13 +9,11 @@ const cx = classNames.bind(styles);
 const MockContent = ({ fruit = "" }) => {
   const fruitText = TabContentTemplate[fruit];
   return (
-    <>
-      <div className={cx("content-container")}>
-        {fruitText.map((elem) => {
-          return <p>{elem.props.children}</p>;
-        })}
-      </div>
-    </>
+    <div className={cx("content-container")}>
+      {fruitText.map((elem, index) => (
+        <p key={index}>{elem.props.children}</p>
+      ))}
+    </div>
   );
 };
 

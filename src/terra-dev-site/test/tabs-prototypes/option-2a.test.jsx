@@ -1,7 +1,7 @@
 import React from "react";
 import Workspace, { WorkspaceItem } from "../../../workspace-2a";
 import ActiveMainPageContext from "../../../application-container/private/active-main-page/ActiveMainPageContext";
-import Tab1 from "./option-2a-tabs/Tab2";
+import Tab1 from "./option-2a-tabs/Tab1";
 import Tab2 from "./option-2a-tabs/Tab2";
 import Tab3 from "./option-2a-tabs/Tab3";
 import Tab4 from "./option-2a-tabs/Tab4";
@@ -10,7 +10,7 @@ import Tab6 from "./option-2a-tabs/Tab6";
 
 const sizeMap = {
   small: "320px",
-  medium: "500px",
+  medium: "450px",
   large: "1000px",
 };
 
@@ -61,7 +61,6 @@ const WorkspaceTest = () => {
           ]}
           onRequestSizeChange={onRequestSizeChange}
           onRequestDismiss={onRequestClose}
-          extraConfig={false}
         >
           <WorkspaceItem
             itemKey="tab-1"

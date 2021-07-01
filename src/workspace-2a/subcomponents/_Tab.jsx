@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames/bind';
-import ThemeContext from 'terra-theme-context';
-import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
+import React, { useRef } from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames/bind";
+import ThemeContext from "terra-theme-context";
+import { KEY_SPACE, KEY_RETURN } from "keycode-js";
 import {
   enableFocusStyles,
   disableFocusStyles,
   handleArrows,
-} from './_TabUtils';
+} from "./_TabUtils";
 
-import styles from './Tab.module.scss';
+import styles from "./Tab.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -71,17 +71,23 @@ const Tab = ({
   onSelect,
   tabIds,
   zIndex,
+  tabSlide,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
   const tabClassNames = cx(
-    'tab',
-    { 'is-active': isSelected },
+    "tab",
+    { "is-active": isSelected },
     theme.className,
+    "tabsNewStyles"
   );
+  const tabSlideRef = useRef(null);
 
   function onKeyDown(event) {
-    if (event.nativeEvent.keyCode === KEY_RETURN || event.nativeEvent.keyCode === KEY_SPACE) {
+    if (
+      event.nativeEvent.keyCode === KEY_RETURN ||
+      event.nativeEvent.keyCode === KEY_SPACE
+    ) {
       event.preventDefault();
       event.stopPropagation();
       onSelect(itemKey, metaData);
@@ -92,6 +98,9 @@ const Tab = ({
 
   function onClick() {
     onSelect(itemKey, metaData);
+    if (tabSlideRef.current) {
+      tabSlide(tabSlideRef.current, "tabNormal");
+    }
   }
 
   attributes.tabIndex = isSelected ? 0 : -1;
@@ -99,8 +108,8 @@ const Tab = ({
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = enableFocusStyles;
   attributes.onMouseDown = disableFocusStyles;
-  attributes['data-focus-styles-enabled'] = true;
-  attributes['aria-selected'] = isSelected;
+  attributes["data-focus-styles-enabled"] = true;
+  attributes["aria-selected"] = isSelected;
   attributes.style = { zIndex };
 
   return (
@@ -111,11 +120,10 @@ const Tab = ({
       role="tab"
       className={tabClassNames}
       title={label}
+      ref={tabSlideRef}
     >
-      <div className={cx('inner')}>
-        <div className={cx('label')}>
-          {label}
-        </div>
+      <div className={cx("inner")}>
+        <div className={cx("label")}>{label}</div>
       </div>
     </div>
   );

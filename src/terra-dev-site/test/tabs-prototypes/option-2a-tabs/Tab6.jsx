@@ -2,7 +2,7 @@ import React from "react";
 
 import { WorkspaceContent } from "../../../../workspace-2a";
 
-import MockContent from "./../MockContent";
+import MockContent from "../MockContent";
 
 const Tab6 = () => {
   return (

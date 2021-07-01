@@ -104,7 +104,6 @@ class Tabs extends React.Component {
     if (!this.moreButtonRef.current || !this.containerRef.current) {
       return;
     }
-
     // NOTE: get width from bounding client rect instead of resize observer, zoom throws off safari.
     const { width } =
       this.containerRef.current.parentNode.getBoundingClientRect();
@@ -277,34 +276,33 @@ class Tabs extends React.Component {
     let isHiddenSelected = false;
 
     tabData.forEach((tab, index) => {
-      if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
-        visibleTabs.push(
-          <Tab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelect(tab.onSelect)}
-            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
-        );
-      } else {
-        hiddenTabs.push(
-          <HiddenTab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelectHidden(tab.onSelect)}
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-          />
-        );
-        hiddenIds.push(tab.id);
+      visibleTabs.push(
+        <Tab
+          {...tab}
+          key={tab.id}
+          index={index}
+          tabIds={ids}
+          onSelect={this.wrapOnSelect(tab.onSelect)}
+          zIndex={tab.isSelected ? tabData.length : tabData.length - index}
+          tabSlide={this.props.tabSlide}
+        />
+      );
+      hiddenTabs.push(
+        <HiddenTab
+          {...tab}
+          key={tab.id}
+          index={index}
+          tabIds={ids}
+          onSelect={this.wrapOnSelectHidden(tab.onSelect)}
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          tabSlide={this.props.tabSlide}
+        />
+      );
+      hiddenIds.push(tab.id);
 
-        if (tab.isSelected) {
-          isHiddenSelected = true;
-        }
+      if (tab.isSelected) {
+        isHiddenSelected = true;
       }
     });
 
@@ -320,16 +318,7 @@ class Tabs extends React.Component {
     }
 
     return (
-      <div
-        {...attrs}
-        className={cx("tab-container", theme.className)}
-        ref={this.containerRef}
-        role="tablist"
-        aria-label={ariaLabel}
-        aria-orientation="horizontal"
-        aria-owns={hiddenIds.join(" ")}
-      >
-        {visibleTabs}
+      <>
         {this.showMoreButton ? (
           <MoreButton
             isOpen={this.isOpen}
@@ -353,10 +342,23 @@ class Tabs extends React.Component {
           refCallback={(node) => {
             this.dropdownRef.current = node;
           }}
+          activeSize={this.props.activeSize}
         >
           {hiddenTabs}
         </TabDropDown>
-      </div>
+        <div
+          {...attrs}
+          className={cx("tab-container", theme.className, this.props.slideTabs)}
+          style={{ transition: `${this.props.newSpeedAnimation}s ease-in-out` }}
+          ref={this.containerRef}
+          role="tablist"
+          aria-label={ariaLabel}
+          aria-orientation="horizontal"
+          aria-owns={hiddenIds.join(" ")}
+        >
+          {visibleTabs}
+        </div>
+      </>
     );
   }
 }

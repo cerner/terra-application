@@ -246,19 +246,158 @@ const Workspace = ({
   );
 
   const [newLabel, setNewLabel] = useState("Tabs Menu");
+  const [newSpeed, setNewSpeed] = useState("0.1");
+
+  let smallMediumAdjustment = "",
+    slideTabs = "",
+    shadowDisplay = "";
+  let newRight = {};
+  const tabsContainerRef = useRef(null);
+
+  if (activeSize === "small" || activeSize === "medium") {
+    smallMediumAdjustment = "smallMediumStyles";
+    slideTabs = "slidingTabsStyles";
+    newRight = { right: "127px" };
+  } else if (activeSize === "large") {
+    shadowDisplay = "shadowDisplay";
+  }
+
+  const tabTranslateSlide = (tabRef, translateX) => {
+    tabRef.parentNode.style.transform = `translate(${translateX}px, 0)`;
+  };
+
+  const mainContainer = tabsContainerRef.current;
+
+  const tabSlide = (tabRef, tabType) => {
+    let tabSlideRef = {};
+
+    if (mainContainer && activeSize !== "large") {
+      if (tabType === "hiddenTab") {
+        mainContainer.children[3].children.forEach((elem) => {
+          if (elem.id === tabRef.id) {
+            tabSlideRef = elem;
+          }
+        });
+      } else {
+        tabSlideRef = tabRef;
+      }
+
+      const tabId = tabSlideRef.id.split("-").pop();
+      const containerLeft = mainContainer.getBoundingClientRect().left;
+      const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
+      const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
+      const currentTabRight = tabSlideRef.getBoundingClientRect().right;
+      let diffSize = 0;
+
+      if (activeSize === "small") {
+        if (currentTabLeft < containerLeft) {
+          switch (tabId) {
+            case "1":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+            case "2":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+            case "3":
+              tabTranslateSlide(tabSlideRef, diffSize - 1);
+              break;
+            case "4":
+              tabTranslateSlide(tabSlideRef, -99);
+              break;
+            case "5":
+              tabTranslateSlide(tabSlideRef, -175);
+              break;
+            case "6":
+              tabTranslateSlide(tabSlideRef, -250);
+              break;
+          }
+        } else if (currentTabRight > menuLeft) {
+          diffSize = menuLeft - currentTabRight;
+          switch (tabId) {
+            case "1":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+            case "2":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+            case "3":
+              tabTranslateSlide(tabSlideRef, diffSize - 1);
+              break;
+            case "4":
+              tabTranslateSlide(tabSlideRef, -99);
+              break;
+            case "5":
+              tabTranslateSlide(tabSlideRef, -175);
+              break;
+            case "6":
+              tabTranslateSlide(tabSlideRef, -250);
+              break;
+          }
+        }
+      } else if (activeSize === "medium") {
+        if (currentTabLeft < containerLeft) {
+          switch (tabId) {
+            case "1":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+            case "2":
+              tabTranslateSlide(tabSlideRef, 0);
+              break;
+          }
+        } else if (currentTabRight > menuLeft) {
+          switch (tabId) {
+            case "5":
+              tabTranslateSlide(tabSlideRef, -44);
+              break;
+            case "6":
+              tabTranslateSlide(tabSlideRef, -120);
+              break;
+          }
+        }
+      }
+    }
+  };
+
+  const [menuStyleWidth, setMenuStyleWidth] = useState({
+    marginRight: "128px",
+  });
+
+  const resizeMask = () => {
+    const currentMenuWidth =
+      mainContainer.children[1].getBoundingClientRect().width + 6;
+    setMenuStyleWidth({
+      marginRight: currentMenuWidth,
+    });
+  };
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div className={cx("workspace")} role="none">
         <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 2 A</h1>
-          <p aria-hidden>This option currently is not working</p>
-          <div className={cx("btnsContainer")}>
-            <div>
+          <p aria-hidden>Only Tabs are keyboard accesible</p>
+          <div className={cx("btnsContainer", shadowDisplay)}>
+            <div className={cx("inputMenuName")}>
+              <label htmlFor="labelTitleName">Menu name</label>
               <input
                 type="text"
                 value={newLabel}
-                onChange={(e) => setNewLabel(e.target.value)}
+                id="labelTitleName"
+                onChange={(e) => {
+                  setNewLabel(e.target.value);
+                  resizeMask();
+                }}
+              />
+            </div>
+            <div className={cx("inputMenuSpeed")}>
+              <label htmlFor="labelTitleSpeed">A.Speed</label>
+              <input
+                type="number"
+                value={newSpeed}
+                id="labelTitleSpeed"
+                onChange={(e) => {
+                  setNewSpeed(e.target.value);
+                }}
               />
             </div>
           </div>
@@ -268,11 +407,41 @@ const Workspace = ({
         </div>
         <div
           role="none"
-          className={cx("tab-header", {
-            "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
-          })}
+          className={cx(
+            "tab-header",
+            {
+              "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
+            },
+            "slider-items-container",
+            smallMediumAdjustment
+          )}
+          ref={tabsContainerRef}
+          style={menuStyleWidth}
         >
-          <Tabs ariaLabel={ariaLabel} tabData={tabData} label={newLabel} />
+          <div className={cx("shadowsContainerLeft", shadowDisplay)}>
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/left_shadow.png"
+            />
+          </div>
+          <Tabs
+            ariaLabel={ariaLabel}
+            tabData={tabData}
+            label={newLabel}
+            slideTabs={slideTabs}
+            newSpeedAnimation={newSpeed}
+            tabSlide={tabSlide}
+            activeSize={activeSize}
+          />
+          <div
+            className={cx("shadowsContainerRight", shadowDisplay)}
+            style={newRight}
+          >
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/right_shadow.png"
+            />
+          </div>
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

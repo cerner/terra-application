@@ -5,7 +5,7 @@ import ThemeContext from "terra-theme-context";
 import IconCaretDown from "terra-icon/lib/icon/IconCaretDown";
 import { handleMoreButtonArrows } from "./_TabUtils";
 
-import styles from "./Tab.module.scss";
+import styles from "./MoreButton.module.scss";
 
 const cx = classNames.bind(styles);
 

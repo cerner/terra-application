@@ -299,18 +299,13 @@ const Workspace = ({
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div ref={refTabsContainer} className={cx("workspace")} role="none">
-        <div className={cx("workspace")} role="none">
-          <div className={cx("textLegend")}>
-            <h1 tabIndex={0}>Option 3</h1>
-            <p aria-hidden>
-              The only difference is the "more" label and its styles
-            </p>
-          </div>
+        <div className={cx("textLegend")}>
+          <h1 tabIndex={0}>Option 3</h1>
+          <p aria-hidden>
+            The only difference is the "more" label and its styles
+          </p>
         </div>
 
-        <div aria-hidden className={cx("body-shadow-container")}>
-          <div className={cx("body-shadow")} />
-        </div>
         <div role="none" className={cx("button-header")}>
           {dismissButton}
           <div className={cx("fill-element")} />

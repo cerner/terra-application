@@ -247,6 +247,14 @@ const Workspace = ({
 
   const [newLabel, setNewLabel] = useState("Tabs Menu");
   const [newSpeed, setNewSpeed] = useState("0.1");
+  const [shadowsDisplay, setShadowsDisplay] = useState({
+    displayLeft: {
+      display: "none",
+    },
+    displayRight: {
+      display: "block",
+    },
+  });
 
   let smallMediumAdjustment = "",
     slideTabs = "",
@@ -272,22 +280,54 @@ const Workspace = ({
 
   const tabSlideSmallSize = (tabSlideRef, tabId) => {
     switch (tabId) {
-      case "1":
+      case "Apples":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "2":
+      case "Oranges":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "3":
+      case "Strawberries":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -36);
         break;
-      case "4":
+      case "Pineapples":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -112);
         break;
-      case "5":
+      case "Lemons":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -188);
         break;
-      case "6":
+      case "Kiwis":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "none",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -263);
         break;
       default:
@@ -297,17 +337,33 @@ const Workspace = ({
 
   const tabSlideMedSize = (tabSlideRef, tabId) => {
     switch (tabId) {
-      case "1":
+      case "Apples":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "2":
+      case "Oranges":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "5":
+      case "Lemons":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -58);
         break;
-      case "6":
-        tabTranslateSlide(tabSlideRef, -133);
+      case "Kiwis":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "none",
+          },
+        });
+        tabTranslateSlide(tabSlideRef, -135);
         break;
       default:
         tabTranslateSlide(tabSlideRef, 0);
@@ -322,15 +378,15 @@ const Workspace = ({
     if (mainContainer && activeSize !== "large") {
       if (tabType === "hiddenTab") {
         mainContainer.children[3].children.forEach((elem) => {
-          if (elem.id === tabRef.id) {
+          if (elem.title === tabRef.title) {
             tabSlideRef = elem;
           }
         });
       } else {
         tabSlideRef = tabRef;
       }
+      const tabId = tabSlideRef.title;
 
-      const tabId = tabSlideRef.id.split("-").pop();
       const containerLeft = mainContainer.getBoundingClientRect().left;
       const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
       const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
@@ -338,12 +394,28 @@ const Workspace = ({
 
       if (activeSize === "small") {
         if (currentTabLeft < containerLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "none",
+            },
+            displayRight: {
+              display: "block",
+            },
+          });
           tabSlideSmallSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
           tabSlideSmallSize(tabSlideRef, tabId);
         }
       } else if (activeSize === "medium") {
         if (currentTabLeft < containerLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "none",
+            },
+            displayRight: {
+              display: "block",
+            },
+          });
           tabSlideMedSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
           tabSlideMedSize(tabSlideRef, tabId);
@@ -381,6 +453,11 @@ const Workspace = ({
       },
       newRightStyle: { right: "127px" },
     });
+  };
+
+  const shadowRightStyles = {
+    ...shadowsDisplay.displayRight,
+    ...updatedStyles.newRightStyle,
   };
 
   return (
@@ -440,7 +517,10 @@ const Workspace = ({
           ref={tabsContainerRef}
           style={updatedStyles.newMarginRight}
         >
-          <div className={cx("shadowsContainerLeft", shadowDisplay)}>
+          <div
+            className={cx("shadowsContainerLeft", shadowDisplay)}
+            style={shadowsDisplay.displayLeft}
+          >
             <img
               className={cx("imgShadows")}
               src="https://amikoosvet.com/images/provi/left_shadow.png"
@@ -455,15 +535,17 @@ const Workspace = ({
             tabSlide={tabSlide}
             activeSize={activeSize}
           />
-          <div
-            className={cx("shadowsContainerRight", shadowDisplay)}
-            style={updatedStyles.newRightStyle}
-          >
-            <img
-              className={cx("imgShadows")}
-              src="https://amikoosvet.com/images/provi/right_shadow.png"
-            />
-          </div>
+          {activeSize === "large" || (
+            <div
+              className={cx("shadowsContainerRight", shadowDisplay)}
+              style={shadowRightStyles}
+            >
+              <img
+                className={cx("imgShadows")}
+                src="https://amikoosvet.com/images/provi/right_shadow.png"
+              />
+            </div>
+          )}
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

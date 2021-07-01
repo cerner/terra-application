@@ -287,15 +287,47 @@ const Workspace = ({
         tabTranslateSlide(tabSlideRef, 0);
         break;
       case "Strawberries":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -36);
         break;
       case "Pineapples":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -112);
         break;
       case "Lemons":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -188);
         break;
       case "Kiwis":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "none",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -263);
         break;
       default:
@@ -312,9 +344,25 @@ const Workspace = ({
         tabTranslateSlide(tabSlideRef, 0);
         break;
       case "Lemons":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "block",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -58);
         break;
       case "Kiwis":
+        setShadowsDisplay({
+          displayLeft: {
+            display: "block",
+          },
+          displayRight: {
+            display: "none",
+          },
+        });
         tabTranslateSlide(tabSlideRef, -135);
         break;
       default:
@@ -356,14 +404,6 @@ const Workspace = ({
           });
           tabSlideSmallSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
-          setShadowsDisplay({
-            displayLeft: {
-              display: "block",
-            },
-            displayRight: {
-              display: "none",
-            },
-          });
           tabSlideSmallSize(tabSlideRef, tabId);
         }
       } else if (activeSize === "medium") {
@@ -378,14 +418,6 @@ const Workspace = ({
           });
           tabSlideMedSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
-          setShadowsDisplay({
-            displayLeft: {
-              display: "block",
-            },
-            displayRight: {
-              display: "none",
-            },
-          });
           tabSlideMedSize(tabSlideRef, tabId);
         }
       }

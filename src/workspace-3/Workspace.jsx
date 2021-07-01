@@ -302,7 +302,7 @@ const Workspace = ({
         <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 3</h1>
           <p aria-hidden>
-            The only difference is the "more" label and its styles
+            Swapabble tabs and counts in the "More" button.
           </p>
         </div>
 

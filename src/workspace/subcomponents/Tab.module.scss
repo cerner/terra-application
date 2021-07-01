@@ -5,13 +5,6 @@
 :local {
   .tab,
   .tab-menu {
-    // Option 1 style Start
-    &:hover {
-      background-color: #a7d8f6 !important;
-      background-image: none !important;
-      border-radius: 5px;
-    }
-    // Option 1 style End
     background-color: var(
       --terra-application-workspace-tab-background-color,
       transparent
@@ -208,6 +201,11 @@
     height: 29px !important;
     margin-left: 5px;
     line-height: 9px !important;
+    &:hover {
+      background-color: #a7d8f6 !important;
+      background-image: none !important;
+      border-radius: 5px;
+    }
   }
 
   .moreButtonInner {

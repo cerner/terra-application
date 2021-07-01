@@ -113,7 +113,7 @@ const HiddenTab = ({
     }
   };
 
-  attributes.tabIndex = isSelected ? 0 : -1;
+  //attributes.tabIndex = isSelected ? 0 : -1;
   attributes.onClick = (e) => {
     e.preventDefault();
     e.stopPropagation();
@@ -127,14 +127,14 @@ const HiddenTab = ({
   attributes.onFocus = onFocus;
   attributes.onMouseDown = disableFocusStyles;
   attributes["data-focus-styles-enabled"] = true;
-  attributes["aria-selected"] = isSelected;
+  //attributes["aria-selected"] = isSelected;
 
   return (
     <div
       {...attributes}
       id={id}
       aria-controls={associatedPanelId}
-      role="tab"
+      role="none"
       className={hiddenClassNames}
       ref={hiddenRef}
     >

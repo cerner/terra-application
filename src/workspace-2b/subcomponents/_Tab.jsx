@@ -71,13 +71,17 @@ const Tab = ({
   onSelect,
   tabIds,
   zIndex,
-  singleTab,
-  checkWhenArrowing,
+  tabSlide,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
-  const tabClassNames = cx("tab", { "is-active": isSelected }, theme.className);
-  const tabRef = useRef(null);
+  const tabClassNames = cx(
+    "tab",
+    { "is-active": isSelected },
+    theme.className,
+    "tabsNewStyles"
+  );
+  const tabSlideRef = useRef(null);
 
   function onKeyDown(event) {
     if (
@@ -90,21 +94,22 @@ const Tab = ({
     } else {
       handleArrows(event, index, tabIds);
     }
-    checkWhenArrowing(tabRef);
   }
 
   function onClick() {
-    singleTab(tabRef);
     onSelect(itemKey, metaData);
+    if (tabSlideRef.current) {
+      tabSlide(tabSlideRef.current, "tabNormal");
+    }
   }
 
+  //attributes.tabIndex = isSelected ? 0 : -1;
   attributes.onClick = onClick;
-  /*attributes.tabIndex = isSelected ? 0 : -1;
-  attributes.onKeyDown = onKeyDown;
-  attributes.onBlur = enableFocusStyles;
-  attributes.onMouseDown = disableFocusStyles;
-  attributes["data-focus-styles-enabled"] = true;
-  attributes["aria-selected"] = isSelected;*/
+  //attributes.onKeyDown = onKeyDown;
+  //attributes.onBlur = enableFocusStyles;
+  //attributes.onMouseDown = disableFocusStyles;
+  //attributes["data-focus-styles-enabled"] = true;
+  //attributes["aria-selected"] = isSelected;
   attributes.style = { zIndex };
 
   return (
@@ -115,7 +120,7 @@ const Tab = ({
       role="none"
       className={tabClassNames}
       title={label}
-      ref={tabRef}
+      ref={tabSlideRef}
     >
       <div className={cx("inner")}>
         <div className={cx("label")}>{label}</div>

@@ -63,7 +63,6 @@ const MoreButton = ({
   tabIds,
   zIndex,
   label,
-  activeSize,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -87,17 +86,11 @@ const MoreButton = ({
   };
 
   /* eslint-disable react/forbid-dom-props */
-
-  let classSizes = "";
-
-  if (activeSize === "small") {
-    classSizes = "dropdownSmButton";
-  } else if (activeSize === "medium") {
-    classSizes = "dropdownMdButton";
-  }
-
   return (
     <div
+      //aria-hidden
+      tabIndex={0}
+      role="tablist"
       ref={refCallback}
       onClick={handleOnSelect}
       onKeyDown={handleOnKeyDown}
@@ -105,16 +98,18 @@ const MoreButton = ({
       onMouseDown={handleOnMouseDown}
       className={cx(
         "tab-menu",
-        "tab-dropdown-button",
-        classSizes,
-        theme.className
+        //{ "is-active": isOpen || isActive },
+        { "is-open": isOpen },
+        theme.className,
+        isOpen && "activeOpen"
       )}
-      style={{ zIndex: isOpen && "0" }}
+      style={{ zIndex: isOpen ? "100" : zIndex }}
       data-testid="workspace-tabs-more-button"
     >
       <div className={cx("inner")}>
-        <div className={cx("icon", "tab-dropdown-button-inner")}>
-          {label} <IconCaretDown />
+        <div className={cx("icon")}>
+          {label}
+          <IconCaretDown />
         </div>
       </div>
     </div>

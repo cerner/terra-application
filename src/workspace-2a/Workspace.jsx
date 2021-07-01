@@ -393,6 +393,7 @@ const Workspace = ({
             <div className={cx("inputMenuName")}>
               <label htmlFor="labelTitleName">Menu name</label>
               <input
+                tabIndex={-1}
                 type="text"
                 value={newLabel}
                 id="labelTitleName"
@@ -407,6 +408,7 @@ const Workspace = ({
             <div className={cx("inputMenuSpeed")}>
               <label htmlFor="labelTitleSpeed">A. Speed</label>
               <input
+                tabIndex={-1}
                 type="number"
                 value={newSpeed}
                 id="labelTitleSpeed"
@@ -416,7 +418,9 @@ const Workspace = ({
               />
             </div>
             <div className={cx("buttonReset")}>
-              <button onClick={resetValues}>Reset</button>
+              <button tabIndex={-1} onClick={resetValues}>
+                Reset
+              </button>
             </div>
           </div>
         </div>

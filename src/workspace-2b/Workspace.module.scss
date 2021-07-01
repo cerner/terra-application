@@ -69,56 +69,6 @@
     user-select: none;
     width: 100%;
     z-index: 1;
-
-    .textLegend {
-      text-align: center;
-      background-color: #fff;
-      padding-bottom: 1rem;
-    }
-
-    .btnsContainer {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-    }
-
-    .btns {
-      padding: 5px 10px;
-      background-color: #fafafa;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #cfcfcf;
-      }
-    }
-  }
-  .active-btn {
-    background-color: #b6b6b6 !important;
-  }
-
-  .slider-main-container-sm {
-    overflow-y: auto;
-    max-width: 320px;
-  }
-
-  .slider-main-container-md {
-    overflow-y: auto;
-    max-width: 500px;
-  }
-
-  .slider-main-container-lg {
-    max-width: 1000px;
-  }
-
-  .slider-items-container {
-    overflow-y: hidden;
-    overflow-x: hidden;
-  }
-
-  .slider-main-container::-webkit-scrollbar {
-    display: none;
   }
 
   .is-overlay .workspace {
@@ -172,7 +122,6 @@
     display: flex;
     flex: 0 0 auto;
     justify-content: space-between;
-    left: 0;
     min-height: var(
       --terra-application-workspace-button-header-min-height,
       48px
@@ -181,7 +130,7 @@
     top: 0;
     width: 100%;
     z-index: -1;
-    margin-bottom: 3px;
+    justify-content: flex-end;
 
     .fill-element {
       flex: 1 1 auto;
@@ -210,13 +159,20 @@
       --terra-application-workspace-tab-header-margin-right,
       2.286rem
     );
+    margin-top: var(
+      --terra-application-workspace-tab-header-margin-top,
+      1.0714rem
+    );
     width: calc(
       100% - var(--terra-application-workspace-tab-header-width, 3rem)
     );
     z-index: 50;
 
     &.has-dismiss-button {
-      padding-left: 7.85rem;
+      margin-left: var(
+        --terra-application-workspace-tab-header-has-dismiss-margin-left,
+        2.286rem
+      );
       width: calc(
         100% -
           var(
@@ -224,11 +180,6 @@
             4.571rem
           )
       );
-    }
-
-    &.small-adjustment-css {
-      min-height: 32px;
-      width: 100%;
     }
   }
 
@@ -257,5 +208,66 @@
       height: 100%;
       width: 100%;
     }
+  }
+  //Option 2A styles
+  .slider-items-container {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    min-height: 33px;
+  }
+  .slider-main-container::-webkit-scrollbar {
+    display: none;
+  }
+  .smallMediumStyles {
+    margin-left: 0 !important;
+    margin-right: 0;
+    width: auto !important;
+  }
+  .textLegend {
+    text-align: center;
+    background-color: #fff;
+    padding-bottom: 1rem;
+  }
+  .btnsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .inputMenuName,
+  .inputMenuSpeed {
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+  }
+  .inputMenuName {
+    input {
+      width: 81px;
+    }
+  }
+  .inputMenuSpeed {
+    input {
+      width: 50px;
+    }
+  }
+  .buttonReset {
+    display: flex;
+    align-items: flex-end;
+  }
+  .shadowsContainerLeft,
+  .shadowsContainerRight {
+    position: absolute;
+    z-index: 10;
+  }
+  .shadowsContainerRight {
+    right: 439px;
+    top: 228px;
+  }
+  .imgShadows {
+    height: 33px;
+  }
+  .shadowDisplay {
+    display: none;
   }
 }

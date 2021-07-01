@@ -272,22 +272,22 @@ const Workspace = ({
 
   const tabSlideSmallSize = (tabSlideRef, tabId) => {
     switch (tabId) {
-      case "1":
+      case "Apples":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "2":
+      case "Oranges":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "3":
+      case "Strawberries":
         tabTranslateSlide(tabSlideRef, -36);
         break;
-      case "4":
+      case "Pineapples":
         tabTranslateSlide(tabSlideRef, -112);
         break;
-      case "5":
+      case "Lemons":
         tabTranslateSlide(tabSlideRef, -188);
         break;
-      case "6":
+      case "Kiwis":
         tabTranslateSlide(tabSlideRef, -263);
         break;
       default:
@@ -297,16 +297,16 @@ const Workspace = ({
 
   const tabSlideMedSize = (tabSlideRef, tabId) => {
     switch (tabId) {
-      case "1":
+      case "Apples":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "2":
+      case "Oranges":
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "5":
+      case "Lemons":
         tabTranslateSlide(tabSlideRef, -58);
         break;
-      case "6":
+      case "Kiwis":
         tabTranslateSlide(tabSlideRef, -133);
         break;
       default:
@@ -322,15 +322,15 @@ const Workspace = ({
     if (mainContainer && activeSize !== "large") {
       if (tabType === "hiddenTab") {
         mainContainer.children[3].children.forEach((elem) => {
-          if (elem.id === tabRef.id) {
+          if (elem.title === tabRef.title) {
             tabSlideRef = elem;
           }
         });
       } else {
         tabSlideRef = tabRef;
       }
+      const tabId = tabSlideRef.title;
 
-      const tabId = tabSlideRef.id.split("-").pop();
       const containerLeft = mainContainer.getBoundingClientRect().left;
       const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
       const currentTabLeft = tabSlideRef.getBoundingClientRect().left;

@@ -132,11 +132,11 @@ const HiddenTab = ({
   return (
     <div
       {...attributes}
-      id={id}
       aria-controls={associatedPanelId}
       role="none"
       className={hiddenClassNames}
       ref={hiddenRef}
+      title={label}
     >
       <div className={cx("checkbox")}>
         {isSelected ? <IconCheckmark /> : null}

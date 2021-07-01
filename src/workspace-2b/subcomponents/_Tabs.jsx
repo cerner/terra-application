@@ -104,7 +104,6 @@ class Tabs extends React.Component {
     if (!this.moreButtonRef.current || !this.containerRef.current) {
       return;
     }
-
     // NOTE: get width from bounding client rect instead of resize observer, zoom throws off safari.
     const { width } =
       this.containerRef.current.parentNode.getBoundingClientRect();
@@ -285,8 +284,7 @@ class Tabs extends React.Component {
           tabIds={ids}
           onSelect={this.wrapOnSelect(tab.onSelect)}
           zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          singleTab={this.props.singleTab}
-          checkWhenArrowing={this.props.checkWhenArrowing}
+          tabSlide={this.props.tabSlide}
         />
       );
       hiddenTabs.push(
@@ -298,7 +296,7 @@ class Tabs extends React.Component {
           onSelect={this.wrapOnSelectHidden(tab.onSelect)}
           onFocus={this.handleHiddenFocus}
           onBlur={this.handleHiddenBlur}
-          jumpToActiveTab={this.props.jumpToActiveTab}
+          tabSlide={this.props.tabSlide}
         />
       );
       hiddenIds.push(tab.id);
@@ -321,39 +319,41 @@ class Tabs extends React.Component {
 
     return (
       <>
+        <MoreButton
+          isOpen={this.isOpen}
+          hiddenIndex={this.hiddenStartIndex}
+          isActive={isHiddenSelected}
+          zIndex={tabData.length - this.hiddenStartIndex}
+          onBlur={this.handleMoreButtonBlur}
+          onSelect={this.handleMoreButtonSelect}
+          refCallback={(node) => {
+            this.moreButtonRef.current = node;
+          }}
+          tabIds={ids}
+          label={this.props.label}
+        />
+        <TabDropDown
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          isOpen={this.isOpen}
+          onRequestClose={this.handleOutsideClick}
+          refCallback={(node) => {
+            this.dropdownRef.current = node;
+          }}
+          activeSize={this.props.activeSize}
+        >
+          {hiddenTabs}
+        </TabDropDown>
         <div
           {...attrs}
-          className={cx("tab-container", theme.className)}
+          className={cx("tab-container", theme.className, this.props.slideTabs)}
+          style={{ transition: `${this.props.newSpeedAnimation}s ease-in-out` }}
           ref={this.containerRef}
           role="tablist"
+          //aria-label={ariaLabel}
+          //aria-orientation="horizontal"
+          //aria-owns={hiddenIds.join(" ")}
         >
-          <MoreButton
-            label={"Tabs Menu"}
-            isOpen={this.isOpen}
-            hiddenIndex={this.hiddenStartIndex}
-            isActive={isHiddenSelected}
-            zIndex={tabData.length - this.hiddenStartIndex}
-            onBlur={this.handleMoreButtonBlur}
-            onSelect={this.handleMoreButtonSelect}
-            refCallback={(node) => {
-              this.moreButtonRef.current = node;
-            }}
-            tabIds={ids}
-            activeSize={this.props.activeSize}
-          />
-
-          <TabDropDown
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-            isOpen={this.isOpen}
-            onRequestClose={this.handleOutsideClick}
-            refCallback={(node) => {
-              this.dropdownRef.current = node;
-            }}
-            activeSize={this.props.activeSize}
-          >
-            {hiddenTabs}
-          </TabDropDown>
           {visibleTabs}
         </div>
       </>

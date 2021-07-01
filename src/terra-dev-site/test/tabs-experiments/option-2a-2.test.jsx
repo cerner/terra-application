@@ -90,7 +90,7 @@ const WorkspaceTest = () => {
           />
           <WorkspaceItem
             itemKey="tab-6"
-            label="Kiwiws"
+            label="Kiwis"
             render={() => <Tab6 />}
           />
         </Workspace>

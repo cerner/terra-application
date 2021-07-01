@@ -97,9 +97,10 @@ const MoreButton = ({
       onMouseDown={handleOnMouseDown}
       className={cx(
         "tab-menu",
-        { "is-active": isOpen || isActive },
+        //{ "is-active": isOpen || isActive },
         { "is-open": isOpen },
-        theme.className
+        theme.className,
+        isOpen && "activeOpen"
       )}
       style={{ zIndex: isOpen ? "100" : zIndex }}
       data-testid="workspace-tabs-more-button"

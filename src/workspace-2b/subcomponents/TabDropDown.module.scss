@@ -28,8 +28,6 @@
     position: absolute;
     top: var(--terra-application-workspace-tab-drop-down-top, 50px);
     z-index: 50;
-    left: 0 !important;
-    margin-top: 30px !important;
   }
 
   .is-open {
@@ -59,22 +57,15 @@
       --terra-application-workspace-tab-drop-down-padding-bottom,
       5px
     );
+    //Option 2A styles
+    top: 242px;
   }
-
-  .dropdownSm {
-    top: 134px;
+  //Option 2A styles
+  .smDropDownPos,
+  .mdDropDownPos {
+    top: 257px;
   }
-
-  .dropdownMd {
-    top: 134px;
-  }
-
-  .dropdownLg {
-    top: 115px;
-  }
-
-  .dropdown-variant-six {
-    left: unset !important;
-    right: 0;
+  .lgDropDownPos {
+    top: 215px;
   }
 }

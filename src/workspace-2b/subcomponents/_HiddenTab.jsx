@@ -79,11 +79,12 @@ const HiddenTab = ({
   onFocus,
   onSelect,
   tabIds,
-  jumpToActiveTab,
+  tabSlide,
 }) => {
   const attributes = {};
   const theme = React.useContext(ThemeContext);
-  const tabRef = useRef(null);
+  const hiddenRef = useRef(null);
+
   const hiddenClassNames = cx(
     "hidden",
     { "is-active": isSelected },
@@ -96,6 +97,9 @@ const HiddenTab = ({
 
     enableFocusStyles(event);
     onSelect(itemKey, metaData);
+    if (hiddenRef.current) {
+      tabSlide(hiddenRef.current, "hiddenTab");
+    }
   };
 
   const onKeyDown = (event) => {
@@ -114,7 +118,6 @@ const HiddenTab = ({
     e.preventDefault();
     e.stopPropagation();
     handleOnSelect(e);
-    jumpToActiveTab(tabRef);
   };
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = (e) => {
@@ -133,7 +136,7 @@ const HiddenTab = ({
       aria-controls={associatedPanelId}
       role="tab"
       className={hiddenClassNames}
-      ref={tabRef}
+      ref={hiddenRef}
     >
       <div className={cx("checkbox")}>
         {isSelected ? <IconCheckmark /> : null}

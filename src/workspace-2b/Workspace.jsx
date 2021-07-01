@@ -245,140 +245,184 @@ const Workspace = ({
     customProps.className
   );
 
-  let newResizeClass = "",
-    sliderMainClass = "",
-    sliderItemsClass = "";
+  const [newLabel, setNewLabel] = useState("Tabs Menu");
+  const [newSpeed, setNewSpeed] = useState("0.1");
 
-  let slideRef = useRef(null);
-  let slideMainRef = useRef(null);
+  let smallMediumAdjustment = "",
+    slideTabs = "",
+    shadowDisplay = "";
+  const tabsContainerRef = useRef(null);
+  const [updatedStyles, setUpdatedStyles] = useState({
+    newMarginRight: {
+      marginRight: "128px",
+    },
+    newRightStyle: { right: "127px" },
+  });
 
-  if (activeSize === "small") {
-    newResizeClass = "small-adjustment-css";
-    sliderMainClass = "slider-main-container-sm";
-    sliderItemsClass = "slider-items-container";
-  } else if (activeSize === "medium") {
-    newResizeClass = "small-adjustment-css";
-    sliderMainClass = "slider-main-container-md";
-    sliderItemsClass = "slider-items-container";
+  if (activeSize === "small" || activeSize === "medium") {
+    smallMediumAdjustment = "smallMediumStyles";
+    slideTabs = "slidingTabsStyles";
   } else if (activeSize === "large") {
-    newResizeClass = "";
-    sliderMainClass = "slider-main-container-lg";
-    sliderItemsClass = "";
+    shadowDisplay = "shadowDisplay";
   }
 
-  const jumpToActiveTab = (tabRefVal) => {
-    let activeTabFromMenu, lastTabActive;
-    let activeTabPosLeft = 0,
-      slideMainPosLeft = 0,
-      activeTabPosRight = 0,
-      slideMainPosRight = 0;
+  const tabTranslateSlide = (tabRef, translateX) => {
+    tabRef.parentNode.style.transform = `translate(${translateX}px, 0)`;
+  };
 
-    if (tabRefVal.current && slideMainRef.current) {
-      activeTabFromMenu = Array.from(
-        slideMainRef.current.children[2].children[0].children
-      ).filter((tab) => tab.id === tabRefVal.current.id);
+  const tabSlideSmallSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "1":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "2":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "3":
+        tabTranslateSlide(tabSlideRef, -36);
+        break;
+      case "4":
+        tabTranslateSlide(tabSlideRef, -112);
+        break;
+      case "5":
+        tabTranslateSlide(tabSlideRef, -188);
+        break;
+      case "6":
+        tabTranslateSlide(tabSlideRef, -263);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
+  };
 
-      lastTabActive =
-        slideMainRef.current.children[2].children[0].children[5].getBoundingClientRect()
-          .right;
+  const tabSlideMedSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "1":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "2":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "5":
+        tabTranslateSlide(tabSlideRef, -58);
+        break;
+      case "6":
+        tabTranslateSlide(tabSlideRef, -133);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
+  };
 
-      activeTabPosLeft = activeTabFromMenu[0].getBoundingClientRect().left;
-      slideMainPosLeft = slideMainRef.current.getBoundingClientRect().left;
-      activeTabPosRight = activeTabFromMenu[0].getBoundingClientRect().right;
-      slideMainPosRight = slideMainRef.current.getBoundingClientRect().right;
+  const mainContainer = tabsContainerRef.current;
 
-      if (activeTabPosLeft < slideMainPosLeft) {
-        slideRef.current.scrollBy({
-          top: 0,
-          left: -200,
-          behaviour: "smooth",
+  const tabSlide = (tabRef, tabType) => {
+    let tabSlideRef = {};
+
+    if (mainContainer && activeSize !== "large") {
+      if (tabType === "hiddenTab") {
+        mainContainer.children[3].children.forEach((elem) => {
+          if (elem.id === tabRef.id) {
+            tabSlideRef = elem;
+          }
         });
-      } else if (activeTabPosRight > slideMainPosRight) {
-        if (lastTabActive > slideMainPosRight) {
-          slideRef.current.scrollBy({
-            top: 0,
-            left: 300,
-            behaviour: "smooth",
-          });
-        } else {
-          slideRef.current.scrollBy({
-            top: 0,
-            left: 100,
-            behaviour: "smooth",
-          });
+      } else {
+        tabSlideRef = tabRef;
+      }
+
+      const tabId = tabSlideRef.id.split("-").pop();
+      const containerLeft = mainContainer.getBoundingClientRect().left;
+      const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
+      const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
+      const currentTabRight = tabSlideRef.getBoundingClientRect().right;
+
+      if (activeSize === "small") {
+        if (currentTabLeft < containerLeft) {
+          tabSlideSmallSize(tabSlideRef, tabId);
+        } else if (currentTabRight > menuLeft) {
+          tabSlideSmallSize(tabSlideRef, tabId);
+        }
+      } else if (activeSize === "medium") {
+        if (currentTabLeft < containerLeft) {
+          tabSlideMedSize(tabSlideRef, tabId);
+        } else if (currentTabRight > menuLeft) {
+          tabSlideMedSize(tabSlideRef, tabId);
         }
       }
     }
   };
 
-  const slideTabs = (val) => {
-    slideRef.current.scrollBy({
-      top: 0,
-      left: val,
-      behaviour: "smooth",
+  const resizeMask = (key) => {
+    let currentMenuWidth =
+      mainContainer.children[1].getBoundingClientRect().width + 18;
+    let currentRight = currentMenuWidth;
+
+    if (key !== "Backspace" && key !== "Delete") {
+      currentMenuWidth += 1;
+      currentRight = currentMenuWidth - 1;
+    }
+
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: currentMenuWidth,
+      },
+      newRightStyle: {
+        right: `${currentRight}px`,
+      },
     });
   };
 
-  const checkWhenArrowing = (refVal, keyCode) => {
-    let tabsContainerPosRight = 0,
-      dropdownContainerRight = 0;
-    let currentActiveTab;
-    const tabsContainer = slideMainRef.current.children[2];
-
-    if (refVal.current && tabsContainer) {
-      const dropDownMenuTab = tabsContainer.children[0].children[6];
-
-      tabsContainerPosRight =
-        slideMainRef.current.getBoundingClientRect().right;
-      dropdownContainerRight = dropDownMenuTab.getBoundingClientRect().right;
-
-      if (keyCode === 39 || keyCode === 40) {
-        currentActiveTab =
-          refVal.current.nextSibling.getBoundingClientRect().right;
-
-        if (currentActiveTab > tabsContainerPosRight) {
-          slideTabs(200);
-        }
-      } else if (keyCode === 37 || keyCode === 38) {
-        if (refVal.current.previousSibling) {
-          currentActiveTab =
-            refVal.current.previousSibling.getBoundingClientRect().left;
-          if (currentActiveTab < dropdownContainerRight) {
-            slideTabs(-200);
-          }
-        }
-      }
-    }
+  const resetValues = () => {
+    setNewLabel("Tabs Menu");
+    setNewSpeed("0.1");
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: "128px",
+      },
+      newRightStyle: { right: "127px" },
+    });
   };
-
-  const [styleVariants, setstyleVariant] = useState({
-    variantParent: "",
-    variant: "style-variant-one",
-    varianNumb: 0,
-    dismissButton: "",
-    dropdownVariant: "",
-  });
-
-  let classSizes = "";
-
-  if (activeSize === "small") {
-    classSizes = "dismiss-button-sm";
-  } else if (activeSize === "medium") {
-    classSizes = "dismiss-button-md";
-  } else if (activeSize === "large") {
-    classSizes = "dismiss-button-lg";
-  }
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      <div
-        className={cx("workspace", sliderMainClass)}
-        ref={slideMainRef}
-        role="none"
-      >
+      <div className={cx("workspace")} role="none">
         <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 2 B</h1>
-          <p aria-hidden>This option currently is not working</p>
+          <p aria-hidden>Only Menu is keyboard accesible</p>
+          <div className={cx("btnsContainer", shadowDisplay)}>
+            <div className={cx("inputMenuName")}>
+              <label htmlFor="labelTitleName">Menu name</label>
+              <input
+                tabIndex={-1}
+                type="text"
+                value={newLabel}
+                id="labelTitleName"
+                onKeyUp={(e) => {
+                  resizeMask(e.key);
+                }}
+                onChange={(e) => {
+                  setNewLabel(e.target.value);
+                }}
+              />
+            </div>
+            <div className={cx("inputMenuSpeed")}>
+              <label htmlFor="labelTitleSpeed">A. Speed</label>
+              <input
+                tabIndex={-1}
+                type="number"
+                value={newSpeed}
+                id="labelTitleSpeed"
+                onChange={(e) => {
+                  setNewSpeed(e.target.value);
+                }}
+              />
+            </div>
+            <div className={cx("buttonReset")}>
+              <button tabIndex={-1} onClick={resetValues}>
+                Reset
+              </button>
+            </div>
+          </div>
         </div>
         <div role="none" className={cx("button-header")}>
           {sizeButton}
@@ -387,24 +431,39 @@ const Workspace = ({
           role="none"
           className={cx(
             "tab-header",
-            newResizeClass,
-            sliderItemsClass,
-            styleVariants.dismissButton,
-            classSizes,
             {
               "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
-            }
+            },
+            "slider-items-container",
+            smallMediumAdjustment
           )}
-          ref={slideRef}
+          ref={tabsContainerRef}
+          style={updatedStyles.newMarginRight}
         >
+          <div className={cx("shadowsContainerLeft", shadowDisplay)}>
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/left_shadow.png"
+            />
+          </div>
           <Tabs
             ariaLabel={ariaLabel}
             tabData={tabData}
-            jumpToActiveTab={jumpToActiveTab}
+            label={newLabel}
+            slideTabs={slideTabs}
+            newSpeedAnimation={newSpeed}
+            tabSlide={tabSlide}
             activeSize={activeSize}
-            checkWhenArrowing={checkWhenArrowing}
-            styleVariants={styleVariants}
           />
+          <div
+            className={cx("shadowsContainerRight", shadowDisplay)}
+            style={updatedStyles.newRightStyle}
+          >
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/right_shadow.png"
+            />
+          </div>
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

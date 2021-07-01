@@ -46,6 +46,7 @@ const TabDropDown = ({
   refCallback,
   disableOnClickOutside,
   enableOnClickOutside,
+  activeSize,
 }) => {
   const dropDownRef = useRef();
   const handleKeyDown = useCallback(
@@ -75,11 +76,20 @@ const TabDropDown = ({
 
   TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
+  let dropDownAdjustment = "";
+
+  if (activeSize === "small") {
+    dropDownAdjustment = "smDropDownPos";
+  } else if (activeSize === "medium") {
+    dropDownAdjustment = "mdDropDownPos";
+  }
+
   const theme = React.useContext(ThemeContext);
   const dropDownClassNames = cx(
     "drop-down",
     { "is-open": isOpen },
-    theme.className
+    theme.className,
+    dropDownAdjustment
   );
 
   return (

@@ -76,22 +76,22 @@ const TabDropDown = ({
 
   TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
-  let classSizes = "";
+  let dropDownAdjustment = "";
 
   if (activeSize === "small") {
-    classSizes = "dropdownSm";
+    dropDownAdjustment = "smDropDownPos";
   } else if (activeSize === "medium") {
-    classSizes = "dropdownMd";
+    dropDownAdjustment = "mdDropDownPos";
   } else if (activeSize === "large") {
-    classSizes = "dropdownLg";
+    dropDownAdjustment = "lgDropDownPos";
   }
 
   const theme = React.useContext(ThemeContext);
   const dropDownClassNames = cx(
     "drop-down",
     { "is-open": isOpen },
-    classSizes,
-    theme.className
+    theme.className,
+    dropDownAdjustment
   );
 
   return (
@@ -100,7 +100,7 @@ const TabDropDown = ({
         dropDownRef.current = node;
         refCallback(node);
       }}
-      role="none"
+      role="tablist"
       className={dropDownClassNames}
       onMouseDown={(e) => {
         e.preventDefault();

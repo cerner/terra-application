@@ -246,20 +246,181 @@ const Workspace = ({
   );
 
   const [newLabel, setNewLabel] = useState("Tabs Menu");
+  const [newSpeed, setNewSpeed] = useState("0.1");
+
+  let smallMediumAdjustment = "",
+    slideTabs = "",
+    shadowDisplay = "";
+  const tabsContainerRef = useRef(null);
+  const [updatedStyles, setUpdatedStyles] = useState({
+    newMarginRight: {
+      marginRight: "128px",
+    },
+    newRightStyle: { right: "127px" },
+  });
+
+  if (activeSize === "small" || activeSize === "medium") {
+    smallMediumAdjustment = "smallMediumStyles";
+    slideTabs = "slidingTabsStyles";
+  } else if (activeSize === "large") {
+    shadowDisplay = "shadowDisplay";
+  }
+
+  const tabTranslateSlide = (tabRef, translateX) => {
+    tabRef.parentNode.style.transform = `translate(${translateX}px, 0)`;
+  };
+
+  const tabSlideSmallSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "Apples":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "Oranges":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "Strawberries":
+        tabTranslateSlide(tabSlideRef, -36);
+        break;
+      case "Pineapples":
+        tabTranslateSlide(tabSlideRef, -112);
+        break;
+      case "Lemons":
+        tabTranslateSlide(tabSlideRef, -188);
+        break;
+      case "Kiwis":
+        tabTranslateSlide(tabSlideRef, -263);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
+  };
+
+  const tabSlideMedSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "Apples":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "Oranges":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "Lemons":
+        tabTranslateSlide(tabSlideRef, -58);
+        break;
+      case "Kiwis":
+        tabTranslateSlide(tabSlideRef, -133);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
+  };
+
+  const mainContainer = tabsContainerRef.current;
+
+  const tabSlide = (tabRef, tabType) => {
+    let tabSlideRef = {};
+
+    if (mainContainer && activeSize !== "large") {
+      if (tabType === "hiddenTab") {
+        mainContainer.children[3].children.forEach((elem) => {
+          if (elem.title === tabRef.title) {
+            tabSlideRef = elem;
+          }
+        });
+      } else {
+        tabSlideRef = tabRef;
+      }
+      const tabId = tabSlideRef.title;
+
+      const containerLeft = mainContainer.getBoundingClientRect().left;
+      const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
+      const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
+      const currentTabRight = tabSlideRef.getBoundingClientRect().right;
+
+      if (activeSize === "small") {
+        if (currentTabLeft < containerLeft) {
+          tabSlideSmallSize(tabSlideRef, tabId);
+        } else if (currentTabRight > menuLeft) {
+          tabSlideSmallSize(tabSlideRef, tabId);
+        }
+      } else if (activeSize === "medium") {
+        if (currentTabLeft < containerLeft) {
+          tabSlideMedSize(tabSlideRef, tabId);
+        } else if (currentTabRight > menuLeft) {
+          tabSlideMedSize(tabSlideRef, tabId);
+        }
+      }
+    }
+  };
+
+  const resizeMask = (key) => {
+    let currentMenuWidth =
+      mainContainer.children[1].getBoundingClientRect().width + 18;
+    let currentRight = currentMenuWidth;
+
+    if (key !== "Backspace" && key !== "Delete") {
+      currentMenuWidth += 1;
+      currentRight = currentMenuWidth - 1;
+    }
+
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: currentMenuWidth,
+      },
+      newRightStyle: {
+        right: `${currentRight}px`,
+      },
+    });
+  };
+
+  const resetValues = () => {
+    setNewLabel("Tabs Menu");
+    setNewSpeed("0.1");
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: "128px",
+      },
+      newRightStyle: { right: "127px" },
+    });
+  };
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div className={cx("workspace")} role="none">
         <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 2 A</h1>
-          <p aria-hidden>This option currently is not working</p>
-          <div className={cx("btnsContainer")}>
-            <div>
+          <p aria-hidden>Only Tabs are keyboard accesible</p>
+          <div className={cx("btnsContainer", shadowDisplay)}>
+            <div className={cx("inputMenuName")}>
+              <label htmlFor="labelTitleName">Menu name</label>
               <input
+                tabIndex={-1}
                 type="text"
                 value={newLabel}
-                onChange={(e) => setNewLabel(e.target.value)}
+                id="labelTitleName"
+                onKeyUp={(e) => {
+                  resizeMask(e.key);
+                }}
+                onChange={(e) => {
+                  setNewLabel(e.target.value);
+                }}
               />
+            </div>
+            <div className={cx("inputMenuSpeed")}>
+              <label htmlFor="labelTitleSpeed">A. Speed</label>
+              <input
+                tabIndex={-1}
+                type="number"
+                value={newSpeed}
+                id="labelTitleSpeed"
+                onChange={(e) => {
+                  setNewSpeed(e.target.value);
+                }}
+              />
+            </div>
+            <div className={cx("buttonReset")}>
+              <button tabIndex={-1} onClick={resetValues}>
+                Reset
+              </button>
             </div>
           </div>
         </div>
@@ -268,11 +429,41 @@ const Workspace = ({
         </div>
         <div
           role="none"
-          className={cx("tab-header", {
-            "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
-          })}
+          className={cx(
+            "tab-header",
+            {
+              "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
+            },
+            "slider-items-container",
+            smallMediumAdjustment
+          )}
+          ref={tabsContainerRef}
+          style={updatedStyles.newMarginRight}
         >
-          <Tabs ariaLabel={ariaLabel} tabData={tabData} label={newLabel} />
+          <div className={cx("shadowsContainerLeft", shadowDisplay)}>
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/left_shadow.png"
+            />
+          </div>
+          <Tabs
+            ariaLabel={ariaLabel}
+            tabData={tabData}
+            label={newLabel}
+            slideTabs={slideTabs}
+            newSpeedAnimation={newSpeed}
+            tabSlide={tabSlide}
+            activeSize={activeSize}
+          />
+          <div
+            className={cx("shadowsContainerRight", shadowDisplay)}
+            style={updatedStyles.newRightStyle}
+          >
+            <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/right_shadow.png"
+            />
+          </div>
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { WorkspaceContent } from "../../../../workspace-2a";
+import { WorkspaceContent } from "../../../../workspace-2b";
 
 import MockContent from "../MockContent";
 

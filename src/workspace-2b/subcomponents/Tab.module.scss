@@ -3,31 +3,6 @@
 @import "../orion-fusion-theme/Tab.module";
 
 :local {
-  .tab-dropdown-button {
-    border-radius: 3px;
-    background-color: #fff !important;
-    border: 1px solid #868a8c !important;
-    background-image: none !important;
-    box-shadow: -11px 0px 11px -12px rgba(0, 0, 0, 1);
-    margin-bottom: 20px;
-    position: absolute !important;
-    z-index: 1000 !important;
-    left: 0;
-
-    .tab-dropdown-button-inner {
-      color: #434a4d !important;
-    }
-  }
-  .dropdownSmButton,
-  .dropdownMdButton {
-  }
-  .dropdownSmButton {
-  }
-  .dropdownMdButton {
-  }
-  .dropdownLgButton {
-  }
-
   .tab,
   .tab-menu {
     background-color: var(
@@ -39,20 +14,14 @@
       linear-gradient(to bottom, #fff, #dedfe0)
     );
     box-sizing: border-box;
-    border: var(--terra-application-workspace-tab-border, 1px solid #868a8c);
+    //border: var(--terra-application-workspace-tab-border, 1px solid #868a8c);
     border-bottom: 0;
-    border-top-left-radius: var(
-      --terra-application-workspace-tab-border-top-left-radius,
-      3px
-    );
-    border-top-right-radius: var(
-      --terra-application-workspace-tab-border-top-right-radius,
-      3px
-    );
+    //border-top-left-radius: var(--terra-application-workspace-tab-border-top-left-radius, 3px);
+    //border-top-right-radius: var(--terra-application-workspace-tab-border-top-right-radius, 3px);
     cursor: pointer;
     display: flex;
     height: var(--terra-application-workspace-tab-height, 33px);
-    margin-right: var(--terra-application-workspace-tab-margin-right, 2px);
+    //margin-right: var(--terra-application-workspace-tab-margin-right, 2px);
     min-width: 0;
     outline: none;
     position: relative;
@@ -217,5 +186,37 @@
     > .tab {
       flex: 0 0 auto;
     }
+  }
+
+  //Option 2A styles
+  .tab-menu {
+    position: absolute !important;
+    right: 0;
+    z-index: 1000 !important;
+    background-image: none !important;
+    border: 1px solid rgba(28, 31, 33, 0.25) !important;
+    border-radius: 3px;
+    margin-right: 6px;
+    max-height: 28px;
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
+  .activeOpen {
+    background-color: #dbdbdb;
+    .icon {
+      color: #64696c !important;
+    }
+  }
+  .tabsNewStyles {
+    border-top: 1px solid #868a8c;
+    border-right: 1px solid #868a8c;
+  }
+  .tabsNewStyles:first-child {
+    border-left: 1px solid #868a8c;
+    border-top-left-radius: 3px;
+  }
+  .tabsNewStyles:nth-child(6) {
+    border-top-right-radius: 3px;
   }
 }

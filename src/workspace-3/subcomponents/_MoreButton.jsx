@@ -108,7 +108,7 @@ const MoreButton = ({
     >
       <div className={cx("inner")}>
         <div className={cx("icon", "moreButtonInner")}>
-          More <IconCaretDown />
+          {label} <IconCaretDown />
         </div>
       </div>
     </div>

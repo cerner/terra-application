@@ -321,6 +321,7 @@ const Workspace = ({
             activeSize={activeSize}
             ariaLabel={ariaLabel}
             tabData={tabData}
+            activeSize={activeSize}
           />
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>

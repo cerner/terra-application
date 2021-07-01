@@ -30,11 +30,11 @@ const titleConfigHideTitle = {
 // TODO: remove terra-application after it is incorporated into dev-site for themes or themes are co-located
 const TitleTest = () => (
   <>
-    <FixedHeight><ApplicationNavigation titleConfig={titleConfig} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation titleConfig={titleConfigHeadLine} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation titleConfig={titleConfigSubline} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation titleConfig={titleConfigElement} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation titleConfig={titleConfigHideTitle} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-default" titleConfig={titleConfig} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-headline" titleConfig={titleConfigHeadLine} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-subline" titleConfig={titleConfigSubline} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-element" titleConfig={titleConfigElement} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-title" titleConfig={titleConfigHideTitle} /></FixedHeight>
   </>
 );
 

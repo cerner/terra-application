@@ -10,7 +10,6 @@ Terra.describeViewports('Workspace Layout', ['large'], () => {
 
     it('closes with toggle action', () => {
       $('#test-action-id-0').click();
-      $('[#test-workspace-0').waitForDisplayed();
 
       Terra.validates.element('2. workspace closed', { selector });
     });
@@ -20,14 +19,14 @@ Terra.describeViewports('Workspace Layout', ['large'], () => {
     before(() => browser.url('/raw/tests/terra-application/application-navigation/workspace-layout/workspace-layout-closed-test'));
 
     it('initialIsOpen false', () => {
-      Terra.validates.element('1. loads with workspace open', { selector });
+      Terra.validates.element('1. loads with workspace closed', { selector });
     });
 
     it('closes with toggle action', () => {
       $('#test-action-id-0').click();
-      $('[#test-workspace-0').waitForDisplayed();
+      $('#test-workspace-0').waitForDisplayed();
 
-      Terra.validates.element('2. workspace closed', { selector });
+      Terra.validates.element('2. workspace open', { selector });
     });
   });
 });

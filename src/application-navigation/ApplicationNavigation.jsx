@@ -45,6 +45,10 @@ const propTypes = {
    */
   hero: PropTypes.element,
   /**
+   * The base id used to generate ids of workspace, navigation, utility, and extension items
+   */
+  id: PropTypes.string,
+  /**
    * An array of configuration objects with information specifying the creation of navigation items. These items
    * are rendered within the ApplicationNavigation header at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
@@ -129,6 +133,7 @@ const ApplicationNavigation = ({
   disablePromptsForNavigationItems,
   extensionItems,
   hero,
+  id,
   navigationItems,
   navigationPromptResolutionOptions,
   notifications,
@@ -172,6 +177,7 @@ const ApplicationNavigation = ({
 
   return (
     <TerraApplicationNavigation
+      id={id}
       hero={hero}
       notifications={notifications}
       titleConfig={titleConfig}

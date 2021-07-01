@@ -11,6 +11,7 @@ import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-prompt';
 import NotificationBanner from '@cerner/terra-application/lib/notification-banner';
 import Page from '@cerner/terra-application/lib/page';
+import NotificationDialog from '@cerner/terra-application/lib/notification-dialog/NotificationDialog';
 
 import styles from './TestPage.module.scss';
 
@@ -28,6 +29,7 @@ const TestPage = ({
   const [showHazardMedium, setShowHazardMedium] = React.useState(false);
   const [showHazardLow, setShowHazardLow] = React.useState(false);
   const [showLongText, setShowLongText] = React.useState(false);
+  const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
 
   const metaData = React.useRef({ test: index });
 
@@ -80,6 +82,7 @@ const TestPage = ({
       <div className={cx('layout')}>
         <p>{testLabel}</p>
         <button type="button" onClick={() => { setShowChildPage(true); }}>Show Child</button>
+        <button type="button" onClick={() => { setShowNotificationDialog(true); }}>Show Notification Dialog</button>
         <p>
           Label:
           {' '}
@@ -156,6 +159,24 @@ const TestPage = ({
             id="test-page-hazard-low-banner"
             description="You might want to look at something"
             onRequestClose={() => { setShowHazardLow(false); }}
+          />
+        )}
+        {showNotificationDialog && (
+          <NotificationDialog
+            variant="hazard-medium"
+            dialogTitle="Sensitive Information - Pediatric Progress Note"
+            startMessage="You are about to view a note that is marked as sensitive. You must acknowledge its sensitivity to continue."
+            endMessage="How do you want to proceed?"
+            acceptAction={{
+              text: 'Acknowledge and View Note',
+              onClick: () => { setShowNotificationDialog(false); },
+            }}
+            rejectAction={{
+              text: 'Cancel',
+              onClick: () => { setShowNotificationDialog(false); },
+            }}
+            buttonOrder="acceptFirst"
+            emphasizedAction="accept"
           />
         )}
         {showChildPage ? (

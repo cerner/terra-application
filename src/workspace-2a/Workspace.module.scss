@@ -251,6 +251,10 @@
       width: 50px;
     }
   }
+  .buttonReset {
+    display: flex;
+    align-items: flex-end;
+  }
   .shadowsContainerLeft,
   .shadowsContainerRight {
     position: absolute;

@@ -251,19 +251,67 @@ const Workspace = ({
   let smallMediumAdjustment = "",
     slideTabs = "",
     shadowDisplay = "";
-  let newRight = {};
   const tabsContainerRef = useRef(null);
+  const [updatedStyles, setUpdatedStyles] = useState({
+    newMarginRight: {
+      marginRight: "128px",
+    },
+    newRightStyle: { right: "127px" },
+  });
 
   if (activeSize === "small" || activeSize === "medium") {
     smallMediumAdjustment = "smallMediumStyles";
     slideTabs = "slidingTabsStyles";
-    newRight = { right: "127px" };
   } else if (activeSize === "large") {
     shadowDisplay = "shadowDisplay";
   }
 
   const tabTranslateSlide = (tabRef, translateX) => {
     tabRef.parentNode.style.transform = `translate(${translateX}px, 0)`;
+  };
+
+  const tabSlideSmallSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "1":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "2":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "3":
+        tabTranslateSlide(tabSlideRef, -36);
+        break;
+      case "4":
+        tabTranslateSlide(tabSlideRef, -112);
+        break;
+      case "5":
+        tabTranslateSlide(tabSlideRef, -188);
+        break;
+      case "6":
+        tabTranslateSlide(tabSlideRef, -263);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
+  };
+
+  const tabSlideMedSize = (tabSlideRef, tabId) => {
+    switch (tabId) {
+      case "1":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "2":
+        tabTranslateSlide(tabSlideRef, 0);
+        break;
+      case "5":
+        tabTranslateSlide(tabSlideRef, -58);
+        break;
+      case "6":
+        tabTranslateSlide(tabSlideRef, -133);
+        break;
+      default:
+        tabTranslateSlide(tabSlideRef, 0);
+    }
   };
 
   const mainContainer = tabsContainerRef.current;
@@ -287,86 +335,51 @@ const Workspace = ({
       const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
       const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
       const currentTabRight = tabSlideRef.getBoundingClientRect().right;
-      let diffSize = 0;
 
       if (activeSize === "small") {
         if (currentTabLeft < containerLeft) {
-          switch (tabId) {
-            case "1":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-            case "2":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-            case "3":
-              tabTranslateSlide(tabSlideRef, diffSize - 1);
-              break;
-            case "4":
-              tabTranslateSlide(tabSlideRef, -99);
-              break;
-            case "5":
-              tabTranslateSlide(tabSlideRef, -175);
-              break;
-            case "6":
-              tabTranslateSlide(tabSlideRef, -250);
-              break;
-          }
+          tabSlideSmallSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
-          diffSize = menuLeft - currentTabRight;
-          switch (tabId) {
-            case "1":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-            case "2":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-            case "3":
-              tabTranslateSlide(tabSlideRef, diffSize - 1);
-              break;
-            case "4":
-              tabTranslateSlide(tabSlideRef, -99);
-              break;
-            case "5":
-              tabTranslateSlide(tabSlideRef, -175);
-              break;
-            case "6":
-              tabTranslateSlide(tabSlideRef, -250);
-              break;
-          }
+          tabSlideSmallSize(tabSlideRef, tabId);
         }
       } else if (activeSize === "medium") {
         if (currentTabLeft < containerLeft) {
-          switch (tabId) {
-            case "1":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-            case "2":
-              tabTranslateSlide(tabSlideRef, 0);
-              break;
-          }
+          tabSlideMedSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
-          switch (tabId) {
-            case "5":
-              tabTranslateSlide(tabSlideRef, -44);
-              break;
-            case "6":
-              tabTranslateSlide(tabSlideRef, -120);
-              break;
-          }
+          tabSlideMedSize(tabSlideRef, tabId);
         }
       }
     }
   };
 
-  const [menuStyleWidth, setMenuStyleWidth] = useState({
-    marginRight: "128px",
-  });
+  const resizeMask = (key) => {
+    let currentMenuWidth =
+      mainContainer.children[1].getBoundingClientRect().width + 18;
+    let currentRight = currentMenuWidth;
 
-  const resizeMask = () => {
-    const currentMenuWidth =
-      mainContainer.children[1].getBoundingClientRect().width + 6;
-    setMenuStyleWidth({
-      marginRight: currentMenuWidth,
+    if (key !== "Backspace" && key !== "Delete") {
+      currentMenuWidth += 1;
+      currentRight = currentMenuWidth - 1;
+    }
+
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: currentMenuWidth,
+      },
+      newRightStyle: {
+        right: `${currentRight}px`,
+      },
+    });
+  };
+
+  const resetValues = () => {
+    setNewLabel("Tabs Menu");
+    setNewSpeed("0.1");
+    setUpdatedStyles({
+      newMarginRight: {
+        marginRight: "128px",
+      },
+      newRightStyle: { right: "127px" },
     });
   };
 
@@ -383,14 +396,16 @@ const Workspace = ({
                 type="text"
                 value={newLabel}
                 id="labelTitleName"
+                onKeyUp={(e) => {
+                  resizeMask(e.key);
+                }}
                 onChange={(e) => {
                   setNewLabel(e.target.value);
-                  resizeMask();
                 }}
               />
             </div>
             <div className={cx("inputMenuSpeed")}>
-              <label htmlFor="labelTitleSpeed">A.Speed</label>
+              <label htmlFor="labelTitleSpeed">A. Speed</label>
               <input
                 type="number"
                 value={newSpeed}
@@ -399,6 +414,9 @@ const Workspace = ({
                   setNewSpeed(e.target.value);
                 }}
               />
+            </div>
+            <div className={cx("buttonReset")}>
+              <button onClick={resetValues}>Reset</button>
             </div>
           </div>
         </div>
@@ -416,7 +434,7 @@ const Workspace = ({
             smallMediumAdjustment
           )}
           ref={tabsContainerRef}
-          style={menuStyleWidth}
+          style={updatedStyles.newMarginRight}
         >
           <div className={cx("shadowsContainerLeft", shadowDisplay)}>
             <img
@@ -435,7 +453,7 @@ const Workspace = ({
           />
           <div
             className={cx("shadowsContainerRight", shadowDisplay)}
-            style={newRight}
+            style={updatedStyles.newRightStyle}
           >
             <img
               className={cx("imgShadows")}

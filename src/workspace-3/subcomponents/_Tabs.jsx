@@ -46,7 +46,7 @@ const propTypes = {
        * The metaData to return with the onSelect callback.
        */
       metaData: PropTypes.object,
-    }),
+    })
   ).isRequired,
   activeSize: PropTypes.string,
 };
@@ -69,7 +69,7 @@ class Tabs extends React.Component {
     this.wrapOnSelect = this.wrapOnSelect.bind(this);
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
-    this.state = { tabData: this.props.tabData};
+    this.state = { tabData: this.props.tabData };
     this.resetCache();
   }
 
@@ -330,7 +330,7 @@ class Tabs extends React.Component {
             tabIds={ids}
             onSelect={this.wrapOnSelect(tab.onSelect)}
             zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />,
+          />
         );
       } else {
         hiddenTabs.push(
@@ -398,6 +398,7 @@ class Tabs extends React.Component {
           refCallback={(node) => {
             this.dropdownRef.current = node;
           }}
+          activeSize={this.props.activeSize}
         >
           {hiddenTabs}
         </TabDropDown>

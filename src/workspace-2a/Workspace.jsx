@@ -247,6 +247,14 @@ const Workspace = ({
 
   const [newLabel, setNewLabel] = useState("Tabs Menu");
   const [newSpeed, setNewSpeed] = useState("0.1");
+  const [shadowsDisplay, setShadowsDisplay] = useState({
+    displayLeft: {
+      display: "none",
+    },
+    displayRight: {
+      display: "block",
+    },
+  });
 
   let smallMediumAdjustment = "",
     slideTabs = "",
@@ -307,7 +315,7 @@ const Workspace = ({
         tabTranslateSlide(tabSlideRef, -58);
         break;
       case "Kiwis":
-        tabTranslateSlide(tabSlideRef, -133);
+        tabTranslateSlide(tabSlideRef, -135);
         break;
       default:
         tabTranslateSlide(tabSlideRef, 0);
@@ -338,14 +346,46 @@ const Workspace = ({
 
       if (activeSize === "small") {
         if (currentTabLeft < containerLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "none",
+            },
+            displayRight: {
+              display: "block",
+            },
+          });
           tabSlideSmallSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "block",
+            },
+            displayRight: {
+              display: "none",
+            },
+          });
           tabSlideSmallSize(tabSlideRef, tabId);
         }
       } else if (activeSize === "medium") {
         if (currentTabLeft < containerLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "none",
+            },
+            displayRight: {
+              display: "block",
+            },
+          });
           tabSlideMedSize(tabSlideRef, tabId);
         } else if (currentTabRight > menuLeft) {
+          setShadowsDisplay({
+            displayLeft: {
+              display: "block",
+            },
+            displayRight: {
+              display: "none",
+            },
+          });
           tabSlideMedSize(tabSlideRef, tabId);
         }
       }
@@ -381,6 +421,11 @@ const Workspace = ({
       },
       newRightStyle: { right: "127px" },
     });
+  };
+
+  const shadowRightStyles = {
+    ...shadowsDisplay.displayRight,
+    ...updatedStyles.newRightStyle,
   };
 
   return (
@@ -440,7 +485,10 @@ const Workspace = ({
           ref={tabsContainerRef}
           style={updatedStyles.newMarginRight}
         >
-          <div className={cx("shadowsContainerLeft", shadowDisplay)}>
+          <div
+            className={cx("shadowsContainerLeft", shadowDisplay)}
+            style={shadowsDisplay.displayLeft}
+          >
             <img
               className={cx("imgShadows")}
               src="https://amikoosvet.com/images/provi/left_shadow.png"
@@ -455,15 +503,17 @@ const Workspace = ({
             tabSlide={tabSlide}
             activeSize={activeSize}
           />
-          <div
-            className={cx("shadowsContainerRight", shadowDisplay)}
-            style={updatedStyles.newRightStyle}
-          >
-            <img
-              className={cx("imgShadows")}
-              src="https://amikoosvet.com/images/provi/right_shadow.png"
-            />
-          </div>
+          {activeSize === "large" || (
+            <div
+              className={cx("shadowsContainerRight", shadowDisplay)}
+              style={shadowRightStyles}
+            >
+              <img
+                className={cx("imgShadows")}
+                src="https://amikoosvet.com/images/provi/right_shadow.png"
+              />
+            </div>
+          )}
         </div>
         <div role="none" className={cx("body")} ref={workspaceContainerRef}>
           {React.Children.map(children, (child) => {

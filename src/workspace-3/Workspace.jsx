@@ -124,6 +124,7 @@ const Workspace = ({
   const theme = React.useContext(ThemeContext);
   const intl = React.useContext(ApplicationIntlContext);
   const sizeMenuRef = useRef();
+  const refTabsContainer = useRef(null);
 
   const [workspaceContainerRef, workspacePortalsRef] =
     usePortalManager(activeItemKey);
@@ -141,10 +142,27 @@ const Workspace = ({
     onSelect: onRequestActivate,
     metaData: child.props.metaData,
   }));
+  const reFocus = (target2) => {
+    if (refTabsContainer.current) {
+      const tabsCollection =
+        refTabsContainer.current.children[2].children[0].children;
+      let selectedTab;
+
+      console.log(`Tabs container: ${refTabsContainer}`);
+
+      for (let i = 0; i < tabsCollection.length; i++) {
+        const tabId = tabsCollection[i].id.split("-").pop();
+        if (tabId == target2) {
+          selectedTab = tabsCollection[i + 1];
+          selectedTab.focus();
+          break;
+        }
+      }
+    }
+  };
 
   if (activeItemKey !== "tab-1") {
     const activeItemIndex = parseInt(activeItemKey.split("-")[1]) - 1;
-    console.log(activeItemIndex);
 
     if (activeSize === "medium" && activeItemIndex > 3) {
       // const splicedTab = tabData.splice(activeItemIndex, 1);
@@ -155,6 +173,7 @@ const Workspace = ({
       tabData[activeItemIndex].isSelected = false;
       tabData[activeItemIndex].label = tempTab;
       tabData[3].isSelected = true;
+      reFocus(3);
     }
 
     if (activeSize === "small" && activeItemIndex > 1) {
@@ -166,6 +185,7 @@ const Workspace = ({
       tabData[activeItemIndex].isSelected = false;
       tabData[activeItemIndex].label = tempTab;
       tabData[1].isSelected = true;
+      reFocus(1);
     }
 
     // const lastVisibleTab = tabData[activeItemIndex]
@@ -278,12 +298,14 @@ const Workspace = ({
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      <div className={cx("workspace")} role="none">
-        <div className={cx("textLegend")}>
-          <h1 tabIndex={0}>Option 3</h1>
-          <p aria-hidden>
-            The only difference is the "more" label and its styles
-          </p>
+      <div ref={refTabsContainer} className={cx("workspace")} role="none">
+        <div className={cx("workspace")} role="none">
+          <div className={cx("textLegend")}>
+            <h1 tabIndex={0}>Option 3</h1>
+            <p aria-hidden>
+              The only difference is the "more" label and its styles
+            </p>
+          </div>
         </div>
 
         <div aria-hidden className={cx("body-shadow-container")}>

@@ -6,6 +6,12 @@
 @import './orion-fusion-theme/NotificationDialog.module';
 
 :local {
+  .presentation-container {
+    height: 100%;
+    position: relative;
+    width: 100%;
+  }
+
   .overlay {
     background-color: var(--terra-application-notification-dialog-overlay-background-color, rgba(0, 0, 0, 0.4));
     background-image: var(--terra-application-notification-dialog-overlay-background-image);

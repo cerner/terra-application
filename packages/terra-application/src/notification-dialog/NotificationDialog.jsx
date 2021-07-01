@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import classNamesBind from 'classnames/bind';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
@@ -150,7 +149,7 @@ const useFocusTrap = (containerRef) => {
   React.useEffect(() => {
     const containerElement = containerRef.current;
 
-    const handleFocusMovement = (event) => {
+    const moveFocus = (event) => {
       if (event.keyCode === 9) {
         const tabbableElements = tabbable(containerElement);
         if (!tabbableElements.length) {
@@ -158,27 +157,30 @@ const useFocusTrap = (containerRef) => {
         }
 
         const indexOfActiveElement = tabbableElements.indexOf(document.activeElement);
-
+        let newActiveElementIndex;
         if (event.shiftKey) {
           if (indexOfActiveElement === -1) {
-            tabbableElements[tabbableElements.length - 1].focus();
+            newActiveElementIndex = tabbableElements.length - 1;
           } else {
-            tabbableElements[indexOfActiveElement === 0 ? tabbableElements.length - 1 : indexOfActiveElement - 1].focus();
+            newActiveElementIndex = indexOfActiveElement === 0
+              ? tabbableElements.length - 1 : indexOfActiveElement - 1;
           }
         } else if (indexOfActiveElement === -1) {
-          tabbableElements[0].focus();
+          newActiveElementIndex = 0;
         } else {
-          tabbableElements[indexOfActiveElement === tabbableElements.length - 1 ? 0 : indexOfActiveElement + 1].focus();
+          newActiveElementIndex = indexOfActiveElement === tabbableElements.length - 1
+            ? 0 : indexOfActiveElement + 1;
         }
 
+        tabbableElements[newActiveElementIndex].focus();
         event.preventDefault();
       }
     };
 
-    containerElement.addEventListener('keydown', handleFocusMovement);
+    containerElement.addEventListener('keydown', moveFocus);
 
     return () => {
-      containerElement.removeEventListener('keydown', handleFocusMovement);
+      containerElement.removeEventListener('keydown', moveFocus);
     };
   }, [containerRef]);
 };
@@ -199,53 +201,44 @@ const NotificationDialog = ({
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const { LayerPortal, layerId } = useLayerPortal({ layerType: 'notificationDialog' });
   const dialogContainerRef = React.useRef();
-  const alertDialogRef = React.useRef();
+  const initialFocusAnchorRef = React.useRef();
 
   useFocusTrap(dialogContainerRef);
 
   React.useEffect(() => {
-    deferExecution(() => alertDialogRef.current.focus());
+    deferExecution(() => initialFocusAnchorRef.current.focus());
   }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
-    throw new Error('Either the `acceptAction` or `rejectAction` props must be provided for Notification dialog');
+    throw new Error('Either the `acceptAction` or `rejectAction` props must be provided to the NotificationDialog');
   }
 
   if (variant === undefined) {
-    throw new Error('The variant must be provided to the NotificationDialog');
+    throw new Error('A variant must be provided to the NotificationDialog');
   }
 
-  const signalWord = variant === 'custom' ? custom.signalWord : applicationIntl.formatMessage({ id: `terraApplication.notificationDialog.${variant}` });
+  const signalWord = variant === 'custom'
+    ? custom.signalWord : applicationIntl.formatMessage({
+      id: `terraApplication.notificationDialog.${variant}`,
+    });
 
-  const dialogClassNames = classNames(
-    cx('notification-dialog', theme.className),
-  );
-
-  const signalWordElementId = `${layerId}-signal-word`;
-  const titleElementId = `${layerId}-title`;
-
-  // let labeledByIdSet = signalWordElementId;
-  // if (dialogTitle) {
-  //   labeledByIdSet = `${labeledByIdSet} ${titleElementId}`;
-  // }
+  const bodyContentId = `${layerId}-body`;
+  const actionsContentId = `${layerId}-actions`;
 
   return (
     <LayerPortal>
       <div
-        style={{ height: '100%', width: '100%' }}
+        className={cx('presentation-container', theme.className)}
         tabIndex="-1"
-        ref={dialogContainerRef}
         role="alertdialog"
         aria-label={`${signalWord} ${dialogTitle}`}
-        aria-describedby="tyler-test tyler-test-2"
+        aria-describedby={`${bodyContentId} ${actionsContentId}`}
         aria-modal="true"
+        ref={dialogContainerRef}
       >
         <div className={cx('overlay')} />
-        <div
-          className={dialogClassNames}
-          // ref={alertDialogRef}
-        >
-          <div tabIndex="-1" ref={alertDialogRef} />
+        <div className={cx('notification-dialog')}>
+          <div tabIndex="-1" ref={initialFocusAnchorRef} />
           <div className={cx('notification-dialog-inner-wrapper')}>
             <div className={cx('notification-dialog-container')}>
               <div className={cx('floating-header-background', variant)} />
@@ -253,20 +246,17 @@ const NotificationDialog = ({
                 <div className={cx('header-content')}>
                   <NotificationIcon variant={variant} iconClassName={custom.iconClassName} />
                   <div className={cx('header-container')}>
-                    <div id={signalWordElementId} className={cx('signal-word')}>{signalWord}</div>
-                    <div id={titleElementId} className={cx('title')}>{dialogTitle}</div>
+                    <div className={cx('signal-word')}>{signalWord}</div>
+                    <div className={cx('title')}>{dialogTitle}</div>
                   </div>
                 </div>
               </div>
-              <div className={cx('body')} tabIndex="0" id="tyler-test">
-                {(startMessage)
-                && <div className={cx('message')}>{(startMessage)}</div>}
-                {content
-                && <div className={cx('message')}>{content}</div>}
-                {endMessage
-                && <div className={cx('message')}>{endMessage}</div>}
+              <div className={cx('body')} tabIndex="0" id={bodyContentId}>
+                {startMessage ? <div className={cx('message')}>{(startMessage)}</div> : undefined}
+                {content ? <div className={cx('message')}>{content}</div> : undefined}
+                {endMessage ? <div className={cx('message')}>{endMessage}</div> : undefined}
               </div>
-              <div className={cx('footer')} id="tyler-test-2">
+              <div className={cx('footer')} id={actionsContentId}>
                 {actionSection(
                   acceptAction,
                   rejectAction,

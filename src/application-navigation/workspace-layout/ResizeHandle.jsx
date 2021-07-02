@@ -55,7 +55,7 @@ class ResizeHandle extends React.Component {
     this.resizeHandleDragPosition += data.deltaX;
 
     const newWidth = data.x * -1 + this.resizeBoundsRef.current.currentWidth;
-    const scale = (newWidth - MINIMUM_WORKSPACE_WIDTH) / this.resizeBoundsRef.current.range; // TODO genericize this?
+    const scale = (newWidth - MINIMUM_WORKSPACE_WIDTH) / this.resizeBoundsRef.current.range;
 
     if (scale >= 0 && scale <= 1) {
       handleNode.style.transform = `translate3d(${this.resizeHandleDragPosition}px, 0, 0)`;

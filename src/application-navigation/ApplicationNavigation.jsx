@@ -2,6 +2,7 @@ import React, {
   useRef, useCallback, Suspense,
 } from 'react';
 import PropTypes from 'prop-types';
+import uuidv4 from 'uuid/v4';
 import TerraApplicationNavigation from './private/ApplicationNavigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
@@ -121,7 +122,7 @@ const propTypes = {
    */
   utilityItems: utilityItemsPropType,
   /**
-   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspace.
+   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
    */
   workspace: PropTypes.element,
 };
@@ -150,8 +151,8 @@ const ApplicationNavigation = ({
   workspace,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-
   const navigationPromptCheckpointRef = useRef();
+  const idRef = React.useRef(uuidv4());
 
   const onSelectNavigationItem = useCallback((selectedItemKey) => {
     if (disablePromptsForNavigationItems) {
@@ -177,7 +178,7 @@ const ApplicationNavigation = ({
 
   return (
     <TerraApplicationNavigation
-      id={id}
+      id={id || idRef.current}
       hero={hero}
       notifications={notifications}
       titleConfig={titleConfig}

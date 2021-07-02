@@ -110,7 +110,7 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * TODO: workspace desc
+   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
    */
   workspace: PropTypes.element,
 };

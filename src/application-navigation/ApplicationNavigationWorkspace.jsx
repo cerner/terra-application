@@ -9,19 +9,19 @@ const propTypes = {
    */
   onSizeChange: PropTypes.func,
   /**
-   * Callback function triggering when the presentation state changes.
+   * Callback function triggering when the open state of workspace changes between true and false.
    */
   onPresentationStateChange: PropTypes.func,
   /**
-   * Callback function triggering when the active.
+   * Callback function triggering when the active workspace item changes.
    */
   onActiveItemChange: PropTypes.func,
   /**
-   * The string key linked to the action workspace.
+   * The string key linked to the active workspace item.
    */
   initialActiveItemKey: PropTypes.string.isRequired,
   /**
-   * Child content to be placed within the main content region.
+   * WorkspaceItems to be rendered within the workspace.
    */
   children: PropTypes.node.isRequired,
   /**

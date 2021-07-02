@@ -39,7 +39,7 @@ const devSiteConfig = (env = {}, argv = { p: false }) => {
 };
 
 const mergedConfig = (env, argv) => (
-  merge(WebpackConfigTerra(env, argv), devSite())
+  merge(WebpackConfigTerra(env, argv), devSiteConfig())
 );
 
 module.exports = mergedConfig;

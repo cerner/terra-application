@@ -14,8 +14,9 @@ import {
 } from 'terra-application/lib/disclosure-manager';
 import NavigationPrompt from 'terra-application/lib/navigation-prompt';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
-import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
+
+import NotificationBannerExample from '../notification-banner/NotificationBannerExample';
 
 import styles from './DisclosureComponentCommon.test.module.scss';
 

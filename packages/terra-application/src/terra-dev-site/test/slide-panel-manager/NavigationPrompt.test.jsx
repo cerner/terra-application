@@ -1,6 +1,6 @@
 import React from 'react';
-import DisclosureComponent from './DisclosureComponent';
 import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
+import DisclosureComponent from './DisclosureComponent';
 
 const NavigationPrompt = () => (
   <SlidePanelManager>

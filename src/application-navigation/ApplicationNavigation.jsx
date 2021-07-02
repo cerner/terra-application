@@ -13,6 +13,7 @@ import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '..
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+import ApplicationNavigationWorkspace from './private/workspace-layout/ApplicationNavigationWorkspace';
 
 const propTypes = {
   /**
@@ -214,5 +215,6 @@ const ApplicationNavigation = ({
 };
 
 ApplicationNavigation.propTypes = propTypes;
+ApplicationNavigation.Workspace = ApplicationNavigationWorkspace;
 
 export default ApplicationNavigation;

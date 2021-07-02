@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import {
+import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
-  ApplicationNavigationWorkspace,
-  ApplicationNavigationWorkspaceItem,
 } from 'terra-application/lib/application-navigation';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
 
 import styles from './ApplicationNavigationExample.module.scss';
 
@@ -57,22 +53,22 @@ const userConfig = {
   initials: 'EU',
 };
 
-const Tab1 = () => (
-  <WorkspaceContent>
+const MyWorkspaceContent1 = () => (
+  <ApplicationNavigation.Workspace.Content>
     <p>Example Workspace Content 1</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
-const Tab2 = () => (
-  <WorkspaceContent>
+const MyWorkspaceContent2 = () => (
+  <ApplicationNavigation.Workspace.Content>
     <p>Example Workspace Content 2</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
 const workspace = (
-  <ApplicationNavigationWorkspace
+  <ApplicationNavigation.Workspace
     id="application-workspace-example"
-    initialActiveItemKey="tab-1"
+    initialActiveItemKey="item-1"
     initialSize={{ scale: 0.50 }}
     initialIsOpen
     onActiveItemChange={(newActiveItemKey) => {
@@ -85,19 +81,19 @@ const workspace = (
       console.log(`Workspace presentation changed. isOpen - ${isPresented}`); // eslint-disable-line no-console
     }}
   >
-    <ApplicationNavigationWorkspaceItem
-      itemKey="tab-1"
-      label="Tab 1"
-      metaData={{ key: 'tab-1' }}
-      render={() => <Tab1 />}
+    <ApplicationNavigation.Workspace.Item
+      itemKey="Item-1"
+      label="Item 1"
+      metaData={{ key: 'item-1' }}
+      render={() => <MyWorkspaceContent1 />}
     />
-    <ApplicationNavigationWorkspaceItem
-      itemKey="tab-2"
-      label="Tab 2"
-      metaData={{ key: 'tab-2' }}
-      render={() => <Tab2 />}
+    <ApplicationNavigation.Workspace.Item
+      itemKey="item-2"
+      label="Item 2"
+      metaData={{ key: 'item-2' }}
+      render={() => <MyWorkspaceContent2 />}
     />
-  </ApplicationNavigationWorkspace>
+  </ApplicationNavigation.Workspace>
 );
 
 const ApplicationNavigationWorkspaceExample = () => {

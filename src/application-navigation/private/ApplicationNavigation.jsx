@@ -17,7 +17,7 @@ import { shouldRenderCompactNavigation } from './utils/helpers';
 import {
   titleConfigPropType, userConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType,
 } from './utils/propTypes';
-import WorkspaceLayout from '../workspace-layout/WorkspaceLayout';
+import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 import styles from './ApplicationNavigation.module.scss';
 

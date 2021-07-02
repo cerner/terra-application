@@ -1,16 +1,12 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'terra-application/lib/theme';
-import {
+import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
-  ApplicationNavigationWorkspace,
-  ApplicationNavigationWorkspaceItem,
 } from 'terra-application/lib/application-navigation';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
 
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
-import ApplicationNavigation from '../../../application-navigation';
 import NavigationPrompt from '../../../navigation-prompt';
 
 const PendingAction = ({ index, onClick, navDisabled }) => (
@@ -80,19 +76,19 @@ PageContent.propTypes = {
 };
 
 const Tab1 = () => (
-  <WorkspaceContent>
+  <ApplicationNavigation.Workspace.Content>
     <p>Example Workspace Content 1</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
 const Tab2 = () => (
-  <WorkspaceContent>
+  <ApplicationNavigation.Workspace.Content>
     <p>Example Workspace Content 2</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
 const workspace = (
-  <ApplicationNavigationWorkspace
+  <ApplicationNavigation.Workspace
     id="application-workspace-example"
     initialActiveItemKey="tab-1"
     initialSize={{ scale: 0.50 }}
@@ -107,19 +103,19 @@ const workspace = (
       console.log(`Workspace presentation changed. isOpen - ${isPresented}`); // eslint-disable-line no-console
     }}
   >
-    <ApplicationNavigationWorkspaceItem
+    <ApplicationNavigation.Workspace.Item
       itemKey="tab-1"
       label="Tab 1"
       metaData={{ key: 'tab-1' }}
       render={() => <Tab1 />}
     />
-    <ApplicationNavigationWorkspaceItem
+    <ApplicationNavigation.Workspace.Item
       itemKey="tab-2"
       label="Tab 2"
       metaData={{ key: 'tab-2' }}
       render={() => <Tab2 />}
     />
-  </ApplicationNavigationWorkspace>
+  </ApplicationNavigation.Workspace>
 );
 
 const ApplicationNavigationTest = () => {

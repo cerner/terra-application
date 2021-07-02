@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Workspace, { WorkspaceItem } from '../workspace';
-import ApplicationNavigationWorkspaceItem from './ApplicationNavigationWorkspaceItem';
+import Workspace, { WorkspaceItem, WorkspaceContent } from '../../../workspace';
 
 const propTypes = {
   /**
@@ -132,19 +131,13 @@ const ApplicationNavigationWorkspace = ({
       dismissButtonIsVisible={isPresentedAsOverlay}
       isPresentedAsOverlay={isPresentedAsOverlay}
     >
-      {React.Children.map(children, (child) => (
-        <WorkspaceItem
-          itemKey={child.props.itemKey}
-          label={child.props.label}
-          metaData={child.props.metaData}
-          render={child.props.render}
-        />
-      ))}
+      {children}
     </Workspace>
   );
 };
 
 ApplicationNavigationWorkspace.propTypes = propTypes;
-ApplicationNavigationWorkspace.Item = ApplicationNavigationWorkspaceItem;
+ApplicationNavigationWorkspace.Item = WorkspaceItem;
+ApplicationNavigationWorkspace.Content = WorkspaceContent;
 
 export default ApplicationNavigationWorkspace;

@@ -1,14 +1,10 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import {
-  ApplicationNavigationWorkspace,
-  ApplicationNavigationWorkspaceItem,
-} from '../../../../src/application-navigation';
+import ApplicationNavigation from '../../../../src/application-navigation';
 import { ActiveBreakpointContext } from '../../../../src/breakpoints';
 import MockApplication from '../../MockApplication';
-import WorkspaceLayout from '../../../../src/application-navigation/workspace-layout/WorkspaceLayout';
-import { WorkspaceContent } from '../../../../src/workspace';
+import WorkspaceLayout from '../../../../src/application-navigation/private/workspace-layout/WorkspaceLayout';
 
 /* eslint-disable react/prop-types */
 const MyMockApplication = ({ children }) => (
@@ -20,37 +16,37 @@ const MyMockApplication = ({ children }) => (
 );
 
 const Tab1 = () => (
-  <WorkspaceContent>
+  <ApplicationNavigation.Workspace.Content>
     <p id="test-workspace-0">Example Workspace Content 1</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
 const Tab2 = () => (
-  <WorkspaceContent>
+  <ApplicationNavigation.Workspace.Content>
     <p id="test-workspace-1">Example Workspace Content 2</p>
-  </WorkspaceContent>
+  </ApplicationNavigation.Workspace.Content>
 );
 
 const renderWorkspace = (initActive = 'tab-1', initSize = { scale: 0.50 }, initIsOpen = false) => (
-  <ApplicationNavigationWorkspace
+  <ApplicationNavigation.Workspace
     id="application-workspace-example"
     initialActiveItemKey={initActive}
     initialSize={initSize}
     initialIsOpen={initIsOpen}
   >
-    <ApplicationNavigationWorkspaceItem
+    <ApplicationNavigation.Workspace.Item
       itemKey="tab-1"
       label="Tab 1"
       metaData={{ key: 'tab-1' }}
       render={() => <Tab1 />}
     />
-    <ApplicationNavigationWorkspaceItem
+    <ApplicationNavigation.Workspace.Item
       itemKey="tab-2"
       label="Tab 2"
       metaData={{ key: 'tab-2' }}
       render={() => <Tab2 />}
     />
-  </ApplicationNavigationWorkspace>
+  </ApplicationNavigation.Workspace>
 );
 
 describe('WorkspaceLayout', () => {

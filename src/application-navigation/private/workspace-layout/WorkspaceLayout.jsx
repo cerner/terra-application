@@ -5,10 +5,10 @@ import { KEY_ESCAPE } from 'keycode-js';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 
-import { ActiveBreakpointContext } from '../../breakpoints';
+import { ActiveBreakpointContext } from '../../../breakpoints';
 import ResizeHandle from './ResizeHandle';
-import { ApplicationIntlContext } from '../../application-intl';
-import ApplicationNavigationActionsContext from '../ApplicationNavigationActionsContext';
+import { ApplicationIntlContext } from '../../../application-intl';
+import ApplicationNavigationActionsContext from '../../ApplicationNavigationActionsContext';
 
 import styles from './WorkspaceLayout.module.scss';
 

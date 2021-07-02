@@ -1,3 +1,4 @@
+const path = require('path');
 const { merge } = require('webpack-merge');
 const {
   TerraDevSite,
@@ -7,11 +8,10 @@ const {
 } = require('terra-dev-site');
 
 const WebpackConfigTerra = require('@cerner/webpack-config-terra');
-/**
-* Generates the file representing app name configuration.
-*/
+
 const devSiteConfig = (env = {}, argv = { p: false }) => {
   const production = argv.p;
+  const processPath = process.cwd();
 
   return {
     entry: TerraDevSiteEntrypoints,
@@ -22,15 +22,24 @@ const devSiteConfig = (env = {}, argv = { p: false }) => {
       plugins: [
         new DirectorySwitcherPlugin({
           shouldSwitch: !production,
+          rootDirectories: [
+            processPath,
+            path.resolve(processPath, 'packages', '*'),
+          ],
         }),
-        new LocalPackageAliasPlugin(),
+        new LocalPackageAliasPlugin({
+          rootDirectories: [
+            processPath,
+            path.resolve(processPath, 'packages', '*'),
+          ],
+        }),
       ],
     },
   };
 };
 
-const webpackConfig = (env, argv) => (
-  merge(WebpackConfigTerra(env, argv), devSiteConfig(env, argv))
+const mergedConfig = (env, argv) => (
+  merge(WebpackConfigTerra(env, argv), devSite())
 );
 
-module.exports = webpackConfig;
+module.exports = mergedConfig;

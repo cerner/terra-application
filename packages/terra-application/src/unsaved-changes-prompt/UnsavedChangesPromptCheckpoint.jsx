@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import NotificationDialog from 'terra-notification-dialog';
 
 import { ApplicationIntlContext } from '../application-intl';
+import NotificationDialog from '../notification-dialog/NotificationDialog';
+
 import PromptRegistrationContext, { promptRegistrationContextValueShape } from './PromptRegistrationContext';
 import withPromptRegistration from './_withPromptRegistration';
 import getUnsavedChangesPromptOptions from './getUnsavedChangesPromptOptions';

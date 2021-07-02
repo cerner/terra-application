@@ -1,0 +1,50 @@
+:local {
+  .clinical-lowlight-theme {
+    --terra-application-notification-dialog-overlay-background-color: rgba(0, 0, 0, 0.4);
+    --terra-application-notification-dialog-overlay-background-image: none;
+    --terra-application-notification-dialog-overlay-foreground-color: none;
+    --terra-application-notification-dialog-overlay-opacity: 1;
+    --terra-application-notification-dialog-background: #222a2e;
+    --terra-application-notification-dialog-border-radius: 3px;
+    --terra-application-notification-dialog-small-horizontal-inset: 17px;
+    --terra-application-notification-dialog-max-width: 500px;
+    --terra-application-notification-dialog-floating-background-height: 5.78571rem;
+    --terra-application-notification-dialog-hazard-high-background-image: linear-gradient(to bottom, #1f2629, #222a2e);
+    --terra-application-notification-dialog-hazard-high-border-top: 7px solid #fb4c4c;
+    --terra-application-notification-dialog-hazard-medium-background-image: linear-gradient(to bottom, #1f2629, #222a2e);
+    --terra-application-notification-dialog-hazard-medium-border-top: 7px solid #ffb166;
+    --terra-application-notification-dialog-hazard-low-background-image: linear-gradient(to bottom, #1f2629, #222a2e);
+    --terra-application-notification-dialog-hazard-low-border-top: 7px solid #434a4d;
+    --terra-application-notification-dialog-error-background-image: linear-gradient(to bottom, #1f2629, #222a2e);
+    --terra-application-notification-dialog-error-border-top: 7px solid #434a4d;
+    --terra-application-notification-dialog-custom-background-image: linear-gradient(to bottom, #1f2629, #222a2e);
+    --terra-application-notification-dialog-header-box-shadow: -16px 8px 5px 0 rgba(34, 42, 46, 0.5), -16px 2px 2px 0 rgba(34, 42, 46, 0.75);
+    --terra-application-notification-dialog-custom-border-top: 7px solid #434a4d;
+    --terra-application-notification-dialog-header-padding: 0 1.42857rem;
+    --terra-application-notification-dialog-header-content-border-bottom: 1px solid #434a4d;
+    --terra-application-notification-dialog-header-content-padding: 1.21428rem 0 0.5rem;
+    --terra-application-notification-dialog-header-container-margin-left: 0.5rem;
+    --terra-application-notification-dialog-signal-word-color: #b2b5b6;
+    --terra-application-notification-dialog-signal-word-font-size: 1.42857rem;
+    --terra-application-notification-dialog-signal-word-min-height: 1.64285rem;
+    --terra-application-notification-dialog-title-color: #b2b5b6;
+    --terra-application-notification-dialog-title-font-size: 1.2857rem;
+    --terra-application-notification-dialog-title-font-weight: normal;
+    --terra-application-notification-dialog-title-margin: 0;
+    --terra-application-notification-dialog-title-min-height: 1.5rem;
+    --terra-application-notification-dialog-body-background-color: #222a2e;
+    --terra-application-notification-dialog-body-padding: 0 1.64285rem;
+    --terra-application-notification-dialog-body-media-small-min-height: 4.5rem;
+    --terra-application-notification-dialog-body-media-small-padding: 0.85714rem 1.64285rem 1.07142rem;
+    --terra-application-notification-dialog-body-media-large-min-height: 7rem;
+    --terra-application-notification-dialog-message-color: #b2b5b6;
+    --terra-application-notification-dialog-message-font-size: 1rem;
+    --terra-application-notification-dialog-message-padding: 0.35714rem 0;
+    --terra-application-notification-dialog-message-text-align: left;
+    --terra-application-notification-dialog-footer-background-color: #1e2427;
+    --terra-application-notification-dialog-footer-border-top: 1px solid #434a4d;
+    --terra-application-notification-dialog-footer-box-shadow: -16px -9px 5px 0 rgba(34, 42, 46, 0.5), -16px -3px 3px 0 rgba(34, 42, 46, 0.75);
+    --terra-application-notification-dialog-footer-min-height: 0.71428rem;
+    --terra-application-notification-dialog-actions-padding: 0.64285rem 0.71428rem;
+  }
+}

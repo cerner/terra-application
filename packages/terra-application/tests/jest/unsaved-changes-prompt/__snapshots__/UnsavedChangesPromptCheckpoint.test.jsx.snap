@@ -9,7 +9,7 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog whe
     }
   }
 >
-  <injectIntl(NotificationDialog)
+  <NotificationDialog
     acceptAction={
       Object {
         "onClick": [Function],
@@ -17,7 +17,9 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog whe
       }
     }
     buttonOrder="acceptFirst"
+    custom={Object {}}
     dialogTitle="Test Title"
+    emphasizedAction="none"
     rejectAction={
       Object {
         "onClick": [Function],
@@ -39,7 +41,7 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog wit
     }
   }
 >
-  <injectIntl(NotificationDialog)
+  <NotificationDialog
     acceptAction={
       Object {
         "onClick": [Function],
@@ -47,6 +49,7 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog wit
       }
     }
     buttonOrder="acceptFirst"
+    custom={Object {}}
     dialogTitle="Test Title"
     emphasizedAction="accept"
     rejectAction={
@@ -70,7 +73,7 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog wit
     }
   }
 >
-  <injectIntl(NotificationDialog)
+  <NotificationDialog
     acceptAction={
       Object {
         "onClick": [Function],
@@ -78,6 +81,7 @@ exports[`UnsavedChangesPrompt Snapshots should render the NotificationDialog wit
       }
     }
     buttonOrder="rejectFirst"
+    custom={Object {}}
     dialogTitle="Test Title"
     emphasizedAction="reject"
     rejectAction={

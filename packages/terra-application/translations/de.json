@@ -21,5 +21,9 @@
   "terraApplication.applicationNavigation.tabs.rollupButtonTitle": "Mehr",
   "terraApplication.applicationNavigation.notifications.new": "Neu",
   "terraApplication.applicationNavigation.header.skipToContentTitle": "Zum Inhalt",
-  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menü"
+  "terraApplication.applicationNavigation.header.menuButtonTitle": "Menü",
+  "terraApplication.notificationDialog.hazard-low": "Informationen",
+  "terraApplication.notificationDialog.error": "Fehler",
+  "terraApplication.notificationDialog.hazard-medium": "Warnung",
+  "terraApplication.notificationDialog.hazard-high": "Benachrichtigung"
 }

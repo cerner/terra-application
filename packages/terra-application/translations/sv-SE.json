@@ -44,5 +44,9 @@
   "terraApplication.notifications.totalCountLabel": "Totalt antal meddelanden på {label}: {count}",
   "terraApplication.notifications.newNotificationLabel": "Nytt meddelande på {label}. {bannerType} {bannerDescription}, {bannerAction}, {bannerDismiss}.",
   "terraApplication.notifications.removedNotificationLabel": "Tog bort meddelande på {label}. {bannerType} {bannerDescription}.",
-  "terraApplication.actionMenu.headerCloseButtonLabel": "Stäng"
+  "terraApplication.actionMenu.headerCloseButtonLabel": "Stäng",
+  "terraApplication.notificationDialog.hazard-low": "Information",
+  "terraApplication.notificationDialog.error": "Fel",
+  "terraApplication.notificationDialog.hazard-medium": "Varning",
+  "terraApplication.notificationDialog.hazard-high": "Avisering"
 }

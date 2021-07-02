@@ -1,5 +1,5 @@
 import React from 'react';
-import { ContentLayoutAsList } from 'terra-notification-dialog';
+import ContentLayoutAsList from '../notification-dialog/_ContentLayoutAsList';
 
 /**
  * Generates an Object containing properties used to define messages for UnsavedChangesPromptCheckpoint-based user prompting.

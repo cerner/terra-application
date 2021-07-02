@@ -15,6 +15,7 @@
   * Adding WorkspaceLayout
   * Adding LayerManager
   * Adding Page themes
+  * Adding NotificationDialog
 
 ## Unreleased
 

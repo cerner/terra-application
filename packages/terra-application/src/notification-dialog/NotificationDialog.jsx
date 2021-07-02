@@ -4,6 +4,7 @@ import classNamesBind from 'classnames/bind';
 import Button from 'terra-button';
 import ThemeContext from 'terra-theme-context';
 import { tabbable } from 'tabbable';
+import { KEY_TAB } from 'keycode-js';
 
 import { ApplicationIntlContext } from '../application-intl';
 import useLayerPortal from '../layer-manager/useLayerPortal';
@@ -141,16 +142,16 @@ const actionSection = (acceptAction, rejectAction, buttonOrder, emphasizedAction
 };
 
 /**
- * no described-by, should be supplemental only
- * hopefully no explicit start/end dialog elements
+ * Custom hook to manage Tab key presses within a given container.
+ * @param {Object} containerRef React ref object containing current value of
+ * the element to trap focus within.
  */
-
 const useFocusTrap = (containerRef) => {
   React.useEffect(() => {
     const containerElement = containerRef.current;
 
     const moveFocus = (event) => {
-      if (event.keyCode === 9) {
+      if (event.keyCode === KEY_TAB) {
         const tabbableElements = tabbable(containerElement);
         if (!tabbableElements.length) {
           return;
@@ -206,15 +207,19 @@ const NotificationDialog = ({
   useFocusTrap(dialogContainerRef);
 
   React.useEffect(() => {
-    deferExecution(() => initialFocusAnchorRef.current.focus());
+    deferExecution(() => {
+      if (initialFocusAnchorRef.current) {
+        initialFocusAnchorRef.current.focus();
+      }
+    });
   }, []);
 
   if (acceptAction === undefined && rejectAction === undefined) {
-    throw new Error('Either the `acceptAction` or `rejectAction` props must be provided to the NotificationDialog');
+    throw new Error('[terra-application] Either the `acceptAction` or `rejectAction` props must be provided to the NotificationDialog');
   }
 
   if (variant === undefined) {
-    throw new Error('A variant must be provided to the NotificationDialog');
+    throw new Error('[terra-application] A variant must be provided to the NotificationDialog');
   }
 
   const signalWord = variant === 'custom'
@@ -238,7 +243,7 @@ const NotificationDialog = ({
       >
         <div className={cx('overlay')} />
         <div className={cx('notification-dialog')}>
-          <div tabIndex="-1" ref={initialFocusAnchorRef} />
+          <div tabIndex="-1" ref={initialFocusAnchorRef} data-testid="dialog-focus-anchor" />
           <div className={cx('notification-dialog-inner-wrapper')}>
             <div className={cx('notification-dialog-container')}>
               <div className={cx('floating-header-background', variant)} />
@@ -251,7 +256,12 @@ const NotificationDialog = ({
                   </div>
                 </div>
               </div>
-              <div className={cx('body')} tabIndex="0" id={bodyContentId}>
+              <div
+                className={cx('body')}
+                tabIndex="0" // eslint-disable-line jsx-a11y/no-noninteractive-tabindex
+                id={bodyContentId}
+                data-testid="notification-dialog-body"
+              >
                 {startMessage ? <div className={cx('message')}>{(startMessage)}</div> : undefined}
                 {content ? <div className={cx('message')}>{content}</div> : undefined}
                 {endMessage ? <div className={cx('message')}>{endMessage}</div> : undefined}

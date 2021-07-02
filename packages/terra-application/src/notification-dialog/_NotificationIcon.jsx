@@ -30,7 +30,7 @@ const NotificationDialogIcon = ({ variant, iconClassName }) => {
 
   return (
     <div className={cx('icon-container', theme.className)}>
-      <span className={classNames(cx(['icon', `${variant}-icon`], { [`${iconClassName}`]: variant === 'custom' }))} />
+      <span data-testid="notification-dialog-icon" className={classNames(cx(['icon', `${variant}-icon`], { [`${iconClassName}`]: variant === 'custom' }))} />
     </div>
   );
 };

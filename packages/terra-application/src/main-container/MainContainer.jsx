@@ -88,6 +88,7 @@ const MainContainer = ({
       {...otherProps}
     >
       <SkipToLink
+        priority="main"
         description={applicationIntl.formatMessage({
           id: 'terraApplication.mainContainer.skipToLabel',
         })}

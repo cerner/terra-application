@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
 import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
@@ -73,6 +74,8 @@ const Page = ({
     throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for ${label}.`);
   }
 
+  const theme = React.useContext(ThemeContext);
+
   // An UnsavedChangesPromptCheckpoint is used to detect unsaved changes within
   // the Page's content.
   const unsavedChangesCheckpointRef = React.useRef();
@@ -104,9 +107,14 @@ const Page = ({
     });
   } : undefined;
 
+  const pageClassNames = cx(
+    'page',
+    theme.className,
+  );
+
   return (
     <PagePortal>
-      <div className={cx('page')}>
+      <div className={pageClassNames}>
         <div className={cx('header')}>
           <PageHeader
             id={pageId}

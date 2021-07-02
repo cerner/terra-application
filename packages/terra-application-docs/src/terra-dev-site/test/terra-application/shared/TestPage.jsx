@@ -81,7 +81,13 @@ const TestPage = ({
     >
       <div className={cx('layout')}>
         <p>{testLabel}</p>
-        <button type="button" onClick={() => { setShowChildPage(true); }}>Show Child</button>
+        <button
+          type="button"
+          onClick={() => { setShowChildPage(true); }}
+          data-testid="test-page-show-child-page"
+        >
+          Show Child Page
+        </button>
         <button type="button" onClick={() => { setShowNotificationDialog(true); }}>Show Notification Dialog</button>
         <p>
           Label:

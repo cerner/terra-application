@@ -1,10 +1,19 @@
 @import '~terra-mixins/lib/Mixins';
 
+@import './clinical-lowlight-theme/PageHeader.module';
+@import './orion-fusion-theme/PageHeader.module';
+
 :local {
   .page-header-container {
-    box-shadow: inset -3px -4px 0 -3px #fff, inset -3px -5px 0 -3px #c8cacb;
-    margin: 0 0.625rem;
-    padding: 0.3571rem 0 0.4286rem;
+    box-shadow: var(--terra-application-page-header-container-box-shadow, inset 0 -1px 0 0 #fff, inset 0 -2px 0 0 #c8cacb);
+    margin-bottom: var(--terra-application-page-header-container-margin-bottom, 0);
+    margin-left: var(--terra-application-page-header-container-margin-left, 0.7143rem);
+    margin-right: var(--terra-application-page-header-container-margin-right, 0.7143rem);
+    margin-top: var(--terra-application-page-header-container-margin-top, 0);
+    padding-bottom: var(--terra-application-page-header-container-padding-bottom, 0.5714rem);
+    padding-left: var(--terra-application-page-header-container-padding-left, 0);
+    padding-right: var(--terra-application-page-header-container-padding-right, 0);
+    padding-top: var(--terra-application-page-header-container-padding-top, 0.3571rem);
   }
 
   .page-header {
@@ -20,23 +29,22 @@
     flex: 0 0 auto;
 
     &:not(:empty) {
-      padding-right: 0.1875rem;
+      padding-right: var(--terra-application-page-header-start-actions-container-not-empty-padding-right, 0.2143rem);
     }
   }
 
   .label-container {
     align-items: center;
-    color: #383f42;
+    color: var(--terra-application-page-header-label-container-color, #383f42);
     display: flex;
     flex: 1 1 auto;
     font-weight: bold;
     hyphens: auto;
-    min-height: 2rem;
+    min-height: var(--terra-application-page-header-label-container-min-height, 2.143rem); // must match height of buttons in header
     min-width: 0;
     overflow: hidden;
     overflow-wrap: break-word;
-    padding-left: 0.5rem;
-    padding-top: 0.1429rem;
+    padding-left: var(--terra-application-page-header-label-container-padding-left, 0.5rem);
     word-wrap: break-word;
   }
 
@@ -47,37 +55,40 @@
     min-height: 1.875rem;
 
     &:not(:empty) {
-      padding-left: 0.5rem;
+      padding-left: var(--terra-application-page-header-end-actions-container-not-empty-padding-left, 0.5rem);
     }
   }
 
   .actions-divider {
     align-self: stretch;
-    box-shadow: inset -3px 0 0 -2px#fefffe, inset -4px 0 0 -2px #c7cacb;
+    box-shadow: var(--terra-application-page-header-actions-divider-box-shadow, inset -1px 0 0 0 #fefffe, inset -2px 0 0 0 #c7cacb);
     flex: 0 0 auto;
-    margin: 0.3125rem 0.1875rem;
-    width: 2px;
+    margin-bottom: var(--terra-application-page-header-actions-divider-margin-bottom, 0.3571rem);
+    margin-left: var(--terra-application-page-header-actions-divider-margin-left, 0.2143rem);
+    margin-right: var(--terra-application-page-header-actions-divider-margin-right, 0.2143rem);
+    margin-top: var(--terra-application-page-header-actions-divider-margin-top, 0.3571rem);
+    width: var(--terra-application-page-header-actions-divider-width, 2px);
   }
 
   .toolbar-container {
-    margin-top: var(--terra-application-page-header-toolbar-margin-top, 0.25rem);
+    margin-top: var(--terra-application-page-header-toolbar-container-margin-top, 0.2857rem);
   }
 
   .notification-banners-container {
-    margin-bottom: var(--terra-application-page-header-notification-banners-container-margin-bottom, 0.1875rem);
-    margin-top: var(--terra-application-page-header-notification-banners-container-margin-top, 0.25rem);
+    margin-bottom: var(--terra-application-page-header-notification-banners-container-margin-bottom, 0.2143rem);
+    margin-top: var(--terra-application-page-header-notification-banners-container-margin-top, 0.2857rem);
   }
 
   .toolbar-container + .notification-banners-container {
-    margin-top: var(--terra-application-page-header-notification-banners-container-adjacent-margin-top, 0.375rem);
+    margin-top: var(--terra-application-page-header-notification-banners-container-adjacent-margin-top, 0.4286rem);
   }
 
   .notification-banner {
-    border-radius: var(--terra-application-page-header-notification-banner-border-radius, 0.1875rem);
+    border-radius: var(--terra-application-page-header-notification-banner-border-radius, 0.2143rem);
     overflow: hidden;
 
     &:not(:first-child) {
-      margin-top: var(--terra-application-page-header-notification-banner-adjacent-margin-top, 0.1875rem);
+      margin-top: var(--terra-application-page-header-notification-banner-adjacent-margin-top, 0.2143rem);
     }
   }
 }

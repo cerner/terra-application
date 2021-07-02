@@ -14,6 +14,7 @@
   * Adding PageContainer and integrating throughout
   * Adding WorkspaceLayout
   * Adding LayerManager
+  * Adding Page themes
   * Adding NotificationDialog
 
 ## Unreleased

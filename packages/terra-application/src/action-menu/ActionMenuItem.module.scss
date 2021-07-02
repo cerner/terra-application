@@ -53,9 +53,10 @@
   .is-disabled {
     color: var(--terra-application-action-menu-item-is-disabled-color, #ccc);
     cursor: default;
+    opacity: var(--terra-application-action-menu-item-is-disabled-opacity, 1);
 
     .icon {
-      color: #222a2e;
+      color: var(--terra-application-action-menu-item-is-disabled-icon-color, #222a2e);
       opacity: 0.3;
     }
   }
@@ -68,6 +69,10 @@
       &:hover {
         background-color: var(--terra-application-action-menu-item-is-actionable-hover-background-color, #ebf6fd);
       }
+    }
+
+    &:active {
+      background-color: var(--terra-application-action-menu-item-is-actionable-active-background-color, #cce9f9);
     }
     
     &[data-focus-styles-enabled='true']:focus {

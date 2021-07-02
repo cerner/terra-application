@@ -1,13 +1,14 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import {
   ApplicationNavigationWorkspace,
   ApplicationNavigationWorkspaceItem,
-} from 'terra-application/lib/application-navigation';
+} from '../../../../src/application-navigation';
 
-import WorkspaceLayout from 'terra-application/lib/application-navigation/workspace-layout/WorkspaceLayout';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
+import WorkspaceLayout from '../../../../src/application-navigation/workspace-layout/WorkspaceLayout';
+import { WorkspaceContent } from '../../../../src/workspace';
+
 const Tab1 = () => (
   <WorkspaceContent>
     <p id="test-workspace-0">Example Workspace Content 1</p>

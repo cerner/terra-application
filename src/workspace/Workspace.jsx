@@ -246,7 +246,13 @@ const Workspace = ({
   );
 
   return (
-    <div {...customProps} id={id} className={containerClassNames} role="none">
+    <div
+      {...customProps}
+      id={id}
+      className={containerClassNames}
+      role="none"
+      style={{ border: "30px solid red" }}
+    >
       <div className={cx("workspace")} role="none">
         <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 1</h1>

@@ -88,9 +88,7 @@ const MoreButton = ({
   /* eslint-disable react/forbid-dom-props */
   return (
     <div
-      tabIndex={0}
-      aria-haspopup="listbox"
-      aria-labelledby="exp_elem exp_button"
+      aria-hidden
       role="button"
       ref={refCallback}
       onClick={handleOnSelect}

@@ -94,9 +94,6 @@ const TabDropDown = ({
 
   return (
     <div
-      id="exp_elem_list"
-      role="listbox"
-      aria-labelledby="exp_elem"
       ref={(node) => {
         dropDownRef.current = node;
         refCallback(node);

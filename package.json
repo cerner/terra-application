@@ -112,6 +112,8 @@
     "terra-content-container": "^3.14.0",
     "terra-disclosure-manager": "^4.27.0",
     "terra-divider": "^3.33.0",
+    "terra-dropdown-button": "^1.28.0",
+    "terra-form-select": "^6.31.0",
     "terra-icon": "^3.40.0",
     "terra-modal-manager": "^6.20.0",
     "terra-navigation-prompt": "^1.40.0",

@@ -53,10 +53,10 @@ reports
 target
 **/wdio/**/__snapshots__/latest
 **/wdio/**/__snapshots__/diff
+**/wdio/**/__snapshots__/error
 errorScreenshots
 **/aggregated-translations/*.*
 stats.json
 aggregated-themes.js
 package-lock.json
 generated-themes
-docker_images

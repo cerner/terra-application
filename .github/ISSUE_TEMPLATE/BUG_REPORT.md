@@ -2,7 +2,7 @@
 name: "\U0001F41B Bug Report"
 about: If something isn't working as expected
 title: ''
-labels: ":package: terra-application, :construction: Blocked: Functional Input, :construction:
+labels: ":construction: Blocked: Functional Input, :construction:
   Blocked: Accessibility Input, :construction: Blocked: Engineering Input, :construction:
   Blocked: UX Input"
 assignees: ''
@@ -19,10 +19,10 @@ assignees: ''
 <!-- Please specify the exact steps you took for this bug to occur. -->
 <!-- Provide as much detail as possible so we're able to reproduce these steps. -->
 
-1. 
-2. 
-3. 
-4. 
+1.
+2.
+3.
+4.
 
 ## Additional Context / Screenshots
 <!-- Add any other context about the problem here. If applicable, add screenshots to help explain. -->

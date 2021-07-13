@@ -254,15 +254,15 @@ const Workspace = ({
       style={{ border: "30px solid red" }}
     >
       <div className={cx("workspace")} role="none">
-        <div className={cx("textLegend")}>
+        {/* <div className={cx('textLegend')}>
           <h1 tabIndex={0}>Option 1</h1>
           <p aria-hidden>
             The only difference is the "more" label and its styles
           </p>
-        </div>
-        <div role="none" className={cx("button-header")}>
+        </div> */}
+        {/* <div role="none" className={cx("button-header")}>
           {sizeButton}
-        </div>
+        </div> */}
         <div
           role="none"
           className={cx("tab-header", {

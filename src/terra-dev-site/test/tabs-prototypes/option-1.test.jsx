@@ -7,6 +7,9 @@ import Tab3 from "./Tab3";
 import Tab4 from "./Tab4";
 import Tab5 from "./Tab5";
 import Tab6 from "./Tab6";
+import ButtonGroup from "terra-button-group";
+import Button from "terra-button/lib/Button";
+import IconEdit from "terra-icon/lib/icon/IconLeft";
 
 const sizeMap = {
   small: "320px",
@@ -34,67 +37,123 @@ const WorkspaceTest = () => {
   };
 
   return (
-    <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
+    <div
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(248,247,248,1) 0%, rgba(222,221,222,1) 100%)",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        height: "100%",
+      }}
+    >
+      <Button
+        text="Back"
+        icon={<IconEdit />}
+        variant="ghost"
+        style={{ position: "fixed", top: "32px", left: "32px" }}
+      />
       <div
-        style={{ height: "100%", width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginBottom: "32px",
+          padding: "12px",
+          borderRadius: "8px",
+          boxShadow: "inset 0px 1px 2px 0px rgba(0,0,0,0.25)",
+          background: "#ebeaeb",
+        }}
       >
-        <Workspace
-          id="overlay-test-id"
-          dismissButtonIsVisible
-          isPresentedAsOverlay
-          activeItemKey={activeItemKey}
-          onRequestActivate={(key) => setActiveItemKey(key)}
-          activeSize={workspaceSize}
-          sizeOptions={[
-            {
-              key: "small",
-              text: "Small",
-            },
-            {
-              key: "medium",
-              text: "Medium",
-            },
-            {
-              key: "large",
-              text: "Large",
-            },
-          ]}
-          onRequestSizeChange={onRequestSizeChange}
-          onRequestDismiss={onRequestClose}
+        <span
+          style={{ textAlign: "left", marginRight: "12px", fontWeight: "bold" }}
         >
-          <WorkspaceItem
-            itemKey="tab-1"
-            label="Apples"
-            render={() => <Tab1 />}
+          Adjust Viewport Size
+        </span>
+        <ButtonGroup
+          id="controlled-button-group"
+          selectedKeys={[workspaceSize]}
+          // eslint-disable-next-line react/jsx-indent-props
+        >
+          <ButtonGroup.Button
+            text="Large"
+            key="large"
+            onClick={() => onRequestSizeChange("large")}
           />
-          <WorkspaceItem
-            itemKey="tab-2"
-            label="Oranges"
-            render={() => <Tab2 />}
+          <ButtonGroup.Button
+            text="Medium"
+            key="medium"
+            onClick={() => onRequestSizeChange("medium")}
           />
-          <WorkspaceItem
-            itemKey="tab-3"
-            label="Strawberries"
-            render={() => <Tab3 />}
+          <ButtonGroup.Button
+            text="Small"
+            key="small"
+            onClick={() => onRequestSizeChange("small")}
           />
-          <WorkspaceItem
-            itemKey="tab-4"
-            label="Pineapples"
-            render={() => <Tab4 />}
-          />
-          <WorkspaceItem
-            itemKey="tab-5"
-            label="Lemons"
-            render={() => <Tab5 />}
-          />
-          <WorkspaceItem
-            itemKey="tab-6"
-            label="Kiwis"
-            render={() => <Tab6 />}
-          />
-        </Workspace>
+        </ButtonGroup>
       </div>
-    </ActiveMainPageContext.Provider>
+      <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
+        <div
+          style={{ height: "70vh", width: sizeMap[workspaceSize], boxShadow: "0px 0px 15px 0px rgba(0,0,0,0.2)" }} // eslint-disable-line react/forbid-dom-props
+        >
+          <Workspace
+            id="overlay-test-id"
+            dismissButtonIsVisible
+            isPresentedAsOverlay
+            activeItemKey={activeItemKey}
+            onRequestActivate={(key) => setActiveItemKey(key)}
+            activeSize={workspaceSize}
+            sizeOptions={[
+              {
+                key: "small",
+                text: "Small",
+              },
+              {
+                key: "medium",
+                text: "Medium",
+              },
+              {
+                key: "large",
+                text: "Large",
+              },
+            ]}
+            onRequestSizeChange={onRequestSizeChange}
+            onRequestDismiss={onRequestClose}
+          >
+            <WorkspaceItem
+              itemKey="tab-1"
+              label="Apples"
+              render={() => <Tab1 />}
+            />
+            <WorkspaceItem
+              itemKey="tab-2"
+              label="Oranges"
+              render={() => <Tab2 />}
+            />
+            <WorkspaceItem
+              itemKey="tab-3"
+              label="Strawberries"
+              render={() => <Tab3 />}
+            />
+            <WorkspaceItem
+              itemKey="tab-4"
+              label="Pineapples"
+              render={() => <Tab4 />}
+            />
+            <WorkspaceItem
+              itemKey="tab-5"
+              label="Lemons"
+              render={() => <Tab5 />}
+            />
+            <WorkspaceItem
+              itemKey="tab-6"
+              label="Kiwis"
+              render={() => <Tab6 />}
+            />
+          </Workspace>
+        </div>
+      </ActiveMainPageContext.Provider>
+    </div>
   );
 };
 

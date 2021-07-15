@@ -14,18 +14,14 @@
       linear-gradient(to bottom, #fff, #dedfe0)
     );
     box-sizing: border-box;
-    border-top: var(
-      --terra-application-workspace-tab-border,
-      1px solid #868a8c
-    );
-    border-right: var(
-      --terra-application-workspace-tab-border,
-      1px solid #868a8c
-    );
+    //border: var(--terra-application-workspace-tab-border, 1px solid #868a8c);
     border-bottom: 0;
+    //border-top-left-radius: var(--terra-application-workspace-tab-border-top-left-radius, 3px);
+    //border-top-right-radius: var(--terra-application-workspace-tab-border-top-right-radius, 3px);
     cursor: pointer;
     display: flex;
     height: var(--terra-application-workspace-tab-height, 33px);
+    //margin-right: var(--terra-application-workspace-tab-margin-right, 2px);
     min-width: 0;
     outline: none;
     position: relative;
@@ -192,10 +188,35 @@
     }
   }
 
-  .tabs-new-styles:nth-of-type(7) {
-    border-top-right-radius: var(
-      --terra-application-workspace-tab-border-top-right-radius,
-      3px
-    );
+  //Option 2A styles
+  .tab-menu {
+    position: absolute;
+    left: 0;
+    z-index: 1000 !important;
+    background-image: none !important;
+    border: 1px solid rgba(28, 31, 33, 0.25) !important;
+    border-radius: 3px;
+    margin-left: 6px;
+    max-height: 28px;
+    &:hover {
+      background-color: #dbdbdb;
+    }
+  }
+  .activeOpen {
+    background-color: #dbdbdb;
+    .icon {
+      color: #64696c !important;
+    }
+  }
+  .tabsNewStyles {
+    border-top: 1px solid #868a8c;
+    border-right: 1px solid #868a8c;
+  }
+  .tabsNewStyles:first-child {
+    border-left: 1px solid #868a8c;
+    border-top-left-radius: 3px;
+  }
+  .tabsNewStyles:nth-child(6) {
+    border-top-right-radius: 3px;
   }
 }

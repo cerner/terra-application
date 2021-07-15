@@ -5,6 +5,13 @@
 :local {
   .tab,
   .tab-menu {
+    // Option 1 style Start
+    &:hover {
+      background-color: #a7d8f6 !important;
+      background-image: none !important;
+      border-radius: 5px;
+    }
+    // Option 1 style End
     background-color: var(
       --terra-application-workspace-tab-background-color,
       transparent
@@ -14,18 +21,20 @@
       linear-gradient(to bottom, #fff, #dedfe0)
     );
     box-sizing: border-box;
-    border-top: var(
-      --terra-application-workspace-tab-border,
-      1px solid #868a8c
-    );
-    border-right: var(
-      --terra-application-workspace-tab-border,
-      1px solid #868a8c
-    );
+    border: var(--terra-application-workspace-tab-border, 1px solid #868a8c);
     border-bottom: 0;
+    border-top-left-radius: var(
+      --terra-application-workspace-tab-border-top-left-radius,
+      3px
+    );
+    border-top-right-radius: var(
+      --terra-application-workspace-tab-border-top-right-radius,
+      3px
+    );
     cursor: pointer;
     display: flex;
     height: var(--terra-application-workspace-tab-height, 33px);
+    margin-right: var(--terra-application-workspace-tab-margin-right, 2px);
     min-width: 0;
     outline: none;
     position: relative;
@@ -192,10 +201,22 @@
     }
   }
 
-  .tabs-new-styles:nth-of-type(7) {
-    border-top-right-radius: var(
-      --terra-application-workspace-tab-border-top-right-radius,
-      3px
-    );
+  // Option 1 styles
+  .moreButton {
+    background: none;
+    border: none;
+    height: 29px !important;
+    margin-left: 5px;
+    line-height: 9px !important;
+  }
+
+  .moreButtonInner {
+    color: #0059a8 !important;
+    text-decoration: none;
+  }
+
+  .activeMoreButton {
+    background-color: #a7d8f6 !important;
+    border-radius: 5px;
   }
 }

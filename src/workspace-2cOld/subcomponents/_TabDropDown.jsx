@@ -76,20 +76,20 @@ const TabDropDown = ({
 
   TabDropDown.handleClickOutside = (event) => onRequestClose(event);
 
-  const theme = React.useContext(ThemeContext);
-
-  let dropDownAdjustmentStyle = {};
+  let dropDownAdjustment = "";
 
   if (activeSize === "small") {
+    dropDownAdjustment = "smDropDownPos";
   } else if (activeSize === "medium") {
-    dropDownAdjustmentStyle = { top: "221px" };
-  } else if (activeSize === "large") {
+    dropDownAdjustment = "mdDropDownPos";
   }
 
+  const theme = React.useContext(ThemeContext);
   const dropDownClassNames = cx(
     "drop-down",
     { "is-open": isOpen },
-    theme.className
+    theme.className,
+    dropDownAdjustment
   );
 
   return (
@@ -100,7 +100,6 @@ const TabDropDown = ({
       }}
       role="none"
       className={dropDownClassNames}
-      style={dropDownAdjustmentStyle}
       onMouseDown={(e) => {
         e.preventDefault();
       }}

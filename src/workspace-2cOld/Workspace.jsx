@@ -245,9 +245,6 @@ const Workspace = ({
     customProps.className
   );
 
-  //Custom code
-  const tabsContainerRef = useRef(null);
-  const mainContainer = tabsContainerRef.current;
   const [shadowsDisplay, setShadowsDisplay] = useState({
     displayLeft: {
       display: "none",
@@ -256,6 +253,24 @@ const Workspace = ({
       display: "block",
     },
   });
+
+  let smallMediumAdjustment = "",
+    slideTabs = "",
+    shadowDisplay = "";
+  const tabsContainerRef = useRef(null);
+  const [updatedStyles, setUpdatedStyles] = useState({
+    newMarginLeft: {
+      marginLeft: "128px",
+    },
+    newLeftStyle: { left: "410px" },
+  });
+
+  if (activeSize === "small" || activeSize === "medium") {
+    smallMediumAdjustment = "smallMediumStyles";
+    slideTabs = "slidingTabsStyles";
+  } else if (activeSize === "large") {
+    shadowDisplay = "shadowDisplay";
+  }
 
   const tabTranslateSlide = (tabRef, translateX) => {
     tabRef.parentNode.style.transform = `translate(${translateX}px, 0)`;
@@ -278,7 +293,7 @@ const Workspace = ({
             display: "block",
           },
         });
-        tabTranslateSlide(tabSlideRef, 0);
+        tabTranslateSlide(tabSlideRef, -68);
         break;
       case "Pineapples":
         setShadowsDisplay({
@@ -289,7 +304,7 @@ const Workspace = ({
             display: "block",
           },
         });
-        tabTranslateSlide(tabSlideRef, -71);
+        tabTranslateSlide(tabSlideRef, -144);
         break;
       case "Lemons":
         setShadowsDisplay({
@@ -300,7 +315,7 @@ const Workspace = ({
             display: "block",
           },
         });
-        tabTranslateSlide(tabSlideRef, -147);
+        tabTranslateSlide(tabSlideRef, -220);
         break;
       case "Kiwis":
         setShadowsDisplay({
@@ -311,7 +326,7 @@ const Workspace = ({
             display: "none",
           },
         });
-        tabTranslateSlide(tabSlideRef, -223);
+        tabTranslateSlide(tabSlideRef, -296);
         break;
       default:
         tabTranslateSlide(tabSlideRef, 0);
@@ -324,11 +339,10 @@ const Workspace = ({
         tabTranslateSlide(tabSlideRef, 0);
         break;
       case "Oranges":
-        console.log("Oras");
         tabTranslateSlide(tabSlideRef, 0);
         break;
-      case "Strawberries":
-        tabTranslateSlide(tabSlideRef, 0);
+      case "Pineapples":
+        tabTranslateSlide(tabSlideRef, -15);
         break;
       case "Lemons":
         setShadowsDisplay({
@@ -339,7 +353,7 @@ const Workspace = ({
             display: "block",
           },
         });
-        tabTranslateSlide(tabSlideRef, -17);
+        tabTranslateSlide(tabSlideRef, -91);
         break;
       case "Kiwis":
         setShadowsDisplay({
@@ -350,12 +364,14 @@ const Workspace = ({
             display: "none",
           },
         });
-        tabTranslateSlide(tabSlideRef, -94);
+        tabTranslateSlide(tabSlideRef, -167);
         break;
       default:
         tabTranslateSlide(tabSlideRef, 0);
     }
   };
+
+  const mainContainer = tabsContainerRef.current;
 
   const tabSlide = (tabRef, tabType) => {
     let tabSlideRef = {};
@@ -371,88 +387,97 @@ const Workspace = ({
       }
       const tabId = tabSlideRef.title;
 
-      const containerRight = mainContainer.getBoundingClientRect().right;
-      const menuRight = mainContainer.children[1].getBoundingClientRect().right;
+      const containerLeft = mainContainer.getBoundingClientRect().left;
+      const menuLeft = mainContainer.children[1].getBoundingClientRect().left;
       const currentTabLeft = tabSlideRef.getBoundingClientRect().left;
       const currentTabRight = tabSlideRef.getBoundingClientRect().right;
 
       if (activeSize === "small") {
-        if (currentTabRight > containerRight) {
+        if (currentTabLeft < containerLeft) {
           setShadowsDisplay({
             displayLeft: {
-              display: "none",
+              display: "block",
             },
             displayRight: {
-              display: "block",
+              display: "none",
             },
           });
           tabSlideSmallSize(tabSlideRef, tabId);
-        } else if (currentTabLeft < menuRight) {
+        } else if (currentTabRight > menuLeft) {
           tabSlideSmallSize(tabSlideRef, tabId);
         }
       } else if (activeSize === "medium") {
-        if (currentTabRight > containerRight) {
+        if (currentTabLeft < containerLeft) {
           setShadowsDisplay({
             displayLeft: {
-              display: "none",
+              display: "block",
             },
             displayRight: {
-              display: "block",
+              display: "none",
             },
           });
           tabSlideMedSize(tabSlideRef, tabId);
-        } else if (currentTabLeft < menuRight) {
+        } else if (currentTabRight > menuLeft) {
           tabSlideMedSize(tabSlideRef, tabId);
         }
       }
     }
   };
 
-  let shadowsClassAdjustment = "";
-
-  if (activeSize === "small") {
-    shadowsClassAdjustment = "shadowsClassAdjustment";
-  }
+  const shadowRightStyles = {
+    ...shadowsDisplay.displayRight,
+    ...updatedStyles.newLeftStyle,
+  };
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div className={cx("workspace")} role="none">
         <div className={cx("textLegend")}>
-          <h1 tabIndex={0}>Option 2C</h1>
-          <p aria-hidden>Dropdown Menu and Tabs are keyboard accessible.</p>
+          <h1 tabIndex={0}>Option 2 C</h1>
+          <p aria-hidden>Tabs and DropDown Menu are keyboard accesible</p>
         </div>
         <div role="none" className={cx("button-header")}>
           {sizeButton}
         </div>
         <div
           role="none"
-          className={cx("tab-header", "slider-items-container", {
-            "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
-          })}
-          ref={tabsContainerRef}
-        >
-          {activeSize === "large" || (
-            <div className={cx("shadowsContainerLeft")}>
-              <img
-                className={cx("imgShadows")}
-                src="https://amikoosvet.com/images/provi/left_shadow.png"
-              />
-            </div>
+          className={cx(
+            "tab-header",
+            {
+              "has-dismiss-button": onRequestDismiss && dismissButtonIsVisible,
+            },
+            "slider-items-container",
+            smallMediumAdjustment
           )}
+          ref={tabsContainerRef}
+          style={updatedStyles.newMarginLeft}
+        >
+          <div
+            className={cx("shadowsContainerLeft", shadowDisplay)}
+            style={shadowsDisplay.displayLeft}
+          >
+            {/* <img
+              className={cx("imgShadows")}
+              src="https://amikoosvet.com/images/provi/left_shadow.png"
+           />*/}
+          </div>
           <Tabs
             ariaLabel={ariaLabel}
             tabData={tabData}
-            activeSize={activeSize}
+            label={"Tabs Menu"}
+            slideTabs={slideTabs}
             tabSlide={tabSlide}
+            activeSize={activeSize}
           />
           {activeSize === "large" || (
             <div
-              className={cx("shadowsContainerRight", shadowsClassAdjustment)}
+              className={cx("shadowsContainerRight", shadowDisplay)}
+              style={shadowRightStyles}
             >
-              <img
+              {/*<img
                 className={cx("imgShadows")}
                 src="https://amikoosvet.com/images/provi/right_shadow.png"
-              />
+              />*/}
             </div>
           )}
         </div>

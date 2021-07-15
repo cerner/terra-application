@@ -77,11 +77,12 @@ const Tab = ({
   const theme = React.useContext(ThemeContext);
   const tabClassNames = cx(
     "tab",
-    "tabs-new-styles",
     { "is-active": isSelected },
-    theme.className
+    theme.className,
+    "tabsNewStyles"
   );
   const tabSlideRef = useRef(null);
+
   function onKeyDown(event) {
     if (
       event.nativeEvent.keyCode === KEY_RETURN ||
@@ -107,7 +108,7 @@ const Tab = ({
   attributes.onKeyDown = onKeyDown;
   attributes.onBlur = enableFocusStyles;
   attributes.onMouseDown = disableFocusStyles;
-  attributes["data-focus-styles-enabled"] = false;
+  attributes["data-focus-styles-enabled"] = true;
   attributes["aria-selected"] = isSelected;
   attributes.style = { zIndex };
 

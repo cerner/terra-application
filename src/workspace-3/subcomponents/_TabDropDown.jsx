@@ -86,9 +86,9 @@ const TabDropDown = ({
   let dropDownAdjustmentStyle = {};
 
   if (activeSize === "small") {
-    dropDownAdjustmentStyle = { top: "240px" };
+    dropDownAdjustmentStyle = { top: "50px" };
   } else if (activeSize === "medium") {
-    dropDownAdjustmentStyle = { top: "221px" };
+    dropDownAdjustmentStyle = { top: "50px" };
   } else if (activeSize === "large") {
   }
 

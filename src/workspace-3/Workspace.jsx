@@ -145,7 +145,7 @@ const Workspace = ({
   const reFocus = (target2) => {
     if (refTabsContainer.current) {
       const tabsCollection =
-        refTabsContainer.current.children[2].children[0].children;
+        refTabsContainer
       let selectedTab;
 
       console.log(`Tabs container: ${refTabsContainer}`);
@@ -298,19 +298,19 @@ const Workspace = ({
 
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
-      <div ref={refTabsContainer} className={cx("workspace")} role="none">
-        <div className={cx("textLegend")}>
-          <h1 tabIndex={0}>Option 3</h1>
+      <div className={cx("workspace")} role="none">
+        {/* <div className={cx("textLegend")}>
+          <h1>Option 3</h1>
           <p aria-hidden>
             Swapabble tabs and counts in the "More" button.
           </p>
-        </div>
+        </div> */}
 
-        <div role="none" className={cx("button-header")}>
-          {dismissButton}
-          <div className={cx("fill-element")} />
-          {sizeButton}
-        </div>
+        {/* <div role="none" className={cx("button-header")}> */}
+          {/* {dismissButton} */}
+          {/* <div className={cx("fill-element")} /> */}
+          {/* {sizeButton} */}
+        {/* </div> */}
         <div
           role="none"
           className={cx("tab-header", {
@@ -318,6 +318,7 @@ const Workspace = ({
           })}
         >
           <Tabs
+            ref={refTabsContainer} 
             activeSize={activeSize}
             ariaLabel={ariaLabel}
             tabData={tabData}

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[89],{967:function(t,e,n){"use strict";n.r(e);var a=n(0),o=n.n(a),i=n(210),r=n(212);e.default=function(){return o.a.createElement(r.a,null,o.a.createElement(i.a,{buttonAttrs:[{text:"Action 1",key:1},{text:"Action 2",key:2}],message:"Status View with all props",variant:"no-data"}))}}}]);

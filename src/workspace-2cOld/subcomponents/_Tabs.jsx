@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import classNames from "classnames/bind";
 import ThemeContext from "terra-theme-context";
@@ -8,7 +8,8 @@ import TabDropDown from "./_TabDropDown";
 import Tab from "./_Tab";
 import HiddenTab from "./_HiddenTab";
 import styles from "./Tabs.module.scss";
-import TerraCustomMenu from "../../terra-custom-menu-2c/TerraCustomMenu";
+import DropdownButton, { Item } from "terra-dropdown-button";
+import NativeSelect from "terra-form-select/lib/native-select/NativeSelect";
 
 const cx = classNames.bind(styles);
 
@@ -70,11 +71,6 @@ class Tabs extends React.Component {
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
     this.resetCache();
-    this.handleReFocus = this.handleReFocus.bind(this);
-    this.regionsRef = React.createRef();
-    this.state = {
-      addedBannersLog: "",
-    };
   }
 
   componentDidMount() {
@@ -110,7 +106,6 @@ class Tabs extends React.Component {
     if (!this.moreButtonRef.current || !this.containerRef.current) {
       return;
     }
-
     // NOTE: get width from bounding client rect instead of resize observer, zoom throws off safari.
     const { width } =
       this.containerRef.current.parentNode.getBoundingClientRect();
@@ -265,31 +260,13 @@ class Tabs extends React.Component {
   }
 
   wrapOnSelectHidden(onSelect) {
+    debugger;
     return (itemKey, metaData) => {
       if (this.isOpen) {
         onSelect(itemKey, metaData);
       }
       this.setIsOpen(!this.isOpen);
     };
-  }
-
-  handleReFocus(itemKey, buttonRef) {
-    // this.regionsRef.current.focus();
-
-    //this.regionsRef.current.children[0].children[0]
-    const refElements = this.containerRef.current;
-    //const lastElem = refElements.lastElementChild;
-    refElements.children.forEach((elem) => {
-      if (elem.id.includes(itemKey)) {
-        this.setState({ addedBannersLog: elem.title + " selected" });
-        /*lastElem.innerHTML = elem.children[0].children[0].innerHTML;
-        buttonRef.current.setAttribute("tabIndex", -1);
-        buttonRef.current.setAttribute("aria-hidden", true);
-        buttonRef.current.blur();
-        elem.setAttribute("data-focus-styles-enabled", "true");
-        elem.focus();*/
-      }
-    });
   }
 
   render() {
@@ -301,7 +278,8 @@ class Tabs extends React.Component {
     const hiddenTabs = [];
     let isHiddenSelected = false;
 
-    const allTabs = [];
+    let menuItems = [];
+    let nativeOptions = [{ value: "Tabs Menu", display: "Tabs Menu" }];
 
     tabData.forEach((tab, index) => {
       visibleTabs.push(
@@ -315,36 +293,36 @@ class Tabs extends React.Component {
           tabSlide={this.props.tabSlide}
         />
       );
-      allTabs.push(tab);
-      /*if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
-        visibleTabs.push(
-          <Tab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelect(tab.onSelect)}
-            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
-        );
-      } else {
-        hiddenTabs.push(
-          <HiddenTab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelectHidden(tab.onSelect)}
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-          />
-        );
-        hiddenIds.push(tab.id);
+      hiddenTabs.push(
+        <HiddenTab
+          {...tab}
+          key={tab.id}
+          index={index}
+          tabIds={ids}
+          onSelect={this.wrapOnSelectHidden(tab.onSelect)}
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          tabSlide={this.props.tabSlide}
+        />
+      );
+      hiddenIds.push(tab.id);
+      menuItems.push(
+        <Item
+          {...tab}
+          key={tab.id}
+          label={tab.label}
+          onFocus={this.handleHiddenFocus}
+          onBlur={this.handleHiddenBlur}
+          itemKey={tab.itemKey}
+          tabSlide={this.props.tabSlide}
+          onSelect={this.wrapOnSelectHidden(tab.onSelect)}
+        />
+      );
+      nativeOptions.push({ value: tab.label, display: tab.label });
 
-        if (tab.isSelected) {
-          isHiddenSelected = true;
-        }
-      }*/
+      if (tab.isSelected) {
+        isHiddenSelected = true;
+      }
     });
 
     if (this.showMoreButton && this.dropdownRef.current) {
@@ -354,44 +332,26 @@ class Tabs extends React.Component {
     let attrs;
     if (this.isCalculating) {
       attrs = {
-        "data-tab-is-calculating": "false",
+        "data-tab-is-calculating": "true",
       };
     }
 
     return (
       <>
-        <TerraCustomMenu
-          tabs={allTabs}
-          handleReFocus={this.handleReFocus}
-          tabSlide={this.props.tabSlide}
-        />
-        {/*this.showMoreButton ? (
-          <TerraCustomMenu tabs={allTabs} mainRef={this.containerRef} />
-        ) : undefined*/}
+        {this.props.activeSize === "large" ? undefined : (
+          <div style={{ position: "absolute", left: 0, marginLeft: "6px" }}>
+            <DropdownButton label="Tabs Menu">{menuItems}</DropdownButton>
+          </div>
+        )}
         <div
           {...attrs}
-          className={cx("tab-container", theme.className, "slidingTabsStyles")}
+          className={cx("tab-container", theme.className, this.props.slideTabs)}
           ref={this.containerRef}
           role="tablist"
           aria-label={ariaLabel}
           aria-orientation="horizontal"
-          aria-owns={hiddenIds.join(" ")}
         >
           {visibleTabs}
-          <div
-            role="region"
-            tabIndex={-1}
-            ref={this.regionsRef}
-            style={{ opacity: 0 }}
-          >
-            <span
-              aria-live="assertive"
-              aria-atomic="true"
-              aria-labelledby="button-all-tabs"
-            >
-              <span>{this.state.addedBannersLog}</span>
-            </span>
-          </div>
         </div>
       </>
     );

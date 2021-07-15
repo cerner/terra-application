@@ -5,7 +5,7 @@ import ThemeContext from "terra-theme-context";
 import IconCaretDown from "terra-icon/lib/icon/IconCaretDown";
 import { handleMoreButtonArrows } from "./_TabUtils";
 
-import styles from "./MoreButton.module.scss";
+import styles from "./Tab.module.scss";
 
 const cx = classNames.bind(styles);
 
@@ -62,7 +62,7 @@ const MoreButton = ({
   refCallback,
   tabIds,
   zIndex,
-  click,
+  label,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -88,12 +88,10 @@ const MoreButton = ({
   /* eslint-disable react/forbid-dom-props */
   return (
     <div
-      tabIndex={0}
+      aria-hidden
       role="button"
       ref={refCallback}
-      onClick={click}
-      aria-haspopup="menu"
-      aria-expanded={false}
+      onClick={handleOnSelect}
       onKeyDown={handleOnKeyDown}
       onBlur={handleOnBlur}
       onMouseDown={handleOnMouseDown}
@@ -102,15 +100,15 @@ const MoreButton = ({
         //{ "is-active": isOpen || isActive },
         { "is-open": isOpen },
         theme.className,
-        "moreButton",
-        { activeMoreButton: isOpen }
+        isOpen && "activeOpen"
       )}
       style={{ zIndex: isOpen ? "100" : zIndex }}
       data-testid="workspace-tabs-more-button"
     >
       <div className={cx("inner")}>
-        <div className={cx("icon", "moreButtonInner")}>
-          All tabs <IconCaretDown />
+        <div className={cx("icon")}>
+          {label}
+          <IconCaretDown />
         </div>
       </div>
     </div>

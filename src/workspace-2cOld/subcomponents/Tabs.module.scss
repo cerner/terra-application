@@ -8,7 +8,6 @@
     flex-wrap: nowrap;
     height: var(--terra-application-workspace-tab-container-height, 33px);
     justify-content: flex-start;
-    left: 87px;
     margin-bottom: var(
       --terra-application-workspace-tab-container-margin-bottom,
       0
@@ -21,15 +20,31 @@
     }
 
     &[data-tab-is-calculating="true"] {
-      visibility: hidden;
+      // visibility: hidden;
     }
   }
-
   //Option 2A styles
   .tab-container {
     position: relative;
   }
   .slidingTabsStyles {
     transition: 0.1s ease-in-out;
+    left: 0;
+    right: 0;
+  }
+  .form-select-fruits {
+    position: absolute;
+    left: 0;
+    width: 114px;
+    margin-left: 5px;
+    font-size: 1rem;
+    font-family: var(
+      --terra-base-font-family,
+      "Helvetica Neue",
+      Helvetica,
+      Arial,
+      sans-serif
+    );
+    color: #434a4d;
   }
 }

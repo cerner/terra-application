@@ -151,6 +151,14 @@
 
   .tab-header {
     margin-bottom: 0;
+    margin-left: var(
+      --terra-application-workspace-tab-header-margin-left,
+      0.7143rem
+    );
+    margin-right: var(
+      --terra-application-workspace-tab-header-margin-right,
+      2.286rem
+    );
     margin-top: var(
       --terra-application-workspace-tab-header-margin-top,
       1.0714rem
@@ -161,7 +169,17 @@
     z-index: 50;
 
     &.has-dismiss-button {
-      width: auto;
+      margin-left: var(
+        --terra-application-workspace-tab-header-has-dismiss-margin-left,
+        2.286rem
+      );
+      width: calc(
+        100% -
+          var(
+            --terra-application-workspace-tab-header-has-dismiss-width,
+            4.571rem
+          )
+      );
     }
   }
 
@@ -191,27 +209,57 @@
       width: 100%;
     }
   }
-  //Option 2C styles
+  //Option 2A styles
+  .slider-items-container {
+    overflow-y: hidden;
+    overflow-x: hidden;
+    min-height: 33px;
+  }
+  .slider-main-container::-webkit-scrollbar {
+    display: none;
+  }
+  .smallMediumStyles {
+    width: auto !important;
+  }
   .textLegend {
     text-align: center;
     background-color: #fff;
     padding-bottom: 1rem;
   }
-  .slider-items-container {
-    overflow-y: hidden;
-    overflow-x: hidden;
-    min-height: 33px;
+  .btnsContainer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+  }
+  .inputMenuName,
+  .inputMenuSpeed {
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 2px;
+    }
+  }
+  .inputMenuName {
+    input {
+      width: 81px;
+    }
+  }
+  .inputMenuSpeed {
+    input {
+      width: 50px;
+    }
+  }
+  .buttonReset {
+    display: flex;
+    align-items: flex-end;
   }
   .shadowsContainerLeft,
   .shadowsContainerRight {
     position: absolute;
     z-index: 10;
   }
-  .shadowsContainerLeft {
-    left: 86px;
-  }
   .shadowsContainerRight {
-    right: -1px;
+    right: 439px;
     top: 186px;
   }
   .imgShadows {
@@ -219,8 +267,5 @@
   }
   .shadowDisplay {
     display: none;
-  }
-  .shadowsClassAdjustment {
-    top: 205px !important;
   }
 }

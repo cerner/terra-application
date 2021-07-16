@@ -7,6 +7,7 @@ import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
+import { ApplicationNavigationActionsContext } from 'terra-application/lib/application-navigation';
 
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';
@@ -74,6 +75,23 @@ const AppPage = ({ pageName }) => {
       <p>{`The div below uses the theme context to apply styling for theme: ${theme.name}.`}</p>
       <div className={cx('themed-block')} />
       <EventEmitter />
+      <ApplicationNavigationActionsContext.Consumer>
+        {({ actions = [] }) => (
+          <div>
+            <h3>Layout Actions</h3>
+            {actions.map(action => (
+              <button
+                key={action.key}
+                type="button"
+                onClick={action.onSelect}
+                aria-label={action.label}
+              >
+                {action.icon}
+              </button>
+            ))}
+          </div>
+        )}
+      </ApplicationNavigationActionsContext.Consumer>
     </div>
   );
 };

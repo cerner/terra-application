@@ -4,7 +4,7 @@ import { ThemeContext } from 'terra-application/lib/theme';
 import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
 } from 'terra-application/lib/application-navigation';
-
+import { WorkspaceContent } from '../../../workspace';
 import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
@@ -76,15 +76,15 @@ PageContent.propTypes = {
 };
 
 const Tab1 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p>Example Workspace Content 1</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const Tab2 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p>Example Workspace Content 2</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const workspace = (

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
 } from 'terra-application/lib/application-navigation';
+import { WorkspaceContent } from 'terra-application/lib/workspace';
 import WorkspaceLayout from 'terra-application/lib/application-navigation/private/workspace-layout/WorkspaceLayout';
 
 const PageContent = ({ title }) => {
@@ -35,15 +36,15 @@ PageContent.propTypes = {
 };
 
 const Tab1 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p id="test-workspace-0">Example Workspace Content 1</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const Tab2 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p id="test-workspace-1">Example Workspace Content 2</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const workspace = (

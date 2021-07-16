@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
@@ -17,7 +16,7 @@ import styles from './ApplicationNavigationExample.module.scss';
 const cx = classNames.bind(styles);
 
 // Content to be rendered within the workspace must be rendered using the
-// WorkspaceContent component. For this example, we define two components to 
+// WorkspaceContent component. For this example, we define two components to
 // represent both simple and complex scenarios.
 
 const WorkspaceContent1 = () => (
@@ -52,7 +51,7 @@ const ApplicationNavigationWorkspaceExample = () => {
   // For the purposes of this example, the state changes reported through the
   // ApplicationNavigation.Workspace's callbacks are recorded and presented to the
   // user. In most cases, usage of these callbacks is not necessary. However, if
-  // you wish to persist the current state and reapply it upon next load (using 
+  // you wish to persist the current state and reapply it upon next load (using
   // the 'initial' props), these callbacks can be used to detect and respond to
   // changes in the ApplicationNavigation.Workspace's internal state.
   const [reportedWorkspaceActiveItem, setReportedWorkspaceActiveItem] = useState();
@@ -72,7 +71,7 @@ const ApplicationNavigationWorkspaceExample = () => {
         setReportedWorkspaceSize(size);
       }}
       onPresentationStateChange={(isPresented) => {
-        setReportedWorkspaceVisibility(isPresented ? 'true' : 'false')
+        setReportedWorkspaceVisibility(isPresented ? 'true' : 'false');
       }}
     >
       <ApplicationNavigation.Workspace.Item
@@ -86,7 +85,7 @@ const ApplicationNavigationWorkspaceExample = () => {
         render={() => <WorkspaceContent2 />}
       />
     </ApplicationNavigation.Workspace>
-  );  
+  );
 
   return (
     <div className={cx('example-container')}>
@@ -123,7 +122,11 @@ const ApplicationNavigationWorkspaceExample = () => {
           <ApplicationNavigationActionsContext.Consumer>
             {({ actions = [] }) => (
               <div className={cx('page-content')}>
-                <p>Example Content for {activeNavigationItem}</p>
+                <p>
+                  Example Content for
+                  {' '}
+                  {activeNavigationItem}
+                </p>
                 <p>
                   Layout Actions:
                   {' '}
@@ -138,9 +141,21 @@ const ApplicationNavigationWorkspaceExample = () => {
                     </button>
                   ))}
                 </p>
-                <p>Last Reported Active Workspace Item: {reportedWorkspaceActiveItem}</p>
-                <p>Last Reported Workspace Size: {reportedWorkspaceSize}</p>
-                <p>Last Reported Workspace Visibility: {reportedWorkspaceVisibility}</p>
+                <p>
+                  Last Reported Active Workspace Item:
+                  {' '}
+                  {reportedWorkspaceActiveItem}
+                </p>
+                <p>
+                  Last Reported Workspace Size:
+                  {' '}
+                  {reportedWorkspaceSize}
+                </p>
+                <p>
+                  Last Reported Workspace Visibility:
+                  {' '}
+                  {reportedWorkspaceVisibility}
+                </p>
               </div>
             )}
           </ApplicationNavigationActionsContext.Consumer>

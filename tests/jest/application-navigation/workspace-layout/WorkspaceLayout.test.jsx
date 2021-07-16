@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import ApplicationNavigation from '../../../../src/application-navigation';
+import { WorkspaceContent } from '../../../../src/workspace';
 import { ActiveBreakpointContext } from '../../../../src/breakpoints';
 import MockApplication from '../../MockApplication';
 import WorkspaceLayout from '../../../../src/application-navigation/private/workspace-layout/WorkspaceLayout';
@@ -16,15 +17,15 @@ const MyMockApplication = ({ children }) => (
 );
 
 const Tab1 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p id="test-workspace-0">Example Workspace Content 1</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const Tab2 = () => (
-  <ApplicationNavigation.Workspace.Content>
+  <WorkspaceContent>
     <p id="test-workspace-1">Example Workspace Content 2</p>
-  </ApplicationNavigation.Workspace.Content>
+  </WorkspaceContent>
 );
 
 const renderWorkspace = (initActive = 'tab-1', initSize = { scale: 0.50 }, initIsOpen = false) => (

@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  WorkspaceContent, WorkspaceContentActivityOverlay, WorkspaceContentStatusOverlay, WorkspaceContentStatusOverlayButton,
+  WorkspaceContent,
 } from '../../../workspace';
 
 const Tab5 = () => {
@@ -8,10 +8,10 @@ const Tab5 = () => {
 
   return (
     <WorkspaceContent
-      activityOverlay={isLoading ? <WorkspaceContentActivityOverlay variant="loading" /> : undefined}
+      activityOverlay={isLoading ? <WorkspaceContent.ActivityOverlay variant="loading" /> : undefined}
       statusOverlay={(
-        <WorkspaceContentStatusOverlay variant="error" message="This is an error message.">
-          <WorkspaceContentStatusOverlayButton
+        <WorkspaceContent.StatusOverlay variant="error" message="This is an error message.">
+          <WorkspaceContent.StatusOverlay.Button
             text="Retry"
             onClick={() => {
               setIsLoading(true);
@@ -21,12 +21,10 @@ const Tab5 = () => {
               }, 5000);
             }}
           />
-        </WorkspaceContentStatusOverlay>
+        </WorkspaceContent.StatusOverlay>
       )}
     />
   );
 };
-
-Tab5.titleKey = 'derp';
 
 export default Tab5;

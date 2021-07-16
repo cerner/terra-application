@@ -21,8 +21,10 @@ const MyContent1 = () => {
 
       return () => {
         // remove listeners
-      }
+      };
     }
+
+    return undefined;
   }, [isActive]);
 
   return (
@@ -52,7 +54,7 @@ const MyContent2 = () => {
         <WorkspaceContent.ActivityOverlay variant="loading" />
       ) : undefined}
       statusOverlay={hasNoResults ? (
-        <WorkspaceContent.StatusOverlay variant="no-matching-results" /> 
+        <WorkspaceContent.StatusOverlay variant="no-matching-results" />
       ) : undefined}
     >
       <div>
@@ -95,7 +97,7 @@ const WorkspaceContentHowToExample = () => {
         render={() => <MyContent2 />}
       />
     </ApplicationNavigation.Workspace>
-  );  
+  );
 
   return (
     <div className={cx('example-container')}>
@@ -125,7 +127,11 @@ const WorkspaceContentHowToExample = () => {
         <ApplicationNavigationActionsContext.Consumer>
           {({ actions = [] }) => (
             <div className={cx('page-content')}>
-              <p>Example Content for {activeNavigationItem}</p>
+              <p>
+                Example Content for
+                {' '}
+                {activeNavigationItem}
+              </p>
               <p>
                 Layout Actions:
                 {' '}

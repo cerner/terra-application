@@ -28,7 +28,7 @@ const propTypes = {
       let errorString;
       React.Children.forEach(props[propName], (child) => {
         if (child.type !== WorkspaceContentStatusOverlayButton) {
-          errorString = `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Child must be of type WorkspaceContentStatusOverlayButton.`;
+          errorString = `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Child must be of type WorkspaceContent.StatusOverlay.Button.`;
         }
       });
 

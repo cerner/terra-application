@@ -110,7 +110,7 @@ const propTypes = {
    */
   children: PropTypes.node,
   /**
-   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
+   * An ApplicationNavigation.Workspace element to be presented within the layout.
    */
   workspace: PropTypes.element,
 };

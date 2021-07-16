@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Workspace, { WorkspaceItem, WorkspaceContent } from '../../../workspace';
+import Workspace, { WorkspaceItem } from '../../../workspace';
 
 const propTypes = {
   /**
@@ -138,6 +138,5 @@ const ApplicationNavigationWorkspace = ({
 
 ApplicationNavigationWorkspace.propTypes = propTypes;
 ApplicationNavigationWorkspace.Item = WorkspaceItem;
-ApplicationNavigationWorkspace.Content = WorkspaceContent;
 
 export default ApplicationNavigationWorkspace;

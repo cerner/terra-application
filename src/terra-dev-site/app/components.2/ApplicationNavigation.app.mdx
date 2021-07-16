@@ -1,6 +1,9 @@
 import PropsTable from 'terra-application/lib/application-navigation/ApplicationNavigation?dev-site-props-table';
+import ApplicationNavigationWorkspaceProps from 'terra-application/lib/application-navigation/private/workspace-layout/ApplicationNavigationWorkspace?dev-site-props-table';
+
 import ApplicationNavigationExample from './example/ApplicationNavigationExample?dev-site-example';
 import ApplicationNavigationWorkspaceExample from './example/ApplicationNavigationWorkspaceExample?dev-site-example';
+
 import { Notice } from '@cerner/terra-docs';
 
 # ApplicationNavigation
@@ -237,9 +240,43 @@ const myNotifications = {
 ### `workspace`
 #### Is Required: `false`
 
-The `workspace` prop allows consumers to display a workspace aside region by providing an ApplicationNavigationWorkspace with associated ApplicationNavigationWorkspaceItems.
-The ApplicationNavigationWorkspace provides the ability to initialize and monitor the state of the WorkspaceLayout through callbacks.
+The `workspace` prop allows consumers to render a persistent aside region within the layout.
 
+<Notice ariaLevel="5">
+
+Only an instance of the `ApplicationNavigation.Workspace` component may be supplied to the `workspace` prop.
+
+</Notice>
+
+<Notice variant="caution" ariaLevel="5">
+
+If a workspace is rendered by the the ApplicationNavigation component, children of the component must use the [ApplicationNavigationActionsContext](/application/terra-application/contexts/application-navigation-actions-context)
+to render the action controls necessary for its usage. Failure to do so will lead to a lack of user control over the workspace and an inconsistent user experience.
+
+</Notice>
+
+## Subcomponents
+
+### ApplicationNavigation.Workspace
+
+The `ApplicationNavigation.Workspace` component defines the interface for presenting content within the ApplicationNavigation's workspace region.
+
+#### Props
+
+<ApplicationNavigationWorkspaceProps />
+
+### ApplicationNavigation.Workspace.Item
+
+The `ApplicationNavigation.Workspace.Item` defines the labeling of a tab within the workspace region as well as its associated content.
+
+#### Props
+
+|Prop Name|Type|Is Required|Default Value|Description|
+|---|---|---|---|---|
+|`itemKey`|string|<span style={{ color: '#d53040' }}>**required**</span>|none|A unique key used to identify the item. Must be unique within the collection of provided items.|
+|`label`|string|<span style={{ color: '#d53040' }}>**required**</span>|none|A string used to visibly label the content within the workspace.|
+|`metaData`|object|optional|none|Additional data that will be returned with callbacks from the workspace component.|
+|`render`|func|optional|none|A function executed during rendering to generate content for the item.|
 
 ## Responsive Design
 

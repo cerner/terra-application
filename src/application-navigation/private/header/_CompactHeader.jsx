@@ -343,7 +343,6 @@ const CompactHeader = ({
       return undefined;
     }
 
-    // TODO: needs translation values got label
     return (
       <button type="button" role="link" onClick={skipToWorkspaceAction} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'terraApplication.workspace.skipToLabel' })}

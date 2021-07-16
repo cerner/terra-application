@@ -2,9 +2,16 @@ import React, {
   useRef, useContext, useState,
 } from 'react';
 import IconLightbulb from 'terra-icon/lib/icon/IconLightbulb';
+import Button from 'terra-button';
+import IconEdit from 'terra-icon/lib/icon/IconEdit';
+import IconAdd from 'terra-icon/lib/icon/IconAdd';
+import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
+import Toolbar from 'terra-toolbar';
 
 import ApplicationNavigation from 'terra-application/lib/application-navigation';
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { WorkspaceContent } from 'terra-application/lib/workspace';
+import NotificationBanner from 'terra-application/lib/notification-banner';
 
 import { ModalContent } from './ModalPresenter';
 
@@ -16,6 +23,31 @@ const userConfig = {
   name: 'Demo User',
   initials: 'DU',
 };
+
+const WorkspaceContent1 = () => (
+  <WorkspaceContent>
+    <div>
+      <p>Example Workspace Content 1</p>
+    </div>
+  </WorkspaceContent>
+);
+
+const WorkspaceContent2 = () => (
+  <WorkspaceContent
+    toolbar={(
+      <Toolbar>
+        <Button text="Button 1" variant="utility" icon={<IconEdit />} />
+        <Button text="Button 2" variant="utility" icon={<IconAdd />} />
+        <Button text="Button 3" variant="utility" icon={<IconAttachment />} />
+      </Toolbar>
+    )}
+  >
+    <div>
+      <p>Example Workspace Content 2</p>
+    </div>
+    <NotificationBanner variant="hazard-low" description="Example Notification" />
+  </WorkspaceContent>
+);
 
 const DemoAppNavigation = () => {
   const disclosureManager = useContext(DisclosureManagerContext);
@@ -43,6 +75,26 @@ const DemoAppNavigation = () => {
     );
   }
 
+  const workspace = (
+    <ApplicationNavigation.Workspace
+      id="application-workspace-example"
+      initialActiveItemKey="item-1"
+      initialSize={{ scale: 0 }}
+      initialIsOpen
+    >
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-1"
+        label="Item 1"
+        render={() => <WorkspaceContent1 />}
+      />
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-2"
+        label="Item 2"
+        render={() => <WorkspaceContent2 />}
+      />
+    </ApplicationNavigation.Workspace>
+  );
+
   let pageContent;
   switch (activeNavItem) {
     case 'page_1':
@@ -64,6 +116,7 @@ const DemoAppNavigation = () => {
       titleConfig={{
         title: 'Terra Application Demo',
       }}
+      workspace={workspace}
       userConfig={userConfig}
       navigationItems={navigationItemsRef.current}
       activeNavigationItemKey={activeNavItem}

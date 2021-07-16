@@ -102,6 +102,10 @@ const propTypes = {
    * If `onSelectLogout` is not provided, the Logout action button will not be rendered.
    */
   onSelectLogout: PropTypes.func,
+  /**
+   * Action to tie to the skipToLink for workspace.
+   */
+  skipToWorkspaceAction: PropTypes.func,
 };
 
 const defaultProps = {
@@ -129,6 +133,7 @@ const Header = ({
   onSelectSettings,
   onSelectHelp,
   onSelectLogout,
+  skipToWorkspaceAction,
 }) => {
   function renderTitle() {
     if (!titleConfig) {
@@ -198,11 +203,24 @@ const Header = ({
     );
   }
 
+  function renderSkipToWorkspace() {
+    if (!skipToWorkspaceAction) {
+      return undefined;
+    }
+
+    return (
+      <button type="button" role="link" onClick={skipToWorkspaceAction} className={cx('skip-content-button')}>
+        {intl.formatMessage({ id: 'terraApplication.workspace.skipToLabel' })}
+      </button>
+    );
+  }
+
   return (
     <header role="banner" className={cx('header')}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>
+      {renderSkipToWorkspace()}
       <div className={cx('title-container')}>
         {renderTitle()}
       </div>

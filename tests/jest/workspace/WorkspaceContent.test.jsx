@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 import {
-  WorkspaceContent, WorkspaceContentStatusOverlay, WorkspaceContentActivityOverlay,
+  WorkspaceContent,
 } from '../../../src/workspace';
 import TabContext from '../../../src/workspace/subcomponents/_TabContext';
 import NotificationBanner from '../../../src/notification-banner';
@@ -85,7 +85,7 @@ test('should render given status overlay', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
-      statusOverlay={<WorkspaceContentStatusOverlay />}
+      statusOverlay={<WorkspaceContent.StatusOverlay />}
     >
       <div data-testid="test-content" />
     </TestWorkspaceContent>
@@ -99,7 +99,7 @@ test('should render given activity overlay', () => {
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
-      activityOverlay={<WorkspaceContentActivityOverlay />}
+      activityOverlay={<WorkspaceContent.ActivityOverlay />}
     >
       <div data-testid="test-content" />
     </TestWorkspaceContent>
@@ -113,8 +113,8 @@ test('should render both status and activity overlays if both are provided', () 
   render((
     <TestWorkspaceContent
       toolbar={<div data-testid="test-toolbar" />}
-      statusOverlay={<WorkspaceContentStatusOverlay />}
-      activityOverlay={<WorkspaceContentActivityOverlay />}
+      statusOverlay={<WorkspaceContent.StatusOverlay />}
+      activityOverlay={<WorkspaceContent.ActivityOverlay />}
     >
       <div data-testid="test-content" />
     </TestWorkspaceContent>

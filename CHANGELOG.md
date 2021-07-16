@@ -4,6 +4,7 @@
 * Added
   * Local file inclusion of terra-application-navigation
   * Added ApplicationNavigationActionsContext to application-navigation
+  * Added WorkspaceLayout to local ApplicationNavigation instance
 
 ## 1.48.0 - (June 15, 2021)
 

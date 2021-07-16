@@ -21,7 +21,7 @@ const propTypes = {
    */
   message: PropTypes.string,
   /**
-   * The WorkspaceContentStatusOverlayButton components to render within the status overlay.
+   * The StatusOverlay.Button components to render within the status overlay.
    */
   children: (props, propName, componentName) => {
     if (props[propName]) {
@@ -58,5 +58,7 @@ const WorkspaceContentStatusOverlay = ({ variant, message, children }) => {
 };
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
+
+WorkspaceContentStatusOverlay.Button = WorkspaceContentStatusOverlayButton;
 
 export default WorkspaceContentStatusOverlay;

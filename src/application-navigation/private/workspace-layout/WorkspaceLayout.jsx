@@ -205,7 +205,6 @@ const WorkspaceLayout = ({
       setTimeout(() => { workspacePanelRef.current.focus(); }, 0);
     } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
       setTimeout(() => {
-        // TODO: evaluate flexing focus element based on overlay state or previous active element
         const mainElement = document.querySelector('main');
         if (mainElement) {
           mainElement.focus();

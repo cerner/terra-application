@@ -1,11 +1,23 @@
+import { Notice } from '@cerner/terra-docs';
 import PropsTable from './NotificationBannerPropsTable?dev-site-props-table';
-import NotificationBannerExample from './example/NotificationBannerExample?dev-site-example';
 
 # Notification Banner
 
 A Notification Banner should be rendered by a component that needs to render a notification with information that needs to be brought to the user's attention. This is a non-disruptive notification that does not require immediate input or attention by the user.
 
 When rendered, the Notification Banner registers itself with the framework so it is prioritized correctly when any other rendered notification banners before they are is displayed in a list above all other content.
+
+<Notice ariaLevel="2" variant="caution">
+
+NotificationBanners are only supported when rendered within the following components:
+
+* [WorkspaceContent](/application/terra-application/components/workspace-content)
+* Modal components disclosed by the [ModalManager](/application/terra-application/components/modal-manager)
+* Panel components disclosed by the [SlidePanelManager](/application/terra-application/components/slide-panel-manager)
+
+Rendering a NotificationBanner outside these locations will result in an exception being thrown.
+
+</Notice>
 
 ## Banner Variants
 
@@ -46,10 +58,6 @@ The expected banner's usage when in the orion-fusion-theme are consistent with t
 ## Props
 
 <PropsTable />
-
-## Example
-
-<NotificationBannerExample />
 
 ## Testing
 

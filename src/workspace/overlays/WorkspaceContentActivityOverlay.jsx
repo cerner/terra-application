@@ -11,6 +11,9 @@ import styles from './WorkspaceContentActivityOverlay.module.scss';
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   * String determining which activity variant to render.
+   */
   variant: PropTypes.oneOf(['default', 'loading']),
 };
 

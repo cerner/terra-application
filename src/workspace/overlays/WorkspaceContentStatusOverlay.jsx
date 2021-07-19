@@ -21,14 +21,14 @@ const propTypes = {
    */
   message: PropTypes.string,
   /**
-   * The WorkspaceContentStatusOverlayButton components to render within the status overlay.
+   * The StatusOverlay.Button components to render within the status overlay.
    */
   children: (props, propName, componentName) => {
     if (props[propName]) {
       let errorString;
       React.Children.forEach(props[propName], (child) => {
         if (child.type !== WorkspaceContentStatusOverlayButton) {
-          errorString = `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Child must be of type WorkspaceContentStatusOverlayButton.`;
+          errorString = `Invalid prop \`${propName}\` supplied to \`${componentName}\`. Child must be of type WorkspaceContent.StatusOverlay.Button.`;
         }
       });
 
@@ -58,5 +58,7 @@ const WorkspaceContentStatusOverlay = ({ variant, message, children }) => {
 };
 
 WorkspaceContentStatusOverlay.propTypes = propTypes;
+
+WorkspaceContentStatusOverlay.Button = WorkspaceContentStatusOverlayButton;
 
 export default WorkspaceContentStatusOverlay;

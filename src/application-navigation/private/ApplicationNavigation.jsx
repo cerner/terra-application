@@ -17,6 +17,7 @@ import { shouldRenderCompactNavigation } from './utils/helpers';
 import {
   titleConfigPropType, userConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType,
 } from './utils/propTypes';
+import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
 import styles from './ApplicationNavigation.module.scss';
 
@@ -108,6 +109,10 @@ const propTypes = {
    * A collection of child elements to render within the ApplicationNavigation body.
    */
   children: PropTypes.node,
+  /**
+   * An ApplicationNavigation.Workspace element to be presented within the layout.
+   */
+  workspace: PropTypes.element,
 };
 
 const defaultProps = {
@@ -134,6 +139,7 @@ const ApplicationNavigation = ({
   onSelectUtilityItem,
   notifications,
   children,
+  workspace,
 }) => {
   const drawerMenuRef = useRef();
   const contentLayoutRef = useRef();
@@ -145,9 +151,11 @@ const ApplicationNavigation = ({
   const drawerMenuIsOpenRef = useRef(false);
   const closeMenuCallbackRef = useRef();
   const renderedNavItemKeyRef = useRef(activeNavigationItemKey);
+  const skipToWorkspaceActionRef = useRef();
 
   const [drawerMenuIsOpen, setDrawerMenuIsOpen] = useState(false);
   const [popupMenuIsOpen, setPopupMenuIsOpen] = useState(false);
+  const [renderSkipToWorkspace, setRenderSkipToWorkspace] = useState(false);
 
   const closeMenuEvent = 'terra-application-navigation.dismiss-menu';
 
@@ -273,6 +281,19 @@ const ApplicationNavigation = ({
     );
   }
 
+  function createWorkspaceAction() {
+    let skipToAction;
+    if (renderSkipToWorkspace) {
+      skipToAction = () => {
+        if (!skipToWorkspaceActionRef.current) {
+          return;
+        }
+        skipToWorkspaceActionRef.current();
+      };
+    }
+    return skipToAction;
+  }
+
   function renderCompactHeader() {
     return (
       <CompactHeader
@@ -295,6 +316,7 @@ const ApplicationNavigation = ({
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
         id={id}
+        skipToWorkspaceAction={createWorkspaceAction()}
       />
     );
   }
@@ -321,6 +343,7 @@ const ApplicationNavigation = ({
         onSelectSettings={onSelectSettings}
         onSelectHelp={onSelectHelp}
         onSelectLogout={onSelectLogout}
+        skipToWorkspaceAction={createWorkspaceAction()}
       />
     );
   }
@@ -442,6 +465,35 @@ const ApplicationNavigation = ({
   const theme = React.useContext(ThemeContext);
   const appNavClassNames = cx('application-navigation', theme.className);
 
+  const renderMain = () => {
+    const skipToCallback = action => {
+      skipToWorkspaceActionRef.current = action;
+
+      if (action && !renderSkipToWorkspace) {
+        setRenderSkipToWorkspace(true);
+      }
+    };
+
+    return (
+      <WorkspaceLayout
+        id={`${id}-workspace-layout`}
+        workspace={workspace}
+        skipToCallback={skipToCallback}
+      >
+        <main
+          ref={mainContainerRef}
+          tabIndex="-1"
+          role="main"
+          className={cx('main-container')}
+          aria-labelledby={hiddenMainTitle ? 'main-inner-title' : null}
+        >
+          {hiddenMainTitle}
+          {children}
+        </main>
+      </WorkspaceLayout>
+    );
+  };
+
   return (
     <div className={appNavClassNames}>
       <div
@@ -457,16 +509,7 @@ const ApplicationNavigation = ({
         className={cx('content-layout', { 'drawer-menu-is-open': drawerMenuIsOpen })}
       >
         {shouldRenderCompactNavigation(activeBreakpoint) ? renderCompactHeader() : renderHeader()}
-        <main
-          ref={mainContainerRef}
-          tabIndex="-1"
-          role="main"
-          className={cx('main-container')}
-          aria-labelledby={hiddenMainTitle ? 'main-inner-title' : null}
-        >
-          {hiddenMainTitle}
-          {children}
-        </main>
+        {renderMain()}
         <Overlay
           className={cx('overlay')}
           isOpen={drawerMenuIsOpen}

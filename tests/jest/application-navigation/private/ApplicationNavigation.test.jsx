@@ -1,9 +1,27 @@
 import React from 'react';
 import { ActiveBreakpointContext } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
+import { IntlProvider } from 'react-intl';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
+import { mountWithIntl, mockIntl } from 'terra-enzyme-intl';
+import { ApplicationIntlContext } from '../../../../src/application-intl';
 import ApplicationNavigation from '../../../../src/application-navigation/private/ApplicationNavigation';
+
+/* eslint-disable react/prop-types */
+const MockApplication = ({ children }) => (
+  // eslint-disable-next-line compat/compat
+  <IntlProvider
+    locale="en"
+    messages={new Proxy({}, {
+      get: (_, property) => property,
+      getOwnPropertyDescriptor: () => ({ configurable: true, enumerable: true }), // important for new checks in react-intl v5
+    })}
+  >
+    <ApplicationIntlContext.Provider value={mockIntl}>
+      {children}
+    </ApplicationIntlContext.Provider>
+  </IntlProvider>
+);
 
 describe('ApplicationNavigation', () => {
   let reactUseContext;
@@ -108,9 +126,11 @@ describe('ApplicationNavigation', () => {
 
   it('correctly applies the theme context className', () => {
     const appNav = mountWithIntl(
-      <ThemeContextProvider theme={{ className: 'clinical-lowlight-theme' }}>
-        <ApplicationNavigation />
-      </ThemeContextProvider>,
+      <MockApplication>
+        <ThemeContextProvider theme={{ className: 'clinical-lowlight-theme' }}>
+          <ApplicationNavigation />
+        </ThemeContextProvider>
+      </MockApplication>,
     );
     expect(appNav).toMatchSnapshot();
   });

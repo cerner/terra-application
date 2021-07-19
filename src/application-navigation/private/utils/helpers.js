@@ -85,8 +85,8 @@ function logoutUtilityItemId(appNavId) {
   return utilityItemId(appNavId, 'TerraLogout');
 }
 
-function extensionItemId(appNavId, extenstionItemKey) {
-  return itemId(appNavId, 'ExtensionItem', extenstionItemKey);
+function extensionItemId(appNavId, extensionItemKey) {
+  return itemId(appNavId, 'ExtensionItem', extensionItemKey);
 }
 
 export default {

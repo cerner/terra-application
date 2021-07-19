@@ -30,11 +30,11 @@ const userConfigNoInitials = {
 
 const UserTest = () => (
   <>
-    <FixedHeight><ApplicationNavigation userConfig={userConfig} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation userConfig={userConfigDetail} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation userConfig={userConfigSrc} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation userConfig={userConfigNoInitials} /></FixedHeight>
-    <FixedHeight><ApplicationNavigation userConfig={userConfigImageFallbackNoInitials} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-default" userConfig={userConfig} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-detail" userConfig={userConfigDetail} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-src" userConfig={userConfigSrc} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-no-initials" userConfig={userConfigNoInitials} /></FixedHeight>
+    <FixedHeight><ApplicationNavigation id="test-fallback" userConfig={userConfigImageFallbackNoInitials} /></FixedHeight>
   </>
 );
 

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationNavigation correctly applies the theme context className 1`] = `
-<ThemeContextProvider
+<MockApplication
   intl={
     Object {
       "defaultFormats": Object {},
@@ -29,49 +29,128 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
       "timeZone": null,
     }
   }
-  theme={
-    Object {
-      "className": "clinical-lowlight-theme",
-    }
-  }
 >
-  <ApplicationNavigation
-    notifications={Object {}}
-    utilityItems={Array []}
+  <IntlProvider
+    locale="en"
+    messages={null}
   >
-    <div
-      className="application-navigation clinical-lowlight-theme"
-    >
-      <div
-        aria-hidden={true}
-        className="drawer-menu-container"
-        style={
-          Object {
-            "display": "none",
-          }
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": "clinical-lowlight-theme",
         }
+      }
+    >
+      <ApplicationNavigation
+        notifications={Object {}}
+        utilityItems={Array []}
       >
-        <FocusTrap
-          _createFocusTrap={[Function]}
-          active={false}
-          className="drawer-menu-focus-trap-container"
-          focusTrapOptions={
-            Object {
-              "clickOutsideDeactivates": true,
-              "escapeDeactivates": true,
-              "returnFocusOnDeactivate": false,
-            }
-          }
-          paused={false}
+        <div
+          className="application-navigation clinical-lowlight-theme"
         >
           <div
-            className="drawer-menu-focus-trap-container"
+            aria-hidden={true}
+            className="drawer-menu-container"
+            style={
+              Object {
+                "display": "none",
+              }
+            }
           >
-            <InjectIntl(DrawerMenu)
+            <FocusTrap
+              _createFocusTrap={[Function]}
+              active={false}
+              className="drawer-menu-focus-trap-container"
+              focusTrapOptions={
+                Object {
+                  "clickOutsideDeactivates": true,
+                  "escapeDeactivates": true,
+                  "returnFocusOnDeactivate": false,
+                }
+              }
+              paused={false}
+            >
+              <div
+                className="drawer-menu-focus-trap-container"
+              >
+                <InjectIntl(DrawerMenu)
+                  notifications={Object {}}
+                  utilityItems={Array []}
+                >
+                  <DrawerMenu
+                    intl={
+                      Object {
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "formatDate": [Function],
+                        "formatHTMLMessage": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatPlural": [Function],
+                        "formatRelative": [Function],
+                        "formatTime": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralFormat": [Function],
+                          "getRelativeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "now": [Function],
+                        "onError": [Function],
+                        "textComponent": "span",
+                        "timeZone": null,
+                      }
+                    }
+                    navigationItems={Array []}
+                    notifications={Object {}}
+                    utilityItems={Array []}
+                  >
+                    <div
+                      className="drawer-container clinical-lowlight-theme"
+                    >
+                      <div
+                        className="drawer-menu"
+                        data-navigation-drawer-menu={true}
+                        role={null}
+                        tabIndex={0}
+                      >
+                        <div
+                          className="vertical-overflow-container"
+                        >
+                          <div
+                            className="header"
+                          >
+                            <div
+                              className="header-background-fill"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </DrawerMenu>
+                </InjectIntl(DrawerMenu)>
+              </div>
+            </FocusTrap>
+          </div>
+          <div
+            className="content-layout"
+          >
+            <InjectIntl(CompactHeader)
+              activeBreakpoint="medium"
+              isDrawerMenuOpen={false}
               notifications={Object {}}
+              onSelectMenuButton={[Function]}
+              onSelectSkipToContent={[Function]}
+              skipToWorkspaceAction={[Function]}
               utilityItems={Array []}
             >
-              <DrawerMenu
+              <CompactHeader
+                activeBreakpoint="medium"
+                extensionItems={Array []}
                 intl={
                   Object {
                     "defaultFormats": Object {},
@@ -99,162 +178,125 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                     "timeZone": null,
                   }
                 }
+                isDrawerMenuOpen={false}
                 navigationItems={Array []}
                 notifications={Object {}}
+                onSelectMenuButton={[Function]}
+                onSelectSkipToContent={[Function]}
+                skipToWorkspaceAction={[Function]}
                 utilityItems={Array []}
               >
+                <header
+                  className="compact-header"
+                  role="banner"
+                >
+                  <button
+                    className="skip-content-button"
+                    onClick={[Function]}
+                    role="link"
+                    type="button"
+                  >
+                    terraApplication.navigation.header.skipToContentTitle
+                  </button>
+                  <button
+                    className="skip-content-button"
+                    onClick={[Function]}
+                    role="link"
+                    type="button"
+                  >
+                    terraApplication.workspace.skipToLabel
+                  </button>
+                  <div
+                    className="title-container"
+                  />
+                  <nav
+                    className="hidden-nav"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    tabIndex="-1"
+                  >
+                    <ul
+                      className="nav-inner"
+                    />
+                  </nav>
+                  <div
+                    className="extensions-container"
+                  />
+                  <ul
+                    aria-label="terraApplication.navigation.drawerMenu.utilities"
+                    className="hidden-utils"
+                    onBlur={[Function]}
+                    onFocus={[Function]}
+                    role="listbox"
+                    tabIndex="-1"
+                  />
+                </header>
+              </CompactHeader>
+            </InjectIntl(CompactHeader)>
+            <WorkspaceLayout
+              id="undefined-workspace-layout"
+              skipToCallback={[Function]}
+            >
+              <div
+                className="layout-container workspace-split"
+                id="undefined-workspace-layout"
+              >
                 <div
-                  className="drawer-container clinical-lowlight-theme"
+                  className="resize-overlay"
+                />
+                <div
+                  className="layout-body"
                 >
                   <div
-                    className="drawer-menu"
-                    data-navigation-drawer-menu={true}
-                    role={null}
-                    tabIndex={0}
+                    className="content-body"
+                    id="undefined-workspace-layout-content-body"
+                    inert={null}
+                    style={null}
                   >
-                    <div
-                      className="vertical-overflow-container"
-                    >
-                      <div
-                        className="header"
-                      >
-                        <div
-                          className="header-background-fill"
-                        />
-                      </div>
-                    </div>
+                    <main
+                      aria-labelledby={null}
+                      className="main-container"
+                      role="main"
+                      tabIndex="-1"
+                    />
                   </div>
                 </div>
-              </DrawerMenu>
-            </InjectIntl(DrawerMenu)>
+              </div>
+            </WorkspaceLayout>
+            <Overlay
+              backgroundStyle="clear"
+              className="overlay"
+              isOpen={false}
+              isRelativeToContainer={true}
+              isScrollable={false}
+              onRequestClose={[Function]}
+              rootSelector="#root"
+              zIndex="6000"
+            />
           </div>
-        </FocusTrap>
-      </div>
-      <div
-        className="content-layout"
-      >
-        <InjectIntl(CompactHeader)
-          activeBreakpoint="medium"
-          isDrawerMenuOpen={false}
-          notifications={Object {}}
-          onSelectMenuButton={[Function]}
-          onSelectSkipToContent={[Function]}
-          utilityItems={Array []}
-        >
-          <CompactHeader
-            activeBreakpoint="medium"
-            extensionItems={Array []}
-            intl={
-              Object {
-                "defaultFormats": Object {},
-                "defaultLocale": "en",
-                "formatDate": [Function],
-                "formatHTMLMessage": [Function],
-                "formatMessage": [Function],
-                "formatNumber": [Function],
-                "formatPlural": [Function],
-                "formatRelative": [Function],
-                "formatTime": [Function],
-                "formats": Object {},
-                "formatters": Object {
-                  "getDateTimeFormat": [Function],
-                  "getMessageFormat": [Function],
-                  "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
-                },
-                "locale": "en",
-                "messages": null,
-                "now": [Function],
-                "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
-              }
-            }
-            isDrawerMenuOpen={false}
-            navigationItems={Array []}
-            notifications={Object {}}
-            onSelectMenuButton={[Function]}
-            onSelectSkipToContent={[Function]}
-            utilityItems={Array []}
-          >
-            <header
-              className="compact-header"
-              role="banner"
-            >
-              <button
-                className="skip-content-button"
-                onClick={[Function]}
-                role="link"
-                type="button"
-              >
-                terraApplication.navigation.header.skipToContentTitle
-              </button>
-              <div
-                className="title-container"
-              />
-              <nav
-                className="hidden-nav"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                tabIndex="-1"
-              >
-                <ul
-                  className="nav-inner"
-                />
-              </nav>
-              <div
-                className="extensions-container"
-              />
-              <ul
-                aria-label="terraApplication.navigation.drawerMenu.utilities"
-                className="hidden-utils"
-                onBlur={[Function]}
-                onFocus={[Function]}
-                role="listbox"
-                tabIndex="-1"
-              />
-            </header>
-          </CompactHeader>
-        </InjectIntl(CompactHeader)>
-        <main
-          aria-labelledby={null}
-          className="main-container"
-          role="main"
-          tabIndex="-1"
-        />
-        <Overlay
-          backgroundStyle="clear"
-          className="overlay"
-          isOpen={false}
-          isRelativeToContainer={true}
-          isScrollable={false}
-          onRequestClose={[Function]}
-          rootSelector="#root"
-          zIndex="6000"
-        />
-      </div>
-      <Popup
-        attachmentBehavior="push"
-        boundingRef={null}
-        classNameArrow={null}
-        classNameContent={null}
-        classNameOverlay={null}
-        contentAttachment="top right"
-        contentHeight="auto"
-        contentWidth="320"
-        isArrowDisplayed={true}
-        isContentFocusDisabled={true}
-        isHeaderDisabled={true}
-        isOpen={false}
-        onRequestClose={[Function]}
-        popupContentRole="dialog"
-        targetAttachment="bottom center"
-        targetRef={[Function]}
-      />
-    </div>
-  </ApplicationNavigation>
-</ThemeContextProvider>
+          <Popup
+            attachmentBehavior="push"
+            boundingRef={null}
+            classNameArrow={null}
+            classNameContent={null}
+            classNameOverlay={null}
+            contentAttachment="top right"
+            contentHeight="auto"
+            contentWidth="320"
+            isArrowDisplayed={true}
+            isContentFocusDisabled={true}
+            isHeaderDisabled={true}
+            isOpen={false}
+            onRequestClose={[Function]}
+            popupContentRole="dialog"
+            targetAttachment="bottom center"
+            targetRef={[Function]}
+          />
+        </div>
+      </ApplicationNavigation>
+    </ThemeContextProvider>
+  </IntlProvider>
+</MockApplication>
 `;
 
 exports[`ApplicationNavigation should render default element 1`] = `
@@ -284,12 +326,17 @@ exports[`ApplicationNavigation should render default element 1`] = `
       }
       utilityItems={Array []}
     />
-    <main
-      aria-labelledby={null}
-      className="main-container"
-      role="main"
-      tabIndex="-1"
-    />
+    <WorkspaceLayout
+      id="undefined-workspace-layout"
+      skipToCallback={[Function]}
+    >
+      <main
+        aria-labelledby={null}
+        className="main-container"
+        role="main"
+        tabIndex="-1"
+      />
+    </WorkspaceLayout>
     <Overlay
       backgroundStyle="clear"
       className="overlay"
@@ -412,21 +459,26 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
         ]
       }
     />
-    <main
-      aria-labelledby="main-inner-title"
-      className="main-container"
-      role="main"
-      tabIndex="-1"
+    <WorkspaceLayout
+      id="undefined-workspace-layout"
+      skipToCallback={[Function]}
     >
-      <VisuallyHiddenText
-        aria-hidden={true}
-        id="main-inner-title"
-        text="test-text"
-      />
-      <div>
-        test child content
-      </div>
-    </main>
+      <main
+        aria-labelledby="main-inner-title"
+        className="main-container"
+        role="main"
+        tabIndex="-1"
+      >
+        <VisuallyHiddenText
+          aria-hidden={true}
+          id="main-inner-title"
+          text="test-text"
+        />
+        <div>
+          test child content
+        </div>
+      </main>
+    </WorkspaceLayout>
     <Overlay
       backgroundStyle="clear"
       className="overlay"
@@ -641,21 +693,26 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
         ]
       }
     />
-    <main
-      aria-labelledby="main-inner-title"
-      className="main-container"
-      role="main"
-      tabIndex="-1"
+    <WorkspaceLayout
+      id="undefined-workspace-layout"
+      skipToCallback={[Function]}
     >
-      <VisuallyHiddenText
-        aria-hidden={true}
-        id="main-inner-title"
-        text="test-text"
-      />
-      <div>
-        test child content
-      </div>
-    </main>
+      <main
+        aria-labelledby="main-inner-title"
+        className="main-container"
+        role="main"
+        tabIndex="-1"
+      >
+        <VisuallyHiddenText
+          aria-hidden={true}
+          id="main-inner-title"
+          text="test-text"
+        />
+        <div>
+          test child content
+        </div>
+      </main>
+    </WorkspaceLayout>
     <Overlay
       backgroundStyle="clear"
       className="overlay"

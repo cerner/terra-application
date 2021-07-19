@@ -2,6 +2,7 @@
 
 exports[`ApplicationNavigation should render default element 1`] = `
 <ApplicationNavigation
+  id="test-application-id"
   notifications={Object {}}
   utilityItems={Array []}
 >
@@ -43,6 +44,7 @@ exports[`ApplicationNavigation should render with all props 1`] = `
       my test hero
     </div>
   }
+  id="test-application-id"
   navigationItems={
     Array [
       Object {

@@ -5,6 +5,9 @@ import ThemeContext from 'terra-theme-context';
 
 import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 
+import ActivityOverlay from './overlays/WorkspaceContentActivityOverlay';
+import StatusOverlay from './overlays/WorkspaceContentStatusOverlay';
+
 import DynamicOverlayContainer from './shared/DynamicOverlayContainer';
 import TabContext from './subcomponents/_TabContext';
 import TabHeader from './subcomponents/_TabHeader';
@@ -27,11 +30,11 @@ const propTypes = {
    */
   toolbar: PropTypes.element,
   /**
-   * A WorkspaceContentStatusOverlay component instance to be rendered on top of the provided children.
+   * A WorkspaceContent.StatusOverlay component instance to be rendered on top of the provided children.
    */
   statusOverlay: PropTypes.element,
   /**
-   * A WorkspaceContentActivityOverlay component instance to be rendered on top of the provided children.
+   * A WorkspaceContent.ActivityOverlay component instance to be rendered on top of the provided children.
    */
   activityOverlay: PropTypes.element,
 };
@@ -112,5 +115,8 @@ const WorkspaceContent = ({
 };
 
 WorkspaceContent.propTypes = propTypes;
+
+WorkspaceContent.StatusOverlay = StatusOverlay;
+WorkspaceContent.ActivityOverlay = ActivityOverlay;
 
 export default WorkspaceContent;

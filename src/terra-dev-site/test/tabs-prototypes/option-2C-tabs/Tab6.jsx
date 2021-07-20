@@ -6,8 +6,8 @@ import MockContent from "../MockContent";
 
 const Tab6 = () => {
   return (
-    <WorkspaceContent label="Kiwis">
-      <MockContent fruit="kiwis" />
+    <WorkspaceContent label="Currencies">
+      <MockContent tab="currencies" />
     </WorkspaceContent>
   );
 };

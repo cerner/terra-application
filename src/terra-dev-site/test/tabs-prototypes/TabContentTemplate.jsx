@@ -1,31 +1,38 @@
 import React from "react";
 
 const textMapping = {
-  apples: [
+  continents: [
+    <p>What actually is a continent, and how many are there?</p>,
+    <h2>What does the dictionary say?</h2>,
     <p>
-      An apple is an edible fruit produced by an apple tree (Malus domestica).
-      Apple trees are cultivated worldwide and are the most widely grown species
-      in the genus Malus. The tree originated in Central Asia, where its wild
-      ancestor, Malus sieversii, is still found today. Apples have been grown
-      for thousands of years in Asia and Europe and were brought to North
-      America by European colonists. Apples have religious and mythological
-      significance in many cultures, including Norse, Greek and European
-      Christian tradition.
+      Continent, noun, [ˈkɒn.tɪ.nənt] one of the seven large landmasses on the
+      Earth`'`s surface, surrounded, or mainly surrounded, by sea and usually
+      consisting of various countries.
+    </p>,
+    <h2>The Continents</h2>,
+    <p>
+      Africa, the Americas, Antarctica, Asia, Australia, together with Oceania,
+      and Europe are considered to be continents.
     </p>,
     <p>
-      Apple trees are large if grown from seed. Generally, apple cultivars are
-      propagated by grafting onto rootstocks, which control the size of the
-      resulting tree. There are more than 7,500 known cultivars of apples,
-      resulting in a range of desired characteristics. Different cultivars are
-      bred for various tastes and use, including cooking, eating raw and cider
-      production. Trees and fruit are prone to a number of fungal, bacterial and
-      pest problems, which can be controlled by a number of organic and
-      non-organic means. In 2010, the fruit's genome was sequenced as part of
-      research on disease control and selective breeding in apple production.
+      The word continent is used to differentiate between various large land
+      areas of Earth into which all the land surface of the planet is divided.
+      The term refers to the 'mountain top' regions of the Earth not flooded by
+      water, dry land. The level of the surrounding water ultimately defines the
+      shape and borders of continents. More water implies less land and
+      different outlines. Even more water, like that stored away as ice in the
+      poles and glaciers, and you might live on a water planet, no continents.
     </p>,
     <p>
-      Worldwide production of apples in 2018 was 86 million tonnes, with China
-      accounting for nearly half of the total.
+      All right, then, a continent is "a large, continuous area of land on
+      Earth." All continents of the Earth together make up about one-third of
+      the total surface of the planet. The fact is, more than two-thirds of the
+      Earth's surface is covered by water. The landmasses of the Earth are
+      unequally distributed, two-thirds of the continental landmass is located
+      in the Northern Hemisphere (the upper half of the globe, north of the
+      equator). Why is that? This might be just a feature of our current point
+      in geological time because some million years ago, the bulk of the
+      planet's landmass was in the Southern Hemisphere.
     </p>,
   ],
   oranges: [

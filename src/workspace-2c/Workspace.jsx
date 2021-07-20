@@ -417,13 +417,13 @@ const Workspace = ({
   return (
     <div {...customProps} id={id} className={containerClassNames} role="none">
       <div className={cx("workspace")} role="none">
-        <div className={cx("textLegend")}>
+        {/* <div className={cx("textLegend")}>
           <h1 tabIndex={0}>Option 2C</h1>
           <p aria-hidden>Dropdown Menu and Tabs are keyboard accessible.</p>
         </div>
         <div role="none" className={cx("button-header")}>
           {sizeButton}
-        </div>
+        </div> */}
         <div
           role="none"
           className={cx("tab-header", "slider-items-container", {

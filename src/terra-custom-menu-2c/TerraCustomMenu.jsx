@@ -50,6 +50,8 @@ class TerraCustomMenu extends React.Component {
       refElem: null,
     };
     this.menuItemOptionRef = React.createRef();
+    this.totalTabs = this.props.tabs.length;
+    this.attributes = { ["aria-label"]: "" };
   }
 
   handleButtonClick() {
@@ -117,20 +119,27 @@ class TerraCustomMenu extends React.Component {
               onChange={this.handleOnChange}
               ref={this.menuOptionRef}
             >
-              {this.props.tabs.map((tab, index) => (
-                <Menu.Item
-                  text={tab.label}
-                  key={tab.itemKey}
-                  isSelected={
-                    this.props.tabActiveKey === tab.itemKey ||
-                    this.state.groupSelectedIndex === index
-                  }
-                  onClick={() => {
-                    this.handleToggle1OnClick(tab.onSelect, tab.itemKey);
-                  }}
-                  ref={this.menuItemOptionRef}
-                />
-              ))}
+              {this.props.tabs.map((tab, index) => {
+                return (
+                  <Menu.Item
+                    {...{
+                      ["aria-label"]: `${tab.label}, option ${index + 1} of ${
+                        this.totalTabs
+                      }`,
+                    }}
+                    text={tab.label}
+                    key={tab.itemKey}
+                    isSelected={
+                      this.props.tabActiveKey === tab.itemKey ||
+                      this.state.groupSelectedIndex === index
+                    }
+                    onClick={() => {
+                      this.handleToggle1OnClick(tab.onSelect, tab.itemKey);
+                    }}
+                    ref={this.menuItemOptionRef}
+                  />
+                );
+              })}
             </Menu.ItemGroup>
           </Menu>
           <button

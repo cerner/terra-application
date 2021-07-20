@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ModalManager from 'terra-application/lib/modal-manager';
+import ModalManager from '../../../modal-manager';
 import DisclosureComponent from './DisclosureComponent';
 
 const CustomDismissCheck = () => (

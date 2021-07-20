@@ -18,6 +18,10 @@ const propTypes = {
    */
   metaData: PropTypes.object,
   /**
+   * Function executed during rendering to generate child content.
+   */
+  render: PropTypes.func,
+  /**
    * @private
    * The id of the tab.
    */

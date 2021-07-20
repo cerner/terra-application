@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ApplicationErrorBoundary from 'terra-application/lib/application-error-boundary/ApplicationErrorBoundary';
+import ApplicationErrorBoundary from '../../../../lib/application-error-boundary/ApplicationErrorBoundary';
 
 const ErrorComponent = () => {
   const [throwError, setThrowError] = useState(false);

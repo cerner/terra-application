@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'terra-application/lib/theme';
-import { ApplicationIntlContext } from 'terra-application/lib//application-intl';
-import ApplicationBase from 'terra-application/lib/application-base';
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import NavigationPrompt from 'terra-application/lib/navigation-prompt';
+import { ApplicationIntlContext } from '../../../application-intl';
+import ApplicationBase from '../../../application-base';
+import ApplicationNavigation from '../../../application-navigation';
+import NavigationPrompt from '../../../navigation-prompt';
 
 const PageContent = ({ title }) => {
   const [hasPendingAction, setHasPendingAction] = useState(false);

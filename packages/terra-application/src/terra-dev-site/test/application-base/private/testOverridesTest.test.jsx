@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { ApplicationIntlContext } from '../../../../application-intl';
 
 const TestOverrideTest = () => {
   const applicationIntl = useContext(ApplicationIntlContext);

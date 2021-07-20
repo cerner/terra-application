@@ -1,6 +1,6 @@
 import React from 'react';
-import useNotificationBanners from 'terra-application/lib/notification-banner/private/useNotificationBanners';
 import ExampleForAccessibilityTesting from './ExampleForAccessibilityTesting';
+import useNotificationBanners from '../../../notification-banner/private/useNotificationBanners';
 
 const Example = () => {
   const { NotificationBannerProvider, NotificationBanners } = useNotificationBanners();

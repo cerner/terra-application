@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import { useActiveMainPage } from 'terra-application/lib/application-container';
-import NotificationBanner from 'terra-application/lib/notification-banner/NotificationBanner';
+import { useActiveMainPage } from '../../../application-container';
+import NotificationBanner from '../../../notification-banner/NotificationBanner';
 import styles from './TestStyles.module.scss';
 
 const cx = classNames.bind(styles);

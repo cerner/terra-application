@@ -5,7 +5,9 @@ import ApplicationNavigation from '../../../src/application-navigation/Applicati
 describe('ApplicationNavigation', () => {
   it('should render default element', () => {
     const shallowComponent = shallow(
-      <ApplicationNavigation />,
+      <ApplicationNavigation
+        id="test-application-id"
+      />,
     );
 
     expect(shallowComponent).toMatchSnapshot();
@@ -14,6 +16,7 @@ describe('ApplicationNavigation', () => {
   it('should render with all props', () => {
     const shallowComponent = shallow(
       <ApplicationNavigation
+        id="test-application-id"
         activeBreakpoint="large"
         titleConfig={{
           title: 'test-title',

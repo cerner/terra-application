@@ -1,6 +1,6 @@
 import React from 'react';
-import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay/ApplicationStatusOverlay';
-import ApplicationStatusOverlayProvider from 'terra-application/lib/application-status-overlay/ApplicationStatusOverlayProvider';
+import ApplicationStatusOverlay from '../../../../lib/application-status-overlay/ApplicationStatusOverlay';
+import ApplicationStatusOverlayProvider from '../../../../lib/application-status-overlay/ApplicationStatusOverlayProvider';
 
 const ApplicationStatusOverlayAllProps = () => {
   const StatusViewButtons = [

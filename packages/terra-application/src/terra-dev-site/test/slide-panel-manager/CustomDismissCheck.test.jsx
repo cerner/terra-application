@@ -1,6 +1,6 @@
 import React from 'react';
-import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
 import DisclosureComponent from './DisclosureComponent';
+import SlidePanelManager from '../../../slide-panel-manager';
 
 const CustomDismissCheck = () => (
   <SlidePanelManager>

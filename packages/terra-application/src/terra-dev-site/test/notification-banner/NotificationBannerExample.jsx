@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import classNamesBind from 'classnames/bind';
 import PropTypes from 'prop-types';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import NotificationBanner from '../../../notification-banner';
 import styles from './CustomVariant.module.scss';
 
 const cx = classNamesBind.bind(styles);

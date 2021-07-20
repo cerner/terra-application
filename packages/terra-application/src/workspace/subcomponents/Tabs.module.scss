@@ -17,7 +17,7 @@
       outline: none;
     }
 
-    &[data-tab-is-calculating='true'] {
+    &[data-tab-is-calculating="true"] {
       visibility: hidden;
     }
   }

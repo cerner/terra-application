@@ -107,8 +107,8 @@ class Tabs extends React.Component {
     const { width } = this.containerRef.current.parentNode.getBoundingClientRect();
 
     const moreStyle = window.getComputedStyle(this.moreButtonRef.current, null);
-    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 10);
-    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 10);
+    const moreMarginLeft = parseInt(moreStyle.getPropertyValue('margin-left'), 0);
+    const moreMarginRight = parseInt(moreStyle.getPropertyValue('margin-right'), 0);
     const moreButtonWidth = this.moreButtonRef.current.getBoundingClientRect().width + moreMarginLeft + moreMarginRight;
     const availableWidth = width - moreButtonWidth;
 

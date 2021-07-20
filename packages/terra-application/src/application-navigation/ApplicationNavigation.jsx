@@ -2,16 +2,18 @@ import React, {
   useRef, useCallback, Suspense,
 } from 'react';
 import PropTypes from 'prop-types';
-import TerraApplicationNavigation from 'terra-application-navigation';
+import uuidv4 from 'uuid/v4';
+import TerraApplicationNavigation from './private/ApplicationNavigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
-} from 'terra-application-navigation/lib/utils/propTypes';
+} from './private/utils/propTypes';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
 import { ApplicationIntlContext } from '../application-intl';
+import ApplicationNavigationWorkspace from './private/workspace-layout/ApplicationNavigationWorkspace';
 
 const propTypes = {
   /**
@@ -44,6 +46,10 @@ const propTypes = {
    * An element to render within the ApplicationNavigation utility menu, shifted to the drawer at the `medium` breakpoint and below.
    */
   hero: PropTypes.element,
+  /**
+   * The base id used to generate ids of workspace, navigation, utility, and extension items
+   */
+  id: PropTypes.string,
   /**
    * An array of configuration objects with information specifying the creation of navigation items. These items
    * are rendered within the ApplicationNavigation header at larger breakpoints and within the drawer menu at smaller breakpoints.
@@ -116,6 +122,10 @@ const propTypes = {
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
   utilityItems: utilityItemsPropType,
+  /**
+   * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
+   */
+  workspace: PropTypes.element,
 };
 
 const ApplicationNavigation = ({
@@ -125,6 +135,7 @@ const ApplicationNavigation = ({
   disablePromptsForNavigationItems,
   extensionItems,
   hero,
+  id,
   navigationItems,
   navigationPromptResolutionOptions,
   notifications,
@@ -138,10 +149,11 @@ const ApplicationNavigation = ({
   titleConfig,
   userConfig,
   utilityItems,
+  workspace,
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
-
   const navigationPromptCheckpointRef = useRef();
+  const idRef = React.useRef(uuidv4());
 
   const onSelectNavigationItem = useCallback((selectedItemKey) => {
     if (disablePromptsForNavigationItems) {
@@ -167,6 +179,7 @@ const ApplicationNavigation = ({
 
   return (
     <TerraApplicationNavigation
+      id={id || idRef.current}
       hero={hero}
       notifications={notifications}
       titleConfig={titleConfig}
@@ -182,6 +195,7 @@ const ApplicationNavigation = ({
       onSelectHelp={onSelectHelp}
       onSelectLogout={propOnSelectLogout && onSelectLogout}
       onDrawerMenuStateChange={onDrawerMenuStateChange}
+      workspace={workspace}
     >
       <ApplicationLoadingOverlayProvider>
         <ApplicationStatusOverlayProvider>
@@ -201,5 +215,6 @@ const ApplicationNavigation = ({
 };
 
 ApplicationNavigation.propTypes = propTypes;
+ApplicationNavigation.Workspace = ApplicationNavigationWorkspace;
 
 export default ApplicationNavigation;

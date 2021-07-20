@@ -9,8 +9,8 @@
     cursor: pointer;
     display: flex;
     font-size: var(--terra-application-workspace-hidden-tab-hidden-font-size, 1rem);
-    line-height: var(--terra-application-workspace-hidden-tab-hidden-line-height, 1.4);
     font-weight: normal;
+    line-height: var(--terra-application-workspace-hidden-tab-hidden-line-height, 1.4);
     margin-left: 0;
     outline: none;
     padding-bottom: var(--terra-application-workspace-hidden-tab-hidden-padding-bottom, 0.5rem);
@@ -46,7 +46,7 @@
       &[data-focus-styles-enabled='true']:focus {
         outline: none;
 
-        &::before {
+        &::before { // stylelint-disable-line max-nesting-depth
           border: var(--terra-application-workspace-hidden-tab-ie-focus-before-border, 2px dashed #000);
           bottom: 0;
           box-shadow: var(--terra-application-workspace-hidden-tab-ie-focus-before-box-shadow, none);
@@ -66,7 +66,7 @@
       overflow: hidden;
   
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
-        &:hover {
+        &:hover { // stylelint-disable-line max-nesting-depth
           background-color: var(--terra-application-workspace-hidden-tab-hidden-is-active-hover-background-color, #ebf6fd);
         }
       }
@@ -90,7 +90,7 @@
     position: relative;
     width: var(--terra-application-workspace-hidden-tab-checkbox-width, 0.8571rem);
 
-    & > * {
+    > * {
       height: 100%;
       position: absolute;
       width: 100%;

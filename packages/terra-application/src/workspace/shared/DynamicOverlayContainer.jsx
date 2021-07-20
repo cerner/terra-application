@@ -77,6 +77,7 @@ const DynamicOverlayContainer = ({ overlays, children }) => {
   // The refs for each overlay are kept in a local variable to ensure
   // it expires after each render to ensure that removed overlays do not
   // persist in memory.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const overlayRefs = [];
 
   // This effect ensures that the proper layers are rendered

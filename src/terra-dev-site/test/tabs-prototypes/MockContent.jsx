@@ -6,14 +6,10 @@ import styles from "./TestStyles.module.scss";
 
 const cx = classNames.bind(styles);
 
-const MockContent = ({ fruit = "" }) => {
-  const fruitText = TabContentTemplate[fruit];
+const MockContent = ({ tab }) => {
+  const tabContent = TabContentTemplate[tab];
   return (
-    <div className={cx("content-container")}>
-      {fruitText.map((elem, index) => (
-        <p key={index}>{elem.props.children}</p>
-      ))}
-    </div>
+    <div className={cx("content-container")} dangerouslySetInnerHTML={{__html: tabContent}}></div>
   );
 };
 

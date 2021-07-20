@@ -122,32 +122,32 @@ const WorkspaceTest = () => {
           >
             <WorkspaceItem
               itemKey="tab-1"
-              label="Apples"
+              label="Continents"
               render={() => <Tab1 />}
             />
             <WorkspaceItem
               itemKey="tab-2"
-              label="Oranges"
+              label="Countries"
               render={() => <Tab2 />}
             />
             <WorkspaceItem
               itemKey="tab-3"
-              label="Strawberries"
+              label="Cities"
               render={() => <Tab3 />}
             />
             <WorkspaceItem
               itemKey="tab-4"
-              label="Pineapples"
+              label="Landmarks"
               render={() => <Tab4 />}
             />
             <WorkspaceItem
               itemKey="tab-5"
-              label="Lemons"
+              label="Languages"
               render={() => <Tab5 />}
             />
             <WorkspaceItem
               itemKey="tab-6"
-              label="Kiwis"
+              label="Currencies"
               render={() => <Tab6 />}
             />
           </Workspace>

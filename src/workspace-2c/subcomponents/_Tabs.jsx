@@ -70,11 +70,12 @@ class Tabs extends React.Component {
     this.wrapOnSelectHidden = this.wrapOnSelectHidden.bind(this);
     this.positionDropDown = this.positionDropDown.bind(this);
     this.resetCache();
-    this.handleReFocus = this.handleReFocus.bind(this);
+    this.ariaLiveOptions = this.ariaLiveOptions.bind(this);
     this.regionsRef = React.createRef();
     this.state = {
       addedBannersLog: "",
     };
+    this.menuRef = React.createRef();
   }
 
   componentDidMount() {
@@ -273,21 +274,16 @@ class Tabs extends React.Component {
     };
   }
 
-  handleReFocus(itemKey, buttonRef) {
-    // this.regionsRef.current.focus();
-
-    //this.regionsRef.current.children[0].children[0]
+  ariaLiveOptions(itemKey) {
     const refElements = this.containerRef.current;
-    //const lastElem = refElements.lastElementChild;
+    const numOfItem = itemKey.split("-").pop();
+    const totalItems = refElements.children.length - 1; // is minus one because of the aria region that was added
     refElements.children.forEach((elem) => {
       if (elem.id.includes(itemKey)) {
-        this.setState({ addedBannersLog: elem.title + " selected" });
-        /*lastElem.innerHTML = elem.children[0].children[0].innerHTML;
-        buttonRef.current.setAttribute("tabIndex", -1);
-        buttonRef.current.setAttribute("aria-hidden", true);
-        buttonRef.current.blur();
-        elem.setAttribute("data-focus-styles-enabled", "true");
-        elem.focus();*/
+        this.setState({
+          addedBannersLog:
+            elem.title + ` selected, option ${numOfItem} of ${totalItems}`,
+        });
       }
     });
   }
@@ -316,35 +312,6 @@ class Tabs extends React.Component {
         />
       );
       allTabs.push(tab);
-      /*if (index < this.hiddenStartIndex || this.hiddenStartIndex < 0) {
-        visibleTabs.push(
-          <Tab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelect(tab.onSelect)}
-            zIndex={tab.isSelected ? tabData.length : tabData.length - index}
-          />
-        );
-      } else {
-        hiddenTabs.push(
-          <HiddenTab
-            {...tab}
-            key={tab.id}
-            index={index}
-            tabIds={ids}
-            onSelect={this.wrapOnSelectHidden(tab.onSelect)}
-            onFocus={this.handleHiddenFocus}
-            onBlur={this.handleHiddenBlur}
-          />
-        );
-        hiddenIds.push(tab.id);
-
-        if (tab.isSelected) {
-          isHiddenSelected = true;
-        }
-      }*/
     });
 
     if (this.showMoreButton && this.dropdownRef.current) {
@@ -362,12 +329,11 @@ class Tabs extends React.Component {
       <>
         <TerraCustomMenu
           tabs={allTabs}
-          handleReFocus={this.handleReFocus}
+          ariaLiveOptions={this.ariaLiveOptions}
           tabSlide={this.props.tabSlide}
+          ref={this.menuRef}
+          tabActiveKey={this.props.activeItemKey}
         />
-        {/*this.showMoreButton ? (
-          <TerraCustomMenu tabs={allTabs} mainRef={this.containerRef} />
-        ) : undefined*/}
         <div
           {...attrs}
           className={cx("tab-container", theme.className, "slidingTabsStyles")}

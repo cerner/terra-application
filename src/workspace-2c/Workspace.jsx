@@ -444,6 +444,7 @@ const Workspace = ({
             tabData={tabData}
             activeSize={activeSize}
             tabSlide={tabSlide}
+            activeItemKey={activeItemKey}
           />
           {activeSize === "large" || (
             <div

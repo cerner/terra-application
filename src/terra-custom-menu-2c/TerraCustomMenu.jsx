@@ -13,7 +13,7 @@ const cx = classNames.bind(styles);
 const buttonAllTabsStyle = {
   height: "34px",
   border: "1px solid #868a8c",
-  borderTopLeftRadius: "3px",
+  // borderTopLeftRadius: "3px",
   minWidth: "87px",
   backgroundImage: "linear-gradient(to bottom, #fff, #dedfe0)",
 };
@@ -49,8 +49,7 @@ class TerraCustomMenu extends React.Component {
       itemkey: "",
       refElem: null,
     };
-    this.buttonRef = React.createRef();
-    this.menuOptionRef = React.createRef();
+    this.menuItemOptionRef = React.createRef();
   }
 
   handleButtonClick() {
@@ -59,7 +58,9 @@ class TerraCustomMenu extends React.Component {
 
   handleRequestClose(itemKey) {
     this.setState({ open: false });
-    this.props.handleReFocus(itemKey, this.buttonRef);
+    if (typeof itemKey === "string") {
+      this.props.ariaLiveOptions(itemKey);
+    }
   }
 
   handleCloseOnClick(event) {
@@ -73,7 +74,7 @@ class TerraCustomMenu extends React.Component {
       toggle1Selected: !prevState.toggle1Selected,
     }));
     onSelect(itemKey);
-    if (this.menuOptionRef.current) {
+    if (this.menuItemOptionRef.current) {
       this.props.tabSlide(itemKey, "hiddenTab");
     }
     this.handleRequestClose(itemKey);
@@ -106,21 +107,28 @@ class TerraCustomMenu extends React.Component {
             isOpen={this.state.open}
             targetRef={this.getButtonNode}
             onRequestClose={this.handleRequestClose}
-            contentWidth={this.props.contentWidth}
+            contentWidth="auto"
             isArrowDisplayed={this.props.isArrowDisplayed}
             boundingRef={this.props.boundingRef}
             headerTitle="All tabs"
           >
-            <Menu.ItemGroup key="Group" onChange={this.handleOnChange}>
+            <Menu.ItemGroup
+              key="Group"
+              onChange={this.handleOnChange}
+              ref={this.menuOptionRef}
+            >
               {this.props.tabs.map((tab, index) => (
                 <Menu.Item
                   text={tab.label}
                   key={tab.itemKey}
-                  isSelected={this.state.groupSelectedIndex === index}
+                  isSelected={
+                    this.props.tabActiveKey === tab.itemKey ||
+                    this.state.groupSelectedIndex === index
+                  }
                   onClick={() => {
                     this.handleToggle1OnClick(tab.onSelect, tab.itemKey);
                   }}
-                  ref={this.menuOptionRef}
+                  ref={this.menuItemOptionRef}
                 />
               ))}
             </Menu.ItemGroup>
@@ -129,7 +137,6 @@ class TerraCustomMenu extends React.Component {
             onClick={this.handleButtonClick}
             aria-haspopup="menu"
             aria-expanded={false}
-            ref={this.buttonRef}
             id="button-all-tabs"
             style={buttonAllTabsStyle}
           >

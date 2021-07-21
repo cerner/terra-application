@@ -23,13 +23,13 @@ describe('TerraDevSiteGeneratePlugin', () => {
         indexPath: 'place',
       }],
     });
-    expect(loadSiteConfig).toHaveBeenCalledWith('site.config.js', path.join(process.cwd(), 'config', 'site', 'site.config.js'));
+    expect(loadSiteConfig).toHaveBeenCalledWith('site.config.js', path.join(process.cwd(), 'packages', 'terra-dev-site', 'config', 'site', 'site.config.js'));
     expect(plug.sites).toEqual([
       {
         configFileName: 'site.config.js',
-        defaultConfigPath: path.join(process.cwd(), 'config', 'site', 'site.config.js'),
+        defaultConfigPath: path.join(process.cwd(), 'packages', 'terra-dev-site', 'config', 'site', 'site.config.js'),
         siteConfig: { config: 'config', appConfig: { defaultLocale: 'lang' } },
-        indexPath: path.join(process.cwd(), 'lib', 'TerraDevSite'),
+        indexPath: path.join(process.cwd(), 'packages', 'terra-dev-site', 'lib', 'TerraDevSite'),
       },
       {
         siteConfig: { herp: 'derp', appConfig: { defaultLocale: 'lang' } },
@@ -55,9 +55,9 @@ describe('TerraDevSiteGeneratePlugin', () => {
       sites: [
         {
           configFileName: 'site.config.js',
-          defaultConfigPath: path.join(process.cwd(), 'config', 'site', 'site.config.js'),
+          defaultConfigPath: path.join(process.cwd(), 'packages', 'terra-dev-site', 'config', 'site', 'site.config.js'),
           siteConfig: { config: 'config', appConfig: { defaultLocale: 'en' } },
-          indexPath: path.join(process.cwd(), 'lib', 'TerraDevSite'),
+          indexPath: path.join(process.cwd(), 'packages', 'terra-dev-site', 'lib', 'TerraDevSite'),
         },
         {
           siteConfig: { herp: 'derp', appConfig: { defaultLocale: 'en' } },

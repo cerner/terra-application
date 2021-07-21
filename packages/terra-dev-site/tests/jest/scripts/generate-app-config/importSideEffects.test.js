@@ -4,24 +4,24 @@ const ImportAggregator = require('../../../../scripts/generate-app-config/genera
 describe('importSideEffects', () => {
   it('finds the correct side effect js files', () => {
     const sideEffects = [
-      '../tests/jest/scripts/generate-app-config/sideEffectFiles/normal',
-      '../tests/jest/scripts/generate-app-config/sideEffectFiles/jsx',
-      '../tests/jest/scripts/generate-app-config/sideEffectFiles/extension.js',
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/fullpath`,
-      '../tests/jest/scripts/generate-app-config/sideEffectFiles/*/*.js',
-      '../tests/jest/scripts/generate-app-config/sideEffectFiles/strangeExt.derp',
+      '../packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/normal',
+      '../packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/jsx',
+      '../packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/extension.js',
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/fullpath`,
+      '../packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/*/*.js',
+      '../packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/strangeExt.derp',
     ];
     const imports = new ImportAggregator();
     importSideEffects(sideEffects, imports);
     expect(Object.keys(imports.imports).length).toBe(7);
     expect(Object.keys(imports.imports)).toEqual(expect.arrayContaining([
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/normal.js`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/jsx.jsx`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/extension.js`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/fullpath.js`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/glob/globa.js`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/glob/globb.js`,
-      `${process.cwd()}/tests/jest/scripts/generate-app-config/sideEffectFiles/strangeExt.derp.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/normal.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/jsx.jsx`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/extension.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/fullpath.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/glob/globa.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/glob/globb.js`,
+      `${process.cwd()}/packages/terra-dev-site/tests/jest/scripts/generate-app-config/sideEffectFiles/strangeExt.derp.js`,
     ]));
   });
 });

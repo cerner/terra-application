@@ -222,7 +222,7 @@ describe('TerraDevSiteGeneratePlugin', () => {
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(1, {
       title: 'title',
       filename: 'prefix/index.html',
-      template: path.join(process.cwd(), 'lib', 'index.html'),
+      template: path.join(process.cwd(), 'packages', 'terra-dev-site', 'lib', 'index.html'),
       rootElementId: 'root',
       favicon: 'favicon',
       headHtml: [''],
@@ -233,7 +233,7 @@ describe('TerraDevSiteGeneratePlugin', () => {
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(2, {
       title: 'title',
       filename: 'index.html',
-      template: path.join(process.cwd(), 'lib', 'index.html'),
+      template: path.join(process.cwd(), 'packages', 'terra-dev-site', 'lib', 'index.html'),
       rootElementId: 'root',
       favicon: 'favicon',
       headHtml: [''],

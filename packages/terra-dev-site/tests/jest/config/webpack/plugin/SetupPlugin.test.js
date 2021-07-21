@@ -29,7 +29,7 @@ describe('TerraDevSiteSetupPlugin', () => {
     plug.apply(compiler);
     expect(HtmlWebpackPlugin).toHaveBeenCalledWith({
       filename: '404.html',
-      template: path.join(processPath, 'lib', '404.html'),
+      template: path.join(processPath, 'packages', 'terra-dev-site', 'lib', '404.html'),
       inject: 'head',
       chunks: ['redirect'],
     });
@@ -42,7 +42,7 @@ describe('TerraDevSiteSetupPlugin', () => {
       },
       resolveLoader: {
         modules: [
-          path.resolve(process.cwd(), 'config', 'webpack', 'loaders'),
+          path.resolve(process.cwd(), 'packages', 'terra-dev-site', 'config', 'webpack', 'loaders'),
           'node_modules',
         ],
       },

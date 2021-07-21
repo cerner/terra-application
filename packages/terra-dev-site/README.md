@@ -1,6 +1,6 @@
 <!-- Logo -->
 <p align="center">
-  <img height="128" width="128" src="https://github.com/cerner/terra-dev-site/raw/main/terra.png" alt="terra logo" />
+  <img height="128" width="128" src="https://github.com/cerner/terra-application/raw/main/terra.png" alt="terra logo" />
 </p>
 
 <!-- Name -->
@@ -10,10 +10,10 @@
 
 [![NPM version](https://badgen.net/npm/v/terra-dev-site)](https://www.npmjs.org/package/terra-dev-site)
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
-[![License](https://badgen.net/github/license/cerner/terra-dev-site)](https://github.com/cerner/terra-dev-site/blob/main/LICENSE)
-[![Build Status](https://badgen.net/travis/cerner/terra-dev-site)](https://travis-ci.com/cerner/terra-dev-site)
-[![Dependencies status](https://badgen.net/david/dep/cerner/terra-dev-site)](https://david-dm.org/cerner/terra-dev-site)
-[![devDependencies status](https://badgen.net/david/dev/cerner/terra-dev-site)](https://david-dm.org/cerner/terra-dev-site?type=dev)
+[![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/main/LICENSE)
+[![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)
+[![Dependencies status](https://badgen.net/david/dep/cerner/terra-application)](https://david-dm.org/cerner/terra-application)
+[![devDependencies status](https://badgen.net/david/dev/cerner/terra-application)](https://david-dm.org/cerner/terra-application?type=dev)
 
 Dynamically builds a site based on site configuration, navigation configuration and page configuration.
 
@@ -57,11 +57,11 @@ Consult the component CHANGELOGs, related issues, and PRs for more information.
 
 ## Contributing
 
-Please read through our [contributing guidelines](https://github.com/cerner/terra-dev-site/blob/main/CONTRIBUTING.md). Included are directions for issue reporting and pull requests.
+Please read through our [contributing guidelines](https://github.com/cerner/terra-application/blob/main/CONTRIBUTING.md). Included are directions for issue reporting and pull requests.
 
 ## LICENSE
 
-Copyright 2018 - 2020 Cerner Innovation, Inc.
+Copyright 2018 - present Cerner Innovation, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

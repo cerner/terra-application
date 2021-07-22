@@ -108,8 +108,8 @@
   },
   "peerDependencies": {
     "@babel/cli": "^7.4.4",
-    "core-js": "^3.1.3",
     "@babel/core": "^7.4.4",
+    "core-js": "^3.1.3",
     "react-dom": "^16.8.5",
     "react": "^16.8.5",
     "regenerator-runtime": "^0.13.2",

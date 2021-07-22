@@ -153,7 +153,7 @@ const ApplicationNavigation = ({
 }) => {
   const applicationIntl = React.useContext(ApplicationIntlContext);
   const navigationPromptCheckpointRef = useRef();
-  const idRef = React.useRef(uuidv4());
+  const idRef = React.useRef(`navigation-${uuidv4()}`);
 
   const onSelectNavigationItem = useCallback((selectedItemKey) => {
     if (disablePromptsForNavigationItems) {

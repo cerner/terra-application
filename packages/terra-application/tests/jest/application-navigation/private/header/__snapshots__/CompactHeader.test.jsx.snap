@@ -884,7 +884,7 @@ exports[`CompactHeader should render with ids for navigation and extension items
               aria-current={false}
               aria-label="test-text"
               className="hidden-item"
-              id="example-application-NavigationItem-my-test-key"
+              id="example-application-NavigationItem-compact-my-test-key"
               role="link"
               tabIndex="-1"
             >

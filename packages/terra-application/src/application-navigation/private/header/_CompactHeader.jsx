@@ -278,7 +278,7 @@ const CompactHeader = ({
               return (
                 <li key={item.key}>
                   <div
-                    id={id && navigationItemId(id, item.key)}
+                    id={id && navigationItemId(id, `compact-${item.key}`)}
                     role="link"
                     className={cx('hidden-item')}
                     tabIndex={navigationIsOpen ? '0' : '-1'}

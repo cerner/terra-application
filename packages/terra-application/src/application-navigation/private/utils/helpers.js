@@ -1,5 +1,6 @@
 import { useRef, useLayoutEffect } from 'react';
 import { KEY_SPACE, KEY_RETURN } from 'keycode-js';
+import sanitizeId from '../../../utils/sanitize-id';
 
 /**
  * Determines whether or not the navigation components will render in the compact style based on the given breakpoint.
@@ -62,7 +63,7 @@ const useAnimatedCount = (countRef, countValue) => {
 };
 
 function itemId(appNavId, itemType, itemKey) {
-  return `${appNavId}-${itemType}-${itemKey}`;
+  return sanitizeId(`${appNavId}-${itemType}-${itemKey}`);
 }
 
 function navigationItemId(appNavId, navigationItemKey) {

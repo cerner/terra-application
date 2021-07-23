@@ -466,13 +466,13 @@ const ApplicationNavigation = ({
   const appNavClassNames = cx('application-navigation', theme.className);
 
   const renderMain = () => {
-    const skipToCallback = action => {
+    const skipToCallback = workspace ? (action) => {
       skipToWorkspaceActionRef.current = action;
 
       if (action && !renderSkipToWorkspace) {
         setRenderSkipToWorkspace(true);
       }
-    };
+    } : undefined;
 
     return (
       <WorkspaceLayout

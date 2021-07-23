@@ -145,7 +145,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               notifications={Object {}}
               onSelectMenuButton={[Function]}
               onSelectSkipToContent={[Function]}
-              skipToWorkspaceAction={[Function]}
               utilityItems={Array []}
             >
               <CompactHeader
@@ -183,7 +182,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 notifications={Object {}}
                 onSelectMenuButton={[Function]}
                 onSelectSkipToContent={[Function]}
-                skipToWorkspaceAction={[Function]}
                 utilityItems={Array []}
               >
                 <header
@@ -197,14 +195,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                     type="button"
                   >
                     terraApplication.navigation.header.skipToContentTitle
-                  </button>
-                  <button
-                    className="skip-content-button"
-                    onClick={[Function]}
-                    role="link"
-                    type="button"
-                  >
-                    terraApplication.workspace.skipToLabel
                   </button>
                   <div
                     className="title-container"
@@ -235,7 +225,6 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
             </InjectIntl(CompactHeader)>
             <WorkspaceLayout
               id="undefined-workspace-layout"
-              skipToCallback={[Function]}
             >
               <div
                 className="layout-container workspace-split"
@@ -328,7 +317,6 @@ exports[`ApplicationNavigation should render default element 1`] = `
     />
     <WorkspaceLayout
       id="undefined-workspace-layout"
-      skipToCallback={[Function]}
     >
       <main
         aria-labelledby={null}
@@ -461,7 +449,6 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
     />
     <WorkspaceLayout
       id="undefined-workspace-layout"
-      skipToCallback={[Function]}
     >
       <main
         aria-labelledby="main-inner-title"
@@ -695,7 +682,6 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
     />
     <WorkspaceLayout
       id="undefined-workspace-layout"
-      skipToCallback={[Function]}
     >
       <main
         aria-labelledby="main-inner-title"

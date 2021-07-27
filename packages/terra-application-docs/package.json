@@ -43,7 +43,7 @@
     "prop-types": "^15.5.8"
   },
   "peerDependencies": {
-    "terra-application": "^1.35.0",
+    "terra-application": "^1.48.0",
     "react-dom": "^16.8.5",
     "react": "^16.8.5",
     "react-intl": ">=2.8 <6.0"

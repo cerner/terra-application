@@ -13,8 +13,7 @@
     "directory": "packages/terra-application-docs"
   },
   "keywords": [
-    "eslint",
-    "eslint-config",
+    "terra-application-docs",
     "Cerner",
     "Terra"
   ],

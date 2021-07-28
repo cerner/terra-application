@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Migrated documentation to terra-application-docs.
+
 ## 6.38.0 - (July 15, 2021)
 
 * Added

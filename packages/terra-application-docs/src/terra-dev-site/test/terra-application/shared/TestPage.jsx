@@ -12,10 +12,13 @@ import UnsavedChangesPrompt from '@cerner/terra-application/lib/unsaved-changes-
 import NotificationBanner from '@cerner/terra-application/lib/notification-banner';
 import Page from '@cerner/terra-application/lib/page';
 import NotificationDialog from '@cerner/terra-application/lib/notification-dialog/NotificationDialog';
+import { getAuthHeaders } from '@cerner/terra-application/lib/utils/fetch';
 
 import styles from './TestPage.module.scss';
 
 const cx = classNames.bind(styles);
+
+// https://reqres.in/api/users/2
 
 /* eslint-disable no-console */
 const TestPage = ({
@@ -30,8 +33,22 @@ const TestPage = ({
   const [showHazardLow, setShowHazardLow] = React.useState(false);
   const [showLongText, setShowLongText] = React.useState(false);
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
+  const [fetchData, setFetchData] = React.useState();
 
   const metaData = React.useRef({ test: index });
+
+  React.useEffect(() => {
+    if (fetchData) {
+      return;
+    }
+
+    getAuthHeaders()
+      .then(headers => fetch('https://reqres.in/api/users/2', { headers }))
+      .then(response => response.json())
+      .then((data) => {
+        setFetchData(data);
+      });
+  }, [fetchData]);
 
   return (
     <Page
@@ -142,6 +159,18 @@ const TestPage = ({
           {' '}
           <button type="button" onClick={() => setShowLongText(state => !state)}>Toggle</button>
         </p>
+        <div>
+          <p>
+            Fetch Request:
+            {' '}
+            <button type="button" onClick={() => setFetchData(undefined)}>Refresh</button>
+          </p>
+          <p>
+            Data:
+            {' '}
+            {fetchData ? JSON.stringify(fetchData) : undefined}
+          </p>
+        </div>
         {showHazardHigh && (
           <NotificationBanner
             variant="hazard-high"

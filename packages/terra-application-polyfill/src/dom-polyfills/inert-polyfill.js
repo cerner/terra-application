@@ -5,21 +5,12 @@ import './inertStyles.scss';
  * to build accessible interactions with modal or otherwise disclosed content. Support for the inert property is not uniform
  * across the framework's supported browsers, so a polyfill is added on an as-need basis to ensure feature parity.
  */
-function initializeInert() {
-  /**
-   * We manually check whether the inert polyfill is necessary so as to
-   * not to add the inert style link unnecessarily.
-   */
-  // eslint-disable-next-line no-prototype-builtins
-  if (Element.prototype.hasOwnProperty('inert')) {
-    return;
-  }
 
-  /**
-   * We create a link whose presence indicates that the polyfill should not create
-   * inline inert styles in the document. This prevents certain issues with strict CSP settings:
-   * https://github.com/WICG/inert#strict-content-security-policy
-   */
+// eslint-disable-next-line no-prototype-builtins
+if (!Element.prototype.hasOwnProperty('inert')) {
+  // We create a link whose presence indicates that the polyfill should not create
+  // inline inert styles in the document. This prevents certain issues with strict CSP settings:
+  // https://github.com/WICG/inert#strict-content-security-policy
   const inertStyleLink = document.createElement('link');
   inertStyleLink.id = 'inert-style';
 
@@ -29,5 +20,3 @@ function initializeInert() {
   // eslint-disable-next-line global-require
   require('wicg-inert/dist/inert');
 }
-
-initializeInert();

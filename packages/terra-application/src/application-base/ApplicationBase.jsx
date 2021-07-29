@@ -14,7 +14,6 @@ import logger from '../utils/logger';
 import i18nLoader from './private/i18nLoader';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
-import './private/initializeInert';
 import './baseStyles';
 
 const browserLocale = getBrowserLocale();

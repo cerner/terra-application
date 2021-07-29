@@ -20,9 +20,7 @@ const terraApplicationConfig = (env = {}, argv = {}) => ({
       filename: 'terra-application-test/index.html',
       template: './tests/test-harness/index.html',
       chunks: [
-        'core-js',
         'terra-application-test/index',
-        'regenerator-runtime',
       ],
       rootElementId: 'root',
     }),

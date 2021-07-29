@@ -3,7 +3,7 @@ module.exports = (api) => {
   api.assertVersion('^7.4.4');
 
   const presets = [
-    '@babel/preset-env',
+    ['@babel/preset-env', { useBuiltIns: 'entry', corejs: '3.15' }],
     '@babel/preset-react',
   ];
 

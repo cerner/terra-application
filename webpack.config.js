@@ -1,13 +1,13 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
+const WebpackConfigTerra = require('@cerner/webpack-config-terra');
+
 const {
   TerraDevSite,
   TerraDevSiteEntrypoints,
   DirectorySwitcherPlugin,
   LocalPackageAliasPlugin,
-} = require('terra-dev-site');
-
-const WebpackConfigTerra = require('@cerner/webpack-config-terra');
+} = require('./packages/terra-dev-site');
 
 const loadSiteConfig = require('./packages/terra-dev-site/scripts/generate-app-config/loadSiteConfig');
 

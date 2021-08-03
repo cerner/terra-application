@@ -71,7 +71,9 @@ const propDefaultValue = (value) => {
 const generatePropsTable = async function generatePropsTable(filePath, source, mdxOptions, callback) {
   let parsedProps;
   try {
-    parsedProps = reactDocs.parse(source);
+    parsedProps = reactDocs.parse(source, undefined, undefined, {
+      filename: filePath,
+    });
   } catch (e) {
     return callback(`Could not convert file to props table:\n${filePath}\n${e}`);
   }
@@ -90,7 +92,7 @@ const generatePropsTable = async function generatePropsTable(filePath, source, m
     return `{ name: '${name}', type: ${type}, required: ${required}, defaultValue: '${defaultValue}', description: ${description}, },`;
   }));
 
-  return [
+  return callback(null, [
     'import React from \'react\';',
     'import { mdx } from \'@mdx-js/react\';',
     'import PropsTable from \'terra-dev-site/lib/loader-components/_PropsTable\';',
@@ -102,7 +104,7 @@ const generatePropsTable = async function generatePropsTable(filePath, source, m
     '   ]}',
     ' />',
     ');',
-  ].join('\n');
+  ].join('\n'));
 };
 
 /**
@@ -120,7 +122,7 @@ const loader = async function loader(content) {
 
   // short circuit, if this already is the source file, just return that.
   if (filePath === resourcePath) {
-    return callback(null, await generatePropsTable(filePath, content, mdxOptions, callback));
+    return generatePropsTable(filePath, content, mdxOptions, callback);
   }
   // ensure src exists
   return this.resolve('', source, async (err, result) => {
@@ -133,7 +135,7 @@ const loader = async function loader(content) {
 
     // Read src file
     return this.fs.readFile(result, async (readFileError, srcFile) => (
-      callback(null, await generatePropsTable(result, srcFile, mdxOptions, callback))
+      generatePropsTable(result, srcFile, mdxOptions, callback)
     ));
   });
 };

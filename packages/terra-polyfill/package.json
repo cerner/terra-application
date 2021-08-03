@@ -1,0 +1,48 @@
+{
+  "name": "@cerner/terra-polyfill",
+  "version": "0.0.0",
+  "private": true,
+  "description": "This package contains polyfills to support the minimum requirements and commonly used features of terra-application and its consumers.",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerner/terra-application.git",
+    "directory": "packages/terra-polyfill"
+  },
+  "keywords": [
+    "Cerner",
+    "Terra",
+    "polyfill",
+    "terra-application"
+  ],
+  "author": "Cerner Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cerner/terra-application/issues"
+  },
+  "files": [
+    "lib",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10.13.0"
+  },
+  "homepage": "https://github.com/cerner/terra-application",
+  "scripts": {
+    "compile": "babel --root-mode upward src --out-dir lib --copy-files --ignore src/index.js",
+    "lint": "eslint --ext .js,.jsx .",
+    "precompile": "rm -rf lib"
+  },
+  "dependencies": {
+    "core-js": "^3.15.2",
+    "regenerator-runtime": "^0.13.9",
+    "abortcontroller-polyfill": "^1.7.3",
+    "whatwg-fetch": "^3.6.2",
+    "wicg-inert": "^3.0.2",
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
+    "intl": "^1.2.5"
+  }
+}

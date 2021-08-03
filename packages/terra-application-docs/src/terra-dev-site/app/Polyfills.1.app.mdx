@@ -1,0 +1,52 @@
+import { Notice } from '@cerner/terra-docs';
+
+# Polyfills
+
+The [terra-application](/application/terra-application/application) package requires polyfills to function in some of its supported browsers. We recommend using the `terra-polyfill' package to ensure the minimum requirements are met for a project.
+
+## Usage
+
+```jsx
+import '@cerner/terra-polyfill';
+```
+
+<Notice variant="caution" ariaLevel="3">
+  The polyfill should be imported only once for an application. Duplication may lead to increased bundle sizes and decreased performance of an application.
+</Notice>
+
+<Notice ariaLevel="3">
+  The polyfill should be imported as early as possible in an application's lifecycle to ensure the polyfilled features are available when they are needed.
+</Notice>
+
+## Included Polyfills
+
+* [`core-js`](https://github.com/zloirock/core-js) - Includes polyfills for ECMAScript up to 2021: promises, symbols, collections, iterators, typed arrays, many other features
+  * Only stable features are included by default. Any ES features under proposal will require additional polyfills.
+* [`regenerator-runtime`](https://www.npmjs.com/package/regenerator-runtime) - Standalone runtime for Regenerator-compiled generator and async functions
+* ['whatwg-fetch'](https://www.npmjs.com/package/whatwg-fetch) - A window.fetch polyfill
+* ['abortcontroller-polyfill'](https://www.npmjs.com/package/abortcontroller-polyfill) - An AbortController polyfill
+* [HTMLElement.inert](https://www.npmjs.com/package/wicg-inert)
+* [Node.contains](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
+* [Element.matches](https://developer.mozilla.org/en-US/docs/Web/API/Element/matches)
+* [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl)
+
+### Filtering `core-js` with Babel
+
+The set of polyfills included by core-js an be customized by modifying the `@babel/preset-env` configuration. See [core-js documentation](https://github.com/zloirock/core-js#babelpreset-env) for more details.
+
+For example:
+
+```diff
+module.exports = (api) => {
+  api.cache(false);
+  api.assertVersion('^7.4.4');
+
+  return {
+    presets: [
+-     '@babel/preset-env',
++     ['@babel/preset-env', { useBuiltIns: 'entry', corejs: { version: 3.14 } }], // version should match core-js dependency version
+      '@babel/preset-react',
+    ],
+  };
+};
+```

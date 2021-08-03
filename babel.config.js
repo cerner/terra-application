@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = (api) => {
   api.cache(false);
   api.assertVersion('^7.4.4');
@@ -17,5 +19,6 @@ module.exports = (api) => {
   return {
     presets,
     plugins,
+    ignore: [(filename) => filename === path.resolve(path.join(__dirname, 'packages', 'terra-polyfill', 'src', 'index.js'))],
   };
 };

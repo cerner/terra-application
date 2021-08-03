@@ -5,7 +5,9 @@ const {
   TerraDevSiteEntrypoints,
   DirectorySwitcherPlugin,
   LocalPackageAliasPlugin,
-} = require('terra-dev-site');
+} = require('./packages/terra-dev-site');
+
+
 
 const WebpackConfigTerra = require('@cerner/webpack-config-terra');
 

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Fix props table to not fail when a filename is required.
+
 * Changed
   * Migrated documentation to terra-application-docs.
 

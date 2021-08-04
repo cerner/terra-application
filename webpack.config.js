@@ -1,29 +1,90 @@
 const path = require('path');
 const { merge } = require('webpack-merge');
 const WebpackConfigTerra = require('@cerner/webpack-config-terra');
+const fs = require('fs');
 const TerraDevSite = require('./packages/terra-dev-site/src/webpack/plugin/TerraDevSite');
 
-const devSiteConfig = (env = {}, argv = { p: false }) => {
-  const production = argv.p;
-  const processPath = process.cwd();
+const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html'), 'utf8');
 
-  // Load the site configuration.
-  // const siteConfig = loadSiteConfig();
-
-  // siteConfig.appConfig = {
-  //   ...siteConfig.appConfig,
-  //   subline: 'Extended',
-  // };
-
-  return {
-    plugins: [
-      new TerraDevSite({
-        defaultLocale: env.defaultLocale,
-        excludeChunks: ['terra-application-test/index'],
-      }),
-    ],
-  };
-};
+const devSiteConfig = (env = {}, argv = { p: false }) => ({
+  // temporary fix to enable live reloading.
+  target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',
+  plugins: [
+    new TerraDevSite({
+      defaultLocale: env.defaultLocale,
+      excludeChunks: ['terra-application-test/index'],
+    }),
+    new TerraDevSite({
+      pathPrefix: 'extended',
+      contentDirectory: 'dev-site-extended-test',
+      primaryNavigationItems: [{
+        path: '/home',
+        label: 'Home',
+        contentExtension: 'home',
+        additionalContent: [
+          {
+            label: 'Home',
+            filePath: path.resolve(process.cwd(), 'packages', 'terra-dev-site', 'README.md'),
+          },
+        ],
+      }, {
+        path: '/extended',
+        label: 'Extended',
+        contentExtension: 'extended',
+      }, {
+        path: '/dev_tools',
+        label: 'Developer Tools',
+        contentExtension: 'tool',
+      }, {
+        path: '/single-page-test',
+        label: 'Single Page Test',
+        contentExtension: 'spt',
+      }, {
+        path: '/secondary-nav-test',
+        label: 'Secondary Nav Test',
+        contentExtension: 'snt',
+      }, {
+        path: '/folder-first',
+        label: 'Folder First Test',
+        contentExtension: 'ff',
+      }, {
+        path: '/empty',
+        label: 'Empty',
+        contentExtension: 'empty',
+      }, {
+        path: '/components',
+        label: 'Components',
+        contentExtension: 'doc',
+      }, {
+        path: '/test',
+        label: 'Test',
+        contentExtension: 'test',
+      }],
+      titleConfig: {
+        title: 'Terra Dev Site - Extended',
+      },
+      additionalSearchDirectories: [
+        path.resolve(process.cwd(), 'packages', 'terra-application-docs', 'lib', 'additionalSearchDirectory'),
+      ],
+      headHtml: [
+        '<script> console.log("Inline head html script") </script>',
+        html,
+      ],
+      // extensionItems: [
+      //   {
+      //     iconPath: 'terra-icon/lib/icon/IconAllergy',
+      //     key: 'terra-application-docs.test-extension',
+      //     text: 'Test Extension',
+      //     modalFilePath: '@cerner/terra-application-docs/lib/test-extension/TestExtension',
+      //   },
+      // ],
+      excludeChunks: ['terra-application-test/index'],
+    }),
+  ],
+  resolve: {
+    extensions: ['.jst'],
+  },
+});
 
 const mergedConfig = (env, argv) => (
   merge(WebpackConfigTerra(env, argv), devSiteConfig())

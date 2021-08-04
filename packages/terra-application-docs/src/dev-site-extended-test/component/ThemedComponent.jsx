@@ -20,7 +20,7 @@ const ThemedComponent = () => {
         Translated block below
       </h1>
       <h1>
-        {applicationIntl.formatMessage({ id: 'Terra.devSite.themed.help' })}
+        {applicationIntl.formatMessage({ id: 'Terra.applicationDocs.themed.help' })}
       </h1>
     </div>
   );

@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
 // import ApplicationBase from '@cerner/terra-application';
 import ApplicationBase from 'terra-application';
+import ModalManager from 'terra-application/lib/modal-manager';
 
 import DevSiteLayout from '../layouts/_DevSiteLayout';
 import AppSettingsContext from './_AppSettingsContext';
@@ -35,16 +36,17 @@ const Site = ({ siteConfig, Providers }) => (
               themeIsGlobal
             >
               <TerraMdxProvider>
+                <ModalManager>
                 {/* <DevSiteApplicationContainer titleConfig={siteConfig.titleConfig}> */}
                   {Providers ? (
                     <Providers>
-                      <p>derp</p>
                       <DevSiteLayout siteConfig={siteConfig} />
                     </Providers>
                   ) : (
                     <DevSiteLayout siteConfig={siteConfig} />
                   )}
                 {/* </DevSiteApplicationContainer> */}
+                </ModalManager>
               </TerraMdxProvider>
             </ApplicationBase>
           </Router>

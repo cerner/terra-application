@@ -1,35 +1,32 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
+import ContentContainer from 'terra-content-container';
+import ActionHeader from 'terra-action-header';
 import NativeSelectField from 'terra-form-select/lib/native-select/NativeSelectField';
 import classNamesBind from 'classnames/bind';
-import ApplicationModal from '@cerner/terra-application/lib/application-modal/ApplicationModal';
+import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 import AppSettingsContext from '../site/_AppSettingsContext';
 
 import styles from './SettingsModal.module.scss';
 
 const cx = classNamesBind.bind(styles);
 
-const propTypes = {
-  /**
-   * Function called to request closing the modal
-   */
-  onRequestClose: PropTypes.func.isRequired,
-};
-
-const SettingsModal = ({ onRequestClose }) => {
+const SettingsModal = () => {
   const appSettings = React.useContext(AppSettingsContext);
   const [state, setState] = useState({ locale: appSettings.currentLocale, theme: appSettings.currentTheme, direction: appSettings.currentDirection });
   const {
     locale, theme, direction,
   } = state;
   const { locales, themes, directions } = appSettings;
+  const disclosureManager = React.useContext(DisclosureManagerContext);
 
   return (
-    <ApplicationModal
-      title="Settings"
-      onRequestClose={onRequestClose}
+    <ContentContainer
+      fill
+      header={(
+        <ActionHeader title="Settings" onBack={disclosureManager.goBack} onClose={disclosureManager.closeDisclosure} />
+      )}
       footer={(
         <ActionFooter
           end={(
@@ -45,7 +42,7 @@ const SettingsModal = ({ onRequestClose }) => {
                     theme,
                     direction,
                   });
-                  onRequestClose();
+                  disclosureManager.dismiss();
                 }}
               />
               <Button
@@ -53,7 +50,7 @@ const SettingsModal = ({ onRequestClose }) => {
                 id="cancel"
                 className={cx('button')}
                 onClick={() => {
-                  onRequestClose();
+                  disclosureManager.dismiss();
                 }}
               />
             </>
@@ -108,10 +105,8 @@ const SettingsModal = ({ onRequestClose }) => {
           />
         ) : undefined}
       </div>
-    </ApplicationModal>
+    </ContentContainer>
   );
 };
-
-SettingsModal.propTypes = propTypes;
 
 export default SettingsModal;

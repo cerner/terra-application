@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
-import PropTypes from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import ApplicationModal from '@cerner/terra-application/lib/application-modal/ApplicationModal';
+import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import ContentContainer from 'terra-content-container';
+import ActionHeader from 'terra-action-header';
 import classNamesBind from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import SearchField from 'terra-search-field';
-import { ThemeContext } from '@cerner/terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/lib/theme';
 import Fuse from 'fuse.js';
 import StatusView from 'terra-status-view';
 
@@ -20,11 +21,6 @@ const propTypes = {
    * A map listing all the page routes to the page config
    */
   pageConfig: pageConfigShape.isRequired,
-
-  /**
-   * Function called to request closing the modal
-   */
-  onRequestClose: PropTypes.func.isRequired,
 };
 
 const clearResults = setState => setState({ results: [] });
@@ -98,12 +94,13 @@ const cacheSearchItems = (pageConfig, state, setState) => {
   }
 };
 
-const SearchModal = ({ pageConfig, onRequestClose }) => {
+const SearchModal = ({ pageConfig }) => {
   const [state, setState] = useState({ results: [] });
   const history = useHistory();
   cacheSearchItems(pageConfig, state, setState);
   const { searchItems, searchString, results } = state;
   const theme = React.useContext(ThemeContext);
+  const disclosureManager = React.useContext(DisclosureManagerContext);
 
   let searchRef = useRef(null);
 
@@ -112,19 +109,25 @@ const SearchModal = ({ pageConfig, onRequestClose }) => {
   }, []);
 
   return (
-    <ApplicationModal
-      title="Site Search"
-      onRequestClose={onRequestClose}
-      toolbar={(
-        <SearchField
-          className={cx('search-field', theme.className)}
-          isBlock
-          placeholder="Search"
-          onSearch={string => handleSearch(string, state, setState)}
-          onInvalidSearch={() => clearResults(setState)}
-          inputRefCallback={(inputRef) => { searchRef = inputRef; }}
-        />
+    <ContentContainer
+      header={(
+        <>
+          <ActionHeader
+            title="Site Search"
+            onBack={disclosureManager.goBack}
+            onClose={disclosureManager.closeDisclosure}
+          />
+          <SearchField
+            className={cx('search-field', theme.className)}
+            isBlock
+            placeholder="Search"
+            onSearch={string => handleSearch(string, state, setState)}
+            onInvalidSearch={() => clearResults(setState)}
+            inputRefCallback={(inputRef) => { searchRef = inputRef; }}
+          />
+        </>
       )}
+      fill
     >
       {searchItems && searchString && results.length <= 0 && <StatusView variant="no-matching-results" />}
       {results.length > 0 && (
@@ -142,7 +145,7 @@ const SearchModal = ({ pageConfig, onRequestClose }) => {
                 isSelectable
                 metaData={result}
                 onSelect={(event, metaData) => {
-                  onRequestClose();
+                  disclosureManager.dismiss();
                   history.push(metaData.item.path);
                 }}
               >
@@ -152,7 +155,7 @@ const SearchModal = ({ pageConfig, onRequestClose }) => {
           }
         </List>
       )}
-    </ApplicationModal>
+    </ContentContainer>
   );
 };
 

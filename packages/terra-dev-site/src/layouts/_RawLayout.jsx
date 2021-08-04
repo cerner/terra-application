@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import ModalManager from 'terra-application/lib/modal-manager';
 import classNamesBind from 'classnames/bind';
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import Suspense from '../terra-application-temporary/shared/Suspense';
@@ -38,18 +37,16 @@ const Raw = ({ siteConfig }) => {
   }
 
   return (
-    <ModalManager>
-      <div role="main" className={cx('main')}>
-        <Suspense
-          fallback={<div>loading</div>}
-          onError={() => setLoadingFailed(true)}
-        >
-          <ContentLoadedContainer type={pageContentConfig.type} isScrollContainer>
-            <ContentComponent />
-          </ContentLoadedContainer>
-        </Suspense>
-      </div>
-    </ModalManager>
+    <div role="main" className={cx('main')}>
+      <Suspense
+        fallback={<div>loading</div>}
+        onError={() => setLoadingFailed(true)}
+      >
+        <ContentLoadedContainer type={pageContentConfig.type} isScrollContainer>
+          <ContentComponent />
+        </ContentLoadedContainer>
+      </Suspense>
+    </div>
   );
 };
 

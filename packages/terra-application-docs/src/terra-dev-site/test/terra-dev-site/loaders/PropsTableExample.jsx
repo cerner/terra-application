@@ -71,7 +71,7 @@ const propTypes = {
    * An object taking on a particular shape
    */
   optionalObjectWithShape: PropTypes.shape({
-    color: PropTypes.string,
+    color: PropTypes.string.isRequired,
     fontSize: PropTypes.number,
   }),
   /**
@@ -99,7 +99,7 @@ const propTypes = {
    * ```jsx
    * <div>
    *   <h1>
-   *    {intl.formatMessage({ id: 'Terra.devSite.themed.help' })}
+   *    {intl.formatMessage({ id: 'Terra.applicationDocs.themed.help' })}
    *   </h1>
    * </div>
    * ```

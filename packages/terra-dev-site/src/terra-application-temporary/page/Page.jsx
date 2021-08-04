@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 
-import { UnsavedChangesPromptCheckpoint } from '../unsaved-changes-prompt';
-// import useNotificationBanners from '../notification-banner/private/useNotificationBanners';
 import usePagePortal from '../page-container/usePagePortal';
 
 import PageHeader from './PageHeader';
@@ -63,7 +61,6 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
-  dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
   if (actions && actions.type !== PageActions) {
@@ -97,14 +94,7 @@ const Page = ({
   // If onRequestClose is provided, we check for unsaved changes prior to
   // executing the callback (unless explicitly disabled).
   const handleOnSelectBack = onRequestClose ? () => {
-    if (dangerouslyDisableUnsavedChangesPromptHandling) {
-      onRequestClose();
-      return;
-    }
-
-    unsavedChangesCheckpointRef.current.resolvePrompts().then(() => {
-      onRequestClose();
-    });
+    onRequestClose();
   } : undefined;
 
   const pageClassNames = cx(

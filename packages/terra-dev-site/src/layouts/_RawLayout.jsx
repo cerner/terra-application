@@ -1,10 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// import MainContainer from '@cerner/terra-application/lib/main-container';
 import ModalManager from 'terra-application/lib/modal-manager';
 import classNamesBind from 'classnames/bind';
 import ContentLoadedContainer from '../content/_ContentLoaded';
-// import HeadlessLayout from '../terra-application-temporary/layouts/embedded-layout/HeadlessLayout';
 import Suspense from '../terra-application-temporary/shared/Suspense';
 
 import siteConfigShape from '../site/siteConfigShapes';
@@ -40,9 +38,6 @@ const Raw = ({ siteConfig }) => {
   }
 
   return (
-    // <HeadlessLayout
-      // renderLayout={() => (
-        // <MainContainer className={cx('main')}>
     <ModalManager>
       <div role="main" className={cx('main')}>
         <Suspense
@@ -55,9 +50,6 @@ const Raw = ({ siteConfig }) => {
         </Suspense>
       </div>
     </ModalManager>
-    //     </MainContainer>
-    //   )}
-    // />
   );
 };
 

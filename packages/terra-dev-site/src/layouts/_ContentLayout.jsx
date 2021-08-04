@@ -1,14 +1,8 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-// import MainContainer from '@cerner/terra-application/lib/main-container';
-import classNamesBind from 'classnames/bind';
 import Suspense from '../terra-application-temporary/shared/Suspense';
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigShapes';
-
-import styles from './ContentLayout.module.scss';
-
-const cx = classNamesBind.bind(styles);
 
 const propTypes = {
   /**
@@ -41,16 +35,14 @@ const ContentLayout = ({ pageContentConfig, contentImports }) => {
   }
 
   return (
-    // <MainContainer label={pageContentConfig.label} className={cx('main')}>
-      <Suspense
-        // TODO add a loading spinner?
-        onError={() => setLoadingFailed(true)}
-      >
-        <ContentLoadedContainer type={pageContentConfig.type} isScrollContainer>
-          <ContentComponent />
-        </ContentLoadedContainer>
-      </Suspense>
-    // </MainContainer>
+    <Suspense
+      // TODO add a loading spinner?
+      onError={() => setLoadingFailed(true)}
+    >
+      <ContentLoadedContainer type={pageContentConfig.type} isScrollContainer>
+        <ContentComponent />
+      </ContentLoadedContainer>
+    </Suspense>
   );
 };
 

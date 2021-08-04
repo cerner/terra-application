@@ -3,11 +3,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
-// import SkipToLink from '@cerner/terra-application/lib/application-container/private/skip-to-links/SkipToLink';
-import usePortalManager from '../../terra-application-temporary/shared/usePortalManager';
-
 import { ThemeContext } from 'terra-application/lib/theme';
+import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
+
+import usePortalManager from '../../terra-application-temporary/shared/usePortalManager';
 import NavigationItem from '../../terra-application-temporary/navigation-item';
 import PageContainer from '../../terra-application-temporary/page-container';
 import { deferExecution } from '../../terra-application-temporary/utils/lifecycle-utils';

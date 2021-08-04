@@ -2,8 +2,6 @@ import React from 'react';
 import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconTile from 'terra-icon/lib/icon/IconTile';
-// import PrimaryNavigationLayout, { NavigationItem } from '@cerner/terra-application/lib/primary-navigation-layout';
-// import PageContainer from '@cerner/terra-application/lib/page-container';
 import ApplicationNavigation from 'terra-application/lib/application-navigation';
 
 import DevSitePage from '../pages/_DevSitePage';
@@ -27,7 +25,6 @@ const propTypes = {
 const DevSiteNavigationLayout = ({ siteConfig }) => {
   const location = useLocation();
   const history = useHistory();
-  const pathname = location.pathname;
   // const [showSettingsModal, setShowSettingsModal] = React.useState(false);
   // const [extensionModal, setExtensionModal] = React.useState();
   // const [utilityModal, setUtilityModal] = React.useState();
@@ -85,7 +82,6 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
   const activeNavigationKey = `/${location.pathname.split('/')[1]}`;
 
   const getContent = () => {
-    console.log('active nav key', activeNavigationKey);
     const navItem = siteConfig.navigationConfig.find((element) => element.path === activeNavigationKey);
     if (navItem.pageConfig) {
       if (isHome) {

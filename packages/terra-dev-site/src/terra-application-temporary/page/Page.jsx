@@ -33,22 +33,10 @@ const propTypes = {
    */
   actions: PropTypes.element,
   /**
-   * A component to present additional controls to the Page user. The provided
-   * component will be rendered below the Page's header.
-   */
-  toolbar: PropTypes.node,
-  /**
    * A function to be executed upon selection of the Page's back button. If not
    * provided, the back button will not be rendered.
    */
   onRequestClose: PropTypes.func,
-  /**
-   * When true, the Page will not prompt the user prior to executing
-   * `onRequestClose` in the presence of rendered UnsavedChangesPrompts.
-   * Use this prop to customize UnsavedChangesPrompt handling prior to Page
-   * closure.
-   */
-  dangerouslyDisableUnsavedChangesPromptHandling: PropTypes.bool,
   /**
    * The components to render within the Page.
    */
@@ -59,7 +47,6 @@ const Page = ({
   label,
   metaData,
   actions,
-  toolbar,
   onRequestClose,
   children,
 }) => {
@@ -67,22 +54,7 @@ const Page = ({
     throw new Error(`[terra-application] Page.Actions must be used to define actions for ${label}.`);
   }
 
-  if (toolbar && toolbar.type !== PageToolbar) {
-    throw new Error(`[terra-application] Page.Toolbar must be used to define a toolbar for ${label}.`);
-  }
-
   const theme = React.useContext(ThemeContext);
-
-  // An UnsavedChangesPromptCheckpoint is used to detect unsaved changes within
-  // the Page's content.
-  const unsavedChangesCheckpointRef = React.useRef();
-
-  // A Provider/Presenter pair is generated to manage NotificationBanner
-  // rendering within the Page.
-  // const {
-  //   NotificationBannerProvider,
-  //   NotificationBanners,
-  // } = useNotificationBanners();
 
   // The usePagePortal hook is used to generate the PagePortal component that
   // will render the Page content.
@@ -114,11 +86,7 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
-          <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-            {/* <NotificationBannerProvider> */}
-              {children}
-            {/* </NotificationBannerProvider> */}
-          </UnsavedChangesPromptCheckpoint>
+          {children}
         </div>
       </div>
     </PagePortal>

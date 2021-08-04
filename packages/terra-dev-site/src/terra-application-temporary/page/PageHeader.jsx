@@ -24,11 +24,6 @@ const propTypes = {
    */
   actions: PropTypes.element,
   /**
-   * A unique identifier for the PageHeader. Applied to internal components
-   * as an id attribute and thus must be globally unique.
-   */
-  id: PropTypes.string.isRequired,
-  /**
    * The label for the Page that the header is being rendered for.
    */
   label: PropTypes.string,
@@ -40,7 +35,7 @@ const propTypes = {
 };
 
 const PageHeader = ({
-  actions, id, label, onSelectBack,
+  actions, label, onSelectBack,
 }) => {
   const intl = React.useContext(ApplicationIntlContext);
   const pageContainerContext = React.useContext(PageContainerContext);

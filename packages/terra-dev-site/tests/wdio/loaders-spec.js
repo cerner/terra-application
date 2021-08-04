@@ -25,15 +25,15 @@ Terra.describeViewports('loaders', ['huge'], () => {
   });
 
   it('loads a props table', () => {
-    const viewport = browser.getWindowSize();
-    browser.setWindowSize(viewport.width, 3000);
+    const windowSize = browser.getWindowSize();
+    browser.setWindowSize(windowSize.width, 3000);
     browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/props-table');
     Terra.validates.element('props table');
   });
 
   it('loads an example', () => {
-    const viewport = browser.getWindowSize();
-    browser.setWindowSize(viewport.width, 3000);
+    const windowSize = browser.getWindowSize();
+    browser.setWindowSize(windowSize.width, 3000);
     browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/example');
     Terra.validates.element('example');
   });
@@ -44,21 +44,25 @@ Terra.describeViewports('loaders', ['huge'], () => {
 
   it('Reveals the examples code', () => {
     $('[class*=ExampleTemplate-module__code-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Reveals the examples code');
   });
 
   it('Hides the examples code again', () => {
     $('[class*=ExampleTemplate-module__code-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Hides the examples code again');
   });
 
   it('Reveals the examples css', () => {
     $('[class*=ExampleTemplate-module__css-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Reveals the examples css');
   });
 
   it('Hides the examples css again', () => {
     $('[class*=ExampleTemplate-module__css-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Hides the examples css again');
   });
 });

@@ -1,6 +1,7 @@
 Terra.describeViewports('md', ['huge'], () => {
   it('renders md', () => {
     browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/md');
+    $('#root').moveTo({ xOffset: 0, yOffset: 768 });
     Terra.validates.element('md');
   });
 

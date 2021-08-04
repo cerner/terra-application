@@ -1,0 +1,11 @@
+@import './clinical-lowlight-theme/PageToolbar.module';
+@import './orion-fusion-theme/PageToolbar.module';
+
+:local {
+  .page-toolbar {
+    background: var(--terra-application-page-toolbar-background, linear-gradient(#e8e9ea, #dedfe0));
+    border: 0;
+    border-radius: var(--terra-application-page-toolbar-border-radius, 3px);
+    box-shadow: var(--terra-application-page-toolbar-box-shadow, 0 1px 1px 0 rgba(28, 31, 33, 0.2)); 
+  }
+}

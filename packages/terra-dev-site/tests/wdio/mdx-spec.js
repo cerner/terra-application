@@ -1,6 +1,7 @@
 Terra.describeViewports('mdx', ['huge'], () => {
   it('renders mdx', () => {
     browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/mdx');
+    $('#root').moveTo({ xOffset: 0, yOffset: 768 });
     Terra.validates.element('mdx');
   });
 
@@ -8,6 +9,7 @@ Terra.describeViewports('mdx', ['huge'], () => {
     browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/relative-link');
     Terra.validates.element('relative link');
     $('[class*="MarkdownTags-module__a"]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 768 });
     Terra.validates.element('link clicked');
   });
 

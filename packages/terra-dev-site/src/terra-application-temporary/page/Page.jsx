@@ -9,6 +9,7 @@ import PageHeader from './PageHeader';
 import PageActions from './PageActions';
 import PageAction from './PageAction';
 import PageToolbar from './PageToolbar';
+import DynamicOverlayContainer from '../shared/DynamicOverlayContainer';
 
 import styles from './Page.module.scss';
 
@@ -38,6 +39,14 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
+   *
+   */
+  activityOverlay: PropTypes.element,
+  /**
+  *
+  */
+  statusOverlay: PropTypes.element,
+  /**
    * The components to render within the Page.
    */
   children: PropTypes.node,
@@ -49,6 +58,8 @@ const Page = ({
   actions,
   onRequestClose,
   children,
+  statusOverlay,
+  activityOverlay,
 }) => {
   if (actions && actions.type !== PageActions) {
     throw new Error(`[terra-application] Page.Actions must be used to define actions for ${label}.`);
@@ -74,6 +85,26 @@ const Page = ({
     theme.className,
   );
 
+  const overlays = React.useMemo(() => {
+    const overlaysToRender = [];
+
+    if (statusOverlay) {
+      overlaysToRender.push({
+        key: 'status-overlay',
+        component: statusOverlay,
+      });
+    }
+
+    if (activityOverlay) {
+      overlaysToRender.push({
+        key: 'activity-overlay',
+        component: activityOverlay,
+      });
+    }
+
+    return overlaysToRender;
+  }, [statusOverlay, activityOverlay]);
+
   return (
     <PagePortal>
       <div className={pageClassNames}>
@@ -86,7 +117,11 @@ const Page = ({
           />
         </div>
         <div className={cx('content')}>
-          {children}
+          <DynamicOverlayContainer
+            overlays={overlays}
+          >
+            {children}
+          </DynamicOverlayContainer>
         </div>
       </div>
     </PagePortal>

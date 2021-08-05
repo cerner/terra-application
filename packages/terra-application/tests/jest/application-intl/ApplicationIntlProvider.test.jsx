@@ -1,5 +1,5 @@
 import React from 'react';
-import { mountWithIntl } from 'terra-enzyme-intl';
+import { mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationIntlContext from '../../../src/application-intl/ApplicationIntlContext';
 import ApplicationIntlProvider from '../../../src/application-intl/ApplicationIntlProvider';
 

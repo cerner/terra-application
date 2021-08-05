@@ -7,7 +7,7 @@ import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manag
 
 import DevSitePage from '../pages/_DevSitePage';
 import PageContainer from '../terra-application-temporary/page-container';
-// import NotFoundPage from '../pages/_NotFoundPage';
+import NotFoundPage from '../pages/_NotFoundPage';
 import SettingsModal from '../modals/_SettingsModal';
 import SearchModal from '../modals/_SearchModal';
 import ApplicationSwitcherModal from '../modals/_ApplicationSwitcherModal';
@@ -26,9 +26,6 @@ const propTypes = {
 const DevSiteNavigationLayout = ({ siteConfig }) => {
   const location = useLocation();
   const history = useHistory();
-  // const [showSettingsModal, setShowSettingsModal] = React.useState(false);
-  // const [extensionModal, setExtensionModal] = React.useState();
-  // const [utilityModal, setUtilityModal] = React.useState();
   const isHome = useRouteMatch('/home');
   const disclosureManager = React.useContext(DisclosureManagerContext);
 
@@ -132,23 +129,30 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
   };
 
   const activeNavigationKey = `/${location.pathname.split('/')[1]}`;
+  const activeNavItem = siteConfig.navigationConfig.find((element) => element.path === activeNavigationKey);
 
   const getContent = () => {
-    const navItem = siteConfig.navigationConfig.find((element) => element.path === activeNavigationKey);
-    if (navItem.pageConfig) {
+    if (!activeNavItem) {
+      return (
+        <PageContainer>
+          <NotFoundPage />
+        </PageContainer>
+      );
+    }
+    if (activeNavItem.pageConfig) {
       if (isHome) {
         return (
-          <DevSiteContentLayout pageContentConfig={navItem.pageConfig} contentImports={siteConfig.contentImports} />
+          <DevSiteContentLayout pageContentConfig={activeNavItem.pageConfig} contentImports={siteConfig.contentImports} />
         );
       }
       return (
         <PageContainer>
-          <DevSitePage pageContentConfig={navItem.pageConfig} contentImports={siteConfig.contentImports} />
+          <DevSitePage pageContentConfig={activeNavItem.pageConfig} contentImports={siteConfig.contentImports} />
         </PageContainer>
       );
     }
     return (
-      <DevSiteSecondaryNavigation label={navItem.label} id={navItem.path.substring(1)} config={navItem.children} contentImports={siteConfig.contentImports} />
+      <DevSiteSecondaryNavigation label={activeNavItem.label} id={activeNavItem.path.substring(1)} config={activeNavItem.children} contentImports={siteConfig.contentImports} />
     );
   };
 
@@ -165,7 +169,7 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
         onSelectExtensionItem={handleExtensionSelection}
         onSelectUtilityItem={handleUtilityItemSelection}
         onSelectNavigationItem={(key) => { setNavigationState(key); }}
-        activeNavigationItemKey={activeNavigationKey}
+        activeNavigationItemKey={activeNavItem ? activeNavigationKey : undefined}
         extensionItems={getExtensionItems()}
         utilityItems={getUtilityItems(siteConfig.sites)}
       >
@@ -173,52 +177,6 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
           getContent()
         }
       </ApplicationNavigation>
-      {/* <PrimaryNavigationLayout
-        id="terra-dev-site"
-        titleConfig={siteConfig.titleConfig}
-        activeNavigationKey={firstDir()}
-        onSelectNavigationItem={(key) => { setNavigationState(key); }}
-        // onSelectSettings={handleSettingsSelection}
-        // onSelectExtensionItem={handleExtensionSelection}
-        // onSelectUtilityItem={handleUtilityItemSelection}
-        // extensionItems={getExtensionItems()}
-        // utilityItems={getUtilityItems(siteConfig.sites)}
-        renderNavigationFallback={() => (
-          <PageContainer isMain>
-            <NotFoundPage />
-          </PageContainer>
-        )}
-      >
-        {siteConfig.navigationConfig.map((navItem) => {
-          const renderProps = {};
-          if (navItem.pageConfig) {
-            if (isHome) {
-              renderProps.renderLayout = () => (
-                <DevSiteContentLayout pageContentConfig={navItem.pageConfig} contentImports={siteConfig.contentImports} />
-              );
-            } else {
-              renderProps.renderPage = () => (
-                <DevSitePage pageContentConfig={navItem.pageConfig} contentImports={siteConfig.contentImports} />
-              );
-            }
-          } else {
-            renderProps.renderLayout = () => (
-              <DevSiteSecondaryNavigation label={navItem.label} id={navItem.path.substring(1)} config={navItem.children} contentImports={siteConfig.contentImports} />
-            );
-          }
-          return (
-            <NavigationItem
-              key={navItem.path}
-              navigationKey={navItem.path}
-              label={navItem.label}
-              {...renderProps}
-            />
-          );
-        })}
-      </PrimaryNavigationLayout> */}
-      {/* {showSettingsModal && <SettingsModal onRequestClose={() => { setShowSettingsModal(false); }} />}
-      {extensionModal && extensionModal.render()}
-      {utilityModal && utilityModal.render()} */}
     </>
   );
 };

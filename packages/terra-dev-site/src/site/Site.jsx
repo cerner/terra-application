@@ -1,17 +1,14 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-// import ApplicationBase from '@cerner/terra-application';
-import ApplicationBase from 'terra-application';
 import ModalManager from 'terra-application/lib/modal-manager';
 
 import DevSiteLayout from '../layouts/_DevSiteLayout';
-import AppSettingsContext from './_AppSettingsContext';
 import AppSettingsProvider from './_AppSettingsProvider';
 import siteConfigShape from './siteConfigShapes';
 import TerraMdxProvider from '../mdx/_TerraMdxProvider';
 import Router from './_DevSiteRouter';
-// import DevSiteApplicationContainer from './_DevSiteApplicationContainer';
+import DevSiteApplicationBase from './_DevSiteApplicationBase';
 
 const propTypes = {
   /**
@@ -26,33 +23,23 @@ const propTypes = {
 
 const Site = ({ siteConfig, Providers }) => (
   <AppSettingsProvider settingsConfig={siteConfig.settingsConfig}>
-    <AppSettingsContext.Consumer>
-      {({ currentLocale, currentThemeClassName }) => (
-        <BrowserRouter basename={siteConfig.basename}>
-          <Router sites={siteConfig.sites} routesMap={siteConfig.routesMap}>
-            <ApplicationBase
-              locale={currentLocale}
-              themeName={currentThemeClassName}
-              themeIsGlobal
-            >
-              <TerraMdxProvider>
-                <ModalManager>
-                {/* <DevSiteApplicationContainer titleConfig={siteConfig.titleConfig}> */}
-                  {Providers ? (
-                    <Providers>
-                      <DevSiteLayout siteConfig={siteConfig} />
-                    </Providers>
-                  ) : (
-                    <DevSiteLayout siteConfig={siteConfig} />
-                  )}
-                {/* </DevSiteApplicationContainer> */}
-                </ModalManager>
-              </TerraMdxProvider>
-            </ApplicationBase>
-          </Router>
-        </BrowserRouter>
-      )}
-    </AppSettingsContext.Consumer>
+    <BrowserRouter basename={siteConfig.basename}>
+      <Router sites={siteConfig.sites} routesMap={siteConfig.routesMap}>
+        <DevSiteApplicationBase>
+          <TerraMdxProvider>
+            <ModalManager>
+              {Providers ? (
+                <Providers>
+                  <DevSiteLayout siteConfig={siteConfig} />
+                </Providers>
+              ) : (
+                <DevSiteLayout siteConfig={siteConfig} />
+              )}
+            </ModalManager>
+          </TerraMdxProvider>
+        </DevSiteApplicationBase>
+      </Router>
+    </BrowserRouter>
   </AppSettingsProvider>
 );
 

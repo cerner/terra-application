@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallowWithIntl, mountWithIntl } from 'terra-enzyme-intl';
+import { shallowWithIntl, mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
 import Logger from '../../../src/utils/logger';
 

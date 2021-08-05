@@ -1,6 +1,7 @@
 import React from 'react';
 import IconStartPresenting from 'terra-icon/lib/icon/IconStartPresenting';
 import { useLocation, useHistory } from 'react-router-dom';
+import Button from 'terra-button';
 
 import Page, {
   CardLayout,
@@ -39,12 +40,13 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
     return null;
   }
 
-  if (!pageContentConfig) {
+  const { pathname } = location;
+  const ContentComponent = contentImports[pathname];
+
+  if (!pageContentConfig || !ContentComponent) {
     return NotFoundPage;
   }
 
-  const { pathname } = location;
-  const ContentComponent = contentImports[pathname];
   const pageActions = (
     <Page.Actions>
       <Page.Action
@@ -70,19 +72,9 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
         <StatusLayout
           message="Chunk failed to load."
           variant="error"
-          buttonAttrs={[
-            {
-              key: 'go back',
-              text: 'Go Back',
-              onClick: () => { history.goBack(); },
-            },
-            {
-              key: 'home',
-              text: 'Home',
-              onClick: () => { history.replace('/'); },
-            },
-          ]}
-        />
+        >
+          <Button text="Home" onClick={() => { history.replace('/'); }} />
+        </StatusLayout>
       </ContentLoadedContainer>
     );
   }

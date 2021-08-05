@@ -1,8 +1,10 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Image from 'terra-image';
 import Suspense from '../terra-application-temporary/shared/Suspense';
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigShapes';
+import kaiju404 from '../pages/kaiju-404.gif';
 
 const propTypes = {
   /**
@@ -22,8 +24,10 @@ const ContentLayout = ({ pageContentConfig, contentImports }) => {
   const ContentComponent = contentImports[pathname];
   const [loadingFailed, setLoadingFailed] = React.useState();
 
-  if (!pageContentConfig) {
-    return <div>404</div>;
+  console.log('pageContentConfig', pageContentConfig);
+
+  if (!pageContentConfig || !ContentComponent) {
+    return <Image src={kaiju404} width="100%" alt="404" />;
   }
 
   if (loadingFailed) {

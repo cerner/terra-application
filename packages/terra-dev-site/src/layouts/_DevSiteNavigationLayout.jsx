@@ -29,13 +29,9 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
   const isHome = useRouteMatch('/home');
   const disclosureManager = React.useContext(DisclosureManagerContext);
 
-  console.log('siteConfig', siteConfig);
-
   const setNavigationState = (key) => {
     history.push(siteConfig.routesMap[key]);
   };
-
-
 
   const handleSettingsSelection = () => {
     disclosureManager.disclose({

@@ -24,8 +24,6 @@ const ContentLayout = ({ pageContentConfig, contentImports }) => {
   const ContentComponent = contentImports[pathname];
   const [loadingFailed, setLoadingFailed] = React.useState();
 
-  console.log('pageContentConfig', pageContentConfig);
-
   if (!pageContentConfig || !ContentComponent) {
     return <Image src={kaiju404} width="100%" alt="404" />;
   }

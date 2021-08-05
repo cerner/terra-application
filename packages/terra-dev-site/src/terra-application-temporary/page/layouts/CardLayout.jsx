@@ -1,10 +1,16 @@
 import React from 'react';
 import classNames from 'classnames/bind';
+import PropTypes from 'prop-types';
 import styles from './CardLayout.module.scss';
 
 const cx = classNames.bind(styles);
 
-const propTypes = {};
+const propTypes = {
+  /**
+   * Items to be rendered inside the card.
+   */
+  children: PropTypes.node,
+};
 
 const CardLayout = ({ children }) => {
   let cardContent;
@@ -23,6 +29,7 @@ const CardLayout = ({ children }) => {
     <div
       className={cx('card-layout')}
       data-application-overflow-container
+      // eslint-disable-next-line jsx-a11y/no-noninteractive-tabindex
       tabIndex="0"
     >
       {cardContent}

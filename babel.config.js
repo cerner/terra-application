@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = (api) => {
   api.cache(false);
   api.assertVersion('^7.4.4');

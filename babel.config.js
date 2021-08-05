@@ -19,6 +19,6 @@ module.exports = (api) => {
   return {
     presets,
     plugins,
-    ignore: [(filename) => filename === path.resolve(path.join(__dirname, 'packages', 'terra-polyfill', 'src', 'index.js'))],
+    ignore: ['./packages/terra-polyfill/src/index.js'],
   };
 };

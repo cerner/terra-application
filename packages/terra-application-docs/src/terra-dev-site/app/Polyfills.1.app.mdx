@@ -2,7 +2,7 @@ import { Notice } from '@cerner/terra-docs';
 
 # Polyfills
 
-The [terra-application](/application/terra-application/application) package requires polyfills to function in some of its supported browsers. We recommend using the `terra-polyfill' package to ensure the minimum requirements are met for a project.
+The [terra-application](/application/terra-application/application) package requires polyfills to function in some of its supported browsers. We recommend using the [terra-polyfill](https://www.npmjs.com/package/@cerner/terra-polyfill) package to ensure the minimum requirements are met for a project.
 
 ## Usage
 
@@ -15,13 +15,13 @@ import '@cerner/terra-polyfill';
 </Notice>
 
 <Notice ariaLevel="3">
-  The polyfill should be imported as early as possible in an application's lifecycle to ensure the polyfilled features are available when they are needed.
+  The polyfill should be imported as early as possible in an application's lifecycle to ensure that the polyfilled features are available when they are needed.
 </Notice>
 
 ## Included Polyfills
 
 * [`core-js`](https://github.com/zloirock/core-js) - Includes polyfills for ECMAScript up to 2021: promises, symbols, collections, iterators, typed arrays, many other features
-  * Only stable features are included by default. Any ES features under proposal will require additional polyfills.
+  * Only stable features are included by default. Any ES features under proposal will require additional polyfills if they are used.
 * [`regenerator-runtime`](https://www.npmjs.com/package/regenerator-runtime) - Standalone runtime for Regenerator-compiled generator and async functions
 * ['whatwg-fetch'](https://www.npmjs.com/package/whatwg-fetch) - A window.fetch polyfill
 * ['abortcontroller-polyfill'](https://www.npmjs.com/package/abortcontroller-polyfill) - An AbortController polyfill

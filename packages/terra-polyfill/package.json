@@ -24,8 +24,7 @@
     "url": "https://github.com/cerner/terra-application/issues"
   },
   "files": [
-    "lib",
-    "src"
+    "lib"
   ],
   "engines": {
     "node": ">=10.13.0"

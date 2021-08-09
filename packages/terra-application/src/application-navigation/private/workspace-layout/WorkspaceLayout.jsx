@@ -410,7 +410,8 @@ const WorkspaceLayout = ({
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
-          aria-labelledby={`${id}-workspace-container`}
+          aria-label="Workspace" // TODO i18n? remove?
+          // aria-labelledby={`${id}-workspace-container`}
         >
           <div
             className={cx('workspace-inner')}

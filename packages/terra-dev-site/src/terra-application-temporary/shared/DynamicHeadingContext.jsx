@@ -1,4 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const propTypes = {
+  /**
+   * If the heading is root, set it to level 1.
+   */
+  isRoot: PropTypes.bool,
+
+  /**
+   * The remainder of the application to render.
+   */
+  children: PropTypes.node,
+};
 
 const DynamicHeadingContext = React.createContext(1);
 
@@ -26,6 +39,8 @@ const DynamicHeadingProvider = ({ children, isRoot }) => {
     </DynamicHeadingContext.Provider>
   );
 };
+
+DynamicHeadingProvider.propTypes = propTypes;
 
 export default DynamicHeadingContext;
 export { useDynamicHeading, DynamicHeadingProvider, DynamicHeading };

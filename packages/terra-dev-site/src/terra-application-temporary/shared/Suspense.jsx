@@ -57,4 +57,12 @@ const Suspense = ({
     </ErrorBoundary>
   );
 };
+
+Suspense.propTypes = {
+  onLoadStart: PropTypes.func,
+  onLoadEnd: PropTypes.func,
+  onError: PropTypes.func,
+  fallback: PropTypes.node,
+  children: PropTypes.node,
+};
 export default Suspense;

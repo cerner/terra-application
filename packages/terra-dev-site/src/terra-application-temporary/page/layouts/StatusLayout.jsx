@@ -1,11 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Button from 'terra-button';
+import classNames from 'classnames/bind';
 
 import StatusIndicator from '../../shared/StatusLayout';
 
 import CardLayout from './CardLayout';
 import Card from './Card';
+
+import styles from './StatusLayout.module.scss';
+
+const cx = classNames.bind(styles);
 
 const StatusViewVariants = {
   NODATA: 'no-data',
@@ -70,8 +75,8 @@ const defaultProps = {
 const StatusLayout = (props) => (
   <CardLayout>
     <Card>
-      <div style={{ display: 'flex', justifyContent: 'center' }}>
-        <div style={{ maxWidth: '500px' }}>
+      <div classNames={cx('outer-view')}>
+        <div classNames={cx('inner-view')}>
           <StatusIndicator {...props} />
         </div>
       </div>

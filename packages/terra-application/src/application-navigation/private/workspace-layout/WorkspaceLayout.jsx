@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
+import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ResizeHandle from './ResizeHandle';
@@ -410,9 +411,9 @@ const WorkspaceLayout = ({
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
-          aria-label="Workspace" // TODO i18n? remove?
-          // aria-labelledby={`${id}-workspace-container`}
+          aria-labelledby={`${id}-tyler-test`}
         >
+          <VisuallyHiddenText id={`${id}-tyler-test`} text="Workspace" />
           <div
             className={cx('workspace-inner')}
           >

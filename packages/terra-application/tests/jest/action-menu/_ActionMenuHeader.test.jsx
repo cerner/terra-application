@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { shallowWithIntl } from '@cerner/terra-enzyme-intl';
 import ActionMenuHeader from '../../../src/action-menu/_ActionMenuHeader';
 

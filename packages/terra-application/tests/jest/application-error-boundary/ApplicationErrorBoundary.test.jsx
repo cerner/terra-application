@@ -1,4 +1,5 @@
 import React from 'react';
+// eslint-disable-next-line import/no-unresolved
 import { shallowWithIntl, mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
 import Logger from '../../../src/utils/logger';

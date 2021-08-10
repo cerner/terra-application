@@ -1,7 +1,9 @@
 import React from 'react';
 import IconStartPresenting from 'terra-icon/lib/icon/IconStartPresenting';
+import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import { useLocation, useHistory } from 'react-router-dom';
 import Button from 'terra-button';
+import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 
 import Page, {
   CardLayout,
@@ -16,6 +18,7 @@ import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigS
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import NotFoundPage from './_NotFoundPage';
 import { NavigationItemContext } from '../terra-application-temporary/navigation-item';
+import SettingsModal from '../modals/_SettingsModal';
 
 const propTypes = {
   /**
@@ -33,6 +36,7 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
   const location = useLocation();
   const history = useHistory();
   const { isActive } = React.useContext(NavigationItemContext);
+  const disclosureManager = React.useContext(DisclosureManagerContext);
   const [isLoadingComponent, setIsLoadingComponent] = React.useState();
   const [loadingFailed, setLoadingFailed] = React.useState();
 
@@ -54,6 +58,23 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
         label="Raw"
         icon={<IconStartPresenting />}
         onSelect={() => { history.push(`/raw${pathname}`); }}
+      />
+      <Page.Action
+        actionKey="settings"
+        label="Settings"
+        icon={<IconSettings />}
+        onSelect={() => {
+          disclosureManager.disclose({
+            preferredType: 'modal',
+            size: 'small',
+            content: {
+              key: 'terra-dev-site.settings',
+              component: (
+                <SettingsModal />
+              ),
+            },
+          });
+        }}
       />
     </Page.Actions>
   );

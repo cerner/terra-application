@@ -63,7 +63,7 @@ const PageHeader = ({
   const backActionButton = onSelectBack ? (
     <PageHeaderButton
       icon={<IconLeft />}
-      ariaLabel={intl.formatMessage({ id: 'terraApplication.pageHeader.back' })}
+      ariaLabel={intl.formatMessage({ id: 'terraDevSite.pageHeader.back' })}
       onSelect={onSelectBack}
     />
   ) : undefined;
@@ -86,7 +86,7 @@ const PageHeader = ({
       className={cx('header-button')}
       icon={<IconRollup />}
       ariaLabel={intl.formatMessage({
-        id: 'terraApplication.pageHeader.moreActions',
+        id: 'terraDevSite.pageHeader.moreActions',
       })}
       onSelect={() => {
         setShowMenu(true);
@@ -160,7 +160,7 @@ const PageHeader = ({
     >
       <ActionMenu
         label={intl.formatMessage({
-          id: 'terraApplication.pageHeader.actionsMenu',
+          id: 'terraDevSite.pageHeader.actionsMenu',
         }, { label })}
         onRequestClose={() => { setShowMenu(false); }}
       >

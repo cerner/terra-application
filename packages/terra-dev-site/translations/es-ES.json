@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.back": "Atrás"
+  "terraDevSite.pageHeader.back": "Atrás",
+  "terraDevSite.PageActivityOverlayContainer.loading": "Cargando",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

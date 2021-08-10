@@ -1,4 +1,6 @@
 {
-  "Terra.devSite.back": "Back",
-  "terraApplication.PageOverlayContainer.loading": "loading"
+  "terraDevSite.pageHeader.back": "Back",
+  "terraDevSite.PageActivityOverlayContainer.loading": "loading",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

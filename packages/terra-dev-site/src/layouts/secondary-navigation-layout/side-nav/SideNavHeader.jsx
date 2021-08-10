@@ -35,7 +35,7 @@ const SideNavHeader = ({
             <Button
               className={cx(['header-button', 'back-button'])}
               icon={<IconLeft />}
-              text={applicationIntl.formatMessage({ id: 'Terra.devSite.back' })}
+              text={applicationIntl.formatMessage({ id: 'terraDevSite.pageHeader.back' })}
               onClick={onRequestClose}
               variant={ButtonVariants.UTILITY}
             />

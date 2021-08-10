@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import Button from 'terra-button';
 import classNames from 'classnames/bind';
 
-import StatusIndicator from '../../shared/StatusLayout';
+import StatusIndicator from 'terra-application/lib/workspace/shared/StatusLayout';
 
 import CardLayout from './CardLayout';
 import Card from './Card';

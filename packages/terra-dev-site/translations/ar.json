@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.back": "العودة"
+  "terraDevSite.pageHeader.back": "العودة",
+  "terraDevSite.PageActivityOverlayContainer.loading": "جارٍ التحميل",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

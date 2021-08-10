@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.back": "Takaisin"
+  "terraDevSite.pageHeader.back": "Takaisin",
+  "terraDevSite.PageActivityOverlayContainer.loading": "Lastaus",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

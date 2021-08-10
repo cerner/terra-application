@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.back": "Retour"
+  "terraDevSite.pageHeader.back": "Retour",
+  "terraDevSite.PageActivityOverlayContainer.loading": "Chargement",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

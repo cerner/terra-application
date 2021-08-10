@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.back": "Tillbaka"
+  "terraDevSite.pageHeader.back": "Tillbaka",
+  "terraDevSite.PageActivityOverlayContainer.loading": "Läser in",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

@@ -119,6 +119,7 @@ const SecondaryNavigationLayout = ({
   const pageContainerRef = React.useRef();
   const sideNavBodyRef = React.useRef();
   const sideNavPanelRef = React.useRef();
+  const sideNavOverlayRef = React.useRef();
 
   const [contentElementRef, pageContainerPortalsRef] = usePortalManager(activeNavigationKey, () => {
     deferExecution(() => {
@@ -333,6 +334,14 @@ const SecondaryNavigationLayout = ({
               {content}
             </LayoutActionsContext.Provider>
           </div>
+          {sideNavOverlayIsVisible ? (
+            // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
+            <div
+              ref={sideNavOverlayRef}
+              className={cx('side-nav-overlay')}
+              onClick={() => { setSideNavOverlayIsVisible(false); }}
+            />
+          ) : null}
         </div>
       </div>
     </>

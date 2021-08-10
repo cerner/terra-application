@@ -127,6 +127,25 @@ const PageHeader = ({
     </>
   );
 
+  const startActions = (
+    <>
+      {pageContainerContext?.startActions.length ? (
+        <>
+          {pageContainerContext.startActions.map(({ icon: Icon, ...action }) => (
+            <PageHeaderButton
+              key={action.key}
+              ariaLabel={action.label}
+              icon={<Icon />}
+              onSelect={action.onSelect}
+              isDisabled={!action.onSelect}
+            />
+          ))}
+          <div className={cx('actions-divider')} />
+        </>
+      ) : undefined}
+    </>
+  );
+
   const actionsMenu = showMenu ? (
     <Popup
       isOpen
@@ -168,6 +187,7 @@ const PageHeader = ({
     <div ref={headerContainerRef} className={pageHeaderClassNames}>
       <div className={cx('page-header')}>
         <div className={cx('start-actions-container')}>
+          {startActions}
           {backActionButton}
         </div>
         <div className={cx('label-container')} role="heading" aria-level={1}>

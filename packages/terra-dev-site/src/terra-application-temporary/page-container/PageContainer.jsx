@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
+import LayoutActionsContext from '../layouts/shared/LayoutActionsContext';
 import NavigationItemContext from '../navigation-item/NavigationItemContext';
 import deferExecution from '../utils/defer-execution';
 
@@ -29,6 +30,7 @@ const PageContainer = ({
   children,
 }) => {
   const navigationItem = React.useContext(NavigationItemContext);
+  const layoutActions = React.useContext(LayoutActionsContext);
 
   // The rootContainerRef points to the element within which Page content will
   // be rendered.
@@ -63,8 +65,9 @@ const PageContainer = ({
   // PageContainerContext. Handling of layout actions is the sole responsibility
   // of the MainPageContainer.
   const pageContainerContextValue = React.useMemo(() => ({
+    startActions: layoutActions.startActions || [],
     containerActions: [],
-  }), []);
+  }), [layoutActions.startActions]);
 
   return (
     <div

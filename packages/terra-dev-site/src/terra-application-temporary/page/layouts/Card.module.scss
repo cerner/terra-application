@@ -2,9 +2,10 @@
 
 @import './clinical-lowlight-theme/Card.module';
 @import './orion-fusion-theme/Card.module';
+
 :local {
   .card {
-    background-color: var(--terra-dev-site-card-background-color, #fefffe);;
+    background-color: var(--terra-dev-site-card-background-color, #fefffe);
     border-bottom: 1px solid #c6c8c7;
     border-left: 1px solid #dfe0df;
     border-radius: 5px;

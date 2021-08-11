@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ApplicationBase from 'terra-application';
+import TerraApplicationBase from 'terra-application';
 
 import AppSettingsContext from './_AppSettingsContext';
 
@@ -10,20 +10,25 @@ const propTypes = {
    * The remainder of the application to render.
    */
   children: PropTypes.node,
+  /**
+   * An override component for a custom application base. Must render children and adhere to the terra application base api.
+   */
+  ApplicationBase: PropTypes.element,
 };
 
-const DevSiteApplicationContainer = ({ children }) => {
+const DevSiteApplicationContainer = ({ children, ApplicationBase }) => {
   const isRaw = useRouteMatch('/raw');
   const { currentLocale, currentThemeClassName } = React.useContext(AppSettingsContext);
+  const AppBase = ApplicationBase || TerraApplicationBase;
   return (
-    <ApplicationBase
+    <AppBase
       locale={currentLocale}
       themeName={currentThemeClassName}
       themeIsGlobal
       unloadPromptIsDisabled={!!isRaw}
     >
       {children}
-    </ApplicationBase>
+    </AppBase>
   );
 };
 

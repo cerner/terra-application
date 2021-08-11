@@ -1,8 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconTile from 'terra-icon/lib/icon/IconTile';
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
+import TerraApplicationNavigation from 'terra-application/lib/application-navigation';
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 
 import DevSitePage from '../pages/_DevSitePage';
@@ -21,13 +22,18 @@ const propTypes = {
    * The site config for the application.
    */
   siteConfig: siteConfigShape.isRequired,
+  /**
+   * An override component for a custom application base. Must render children and adhere to the terra application base api.
+   */
+  ApplicationNavigation: PropTypes.element,
 };
 
-const DevSiteNavigationLayout = ({ siteConfig }) => {
+const DevSiteNavigationLayout = ({ siteConfig, ApplicationNavigation }) => {
   const location = useLocation();
   const history = useHistory();
   const isHome = useRouteMatch('/home');
   const disclosureManager = React.useContext(DisclosureManagerContext);
+  const AppNav = ApplicationNavigation || TerraApplicationNavigation;
 
   const setNavigationState = (key) => {
     history.push(siteConfig.routesMap[key]);
@@ -154,7 +160,7 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
 
   return (
     <>
-      <ApplicationNavigation
+      <AppNav
         id="terra-dev-site"
         titleConfig={siteConfig.titleConfig}
         navigationItems={siteConfig.navigationConfig.map((navItem) => ({
@@ -172,7 +178,7 @@ const DevSiteNavigationLayout = ({ siteConfig }) => {
         {
           getContent()
         }
-      </ApplicationNavigation>
+      </AppNav>
     </>
   );
 };

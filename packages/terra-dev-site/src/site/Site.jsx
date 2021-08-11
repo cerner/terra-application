@@ -18,22 +18,32 @@ const propTypes = {
   /**
    * The component representing the providers layer of terra-dev-site. Must render children.
    */
-  Providers: PropTypes.func,
+  Providers: PropTypes.element,
+  /**
+   * An override component for a custom application base. Must render children and adhere to the terra application base api.
+   */
+  ApplicationBase: PropTypes.element,
+  /**
+   * An override component for a custom application base. Must render children and adhere to the terra application base api.
+   */
+  ApplicationNavigation: PropTypes.element,
 };
 
-const Site = ({ siteConfig, Providers }) => (
+const Site = ({
+  siteConfig, Providers, ApplicationBase, ApplicationNavigation,
+}) => (
   <AppSettingsProvider settingsConfig={siteConfig.settingsConfig}>
     <BrowserRouter basename={siteConfig.basename}>
       <Router sites={siteConfig.sites} routesMap={siteConfig.routesMap}>
-        <DevSiteApplicationBase>
+        <DevSiteApplicationBase ApplicationBase={ApplicationBase}>
           <TerraMdxProvider>
             <ModalManager>
               {Providers ? (
                 <Providers>
-                  <DevSiteLayout siteConfig={siteConfig} />
+                  <DevSiteLayout siteConfig={siteConfig} ApplicationNavigation={ApplicationNavigation} />
                 </Providers>
               ) : (
-                <DevSiteLayout siteConfig={siteConfig} />
+                <DevSiteLayout siteConfig={siteConfig} ApplicationNavigation={ApplicationNavigation} />
               )}
             </ModalManager>
           </TerraMdxProvider>

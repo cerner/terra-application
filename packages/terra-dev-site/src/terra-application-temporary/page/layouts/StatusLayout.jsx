@@ -75,8 +75,8 @@ const defaultProps = {
 const StatusLayout = (props) => (
   <CardLayout>
     <Card>
-      <div classNames={cx('outer-view')}>
-        <div classNames={cx('inner-view')}>
+      <div classnames={cx('outer-view')}>
+        <div classnames={cx('inner-view')}>
           <StatusIndicator {...props} />
         </div>
       </div>

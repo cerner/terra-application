@@ -94,7 +94,7 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
           message="Chunk failed to load."
           variant="error"
         >
-          <Button text="Home" onClick={() => { history.replace('/'); }} />
+          <Button text="Reload Site" onClick={() => { location.reload(); }} />
         </StatusLayout>
       </ContentLoadedContainer>
     );

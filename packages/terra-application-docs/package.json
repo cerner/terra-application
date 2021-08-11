@@ -1,7 +1,6 @@
 {
   "name": "@cerner/terra-application-docs",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
   "description": "Contains documentation for packages in the terra-application monorepo",
   "main": "index.js",
   "publishConfig": {
@@ -37,17 +36,17 @@
   },
   "dependencies": {
     "@cerner/terra-docs": "^1.0.0",
-    "terra-dev-site": "^6.30.0",
     "classnames": "^2.2.5",
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.5.8",
+    "terra-dev-site": "^6.39.0"
   },
   "peerDependencies": {
-    "terra-application": "^1.48.0",
-    "react-dom": "^16.8.5",
     "react": "^16.8.5",
-    "react-intl": ">=2.8 <6.0"
+    "react-dom": "^16.8.5",
+    "react-intl": ">=2.8 <6.0",
+    "terra-application": "^1.48.0"
   },
   "devDependencies": {
-    "terra-application": "^1.48.0"
+    "terra-application": "^1.49.0"
   }
 }

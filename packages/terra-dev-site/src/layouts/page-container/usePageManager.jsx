@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Logger from '../utils/logger';
+import Logger from 'terra-application/lib/utils/logger';
 import {
   getPersistentScrollMap,
   applyScrollData,
-} from '../utils/scroll-persistence/scroll-persistence';
+} from '../../utils/scroll-persistence/scroll-persistence';
 
 import PageManagerContext from './PageManagerContext';
 

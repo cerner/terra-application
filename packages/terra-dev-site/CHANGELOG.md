@@ -3,7 +3,6 @@
 ## Unreleased
 
 * Added
-  * Added new file `browserslistrc` for Browserslist.
   * Added support for webpack 5.
 
 * Breaking
@@ -20,7 +19,6 @@
   * Changed to a scoped package. `terra-dev-site` -> `@cerner/terra-dev-site`.
   * terra-dev-site now configured directly with the webpack config.
   * Config changed to better align with terra-application (see the config map in the upgrade guide).
-  * terra-application updated to v2.
   * Dependency on terra-toolkit removed.
   * No longer offering webpack config to extend, use the webpack plugin.
   * Removed export for DirectorySwitcherPlugin and LocalPackageAlias Plugin.
@@ -31,11 +29,7 @@
   * Secondary navigation removed in favor of terra-application secondary navigation layout.
   * All content now wrapped in a page.
   * Consume terra-cli for releasing.
-  * Removed reference to infinite list
   * Updated props table to better format types, defaults and description.
-  * Added postcss as dev dependency.
-  * Update eslint and stylelint.
-  * Consume jest-config-terra.
 
   * Changed
   * Migrated documentation to terra-application-docs.

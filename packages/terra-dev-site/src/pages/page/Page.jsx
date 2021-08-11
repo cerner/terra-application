@@ -4,12 +4,11 @@ import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import DynamicOverlayContainer from 'terra-application/lib/workspace/shared/DynamicOverlayContainer';
 
-import usePagePortal from '../page-container/usePagePortal';
+import usePagePortal from '../../layouts/page-container/usePagePortal';
 
 import PageHeader from './PageHeader';
 import PageActions from './PageActions';
 import PageAction from './PageAction';
-import PageToolbar from './PageToolbar';
 
 import styles from './Page.module.scss';
 
@@ -131,6 +130,5 @@ const Page = ({
 Page.propTypes = propTypes;
 Page.Actions = PageActions;
 Page.Action = PageAction;
-Page.Toolbar = PageToolbar;
 
 export default Page;

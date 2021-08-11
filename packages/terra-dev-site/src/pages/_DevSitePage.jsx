@@ -10,14 +10,14 @@ import Page, {
   Card,
   PageActivityOverlay,
   StatusLayout,
-} from '../terra-application-temporary/page';
+} from './page';
 
-import Suspense from '../terra-application-temporary/shared/Suspense';
+import Suspense from '../shared/Suspense';
 
 import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigShapes';
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import NotFoundPage from './_NotFoundPage';
-import { NavigationItemContext } from '../terra-application-temporary/navigation-item';
+import { NavigationItemContext } from '../layouts/secondary-navigation-layout/navigation-item';
 import SettingsModal from '../modals/_SettingsModal';
 
 const propTypes = {

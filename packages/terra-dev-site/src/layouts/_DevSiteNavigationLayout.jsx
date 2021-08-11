@@ -7,7 +7,7 @@ import TerraApplicationNavigation from 'terra-application/lib/application-naviga
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 
 import DevSitePage from '../pages/_DevSitePage';
-import PageContainer from '../terra-application-temporary/page-container';
+import PageContainer from './page-container';
 import NotFoundPage from '../pages/_NotFoundPage';
 import SettingsModal from '../modals/_SettingsModal';
 import SearchModal from '../modals/_SearchModal';

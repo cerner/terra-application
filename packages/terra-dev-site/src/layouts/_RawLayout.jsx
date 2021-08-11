@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import classNamesBind from 'classnames/bind';
 import Image from 'terra-image';
 import ContentLoadedContainer from '../content/_ContentLoaded';
-import Suspense from '../terra-application-temporary/shared/Suspense';
+import Suspense from '../shared/Suspense';
 import kaiju404 from '../pages/kaiju-404.gif';
 
 import siteConfigShape from '../site/siteConfigShapes';

@@ -1,6 +1,6 @@
 import React from 'react';
 import Image from 'terra-image';
-import { NavigationItemContext } from '../terra-application-temporary/navigation-item';
+import { NavigationItemContext } from '../layouts/secondary-navigation-layout/navigation-item';
 import kaiju404 from './kaiju-404.gif';
 
 // import Page from '../terra-application-temporary/page';
@@ -8,7 +8,7 @@ import kaiju404 from './kaiju-404.gif';
 import Page, {
   CardLayout,
   Card,
-} from '../terra-application-temporary/page';
+} from './page';
 
 const NotFoundPage = () => {
   const { isActive } = React.useContext(NavigationItemContext);

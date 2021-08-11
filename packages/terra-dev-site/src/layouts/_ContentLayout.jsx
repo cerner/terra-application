@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import Image from 'terra-image';
-import Suspense from '../terra-application-temporary/shared/Suspense';
+import Suspense from '../shared/Suspense';
 import ContentLoadedContainer from '../content/_ContentLoaded';
 import { contentImportsShape, pageContentConfigShape } from '../site/siteConfigShapes';
 import kaiju404 from '../pages/kaiju-404.gif';

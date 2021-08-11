@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import ActiveMainProvider from '../main-container/private/ActiveMainProvider';
 
 import NavigationItemContext from './NavigationItemContext';
-import PageContainer from '../page-container';
+import PageContainer from '../../page-container';
 
 const propTypes = {
   /**

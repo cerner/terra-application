@@ -2,9 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import LayoutActionsContext from '../layouts/shared/LayoutActionsContext';
-import NavigationItemContext from '../navigation-item/NavigationItemContext';
-import deferExecution from '../utils/defer-execution';
+import LayoutActionsContext from '../secondary-navigation-layout/LayoutActionsContext';
+import NavigationItemContext from '../secondary-navigation-layout/navigation-item/NavigationItemContext';
+import deferExecution from '../../utils/defer-execution';
 
 import PageContainerContext from './PageContainerContext';
 import usePageManager from './usePageManager';

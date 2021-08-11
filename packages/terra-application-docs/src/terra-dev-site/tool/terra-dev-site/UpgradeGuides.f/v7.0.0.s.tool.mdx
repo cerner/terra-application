@@ -4,7 +4,7 @@ import { Notice } from '@cerner/terra-docs';
 
 This document will provide information on upgrading from `terra-dev-site` `6.x.x` to `7.0.0`.
 
-`terra-dev-site` v7 is about 70% new. The primary goals of this upgrade were to adopt `terra-application` v2 and remove the `terra-dev-site` build intermediate step by converting to a pure webpack plugin.
+`terra-dev-site` v7 is about 70% new. The primary goals of this upgrade is to enable webpack 5, prepare for `terra-application` v2, and remove the `terra-dev-site` build intermediate step by converting to a pure webpack plugin.
 
 ## Scoped package
 
@@ -103,7 +103,7 @@ To see how the old configuration maps to the new configuration, see the table be
 |`appConfig.extensions.iconPath`|`extensionItems.iconPath`|Renamed to align with terra-application-navigation config.|
 |`appConfig.extensions.key`|`extensionItems.key`|Renamed to align with terra-application-navigation config.|
 |`appConfig.extensions.text`|`extensionItems.text`|Renamed to align with terra-application-navigation config.|
-|`appConfig.extensions.componentPath`|`extensionItems.modalFilePath`|The extension now expects file path to a terra-application v2 modal.|
+|`appConfig.extensions.componentPath`|`extensionItems.modalFilePath`| Rename to prepare for application v2 modals|
 |`appConfig.extensions.size`|**removed**|One size fits all|
 |`appConfig.headHtml`|`headHtml`|No longer nested under appConfig.|
 |`includeTestEvidence`|**removed**|Remove the ability to include test evidence, this should be covered now by a separate site report.|
@@ -115,12 +115,6 @@ Previously `terra-dev-site` was providing a version of `rect-intl` as a dependen
 `@cerner/terra-application` is now a peer dependency and must be defined by the package consuming terra-dev-site.
 
 `terra-toolkit` is no longer a peer dependency to allow consumers to use `terra-dev-site` v7 with either terra-toolkit or the replacement `terra-functional-testing` package.
-
-## Terra Application V2
-
-Terra dev site has been upgraded to consume `terra-application` v2. All content will now be rendered in an application page and will have access to all page level API's.
-
-If you are creating pages, it's recommend that you wrap the test page in a Page container, otherwise the page will instantly navigate.
 
 ### Resulting Test changes
 

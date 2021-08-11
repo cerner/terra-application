@@ -6,11 +6,11 @@ import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
 import { ThemeContext } from 'terra-application/lib/theme';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 
-import usePortalManager from '../../terra-application-temporary/shared/usePortalManager';
-import NavigationItem from '../../terra-application-temporary/navigation-item';
-import PageContainer from '../../terra-application-temporary/page-container';
-import { deferExecution } from '../../terra-application-temporary/utils/lifecycle-utils';
-import LayoutActionsContext from '../../terra-application-temporary/layouts/shared/LayoutActionsContext';
+import usePortalManager from '../../shared/usePortalManager';
+import NavigationItem from './navigation-item';
+import PageContainer from '../page-container';
+import deferExecution from '../../utils/defer-execution';
+import LayoutActionsContext from './LayoutActionsContext';
 
 import SecondaryNavigationGroup from './SecondaryNavigationGroup';
 import CollapsingNavigationMenu from './side-nav/CollapsingNavigationMenu';

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
 import { injectIntl, intlShape } from 'react-intl';
-import logger from '../utils/logger';
+import logger from 'terra-application/lib/utils/logger';
 
 const propTypes = {
   /**

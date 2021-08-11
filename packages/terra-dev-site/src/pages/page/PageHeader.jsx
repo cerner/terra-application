@@ -8,8 +8,8 @@ import ThemeContext from 'terra-theme-context';
 
 import ActionMenu, { ActionMenuItem } from 'terra-application/lib/action-menu';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
-import useElementSize, { breakpointFilter } from '../shared/useElementSize';
-import PageContainerContext from '../page-container/PageContainerContext';
+import useElementSize, { breakpointFilter } from '../../shared/useElementSize';
+import PageContainerContext from '../../layouts/page-container/PageContainerContext';
 
 import PageHeaderButton from './PageHeaderButton';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import logger from '../utils/logger';
+import logger from 'terra-application/lib/utils/logger';
 
 const propTypes = {
   /**

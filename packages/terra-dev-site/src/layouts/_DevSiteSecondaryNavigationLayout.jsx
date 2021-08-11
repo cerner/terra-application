@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation, useHistory } from 'react-router-dom';
-import NavigationItem, { NavigationItemContext } from '../terra-application-temporary/navigation-item';
-import PageContainer from '../terra-application-temporary/page-container';
+import NavigationItem, { NavigationItemContext } from './secondary-navigation-layout/navigation-item';
+import PageContainer from './page-container';
 
 import SecondaryNavigationLayout from './secondary-navigation-layout/SecondaryNavigationLayout';
 import SecondaryNavigationGroup from './secondary-navigation-layout/SecondaryNavigationGroup';

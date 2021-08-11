@@ -29,8 +29,9 @@ const Code = ({ children, className }) => {
         getTokenProps,
       }) => (
         // add the code block class.
-        <code className={[cx('code'), highlightClassName].join(' ')}>
-          {tokens.map((line, i) => (
+        <code className={cx('code', highlightClassName)}>
+          {/* we remove the last token because it's always an extra line */}
+          {tokens.slice(0, -1).map((line, i) => (
             <div {...getLineProps({ line, key: i })}>
               {line.map((token, key) => (
                 <span {...getTokenProps({ token, key })} />

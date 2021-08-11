@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 6.39.1 - (August 11, 2021)
+
+* Fixed
+  * Add @cerner/terra-polyfill dependency.
+
 ## 6.39.0 - (August 11, 2021)
 
 * Fixed

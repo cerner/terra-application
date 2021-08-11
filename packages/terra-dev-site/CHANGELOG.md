@@ -31,8 +31,14 @@
   * Consume terra-cli for releasing.
   * Updated props table to better format types, defaults and description.
 
-  * Changed
+## 6.39.0 - (August 11, 2021)
+
+* Fixed
+  * Fix props table to not fail when a filename is required.
+
+* Changed
   * Migrated documentation to terra-application-docs.
+  * Included terra-polyfill imports with dev-site application.
 
 ## 6.38.0 - (July 15, 2021)
 

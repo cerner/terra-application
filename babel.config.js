@@ -17,5 +17,6 @@ module.exports = (api) => {
   return {
     presets,
     plugins,
+    ignore: ['./packages/terra-polyfill/src/index.js'],
   };
 };

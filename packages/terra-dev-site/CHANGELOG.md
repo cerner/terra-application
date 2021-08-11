@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.39.0 - (August 11, 2021)
+
 * Fixed
   * Fix props table to not fail when a filename is required.
 

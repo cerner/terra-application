@@ -31,6 +31,11 @@
   * Consume terra-cli for releasing.
   * Updated props table to better format types, defaults and description.
 
+## 6.39.1 - (August 11, 2021)
+
+* Fixed
+  * Add @cerner/terra-polyfill dependency.
+
 ## 6.39.0 - (August 11, 2021)
 
 * Fixed

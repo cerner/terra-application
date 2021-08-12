@@ -38,6 +38,7 @@ const applyDefaults = ({
   }],
   additionalSearchDirectories = [],
   sideEffectImportFilePaths = [],
+  polyFillSideEffectImportFilePath = ['@cerner/terra-polyfill'],
   titleConfig = {
     title: startCase(npmPackage.name.split('/').pop()),
   },
@@ -54,25 +55,32 @@ const applyDefaults = ({
   additionalConfig = {},
   excludeChunks = [],
   contentDirectory = 'terra-dev-site',
-} = {}) => ({
-  primaryNavigationItems,
-  additionalSearchDirectories,
-  sideEffectImportFilePaths,
-  titleConfig,
-  defaultLocale,
-  defaultTheme,
-  defaultDirection,
-  faviconFilePath,
-  extensionItems,
-  headHtml,
-  pathPrefix,
-  sourceFolder,
-  distributionFolder,
-  enableDebugLogging,
-  namespace: npmPackage.name,
-  additionalConfig,
-  excludeChunks,
-  contentDirectory,
-});
+} = {}) => {
+  // Make the polyfill path the first side effect if present.
+  const sideEffects = sideEffectImportFilePaths;
+  if (polyFillSideEffectImportFilePath) {
+    sideEffects.unshift(polyFillSideEffectImportFilePath);
+  }
+  return ({
+    primaryNavigationItems,
+    additionalSearchDirectories,
+    sideEffectImportFilePaths: sideEffects,
+    titleConfig,
+    defaultLocale,
+    defaultTheme,
+    defaultDirection,
+    faviconFilePath,
+    extensionItems,
+    headHtml,
+    pathPrefix,
+    sourceFolder,
+    distributionFolder,
+    enableDebugLogging,
+    namespace: npmPackage.name,
+    additionalConfig,
+    excludeChunks,
+    contentDirectory,
+  });
+};
 
 module.exports = applyDefaults;

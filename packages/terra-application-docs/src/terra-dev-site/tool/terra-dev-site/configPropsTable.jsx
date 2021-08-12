@@ -49,6 +49,11 @@ const propTypes = {
   sideEffectImportFilePaths: PropTypes.arrayOf(PropTypes.string),
 
   /**
+   * A Polyfill file to be imported as a side effect. If no polyfills are desired, set to undefined.
+   */
+  polyFillSideEffectImportFilePath: PropTypes.string,
+
+  /**
    * A configuration object that defines the strings rendered within the ApplicationNavigation header.
    */
   titleConfig: PropTypes.shape({
@@ -161,6 +166,7 @@ const defaultProps = {
   }],
   additionalSearchDirectories: [],
   sideEffectImportFilePaths: [],
+  polyFillSideEffectImportFilePath: '@cerner/terra-polyfill',
   titleConfig: {
     title: 'package title',
   },

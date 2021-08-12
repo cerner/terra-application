@@ -68,6 +68,7 @@
     "terra-action-footer": "^2.52.0",
     "terra-button": "^3.42.0",
     "terra-content-container":"^3.34.0",
+    "terra-form-field": "^4.18.0",
     "terra-form-select": "^6.0.0",
     "terra-html-table": "^1.8.0",
     "terra-hyperlink": "^2.9.0",

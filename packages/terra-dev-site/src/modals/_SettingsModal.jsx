@@ -3,7 +3,8 @@ import Button from 'terra-button';
 import ActionFooter from 'terra-action-footer';
 import ContentContainer from 'terra-content-container';
 import ActionHeader from 'terra-action-header';
-import NativeSelectField from 'terra-form-select/lib/native-select/NativeSelectField';
+import NativeSelect from 'terra-form-select/lib/native-select/NativeSelect';
+import Field from 'terra-form-field';
 import classNamesBind from 'classnames/bind';
 import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
 import AppSettingsContext from '../site/_AppSettingsContext';
@@ -60,49 +61,67 @@ const SettingsModal = () => {
     >
       <div className={cx('container')}>
         {locales.length > 1 ? (
-          <NativeSelectField
+          <Field
             label="Locale"
-            selectId="terra-dev-site-locale-select"
-            value={locale}
-            onChange={event => {
-              setState({
-                locale: event.currentTarget.value,
-                theme,
-                direction,
-              });
-            }}
-            options={locales.map(value => ({ value, display: value }))}
-          />
+            htmlFor="terra-dev-site-locale-select"
+          >
+            <NativeSelect
+              isFilterStyle
+              ariaLabel="Locale"
+              id="terra-dev-site-locale-select"
+              value={locale}
+              onChange={event => {
+                setState({
+                  locale: event.currentTarget.value,
+                  theme,
+                  direction,
+                });
+              }}
+              options={locales.map(value => ({ value, display: value }))}
+            />
+          </Field>
         ) : undefined}
         {themes.length > 1 ? (
-          <NativeSelectField
+          <Field
             label="Theme"
-            selectId="terra-dev-site-theme-select"
-            value={theme}
-            onChange={event => {
-              setState({
-                locale,
-                theme: event.currentTarget.value,
-                direction,
-              });
-            }}
-            options={themes.map(value => ({ value, display: value }))}
-          />
+            htmlFor="terra-dev-site-theme-select"
+          >
+            <NativeSelect
+              isFilterStyle
+              ariaLabel="Theme"
+              id="terra-dev-site-theme-select"
+              value={theme}
+              onChange={event => {
+                setState({
+                  locale,
+                  theme: event.currentTarget.value,
+                  direction,
+                });
+              }}
+              options={themes.map(value => ({ value, display: value }))}
+            />
+          </Field>
         ) : undefined}
         {directions.length > 1 ? (
-          <NativeSelectField
+          <Field
             label="Direction"
-            selectId="terra-dev-site-direction-select"
-            value={direction}
-            onChange={event => {
-              setState({
-                locale,
-                theme,
-                direction: event.currentTarget.value,
-              });
-            }}
-            options={directions.map(value => ({ value, display: value }))}
-          />
+            htmlFor="terra-dev-site-direction-select"
+          >
+            <NativeSelect
+              isFilterStyle
+              ariaLabel="Direction"
+              id="terra-dev-site-direction-select"
+              value={direction}
+              onChange={event => {
+                setState({
+                  locale,
+                  theme,
+                  direction: event.currentTarget.value,
+                });
+              }}
+              options={directions.map(value => ({ value, display: value }))}
+            />
+          </Field>
         ) : undefined}
       </div>
     </ContentContainer>

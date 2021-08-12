@@ -49,7 +49,7 @@ const propTypes = {
   sideEffectImportFilePaths: PropTypes.arrayOf(PropTypes.string),
 
   /**
-   * A Polyfill file to be imported as a side effect. If no polyfills are desired, set to undefined.
+   * A Polyfill file to be imported as a side effect. If no polyfills are desired, set to 'none'.
    */
   polyFillSideEffectImportFilePath: PropTypes.string,
 

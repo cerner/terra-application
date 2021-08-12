@@ -36,7 +36,9 @@ describe('applyDefault', () => {
       contentExtension: 'test',
     }]);
     expect(config.additionalSearchDirectories).toEqual([]);
-    expect(config.sideEffectImportFilePaths).toEqual([]);
+    expect(config.sideEffectImportFilePaths).toEqual([
+      '@cerner/terra-polyfill',
+    ]);
     expect(config.titleConfig).toEqual({ title: 'Terra Application Mono' });
     expect(config.faviconFilePath).toEqual(path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'terra-favicon', '32px', 'favicon.ico'));
     expect(config.extensionItems).toEqual([]);
@@ -65,6 +67,7 @@ describe('applyDefault', () => {
       sideEffectImportFilePaths: [
         'sidEffect',
       ],
+      polyFillSideEffectImportFilePath: 'none',
       titleConfig: {
         title: 'title',
       },

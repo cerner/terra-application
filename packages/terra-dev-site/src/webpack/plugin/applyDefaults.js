@@ -38,7 +38,7 @@ const applyDefaults = ({
   }],
   additionalSearchDirectories = [],
   sideEffectImportFilePaths = [],
-  polyFillSideEffectImportFilePath = ['@cerner/terra-polyfill'],
+  polyFillSideEffectImportFilePath = '@cerner/terra-polyfill',
   titleConfig = {
     title: startCase(npmPackage.name.split('/').pop()),
   },
@@ -58,7 +58,7 @@ const applyDefaults = ({
 } = {}) => {
   // Make the polyfill path the first side effect if present.
   const sideEffects = sideEffectImportFilePaths;
-  if (polyFillSideEffectImportFilePath) {
+  if (polyFillSideEffectImportFilePath !== 'none') {
     sideEffects.unshift(polyFillSideEffectImportFilePath);
   }
   return ({

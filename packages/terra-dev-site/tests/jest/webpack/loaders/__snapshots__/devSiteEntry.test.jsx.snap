@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`devSiteEntry It fills out all the fields 1`] = `
-"import React from 'react';
-import ReactDOM from 'react-dom';
-import 'sideEffectpathA';
+"import 'sideEffectpathA';
 import 'sideEffectpathB';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
 import importName0 from 'ExtensionIconPathA';
 import importName1 from 'ExtensionModalPathA';
 import importName2 from 'ExtensionIconPathB';
@@ -54,9 +54,9 @@ ReactDOM.render(<Entry siteConfig={siteConfig} />, document.getElementById('root
 `;
 
 exports[`devSiteEntry It fills out the bare minimum 1`] = `
-"import React from 'react';
+"
+import React from 'react';
 import ReactDOM from 'react-dom';
-
 
 
 import Entry from 'entryPath';

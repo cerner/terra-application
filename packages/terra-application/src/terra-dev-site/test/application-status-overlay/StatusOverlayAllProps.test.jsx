@@ -14,9 +14,12 @@ const ApplicationStatusOverlayAllProps = () => {
   ];
 
   return (
-    <ApplicationStatusOverlayProvider>
-      <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" variant="no-data" />
-    </ApplicationStatusOverlayProvider>
+    // eslint-disable-next-line react/forbid-dom-props
+    <div style={{ height: '500px' }}>
+      <ApplicationStatusOverlayProvider>
+        <ApplicationStatusOverlay buttonAttrs={StatusViewButtons} message="Status View with all props" variant="no-data" />
+      </ApplicationStatusOverlayProvider>
+    </div>
   );
 };
 

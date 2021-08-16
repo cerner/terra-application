@@ -142,8 +142,8 @@ It is recommend that if a directory must be defined, imports should pull from th
 To allow live examples to import Components in a similar manner as consumer of the library would, Terra dev site will automatically alias the current directory as the package name.
 
 ```diff
-- Import component from '../../Component';
-+ Import component from 'PackageName/Component';
+- import Component from '../../Component';
++ import Component from 'PackageName/Component';
 ```
 
 ## Pulling content from node modules

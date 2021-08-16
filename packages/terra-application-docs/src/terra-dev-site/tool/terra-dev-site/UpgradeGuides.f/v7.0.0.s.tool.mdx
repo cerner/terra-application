@@ -27,6 +27,7 @@ To simplify the webpack plugin api we have also now included the Directory Switc
 
 In addition the `TerraDevSiteEntrypoints` have been removed as well. Webpack 4 requires an entry point, but that requirement is generally satisfied by our reusable webpack configs. Webpack 5 will allow plugins to define entrypoints without being specified in the config.
 
+
 Below is an example webpack config setting up the `terra-dev-site` plugin.
 
 ```javascript
@@ -129,3 +130,21 @@ Node 10 is now the minium supported node version. This was bumped to support ver
 ## MDX
 
 The MDX loader is now used to load both `.md` and .`mdx` files. This may cause build errors in existing .md documents. This change allows us to remove the marked loader from the plugin.
+
+## I get the webpack error: Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+
+You can get this error when using webpack 4. Part of the terra-dev-site webpack plugin we inject a entry to build the site. Webpack requires an entry to function but when the check is performed changed between webpack 4 and 5. In webpack 4 and entry is checked prior to running the plugin where as in webpack 5 the check is performed after.
+
+To solve this issue you have two options. Upgrade to webpack 5 or add a dummy entrypoint that terra-dev-site will remove before bundling. Upgrading to webpack 5 is recommended.
+
+<Notice variant="important" ariaLevel="3">
+
+If you chose to add the dummy entry point it will have to resolve to a real file. It doesn't matter what file since terra-dev-site will remove it, but webpack 4 does check that the entrypoint file is real.
+
+</Notice>
+
+```js
+  entry: {
+    terraDevSiteDummy: './dummy.js',
+  },
+```

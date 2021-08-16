@@ -1,5 +1,25 @@
+import { Notice } from '@cerner/terra-docs';
+
 # FAQ
 
 ## My components are visible in the raw test route but cut off when displayed in the dev site frame
 
 When components are displayed in the raw route there is an unbroken chain of height 100%s set on the components such that test components with 100% height will fill the available area. With pages, for aesthetic reasons we do not provide an 100% height on all wrapping components, To ensure components display correctly in both raw routes and pages either use block layout or define a fixed hight above any components expecting 100% height.
+
+## I get the webpack error: Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
+
+You can get this error when using webpack 4. Part of the terra-dev-site webpack plugin we inject a entry to build the site. Webpack requires an entry to function but when the check is performed changed between webpack 4 and 5. In webpack 4 and entry is checked prior to running the plugin where as in webpack 5 the check is performed after.
+
+To solve this issue you have two options. Upgrade to webpack 5 or add a dummy entrypoint that terra-dev-site will remove before bundling. Upgrading to webpack 5 is recommended.
+
+<Notice variant="important" ariaLevel="3">
+
+If you chose to add the dummy entry point it will have to resolve to a real file. It doesn't matter what file since terra-dev-site will remove it, but webpack 4 does check that the entrypoint file is real.
+
+</Notice>
+
+```js
+  entry: {
+    terraDevSiteDummy: './dummy.js',
+  },
+```

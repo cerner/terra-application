@@ -184,6 +184,9 @@ class SitePlugin {
       webpackConfig = compiler.webpack.config.getNormalizedWebpackOptions(webpackConfig);
     }
 
+    // Remove once we no longer support webpack 4
+    delete compiler.options.entry.terraDevSiteDummy;
+
     // ENTRY
     compiler.options.entry = {
       ...compiler.options.entry,

@@ -129,6 +129,8 @@ Node 10 is now the minium supported node version. This was bumped to support ver
 
 The MDX loader is now used to load both `.md` and .`mdx` files. This may cause build errors in existing .md documents. This change allows us to remove the marked loader from the plugin.
 
+A couple of common syntax errors when using the MDX loader can be found on our [Writing Documentation](/dev_tools/cerner-terra-application-docs/terra-dev-site/writing-documentation#mdx-loader) Page.
+
 ## I get the webpack error: Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
 
 You can get this error when using webpack 4. Part of the terra-dev-site webpack plugin we inject a entry to build the site. Webpack requires an entry to function but when the check is performed changed between webpack 4 and 5. In webpack 4 and entry is checked prior to running the plugin where as in webpack 5 the check is performed after.

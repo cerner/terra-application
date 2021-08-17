@@ -14,7 +14,7 @@ const propTypes = {
   /**
    * An override component for a custom application base. Must render children and adhere to the terra application base api.
    */
-  ApplicationNavigation: PropTypes.element,
+  ApplicationNavigation: PropTypes.func,
 };
 
 const DevSiteLayout = ({ siteConfig, ApplicationNavigation }) => {

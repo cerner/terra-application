@@ -13,7 +13,7 @@ const propTypes = {
   /**
    * An override component for a custom application base. Must render children and adhere to the terra application base api.
    */
-  ApplicationBase: PropTypes.element,
+  ApplicationBase: PropTypes.func,
 };
 
 const DevSiteApplicationContainer = ({ children, ApplicationBase }) => {

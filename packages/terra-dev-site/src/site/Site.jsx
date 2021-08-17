@@ -18,15 +18,15 @@ const propTypes = {
   /**
    * The component representing the providers layer of terra-dev-site. Must render children.
    */
-  Providers: PropTypes.element,
+  Providers: PropTypes.func,
   /**
    * An override component for a custom application base. Must render children and adhere to the terra application base api.
    */
-  ApplicationBase: PropTypes.element,
+  ApplicationBase: PropTypes.func,
   /**
    * An override component for a custom application base. Must render children and adhere to the terra application base api.
    */
-  ApplicationNavigation: PropTypes.element,
+  ApplicationNavigation: PropTypes.func,
 };
 
 const Site = ({

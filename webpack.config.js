@@ -70,14 +70,14 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
         '<script> console.log("Inline head html script") </script>',
         html,
       ],
-      // extensionItems: [
-      //   {
-      //     iconPath: 'terra-icon/lib/icon/IconAllergy',
-      //     key: 'terra-application-docs.test-extension',
-      //     text: 'Test Extension',
-      //     modalFilePath: '@cerner/terra-application-docs/lib/test-extension/TestExtension',
-      //   },
-      // ],
+      extensionItems: [
+        {
+          iconPath: 'terra-icon/lib/icon/IconAllergy',
+          key: 'terra-application-docs.test-extension',
+          text: 'Test Extension',
+          modalFilePath: path.resolve(process.cwd(), 'tests', 'terra-dev-site', 'test-extension', 'TestExtension'),
+        },
+      ],
       excludeChunks: ['terra-application-test/index'],
     }),
   ],

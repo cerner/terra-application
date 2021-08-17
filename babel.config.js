@@ -17,9 +17,6 @@ module.exports = (api) => {
   return {
     presets,
     plugins,
-    ignore: [
-      './packages/terra-polyfill/src/index.js',
-      './packages/terra-dev-site/src/webpack',
-    ],
+    ignore: ['./packages/terra-polyfill/src/index.js'],
   };
 };

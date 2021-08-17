@@ -3,9 +3,9 @@ import { Notice } from '@cerner/terra-docs';
 
 <Badge />
 
-# Terra Dev Site
+# TerraDevSite
 
-Terra-dev-site is a webpack plugin for generating a documentation and testing site for content built with the terra application framework.
+TerraDevSite is a webpack plugin for generating a documentation and testing site for content built with the terra application framework.
 
 ## Installation
 
@@ -55,7 +55,7 @@ The TerraDevSite Plugin will search the `terra-dev-site` folder for files with a
 Files need to be named using the correct 'contentExtension' and file extension to be added to the site. This will allow you to add any additional files to support your examples and only have the specified files added as entries to the site. The file name pattern is:
 
 ```
-<filename>.<group>.<contentExtension>.<fileTypExtension>
+<filename>.<group>.<contentExtension>.<fileTypeExtension>
 ```
 
 * filename - This is the name that will be added to the secondary navigation layout for the site. These are sorted alphabetically.
@@ -65,7 +65,7 @@ Files need to be named using the correct 'contentExtension' and file extension t
 
 ### Directories
 
-The directories within the entry point folder, terra-dev-site, will be translated into the menu structure. The one exception is if you have a 'contentExtension' directory inside the entry point folder, it will be ignored. This lets you group page types together without impacting your site.
+The directories within the entry point folder, TerraDevSite, will be translated into the menu structure. The one exception is if you have a 'contentExtension' directory inside the entry point folder, it will be ignored. This lets you group page types together without impacting your site.
 
 ###  Example
 
@@ -104,7 +104,7 @@ The menu navigation result will be:
 Urls are generated with the following pattern:
 
 ```
-<baseName>/<pathPrefix>/<contentExtension>/<package>/<directoryStructure>/<fileName>
+<baseName>/<pathPrefix>/<contentExtension>/<package>/<directoryStructure>/<filename>
 ```
 
 ## Path based routing deployments
@@ -125,13 +125,13 @@ Without the environment variable set assets will assume they are served from `/`
 
 ## Further configuration:
 
-Terra dev site is built to work out of the box but it also provides many configuration options to allow you to customize your site.
+TerraDevSite is built to work out of the box but it also provides many configuration options to allow you to customize your site.
 
 Check out our [configuration docs](/dev_tools/terra-dev-site/terra-dev-site/configuration).
 
 ## Hot reloading
 
-When building for development terra-dev-site will search for content in the defined `sourceFolder`, src by default. Any imports that point to the `distributionFolder`, 'lib' by default, will automatically be redirected to the `sourceFolder` instead. Hot reloading watches for any changes in the `terra-dev-site` directory and will re generate the site.
+When building for development TerraDevSite will search for content in the defined `sourceFolder`, src by default. Any imports that point to the `distributionFolder`, 'lib' by default, will automatically be redirected to the `sourceFolder` instead. Hot reloading watches for any changes in the `terra-dev-site` directory and will re generate the site.
 
 When building for production, hot reloading will be disabled.
 
@@ -139,7 +139,7 @@ It is recommend that if a directory must be defined, imports should pull from th
 
 ## Auto Package Aliasing
 
-To allow live examples to import Components in a similar manner as consumer of the library would, Terra dev site will automatically alias the current directory as the package name.
+TerraDevSite will automatically alias the current directory as the package name, allowing examples to import files as if they were a consumer of the package. This results in examples that are representative of actual consumer implementations.
 
 ```diff
 - import Component from '../../Component';
@@ -148,7 +148,7 @@ To allow live examples to import Components in a similar manner as consumer of t
 
 ## Pulling content from node modules
 
-Terra dev site allows for distributed documentation to be pulled together in a single site. We use this extensively for our terra-ui doc site.
+TerraDevSite allows for distributed documentation to be pulled together in a single site. We use this extensively for our terra-ui doc site.
 
 To add additional search directories, simply provide the full path to the additional directories you'd like to search in the terra config using the `additionalSearchDirectories` config option.
 
@@ -193,8 +193,8 @@ To Flex the locale with the `terra-functional-testing` package, `env.defaultLoca
 
 ## Stacking DevSites
 
-Terra dev sites plugins can be stacked and will automatically add an application switcher to allow switching between dev sites.
-This can be used to provide different default setups for terra dev sites, for example an unauthenticated site that provides a link to an authenticated site.
+TerraDevSites plugins can be stacked and will automatically add an application switcher to allow switching between dev sites.
+This can be used to provide different default setups for TerraDevSites, for example an unauthenticated site that provides a link to an authenticated site.
 
 The webpack config would look like this:
 

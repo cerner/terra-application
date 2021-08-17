@@ -65,7 +65,7 @@ Files need to be named using the correct 'contentExtension' and file extension t
 
 ### Directories
 
-The directories within the entry point folder, terra-dev-site, will be translated into the menu structure. The one exception is if you have a 'pageType' directory inside the entry point folder, it will be ignored. This lets you group page types together without impacting your site.
+The directories within the entry point folder, terra-dev-site, will be translated into the menu structure. The one exception is if you have a 'contentExtension' directory inside the entry point folder, it will be ignored. This lets you group page types together without impacting your site.
 
 ###  Example
 
@@ -187,7 +187,7 @@ Additional Search Directories will not be hot reloaded.
 
 <Notice variant="important" ariaLevel="3">
 
-To Flex the locale with the `terra-functional-testing` package, `env.defaultLocale` must be passed to the `TerraDevSite` plugin. The `defaultLocale` env is set as apart of the WDIO test service and must be passed into the `TerraDevSite` plugin to ensure locale tests are run appropriately.
+To Flex the locale with the `terra-functional-testing` package, `env.defaultLocale` must be passed to the `TerraDevSite` plugin. The `defaultLocale` env is set as a part of the WDIO test service and must be passed into the `TerraDevSite` plugin to ensure locale tests are run appropriately.
 
 </Notice>
 

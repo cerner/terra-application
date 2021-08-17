@@ -8,7 +8,7 @@ This document will provide information on upgrading from `terra-dev-site` `6.x.x
 
 ## Scoped package
 
-Terra dev site has changed transitioned to be scoped under the cerner organization. The package has gone from `terra-dev-site` to `@cerner/terra-dev-site`;
+Terra dev site has changed to be scoped under the cerner organization. The package has gone from `terra-dev-site` to `@cerner/terra-dev-site`;
 
 ```diff
 {
@@ -52,7 +52,7 @@ module.exports = webpackConfig;
 
 <Notice variant="important" ariaLevel="3">
 
-Note in the example where `env.defaultLocale` is passed to the `TerraDevSite` plugin. The `defaultLocale` env is set as apart of our WDIO test service and must be passed into the `TerraDevSite` plugin to ensure locale tests are run appropriately.
+Note in the example where `env.defaultLocale` is passed to the `TerraDevSite` plugin. The `defaultLocale` env is set as a part of our WDIO test service and must be passed into the `TerraDevSite` plugin to ensure locale tests are run appropriately.
 
 </Notice>
 
@@ -111,7 +111,7 @@ To see how the old configuration maps to the new configuration, see the table be
 
 Previously `terra-dev-site` was providing a version of `rect-intl` as a dependency. Because this satisfied the `terra-application` peer dependency requirement, many applications did not define it. With this release we have removed that dependency and applications will have to provide that peer dependency themselves.
 
-`terra-application` is now a peer dependency and must be defined by the package consuming terra-dev-site.
+`terra-application` is now a peer dependency and must be defined by the package consuming `terra-dev-site`.
 
 `terra-toolkit` is no longer a peer dependency to allow consumers to use `terra-dev-site` v7 with either terra-toolkit or the replacement `terra-functional-testing` package.
 

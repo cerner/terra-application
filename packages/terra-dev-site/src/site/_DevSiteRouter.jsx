@@ -36,8 +36,10 @@ const DevSiteRouter = ({
     );
   }
 
+  const pathname = location.pathname.toLocaleLowerCase();
+
   // Redirect to reserved routes other sites.
-  const reservedExternalApp = sites.find((site) => location.pathname.startsWith(`/${site.path}`));
+  const reservedExternalApp = sites.find((site) => pathname.startsWith(`/${site.path}`));
 
   if (reservedExternalApp) {
     if (getSessionStorage() !== undefined) {
@@ -48,7 +50,7 @@ const DevSiteRouter = ({
   }
 
   // Redirect to exact path from
-  const pathWithoutTrailingSlash = location.pathname.length !== 1 && location.pathname.endsWith('/') ? location.pathname.slice(0, -1) : location.pathname;
+  const pathWithoutTrailingSlash = pathname.length !== 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
   const primaryNavPath = routesMap[pathWithoutTrailingSlash];
 
   if (primaryNavPath) {

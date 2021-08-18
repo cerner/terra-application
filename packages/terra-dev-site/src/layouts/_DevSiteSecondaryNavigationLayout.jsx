@@ -69,7 +69,7 @@ const DevSiteSecondaryNavigationLayout = ({
   return (
     <SecondaryNavigationLayout
       id={id}
-      activeNavigationKey={location.pathname}
+      activeNavigationKey={location.pathname.toLocaleLowerCase()}
       label={label}
       onSelectNavigationItem={(key) => history.push(key)}
       renderNavigationFallback={() => (

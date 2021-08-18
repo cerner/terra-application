@@ -21,7 +21,7 @@ const propTypes = {
 
 const Raw = ({ siteConfig }) => {
   const location = useLocation();
-  const pathname = location.pathname.substring(4);
+  const pathname = location.pathname.substring(4).toLocaleLowerCase();
   const pageContentConfig = siteConfig.pageConfig[pathname];
   const ContentComponent = siteConfig.contentImports[pathname];
   const [loadingFailed, setLoadingFailed] = React.useState();

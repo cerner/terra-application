@@ -130,7 +130,7 @@ const DevSiteNavigationLayout = ({ siteConfig, ApplicationNavigation }) => {
     return utilityItems;
   };
 
-  const activeNavigationKey = `/${location.pathname.split('/')[1]}`;
+  const activeNavigationKey = `/${location.pathname.toLocaleLowerCase().split('/')[1]}`;
   const activeNavItem = siteConfig.navigationConfig.find((element) => element.path === activeNavigationKey);
 
   const getContent = () => {

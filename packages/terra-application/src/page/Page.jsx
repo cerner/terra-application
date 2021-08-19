@@ -94,6 +94,8 @@ const Page = ({
     metaData,
   });
 
+  console.log(`render Page: ${pageId}`);
+
   // If onRequestClose is provided, we check for unsaved changes prior to
   // executing the callback (unless explicitly disabled).
   const handleOnSelectBack = onRequestClose ? () => {

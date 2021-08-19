@@ -13,15 +13,19 @@ import NotificationBanner from '@cerner/terra-application/lib/notification-banne
 import Page from '@cerner/terra-application/lib/page';
 import NotificationDialog from '@cerner/terra-application/lib/notification-dialog/NotificationDialog';
 
+import { NavigationItemContext } from '@cerner/terra-application/lib/navigation-item';
+
+import TrickyContent from './TrickyContent';
 import styles from './TestPage.module.scss';
 
 const cx = classNames.bind(styles);
 
 /* eslint-disable no-console */
 const TestPage = ({
-  index, testLabel, onRequestDismiss,
+  index, testLabel, onRequestDismiss, unique,
 }) => {
   const label = `Page ${index}`;
+  // const { isActive } = React.useContext(NavigationItemContext);
   const [showChildPage, setShowChildPage] = React.useState(false);
   const [hasUnsavedChanges, setHasUnsavedChanges] = React.useState(false);
   const [showToolbar, setShowToolbar] = React.useState(false);
@@ -32,6 +36,12 @@ const TestPage = ({
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
 
   const metaData = React.useRef({ test: index });
+
+  console.log(`render TestPage: ${testLabel}`);
+
+  // if (!isActive) {
+  //   return null;
+  // }
 
   return (
     <Page
@@ -80,7 +90,8 @@ const TestPage = ({
       ) : undefined}
     >
       <div className={cx('layout')}>
-        <p>{testLabel}</p>
+        <TrickyContent id={`id-${unique}`} />
+        <p id={`page-content-${unique}`}>{testLabel}</p>
         <button
           type="button"
           onClick={() => { setShowChildPage(true); }}

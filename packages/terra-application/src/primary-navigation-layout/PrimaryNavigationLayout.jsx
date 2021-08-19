@@ -191,7 +191,7 @@ const PrimaryNavigationLayout = ({
   // The onPortalActivated callback is used to set focus to the body when the
   // active navigation item changes, simulating how focus is handled during a
   // typical navigation event.
-  const [contentElementRef, navItemPortalsRef] = usePortalManager(activeNavigationKey, () => {
+  const [contentElementRef, navItemPortalsRef, visibleNavigationKey] = usePortalManager(activeNavigationKey, () => {
     deferExecution(() => {
       document.body.focus();
     });
@@ -275,7 +275,7 @@ const PrimaryNavigationLayout = ({
           }
 
           return React.cloneElement(child, {
-            isActive: navigationKey === activeNavigationKey,
+            isActive: navigationKey === visibleNavigationKey,
             portalElement,
           });
         })}

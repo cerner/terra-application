@@ -23,7 +23,7 @@ Terra dev site has changed to be scoped under the cerner organization. The packa
 
 In `terra-dev-site` v6 we introduced the webpack plugin as an alternative to the shared webpack config. In `terra-dev-site` v7 we have removed the shared webpack config and are only offering the webpack plugin. We've done this to facilitate the transition from `terra-toolkit` webpack config to the new `@cerner/webpack-config-terra` webpack config. `terra-dev-site` will work with either webpack config and this will allow you to update to WDIO 6 independently.
 
-To simplify the webpack plugin api we have also now included the Directory Switcher and Local Package alias resolve plugins in the `terra-dev-site` plug in by default. As a reminder, these plugins allow you to enable hot reloading by switching lib requires with their src equivalent and reference local files as if they were packaged, ie `import('@cerner/terra-dev-site/file)`.
+To simplify the webpack plugin api we have also now included the Directory Switcher and Local Package alias resolve plugins in the `terra-dev-site` plugin by default. As a reminder, these plugins allow you to enable hot reloading by switching lib requires with their src equivalent and reference local files as if they were packaged, ie `import('@cerner/terra-dev-site/file)`.
 
 In addition the `TerraDevSiteEntrypoints` have been removed as well. Webpack 4 requires an entry point, but that requirement is generally satisfied by our reusable webpack configs. Webpack 5 will allow plugins to define entrypoints without being specified in the config.
 

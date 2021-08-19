@@ -14,6 +14,7 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
   const containerRef = React.useRef();
   const portalsRef = React.useRef({});
   const lastActiveItemKeyRef = React.useRef();
+  const [visiblePortalKey, setVisiblePortalKey] = React.useState();
 
   React.useLayoutEffect(() => {
     if (!containerRef.current) {
@@ -58,6 +59,7 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
       }
 
       lastActiveItemKeyRef.current = activePortalKey;
+      setVisiblePortalKey(activePortalKey);
 
       if (onPortalActivated) {
         onPortalActivated(activePortalKey, dataForActivePortal.element);
@@ -67,7 +69,7 @@ const usePortalManager = (activePortalKey, onPortalActivated, onPortalDeactivate
     }
   }, [activePortalKey, onPortalActivated, onPortalDeactivated]);
 
-  return [containerRef, portalsRef];
+  return [containerRef, portalsRef, visiblePortalKey];
 };
 
 /**

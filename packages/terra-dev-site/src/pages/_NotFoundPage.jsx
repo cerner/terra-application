@@ -3,8 +3,6 @@ import Image from 'terra-image';
 import { NavigationItemContext } from '../layouts/secondary-navigation-layout/navigation-item';
 import kaiju404 from './kaiju-404.gif';
 
-// import Page from '../terra-application-temporary/page';
-
 import Page, {
   CardLayout,
   Card,

@@ -29,42 +29,44 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
 };
+const retrieveNavItems = (navItems, contentImports) => (
+  navItems.map((navItem) => {
+    if (navItem.children) {
+      return (
+        <SecondaryNavigationGroup
+          key={navItem.label}
+          label={navItem.label}
+        >
+          {retrieveNavItems(navItem.children, contentImports)}
+        </SecondaryNavigationGroup>
+      );
+    }
+    return (
+      <NavigationItem
+        key={navItem.path}
+        navigationKey={navItem.path}
+        label={navItem.label}
+        renderPage={() => (
+          <DevSitePage pageContentConfig={navItem} contentImports={contentImports} />
+        )}
+      />
+    );
+  })
+);
 
 const DevSiteSecondaryNavigationLayout = ({
   id, label, config, contentImports,
 }) => {
+  // console.log('secondary nav render');
   const location = useLocation();
   const history = useHistory();
   const { isActive } = React.useContext(NavigationItemContext);
 
+  const navItems = React.useMemo(() => retrieveNavItems(config, contentImports), [config, contentImports]);
+
   if (!isActive) {
     return null;
   }
-
-  const retrieveNavItems = (navItems) => (
-    navItems.map((navItem) => {
-      if (navItem.children) {
-        return (
-          <SecondaryNavigationGroup
-            key={navItem.label}
-            label={navItem.label}
-          >
-            {retrieveNavItems(navItem.children)}
-          </SecondaryNavigationGroup>
-        );
-      }
-      return (
-        <NavigationItem
-          key={navItem.path}
-          navigationKey={navItem.path}
-          label={navItem.label}
-          renderPage={() => (
-            <DevSitePage pageContentConfig={navItem} contentImports={contentImports} />
-          )}
-        />
-      );
-    })
-  );
 
   return (
     <SecondaryNavigationLayout
@@ -78,7 +80,7 @@ const DevSiteSecondaryNavigationLayout = ({
         </PageContainer>
       )}
     >
-      {retrieveNavItems(config)}
+      {navItems}
     </SecondaryNavigationLayout>
   );
 };

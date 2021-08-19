@@ -44,10 +44,13 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
     return null;
   }
 
-  const { pathname } = location;
-  const ContentComponent = contentImports[pathname];
+  if (!pageContentConfig) {
+    return NotFoundPage;
+  }
 
-  if (!pageContentConfig || !ContentComponent) {
+  const ContentComponent = contentImports[pageContentConfig.path];
+
+  if (!ContentComponent) {
     return NotFoundPage;
   }
 
@@ -57,7 +60,7 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
         actionKey="raw"
         label="Raw"
         icon={<IconStartPresenting />}
-        onSelect={() => { history.push(`/raw${pathname}`); }}
+        onSelect={() => { history.push(`/raw${pageContentConfig.path}`); }}
       />
       <Page.Action
         actionKey="settings"
@@ -103,7 +106,7 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
   return (
     <Page
       label={pageContentConfig.label}
-      pageKey={pathname}
+      pageKey={pageContentConfig.path}
       actions={pageActions}
       activityOverlay={loadingOverlay}
       statusOverlay={statusOverlay}
@@ -116,7 +119,7 @@ const DevSitePage = ({ pageContentConfig, contentImports }) => {
         <CardLayout>
           <Card minHeightFill>
             <ContentLoadedContainer type={pageContentConfig.type}>
-              <ContentComponent />
+              <ContentComponent key={pageContentConfig.path} />
             </ContentLoadedContainer>
           </Card>
         </CardLayout>

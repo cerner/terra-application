@@ -121,7 +121,7 @@ const SecondaryNavigationLayout = ({
   const sideNavPanelRef = React.useRef();
   const sideNavOverlayRef = React.useRef();
 
-  const [contentElementRef, pageContainerPortalsRef] = usePortalManager(activeNavigationKey, () => {
+  const [contentElementRef, pageContainerPortalsRef, visibleNavigationKey] = usePortalManager(activeNavigationKey, () => {
     deferExecution(() => {
       document.body.focus();
     });
@@ -249,7 +249,7 @@ const SecondaryNavigationLayout = ({
       return (
         <React.Fragment key={item.props.navigationKey}>
           {React.cloneElement(item, {
-            isActive: item.props.navigationKey === activeNavigationKey, portalElement,
+            isActive: item.props.navigationKey === visibleNavigationKey, portalElement,
           })}
         </React.Fragment>
       );
@@ -263,7 +263,7 @@ const SecondaryNavigationLayout = ({
       }
 
       if (child.type === SecondaryNavigationGroup) {
-        return { key: child.props.label, label: child.props.label, childItems: buildSideNavItems(child.props.children) };
+        return { key: child.props.navigationKey, label: child.props.label, childItems: buildSideNavItems(child.props.children) };
       }
 
       return null;

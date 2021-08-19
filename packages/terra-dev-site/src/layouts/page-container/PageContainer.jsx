@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import LayoutActionsContext from '../secondary-navigation-layout/LayoutActionsContext';
-import NavigationItemContext from '../secondary-navigation-layout/navigation-item/NavigationItemContext';
-import deferExecution from '../../utils/defer-execution';
 
 import PageContainerContext from './PageContainerContext';
-import usePageManager from './usePageManager';
 
 import styles from './PageContainer.module.scss';
 
@@ -29,37 +26,11 @@ const propTypes = {
 const PageContainer = ({
   children,
 }) => {
-  const navigationItem = React.useContext(NavigationItemContext);
   const layoutActions = React.useContext(LayoutActionsContext);
 
   // The rootContainerRef points to the element within which Page content will
   // be rendered.
-  const rootContainerRef = React.useRef();
-
-  // The usePageManager hook is used manage the presentation of Page
-  // content within the container.
-  const { PageManager, activePage } = usePageManager(rootContainerRef);
-
-  const lastActivePageRef = React.useRef();
-  React.useLayoutEffect(() => {
-    // If the active Page within the portal container has changed, focus is
-    // set to the root of the document to ensure focus remains close to container.
-    // Focus is not moved if the PageContainer is not part of the active
-    // navigation hierarchy (i.e. it is not visible). Focus is also not moved
-    // if no Page was previously active; this is likely to only occur
-    // during the initial application launch.
-    if (navigationItem.isActive
-      && (lastActivePageRef.current && activePage
-        && lastActivePageRef.current.portalId !== activePage.pageId)) {
-      deferExecution(() => {
-        if (rootContainerRef.current) {
-          rootContainerRef.current.focus();
-        }
-      });
-    }
-
-    lastActivePageRef.current = activePage;
-  }, [activePage, navigationItem.isActive]);
+  // const rootContainerRef = React.useRef();
 
   // The LayoutActionsContext values are ignored and not passed through the
   // PageContainerContext. Handling of layout actions is the sole responsibility
@@ -71,17 +42,12 @@ const PageContainer = ({
 
   return (
     <div
-      ref={rootContainerRef}
       className={cx('page-container')}
-      tabIndex="-1"
-      aria-label={activePage?.label}
       data-testid="page-container"
     >
-      <PageManager>
-        <PageContainerContext.Provider value={pageContainerContextValue}>
-          {children}
-        </PageContainerContext.Provider>
-      </PageManager>
+      <PageContainerContext.Provider value={pageContainerContextValue}>
+        {children}
+      </PageContainerContext.Provider>
     </div>
   );
 };

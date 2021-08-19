@@ -4,8 +4,6 @@ import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
 import DynamicOverlayContainer from 'terra-application/lib/workspace/shared/DynamicOverlayContainer';
 
-import usePagePortal from '../../layouts/page-container/usePagePortal';
-
 import PageHeader from './PageHeader';
 import PageActions from './PageActions';
 import PageAction from './PageAction';
@@ -22,12 +20,6 @@ const propTypes = {
    */
   label: PropTypes.string.isRequired,
   /**
-   * An object containing generic data describing the content of the Page.
-   * The metaData will be accessible by components who are notified of Page
-   * presentation changes.
-   */
-  metaData: PropTypes.object,
-  /**
    * A PageActions instance defining the Actions to present within the Page's
    * header. Only the PageActions component is supported.
    */
@@ -38,11 +30,11 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
-   *
+   * A react element to render inside an activity overlay, for example when loading.
    */
   activityOverlay: PropTypes.element,
   /**
-  *
+  * A react element to render to display statues, for example a 404.
   */
   statusOverlay: PropTypes.element,
   /**
@@ -53,7 +45,6 @@ const propTypes = {
 
 const Page = ({
   label,
-  metaData,
   actions,
   onRequestClose,
   children,
@@ -65,13 +56,6 @@ const Page = ({
   }
 
   const theme = React.useContext(ThemeContext);
-
-  // The usePagePortal hook is used to generate the PagePortal component that
-  // will render the Page content.
-  const { PagePortal, pageId } = usePagePortal({
-    label,
-    metaData,
-  });
 
   // If onRequestClose is provided, we check for unsaved changes prior to
   // executing the callback (unless explicitly disabled).
@@ -105,25 +89,22 @@ const Page = ({
   }, [statusOverlay, activityOverlay]);
 
   return (
-    <PagePortal>
-      <div className={pageClassNames}>
-        <div className={cx('header')}>
-          <PageHeader
-            id={pageId}
-            onSelectBack={handleOnSelectBack}
-            label={label}
-            actions={actions}
-          />
-        </div>
-        <div className={cx('content')}>
-          <DynamicOverlayContainer
-            overlays={overlays}
-          >
-            {children}
-          </DynamicOverlayContainer>
-        </div>
+    <div className={pageClassNames}>
+      <div className={cx('header')}>
+        <PageHeader
+          onSelectBack={handleOnSelectBack}
+          label={label}
+          actions={actions}
+        />
       </div>
-    </PagePortal>
+      <div className={cx('content')}>
+        <DynamicOverlayContainer
+          overlays={overlays}
+        >
+          {children}
+        </DynamicOverlayContainer>
+      </div>
+    </div>
   );
 };
 

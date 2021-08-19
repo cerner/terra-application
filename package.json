@@ -99,7 +99,7 @@
     "@cerner/terra-cli": "^1.1.0",
     "@cerner/terra-functional-testing": "^1.0.3",
     "@cerner/terra-open-source-scripts": "^1.1.0",
-    "@cerner/webpack-config-terra": "^1.2.0",
+    "@cerner/webpack-config-terra": "^2.0.0",
     "@octokit/core": "^3.4.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^10.0.4",

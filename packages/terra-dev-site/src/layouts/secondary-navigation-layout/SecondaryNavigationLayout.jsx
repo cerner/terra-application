@@ -263,7 +263,7 @@ const SecondaryNavigationLayout = ({
       }
 
       if (child.type === SecondaryNavigationGroup) {
-        return { key: child.props.navigationKey, label: child.props.label, childItems: buildSideNavItems(child.props.children) };
+        return { key: child.props.label, label: child.props.label, childItems: buildSideNavItems(child.props.children) };
       }
 
       return null;

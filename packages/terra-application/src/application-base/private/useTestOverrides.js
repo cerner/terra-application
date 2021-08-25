@@ -4,7 +4,7 @@ const APPLICATION_BASE_OVERRIDE_EVENT = 'applicationBase.testOverride';
 
 /**
  * Custom React hook that overrides locale and themes via events. Leveraged by full stack testing to control deployed applications.
- * @returns {Object} Contains the locale to override with.
+ * @returns {Object} Contains the locale, theme to override with.
  */
 const useTestOverrides = () => {
   const [localeOverride, setLocaleOverride] = useState();

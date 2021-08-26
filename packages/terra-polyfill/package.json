@@ -39,6 +39,7 @@
     "abortcontroller-polyfill": "^1.7.3",
     "core-js": "^3.15.2",
     "intl": "^1.2.5",
+    "mutationobserver-shim": "0.3.3",
     "regenerator-runtime": "^0.13.9",
     "whatwg-fetch": "^3.6.2",
     "wicg-inert": "^3.0.2"

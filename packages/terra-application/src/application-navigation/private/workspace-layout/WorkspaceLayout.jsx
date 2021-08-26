@@ -410,7 +410,7 @@ const WorkspaceLayout = ({
           ref={workspacePanelRef}
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
-          tabIndex="-1"
+          // tabIndex="-1"
         >
           <h1 id={`${id}-tyler-test`} tabIndex="-1" className={cx('visually-hidden-heading')} ref={workspaceHeadingRef}>Workspace</h1>
           <div

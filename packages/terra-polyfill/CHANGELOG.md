@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.0.1 - (August 26, 2021)
+
 * Fixed
   * Adding MutationObserver polyfill to meet inert polyfill requirements
 

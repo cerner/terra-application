@@ -21,6 +21,12 @@ import 'whatwg-fetch';
 import 'abortcontroller-polyfill';
 
 /**
+ * Polyfill for [MutationObserver](https://developer.mozilla.org/en-US/docs/Web/API/MutationObserver)
+ * necessary for inert polyfill.
+ */
+import 'mutationobserver-shim';
+
+/**
  * Polyfill for [Node.contains](https://developer.mozilla.org/en-US/docs/Web/API/Node/contains)
  * necessary for inert polyfill.
  */

@@ -162,13 +162,13 @@ const ApplicationNavigation = ({
   // Use dot notation temporarily until hooks + enzyme support for userContext
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
-  function updateDrawerIsOpen(value) {
+  const updateDrawerIsOpen = useCallback((value) => {
     drawerMenuIsOpenRef.current = value;
     setDrawerMenuIsOpen(value);
     if (onDrawerMenuStateChange) {
       onDrawerMenuStateChange(value);
     }
-  }
+  }, [onDrawerMenuStateChange]);
 
   /**
    * Given a callback function, generateMenuClosingCallback will return a new function
@@ -366,7 +366,7 @@ const ApplicationNavigation = ({
 
   useEffect(() => {
     const forceCloseMenu = () => {
-      setDrawerMenuIsOpen(false);
+      updateDrawerIsOpen(false);
       setPopupMenuIsOpen(false);
     };
 
@@ -375,7 +375,7 @@ const ApplicationNavigation = ({
     return () => {
       window.removeEventListener(closeMenuEvent, forceCloseMenu);
     };
-  }, []);
+  }, [updateDrawerIsOpen]);
 
   useLayoutEffect(() => {
     if (activeNavigationItemKey !== renderedNavItemKeyRef.current) {

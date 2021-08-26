@@ -4,7 +4,6 @@ import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
-import VisuallyHiddenText from 'terra-visually-hidden-text';
 
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ResizeHandle from './ResizeHandle';
@@ -116,6 +115,7 @@ const WorkspaceLayout = ({
   const layoutContainerRef = React.useRef();
   const layoutBodyRef = React.useRef();
   const workspacePanelRef = React.useRef();
+  const workspaceHeadingRef = React.useRef();
   const workspaceResizeBoundsRef = React.useRef();
   const resizeOverlayRef = React.useRef();
   const workspaceOverlayRef = React.useRef();
@@ -202,8 +202,8 @@ const WorkspaceLayout = ({
 
   const lastWorkspaceOpenState = React.useRef(workspaceIsVisible);
   React.useEffect(() => {
-    if (workspaceIsVisible && !lastWorkspaceOpenState.current && workspacePanelRef.current) {
-      setTimeout(() => { workspacePanelRef.current.focus(); }, 0);
+    if (workspaceIsVisible && !lastWorkspaceOpenState.current && workspaceHeadingRef.current) {
+      setTimeout(() => { workspaceHeadingRef.current.focus(); }, 0);
     } else if (!workspaceIsVisible && lastWorkspaceOpenState.current) {
       setTimeout(() => {
         const mainElement = document.querySelector('main');
@@ -301,7 +301,7 @@ const WorkspaceLayout = ({
         setWorkspaceIsVisible(true);
       } else {
         setTimeout(() => {
-          workspacePanelRef.current.focus();
+          workspaceHeadingRef.current.focus();
         }, 0);
       }
     };
@@ -411,9 +411,8 @@ const WorkspaceLayout = ({
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
           tabIndex="-1"
-          aria-labelledby={`${id}-tyler-test`}
         >
-          <VisuallyHiddenText id={`${id}-tyler-test`} text="Workspace" />
+          <h1 id={`${id}-tyler-test`} tabIndex="-1" className={cx('visually-hidden-heading')} ref={workspaceHeadingRef}>Workspace</h1>
           <div
             className={cx('workspace-inner')}
           >

@@ -28,10 +28,6 @@ const PageContainer = ({
 }) => {
   const layoutActions = React.useContext(LayoutActionsContext);
 
-  // The rootContainerRef points to the element within which Page content will
-  // be rendered.
-  // const rootContainerRef = React.useRef();
-
   // The LayoutActionsContext values are ignored and not passed through the
   // PageContainerContext. Handling of layout actions is the sole responsibility
   // of the MainPageContainer.

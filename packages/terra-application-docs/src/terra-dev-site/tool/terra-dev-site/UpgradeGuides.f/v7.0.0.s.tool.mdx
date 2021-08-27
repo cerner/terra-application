@@ -95,17 +95,17 @@ To see how the old configuration maps to the new configuration, see the table be
 |`appConfig.favicon`|`faviconFilePath`|No longer nested under appConfig. The name now includes 'filePaths' to better describe the expected input.|
 |`appConfig.themes`|**removed**|The available themes are now pulled from the terra-theme.config file via the webpack global variable `TERRA_THEME_CONFIG`.|
 |`appConfig.defaultTheme`|`defaultTheme`|No longer nested under appConfig.|
-|`appConfig.locales`|**removed**|Depreicated as of terra-dev-site 6.23, now removed.|
+|`appConfig.locales`|**removed**|Deprecated as of terra-dev-site 6.23, now removed.|
 |`appConfig.defaultLocale`|`defaultLocale`|No longer nested under appConfig.|
 |`appConfig.defaultDirection`|`defaultDirection`|No longer nested under appConfig.|
 |`appConfig.extensions`|`extensionItems`|Renamed to align with terra-application-navigation config.|
 |`appConfig.extensions.iconPath`|`extensionItems.iconPath`|Renamed to align with terra-application-navigation config.|
 |`appConfig.extensions.key`|`extensionItems.key`|Renamed to align with terra-application-navigation config.|
 |`appConfig.extensions.text`|`extensionItems.text`|Renamed to align with terra-application-navigation config.|
-|`appConfig.extensions.componentPath`|`extensionItems.modalFilePath`| Rename to prepare for application v2 modals|
-|`appConfig.extensions.size`|**removed**|One size fits all|
+|`appConfig.extensions.componentPath`|`extensionItems.modalFilePath`| Renamed to prepare for application v2 modals.|
+|`appConfig.extensions.size`|**removed**|One size fits all.|
 |`appConfig.headHtml`|`headHtml`|No longer nested under appConfig.|
-|`includeTestEvidence`|**removed**|Remove the ability to include test evidence, this should be covered now by a separate site report.|
+|`includeTestEvidence`|**removed**|Removed the ability to include test evidence, this should be covered now by a separate site report.|
 
 ## Dependency changes
 

@@ -28,7 +28,7 @@ const PageActivityOverlay = ({ variant }) => {
       <div className={cx('content')}>
         <IconSpinner className={cx('icon')} isSpin height="36" width="36" />
         {variant === 'loading' ? (
-          <FormattedMessage id="terraDevSite.PageActivityOverlayContainer.loading">
+          <FormattedMessage id="terraDevSite.pageActivityOverlayContainer.loading">
             {loadingMessage => (
               <div className={cx('message')}>{loadingMessage}</div>
             )}

@@ -1,6 +1,6 @@
 {
   "terraDevSite.pageHeader.back": "Voltar",
-  "terraDevSite.PageActivityOverlayContainer.loading": "Carregando",
+  "terraDevSite.pageActivityOverlayContainer.loading": "Carregando...",
   "terraDevSite.pageHeader.moreActions": "More Actions",
   "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

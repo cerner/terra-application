@@ -1,6 +1,6 @@
 {
   "terraDevSite.pageHeader.back": "Précédent",
-  "terraDevSite.PageActivityOverlayContainer.loading": "Chargement",
+  "terraDevSite.pageActivityOverlayContainer.loading": "Chargement...",
   "terraDevSite.pageHeader.moreActions": "More Actions",
   "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

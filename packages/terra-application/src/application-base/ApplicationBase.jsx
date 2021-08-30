@@ -109,13 +109,13 @@ const ApplicationBase = ({
     };
   }, [unloadPromptIsDisabled, registeredPromptsRef]);
 
-  const { localeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
+  const { localeOverride, themeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
   const theme = useMemo(() => ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
-    name: themeName || rootThemeName,
-    className: themeName,
-  }), [themeName]);
+    name: themeOverride || themeName || rootThemeName,
+    className: themeOverride || themeName,
+  }), [themeOverride, themeName]);
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>

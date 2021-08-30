@@ -5,6 +5,7 @@ import ApplicationStatusOverlay from 'terra-application/lib/application-status-o
 import ApplicationBase from 'terra-application/lib/application-base';
 import NavigationPrompt from 'terra-application/lib/navigation-prompt';
 import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { ThemeContext } from 'terra-application/lib/theme';
 
 const ApplicationContentTest = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -14,6 +15,7 @@ const ApplicationContentTest = () => {
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
   const applicationIntl = useContext(ApplicationIntlContext);
+  const theme = useContext(ThemeContext);
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
@@ -32,6 +34,14 @@ const ApplicationContentTest = () => {
       Active Locale:
       {' '}
       {applicationIntl.locale}
+    </p>
+  );
+
+  const themeTest = (
+    <p>
+      Active Theme:
+      {' '}
+      {theme.name}
     </p>
   );
 
@@ -88,6 +98,7 @@ const ApplicationContentTest = () => {
     <div>
       {activeBreakpointTest}
       {intlTest}
+      {themeTest}
       {errorBoundaryTest}
       {loadingOverlayTest}
       {statusOverlayTest}

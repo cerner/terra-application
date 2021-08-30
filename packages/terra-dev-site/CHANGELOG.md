@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 6.39.2 - (August 26, 2021)
+
+* Changed
+  * Minor dependency version bump
+
 ## 6.39.1 - (August 11, 2021)
 
 * Fixed

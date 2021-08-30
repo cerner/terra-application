@@ -4,7 +4,7 @@ import { Notice } from '@cerner/terra-docs';
 
 This document will provide information on upgrading from `terra-dev-site` `6.x.x` to `7.0.0`.
 
-`terra-dev-site` v7 is about 70% new. The primary goals of this upgrade is to enable webpack 5, prepare for `terra-application` v2, and remove the `terra-dev-site` build intermediate step by converting to a pure webpack plugin.
+`terra-dev-site` v7 is about 70% new. The primary goals of this upgrade is to enable webpack 5, prepare for `terra-application` v2, and remove the intermediate `terra-dev-site` build step by converting to a pure webpack plugin.
 
 ## Scoped package
 
@@ -23,9 +23,9 @@ Terra dev site has changed to be scoped under the cerner organization. The packa
 
 In `terra-dev-site` v6 we introduced the webpack plugin as an alternative to the shared webpack config. In `terra-dev-site` v7 we have removed the shared webpack config and are only offering the webpack plugin. We've done this to facilitate the transition from `terra-toolkit` webpack config to the new `@cerner/webpack-config-terra` webpack config. `terra-dev-site` will work with either webpack config and this will allow you to update to WDIO 6 independently.
 
-To simplify the webpack plugin api we have also now included the Directory Switcher and Local Package alias resolve plugins in the `terra-dev-site` plugin by default. As a reminder, these plugins allow you to enable hot reloading by switching lib requires with their src equivalent and reference local files as if they were packaged, ie `import('@cerner/terra-dev-site/file)`.
+To simplify the webpack plugin api, we have also now included the Directory Switcher and Local Package alias resolve plugins in the `terra-dev-site` plugin by default. As a reminder, these plugins allow you to enable hot reloading by switching lib requires with their src equivalent and reference local files as if they were packaged, ie `import('@cerner/terra-dev-site/file)`.
 
-In addition the `TerraDevSiteEntrypoints` have been removed as well. Webpack 4 requires an entry point, but that requirement is generally satisfied by our reusable webpack configs. Webpack 5 will allow plugins to define entrypoints without being specified in the config.
+Additionally, the `TerraDevSiteEntrypoints` have been removed as well. Webpack 4 requires an entry point, but that requirement is generally satisfied by our reusable webpack configs. Webpack 5 will allow plugins to define entrypoints without being specified in the config.
 
 
 Below is an example webpack config setting up the `terra-dev-site` plugin.
@@ -87,7 +87,7 @@ To see how the old configuration maps to the new configuration, see the table be
 |`navConfig.navigation.primaryNavigationItems.capabilities`|**removed**|This configuration has been removed. All pages except for home will have access to devTools|
 |`pagesConfig`|**removed**|`pagesConfig` allowed consumers to provide their own page config. It was poorly documented, complex and no one ever did.|
 |`generatePages`|`additionalSearchDirectories`|Instead of filling out this complex object. Terra dev site searches the 'terra-dev-site' folder by default for content with the specified content Extensions. Consumers that wish to search other directories now can provided fully qualified paths which will also be searched|
-|`hotReloading`|**removed**|True in dev false in prod|
+|`hotReloading`|**removed**|True in dev, false in prod|
 |`npmPackage`|**removed**|Only the root npm package is used.|
 |`sideEffectImports`|`sideEffectImportFilePaths`|The name now includes 'filePaths' to better describe the expected input.|
 |`placeholderSrc`|**removed**|No longer used.|
@@ -118,7 +118,7 @@ Previously `terra-dev-site` was providing a version of `rect-intl` as a dependen
 
 ### Resulting Test changes
 
-If you happen to be testing md or mdx components, a wrapping div has been removed and screenshots will have to be regenerated. I assume this is rare beyond `terra-dev-site` itself.
+If you happen to be testing md or mdx components, the wrapping div has been removed and screenshots will have to be regenerated. I assume this is rare beyond `terra-dev-site` itself.
 
 ## Node 10
 
@@ -132,7 +132,7 @@ A couple of common syntax errors when using the MDX loader can be found on our [
 
 ## I get the webpack error: Invalid configuration object. Webpack has been initialised using a configuration object that does not match the API schema.
 
-You can get this error when using webpack 4. Part of the terra-dev-site webpack plugin we inject a entry to build the site. Webpack requires an entry to function but when the check is performed changed between webpack 4 and 5. In webpack 4 and entry is checked prior to running the plugin where as in webpack 5 the check is performed after.
+You can get this error when using webpack 4. Part of the `terra-dev-site` webpack plugin we inject an entry to build the site. Webpack requires an entry to function but the check that is performed changed between webpack 4 and 5. In webpack 4, an entry is checked prior to running the plugin, where as in webpack 5 the check is performed after.
 
 To solve this issue you have two options. Upgrade to webpack 5 or add a dummy entrypoint that terra-dev-site will remove before bundling. Upgrading to webpack 5 is recommended.
 

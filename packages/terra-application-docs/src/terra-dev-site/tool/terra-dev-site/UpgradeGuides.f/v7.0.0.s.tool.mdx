@@ -38,6 +38,7 @@ const { TerraDevSite } = require('@cerner/terra-dev-site');
 const devSiteConfig = (env = {}, argv = {}) => ({
   plugins: [
     new TerraDevSite({
+      // env.defaultLocale is set by the WDIO test service to enable locale testing.
       defaultLocale: env.defaultLocale,
     }),
   ],
@@ -116,8 +117,6 @@ Previously `terra-dev-site` was providing a version of `rect-intl` as a dependen
 `terra-toolkit` is no longer a peer dependency to allow consumers to use `terra-dev-site` v7 with either terra-toolkit or the replacement `terra-functional-testing` package.
 
 ### Resulting Test changes
-
-The page introduces a new tab stop. Any tests using tabstops will have to be updated to include an additional tab stop.
 
 If you happen to be testing md or mdx components, a wrapping div has been removed and screenshots will have to be regenerated. I assume this is rare beyond `terra-dev-site` itself.
 

@@ -33,7 +33,7 @@ const loader = async function loader(template) {
     sites,
     contentDirectory,
     isLernaMonoRepo,
-  } = getOptions(this);
+  } = getOptions(this).entryLoaderData[this.resourceQuery];
 
   const extensionItems = (siteConfig.extensionItems || []).map((ext) => ({
     key: ext.key,

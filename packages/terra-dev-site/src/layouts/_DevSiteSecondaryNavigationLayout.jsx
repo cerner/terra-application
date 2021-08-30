@@ -57,7 +57,6 @@ const retrieveNavItems = (navItems, contentImports) => (
 const DevSiteSecondaryNavigationLayout = ({
   id, label, config, contentImports,
 }) => {
-  // console.log('secondary nav render');
   const location = useLocation();
   const history = useHistory();
   const { isActive } = React.useContext(NavigationItemContext);

@@ -38,7 +38,6 @@ const ContentLayout = ({ pageContentConfig, contentImports }) => {
 
   return (
     <Suspense
-      // TODO add a loading spinner?
       onError={() => setLoadingFailed(true)}
     >
       <ContentLoadedContainer type={pageContentConfig.type} isScrollContainer>

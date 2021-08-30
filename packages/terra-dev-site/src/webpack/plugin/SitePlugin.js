@@ -14,6 +14,7 @@ let oneTimeSetupComplete = false;
 let siteRegistry = {};
 const processPath = process.cwd();
 const isLernaMonoRepo = fs.existsSync(path.join(processPath, 'lerna.json'));
+const entryLoaderData = {};
 
 /**
  * Updates the webpack options with defaults that terra-dev-site requires.
@@ -30,7 +31,7 @@ class SitePlugin {
 
     if (pathPrefix) {
       this.entryKey = `${pathPrefix}/index`;
-      this.resourceQuery = `?${pathPrefix}-terra-entry`;
+      this.resourceQuery = `?terra-entry-${pathPrefix}`;
       this.htmlFileName = `${pathPrefix}/index.html`;
       this.url = `/${pathPrefix}/`;
     } else {
@@ -141,6 +142,18 @@ class SitePlugin {
                 loader: 'devSitePropsTable',
                 options: {
                   resolveExtensions: compiler.options.resolve.extensions,
+                },
+              },
+            ],
+          }, {
+            // This loader generates the entrypoint and sets up the config template path and resource query.
+            resourceQuery: /\?terra-entry/,
+            use: [
+              babelLoader,
+              {
+                loader: 'devSiteEntry',
+                options: {
+                  entryLoaderData,
                 },
               },
             ],
@@ -265,32 +278,19 @@ class SitePlugin {
       basename = [basename, this.siteConfig.pathPrefix].join('/');
     }
 
+    entryLoaderData[this.resourceQuery] = {
+      entryPath: this.entry,
+      siteConfig: this.siteConfig,
+      sites: otherSites,
+      basename,
+      resolveExtensions: compiler.options.resolve.extensions,
+      isLernaMonoRepo,
+      contentDirectory: this.siteConfig.contentDirectory,
+    };
+
     let webpackConfig = {
       entry: {
         [this.entryKey]: `@cerner/terra-dev-site/lib/webpack/templates/entry.template${this.resourceQuery}`,
-      },
-      module: {
-        rules: [
-          {
-            // This loader generates the entrypoint and sets up the config template path and resource query.
-            resourceQuery: this.resourceQuery,
-            use: [
-              babelLoader,
-              {
-                loader: 'devSiteEntry',
-                options: {
-                  entryPath: this.entry,
-                  siteConfig: this.siteConfig,
-                  sites: otherSites,
-                  basename,
-                  resolveExtensions: compiler.options.resolve.extensions,
-                  isLernaMonoRepo,
-                  contentDirectory: this.siteConfig.contentDirectory,
-                },
-              },
-            ],
-          },
-        ],
       },
     };
 
@@ -304,10 +304,6 @@ class SitePlugin {
       ...compiler.options.entry,
       ...webpackConfig.entry,
     };
-
-    // MODULE
-    // we know there is a oneOf here because we just added it.
-    compiler.options.module.rules[0].oneOf.unshift(webpackConfig.module.rules[0]);
 
     // Generate the index.html file for the site.
     new HtmlWebpackPlugin({

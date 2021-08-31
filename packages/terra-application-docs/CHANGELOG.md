@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0 - (August 31, 2021)
+
 * Added
   * terra-dev-site v7 docs
 

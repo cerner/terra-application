@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.50.0 - (August 31, 2021)
+
 * Changed
   * Minor dependency version bump
   * Updated themes to be able to switched dynamically via a dispatched event.

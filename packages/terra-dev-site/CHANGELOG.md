@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.0.0 - (August 31, 2021)
+
 * Added
   * Added support for webpack 5.
 

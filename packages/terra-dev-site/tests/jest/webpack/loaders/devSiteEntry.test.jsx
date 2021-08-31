@@ -34,46 +34,50 @@ describe('devSiteEntry', () => {
       ],
     });
     runLoaders({
-      resource: path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template'),
+      resource: `${path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template')}?query`,
       loaders: [
         {
           loader: path.resolve(__dirname, '../../../../src/webpack/loaders/devSiteEntry'),
           options: {
-            entryPath: 'entryPath',
-            siteConfig: {
-              extensionItems: [{
-                key: 'extA',
-                text: 'textA',
-                iconPath: 'ExtensionIconPathA',
-                modalFilePath: 'ExtensionModalPathA',
-              }, {
-                key: 'extB',
-                text: 'textB',
-                iconPath: 'ExtensionIconPathB',
-                modalFilePath: 'ExtensionModalPathB',
-              }],
-              titleConfig: {
-                title: 'title',
-                headline: 'headline',
-                subline: 'subline',
+            entryLoaderData: {
+              '?query': {
+                entryPath: 'entryPath',
+                siteConfig: {
+                  extensionItems: [{
+                    key: 'extA',
+                    text: 'textA',
+                    iconPath: 'ExtensionIconPathA',
+                    modalFilePath: 'ExtensionModalPathA',
+                  }, {
+                    key: 'extB',
+                    text: 'textB',
+                    iconPath: 'ExtensionIconPathB',
+                    modalFilePath: 'ExtensionModalPathB',
+                  }],
+                  titleConfig: {
+                    title: 'title',
+                    headline: 'headline',
+                    subline: 'subline',
+                  },
+                  sideEffectImportFilePaths: [
+                    'sideEffectpathA',
+                    'sideEffectpathB',
+                  ],
+                  enableDebugLogging: true,
+                  defaultTheme: 'dark',
+                  defaultLocale: 'au',
+                  defaultDirection: 'rtl',
+                },
+                basename: 'basename',
+                resolveExtensions: ['js'],
+                sites: [{
+                  title: 'site',
+                  url: '/site',
+                }],
+                contentDirectory: 'content',
+                isLernaMonoRepo: false,
               },
-              sideEffectImportFilePaths: [
-                'sideEffectpathA',
-                'sideEffectpathB',
-              ],
-              enableDebugLogging: true,
-              defaultTheme: 'dark',
-              defaultLocale: 'au',
-              defaultDirection: 'rtl',
             },
-            basename: 'basename',
-            resolveExtensions: ['js'],
-            sites: [{
-              title: 'site',
-              url: '/site',
-            }],
-            contentDirectory: 'content',
-            isLernaMonoRepo: false,
           },
         },
       ],
@@ -113,25 +117,29 @@ describe('devSiteEntry', () => {
       ],
     });
     runLoaders({
-      resource: path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template'),
+      resource: `${path.resolve(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'entry.template')}?query`,
       loaders: [
         {
           loader: path.resolve(__dirname, '../../../../src/webpack/loaders/devSiteEntry'),
           options: {
-            entryPath: 'entryPath',
-            siteConfig: {
-              sideEffectImportFilePaths: [],
-              extensionItems: [],
-              titleConfig: {
-                title: 'title',
+            entryLoaderData: {
+              '?query': {
+                entryPath: 'entryPath',
+                siteConfig: {
+                  sideEffectImportFilePaths: [],
+                  extensionItems: [],
+                  titleConfig: {
+                    title: 'title',
+                  },
+                  enableDebugLogging: true,
+                },
+                basename: 'basename',
+                resolveExtensions: ['js'],
+                sites: [],
+                contentDirectory: 'content',
+                isLernaMonoRepo: false,
               },
-              enableDebugLogging: true,
             },
-            basename: 'basename',
-            resolveExtensions: ['js'],
-            sites: [],
-            contentDirectory: 'content',
-            isLernaMonoRepo: false,
           },
         },
       ],

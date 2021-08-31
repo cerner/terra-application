@@ -29,7 +29,7 @@ describe('SitePlugin', () => {
     expect(plug.entry).toEqual(siteConfig.entry);
     expect(plug.siteConfig).toEqual(config);
     expect(plug.entryKey).toEqual('pathPrefix/index');
-    expect(plug.resourceQuery).toEqual('?pathPrefix-terra-entry');
+    expect(plug.resourceQuery).toEqual('?terra-entry-pathPrefix');
     expect(plug.htmlFileName).toEqual('pathPrefix/index.html');
     expect(plug.url).toEqual('/pathPrefix/');
 
@@ -55,7 +55,7 @@ describe('SitePlugin', () => {
     expect(compiler.options.output.publicPath).toEqual('/');
 
     expect(compiler.options.entry).toEqual({
-      'pathPrefix/index': '@cerner/terra-dev-site/lib/webpack/templates/entry.template?pathPrefix-terra-entry',
+      'pathPrefix/index': '@cerner/terra-dev-site/lib/webpack/templates/entry.template?terra-entry-pathPrefix',
       redirect: '@cerner/terra-dev-site/lib/browser-router-redirect/redirect',
       rewriteHistory: '@cerner/terra-dev-site/lib/browser-router-redirect/rewriteHistory',
     });
@@ -157,8 +157,6 @@ describe('SitePlugin', () => {
     expect(compiler.options.entry).toEqual({
       index: '@cerner/terra-dev-site/lib/webpack/templates/entry.template?terra-entry',
     });
-
-    expect(compiler.options.module.rules).toMatchSnapshot();
 
     expect(HtmlWebpackPlugin).toHaveBeenNthCalledWith(1, {
       title: 'title',

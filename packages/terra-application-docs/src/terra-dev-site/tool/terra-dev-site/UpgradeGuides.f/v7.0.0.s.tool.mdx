@@ -82,7 +82,7 @@ To see how the old configuration maps to the new configuration, see the table be
 |`navConfig.navigation.index`|**removed**|The site index page is now assumed to be the first `primaryNavigationItem` in the list.|
 |`navConfig.navigation.primaryNavigationItems`|`primaryNavigationItems`| PrimaryNavigationItems are no longer nested under the navigation object.|
 |`navConfig.navigation.primaryNavigationItems.path`|`primaryNavigationItems.path`|unchanged.|
-|`navConfig.navigation.primaryNavigationItems.text`|`primaryNavigationItems.label`|Changed to label to align with terra-application api naming.|
+|`navConfig.navigation.primaryNavigationItems.text`|`primaryNavigationItems.label`|Changed to label to align with [terra-application api](/application/terra-application/components/application-navigation#navigationitems) naming.|
 |`navConfig.navigation.primaryNavigationItems.pageType`|`primaryNavigationItems.contentExtension`|Pages no longer support being generated from multiple page types. No sites ever used the functionality. PageType has been changed to contentExtension to eliminate confusion with terra-application pages.|
 |`navConfig.navigation.primaryNavigationItems.capabilities`|**removed**|This configuration has been removed. All pages except for home will have access to devTools|
 |`pagesConfig`|**removed**|`pagesConfig` allowed consumers to provide their own page config. It was poorly documented, complex and no one ever did.|

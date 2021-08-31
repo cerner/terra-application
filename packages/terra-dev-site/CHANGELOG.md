@@ -2,6 +2,35 @@
 
 ## Unreleased
 
+* Added
+  * Added support for webpack 5.
+
+* Breaking
+  * Remove the ability to include test evidence, this is covered now by a separate site report.
+  * Update minimum node version to node 10.
+  * Update react-docgen to ^5.3.0. This is a breaking change as react-docgen only supports node 8.10 and up.
+  * Use MDX instead of Marked to load markdown files.
+  * Remove `pagesConfig` option from site config. This was never used by consumers.
+  * Remove `hotReloading` option from site config. There is no reason to disable it through terra dev site config.
+  * The available themes are now pulled from the terra-theme.config file via the webpack global variable `TERRA_THEME_CONFIG`.
+    * As a result, `themes` has been removed from site config.
+    * `TERRA_THEME_CONFIG` is only available in terra-toolkit v6.1.0.
+  * `locales` has been removed from site config. As of 6.23 Locales are pulled from the global `TERRA_AGGREGATED_LOCALES` variable provided by terra-toolkit v5.21.0.
+  * Changed to a scoped package. `terra-dev-site` -> `@cerner/terra-dev-site`.
+  * terra-dev-site now configured directly with the webpack config.
+  * Config changed to better align with terra-application (see the config map in the upgrade guide).
+  * Dependency on terra-toolkit removed.
+  * No longer offering webpack config to extend, use the webpack plugin.
+  * Removed export for DirectorySwitcherPlugin and LocalPackageAlias Plugin.
+
+* Changed
+  * Terra-dev-site fully converted to a webpack plugin.
+  * dev-site-config folder removed, intermediate build files no longer written to disk.
+  * Secondary navigation removed in favor of terra-application secondary navigation layout.
+  * All content now wrapped in a page.
+  * Consume terra-cli for releasing.
+  * Updated props table to better format types, defaults and description.
+
 ## 6.39.2 - (August 26, 2021)
 
 * Changed

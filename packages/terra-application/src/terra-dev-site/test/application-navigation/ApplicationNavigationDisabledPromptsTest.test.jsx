@@ -52,25 +52,28 @@ const ApplicationNavigationDisabledPromptsTest = () => {
   }];
 
   return (
-    <ApplicationBase locale={applicationIntl.locale} themeName={theme.className}>
-      {loggedOut ? <p>Logged Out</p> : (
-        <ApplicationNavigation
-          titleConfig={{
-            title: 'ApplicationNavigation Disabled Prompts Test',
-          }}
-          navigationItems={navigationItems}
-          activeNavigationItemKey={activeNavItem}
-          onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
-          onSelectLogout={() => {
-            setLoggedOut(true);
-          }}
-          disablePromptsForLogout
-          disablePromptsForNavigationItems
-        >
-          <PageContent key={activeNavItem} title={activeNavItem} />
-        </ApplicationNavigation>
-      )}
-    </ApplicationBase>
+    // eslint-disable-next-line react/forbid-dom-props
+    <div style={{ height: '500px' }}>
+      <ApplicationBase locale={applicationIntl.locale} themeName={theme.className}>
+        {loggedOut ? <p>Logged Out</p> : (
+          <ApplicationNavigation
+            titleConfig={{
+              title: 'ApplicationNavigation Disabled Prompts Test',
+            }}
+            navigationItems={navigationItems}
+            activeNavigationItemKey={activeNavItem}
+            onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
+            onSelectLogout={() => {
+              setLoggedOut(true);
+            }}
+            disablePromptsForLogout
+            disablePromptsForNavigationItems
+          >
+            <PageContent key={activeNavItem} title={activeNavItem} />
+          </ApplicationNavigation>
+        )}
+      </ApplicationBase>
+    </div>
   );
 };
 

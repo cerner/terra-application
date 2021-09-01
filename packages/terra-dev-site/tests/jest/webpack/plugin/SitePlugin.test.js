@@ -98,6 +98,7 @@ describe('SitePlugin', () => {
       template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'index.html'),
       favicon: 'favicon',
       headHtml: [''],
+      publicPath: '/',
       excludeChunks: ['rewriteHistory', 'redirect'],
     });
     expect(webpack.DefinePlugin).toHaveBeenCalledWith({
@@ -164,6 +165,7 @@ describe('SitePlugin', () => {
       template: path.join(__dirname, '..', '..', '..', '..', 'src', 'webpack', 'templates', 'index.html'),
       favicon: 'favicon',
       headHtml: [''],
+      publicPath: '/',
       excludeChunks: ['rewriteHistory', 'redirect', 'pathPrefix/index', 'chunk'],
     });
     // This is not called because one time setup has already been executed.

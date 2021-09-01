@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <%= htmlWebpackPlugin.options.headHtml.join('\n    ') %>
-    <script src="/<%= compilation.entrypoints.get('rewriteHistory').getFiles()[0] %>"></script>
+    <script src="<%= htmlWebpackPlugin.options.publicPath %><%= compilation.entrypoints.get('rewriteHistory').getFiles()[0] %>"></script>
     <% if (htmlWebpackPlugin.files.favicon) { %>
     <link rel="shortcut icon" href="<%= htmlWebpackPlugin.files.favicon%>">
     <% } %>

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.0.1 - (September 1, 2021)
+
 * Fixed
   * Fixed bug where redirect script was not being included at the requested basepath.
 

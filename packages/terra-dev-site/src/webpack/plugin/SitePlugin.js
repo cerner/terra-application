@@ -236,18 +236,23 @@ class SitePlugin {
     }).apply(compiler);
   }
 
+  static getPublicPath({ compiler }) {
+    if (process.env.TERRA_DEV_SITE_PUBLIC_PATH) {
+      compiler.options.output.publicPath = process.env.TERRA_DEV_SITE_PUBLIC_PATH;
+      return process.env.TERRA_DEV_SITE_PUBLIC_PATH;
+    }
+
+    if (compiler.options.output && compiler.options.output.publicPath && compiler.options.output.publicPath !== 'auto') {
+      return compiler.options.output.publicPath;
+    }
+    compiler.options.output.publicPath = '/';
+    return '/';
+  }
+
   apply(compiler) {
     const isWebpack5 = compiler.webpack && compiler.webpack.version.startsWith('5');
 
-    // Use default public path else the env else /
-    let defaultPublicPath;
-    if (compiler.options.output && compiler.options.output.publicPath) {
-      defaultPublicPath = compiler.options.output.publicPath;
-    }
-    const publicPath = process.env.TERRA_DEV_SITE_PUBLIC_PATH || defaultPublicPath || '/';
-
-    // OUTPUT
-    compiler.options.output.publicPath = publicPath;
+    const publicPath = SitePlugin.getPublicPath({ compiler });
 
     // Strip the trailing / from the public path.
     let basename = publicPath.slice(0, -1);
@@ -308,6 +313,7 @@ class SitePlugin {
     // Generate the index.html file for the site.
     new HtmlWebpackPlugin({
       title: this.siteConfig.titleConfig.title,
+      publicPath,
       filename: this.htmlFileName,
       template: path.join(__dirname, '..', 'templates', 'index.html'),
       favicon: this.siteConfig.faviconFilePath,

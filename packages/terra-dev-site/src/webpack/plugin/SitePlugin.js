@@ -239,14 +239,12 @@ class SitePlugin {
   static getPublicPath({ compiler }) {
     if (process.env.TERRA_DEV_SITE_PUBLIC_PATH) {
       compiler.options.output.publicPath = process.env.TERRA_DEV_SITE_PUBLIC_PATH;
-      return process.env.TERRA_DEV_SITE_PUBLIC_PATH;
+      // if we don't have a default or the default is auto, set the public path to /;
+    } else if (!compiler.options.output || !compiler.options.output.publicPath || compiler.options.output.publicPath === 'auto') {
+      compiler.options.output.publicPath = '/';
     }
 
-    if (compiler.options.output && compiler.options.output.publicPath && compiler.options.output.publicPath !== 'auto') {
-      return compiler.options.output.publicPath;
-    }
-    compiler.options.output.publicPath = '/';
-    return '/';
+    return compiler.options.output.publicPath;
   }
 
   apply(compiler) {

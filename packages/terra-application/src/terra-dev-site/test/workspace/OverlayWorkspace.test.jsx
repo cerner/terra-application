@@ -36,7 +36,7 @@ const WorkspaceTest = () => {
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
       <div
-        style={{ height: '100%', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
+        style={{ height: '500px', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
       >
         <Workspace
           id="overlay-test-id"

@@ -23,7 +23,11 @@ const Tab5 = () => {
           />
         </WorkspaceContent.StatusOverlay>
       )}
-    />
+    >
+      <div>
+        <p>Tab 5 Content</p>
+      </div>
+    </WorkspaceContent>
   );
 };
 

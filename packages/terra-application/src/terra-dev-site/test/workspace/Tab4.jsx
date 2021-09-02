@@ -9,7 +9,11 @@ const Tab4 = () => (
         <WorkspaceContent.StatusOverlay.Button text="Action 2" />
       </WorkspaceContent.StatusOverlay>
     )}
-  />
+  >
+    <div>
+      <p>Tab 4 Content</p>
+    </div>
+  </WorkspaceContent>
 );
 
 export default Tab4;

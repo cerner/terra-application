@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import styles from './MarkdownTags.module.scss';
 
 const cx = classNames.bind(styles);
@@ -26,6 +27,7 @@ const propTypes = {
  */
 const H = ({ Tag, props: componentProps }) => {
   const aRef = useRef(null);
+  const theme = React.useContext(ThemeContext);
   // This effect is for scrolling the h-tag into view after initial load of the page.
   useEffect(() => {
     if (!window.location || window.location.length < 2) {
@@ -39,7 +41,7 @@ const H = ({ Tag, props: componentProps }) => {
   return (
     <Tag {...componentProps} className={[cx(Tag), componentProps.className].join(' ')}>
       <a ref={aRef} aria-hidden="true" href={`#${componentProps.id}`} tabIndex="-1" className={cx('a', 'anchor')}>
-        <span className={cx('icon', 'icon-link')} />
+        <span className={cx('icon', 'icon-link', theme.className)} />
       </a>
       { componentProps.children }
     </Tag>

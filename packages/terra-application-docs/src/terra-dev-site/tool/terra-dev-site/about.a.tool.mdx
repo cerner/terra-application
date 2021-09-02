@@ -1,0 +1,232 @@
+import { Badge } from '@cerner/terra-dev-site/package.json?dev-site-package';
+import { Notice } from '@cerner/terra-docs';
+
+<Badge />
+
+# TerraDevSite
+
+TerraDevSite is a webpack plugin for generating a documentation and testing site for content built with the terra application framework.
+
+## Installation
+
+``` bash
+npm install --save-dev @cerner/terra-dev-site
+```
+
+## Prerequisites
+* node 10
+* babel 7.5
+* webpack 4/5
+* webpack config from either terra-toolkit or @cerner/webpack-config-terra
+
+## Setting up webpack config
+
+Below is an example webpack config that applies the TerraDevSite Plugin.
+
+```javascript
+const terraWebpackConfig = require('@cerner/webpack-config-terra');
+const merge = require('webpack-merge');
+const { TerraDevSite } = require('@cerner/terra-dev-site');
+
+/**
+* Generates the file representing app name configuration.
+*/
+const devSiteConfig = (env = {}, argv = {}) => ({
+  plugins: [
+    new TerraDevSite({
+      defaultLocale: env.defaultLocale,
+    }),
+  ],
+});
+
+const webpackConfig = (env, argv) => (
+  merge(terraWebpackConfig(env, argv), devSiteConfig(env, argv))
+);
+
+module.exports = webpackConfig;
+```
+
+## Adding content
+
+The TerraDevSite Plugin will search the `terra-dev-site` folder for files with a defined content extension, typically `test` or `doc`. The default export from those files will be imported into the generated dev site and organized based on file structure.
+
+### File Naming
+
+Files need to be named using the correct 'contentExtension' and file extension to be added to the site. This will allow you to add any additional files to support your examples and only have the specified files added as entries to the site. The file name pattern is:
+
+```
+<filename>.<group>.<contentExtension>.<fileTypeExtension>
+```
+
+* filename - This is the name that will be added to the secondary navigation layout for the site. These are sorted alphabetically.
+* group - (optional) This allows you to sort menu items. The group is sorted alphabetically before items without a group.
+* contentExtension - This indicates which primary navigation item the content will be rendered under. The default pageTypes are `home`, `doc`, and `test`.
+* extension - .md and .mdx extensions are supported by default. Other extensions can be added by updating the projects webpack config by adding additional extensions to the resolve field.
+
+### Directories
+
+The directories within the entry point folder, TerraDevSite, will be translated into the menu structure. The one exception is if you have a 'contentExtension' directory inside the entry point folder, it will be ignored. This lets you group page types together without impacting your site.
+
+###  Example
+
+Given a directory structure like this:
+
+```
+src/
+  terra-dev-site/
+    doc/
+      upgradeGuide.a.doc.md
+      examples.c/
+        supportingFile.js
+        myGreatExample.doc.jsx
+      example.b.doc.js
+    test/
+      testfile.test.js
+      docInTestFolder.doc.js
+```
+
+The menu navigation result will be:
+
+```
+-Components-
+  Upgrade Guide
+  Example
+  Examples >
+     My Great Example
+  Test >
+     Doc In Test Folder
+-Test-
+  Testfile
+```
+
+## URL generation
+
+Urls are generated with the following pattern:
+
+```
+<baseName>/<pathPrefix>/<contentExtension>/<package>/<directoryStructure>/<filename>
+```
+
+## Path based routing deployments
+
+<Notice variant="important" ariaLevel="3">
+
+To support path based routing for gh-pages style deployments, you must supply an env variable, `TERRA_DEV_SITE_PUBLIC_PATH`, describing the path for assets to be served from.
+
+</Notice>
+
+For example, for a page hosted on github pages with a url of: http://cerner.github.com/terra-dev-site. The environment variable should be set as follows.
+
+```bash
+TERRA_DEV_SITE_PUBLIC_PATH='/terra-dev-site/'
+```
+
+Without the environment variable set assets will assume they are served from `/` when they should be served from `/terra-dev-site/`
+
+## Further configuration:
+
+TerraDevSite is built to work out of the box but it also provides many configuration options to allow you to customize your site.
+
+Check out our [configuration docs](/dev_tools/terra-dev-site/terra-dev-site/configuration).
+
+## Hot reloading
+
+When building for development TerraDevSite will search for content in the defined `sourceFolder`, src by default. Any imports that point to the `distributionFolder`, 'lib' by default, will automatically be redirected to the `sourceFolder` instead. Hot reloading watches for any changes in the `terra-dev-site` directory and will re generate the site.
+
+When building for production, hot reloading will be disabled.
+
+It is recommend that if a directory must be defined, imports should pull from the lib directory. With the exception of the props table loader which must pull from the source directory.
+
+## Auto Package Aliasing
+
+TerraDevSite will automatically alias the current directory as the package name, allowing examples to import files as if they were a consumer of the package. This results in examples that are representative of actual consumer implementations.
+
+```diff
+- import Component from '../../Component';
++ import Component from 'PackageName/Component';
+```
+
+## Pulling content from node modules
+
+TerraDevSite allows for distributed documentation to be pulled together in a single site. We use this extensively for our terra-ui doc site.
+
+To add additional search directories, simply provide the full path to the additional directories you'd like to search in the terra config using the `additionalSearchDirectories` config option.
+
+For Example:
+
+```javascript
+const path = require('path');
+const terraWebpackConfig = require('@cerner/webpack-config-terra');
+const merge = require('webpack-merge');
+const { TerraDevSite } = require('@cerner/terra-dev-site');
+
+/**
+* Generates the file representing app name configuration.
+*/
+const devSiteConfig = (env = {}, argv = {}) => ({
+  plugins: [
+    new TerraDevSite({
+      defaultLocale: env.defaultLocale,
+      additionalSearchDirectories: [
+        path.resolve(process.cwd(), 'node_modules', 'package name', 'lib', 'terra-dev-site'),
+      ],
+    }),
+  ],
+});
+
+const webpackConfig = (env, argv) => (
+  merge(terraWebpackConfig(env, argv), devSiteConfig(env, argv))
+);
+
+module.exports = webpackConfig;
+```
+
+Additional Search Directories will not be hot reloaded.
+
+## Testing
+
+<Notice variant="important" ariaLevel="3">
+
+To Flex the locale with the `terra-functional-testing` package, `env.defaultLocale` must be passed to the `TerraDevSite` plugin. The `defaultLocale` env is set as a part of the WDIO test service and must be passed into the `TerraDevSite` plugin to ensure locale tests are run appropriately.
+
+</Notice>
+
+## Stacking DevSites
+
+TerraDevSites plugins can be stacked and will automatically add an application switcher to allow switching between dev sites.
+This can be used to provide different default setups for TerraDevSites, for example an unauthenticated site that provides a link to an authenticated site.
+
+The webpack config would look like this:
+
+```javascript
+const terraWebpackConfig = require('@cerner/webpack-config-terra');
+const merge = require('webpack-merge');
+const { TerraDevSite } = require('@cerner/terra-dev-site');
+
+/**
+* Generates the file representing app name configuration.
+*/
+const devSiteConfig = (env = {}, argv = {}) => ({
+  plugins: [
+    new TerraDevSite({
+      defaultLocale: env.defaultLocale,
+    }),
+    new TerraDevSite({
+      pathPrefix: 'anotherSite',
+      defaultLocale: env.defaultLocale,
+    }),
+  ],
+});
+
+const webpackConfig = (env, argv) => (
+  merge(terraWebpackConfig(env, argv), devSiteConfig(env, argv))
+);
+
+module.exports = webpackConfig;
+```
+
+<Notice variant="important" ariaLevel="3">
+
+`pathPrefix` must be unique for all instances of the TerraDevSite Plugin as it is used in the url.
+
+</Notice>

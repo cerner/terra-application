@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.themed.help": "Help"
+  "terraDevSite.pageHeader.back": "Takaisin",
+  "terraDevSite.pageActivityOverlayContainer.loading": "Lastaus...",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

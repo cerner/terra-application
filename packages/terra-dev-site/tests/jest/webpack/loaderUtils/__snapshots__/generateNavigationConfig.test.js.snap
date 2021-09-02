@@ -1,0 +1,255 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`generateNavigationConfig test standard config + additional content 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "label": "Add",
+        "path": "/test/cerner-terra-dev-site/add",
+        "type": "md",
+      },
+      Object {
+        "label": "File",
+        "path": "/test/cerner-terra-dev-site/file",
+        "type": "js",
+      },
+      Object {
+        "label": "File Outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
+        "type": "md",
+      },
+    ],
+    "label": "Test",
+    "path": "/test",
+  },
+]
+`;
+
+exports[`generateNavigationConfig test standard config + additional content 2`] = `
+Object {
+  "/": "/test/cerner-terra-dev-site/add",
+  "/test": "/test/cerner-terra-dev-site/add",
+}
+`;
+
+exports[`generateNavigationConfig test standard config + additional content 3`] = `
+Object {
+  "/test/cerner-terra-dev-site/add": Object {
+    "label": "Add",
+    "type": "md",
+  },
+  "/test/cerner-terra-dev-site/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/file-outside": Object {
+    "label": "File Outside",
+    "type": "md",
+  },
+}
+`;
+
+exports[`generateNavigationConfig tests additionalSearchDirectories 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "label": "File",
+        "path": "/test/cerner-terra-dev-site/file",
+        "type": "js",
+      },
+      Object {
+        "label": "File Outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
+        "type": "md",
+      },
+    ],
+    "label": "Test",
+    "path": "/test",
+  },
+]
+`;
+
+exports[`generateNavigationConfig tests additionalSearchDirectories 2`] = `
+Object {
+  "/": "/test/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
+}
+`;
+
+exports[`generateNavigationConfig tests additionalSearchDirectories 3`] = `
+Object {
+  "/test/cerner-terra-dev-site/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/file-outside": Object {
+    "label": "File Outside",
+    "type": "md",
+  },
+}
+`;
+
+exports[`generateNavigationConfig tests multiple primary nav items 1`] = `
+Array [
+  Object {
+    "label": "Test",
+    "pageConfig": Object {
+      "label": "File",
+      "path": "/test/cerner-terra-dev-site/file",
+      "type": "js",
+    },
+    "path": "/test",
+  },
+  Object {
+    "label": "Doc",
+    "pageConfig": Object {
+      "label": "File",
+      "path": "/doc/cerner-terra-dev-site/file",
+      "type": "js",
+    },
+    "path": "/doc",
+  },
+]
+`;
+
+exports[`generateNavigationConfig tests multiple primary nav items 2`] = `
+Object {
+  "/": "/test/cerner-terra-dev-site/file",
+  "/doc": "/doc/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
+}
+`;
+
+exports[`generateNavigationConfig tests multiple primary nav items 3`] = `
+Object {
+  "/doc/cerner-terra-dev-site/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+}
+`;
+
+exports[`generateNavigationConfig tests prod mode 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "label": "File",
+        "path": "/test/cerner-terra-dev-site/file",
+        "type": "js",
+      },
+      Object {
+        "label": "File Outside",
+        "path": "/test/cerner-terra-dev-site/file-outside",
+        "type": "md",
+      },
+    ],
+    "label": "Test",
+    "path": "/test",
+  },
+]
+`;
+
+exports[`generateNavigationConfig tests prod mode 2`] = `
+Object {
+  "/": "/test/cerner-terra-dev-site/file",
+  "/test": "/test/cerner-terra-dev-site/file",
+}
+`;
+
+exports[`generateNavigationConfig tests prod mode 3`] = `
+Object {
+  "/test/cerner-terra-dev-site/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/file-outside": Object {
+    "label": "File Outside",
+    "type": "md",
+  },
+}
+`;
+
+exports[`generateNavigationConfig tests sorting 1`] = `
+Array [
+  Object {
+    "children": Array [
+      Object {
+        "label": "First File",
+        "path": "/test/cerner-terra-dev-site/first-file",
+        "type": "js",
+      },
+      Object {
+        "label": "Second File",
+        "path": "/test/cerner-terra-dev-site/second-file",
+        "type": "js",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "label": "File",
+            "path": "/test/cerner-terra-dev-site/dir/file",
+            "type": "js",
+          },
+        ],
+        "label": "Dir",
+      },
+      Object {
+        "label": "A",
+        "path": "/test/cerner-terra-dev-site/a",
+        "type": "js",
+      },
+      Object {
+        "children": Array [
+          Object {
+            "label": "File",
+            "path": "/test/cerner-terra-dev-site/b/file",
+            "type": "js",
+          },
+        ],
+        "label": "B",
+      },
+    ],
+    "label": "Test",
+    "path": "/test",
+  },
+]
+`;
+
+exports[`generateNavigationConfig tests sorting 2`] = `
+Object {
+  "/": "/test/cerner-terra-dev-site/first-file",
+  "/test": "/test/cerner-terra-dev-site/first-file",
+}
+`;
+
+exports[`generateNavigationConfig tests sorting 3`] = `
+Object {
+  "/test/cerner-terra-dev-site/a": Object {
+    "label": "A",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/b/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/dir/file": Object {
+    "label": "File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/first-file": Object {
+    "label": "First File",
+    "type": "js",
+  },
+  "/test/cerner-terra-dev-site/second-file": Object {
+    "label": "Second File",
+    "type": "js",
+  },
+}
+`;

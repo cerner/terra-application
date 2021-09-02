@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.48.0",
+  "version": "1.50.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": ">=8.9.2 <15"
@@ -38,9 +38,9 @@
     "precompile": "rm -rf lib",
     "test": "npm run lint && npm run jest && npm run wdio",
     "jest": "jest --config ../../jest.config.js",
-    "wdio-default": "cd ../.. && npx wdio",
-    "wdio-lowlight": "cd ../.. && THEME=clinical-lowlight-theme npx wdio",
-    "wdio-fusion": "cd ../.. && THEME=orion-fusion-theme npx wdio",
+    "wdio-default": "cd ../.. && terra wdio",
+    "wdio-lowlight": "cd ../.. && terra wdio --themes clinical-lowlight-theme",
+    "wdio-fusion": "cd ../.. && terra wdio --themes orion-fusion-theme",
     "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
@@ -61,7 +61,7 @@
     "terra-base": "^5.0.0",
     "terra-breakpoints": "^2.0.0",
     "terra-button": "^3.42.0",
-    "terra-content-container": "^3.14.0",
+    "terra-content-container": "^3.34.0",
     "terra-disclosure-manager": "^4.27.0",
     "terra-divider": "^3.33.0",
     "terra-icon": "^3.40.0",
@@ -75,7 +75,7 @@
     "terra-status-view": "^4.10.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
-    "terra-toolbar": "^1.20.0",
+    "terra-toolbar": "^1.22.0",
     "terra-visually-hidden-text": "^2.31.0",
     "uuid": "^3.0.0",
     "wicg-inert": "^3.0.2"

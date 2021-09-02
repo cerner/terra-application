@@ -12,8 +12,8 @@ const dispatchCustomEvent = (name, metaData) => {
 
 Terra.describeViewports('TestOverrides', ['small'], () => {
   before(() => browser.url('/raw/tests/terra-application/application-base/private/test-overrides-test'));
-  it('updates the locale of ApplicationBase from `en` to `pt` via custom event', () => {
-    dispatchCustomEvent('applicationBase.testOverride', { locale: 'pt' });
+  it('updates the locale of ApplicationBase from `en` to `pt` and theme to `terra-dev-site-test-theme` via custom event', () => {
+    dispatchCustomEvent('applicationBase.testOverride', { locale: 'pt', theme: 'terra-dev-site-test-theme' });
     Terra.validates.element('test overrides', { selector: '#root' });
   });
 });

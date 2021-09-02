@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.themed.help": "Aide"
+  "terraDevSite.pageHeader.back": "Retour",
+  "terraDevSite.pageActivityOverlayContainer.loading": "Chargement...",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

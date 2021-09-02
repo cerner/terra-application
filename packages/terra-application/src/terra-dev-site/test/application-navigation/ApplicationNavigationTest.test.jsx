@@ -136,25 +136,28 @@ const ApplicationNavigationTest = () => {
   }];
 
   return (
-    // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
-    <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale} themeName={theme.className}>
-      {loggedOut ? <p>Logged Out</p> : (
-        <ApplicationNavigation
-          titleConfig={{
-            title: 'ApplicationNavigation Test',
-          }}
-          navigationItems={navigationItems}
-          activeNavigationItemKey={activeNavItem}
-          onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
-          onSelectLogout={() => {
-            setLoggedOut(true);
-          }}
-          workspace={workspace}
-        >
-          <PageContent key={activeNavItem} title={activeNavItem} />
-        </ApplicationNavigation>
-      )}
-    </ApplicationBase>
+    // eslint-disable-next-line react/forbid-dom-props
+    <div style={{ height: '500px' }}>
+      // Disable prompt unloading since we're not testing that and don't want to prevent sessions ending in firefox if there are problems
+      <ApplicationBase unloadPromptIsDisabled locale={applicationIntl.locale} themeName={theme.className}>
+        {loggedOut ? <p>Logged Out</p> : (
+          <ApplicationNavigation
+            titleConfig={{
+              title: 'ApplicationNavigation Test',
+            }}
+            navigationItems={navigationItems}
+            activeNavigationItemKey={activeNavItem}
+            onSelectNavigationItem={(key) => { setActiveNavItem(key); }}
+            onSelectLogout={() => {
+              setLoggedOut(true);
+            }}
+            workspace={workspace}
+          >
+            <PageContent key={activeNavItem} title={activeNavItem} />
+          </ApplicationNavigation>
+        )}
+      </ApplicationBase>
+    </div>
   );
 };
 

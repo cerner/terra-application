@@ -170,7 +170,7 @@ class DisclosureComponent extends React.Component {
     }
 
     return (
-      <ContentContainer id={identifier} className="nested-component" fill header={<h2 className={cx('header')}>Content Component</h2>}>
+      <ContentContainer id={identifier} className="nested-component" header={<h2 className={cx('header')}>Content Component</h2>}>
         {renderHeaderAdapter && nestedIndex > 0 ? (
           <DisclosureManagerHeaderAdapter
             title={`Disclosure - ${identifier}`}

@@ -1,3 +1,6 @@
 {
-  "Terra.devSite.themed.help": "Hilfe"
+  "terraDevSite.pageHeader.back": "Zurück",
+  "terraDevSite.pageActivityOverlayContainer.loading": "Ladevorgang...",
+  "terraDevSite.pageHeader.moreActions": "More Actions",
+  "terraDevSite.pageHeader.actionsMenu": "{label} Actions"
 }

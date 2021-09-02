@@ -6,6 +6,17 @@
   * Migrated ApplicationNavigation implementation to terra-application
   * Added workspace integration with ApplicationNavigation
 
+## 1.50.0 - (August 31, 2021)
+
+* Changed
+  * Minor dependency version bump
+  * Updated themes to be able to switched dynamically via a dispatched event.
+
+## 1.49.0 - (August 11, 2021)
+
+* Changed
+  * Minor dependency version bump
+
 ## 1.48.0 - (June 15, 2021)
 
 * Changed

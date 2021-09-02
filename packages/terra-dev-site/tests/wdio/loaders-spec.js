@@ -1,40 +1,40 @@
 Terra.describeViewports('loaders', ['huge'], () => {
   it('loads a js codeblock', () => {
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/codeblock-js');
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/codeblock-js');
     Terra.validates.element('js codeblock');
   });
 
   it('loads a json codeblock', () => {
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/codeblock-json');
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/codeblock-json');
     Terra.validates.element('json codeblock');
   });
 
   it('loads a ts codeblock', () => {
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/codeblock-ts');
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/codeblock-ts');
     Terra.validates.element('ts codeblock');
   });
 
   it('loads a scss codeblock', () => {
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/codeblock-scss');
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/codeblock-scss');
     Terra.validates.element('scss codeblock');
   });
 
   it('loads a package', () => {
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/package');
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/package');
     Terra.validates.element('package');
   });
 
   it('loads a props table', () => {
-    const viewport = browser.getWindowSize();
-    browser.setWindowSize(viewport.width, 3000);
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/props-table');
+    const windowSize = browser.getWindowSize();
+    browser.setWindowSize(windowSize.width, 3000);
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/props-table');
     Terra.validates.element('props table');
   });
 
   it('loads an example', () => {
-    const viewport = browser.getWindowSize();
-    browser.setWindowSize(viewport.width, 3000);
-    browser.url('/raw/tests/terra-dev-site/terra-dev-site/loaders/example');
+    const windowSize = browser.getWindowSize();
+    browser.setWindowSize(windowSize.width, 3000);
+    browser.url('/raw/tests/cerner-terra-application-docs/terra-dev-site/loaders/example');
     Terra.validates.element('example');
   });
 
@@ -44,21 +44,25 @@ Terra.describeViewports('loaders', ['huge'], () => {
 
   it('Reveals the examples code', () => {
     $('[class*=ExampleTemplate-module__code-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Reveals the examples code');
   });
 
   it('Hides the examples code again', () => {
     $('[class*=ExampleTemplate-module__code-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Hides the examples code again');
   });
 
   it('Reveals the examples css', () => {
     $('[class*=ExampleTemplate-module__css-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Reveals the examples css');
   });
 
   it('Hides the examples css again', () => {
     $('[class*=ExampleTemplate-module__css-toggle]').click();
+    $('#root').moveTo({ xOffset: 0, yOffset: 0 });
     Terra.validates.element('Hides the examples css again');
   });
 });

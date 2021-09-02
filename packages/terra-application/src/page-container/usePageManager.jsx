@@ -27,7 +27,7 @@ const usePageManager = (rootContainerRef) => {
       parentPageId,
       label,
       metaData,
-    }) => {
+    }, setIsActive) => {
       pageRegisterRef.current[pageId] = {
         pageId,
         portalElement,
@@ -36,6 +36,7 @@ const usePageManager = (rootContainerRef) => {
         metaData,
         overflowData: pageRegisterRef.current[pageId]
           ? pageRegisterRef.current[pageId].overflowData : undefined,
+        setIsActive,
       };
 
       setActivePageArray((activePages) => {
@@ -155,12 +156,14 @@ const usePageManager = (rootContainerRef) => {
         // container, its scroll positions are cached and it is removed.
         pageData.overflowData = getPersistentScrollMap(pageData.portalElement);
         rootContainerRef.current.removeChild(pageData.portalElement);
+        pageData.setIsActive(false);
       } else if (isTopPage && !rootContainerRef.current.contains(pageData.portalElement)) {
         // If the Page is the top Page, but it is not yet rendered within the
         // container, it is added to the container and any cached scroll
         // positions are reapplied.
         rootContainerRef.current.appendChild(pageData.portalElement);
         applyScrollData(pageData.overflowData, pageData.portalElement);
+        pageData.setIsActive(true);
       }
 
       // Remove the current Page data from the dangling data set, as we know

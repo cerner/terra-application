@@ -35,6 +35,7 @@ const usePagePortal = ({
   const pageIdRef = React.useRef(uuidv4());
   const portalElementRef = React.useRef(createPortalElement());
   const unregisterPageRef = React.useRef();
+  const [isActive, setIsActive] = React.useState();
 
   if (!pageManager) {
     throw new Error(`[terra-application] Page ${label} cannot be rendered outside of a PageContainer.`);
@@ -47,6 +48,8 @@ const usePagePortal = ({
       parentPageId,
       label,
       metaData,
+    }, (isActiveParam) => {
+      setIsActive(isActiveParam);
     });
   }, [pageManager, parentPageId, label, metaData]);
 
@@ -56,17 +59,16 @@ const usePagePortal = ({
     }
   }, []);
 
-  const pagePortalComponentRef = React.useRef(({ children }) => (
-    ReactDOM.createPortal((
-      <PageIdentifierContext.Provider value={pageIdRef.current}>
-        {children}
-      </PageIdentifierContext.Provider>
-    ), portalElementRef.current)
-  ));
+  const pagePortalComponentRef = React.useRef(({ children }) => ReactDOM.createPortal((
+    <PageIdentifierContext.Provider value={pageIdRef.current}>
+      {children}
+    </PageIdentifierContext.Provider>
+  ), portalElementRef.current));
 
   return {
     pageId: pageIdRef.current,
     PagePortal: pagePortalComponentRef.current,
+    isActive,
   };
 };
 

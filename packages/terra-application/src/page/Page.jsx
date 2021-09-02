@@ -11,6 +11,7 @@ import PageHeader from './PageHeader';
 import PageActions from './PageActions';
 import PageAction from './PageAction';
 import PageToolbar from './PageToolbar';
+import PageContext from './PageContext';
 
 import styles from './Page.module.scss';
 
@@ -45,6 +46,12 @@ const propTypes = {
    */
   onRequestClose: PropTypes.func,
   /**
+   * A function to be executed upon a change in Page activation state. A Page is
+   * active whenever it is mounted to the DOM. If it not not present on the DOM
+   * due to a nested Page disclosure, it is considered inactive.
+   */
+  onActiveStateChange: PropTypes.func,
+  /**
    * When true, the Page will not prompt the user prior to executing
    * `onRequestClose` in the presence of rendered UnsavedChangesPrompts.
    * Use this prop to customize UnsavedChangesPrompt handling prior to Page
@@ -63,6 +70,7 @@ const Page = ({
   actions,
   toolbar,
   onRequestClose,
+  onActiveStateChange,
   dangerouslyDisableUnsavedChangesPromptHandling,
   children,
 }) => {
@@ -89,12 +97,22 @@ const Page = ({
 
   // The usePagePortal hook is used to generate the PagePortal component that
   // will render the Page content.
-  const { PagePortal, pageId } = usePagePortal({
+  const { PagePortal, pageId, isActive } = usePagePortal({
     label,
     metaData,
   });
 
-  console.log(`render Page: ${pageId}`);
+  const pageContextValue = React.useMemo(() => ({
+    label,
+    metaData,
+    isActive,
+  }), [label, metaData, isActive]);
+
+  React.useLayoutEffect(() => {
+    if (onActiveStateChange) {
+      onActiveStateChange(isActive);
+    }
+  }, [isActive, onActiveStateChange]);
 
   // If onRequestClose is provided, we check for unsaved changes prior to
   // executing the callback (unless explicitly disabled).
@@ -115,26 +133,28 @@ const Page = ({
   );
 
   return (
-    <PagePortal>
-      <div className={pageClassNames}>
-        <div className={cx('header')}>
-          <PageHeader
-            id={pageId}
-            onSelectBack={handleOnSelectBack}
-            label={label}
-            actions={actions}
-            toolbar={toolbar}
-            NotificationBanners={NotificationBanners}
-          />
+    <PagePortal label={label} isActive={isActive}>
+      <PageContext.Provider value={pageContextValue}>
+        <div className={pageClassNames}>
+          <div className={cx('header')}>
+            <PageHeader
+              id={pageId}
+              onSelectBack={handleOnSelectBack}
+              label={label}
+              actions={actions}
+              toolbar={toolbar}
+              NotificationBanners={NotificationBanners}
+            />
+          </div>
+          <div className={cx('content')}>
+            <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
+              <NotificationBannerProvider>
+                {children}
+              </NotificationBannerProvider>
+            </UnsavedChangesPromptCheckpoint>
+          </div>
         </div>
-        <div className={cx('content')}>
-          <UnsavedChangesPromptCheckpoint ref={unsavedChangesCheckpointRef}>
-            <NotificationBannerProvider>
-              {children}
-            </NotificationBannerProvider>
-          </UnsavedChangesPromptCheckpoint>
-        </div>
-      </div>
+      </PageContext.Provider>
     </PagePortal>
   );
 };

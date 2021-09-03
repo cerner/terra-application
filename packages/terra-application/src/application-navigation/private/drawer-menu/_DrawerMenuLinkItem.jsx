@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
 import Count from './_DrawerCount';
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
@@ -38,26 +39,30 @@ const propTypes = {
 
 const DrawerMenuLinkItem = ({
   icon, text, id, notificationCount, isSelected, onSelect,
-}) => (
-  <li>
-    <div
-      id={id || undefined}
-      role="link"
-      aria-current={isSelected}
-      tabIndex="0"
-      className={cx('item', { 'is-selected': isSelected }, 'has-border')}
-      onClick={onSelect}
-      onKeyDown={generateKeyDownSelection(onSelect)}
-      onBlur={enableFocusStyles}
-      onMouseDown={disableFocusStyles}
-      data-focus-styles-enabled
-    >
-      {icon ? <div className={cx('icon')}>{icon}</div> : null}
-      <div className={cx('text')}>{text}</div>
-      {notificationCount > 0 && <Count value={notificationCount} />}
-    </div>
-  </li>
-);
+}) => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <li>
+      <div
+        id={id || undefined}
+        role="link"
+        aria-current={isSelected}
+        tabIndex="0"
+        className={cx('item', theme.className, { 'is-selected': isSelected }, 'has-border')}
+        onClick={onSelect}
+        onKeyDown={generateKeyDownSelection(onSelect)}
+        onBlur={enableFocusStyles}
+        onMouseDown={disableFocusStyles}
+        data-focus-styles-enabled
+      >
+        {icon ? <div className={cx('icon')}>{icon}</div> : null}
+        <div className={cx('text')}>{text}</div>
+        {notificationCount > 0 && <Count value={notificationCount} />}
+      </div>
+    </li>
+  );
+};
 
 DrawerMenuLinkItem.propTypes = propTypes;
 

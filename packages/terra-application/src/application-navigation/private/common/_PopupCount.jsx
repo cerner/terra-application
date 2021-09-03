@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import { useAnimatedCount } from '../utils/helpers';
 
 import styles from './PopupCount.module.scss';
@@ -20,6 +21,7 @@ const propTypes = {
 };
 
 const PopupCount = ({ isHidden, value }) => {
+  const theme = React.useContext(ThemeContext);
   const countRef = useRef();
 
   useAnimatedCount(countRef, value);
@@ -34,7 +36,7 @@ const PopupCount = ({ isHidden, value }) => {
     <div
       {...attrSpread}
       ref={countRef}
-      className={cx('popup-count', { 'is-hidden': isHidden })}
+      className={cx('popup-count', theme.className, { 'is-hidden': isHidden })}
     >
       {validatedValue}
     </div>

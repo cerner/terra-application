@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
+import ThemeContext from 'terra-theme-context';
 
 import Tabs from '../tabs/_Tabs';
 import Extensions from '../extensions/_Extensions';
@@ -135,6 +136,8 @@ const Header = ({
   onSelectLogout,
   skipToWorkspaceAction,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   function renderTitle() {
     if (!titleConfig) {
       return null;
@@ -216,7 +219,7 @@ const Header = ({
   }
 
   return (
-    <header role="banner" className={cx('header')}>
+    <header role="banner" className={cx('header', theme.className)}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>

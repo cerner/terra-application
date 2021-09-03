@@ -4,6 +4,8 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import IconCheckmark from 'terra-icon/lib/icon/IconCheckmark';
+import ThemeContext from 'terra-theme-context';
+
 import {
   KEY_SPACE,
   KEY_RETURN,
@@ -60,6 +62,7 @@ const propTypes = {
 const PopupMenuListItem = ({
   icon, text, id, notificationCount, onSelect, showSelections, isSelected, loopFocus, parentRole, ...customProps
 }) => {
+  const theme = React.useContext(ThemeContext);
   const itemRef = useRef();
 
   function nextFocus(event, sibling) {
@@ -104,7 +107,7 @@ const PopupMenuListItem = ({
       {...ariaSpread}
       {...customProps}
       tabIndex="0"
-      className={cx('item')}
+      className={cx('item', theme.className)}
       onClick={onSelect}
       onKeyDown={handleKeyDown}
       onBlur={enableFocusStyles}

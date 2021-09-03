@@ -4,6 +4,7 @@ import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
+import ThemeContext from 'terra-theme-context';
 
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ResizeHandle from './ResizeHandle';
@@ -111,6 +112,7 @@ const WorkspaceLayout = ({
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
   const applicationIntl = React.useContext(ApplicationIntlContext);
+  const theme = React.useContext(ThemeContext);
 
   const layoutContainerRef = React.useRef();
   const layoutBodyRef = React.useRef();
@@ -410,9 +412,14 @@ const WorkspaceLayout = ({
           ref={workspacePanelRef}
           className={cx('workspace-body', { visible: workspaceIsVisible, overlay: hasOverlayWorkspace })}
           style={workspaceSize.scale !== undefined ? { flexGrow: `${workspaceSize.scale}` } : null} // eslint-disable-line react/forbid-dom-props
-          // tabIndex="-1"
         >
-          <h1 id={`${id}-tyler-test`} tabIndex="-1" className={cx('visually-hidden-heading')} ref={workspaceHeadingRef}>Workspace</h1>
+          <h1
+            tabIndex="-1"
+            className={cx('visually-hidden-heading')}
+            ref={workspaceHeadingRef}
+          >
+            {applicationIntl.formatMessage({ id: 'terraApplication.workspace.workspaceLabel' })}
+          </h1>
           <div
             className={cx('workspace-inner')}
           >
@@ -427,7 +434,7 @@ const WorkspaceLayout = ({
   return (
     <div
       id={id}
-      className={cx('layout-container', { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
+      className={cx('layout-container', theme.className, { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
       ref={layoutContainerRef}
     >
       <div

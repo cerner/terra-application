@@ -5,6 +5,7 @@ import { injectIntl } from 'react-intl';
 import Avatar, { Generic } from 'terra-avatar';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
 import IconRollup from 'terra-icon/lib/icon/IconRollup';
+import ThemeContext from 'terra-theme-context';
 
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
 import { userConfigPropType } from '../utils/propTypes';
@@ -36,6 +37,8 @@ const propTypes = {
 const UtilityMenuHeaderButton = ({
   userConfig, onClick, popupAnchorRef, intl,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   let ariaLabel;
   let content;
   if (userConfig) {
@@ -63,7 +66,7 @@ const UtilityMenuHeaderButton = ({
     <div
       role="button"
       tabIndex="0"
-      className={cx('utility-button', { 'no-user': !userConfig })}
+      className={cx('utility-button', theme.className, { 'no-user': !userConfig })}
       onClick={onClick}
       onKeyDown={generateKeyDownSelection(onClick)}
       onBlur={enableFocusStyles}

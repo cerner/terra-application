@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
+import ThemeContext from 'terra-theme-context';
+
 import { useAnimatedCount } from '../utils/helpers';
 
 import styles from './TabCount.module.scss';
@@ -25,6 +27,7 @@ const propTypes = {
 };
 
 const TabCount = ({ value, isRollup, intl }) => {
+  const theme = React.useContext(ThemeContext);
   const countRef = useRef();
 
   useAnimatedCount(countRef, value);
@@ -41,6 +44,7 @@ const TabCount = ({ value, isRollup, intl }) => {
       ref={countRef}
       className={cx(
         'count',
+        theme.className,
         { 'is-rollup': isRollup },
       )}
     >

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-
+import ThemeContext from 'terra-theme-context';
 import { enableFocusStyles, disableFocusStyles } from '../utils/helpers';
 
 import styles from './DrawerMenuFooterButton.module.scss';
@@ -25,20 +25,24 @@ const propTypes = {
 
 const DrawerMenuFooterButton = ({
   text, id, onClick, ...customProps
-}) => (
-  <button
-    {...customProps}
-    id={id || undefined}
-    className={cx('drawer-menu-footer-button')}
-    type="button"
-    onClick={onClick}
-    onBlur={enableFocusStyles}
-    onMouseDown={disableFocusStyles}
-    data-focus-styles-enabled
-  >
-    {text}
-  </button>
-);
+}) => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <button
+      {...customProps}
+      id={id || undefined}
+      className={cx('drawer-menu-footer-button', theme.className)}
+      type="button"
+      onClick={onClick}
+      onBlur={enableFocusStyles}
+      onMouseDown={disableFocusStyles}
+      data-focus-styles-enabled
+    >
+      {text}
+    </button>
+  );
+};
 
 DrawerMenuFooterButton.propTypes = propTypes;
 

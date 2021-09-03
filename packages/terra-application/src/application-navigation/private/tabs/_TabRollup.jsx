@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import IconCaretDown from 'terra-icon/lib/icon/IconCaretDown';
 import { injectIntl } from 'react-intl';
+import ThemeContext from 'terra-theme-context';
 
 import TabCount from './_TabCount';
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
@@ -69,6 +70,8 @@ const TabRollup = ({
   isPulsed,
   intl,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   let ariaLabel = intl.formatMessage({ id: 'terraApplication.navigation.tabs.rollupButtonDescription' });
   if (hasChildNotifications) {
     ariaLabel = `${ariaLabel} ${intl.formatMessage({ id: 'terraApplication.navigation.notifications.new' })}`;
@@ -81,6 +84,7 @@ const TabRollup = ({
       tabIndex="0"
       className={cx(
         'tab-rollup',
+        theme.className,
         { 'has-count': hasCount },
       )}
       onClick={onTabSelect}

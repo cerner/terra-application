@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
 import IconMenu from 'terra-icon/lib/icon/IconMenu';
+import ThemeContext from 'terra-theme-context';
+
 import ToggleCount from './_ToggleCount';
 import Extensions from '../extensions/_Extensions';
 import {
@@ -175,6 +177,8 @@ const CompactHeader = ({
   userConfig,
   skipToWorkspaceAction,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   const [navigationIsOpen, setNavigationIsOpen] = useState(false);
   const [utilitiesIsOpen, setUtilitiesIsOpen] = useState(false);
   const previousNotificationsRef = React.useRef();
@@ -351,7 +355,7 @@ const CompactHeader = ({
   }
 
   return (
-    <header role="banner" className={cx('compact-header')}>
+    <header role="banner" className={cx('compact-header', theme.className)}>
       <button type="button" role="link" onClick={onSelectSkipToContent} className={cx('skip-content-button')}>
         {intl.formatMessage({ id: 'terraApplication.navigation.header.skipToContentTitle' })}
       </button>

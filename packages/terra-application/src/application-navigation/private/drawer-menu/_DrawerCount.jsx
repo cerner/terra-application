@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 import { useAnimatedCount } from '../utils/helpers';
 
 import styles from './DrawerCount.module.scss';
@@ -15,6 +16,7 @@ const propTypes = {
 };
 
 const DrawerCount = ({ value }) => {
+  const theme = React.useContext(ThemeContext);
   const countRef = useRef();
 
   useAnimatedCount(countRef, value);
@@ -27,7 +29,7 @@ const DrawerCount = ({ value }) => {
   return (
     <div
       ref={countRef}
-      className={cx('count')}
+      className={cx('count', theme.className)}
     >
       {validatedValue}
     </div>

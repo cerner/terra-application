@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
+
 import { useAnimatedCount } from '../utils/helpers';
 
 import styles from './ToggleCount.module.scss';
@@ -15,6 +17,7 @@ const propTypes = {
 };
 
 const ToggleCount = ({ value }) => {
+  const theme = React.useContext(ThemeContext);
   const countRef = useRef();
 
   useAnimatedCount(countRef, value);
@@ -22,7 +25,7 @@ const ToggleCount = ({ value }) => {
   return (
     <div
       ref={countRef}
-      className={cx('count')}
+      className={cx('count', theme.className)}
     />
   );
 };

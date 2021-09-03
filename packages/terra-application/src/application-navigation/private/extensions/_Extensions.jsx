@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
 import Popup from 'terra-popup';
+import ThemeContext from 'terra-theme-context';
 
 import PopupMenu from '../common/_PopupMenu';
 import { extensionItemsPropType } from '../utils/propTypes';
@@ -56,6 +57,7 @@ const Extensions = ({
   onSelect,
   intl,
 }) => {
+  const theme = React.useContext(ThemeContext);
   const [popupIsOpen, setPopupIsOpen] = useState(false);
 
   const extensionRollupRef = useRef();
@@ -137,7 +139,7 @@ const Extensions = ({
 
   return (
     <React.Fragment>
-      <div className={cx('extensions-row')}>
+      <div className={cx('extensions-row', theme.className)}>
         {visibleExtensions.map(extension => (
           <Extension
             id={id && extensionItemId(id, extension.key)}

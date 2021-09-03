@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
 import TabCount from './_TabCount';
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
@@ -59,6 +60,8 @@ const Tab = ({
   notificationCount,
   onTabSelect,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   function renderTabContent() {
     if (render) {
       return render({
@@ -89,6 +92,7 @@ const Tab = ({
       tabIndex="0"
       className={cx(
         'tab',
+        theme.className,
         { 'is-disabled': isActive },
         { 'is-placeholder': !render && isPlaceholder },
         { 'has-count': !render && hasCount },

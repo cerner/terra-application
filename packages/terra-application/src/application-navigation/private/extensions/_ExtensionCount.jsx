@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
+
 import { useAnimatedCount } from '../utils/helpers';
 
 import styles from './ExtensionCount.module.scss';
@@ -19,6 +21,7 @@ const propTypes = {
 };
 
 const ExtensionCount = ({ value, isRollup, ...customProps }) => {
+  const theme = React.useContext(ThemeContext);
   const countRef = useRef();
 
   useAnimatedCount(countRef, value);
@@ -35,6 +38,7 @@ const ExtensionCount = ({ value, isRollup, ...customProps }) => {
       ref={countRef}
       className={cx(
         'count',
+        theme.className,
         { 'is-rollup': isRollup },
         customProps.className,
       )}

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { injectIntl } from 'react-intl';
 import IconExtensions from 'terra-icon/lib/icon/IconExtensions';
+import ThemeContext from 'terra-theme-context';
 
 import ExtensionCount from './_ExtensionCount';
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
@@ -46,30 +47,34 @@ const ExtensionRollup = ({
   onSelect,
   extensionRef,
   intl,
-}) => (
-  <div
-    role="button"
-    tabIndex="0"
-    className={cx('extension-rollup')}
-    onClick={onSelect}
-    onKeyDown={generateKeyDownSelection(onSelect)}
-    ref={extensionRef}
-    onBlur={enableFocusStyles}
-    onMouseDown={disableFocusStyles}
-    title={intl.formatMessage({ id: 'terraApplication.navigation.extensions.rollupButtonDescription' })}
-    aria-label={intl.formatMessage({ id: 'terraApplication.navigation.extensions.rollupButtonDescription' })}
-    aria-haspopup
-    data-focus-styles-enabled
-    data-application-extension-rollup
-  >
-    <div className={cx('extension-rollup-inner')}>
-      <div className={cx('extension-rollup-image')}>
-        <IconExtensions />
+}) => {
+  const theme = React.useContext(ThemeContext);
+
+  return (
+    <div
+      role="button"
+      tabIndex="0"
+      className={cx('extension-rollup', theme.className)}
+      onClick={onSelect}
+      onKeyDown={generateKeyDownSelection(onSelect)}
+      ref={extensionRef}
+      onBlur={enableFocusStyles}
+      onMouseDown={disableFocusStyles}
+      title={intl.formatMessage({ id: 'terraApplication.navigation.extensions.rollupButtonDescription' })}
+      aria-label={intl.formatMessage({ id: 'terraApplication.navigation.extensions.rollupButtonDescription' })}
+      aria-haspopup
+      data-focus-styles-enabled
+      data-application-extension-rollup
+    >
+      <div className={cx('extension-rollup-inner')}>
+        <div className={cx('extension-rollup-image')}>
+          <IconExtensions />
+        </div>
+        {hasChildNotifications && <ExtensionCount isRollup className={cx('extension-rollup-count')} value={isPulsed ? 1 : 0} />}
       </div>
-      {hasChildNotifications && <ExtensionCount isRollup className={cx('extension-rollup-count')} value={isPulsed ? 1 : 0} />}
     </div>
-  </div>
-);
+  );
+};
 
 ExtensionRollup.propTypes = propTypes;
 ExtensionRollup.defaultProps = defaultProps;

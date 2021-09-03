@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+import ThemeContext from 'terra-theme-context';
 
 import ExtensionCount from './_ExtensionCount';
 import { enableFocusStyles, disableFocusStyles, generateKeyDownSelection } from '../utils/helpers';
@@ -43,6 +44,8 @@ const Extension = ({
   id,
   onSelect,
 }) => {
+  const theme = React.useContext(ThemeContext);
+
   let validatedValue = notificationCount;
   if (notificationCount > 99) {
     validatedValue = '99+';
@@ -53,7 +56,7 @@ const Extension = ({
       id={id}
       role="button"
       tabIndex="0"
-      className={cx('extension')}
+      className={cx('extension', theme.className)}
       onClick={onSelect}
       onKeyDown={generateKeyDownSelection(onSelect)}
       onBlur={enableFocusStyles}

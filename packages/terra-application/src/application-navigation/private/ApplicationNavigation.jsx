@@ -162,13 +162,13 @@ const ApplicationNavigation = ({
   // Use dot notation temporarily until hooks + enzyme support for userContext
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
 
-  const updateDrawerIsOpen = useCallback((value) => {
-    drawerMenuIsOpenRef.current = value;
-    setDrawerMenuIsOpen(value);
-    if (onDrawerMenuStateChange) {
-      onDrawerMenuStateChange(value);
-    }
-  }, [onDrawerMenuStateChange]);
+  // const setDrawerMenuIsOpen = useCallback((value) => {
+  //   drawerMenuIsOpenRef.current = value;
+  //   setDrawerMenuIsOpen(value);
+  //   if (onDrawerMenuStateChange) {
+  //     onDrawerMenuStateChange(value);
+  //   }
+  // }, [onDrawerMenuStateChange]);
 
   /**
    * Given a callback function, generateMenuClosingCallback will return a new function
@@ -182,7 +182,7 @@ const ApplicationNavigation = ({
       }
 
       closeMenuCallbackRef.current = () => { wrappedFunction(...args); };
-      updateDrawerIsOpen(false);
+      setDrawerMenuIsOpen(false);
       setPopupMenuIsOpen(false);
     };
   }
@@ -302,7 +302,7 @@ const ApplicationNavigation = ({
         extensionItems={extensionItems}
         onSelectExtensionItem={onSelectExtensionItem}
         navigationItems={navigationItems}
-        onSelectMenuButton={() => updateDrawerIsOpen(true)}
+        onSelectMenuButton={() => setDrawerMenuIsOpen(true)}
         onSelectSkipToContent={focusMainContentCallback}
         notifications={notifications}
         isDrawerMenuOpen={drawerMenuIsOpen}
@@ -366,7 +366,7 @@ const ApplicationNavigation = ({
 
   useEffect(() => {
     const forceCloseMenu = () => {
-      updateDrawerIsOpen(false);
+      setDrawerMenuIsOpen(false);
       setPopupMenuIsOpen(false);
     };
 
@@ -375,7 +375,7 @@ const ApplicationNavigation = ({
     return () => {
       window.removeEventListener(closeMenuEvent, forceCloseMenu);
     };
-  }, [updateDrawerIsOpen]);
+  }, [setDrawerMenuIsOpen]);
 
   useLayoutEffect(() => {
     if (activeNavigationItemKey !== renderedNavItemKeyRef.current) {
@@ -429,12 +429,25 @@ const ApplicationNavigation = ({
   }, [contentLayoutRef]);
 
   /**
+   * This effect is responsible for executing the provided onDrawerMenuStateChange
+   * callback when the drawer's presentation state changes.
+   */
+  useLayoutEffect(() => {
+    if (drawerMenuIsOpen !== drawerMenuIsOpenRef.current) {
+      drawerMenuIsOpenRef.current = drawerMenuIsOpen;
+      if (onDrawerMenuStateChange) {
+        onDrawerMenuStateChange(drawerMenuIsOpen);
+      }
+    }
+  }, [onDrawerMenuStateChange, drawerMenuIsOpen]);
+
+  /**
    * If the ApplicationNavigation is rendering at non-compact breakpoints, and the drawer menu is still
    * open, then it is closed here. This will trigger an new update immediately after the completion of
    * the current render.
    */
   if (drawerMenuIsOpen && !shouldRenderCompactNavigation(activeBreakpoint)) {
-    updateDrawerIsOpen(false);
+    setDrawerMenuIsOpen(false);
   }
 
   /**
@@ -460,7 +473,7 @@ const ApplicationNavigation = ({
   const handleRequestClose = (event) => {
     event.preventDefault();
     event.stopPropagation();
-    updateDrawerIsOpen(false);
+    setDrawerMenuIsOpen(false);
   };
   const theme = React.useContext(ThemeContext);
   const appNavClassNames = cx('application-navigation', theme.className);

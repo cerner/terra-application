@@ -8,11 +8,10 @@ const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html')
 
 const devSiteConfig = (env = {}, argv = { p: false }) => ({
   // temporary fix to enable live reloading.
-  target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',
+  target: argv.p || argv.mode === 'production' ? 'browserslist' : 'browserslist',
   plugins: [
     new TerraDevSite({
       defaultLocale: env.defaultLocale,
-      excludeChunks: ['terra-application-test/index'],
     }),
     new TerraDevSite({
       pathPrefix: 'extended',
@@ -78,7 +77,6 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
           modalFilePath: path.resolve(process.cwd(), 'tests', 'terra-dev-site', 'test-extension', 'TestExtension'),
         },
       ],
-      excludeChunks: ['terra-application-test/index'],
     }),
   ],
   resolve: {

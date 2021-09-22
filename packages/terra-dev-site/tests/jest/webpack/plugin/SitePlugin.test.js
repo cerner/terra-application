@@ -29,7 +29,8 @@ describe('SitePlugin', () => {
     expect(plug.entry).toEqual(siteConfig.entry);
     expect(plug.siteConfig).toEqual(config);
     expect(plug.entryKey).toEqual('pathPrefix/index');
-    expect(plug.resourceQuery).toEqual('?terra-entry-pathPrefix');
+    expect(plug.entryResourceQuery).toEqual('?terra-entry-pathPrefix');
+    expect(plug.bootstrapResourceQuery).toEqual('?terra-bootstrap-pathPrefix');
     expect(plug.htmlFileName).toEqual('pathPrefix/index.html');
     expect(plug.url).toEqual('/pathPrefix/');
 
@@ -126,7 +127,8 @@ describe('SitePlugin', () => {
     expect(plug.siteConfig).toEqual(config);
     expect(plug.entry).toEqual(siteConfig.entry);
     expect(plug.entryKey).toEqual('index');
-    expect(plug.resourceQuery).toEqual('?terra-entry');
+    expect(plug.entryResourceQuery).toEqual('?terra-entry');
+    expect(plug.bootstrapResourceQuery).toEqual('?terra-bootstrap');
     expect(plug.htmlFileName).toEqual('index.html');
     expect(plug.url).toEqual('/');
 

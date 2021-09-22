@@ -1,3 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`devSiteEntry It sets up the query param 1`] = `"import('./bootstrap.template?bootstrapQuery');"`;
+exports[`devSiteEntry It sets up the query param 1`] = `
+"import('./bootstrap.template?bootstrapQuery');
+"
+`;

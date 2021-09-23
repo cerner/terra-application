@@ -8,7 +8,7 @@ const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html')
 
 const devSiteConfig = (env = {}, argv = { p: false }) => ({
   // temporary fix to enable live reloading.
-  target: argv.p || argv.mode === 'production' ? 'browserslist' : 'browserslist',
+  target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',
   plugins: [
     new TerraDevSite({
       defaultLocale: env.defaultLocale,

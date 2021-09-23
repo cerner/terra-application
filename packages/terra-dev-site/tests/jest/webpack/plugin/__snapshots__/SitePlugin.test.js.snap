@@ -32,7 +32,7 @@ Array [
           Object {
             "issuer": Array [
               /\\\\\\.mdx\\?\\$/,
-              /entry\\\\\\.template\\$/,
+              /bootstrap\\\\\\.template\\$/,
             ],
             "use": Array [
               Object {
@@ -147,7 +147,7 @@ Array [
         ],
       },
       Object {
-        "resourceQuery": /\\\\\\?terra-entry/,
+        "resourceQuery": /\\\\\\?terra-bootstrap/,
         "use": Array [
           Object {
             "loader": "babel-loader",
@@ -156,10 +156,10 @@ Array [
             },
           },
           Object {
-            "loader": "devSiteEntry",
+            "loader": "devSiteBootstrap",
             "options": Object {
-              "entryLoaderData": Object {
-                "?terra-entry-pathPrefix": Object {
+              "bootstrapLoaderData": Object {
+                "?terra-bootstrap-pathPrefix": Object {
                   "basename": "/pathPrefix",
                   "contentDirectory": undefined,
                   "entryPath": "entry",
@@ -180,6 +180,25 @@ Array [
                   },
                   "sites": Array [],
                 },
+              },
+            },
+          },
+        ],
+      },
+      Object {
+        "resourceQuery": /\\\\\\?terra-entry/,
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "devSiteEntry",
+            "options": Object {
+              "entryMapping": Object {
+                "?terra-entry-pathPrefix": "?terra-bootstrap-pathPrefix",
               },
             },
           },

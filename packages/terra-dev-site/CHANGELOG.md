@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.0 - (September 28, 2021)
+
 * Changed
   * Bootstrap terra-dev-site entry to allow for optimized chunking.
 

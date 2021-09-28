@@ -6,6 +6,7 @@
 
 * Changed
   * Minor dependency version bump
+  * Remove references to github user content.
 
 ## 2.1.0 - (September 1, 2021)
 

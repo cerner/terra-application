@@ -2,13 +2,11 @@
 
 ## Unreleased
 
-* Changed
-  * Remove references to github user content.
-
 ## 2.2.0 - (September 28, 2021)
 
 * Changed
   * Minor dependency version bump
+  * Remove references to github user content.
 
 ## 2.1.0 - (September 1, 2021)
 

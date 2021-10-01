@@ -92,6 +92,27 @@ const DemoAppNavigation = () => {
         label="Item 2"
         render={() => <WorkspaceContent2 />}
       />
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-3"
+        label="Item 3"
+        render={() => <WorkspaceContent2 />}
+      />
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-4"
+        label="Item 4"
+        render={() => <WorkspaceContent2 />}
+      />
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-5"
+        label="Item 5"
+        render={() => <WorkspaceContent2 />}
+      />
+      <ApplicationNavigation.Workspace.Item
+        itemKey="item-6"
+        label="Item 6"
+        render={() => <WorkspaceContent2 />}
+      />
+
     </ApplicationNavigation.Workspace>
   );
 

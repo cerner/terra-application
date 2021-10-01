@@ -11,7 +11,7 @@ const actionShape = PropTypes.shape({
   label: PropTypes.string.isRequired,
   icon: PropTypes.elementType,
   onSelect: PropTypes.func,
-  isToggleActive: PropTypes.bool, // TODO validate need, i don't think it's necessary anymore
+  isToggleActive: PropTypes.bool,
 });
 
 const contextShape = {

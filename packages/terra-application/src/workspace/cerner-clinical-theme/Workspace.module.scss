@@ -1,6 +1,6 @@
 :local {
-  .clinical-lowlight-theme {
-    --terra-application-workspace-button-header-background-image: linear-gradient(to bottom, #1e2427, #1c1f21);
+  .cerner-clinical-theme {
+    --terra-application-workspace-button-header-background-image: linear-gradient(to bottom, #f2f7ff, #d3e5ff);
     --terra-application-workspace-button-header-border-bottom: 0;
     --terra-application-workspace-button-header-min-height: 48px;
     --terra-application-workspace-button-header-padding-bottom: 0.7143rem;
@@ -10,12 +10,12 @@
     --terra-application-workspace-tab-header-width: 3rem;
     --terra-application-workspace-tab-header-has-dismiss-margin-left: 2.286rem;
     --terra-application-workspace-tab-header-has-dismiss-width: 4.571rem;
-    --terra-application-workspace-body-shadow-container-height: 0;
+    --terra-application-workspace-body-shadow-container-height: 100%;
     --terra-application-workspace-body-shadow-container-padding-top: 0;
-    --terra-application-workspace-body-shadow-container-body-shadow-border-radius: 0;
-    --terra-application-workspace-body-shadow-container-body-shadow-box-shadow: none;
-    --terra-application-workspace-workspace-container-background: linear-gradient(to bottom, #181b1d, #0e1011);
-    --terra-application-workspace-workspace-container-box-shadow: inset 1px 0 0 0 #2d3539, inset 2px 0 0 0 #08090a;
+    --terra-application-workspace-body-shadow-container-body-shadow-border-radius: 3px;
+    --terra-application-workspace-body-shadow-container-body-shadow-box-shadow: 0 1px 2px 0 rgba(17, 22, 25, 0.5);
+    --terra-application-workspace-workspace-container-background: linear-gradient(to bottom, rgba(89, 159, 253, 0.2), rgba(89, 159, 253, 0.3));
+    --terra-application-workspace-workspace-container-box-shadow: inset 1px 0 0 0 #96c2fe, inset 2px 0 0 0 #f2f7ff;
     --terra-application-workspace-workspace-container-padding-bottom: 7px;
     --terra-application-workspace-workspace-container-padding-left: 7px;
     --terra-application-workspace-workspace-container-padding-right: 5px;

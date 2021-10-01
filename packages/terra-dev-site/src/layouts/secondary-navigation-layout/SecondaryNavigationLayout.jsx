@@ -159,7 +159,7 @@ const SecondaryNavigationLayout = ({
     if (hasSidebar && hasOverlaySidebar) {
       newStartActions = [...newStartActions, {
         key: 'secondary-navigation-layout-toggle-navigation-panel',
-        label: `Toggle Navigation Panel ${sideNavOverlayIsVisible ? 'Closed' : 'Open'}`, // TODO intl and verify a11y
+        label: `Toggle Navigation Panel ${sideNavOverlayIsVisible ? 'Closed' : 'Open'}`,
         icon: IconLeftPane,
         onSelect: () => {
           setSideNavOverlayIsVisible((state) => !state);

@@ -1,7 +1,6 @@
 :local {
   .cerner-clinical-theme {
-    // TODO clinical theme
-    --terra-application-resize-handle-hover-background-color: rgba(34, 42, 46, 0.6);
-    --terra-application-resize-handle-dragging-background-color: rgba(34, 42, 46, 1);
+    --terra-application-resize-handle-hover-background-color: rgba(42, 75, 119, 0.6);
+    --terra-application-resize-handle-dragging-background-color: rgba(42, 75, 119, 0.6); // TODO validate this is the same
   }
 }

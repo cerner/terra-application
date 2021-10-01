@@ -31,9 +31,9 @@
     height: 100%;
     overflow: hidden;
 
-    .workspace-visible.workspace-split & {
-      flex: 1 1 auto;
-    }
+    // .visible.workspace-split & { // TODO what the heck is this
+    //   flex: 1 1 auto;
+    // }
   }
 
   .workspace-body {
@@ -45,17 +45,18 @@
     width: 100%;
     z-index: 2;
 
-    .workspace-visible.workspace-split & {
-      flex: 0 0 auto;
-      width: 320px; // fix small width to 320
-    }
-
     &.visible {
       display: block;
     }
 
+    .visible.workspace-split & {
+      flex: 0 0 auto;
+      width: 320px; // fix small width to 320
+    }
+
     &.overlay {
       bottom: 0;
+      box-shadow: var(--terra-application-workspace-layout-workspace-body-overlay-box-shadow, -10px 0 10px 0 rgba(42, 75, 119, 0.6));
       position: absolute;
       right: 0;
       top: 0;
@@ -71,7 +72,7 @@
     z-index: -1;
   }
 
-  .workspace-overlay {
+  .workspace-overlay-negative-space {
     background-color: var(--terra-application-workspace-layout-workspace-overlay-background-color, rgba(0, 0, 0, 0.3));
     bottom: 0;
     display: block;

@@ -321,7 +321,7 @@ const WorkspaceLayout = ({
         <ResizeHandle
           onResizeStart={(registerBounds) => {
             resizeOverlayRef.current.style.display = 'block';
-            resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)';
+            resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)'; // TODO validate
 
             workspaceResizeBoundsRef.current = {
               range: layoutBodyRef.current.getBoundingClientRect().width - MINIMUM_CONTENT_WIDTH - MINIMUM_WORKSPACE_WIDTH,
@@ -379,7 +379,7 @@ const WorkspaceLayout = ({
       <div
         role="none"
         ref={workspaceOverlayRef}
-        className={cx('workspace-overlay')}
+        className={cx('workspace-overlay-negative-space')}
         onClick={() => { setWorkspaceIsVisible(false); }} // eslint-disable-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-static-element-interactions
       />
     );
@@ -434,7 +434,7 @@ const WorkspaceLayout = ({
   return (
     <div
       id={id}
-      className={cx('layout-container', theme.className, { 'workspace-visible': workspaceIsVisible, [`workspace-${workspaceSize.size}`]: workspaceSize.size && !workspaceSize.px, [`workspace-${workspaceSize.type}`]: workspaceSize.type && !workspaceSize.px })}
+      className={cx('layout-container', theme.className)}
       ref={layoutContainerRef}
     >
       <div

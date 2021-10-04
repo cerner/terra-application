@@ -20,6 +20,12 @@ Array [
                 [Function],
                 Array [
                   [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
+                Array [
+                  [Function],
                   [Function],
                 ],
               ],
@@ -46,6 +52,12 @@ Array [
                 "options": Object {
                   "rehypePlugins": Array [
                     [Function],
+                    Array [
+                      [Function],
+                      Object {
+                        "inspectEach": [Function],
+                      },
+                    ],
                     Array [
                       [Function],
                       [Function],
@@ -76,6 +88,12 @@ Array [
             "options": Object {
               "rehypePlugins": Array [
                 [Function],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
                 Array [
                   [Function],
                   [Function],
@@ -133,6 +151,12 @@ Array [
                 [Function],
                 Array [
                   [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
+                Array [
+                  [Function],
                   [Function],
                 ],
               ],
@@ -162,6 +186,7 @@ Array [
                 "?terra-bootstrap-pathPrefix": Object {
                   "basename": "/pathPrefix",
                   "contentDirectory": undefined,
+                  "dataCallback": [Function],
                   "entryPath": "entry",
                   "isLernaMonoRepo": true,
                   "resolveExtensions": undefined,

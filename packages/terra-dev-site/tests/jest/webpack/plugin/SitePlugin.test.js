@@ -49,6 +49,9 @@ describe('SitePlugin', () => {
         afterPlugins: {
           tap: jest.fn(),
         },
+        done: {
+          tap: jest.fn(),
+        },
       },
     };
 
@@ -149,6 +152,9 @@ describe('SitePlugin', () => {
       },
       hooks: {
         afterPlugins: {
+          tap: jest.fn(),
+        },
+        done: {
           tap: jest.fn(),
         },
       },

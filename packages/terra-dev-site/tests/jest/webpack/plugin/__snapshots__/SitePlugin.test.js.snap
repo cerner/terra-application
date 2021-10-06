@@ -22,6 +22,12 @@ Array [
                   [Function],
                   [Function],
                 ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
               ],
             },
           },
@@ -49,6 +55,12 @@ Array [
                     Array [
                       [Function],
                       [Function],
+                    ],
+                    Array [
+                      [Function],
+                      Object {
+                        "inspectEach": [Function],
+                      },
                     ],
                   ],
                 },
@@ -79,6 +91,12 @@ Array [
                 Array [
                   [Function],
                   [Function],
+                ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
                 ],
               ],
             },
@@ -135,6 +153,12 @@ Array [
                   [Function],
                   [Function],
                 ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
               ],
             },
           },
@@ -162,6 +186,7 @@ Array [
                 "?terra-bootstrap-pathPrefix": Object {
                   "basename": "/pathPrefix",
                   "contentDirectory": undefined,
+                  "dataCallback": [Function],
                   "entryPath": "entry",
                   "isLernaMonoRepo": true,
                   "resolveExtensions": undefined,

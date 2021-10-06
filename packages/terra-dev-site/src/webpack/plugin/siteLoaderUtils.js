@@ -1,5 +1,6 @@
 const rehypeSlug = require('rehype-slug');
 const rehypeUrl = require('rehype-urls');
+const rehypeUrlInspector = require('@jsdevtools/rehype-url-inspector');
 
 const babelLoader = {
   loader: 'babel-loader',
@@ -8,7 +9,7 @@ const babelLoader = {
   },
 };
 
-const getMdxLoader = (publicPath) => ({
+const getMdxLoader = ({ publicPath, urlInspectCallback }) => ({
   loader: '@mdx-js/loader',
   options: {
     rehypePlugins: [
@@ -21,6 +22,10 @@ const getMdxLoader = (publicPath) => ({
           return `${publicPath}${url.pathname.slice(1)}`;
         }
         return url.href;
+      }],
+      // order here matters, this should be run AFTER the url is updated with the public path.
+      [rehypeUrlInspector, {
+        inspectEach: urlInspectCallback,
       }],
     ],
   },

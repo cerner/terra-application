@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.2.0 - (October 7, 2021)
+
 * Added
   * Dev site will now validate relative urls.
 

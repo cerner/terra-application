@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-application-docs",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Contains documentation for packages in the terra-application monorepo",
   "main": "index.js",
   "publishConfig": {
@@ -35,7 +35,7 @@
     "precompile": "rm -rf lib"
   },
   "dependencies": {
-    "@cerner/terra-dev-site": "^7.1.0",
+    "@cerner/terra-dev-site": "^7.2.0",
     "@cerner/terra-docs": "^1.0.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",
@@ -53,6 +53,6 @@
     "terra-application": "^1.48.0"
   },
   "devDependencies": {
-    "terra-application": "^1.50.0"
+    "terra-application": "^1.51.0"
   }
 }

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.3.0 - (October 7, 2021)
+
 * Changed
   * Fix broken links
 

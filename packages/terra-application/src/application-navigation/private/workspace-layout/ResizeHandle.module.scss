@@ -18,7 +18,7 @@
     }
 
     &.dragging {
-      background-color: var(--terra-application-resize-handle-dragging-background-color, rgba(34, 42, 46, 1));
+      background-color: var(--terra-application-resize-handle-dragging-background-color, rgba(34, 42, 46, 0.6));
       z-index: 4;
     }
   }

@@ -321,7 +321,6 @@ const WorkspaceLayout = ({
         <ResizeHandle
           onResizeStart={(registerBounds) => {
             resizeOverlayRef.current.style.display = 'block';
-            resizeOverlayRef.current.style.backgroundColor = 'rgba(0, 0, 0, 0.3)'; // TODO validate
 
             workspaceResizeBoundsRef.current = {
               range: layoutBodyRef.current.getBoundingClientRect().width - MINIMUM_CONTENT_WIDTH - MINIMUM_WORKSPACE_WIDTH,
@@ -335,7 +334,6 @@ const WorkspaceLayout = ({
           }}
           onResizeStop={(position) => {
             resizeOverlayRef.current.style.display = 'none';
-            resizeOverlayRef.current.style.backgroundColor = 'initial';
 
             const newWidth = position * -1 + workspaceResizeBoundsRef.current.currentWidth;
             const scale = (newWidth - MINIMUM_WORKSPACE_WIDTH) / workspaceResizeBoundsRef.current.range;

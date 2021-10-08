@@ -435,14 +435,14 @@ const WorkspaceLayout = ({
       className={cx('layout-container', theme.className)}
       ref={layoutContainerRef}
     >
-      <div
-        ref={resizeOverlayRef}
-        className={cx('resize-overlay')}
-      />
       <div ref={layoutBodyRef} className={cx('layout-body')}>
         {renderContent()}
         {renderWorkspace()}
       </div>
+      <div
+        ref={resizeOverlayRef}
+        className={cx('resize-overlay')}
+      />
     </div>
   );
 };

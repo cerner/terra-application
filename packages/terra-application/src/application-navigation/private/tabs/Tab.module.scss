@@ -41,20 +41,20 @@
   .tab,
   .tab-rollup {
     background-clip: content-box;
-    box-shadow: var(--terra-application-application-navigation-tab-box-shadow, inset 1px 0 0 0 #032b46, inset 2px 0 0 0 #116ba3);
+    box-shadow: var(--terra-application-navigation-tab-box-shadow, inset 1px 0 0 0 #032b46, inset 2px 0 0 0 #116ba3);
     padding-left: 2px;
 
     &:last-of-type {
-      box-shadow: var(--terra-application-application-navigation-tab-last-box-shadow, inset 1px 0 0 0 #032b46, inset 2px 0 0 0 #116ba3, inset -1px 0 0 0 #116ba3, inset -2px 0 0 0 #032b46);
+      box-shadow: var(--terra-application-navigation-tab-last-box-shadow, inset 1px 0 0 0 #032b46, inset 2px 0 0 0 #116ba3, inset -1px 0 0 0 #116ba3, inset -2px 0 0 0 #032b46);
       padding-right: 2px;
     }
   }
 
   .tab,
   .tab-rollup {
-    background-color: var(--terra-application-application-navigation-tab-background-color, transparent);
+    background-color: var(--terra-application-navigation-tab-background-color, transparent);
     border: 0;
-    color: var(--terra-application-application-navigation-tab-color, rgba(255, 255, 255, 0.8));
+    color: var(--terra-application-navigation-tab-color, rgba(255, 255, 255, 0.8));
     cursor: pointer;
     display: flex;
     flex: 0 0 auto;
@@ -68,14 +68,14 @@
       align-items: center;
       background-position: top left;
       background-repeat: no-repeat;
-      background-size: var(--terra-application-application-navigation-tab-inner-background-size, 0 5px);
+      background-size: var(--terra-application-navigation-tab-inner-background-size, 0 5px);
       box-sizing: border-box;
       justify-content: space-between;
       overflow: hidden;
-      padding-bottom: var(--terra-application-application-navigation-tab-inner-padding-bottom, 1.143rem);
+      padding-bottom: var(--terra-application-navigation-tab-inner-padding-bottom, 1.143rem);
       padding-left: 2.143rem;
       padding-right: 2.143rem;
-      padding-top: var(--terra-application-application-navigation-tab-inner-padding-top, 1.143rem);
+      padding-top: var(--terra-application-navigation-tab-inner-padding-top, 1.143rem);
       text-align: center;
       text-decoration: none;
       text-transform: none;
@@ -98,41 +98,41 @@
       &:hover {
         /* stylelint-disable-next-line max-nesting-depth */
         .tab-inner {
-          background-color: var(--terra-application-application-navigation-tab-hover-background-color, rgba(3, 43, 70, 0.2));
-          color: var(--terra-application-application-navigation-tab-hover-color, #fff);
+          background-color: var(--terra-application-navigation-tab-hover-background-color, rgba(3, 43, 70, 0.2));
+          color: var(--terra-application-navigation-tab-hover-color, #fff);
         }
       }
     }
 
     &[aria-current='false']:active {
       .tab-inner {
-        background-color: var(--terra-application-application-navigation-tab-active-background-color, rgba(3, 43, 70, 0.4));
-        color: var(--terra-application-application-navigation-tab-active-color, rgba(255, 255, 255, 0.5));
+        background-color: var(--terra-application-navigation-tab-active-background-color, rgba(3, 43, 70, 0.4));
+        color: var(--terra-application-navigation-tab-active-color, rgba(255, 255, 255, 0.5));
       }
     }
 
     &[aria-current='true'] {
-      box-shadow: var(--terra-application-application-navigation-tab-current-box-shadow, inset 1px 0 0 0 #116ba3, inset 2px 0 0 0 #032b46);
-      color: var(--terra-application-application-navigation-tab-current-color, #fff);
+      box-shadow: var(--terra-application-navigation-tab-current-box-shadow, inset 1px 0 0 0 #116ba3, inset 2px 0 0 0 #032b46);
+      color: var(--terra-application-navigation-tab-current-color, #fff);
 
       .tab-inner {
-        background-color: var(--terra-application-application-navigation-tab-current-inner-background-color, rgba(3, 43, 70, 0.2));
-        background-image: var(--terra-application-application-navigation-tab-current-inner-background-image, linear-gradient(to right, #0e6ea7 0%, #1889ca 18%, #3797d0 50%, #1889ca 82%, #0e6ea7 100%));
-        background-size: var(--terra-application-application-navigation-tab-current-inner-background-size, 100% 5px);
+        background-color: var(--terra-application-navigation-tab-current-inner-background-color, rgba(3, 43, 70, 0.2));
+        background-image: var(--terra-application-navigation-tab-current-inner-background-image, linear-gradient(to right, #0e6ea7 0%, #1889ca 18%, #3797d0 50%, #1889ca 82%, #0e6ea7 100%));
+        background-size: var(--terra-application-navigation-tab-current-inner-background-size, 100% 5px);
         box-shadow: none;
         text-shadow: none;
       }
 
       &:last-of-type {
-        box-shadow: var(--terra-application-application-navigation-tab-current-last-box-shadow, inset 1px 0 0 0 #116ba3, inset 2px 0 0 0 #032b46, inset -1px 0 0 0 #116ba3, inset -2px 0 0 0 #032b46);
+        box-shadow: var(--terra-application-navigation-tab-current-last-box-shadow, inset 1px 0 0 0 #116ba3, inset 2px 0 0 0 #032b46, inset -1px 0 0 0 #116ba3, inset -2px 0 0 0 #032b46);
       }
     }
 
     &[data-focus-styles-enabled='true']:focus {
       .tab-inner {
-        background-color: var(--terra-application-application-navigation-tab-focus-background-color, transparent);
-        outline: var(--terra-application-application-navigation-tab-focus-outline, 2px dashed #fff);
-        outline-offset: var(--terra-application-application-navigation-tab-focus-outline-offset, -5px);
+        background-color: var(--terra-application-navigation-tab-focus-background-color, transparent);
+        outline: var(--terra-application-navigation-tab-focus-outline, 2px dashed #fff);
+        outline-offset: var(--terra-application-navigation-tab-focus-outline-offset, -5px);
         z-index: 5;
       }
     }

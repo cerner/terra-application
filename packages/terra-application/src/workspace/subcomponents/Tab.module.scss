@@ -19,7 +19,7 @@
     min-width: 0;
     outline: none;
     position: relative;
-
+    
     .inner {
       align-items: center;
       display: flex;
@@ -52,12 +52,11 @@
         background-color: var(--terra-application-workspace-tab-hover-background-color, transparent);
         background-image: var(--terra-application-workspace-tab-hover-background-image, linear-gradient(to bottom, #fff, #e8e9ea));
 
-
-        .icon {// stylelint-disable-line max-nesting-depth
+        .icon { // stylelint-disable-line max-nesting-depth
           color: var(--terra-application-workspace-tab-hover-icon-color, #64696c);
         }
 
-        .label {// stylelint-disable-line max-nesting-depth
+        .label { // stylelint-disable-line max-nesting-depth
           color: var(--terra-application-workspace-tab-hover-label-color, #434a4d);
         }
       }
@@ -122,11 +121,11 @@
     }
 
     @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
-      &.is-active:hover:not(.is-open) {
+      &.is-active:hover:not(.is-open) { // stylelint-disable-line max-nesting-depth
         background-color: var(--terra-application-workspace-tab-menu-is-active-hover-background-color, transparent);
         background-image: var(--terra-application-workspace-tab-menu-is-active-hover-background-image, linear-gradient(to bottom, #f4f4f4, #fff));
 
-        .icon {// stylelint-disable-line max-nesting-depth
+        .icon {  // stylelint-disable-line max-nesting-depth
           color: var(--terra-application-workspace-tab-menu-is-active-hover-icon-color, #595f62);
         }
       }

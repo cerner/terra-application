@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay/ApplicationLoadingOverlay';
-import ApplicationLoadingOverlayProvider from 'terra-application/lib/application-loading-overlay/ApplicationLoadingOverlayProvider';
+import ApplicationLoadingOverlay from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlay';
+import ApplicationLoadingOverlayProvider from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlayProvider';
 
 const ApplicationLoadingOverlayTest = () => {
   const [showClearOverlay, setShowClearOverlay] = useState(false);

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import NotificationBanner from '../../../notification-banner';
 
 const Example = ({ id }) => {
   const [showErrorBanner, setShowErrorBanner] = useState(false);

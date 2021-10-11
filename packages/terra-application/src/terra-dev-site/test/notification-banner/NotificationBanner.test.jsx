@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import useNotificationBanners from 'terra-application/lib/notification-banner/private/useNotificationBanners';
+import useNotificationBanners from '../../../notification-banner/private/useNotificationBanners';
 import NotificationBannerExample from './NotificationBannerExample';
 
 const Example = ({ isInitiallyClosed }) => {

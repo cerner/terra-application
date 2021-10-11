@@ -1,6 +1,6 @@
 import React from 'react';
-import Workspace, { WorkspaceItem } from 'terra-application/lib/workspace';
-import ActiveMainPageContext from 'terra-application/lib/application-container/private/active-main-page/ActiveMainPageContext';
+import Workspace, { WorkspaceItem } from '../../../workspace';
+import ActiveMainPageContext from '../../../application-container/private/active-main-page/ActiveMainPageContext';
 import Tab1 from './Tab1';
 import Tab2 from './Tab2';
 import Tab3 from './Tab3';
@@ -36,7 +36,7 @@ const WorkspaceTest = () => {
   return (
     <ActiveMainPageContext.Provider value={activeMainPageRef.current}>
       <div
-        style={{ height: '100%', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
+        style={{ height: '500px', width: sizeMap[workspaceSize] }} // eslint-disable-line react/forbid-dom-props
       >
         <Workspace
           id="test-id"

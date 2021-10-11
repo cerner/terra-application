@@ -46,7 +46,7 @@
       &[data-focus-styles-enabled='true']:focus {
         outline: none;
 
-        &::before {// stylelint-disable-line max-nesting-depth
+        &::before { // stylelint-disable-line max-nesting-depth
           border: var(--terra-application-workspace-hidden-tab-ie-focus-before-border, 2px dashed #000);
           bottom: 0;
           box-shadow: var(--terra-application-workspace-hidden-tab-ie-focus-before-box-shadow, none);
@@ -64,9 +64,9 @@
       color: var(--terra-application-workspace-hidden-tab-hidden-is-active-color, #000);
       font-weight: normal;
       overflow: hidden;
-
+  
       @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none), (hover: hover) and (pointer: fine) {
-        &:hover {// stylelint-disable-line max-nesting-depth
+        &:hover { // stylelint-disable-line max-nesting-depth
           background-color: var(--terra-application-workspace-hidden-tab-hidden-is-active-hover-background-color, #ebf6fd);
         }
       }
@@ -74,7 +74,7 @@
       &:first-child {
         margin-left: 0;
       }
-
+  
       &:last-child {
         border-width: 0;
       }

@@ -1,17 +1,19 @@
 import React from 'react';
-import { WorkspaceContent, WorkspaceContentStatusOverlay, WorkspaceContentStatusOverlayButton } from 'terra-application/lib/workspace';
+import { WorkspaceContent } from '../../../workspace';
 
 const Tab4 = () => (
   <WorkspaceContent
     statusOverlay={(
-      <WorkspaceContentStatusOverlay variant="no-data" message="This is a message.">
-        <WorkspaceContentStatusOverlayButton text="Action 1" />
-        <WorkspaceContentStatusOverlayButton text="Action 2" />
-      </WorkspaceContentStatusOverlay>
+      <WorkspaceContent.StatusOverlay variant="no-data" message="This is a message.">
+        <WorkspaceContent.StatusOverlay.Button text="Action 1" />
+        <WorkspaceContent.StatusOverlay.Button text="Action 2" />
+      </WorkspaceContent.StatusOverlay>
     )}
-  />
+  >
+    <div>
+      <p>Tab 4 Content</p>
+    </div>
+  </WorkspaceContent>
 );
-
-Tab4.titleKey = 'derp';
 
 export default Tab4;

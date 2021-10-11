@@ -1,15 +1,17 @@
 import React from 'react';
 import {
-  WorkspaceContent, WorkspaceContentActivityOverlay,
-} from 'terra-application/lib/workspace';
+  WorkspaceContent,
+} from '../../../workspace';
 
 const Tab6 = () => (
   <WorkspaceContent
-    activityOverlay={<WorkspaceContentActivityOverlay variant="loading" />}
+    activityOverlay={<WorkspaceContent.ActivityOverlay variant="loading" />}
     label="Tab 6 with Jam and Bread"
-  />
+  >
+    <div>
+      <p>Tab 6 Content</p>
+    </div>
+  </WorkspaceContent>
 );
-
-Tab6.titleKey = 'derp';
 
 export default Tab6;

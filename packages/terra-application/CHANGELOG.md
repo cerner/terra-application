@@ -6,6 +6,11 @@
   * Migrated ApplicationNavigation implementation to terra-application
   * Added workspace integration with ApplicationNavigation
 
+## 1.51.0 - (October 7, 2021)
+
+* Changed
+  * Fix broken links in documentation.
+
 ## 1.50.0 - (August 31, 2021)
 
 * Changed

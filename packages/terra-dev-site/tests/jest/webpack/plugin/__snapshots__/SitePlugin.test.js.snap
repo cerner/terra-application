@@ -22,6 +22,12 @@ Array [
                   [Function],
                   [Function],
                 ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
               ],
             },
           },
@@ -32,7 +38,7 @@ Array [
           Object {
             "issuer": Array [
               /\\\\\\.mdx\\?\\$/,
-              /entry\\\\\\.template\\$/,
+              /bootstrap\\\\\\.template\\$/,
             ],
             "use": Array [
               Object {
@@ -49,6 +55,12 @@ Array [
                     Array [
                       [Function],
                       [Function],
+                    ],
+                    Array [
+                      [Function],
+                      Object {
+                        "inspectEach": [Function],
+                      },
                     ],
                   ],
                 },
@@ -79,6 +91,12 @@ Array [
                 Array [
                   [Function],
                   [Function],
+                ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
                 ],
               ],
             },
@@ -135,6 +153,12 @@ Array [
                   [Function],
                   [Function],
                 ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
               ],
             },
           },
@@ -147,7 +171,7 @@ Array [
         ],
       },
       Object {
-        "resourceQuery": /\\\\\\?terra-entry/,
+        "resourceQuery": /\\\\\\?terra-bootstrap/,
         "use": Array [
           Object {
             "loader": "babel-loader",
@@ -156,12 +180,13 @@ Array [
             },
           },
           Object {
-            "loader": "devSiteEntry",
+            "loader": "devSiteBootstrap",
             "options": Object {
-              "entryLoaderData": Object {
-                "?terra-entry-pathPrefix": Object {
+              "bootstrapLoaderData": Object {
+                "?terra-bootstrap-pathPrefix": Object {
                   "basename": "/pathPrefix",
                   "contentDirectory": undefined,
+                  "dataCallback": [Function],
                   "entryPath": "entry",
                   "isLernaMonoRepo": true,
                   "resolveExtensions": undefined,
@@ -180,6 +205,25 @@ Array [
                   },
                   "sites": Array [],
                 },
+              },
+            },
+          },
+        ],
+      },
+      Object {
+        "resourceQuery": /\\\\\\?terra-entry/,
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "devSiteEntry",
+            "options": Object {
+              "entryMapping": Object {
+                "?terra-entry-pathPrefix": "?terra-bootstrap-pathPrefix",
               },
             },
           },

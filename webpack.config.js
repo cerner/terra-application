@@ -12,7 +12,6 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
   plugins: [
     new TerraDevSite({
       defaultLocale: env.defaultLocale,
-      excludeChunks: ['terra-application-test/index'],
     }),
     new TerraDevSite({
       pathPrefix: 'extended',
@@ -78,7 +77,6 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
           modalFilePath: path.resolve(process.cwd(), 'tests', 'terra-dev-site', 'test-extension', 'TestExtension'),
         },
       ],
-      excludeChunks: ['terra-application-test/index'],
     }),
   ],
   resolve: {

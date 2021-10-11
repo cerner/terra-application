@@ -2,6 +2,16 @@
 
 ## Unreleased
 
+## 7.2.0 - (October 7, 2021)
+
+* Added
+  * Dev site will now validate relative urls.
+
+## 7.1.0 - (September 28, 2021)
+
+* Changed
+  * Bootstrap terra-dev-site entry to allow for optimized chunking.
+
 ## 7.0.1 - (September 1, 2021)
 
 * Fixed

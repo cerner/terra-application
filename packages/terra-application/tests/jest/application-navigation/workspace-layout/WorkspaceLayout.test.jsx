@@ -96,8 +96,6 @@ describe('WorkspaceLayout', () => {
     const panelNode = document.getElementById('test-id-workspace-body');
     expect(panelNode).toBeInTheDocument();
     expect(panelNode).not.toHaveClass('visible');
-    expect(panelNode).toHaveAttribute('aria-labelledBy', 'test-id-workspace-container');
-    expect(panelNode).toHaveAttribute('tabIndex', '-1');
     expect(panelNode).toHaveTextContent('Example Workspace Content 1');
   });
 
@@ -114,8 +112,6 @@ describe('WorkspaceLayout', () => {
     const panelNode = document.getElementById('test-id-workspace-body');
     expect(panelNode).toBeInTheDocument();
     expect(panelNode).toHaveClass('visible');
-    expect(panelNode).toHaveAttribute('aria-labelledBy', 'test-id-workspace-container');
-    expect(panelNode).toHaveAttribute('tabIndex', '-1');
     expect(panelNode).toHaveTextContent('Example Workspace Content 1');
   });
 });

@@ -185,7 +185,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 utilityItems={Array []}
               >
                 <header
-                  className="compact-header"
+                  className="compact-header clinical-lowlight-theme"
                   role="banner"
                 >
                   <button
@@ -227,12 +227,9 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               id="undefined-workspace-layout"
             >
               <div
-                className="layout-container workspace-split"
+                className="layout-container clinical-lowlight-theme"
                 id="undefined-workspace-layout"
               >
-                <div
-                  className="resize-overlay"
-                />
                 <div
                   className="layout-body"
                 >
@@ -250,6 +247,9 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                     />
                   </div>
                 </div>
+                <div
+                  className="resize-overlay"
+                />
               </div>
             </WorkspaceLayout>
             <Overlay

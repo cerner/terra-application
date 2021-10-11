@@ -1,5 +1,4 @@
 import React from 'react';
-import ModalManager from 'terra-application/lib/modal-manager';
 
 import DemoAppNavigation from './DemoAppNavigation';
 

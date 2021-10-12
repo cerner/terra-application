@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.3.0 - (October 12, 2021)
+
 * Changed
   * Removed unnecessary TODOs
 

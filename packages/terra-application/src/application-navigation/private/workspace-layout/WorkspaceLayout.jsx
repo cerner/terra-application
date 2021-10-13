@@ -142,9 +142,9 @@ const WorkspaceLayout = ({
     let actions = [];
     let actionLabel;
     if (workspaceIsVisible) {
-      actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspace.showWorkspaceLabel' });
-    } else {
       actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspace.hideWorkspaceLabel' });
+    } else {
+      actionLabel = applicationIntl.formatMessage({ id: 'terraApplication.workspace.showWorkspaceLabel' });
     }
 
     if (hasWorkspace) {

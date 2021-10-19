@@ -1,0 +1,1 @@
+<% sideEffectImportFilePaths.forEach(sideEffect => print(`import '${sideEffect}';\n`)); %>

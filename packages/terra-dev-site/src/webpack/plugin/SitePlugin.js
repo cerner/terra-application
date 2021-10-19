@@ -328,6 +328,7 @@ class SitePlugin {
 
     let webpackConfig = {
       entry: {
+        'dev-site-side-effects': `@cerner/terra-dev-site/lib/webpack/templates/sideEffects.template${this.bootstrapResourceQuery}`,
         [this.entryKey]: `@cerner/terra-dev-site/lib/webpack/templates/entry.template${this.entryResourceQuery}`,
       },
     };
@@ -339,8 +340,8 @@ class SitePlugin {
 
     // ENTRY
     compiler.options.entry = {
-      ...compiler.options.entry,
       ...webpackConfig.entry,
+      ...compiler.options.entry,
     };
 
     // Generate the index.html file for the site.

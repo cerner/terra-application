@@ -33,6 +33,7 @@ const loader = async function loader(template) {
     sites,
     contentDirectory,
     isLernaMonoRepo,
+    dataCallback,
   } = getOptions(this).entryLoaderData[this.resourceQuery];
 
   const extensionItems = (siteConfig.extensionItems || []).map((ext) => ({
@@ -57,6 +58,15 @@ const loader = async function loader(template) {
     // getLogger is undefined in the loader runner for tests, but never in acutal usage.
     logger: this.getLogger ? this.getLogger('terra-dev-site loader') : undefined,
   });
+
+  if (dataCallback) {
+    dataCallback({
+      relativeUrls: [
+        ...Object.keys(pageConfig).map((url) => `${basename}${url}`),
+        ...Object.keys(routesMap).map((url) => `${basename}${url}`),
+      ],
+    });
+  }
 
   return callback(null, lodashTemplate(template)({
     entryPath,

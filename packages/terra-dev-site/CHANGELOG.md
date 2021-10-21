@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Reverted "Bootstrap terra-dev-site entry to allow for optimized chunking" due to IE incompatibility
+
 ## 7.3.0 - (October 12, 2021)
 
 * Changed

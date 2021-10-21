@@ -20,8 +20,7 @@ let oneTimeSetupComplete = false;
 let siteRegistry = {};
 const processPath = process.cwd();
 const isLernaMonoRepo = fs.existsSync(path.join(processPath, 'lerna.json'));
-const bootstrapLoaderData = {};
-const entryMapping = {};
+const entryLoaderData = {};
 const generatedBootstrapData = {};
 const urlQueue = [];
 
@@ -40,19 +39,15 @@ class SitePlugin {
 
     if (pathPrefix) {
       this.entryKey = `${pathPrefix}/index`;
-      this.entryResourceQuery = `?terra-entry-${pathPrefix}`;
-      this.bootstrapResourceQuery = `?terra-bootstrap-${pathPrefix}`;
+      this.resourceQuery = `?terra-entry-${pathPrefix}`;
       this.htmlFileName = `${pathPrefix}/index.html`;
       this.url = `/${pathPrefix}/`;
     } else {
       this.entryKey = 'index';
-      this.entryResourceQuery = '?terra-entry';
-      this.bootstrapResourceQuery = '?terra-bootstrap';
+      this.resourceQuery = '?terra-entry';
       this.htmlFileName = 'index.html';
       this.url = '/';
     }
-
-    entryMapping[this.entryResourceQuery] = this.bootstrapResourceQuery;
 
     if (siteRegistry[pathPrefix]) {
       throw Error('The PathPrefix must be unique per TerraDevSite Plugin');
@@ -112,7 +107,7 @@ class SitePlugin {
                 // Use MDX to import any md files imported from an mdx file.
                 issuer: [
                   /\.mdx?$/,
-                  /bootstrap\.template$/,
+                  /entry\.template$/,
                 ],
                 use: [
                   babelLoader,
@@ -166,25 +161,13 @@ class SitePlugin {
             ],
           }, {
             // This loader generates the entrypoint and sets up the config template path and resource query.
-            resourceQuery: /\?terra-bootstrap/,
-            use: [
-              babelLoader,
-              {
-                loader: 'devSiteBootstrap',
-                options: {
-                  bootstrapLoaderData,
-                },
-              },
-            ],
-          }, {
-            // This loader generates the entrypoint and sets up the config template path and resource query.
             resourceQuery: /\?terra-entry/,
             use: [
               babelLoader,
               {
                 loader: 'devSiteEntry',
                 options: {
-                  entryMapping,
+                  entryLoaderData,
                 },
               },
             ],
@@ -312,7 +295,7 @@ class SitePlugin {
       basename = [basename, this.siteConfig.pathPrefix].join('/');
     }
 
-    bootstrapLoaderData[this.bootstrapResourceQuery] = {
+    entryLoaderData[this.resourceQuery] = {
       entryPath: this.entry,
       siteConfig: this.siteConfig,
       sites: otherSites,
@@ -322,13 +305,13 @@ class SitePlugin {
       contentDirectory: this.siteConfig.contentDirectory,
       dataCallback: (data) => {
         // this data callback allows us to pull information back out of the loader.
-        generatedBootstrapData[this.entryResourceQuery] = data.relativeUrls;
+        generatedBootstrapData[this.resourceQuery] = data.relativeUrls;
       },
     };
 
     let webpackConfig = {
       entry: {
-        [this.entryKey]: `@cerner/terra-dev-site/lib/webpack/templates/entry.template${this.entryResourceQuery}`,
+        [this.entryKey]: `@cerner/terra-dev-site/lib/webpack/templates/entry.template${this.resourceQuery}`,
       },
     };
 

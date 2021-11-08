@@ -8,6 +8,7 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
         "formatDateTimeRange": [Function],
         "formatDateToParts": [Function],

@@ -13,6 +13,7 @@ import NotificationBanner from '@cerner/terra-application/lib/notification-banne
 import Page from '@cerner/terra-application/lib/page';
 import NotificationDialog from '@cerner/terra-application/lib/notification-dialog/NotificationDialog';
 
+import TestPageContent from './TestPageContent';
 import styles from './TestPage.module.scss';
 
 const cx = classNames.bind(styles);
@@ -30,11 +31,20 @@ const TestPage = ({
   const [showHazardLow, setShowHazardLow] = React.useState(false);
   const [showLongText, setShowLongText] = React.useState(false);
   const [showNotificationDialog, setShowNotificationDialog] = React.useState(false);
+  const [pageIsActive, setPageIsActive] = React.useState();
 
   const metaData = React.useRef({ test: index });
+  const onActiveStateChangeCallback = React.useRef((isActive) => {
+    setPageIsActive(isActive);
+  });
+
+  React.useEffect(() => {
+    console.log(`${label} isActive: ${pageIsActive}`);
+  }, [label, pageIsActive]);
 
   return (
     <Page
+      onActiveStateChange={onActiveStateChangeCallback.current}
       label={showLongText ? (
         `${label} With A Lot Of Extra Text Test Wrapping Scenarios Within the Page Header - Mississippi, hydrocodone/acetaminophen, OnabotulinumtoxinA, Talimogene Laherparepvec`
       ) : label}
@@ -81,6 +91,7 @@ const TestPage = ({
     >
       <div className={cx('layout')}>
         <p>{testLabel}</p>
+        <TestPageContent />
         <button
           type="button"
           onClick={() => { setShowChildPage(true); }}

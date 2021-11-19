@@ -7,6 +7,7 @@ const {
   getNamespace,
   getRoutes,
   parseExtension,
+  formatPath,
 } = require('./configHelpers');
 
 /**
@@ -182,7 +183,7 @@ const addWatchContentDirectories = ({
     return;
   }
 
-  const processPath = process.cwd();
+  const processPath = formatPath(process.cwd());
 
   if (isLernaMonoRepo) {
     glob.sync(`${processPath}/packages/*/${sourceFolder}/${contentDirectory}`).forEach(dir => { addContextDependency(`${dir}/`); });
@@ -201,7 +202,7 @@ const getSearchPatterns = ({
   isLernaMonoRepo,
   contentDirectory,
 }) => {
-  const processPath = process.cwd();
+  const processPath = formatPath(process.cwd());
   const typesGlob = pageTypes(primaryNavigationItems).join(',');
   const typesRegex = pageTypes(primaryNavigationItems).map((type) => `/${type}`).join('|');
 
@@ -302,7 +303,7 @@ const generatePagesConfig = ({
     if (item.additionalContent) {
       item.additionalContent.forEach((content) => {
         filePaths.push({
-          filePath: content.filePath,
+          filePath: formatPath(content.filePath),
           entryPoint: `/${content.label}.${item.contentExtension}${path.extname(content.filePath)}`,
         });
       });

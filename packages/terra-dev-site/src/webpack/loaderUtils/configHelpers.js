@@ -80,12 +80,20 @@ const parseExtension = filePath => {
   });
 };
 
+/**
+ * Returns a linux style file path.
+ *
+* @param {*} filePath A string representing the directory path of the file.
+*/
+const formatPath = filePath => filePath.replace(/\\/g, '/');
+
 const configHelpers = {
   startCase,
   pageTypes,
   getNamespace,
   getRoutes,
   parseExtension,
+  formatPath,
 };
 
 module.exports = configHelpers;

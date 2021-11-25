@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated dependencies to not be hard-coded.
+
 ## 1.52.0 - (October 12, 2021)
 
 * Added

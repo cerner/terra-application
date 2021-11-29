@@ -5,7 +5,7 @@
 ## 2.5.0 - (October 28, 2021)
 
 * Changed
-  * Minor dependency version bump
+  * Minor dependency version bump.
 
 ## 2.4.0 - (October 12, 2021)
 

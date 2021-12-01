@@ -34,3 +34,12 @@ describe('getNamespace', () => {
     expect(result).toEqual('@cerner/testing');
   });
 });
+
+describe('formatPath', () => {
+  it('returns fully linux style file path', () => {
+    const testWindowsPath = '\\windowsFilePath\\joined/with/linux/path';
+    const result = configHelpers.formatPath(testWindowsPath);
+
+    expect(result).toEqual('/windowsFilePath/joined/with/linux/path');
+  });
+});

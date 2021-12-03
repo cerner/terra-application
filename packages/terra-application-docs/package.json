@@ -53,6 +53,6 @@
     "terra-application": "^1.48.0"
   },
   "devDependencies": {
-    "terra-application": "^1.52.0"
+    "terra-application": "^1.52.1"
   }
 }

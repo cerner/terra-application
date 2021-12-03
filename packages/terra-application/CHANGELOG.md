@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.52.1 - (December 3, 2021)
+
+* Fixed
+  * Regenerate outdated screenshots.
+
 ## 1.52.0 - (October 12, 2021)
 
 * Added

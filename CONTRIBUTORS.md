@@ -13,6 +13,7 @@ Cerner Corporation
 - Avinash Gupta [@avinashg1994]
 - Saket Bajaj [@saket2403]
 - Pranav Agarwal [@pranav300]
+- Mackenzie Revoyr [@revoyrm]
 
 [@mjhenkes]: https://github.com/mjhenkes
 [@tbiethman]: https://github.com/tbiethman
@@ -27,3 +28,4 @@ Cerner Corporation
 [@avinashg1994]: https://github.com/avinashg1994
 [@saket2403]: https://github.com/saket2403
 [@pranav300]: https://github.com/pranav300
+[@revoyrm]: https://github.com/revoyrm

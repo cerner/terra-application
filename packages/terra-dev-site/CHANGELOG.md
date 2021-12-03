@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Add support for Windows file path separator.
+
 ## 7.4.0 - (October 28, 2021)
 
 * Fixed

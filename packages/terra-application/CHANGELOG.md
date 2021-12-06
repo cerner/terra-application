@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated breakpoints documentation to replace `isBreakpointActiveForSize` with `breakpointIsActiveForSize`.
+
 ## 1.52.1 - (December 3, 2021)
 
 * Fixed

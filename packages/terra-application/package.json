@@ -50,7 +50,7 @@
     "focus-trap-react": "^6.0.0",
     "keycode-js": "^3.1.0",
     "lodash.debounce": "^4.0.8",
-    "mutationobserver-shim": "0.3.3",
+    "mutationobserver-shim": "<=0.3.3",
     "prop-types": "^15.5.8",
     "react-draggable": "^4.4.3",
     "react-onclickoutside": "^6.7.1",

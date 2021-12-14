@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 7.4.2 - (December 14, 2021)
+
+* Changed
+  * Minor dependency version bump
+
 ## 7.4.1 - (December 3, 2021)
 
 * Fixed

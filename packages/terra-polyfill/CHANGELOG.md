@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added Node 14 support
+
 ## 1.0.2 - (December 14, 2021)
 
 * Changed

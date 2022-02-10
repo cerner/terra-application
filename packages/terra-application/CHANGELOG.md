@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.53.0 - (February 8, 2022)
+
 * Added
   * Added Node 14 support
 

@@ -5,6 +5,10 @@
 
 This package contains polyfills to support the minimum requirements and commonly used features of [terra-application](https://www.npmjs.org/package/@cerner/terra-application) and its consumers.
 
+## Node version support
+
+This package was developed and tested using Node 10 up to Node 14. Consumers using Node 16 or greater are advised to use it at their own risk since those versions are not officially supported due to lack of thorough testing.
+
 ## Versioning
 
 terra-polyfill is considered to be stable and will follow [SemVer](http://semver.org/) for versioning.

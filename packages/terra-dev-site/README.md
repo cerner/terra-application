@@ -26,6 +26,10 @@ npm install --save-dev @cerner/terra-dev-site
 npm install --save-dev terra-application react-dom@^16.8.5 react@^16.8.5 webpack@^5
 ```
 
+## Node version support
+
+This package was developed and tested using Node 10 up to Node 14. Consumers using Node 16 or greater are advised to use it at their own risk since those versions are not officially supported due to lack of thorough testing.
+
 ## Versioning
 
 terra-dev-site is considered to be stable and will follow [SemVer](https://semver.org/) for versioning.

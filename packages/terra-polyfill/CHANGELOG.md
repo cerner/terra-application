@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.2.0 - (February 14, 2022)
+
+* Changed
+  * Revert limiting upper Node version to 14.
+
 ## 1.1.0 - (February 8, 2022)
 
 * Added

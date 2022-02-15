@@ -1,9 +1,9 @@
 {
   "name": "@cerner/terra-dev-site",
-  "version": "7.5.0",
+  "version": "7.6.0",
   "description": "Dynamically builds a react-hash-routed site based on site configuration, navigation configuration and component configuration.",
   "engines": {
-    "node": "^10.0.0 || ^12.0.0 || ^14.0.0"
+    "node": ">=10"
   },
   "main": "index.js",
   "publishConfig": {
@@ -45,7 +45,7 @@
     "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   },
   "dependencies": {
-    "@cerner/terra-polyfill": "^1.1.0",
+    "@cerner/terra-polyfill": "^1.2.0",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
     "@mdx-js/loader": "^1.4.5",
     "@mdx-js/mdx": "^1.5.0",

@@ -35,6 +35,8 @@
     "precompile": "rm -rf lib"
   },
   "dependencies": {
+    "@formatjs/intl-datetimeformat": "^5.0.1",
+    "@formatjs/intl-locale": "^2.4.47",
     "@formatjs/intl-relativetimeformat": "^8.0.0",
     "abortcontroller-polyfill": "^1.7.3",
     "core-js": "^3.15.2",

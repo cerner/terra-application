@@ -1,7 +1,3 @@
-import '@formatjs/intl-locale/polyfill';
-import '@formatjs/intl-datetimeformat/polyfill-force';
-import '@formatjs/intl-datetimeformat/locale-data/fr';
-import '@formatjs/intl-datetimeformat/locale-data/en';
 /* eslint-disable global-require, import/no-named-as-default */
 import { shouldPolyfill } from '@formatjs/intl-relativetimeformat/should-polyfill';
 
@@ -24,7 +20,6 @@ if (!hasIntl) {
 
 if (shouldPolyfill()) {
   require('@formatjs/intl-relativetimeformat/polyfill');
-  console.log('polyfillcompleted');
 }
 
 /* eslint-enable global-require */

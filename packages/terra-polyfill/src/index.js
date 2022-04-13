@@ -47,3 +47,7 @@ import './polyfills/inert-polyfill';
  * Polyfill for [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
  */
 import './polyfills/intl-polyfill';
+/**
+ * Polyfill for [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
+ */
+import './polyfills/intl-datetime-format-polyfill';

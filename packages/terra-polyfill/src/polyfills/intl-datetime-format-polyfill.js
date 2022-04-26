@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 // we can use should polyfill as well but it breaks when used with multiple locales. documentation for adding dynamic imports https://formatjs.io/docs/polyfills/intl-datetimeformat#dynamic-import--capability-detection
 import '@formatjs/intl-locale/polyfill';
 import '@formatjs/intl-datetimeformat/polyfill-force';

@@ -3,6 +3,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import uuidv4 from 'uuid/v4';
+import { useIntl } from 'react-intl';
 import TerraApplicationNavigation from './private/ApplicationNavigation';
 import {
   titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
@@ -12,7 +13,6 @@ import ApplicationErrorBoundary from '../application-error-boundary';
 import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../application-loading-overlay';
 import { ApplicationStatusOverlayProvider } from '../application-status-overlay';
 import { NavigationPromptCheckpoint, navigationPromptResolutionOptionsShape, getUnsavedChangesPromptOptions } from '../navigation-prompt';
-import { ApplicationIntlContext } from '../application-intl';
 import ApplicationNavigationWorkspace from './private/workspace-layout/ApplicationNavigationWorkspace';
 
 const propTypes = {
@@ -151,7 +151,7 @@ const ApplicationNavigation = ({
   utilityItems,
   workspace,
 }) => {
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const navigationPromptCheckpointRef = useRef();
   const idRef = React.useRef(`navigation-${uuidv4()}`);
 

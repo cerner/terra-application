@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 import { ApplicationNavigationActionsContext } from 'terra-application/lib/application-navigation';
 
@@ -23,7 +23,7 @@ const AppPage = ({ pageName }) => {
   const [isInitialized, setIsInitialized] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = React.useContext(ThemeContext);
 
   const [hasError, setHasError] = useState(false);

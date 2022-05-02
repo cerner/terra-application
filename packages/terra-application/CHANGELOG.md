@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+* Breaking
+  * Upgraded to intl v5
+
+* Removed
+  * References to terra-base and moved terra-base logic to terra-application-base
+
+* Added
+  * Added i18n logic
+
 ## 1.53.0 - (February 8, 2022)
 
 * Added

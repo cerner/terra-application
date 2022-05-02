@@ -10,6 +10,18 @@ import MockApplication from '../MockApplication';
 const testMetaData1 = { data: 1 };
 const testMetaData2 = { data: 1 };
 
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
+
 const TestWorkspace = (props) => (
   <MockApplication>
     <Workspace

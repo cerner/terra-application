@@ -1,38 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ApplicationNavigation correctly applies the theme context className 1`] = `
-<MockApplication
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<MockApplication>
   <IntlProvider
+    defaultFormats={Object {}}
+    defaultLocale="en"
+    fallbackOnEmptyString={true}
+    formats={Object {}}
     locale="en"
     messages={null}
+    onError={[Function]}
+    onWarn={[Function]}
+    textComponent={Symbol(react.fragment)}
   >
     <ThemeContextProvider
       theme={
@@ -73,36 +52,48 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               <div
                 className="drawer-menu-focus-trap-container"
               >
-                <InjectIntl(DrawerMenu)
+                <injectIntl(DrawerMenu)
                   notifications={Object {}}
                   utilityItems={Array []}
                 >
                   <DrawerMenu
                     intl={
                       Object {
+                        "$t": [Function],
                         "defaultFormats": Object {},
                         "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
                         "formatDate": [Function],
-                        "formatHTMLMessage": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
                         "formatMessage": [Function],
                         "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
                         "formatPlural": [Function],
-                        "formatRelative": [Function],
+                        "formatRelativeTime": [Function],
                         "formatTime": [Function],
+                        "formatTimeToParts": [Function],
                         "formats": Object {},
                         "formatters": Object {
                           "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
                           "getMessageFormat": [Function],
                           "getNumberFormat": [Function],
-                          "getPluralFormat": [Function],
-                          "getRelativeFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
                         },
                         "locale": "en",
                         "messages": null,
-                        "now": [Function],
                         "onError": [Function],
-                        "textComponent": "span",
-                        "timeZone": null,
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
                       }
                     }
                     navigationItems={Array []}
@@ -132,14 +123,14 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                       </div>
                     </div>
                   </DrawerMenu>
-                </InjectIntl(DrawerMenu)>
+                </injectIntl(DrawerMenu)>
               </div>
             </FocusTrap>
           </div>
           <div
             className="content-layout"
           >
-            <InjectIntl(CompactHeader)
+            <injectIntl(CompactHeader)
               activeBreakpoint="medium"
               isDrawerMenuOpen={false}
               notifications={Object {}}
@@ -152,29 +143,41 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 extensionItems={Array []}
                 intl={
                   Object {
+                    "$t": [Function],
                     "defaultFormats": Object {},
                     "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "fallbackOnEmptyString": true,
                     "formatDate": [Function],
-                    "formatHTMLMessage": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatListToParts": [Function],
                     "formatMessage": [Function],
                     "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
                     "formatPlural": [Function],
-                    "formatRelative": [Function],
+                    "formatRelativeTime": [Function],
                     "formatTime": [Function],
+                    "formatTimeToParts": [Function],
                     "formats": Object {},
                     "formatters": Object {
                       "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
                       "getMessageFormat": [Function],
                       "getNumberFormat": [Function],
-                      "getPluralFormat": [Function],
-                      "getRelativeFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
                     },
                     "locale": "en",
                     "messages": null,
-                    "now": [Function],
                     "onError": [Function],
-                    "textComponent": "span",
-                    "timeZone": null,
+                    "onWarn": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
                   }
                 }
                 isDrawerMenuOpen={false}
@@ -222,7 +225,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                   />
                 </header>
               </CompactHeader>
-            </InjectIntl(CompactHeader)>
+            </injectIntl(CompactHeader)>
             <WorkspaceLayout
               id="undefined-workspace-layout"
             >
@@ -304,7 +307,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
   <div
     className="content-layout"
   >
-    <InjectIntl(Header)
+    <injectIntl(Header)
       notifications={Object {}}
       onSelectSkipToContent={[Function]}
       onSelectUtilityButton={[Function]}
@@ -354,7 +357,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
     targetAttachment="bottom center"
     targetRef={[Function]}
   >
-    <InjectIntl(UtilityMenu)
+    <injectIntl(UtilityMenu)
       utilityItems={Array []}
     />
   </Popup>
@@ -377,7 +380,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
   <div
     className="content-layout"
   >
-    <InjectIntl(Header)
+    <injectIntl(Header)
       activeBreakpoint="large"
       activeNavigationItemKey="my-test-key"
       extensionItems={
@@ -495,7 +498,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
     targetAttachment="bottom center"
     targetRef={[Function]}
   >
-    <InjectIntl(UtilityMenu)
+    <injectIntl(UtilityMenu)
       hero={
         <div>
           my test hero
@@ -558,7 +561,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       <div
         className="drawer-menu-focus-trap-container"
       >
-        <InjectIntl(DrawerMenu)
+        <injectIntl(DrawerMenu)
           activeNavigationItemKey="my-test-key"
           hero={
             <div>
@@ -614,7 +617,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
   <div
     className="content-layout"
   >
-    <InjectIntl(CompactHeader)
+    <injectIntl(CompactHeader)
       activeBreakpoint="medium"
       activeNavigationItemKey="my-test-key"
       extensionItems={
@@ -728,7 +731,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
     targetAttachment="bottom center"
     targetRef={[Function]}
   >
-    <InjectIntl(UtilityMenu)
+    <injectIntl(UtilityMenu)
       hero={
         <div>
           my test hero

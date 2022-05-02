@@ -7,7 +7,7 @@ import Popup from 'terra-popup';
 import ThemeContext from 'terra-theme-context';
 
 import ActionMenu, { ActionMenuItem } from 'terra-application/lib/action-menu';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import useElementSize, { breakpointFilter } from '../../shared/useElementSize';
 import PageContainerContext from '../../layouts/page-container/PageContainerContext';
 
@@ -37,7 +37,7 @@ const propTypes = {
 const PageHeader = ({
   actions, label, onSelectBack,
 }) => {
-  const intl = React.useContext(ApplicationIntlContext);
+  const intl = useIntl();
   const pageContainerContext = React.useContext(PageContainerContext);
   const theme = React.useContext(ThemeContext);
 

@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenuHeader should render with all props 1`] = `
+<div
+  className="action-menu-header"
+>
+  <div
+    aria-hidden={true}
+    className="title"
+  >
+    test label
+  </div>
+  <div
+    className="close-button"
+  >
+    <Button
+      icon={
+        <IconClose
+          data-name="Layer 1"
+          viewBox="0 0 48 48"
+          xmlns="http://www.w3.org/2000/svg"
+        />
+      }
+      isBlock={false}
+      isCompact={false}
+      isDisabled={false}
+      isIconOnly={false}
+      isReversed={false}
+      onClick={[MockFunction]}
+      text="terraApplication.actionMenu.headerCloseButtonLabel"
+      type="button"
+      variant="utility"
+    />
+  </div>
+</div>
+`;
+
+exports[`ActionMenuHeader should render with minimal props 1`] = `
+<div
+  className="action-menu-header"
+>
+  <div
+    aria-hidden={true}
+    className="title"
+  >
+    test label
+  </div>
+  <div
+    className="close-button"
+  />
+</div>
+`;

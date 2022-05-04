@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActionMenuItem should render with all props 1`] = `
+<li
+  className="action-menu-link is-disabled"
+  role="none"
+>
+  <a
+    aria-disabled={true}
+    data-action-menu-key="test key"
+    role="menuitem"
+  >
+    <div
+      className="icon"
+    >
+      <p>
+        test icon
+      </p>
+    </div>
+    <div
+      className="content"
+    >
+      test label
+    </div>
+  </a>
+</li>
+`;
+
+exports[`ActionMenuItem should render with minimal props 1`] = `
+<li
+  className="action-menu-link is-actionable"
+  role="none"
+>
+  <a
+    data-action-menu-key="test key"
+    data-focus-styles-enabled={true}
+    onBlur={[Function]}
+    onKeyDown={[Function]}
+    onMouseDown={[Function]}
+    role="menuitem"
+    tabIndex="-1"
+  >
+    <div
+      className="content"
+    >
+      test label
+    </div>
+  </a>
+</li>
+`;

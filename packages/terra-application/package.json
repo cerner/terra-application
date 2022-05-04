@@ -1,0 +1,90 @@
+{
+  "name": "terra-application",
+  "main": "lib/application-base/ApplicationBase.js",
+  "version": "1.53.0",
+  "description": "A framework to support application development with Terra components",
+  "engines": {
+    "node": "^8.9.2 || ^10.13.0 || ^12.0.0 || ^14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cerner/terra-application",
+    "directory": "packages/terra-application"
+  },
+  "keywords": [
+    "Cerner",
+    "Terra",
+    "terra-application",
+    "Application",
+    "UI"
+  ],
+  "author": "Cerner Corporation",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/cerner/terra-application/issues"
+  },
+  "files": [
+    "lib",
+    "src",
+    "translations",
+    "tests/wdio/*-spec.js",
+    "tests/wdio/**/*-spec.js"
+  ],
+  "scripts": {
+    "compile": "babel --root-mode upward src --out-dir lib --copy-files",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint --ext .js,.jsx . --ignore-path ../../.eslintignore",
+    "lint:scss": "stylelint src/**/*.scss",
+    "precompile": "rm -rf lib",
+    "test": "npm run lint && npm run jest && npm run wdio",
+    "jest": "jest --config ../../jest.config.js",
+    "wdio-default": "cd ../.. && terra wdio",
+    "wdio-lowlight": "cd ../.. && terra wdio --themes clinical-lowlight-theme",
+    "wdio-fusion": "cd ../.. && terra wdio --themes orion-fusion-theme",
+    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
+  },
+  "dependencies": {
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
+    "@cerner/terra-docs": "^1.0.0",
+    "classnames": "^2.2.5",
+    "eventemitter3": "^4.0.4",
+    "focus-trap-react": "^6.0.0",
+    "intl": "^1.2.5",
+    "intl-locales-supported": "^1.8.4",
+    "keycode-js": "^3.1.0",
+    "lodash.debounce": "^4.0.8",
+    "mutationobserver-shim": "<=0.3.3",
+    "prop-types": "^15.5.8",
+    "react-draggable": "^4.4.3",
+    "react-onclickoutside": "^6.7.1",
+    "resize-observer-polyfill": "^1.4.1",
+    "terra-action-footer": "^2.52.0",
+    "terra-action-header": "^2.70.0",
+    "terra-avatar": "^3.12.0",
+    "terra-breakpoints": "^2.0.0",
+    "terra-button": "^3.42.0",
+    "terra-content-container": "^3.34.0",
+    "terra-disclosure-manager": "^4.27.0",
+    "terra-divider": "^3.33.0",
+    "terra-icon": "^3.40.0",
+    "terra-modal-manager": "^6.20.0",
+    "terra-navigation-prompt": "^1.40.0",
+    "terra-notification-dialog": "^4.0.0",
+    "terra-overlay": "^3.32.0",
+    "terra-popup": "^6.48.0",
+    "terra-scroll": "^2.18.0",
+    "terra-slide-panel-manager": "^5.19.0",
+    "terra-status-view": "^4.10.0",
+    "terra-theme-context": "^1.0.0",
+    "terra-theme-provider": "^4.0.0",
+    "terra-toolbar": "^1.22.0",
+    "terra-visually-hidden-text": "^2.31.0",
+    "uuid": "^3.0.0",
+    "wicg-inert": "^3.0.2"
+  },
+  "peerDependencies": {
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-intl": "^5.8.2"
+  }
+}

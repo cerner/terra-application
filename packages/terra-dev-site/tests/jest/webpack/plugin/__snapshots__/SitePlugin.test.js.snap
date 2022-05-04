@@ -1,0 +1,216 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SitePlugin sets up site plugin with Prefix 1`] = `
+Array [
+  Object {
+    "oneOf": Array [
+      Object {
+        "test": /\\\\\\.mdx\\$/,
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "@mdx-js/loader",
+            "options": Object {
+              "rehypePlugins": Array [
+                [Function],
+                Array [
+                  [Function],
+                  [Function],
+                ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
+              ],
+            },
+          },
+        ],
+      },
+      Object {
+        "oneOf": Array [
+          Object {
+            "issuer": Array [
+              /\\\\\\.mdx\\?\\$/,
+              /entry\\\\\\.template\\$/,
+            ],
+            "use": Array [
+              Object {
+                "loader": "babel-loader",
+                "options": Object {
+                  "rootMode": "upward",
+                },
+              },
+              Object {
+                "loader": "@mdx-js/loader",
+                "options": Object {
+                  "rehypePlugins": Array [
+                    [Function],
+                    Array [
+                      [Function],
+                      [Function],
+                    ],
+                    Array [
+                      [Function],
+                      Object {
+                        "inspectEach": [Function],
+                      },
+                    ],
+                  ],
+                },
+              },
+            ],
+          },
+          Object {
+            "use": "raw-loader",
+          },
+        ],
+        "test": /\\\\\\.md\\$/,
+      },
+      Object {
+        "resourceQuery": "?dev-site-codeblock",
+        "type": "javascript/auto",
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "@mdx-js/loader",
+            "options": Object {
+              "rehypePlugins": Array [
+                [Function],
+                Array [
+                  [Function],
+                  [Function],
+                ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
+              ],
+            },
+          },
+          Object {
+            "loader": "devSiteCodeblock",
+            "options": Object {
+              "resolveExtensions": undefined,
+            },
+          },
+        ],
+      },
+      Object {
+        "resourceQuery": "?dev-site-example",
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          "devSiteExample",
+        ],
+      },
+      Object {
+        "resourceQuery": "?dev-site-package",
+        "test": /\\\\\\.json\\$/,
+        "type": "javascript/auto",
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          "devSitePackage",
+        ],
+      },
+      Object {
+        "resourceQuery": "?dev-site-props-table",
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "@mdx-js/loader",
+            "options": Object {
+              "rehypePlugins": Array [
+                [Function],
+                Array [
+                  [Function],
+                  [Function],
+                ],
+                Array [
+                  [Function],
+                  Object {
+                    "inspectEach": [Function],
+                  },
+                ],
+              ],
+            },
+          },
+          Object {
+            "loader": "devSitePropsTable",
+            "options": Object {
+              "resolveExtensions": undefined,
+            },
+          },
+        ],
+      },
+      Object {
+        "resourceQuery": /\\\\\\?terra-entry/,
+        "use": Array [
+          Object {
+            "loader": "babel-loader",
+            "options": Object {
+              "rootMode": "upward",
+            },
+          },
+          Object {
+            "loader": "devSiteEntry",
+            "options": Object {
+              "entryLoaderData": Object {
+                "?terra-entry-pathPrefix": Object {
+                  "basename": "/pathPrefix",
+                  "contentDirectory": undefined,
+                  "dataCallback": [Function],
+                  "entryPath": "entry",
+                  "isLernaMonoRepo": true,
+                  "resolveExtensions": undefined,
+                  "siteConfig": Object {
+                    "contentConfig": "content",
+                    "defaultDirection": "rtl",
+                    "distributionFolder": "lib",
+                    "excludeChunks": Array [],
+                    "faviconFilePath": "favicon",
+                    "headHtml": Array [],
+                    "pathPrefix": "pathPrefix",
+                    "sourceFolder": "src",
+                    "titleConfig": Object {
+                      "title": "title",
+                    },
+                  },
+                  "sites": Array [],
+                },
+              },
+            },
+          },
+        ],
+      },
+    ],
+  },
+]
+`;

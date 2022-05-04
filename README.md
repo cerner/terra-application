@@ -1,10 +1,6 @@
 
 # Terra Application
 
-<<<<<<< HEAD
-[![NPM version](https://badgen.net/npm/v/terra-application)](https://www.npmjs.org/package/@cerner/terra-application)
-=======
->>>>>>> 8bffbb69368c353929ed0ef773a7892ef38d86ae
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
 [![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/main/LICENSE)
 [![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import NavigationPrompt from '@cerner/terra-application/lib/navigation-prompt';
+import NavigationPrompt from 'terra-application/lib/navigation-prompt';
 
 import styles from './PendingActionToggle.module.scss';
 

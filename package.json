@@ -106,7 +106,6 @@
     "@cerner/terra-enzyme-intl": "^4.0.0",
     "@cerner/terra-functional-testing": "^2.5.0",
     "@cerner/terra-open-source-scripts": "^1.1.0",
-    "@cerner/terra-aggregate-translations": "2.4.0",
     "@cerner/webpack-config-terra": "^1.2.0",
     "@formatjs/intl-relativetimeformat": "^8.0.0",
     "@octokit/core": "^3.4.0",

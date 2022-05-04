@@ -20,13 +20,13 @@ This guide will walk through theming an example component. The example component
 An application's theme is provided through [React context](https://reactjs.org/docs/context.html) by a theme provider. [Application Base](/application/cerner-terra-application/components/application-base) initializes a theme provider automatically. The theme value is accessed using the [theme context](/application/cerner-terra-application/contexts/theme-context) from terra-application.
 
 ```jsx
-import { ThemeContext } from '@cerner/terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/lib/theme';
 ```
 
 Use the theme context to read the active theme value.
 
 ```jsx
-import { ThemeContext } from '@cerner/terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/lib/theme';
 
 const ExampleComponent = () => {
   // Access the active theme context value.
@@ -39,7 +39,7 @@ The active theme's class name is stored in a `className` key in the context valu
 ```jsx
 import React from 'react';
 import classNames from 'classnames/bind';
-import { ThemeContext } from '@cerner/terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/lib/theme';
 import styles from './ThemedComponent.module.scss';
 
 const cx = classNames.bind(styles);

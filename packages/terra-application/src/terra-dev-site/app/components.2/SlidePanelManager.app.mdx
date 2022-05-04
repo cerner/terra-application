@@ -1,4 +1,4 @@
-import PropsTable from '@cerner/terra-application/lib/slide-panel-manager/SlidePanelManager?dev-site-props-table';
+import PropsTable from 'terra-application/lib/slide-panel-manager/SlidePanelManager?dev-site-props-table';
 
 <Badge />
 
@@ -10,7 +10,7 @@ The SlidePanelManager exposes its children to panel presentation APIs through th
 ## Usage
 
 ```jsx
-import SlidePanelManager from '@cerner/terra-application/lib/slide-panel-manager';
+import SlidePanelManager from 'terra-application/lib/slide-panel-manager';
 ```
 
 ## Props
@@ -89,8 +89,8 @@ and each component in the disclosure stack will be decorated with the same acces
 ```jsx
 import React from 'react';
 import Button from 'terra-button';
-import SlidePanelManager, { disclosureType } from '@cerner/terra-application/lib/slide-panel-manager';
-import { withDisclosureManager, DisclosureManagerContext, DisclosureManagerHeaderAdapter } from '@cerner/terra-application/lib/disclosure-manager';
+import SlidePanelManager, { disclosureType } from 'terra-application/lib/slide-panel-manager';
+import { withDisclosureManager, DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
 import CollapsibleMenuView from 'terra-collapsible-menu-view';
 
 const PanelComponentB = () => (

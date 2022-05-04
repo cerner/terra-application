@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'terra-application/lib/theme';
 import { useIntl } from 'react-intl';

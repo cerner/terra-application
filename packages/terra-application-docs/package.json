@@ -49,7 +49,7 @@
   "peerDependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "react-intl": ">=2.8 <6.0",
+    "react-intl": "^5.2.8",
     "terra-application": "^1.48.0"
   },
   "devDependencies": {

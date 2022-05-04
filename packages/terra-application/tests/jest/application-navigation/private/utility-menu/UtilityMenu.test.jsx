@@ -1,12 +1,11 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
+import { mountWithIntl } from '@cerner/terra-enzyme-intl';
 import UtilityMenu from '../../../../../src/application-navigation/private/utility-menu/_UtilityMenu';
 
 describe('UtilityMenu', () => {
   it('should render default element', () => {
     const mountComponent = mountWithIntl(
-      <UtilityMenu.WrappedComponent />,
+      <UtilityMenu />,
     );
 
     expect(mountComponent).toMatchSnapshot();
@@ -14,7 +13,7 @@ describe('UtilityMenu', () => {
 
   it('should render with function callbacks', () => {
     const mountComponent = mountWithIntl(
-      <UtilityMenu.WrappedComponent
+      <UtilityMenu
         hero={<div>my test hero</div>}
         userConfig={{
           name: 'user-name',
@@ -39,7 +38,7 @@ describe('UtilityMenu', () => {
     const mockCallBack = jest.fn();
 
     const mountComponent = mountWithIntl(
-      <UtilityMenu.WrappedComponent
+      <UtilityMenu
         onSelectLogout={mockCallBack}
       />,
     );

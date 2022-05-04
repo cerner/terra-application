@@ -1,3 +1,4 @@
+/* eslint-disable import/extensions */
 const loadLocaleData = (locale, polyfill) => {
   if (polyfill === 'intl') {
     switch (locale) {

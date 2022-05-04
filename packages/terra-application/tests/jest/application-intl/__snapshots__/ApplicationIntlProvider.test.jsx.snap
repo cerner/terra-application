@@ -5,15 +5,17 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
   <Component
     intl={
       Object {
-        "__addMessages": [Function],
+        "$t": [Function],
         "defaultFormats": Object {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
         "formatDateTimeRange": [Function],
         "formatDateToParts": [Function],
         "formatDisplayName": [Function],
         "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
         "formatNumberToParts": [Function],
@@ -34,6 +36,7 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
         "locale": "en",
         "messages": null,
         "onError": [Function],
+        "onWarn": [Function],
         "textComponent": Symbol(react.fragment),
         "timeZone": undefined,
         "wrapRichTextChunksInFragment": undefined,

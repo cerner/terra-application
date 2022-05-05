@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Breaking
+  * Upgraded to intl v5
+
 ## 2.7.0 - (February 14, 2022)
 
 * Changed

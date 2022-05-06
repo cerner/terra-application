@@ -30,7 +30,7 @@ const supportedIntlConstructors = (polyfill) => {
           constructors = [];
         }
       }
-    } else if (typeof (Intl) === 'object' && typeof (Intl.RelativeTimeFormate) === 'function') {
+    } else if (typeof (Intl) === 'object' && typeof (Intl.RelativeTimeFormat) === 'function') {
       if (Object.prototype.hasOwnProperty.call(Intl.RelativeTimeFormat, 'supportedLocalesOf')) {
         constructors = [
           Intl.RelativeTimeFormat,

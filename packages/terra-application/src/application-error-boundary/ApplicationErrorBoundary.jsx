@@ -89,8 +89,7 @@ class ApplicationErrorBoundary extends React.Component {
     const activeError = this.state.error || this.errorRef.current;
 
     if (activeError) {
-      const errorDetails = activeError.message.toString();
-      const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
+      const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails: activeError.message.toString() });
       return (
         <StatusView
           variant="error"

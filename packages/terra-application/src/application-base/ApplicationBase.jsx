@@ -18,6 +18,7 @@ import { ApplicationStatusOverlayProvider } from '../application-status-overlay'
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
+import Logger from '../utils/logger';
 
 import './private/initializeInert';
 import './baseStyles';
@@ -100,7 +101,7 @@ const ApplicationBase = ({
     if (finalLocale !== undefined) {
       i18nLoader(finalLocale).then(translationsModule => setMessages(translationsModule.default)).catch((error) => {
         // eslint-disable-next-line no-console
-        console.error(error);
+        Logger.error(error);
         throw error;
       });
     }

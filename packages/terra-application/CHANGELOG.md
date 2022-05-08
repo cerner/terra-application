@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Breaking
-  * Upgraded to intl v5
+  * Dropped v2-v4 react-intl support
 
 * Removed
   * References to terra-base and moved terra-base logic to terra-application-base

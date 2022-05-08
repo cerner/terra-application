@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Breaking
-  * Upgraded to intl v5
+  * Dropped v2-v4 react-intl support
 
 ## 7.6.0 - (February 14, 2022)
 

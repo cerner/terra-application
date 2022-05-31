@@ -20,9 +20,7 @@ import ApplicationBase from 'terra-application/lib/application-base';
 
 ### I18n
 
-ApplicationBase exposes a prop to define the application's locale and dynamically retrieve the translated strings for that locale. Children of ApplicationBase can access translated strings by using [react-intl's](https://github.com/formatjs/formatjs/blob/master/website/docs/react-intl/components.md) provided components or by using the [ApplicationIntlContext](/application/terra-application/contexts/application-intl-context).
-
-Consumers of ApplicationBase should review Terra's [translation aggregation](https://engineering.cerner.com/terra-ui/guides/terra-ui/internationalization/aggregate-translations) instructions to ensure ApplicationBase can retrieve the application's translations successfully.
+ApplicationBase exposes a prop to define the application's locale and dynamically retrieve the translated strings for that locale. Children of ApplicationBase can access translated strings by using react-intl's provided [components](https://formatjs.io/docs/react-intl/components), react-intl's [imperitive API](https://formatjs.io/docs/react-intl/api) or by using the [ApplicationIntlContext](/application/cerner-terra-application/contexts/application-intl-context).
 
 ### Theming
 

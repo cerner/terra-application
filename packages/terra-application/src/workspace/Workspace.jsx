@@ -7,13 +7,13 @@ import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import Popup from 'terra-popup';
 
+import { useIntl } from 'react-intl';
 import ActionMenu, {
   ActionMenuDivider,
   ActionMenuItem,
   ActionMenuGroup,
   ActionMenuRadio,
 } from '../action-menu';
-import { ApplicationIntlContext } from '../application-intl';
 import usePortalManager, { getPortalElement } from './shared/usePortalManager';
 import WorkspaceButton from './subcomponents/_WorkspaceButton';
 
@@ -118,7 +118,7 @@ const Workspace = ({
 }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const theme = React.useContext(ThemeContext);
-  const intl = React.useContext(ApplicationIntlContext);
+  const intl = useIntl();
   const sizeMenuRef = useRef();
 
   const [workspaceContainerRef, workspacePortalsRef] = usePortalManager(activeItemKey);

@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+* Breaking
+  * Dropped v2-v4 react-intl support ([Upgrade Guide](https://engineering.cerner.com/terra-application/dev_tools/cerner-terra-application-docs/terra-dev-site/upgrade-guides/application-v-2)).
+  * `customTranslatedMessages` prop removed, thus dropping support for the ability of consumers to provide translations for an unsupported locale.
+  * `contextShape` will not be provided by `ApplicationIntlContext` anymore since `intlShape` is no longer exported by `react-intl`.
+  * `translationsLoadingPlaceholder` prop removed.
+
 ## 1.53.0 - (February 8, 2022)
 
 * Added

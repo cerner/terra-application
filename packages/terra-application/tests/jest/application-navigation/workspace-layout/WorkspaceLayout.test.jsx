@@ -7,6 +7,18 @@ import { ActiveBreakpointContext } from '../../../../src/breakpoints';
 import MockApplication from '../../MockApplication';
 import WorkspaceLayout from '../../../../src/application-navigation/private/workspace-layout/WorkspaceLayout';
 
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
+
 /* eslint-disable react/prop-types */
 const MyMockApplication = ({ children }) => (
   <MockApplication>

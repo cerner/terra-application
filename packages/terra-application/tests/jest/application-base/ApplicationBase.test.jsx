@@ -1,10 +1,10 @@
 import React from 'react';
-
+import { mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
 
 describe('ApplicationBase', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = mountWithIntl((
       <ApplicationBase locale="en">
         <div>content</div>
       </ApplicationBase>
@@ -13,14 +13,11 @@ describe('ApplicationBase', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = mountWithIntl((
       <ApplicationBase
         locale="en"
-        customTranslatedMessages={{ custom: 'messages' }}
-        translationsLoadingPlaceholder={<div>placeholder</div>}
+        unloadPromptIsDisabled
         themeName="test-theme"
-        themeIsGlobal
-        fitToParentIsDisabled
       >
         <div>content</div>
       </ApplicationBase>
@@ -28,8 +25,8 @@ describe('ApplicationBase', () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it('should render with the preferred browser local', () => {
-    const wrapper = shallow((
+  it('should render with the preferred browser locale', () => {
+    const wrapper = mountWithIntl((
       <ApplicationBase>
         <div>content</div>
       </ApplicationBase>

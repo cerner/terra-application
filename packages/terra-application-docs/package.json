@@ -50,7 +50,7 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-intl": "^5.8.2",
-    "terra-application": "^1.48.0"
+    "terra-application": "^2.0.0"
   },
   "devDependencies": {
     "terra-application": "^2.0.0"

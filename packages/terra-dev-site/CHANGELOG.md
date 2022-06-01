@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 8.0.0 - (May 31, 2022)
+
 * Breaking
   * Dropped v2-v4 react-intl support
 

@@ -1,7 +1,7 @@
 {
   "name": "terra-application",
   "main": "lib/application-base/ApplicationBase.js",
-  "version": "1.53.0",
+  "version": "2.0.0",
   "description": "A framework to support application development with Terra components",
   "engines": {
     "node": "^8.9.2 || ^10.13.0 || ^12.0.0 || ^14.0.0"
@@ -49,10 +49,10 @@
     "classnames": "^2.2.5",
     "eventemitter3": "^4.0.4",
     "focus-trap-react": "^6.0.0",
-    "keycode-js": "^3.1.0",
-    "lodash.debounce": "^4.0.8",
     "intl": "^1.2.5",
     "intl-locales-supported": ">=1.8.4 <1.8.12 || ^1.8.13",
+    "keycode-js": "^3.1.0",
+    "lodash.debounce": "^4.0.8",
     "mutationobserver-shim": "<=0.3.3",
     "prop-types": "^15.5.8",
     "react-draggable": "^4.4.3",

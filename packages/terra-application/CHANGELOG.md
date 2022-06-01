@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.0 - (May 31, 2022)
+
 * Breaking
   * Dropped v2-v4 react-intl support ([Upgrade Guide](https://engineering.cerner.com/terra-application/dev_tools/cerner-terra-application-docs/terra-dev-site/upgrade-guides/application-v-2)).
   * `customTranslatedMessages` prop removed, thus dropping support for the ability of consumers to provide translations for an unsupported locale.

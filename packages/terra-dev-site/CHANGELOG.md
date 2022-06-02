@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * updated `terra-application` version in peer dependency.
+
 ## 8.0.0 - (May 31, 2022)
 
 * Breaking

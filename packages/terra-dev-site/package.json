@@ -88,7 +88,7 @@
   "peerDependencies": {
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
-    "terra-application": "^1.48.0",
+    "terra-application": "^2.0.0",
     "webpack": "^4.44.2 || ^5.0.0"
   },
   "devDependencies": {

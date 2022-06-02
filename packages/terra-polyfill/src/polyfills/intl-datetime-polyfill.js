@@ -1,3 +1,4 @@
+/* @formatjs/intl-datetimeformat/polyfill requires @formatjs/intl-getcanonicallocales and @formatjs/intl-locale/polyfil https://formatjs.io/docs/polyfills/intl-datetimeformat */
 /* eslint-disable global-require, import/no-dynamic-require */
 import '@formatjs/intl-getcanonicallocales/polyfill';
 import '@formatjs/intl-locale/polyfill';

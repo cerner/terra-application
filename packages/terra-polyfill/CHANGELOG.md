@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added `@formatjs/intl-datetimeformat` polyfill to support date-time functions in ie 10.
+
 ## 1.2.0 - (February 14, 2022)
 
 * Changed

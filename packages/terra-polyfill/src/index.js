@@ -47,11 +47,3 @@ import './polyfills/inert-polyfill';
  * Polyfill for [Intl](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl).
  */
 import './polyfills/intl-polyfill';
-
-/**
- * Polyfill for [Intl.DateTimeFormat() Options parameter](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat).
- * `options` parameter of Date and Intl functions are not supported in IE10 hence adding this polyfill to provide support for `options` parameter in IE10. : https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat#browser_compatibility
- */
-import intlDateTimeFormatPolyfill from './polyfills/intlDateTimeFormatPolyfill';
-
-export { intlDateTimeFormatPolyfill };

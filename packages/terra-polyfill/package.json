@@ -36,6 +36,9 @@
   },
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^8.0.0",
+    "@formatjs/intl-datetimeformat": "^5.0.2",
+    "@formatjs/intl-getcanonicallocales": "^1.9.2",
+    "@formatjs/intl-locale": "^2.4.47",
     "abortcontroller-polyfill": "^1.7.3",
     "core-js": "^3.15.2",
     "intl": "^1.2.5",

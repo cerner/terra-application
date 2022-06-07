@@ -2,8 +2,11 @@
 
 ## Unreleased
 
+## 8.1.0 - (June 7, 2022)
+
 * Changed
-  * updated `terra-application` version in peer dependency.
+  * Support for date-time functions in ie 10.
+
 
 ## 8.0.0 - (May 31, 2022)
 

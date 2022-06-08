@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-application-docs",
-  "version": "3.0.0",
+  "version": "3.0.1",
   "description": "Contains documentation for packages in the terra-application monorepo",
   "main": "index.js",
   "publishConfig": {
@@ -50,9 +50,9 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-intl": "^5.8.2",
-    "terra-application": "^2.0.0"
+    "terra-application": "^2.0.1"
   },
   "devDependencies": {
-    "terra-application": "^2.0.0"
+    "terra-application": "^2.0.1"
   }
 }

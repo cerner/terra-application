@@ -78,7 +78,7 @@
     "terra-toolbar": "^1.22.0",
     "terra-visually-hidden-text": "^2.31.0",
     "uuid": "^3.0.0",
-    "wicg-inert": "^3.0.2"
+    "wicg-inert": "3.1.2"
   },
   "peerDependencies": {
     "react": "^16.8.5",

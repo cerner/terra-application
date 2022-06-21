@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Changed
+  * Updated WDIO screenshots.
 
 ## 7.6.0 - (February 14, 2022)
 

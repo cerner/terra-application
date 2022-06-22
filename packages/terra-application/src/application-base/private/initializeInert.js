@@ -9,12 +9,13 @@ import '../../utils/polyfills/_matches-polyfill';
  * across the framework's supported browsers, so a polyfill is added on an as-need basis to ensure feature parity.
  */
 function initializeInert() {
+  const inertId = 'inert-style';
   /**
    * We manually check whether the inert polyfill is necessary so as to
    * not to add the inert style link unnecessarily.
    */
   // eslint-disable-next-line no-prototype-builtins
-  if (Element.prototype.hasOwnProperty('inert')) {
+  if (HTMLElement.prototype.hasOwnProperty('inert') || document.getElementById(inertId)) {
     return;
   }
 
@@ -24,7 +25,7 @@ function initializeInert() {
    * https://github.com/WICG/inert#strict-content-security-policy
    */
   const inertStyleLink = document.createElement('link');
-  inertStyleLink.id = 'inert-style';
+  inertStyleLink.id = inertId;
 
   const styleLinkParent = document.head || document.body;
   styleLinkParent.appendChild(inertStyleLink);

@@ -7,7 +7,7 @@ import './inertStyles.scss';
  */
 
 // eslint-disable-next-line no-prototype-builtins
-if (!Element.prototype.hasOwnProperty('inert')) {
+if (!HTMLElement.prototype.hasOwnProperty('inert') && !document.getElementById('inert-style')) {
   // We create a link whose presence indicates that the polyfill should not create
   // inline inert styles in the document. This prevents certain issues with strict CSP settings:
   // https://github.com/WICG/inert#strict-content-security-policy

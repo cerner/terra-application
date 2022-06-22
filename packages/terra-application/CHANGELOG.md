@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+* Changed
+  * updated condition statement added to check `inert` polyfill is required.
+  * updated `wicg-inert` to latest version.
+
 ## 2.0.1 - (June 8, 2022)
 
 * Minor dependency bump

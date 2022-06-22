@@ -5,6 +5,7 @@ services:
 branches:
   only:
     - main
+    - application-v1-53
 cache:
   directories:
     - travis-build

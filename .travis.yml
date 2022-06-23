@@ -11,6 +11,9 @@ cache:
     - travis-build
     - docker_images
 before_install:
+  # For troubleshooting
+  - npm whoami
+  
   # Clean install on any new build
   - npm run clean
 before_script:

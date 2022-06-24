@@ -14,6 +14,7 @@ Cerner Corporation
 - Saket Bajaj [@saket2403]
 - Pranav Agarwal [@pranav300]
 - Mackenzie Revoyr [@revoyrm]
+- Supreeth MR [@supreethmr]
 
 [@mjhenkes]: https://github.com/mjhenkes
 [@tbiethman]: https://github.com/tbiethman
@@ -29,3 +30,4 @@ Cerner Corporation
 [@saket2403]: https://github.com/saket2403
 [@pranav300]: https://github.com/pranav300
 [@revoyrm]: https://github.com/revoyrm
+[@supreethmr]: https://github.com/supreethmr

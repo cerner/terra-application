@@ -95,10 +95,23 @@ const extensionItemsPropType = PropTypes.arrayOf(PropTypes.shape({
   metaData: PropTypes.object,
 }));
 
+const userActionConfigPropType = PropTypes.shape({
+  /**
+   * Text to be displayed on user action button.
+  */
+  text: PropTypes.string.isRequired,
+
+  /**
+   * A function to be executed on user action button click.
+   * If `userActionCallback` is not provided, the user action button will not be rendered.
+  */
+  userActionCallback: PropTypes.func.isRequired,
+});
+
 export default {
-  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, extensionItemsPropType,
+  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, extensionItemsPropType, userActionConfigPropType,
 };
 
 export {
-  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, extensionItemsPropType,
+  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, extensionItemsPropType, userActionConfigPropType,
 };

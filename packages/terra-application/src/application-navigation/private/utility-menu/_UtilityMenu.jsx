@@ -4,7 +4,7 @@ import { injectIntl } from 'react-intl';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import IconQuestionOutline from 'terra-icon/lib/icon/IconQuestionOutline';
 import PopupMenu from '../common/_PopupMenu';
-import { userConfigPropType, utilityItemsPropType } from '../utils/propTypes';
+import { userConfigPropType, utilityItemsPropType, userActionConfigPropType } from '../utils/propTypes';
 import { utilityItemId, helpUtilityItemId, settingsUtilityItemId } from '../utils/helpers';
 
 const propTypes = {
@@ -57,6 +57,10 @@ const propTypes = {
    * Object containing intl APIs
    */
   intl: PropTypes.shape({ formatMessage: PropTypes.func }),
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
 };
 
 const defaultProps = {
@@ -67,7 +71,7 @@ const utilityMenuSettingsKey = 'terra-application-navigation.utility-menu.settin
 const utilityMenuHelpKey = 'terra-application-navigation.utility-menu.help';
 
 const UtilityMenu = ({
-  userConfig, hero, onSelectSettings, onSelectHelp, onSelectLogout, utilityItems, id, onSelectUtilityItem, isHeightBounded, intl,
+  userConfig, hero, onSelectSettings, onSelectHelp, onSelectLogout, utilityItems, id, onSelectUtilityItem, isHeightBounded, intl, userActionConfig,
 }) => {
   let menuItems = [];
   menuItems = utilityItems.map(item => ({
@@ -106,6 +110,7 @@ const UtilityMenu = ({
       footerText={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.logout' })}
       onSelectFooterItem={onSelectLogout}
       userConfig={userConfig}
+      userActionConfig={userActionConfig}
       customContent={hero}
       menuItems={menuItems}
       id={id}

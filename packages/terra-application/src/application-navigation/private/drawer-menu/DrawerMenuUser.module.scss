@@ -12,6 +12,39 @@
     .avatar-inner {
       z-index: 0;
     }
+
+    .drawer-menu-action-button {
+      background-color: var(--terra-application-navigation-drawer-menu-action-button-background-color, #004c76);
+      border: var(--terra-application-navigation-drawer-menu-action-button-border, 1px solid #a7aaab);
+      color: var(--terra-application-navigation-drawer-menu-action-button-color, #dedfe0);
+      font-size: 1rem;
+      outline: none;
+      overflow-wrap: break-word; /* Modern browsers */
+      padding: 3px 0.7142857143rem;
+      text-align: center;
+      text-decoration: none;
+      text-transform: none;
+      touch-action: manipulation; // Enable fast tap interaction in webkit browsers; see https://webkit.org/blog/5610/more-responsive-tapping-on-ios/
+      user-select: none; // Prevent text selection on buttons on mobile devices
+      white-space: normal;
+      width: 100%;
+      word-wrap: break-word; /* For IE 10 and IE 11 */
+
+      &[data-focus-styles-enabled='true']:focus {
+        outline: var(--terra-application-navigation-drawer-menu-action-button-focus-outline, 2px dashed #fff);
+        outline-offset: var(--terra-application-navigation-drawer-menu-action-button-focus-outline-offset, 6px);
+      }
+
+      &:hover {
+        background-color: var(--terra-application-navigation-drawer-menu-action-button-hover-background-color, #005685);
+        color: var(--terra-application-navigation-drawer-menu-action-button-hover-color, #dedfe0);
+      }
+
+      &:active {
+        background-color: var(--terra-application-navigation-drawer-menu-action-button-active-background-color, #0065a3);
+        color: var(--terra-application-navigation-drawer-menu-action-button-active-color, #dedfe0);
+      }
+    }
   }
 
   .large-user-layout {
@@ -68,7 +101,11 @@
       white-space: normal;
       word-break: break-word;
       word-wrap: break-word;
-    }  
+    }
+
+    .drawer-menu-action-button {
+      margin-top: 12px;
+    }
   }
 
   .small-user-layout {
@@ -121,7 +158,11 @@
       white-space: normal;
       word-break: break-word;
       word-wrap: break-word;
-    }  
+    }
+
+    .drawer-menu-action-button {
+      margin-top: 6px;
+    }
   }
 }
 /* stylelint-enable selector-max-compound-selectors */

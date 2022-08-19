@@ -1,9 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Avatar, { Generic } from 'terra-avatar';
 import ThemeContext from 'terra-theme-context';
+import Button from 'terra-button';
 
-import { userConfigPropType } from '../utils/propTypes';
+import { userConfigPropType, userActionConfigPropType } from '../utils/propTypes';
 
 import styles from './PopupMenuUser.module.scss';
 
@@ -14,9 +16,18 @@ const propTypes = {
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType.isRequired,
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
+   *  An id for the user action utility button
+   */
+  id: PropTypes.string,
+
 };
 
-const PopupMenuUser = ({ userConfig }) => {
+const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -32,6 +43,17 @@ const PopupMenuUser = ({ userConfig }) => {
       <div className={cx('info-container')}>
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
+        { userActionConfig && userActionConfig.text && userActionConfig.userActionCallback && (
+        <Button
+          id={id || undefined}
+          text={userActionConfig.text}
+          onClick={userActionConfig.userActionCallback}
+          data-navigation-utility-item-logout
+          className={cx('action-button')}
+          variant="ghost"
+          isCompact
+        />
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Avatar, { Generic } from 'terra-avatar';
 import ThemeContext from 'terra-theme-context';
-import { userConfigPropType } from '../utils/propTypes';
+import { userConfigPropType, userActionConfigPropType } from '../utils/propTypes';
+import { enableFocusStyles, disableFocusStyles } from '../utils/helpers';
 
 import styles from './DrawerMenuUser.module.scss';
 
@@ -18,13 +19,23 @@ const propTypes = {
    * Size variant of the user. One of values [`small`, `large`].
    */
   variant: PropTypes.oneOf(['small', 'large']),
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
+   *  An id for the user action utility button
+   */
+  id: PropTypes.string,
 };
 
 const defaultProps = {
   variant: 'small',
 };
 
-const DrawerMenuUser = ({ userConfig, variant }) => {
+const DrawerMenuUser = ({
+  userConfig, variant, userActionConfig, id,
+}) => {
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -42,6 +53,19 @@ const DrawerMenuUser = ({ userConfig, variant }) => {
       <div className={cx('info-container')}>
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
+        { userActionConfig && userActionConfig.text && userActionConfig.userActionCallback && (
+        <button
+          id={id || undefined}
+          className={cx('drawer-menu-action-button', theme.className)}
+          type="button"
+          onClick={userActionConfig.userActionCallback}
+          onBlur={enableFocusStyles}
+          onMouseDown={disableFocusStyles}
+          data-focus-styles-enabled
+        >
+          {userActionConfig.text}
+        </button>
+        )}
       </div>
     </div>
   );

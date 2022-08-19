@@ -41,6 +41,12 @@
       white-space: normal;
       word-break: break-word;
       word-wrap: break-word;
-    }  
+    }
+
+    .action-button {
+      // align-self: flex-start;
+      margin-top: 0.2142857143rem;
+      // width: 50%;
+    }
   }
 }

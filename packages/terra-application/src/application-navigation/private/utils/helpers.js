@@ -90,6 +90,10 @@ function extensionItemId(appNavId, extensionItemKey) {
   return itemId(appNavId, 'ExtensionItem', extensionItemKey);
 }
 
+function actionUtilityItemId(appNavId) {
+  return utilityItemId(appNavId, 'TerraAction');
+}
+
 export default {
   shouldRenderCompactNavigation,
   enableFocusStyles,
@@ -110,4 +114,5 @@ export {
   helpUtilityItemId,
   settingsUtilityItemId,
   logoutUtilityItemId,
+  actionUtilityItemId,
 };

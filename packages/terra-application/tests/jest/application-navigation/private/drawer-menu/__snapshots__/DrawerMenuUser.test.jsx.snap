@@ -37,6 +37,16 @@ exports[`DrawerMenuUser should render default element 1`] = `
     >
       user-detail
     </div>
+    <button
+      className="drawer-menu-action-button"
+      data-focus-styles-enabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    >
+      Edit Photo
+    </button>
   </div>
 </div>
 `;
@@ -78,6 +88,16 @@ exports[`DrawerMenuUser should render with large variant 1`] = `
     >
       user-detail
     </div>
+    <button
+      className="drawer-menu-action-button"
+      data-focus-styles-enabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    >
+      Edit Photo
+    </button>
   </div>
 </div>
 `;
@@ -119,6 +139,16 @@ exports[`DrawerMenuUser should render with small variant 1`] = `
     >
       user-detail
     </div>
+    <button
+      className="drawer-menu-action-button"
+      data-focus-styles-enabled={true}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onMouseDown={[Function]}
+      type="button"
+    >
+      Edit Photo
+    </button>
   </div>
 </div>
 `;

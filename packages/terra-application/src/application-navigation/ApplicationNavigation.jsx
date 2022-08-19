@@ -6,7 +6,7 @@ import uuidv4 from 'uuid/v4';
 import { useIntl } from 'react-intl';
 import TerraApplicationNavigation from './private/ApplicationNavigation';
 import {
-  titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType,
+  titleConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userConfigPropType, userActionConfigPropType,
 } from './private/utils/propTypes';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
@@ -126,6 +126,10 @@ const propTypes = {
    * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
    */
   workspace: PropTypes.element,
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
 };
 
 const ApplicationNavigation = ({
@@ -150,6 +154,7 @@ const ApplicationNavigation = ({
   userConfig,
   utilityItems,
   workspace,
+  userActionConfig,
 }) => {
   const applicationIntl = useIntl();
   const navigationPromptCheckpointRef = useRef();
@@ -187,6 +192,7 @@ const ApplicationNavigation = ({
       onSelectNavigationItem={propOnSelectNavigationItem && onSelectNavigationItem}
       activeNavigationItemKey={activeNavigationItemKey}
       userConfig={userConfig}
+      userActionConfig={userActionConfig}
       extensionItems={extensionItems}
       onSelectExtensionItem={onSelectExtensionItem}
       utilityItems={utilityItems}

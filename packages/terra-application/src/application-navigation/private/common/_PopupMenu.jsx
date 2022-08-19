@@ -16,8 +16,8 @@ import {
 } from 'keycode-js';
 
 import PopupMenuListItem from './_PopupMenuListItem';
-import { userConfigPropType } from '../utils/propTypes';
-import { logoutUtilityItemId } from '../utils/helpers';
+import { userConfigPropType, userActionConfigPropType } from '../utils/propTypes';
+import { logoutUtilityItemId, actionUtilityItemId } from '../utils/helpers';
 import PopupMenuUser from './_PopupMenuUser';
 
 import styles from './PopupMenu.module.scss';
@@ -102,6 +102,10 @@ const propTypes = {
    * Role of the parent ul that child items should match.
    */
   role: PropTypes.oneOf(['list', 'menu', 'listbox']),
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
 };
 
 const defaultProps = {
@@ -112,7 +116,7 @@ const defaultProps = {
 };
 
 const PopupMenu = ({
-  title, footerText, id, onSelectFooterItem, onSelectMenuItem, customContent, userConfig, menuItems, isHeightBounded, showSelections, role,
+  title, footerText, id, onSelectFooterItem, onSelectMenuItem, customContent, userConfig, menuItems, isHeightBounded, showSelections, role, userActionConfig,
 }) => {
   const listRef = useRef();
   const buttonRef = useRef();
@@ -201,7 +205,7 @@ const PopupMenu = ({
             {customContent}
           </div>
         ) : undefined}
-        {userConfig ? <PopupMenuUser userConfig={userConfig} /> : null}
+        {userConfig ? <PopupMenuUser id={id && actionUtilityItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
         <ul className={cx('utility-list')} aria-label={title} ref={listRef} role={role} tabIndex="0" onKeyDown={handleKeyDown}>
           {menuItems.map(item => (
             <PopupMenuListItem

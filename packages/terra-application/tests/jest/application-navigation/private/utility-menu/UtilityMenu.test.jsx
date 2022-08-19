@@ -22,6 +22,10 @@ describe('UtilityMenu', () => {
           initials: 'user-initials',
           imageSrc: 'user-src',
         }}
+        userActionConfig={{
+          text: 'Edit Photo',
+          userActionCallback: () => jest.fn(),
+        }}
         utilityItems={[{
           id: 'test-utility-2-id', text: 'test-text-2', key: 'my-test-key-2', icon: <span>my icon</span>, metaData: { meta: 'metaData' },
         }]}

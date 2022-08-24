@@ -1,5 +1,6 @@
 import React, {
   useRef,
+  useEffect,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNamesBind from 'classnames/bind';
@@ -124,6 +125,9 @@ const PopupMenu = ({
   function setButtonRef(node) {
     buttonRef.current = node;
   }
+  useEffect(() => {
+    listRef.current.focus();
+  }, []);
 
   function handleArrowDown(event) {
     if (listRef.current.hasChildNodes()) {

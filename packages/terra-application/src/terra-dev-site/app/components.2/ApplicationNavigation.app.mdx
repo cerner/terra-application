@@ -255,6 +255,24 @@ to render the action controls necessary for its usage. Failure to do so will lea
 
 </Notice>
 
+### `userActionConfig`
+#### Is Required: `false`
+
+The `userActionConfig` prop allows consumers have first class support for a action utility button.
+If the `userActionConfig` prop is not set a action utility button will not be displayed.
+
+|Key Name|Type|Is Required|Description|
+|---|---|---|---|
+|`text`|String|**required**|Text to be displayed on user action button..
+|`userActionCallback`|Function|**required**|A function to be executed on user action button click.|
+
+```jsx
+const userActionConfig = {
+  text: 'Edit Photo',
+  userActionCallback: () => console.log('Button Clicked'),
+};
+```
+
 ## Subcomponents
 
 ### ApplicationNavigation.Workspace
@@ -292,6 +310,7 @@ The ApplicationNavigation has two rendering modes: `standard` and `compact`.
 |`utilityItems`|Content is rendered within ApplicationNavigation's utility popup (as provided by `terra-popup`).|Content is rendered within ApplicationNavigation's navigation drawer.|
 |`navigationItems`|Content is rendered within the ApplicationNavigation's header as tabs.|Content is rendered within ApplicationNavigation's navigation drawer.|
 |`extensionItems`|Content is rendered within ApplicationNavigation's header.|Same as `standard`.|
+|`userActionConfig`|Content is rendered within ApplicationNavigation's utility popup (as provided by `terra-popup`).|Content is rendered within ApplicationNavigation's navigation drawer.|
 
 ## Example
 

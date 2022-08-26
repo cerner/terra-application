@@ -114,6 +114,10 @@ const propTypes = {
    */
   titleConfig: titleConfigPropType,
   /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType,
@@ -126,10 +130,6 @@ const propTypes = {
    * An ApplicationNavigationWorkspace element and it's associated ApplicationNavigationWorkspaceItems.
    */
   workspace: PropTypes.element,
-  /**
-   *  A configuration object to render a utility button.
-   */
-  userActionConfig: userActionConfigPropType,
 };
 
 const ApplicationNavigation = ({

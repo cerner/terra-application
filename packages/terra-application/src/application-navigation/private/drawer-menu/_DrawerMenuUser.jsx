@@ -12,6 +12,14 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
+   *  An id for the user action utility button
+   */
+  id: PropTypes.string,
+  /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType.isRequired,
@@ -19,14 +27,6 @@ const propTypes = {
    * Size variant of the user. One of values [`small`, `large`].
    */
   variant: PropTypes.oneOf(['small', 'large']),
-  /**
-   *  A configuration object to render a utility button.
-   */
-  userActionConfig: userActionConfigPropType,
-  /**
-   *  An id for the user action utility button
-   */
-  id: PropTypes.string,
 };
 
 const defaultProps = {
@@ -53,7 +53,7 @@ const DrawerMenuUser = ({
       <div className={cx('info-container')}>
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
-        { userActionConfig && userActionConfig.text && userActionConfig.userActionCallback && (
+        { userActionConfig && (
         <button
           id={id || undefined}
           className={cx('drawer-menu-action-button', theme.className)}

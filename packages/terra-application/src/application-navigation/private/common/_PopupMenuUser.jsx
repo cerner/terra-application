@@ -13,18 +13,17 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   * A configuration object with information pertaining to the application's user.
+   *  An id for the user action utility button
    */
-  userConfig: userConfigPropType.isRequired,
+  id: PropTypes.string,
   /**
    *  A configuration object to render a utility button.
    */
   userActionConfig: userActionConfigPropType,
   /**
-   *  An id for the user action utility button
+   * A configuration object with information pertaining to the application's user.
    */
-  id: PropTypes.string,
-
+  userConfig: userConfigPropType.isRequired,
 };
 
 const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
@@ -43,7 +42,7 @@ const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
       <div className={cx('info-container')}>
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
-        { userActionConfig && userActionConfig.text && userActionConfig.userActionCallback && (
+        { userActionConfig && (
         <Button
           id={id || undefined}
           text={userActionConfig.text}

@@ -96,6 +96,10 @@ const propTypes = {
    */
   onSelectLogout: PropTypes.func,
   /**
+   *  A configuration object to render a utility button.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
    * An array of configuration objects with information specifying the creation of additional utility menu items.
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
@@ -113,10 +117,6 @@ const propTypes = {
    * An ApplicationNavigation.Workspace element to be presented within the layout.
    */
   workspace: PropTypes.element,
-  /**
-   *  A configuration object to render a utility button.
-   */
-  userActionConfig: userActionConfigPropType,
 };
 
 const defaultProps = {

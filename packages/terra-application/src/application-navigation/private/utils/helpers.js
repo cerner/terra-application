@@ -90,7 +90,7 @@ function extensionItemId(appNavId, extensionItemKey) {
   return itemId(appNavId, 'ExtensionItem', extensionItemKey);
 }
 
-function actionUtilityItemId(appNavId) {
+function userActionItemId(appNavId) {
   return utilityItemId(appNavId, 'TerraAction');
 }
 
@@ -114,5 +114,5 @@ export {
   helpUtilityItemId,
   settingsUtilityItemId,
   logoutUtilityItemId,
-  actionUtilityItemId,
+  userActionItemId,
 };

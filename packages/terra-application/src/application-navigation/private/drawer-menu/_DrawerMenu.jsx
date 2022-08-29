@@ -15,7 +15,7 @@ import {
   titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, userActionConfigPropType,
 } from '../utils/propTypes';
 import {
-  navigationItemId, utilityItemId, settingsUtilityItemId, helpUtilityItemId, logoutUtilityItemId, actionUtilityItemId,
+  navigationItemId, utilityItemId, settingsUtilityItemId, helpUtilityItemId, logoutUtilityItemId, userActionItemId,
 } from '../utils/helpers';
 
 import styles from './DrawerMenu.module.scss';
@@ -90,7 +90,7 @@ const propTypes = {
    */
   intl: PropTypes.shape({ formatMessage: PropTypes.func }),
   /**
-   *  A configuration object to render a utility button.
+   * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
 };
@@ -118,7 +118,7 @@ const DrawerMenu = ({
   userActionConfig,
 }) => {
   const titleComponent = titleConfig && !(titleConfig.element || titleConfig.hideTitleWithinDrawerMenu) ? <DrawerMenuTitle titleConfig={titleConfig} /> : undefined;
-  const userComponent = userConfig ? <DrawerMenuUser id={id && actionUtilityItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} variant={hero ? 'small' : 'large'} /> : undefined;
+  const userComponent = userConfig ? <DrawerMenuUser id={id && userActionItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} variant={hero ? 'small' : 'large'} /> : undefined;
   const logoutButton = onSelectLogout ? (
     <div className={cx('footer')}>
       <DrawerMenuFooterButton

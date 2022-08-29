@@ -13,11 +13,11 @@ const cx = classNames.bind(styles);
 
 const propTypes = {
   /**
-   *  An id for the user action utility button
+   *  An id for the user action button
    */
   id: PropTypes.string,
   /**
-   *  A configuration object to render a utility button.
+   * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
   /**

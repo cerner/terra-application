@@ -58,7 +58,7 @@ const propTypes = {
    */
   intl: PropTypes.shape({ formatMessage: PropTypes.func }),
   /**
-   *  A configuration object to render a utility button.
+   * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
 };

@@ -55,7 +55,8 @@ const userConfig = {
 
 const userActionConfig = {
   text: 'Edit Photo',
-  userActionCallback: () => console.log('Button Clicked'),
+  // eslint-disable-next-line no-alert
+  userActionCallback: () => alert('Edit Photo Clicked'),
 };
 
 const ApplicationNavigationTest = () => {

@@ -18,7 +18,7 @@ import {
 
 import PopupMenuListItem from './_PopupMenuListItem';
 import { userConfigPropType, userActionConfigPropType } from '../utils/propTypes';
-import { logoutUtilityItemId, actionUtilityItemId } from '../utils/helpers';
+import { logoutUtilityItemId, userActionItemId } from '../utils/helpers';
 import PopupMenuUser from './_PopupMenuUser';
 
 import styles from './PopupMenu.module.scss';
@@ -104,7 +104,7 @@ const propTypes = {
    */
   role: PropTypes.oneOf(['list', 'menu', 'listbox']),
   /**
-   *  A configuration object to render a utility button.
+   * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
 };
@@ -209,7 +209,7 @@ const PopupMenu = ({
             {customContent}
           </div>
         ) : undefined}
-        {userConfig ? <PopupMenuUser id={id && actionUtilityItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
+        {userConfig ? <PopupMenuUser id={id && userActionItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
         <ul className={cx('utility-list')} aria-label={title} ref={listRef} role={role} tabIndex="0" onKeyDown={handleKeyDown}>
           {menuItems.map(item => (
             <PopupMenuListItem

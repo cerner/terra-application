@@ -201,6 +201,12 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
   onSelectLogout={[MockFunction]}
   onSelectSettings={[MockFunction]}
   onSelectUtilityItem={[MockFunction]}
+  userActionConfig={
+    Object {
+      "text": "Edit Photo",
+      "userActionCallback": [Function],
+    }
+  }
   userConfig={
     Object {
       "detail": "user-detail",
@@ -274,6 +280,12 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
     onSelectLogout={[MockFunction]}
     onSelectSettings={[MockFunction]}
     onSelectUtilityItem={[MockFunction]}
+    userActionConfig={
+      Object {
+        "text": "Edit Photo",
+        "userActionCallback": [Function],
+      }
+    }
     userConfig={
       Object {
         "detail": "user-detail",
@@ -352,6 +364,12 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
       role="listbox"
       showSelections={false}
       title="terraApplication.navigation.utilityMenu.headerTitle"
+      userActionConfig={
+        Object {
+          "text": "Edit Photo",
+          "userActionCallback": [Function],
+        }
+      }
       userConfig={
         Object {
           "detail": "user-detail",
@@ -494,6 +512,12 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     </div>
                   </div>
                   <PopupMenuUser
+                    userActionConfig={
+                      Object {
+                        "text": "Edit Photo",
+                        "userActionCallback": [Function],
+                      }
+                    }
                     userConfig={
                       Object {
                         "detail": "user-detail",
@@ -583,6 +607,43 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         >
                           user-detail
                         </div>
+                        <Button
+                          className="action-button"
+                          data-navigation-utility-item-logout={true}
+                          isBlock={false}
+                          isCompact={true}
+                          isDisabled={false}
+                          isIconOnly={false}
+                          isReversed={false}
+                          onClick={[Function]}
+                          text="Edit Photo"
+                          type="button"
+                          variant="ghost"
+                        >
+                          <button
+                            aria-disabled={false}
+                            className="button ghost compact action-button"
+                            data-navigation-utility-item-logout={true}
+                            disabled={false}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            onKeyUp={[Function]}
+                            onMouseDown={[Function]}
+                            type="button"
+                          >
+                            <span
+                              className="button-label text-only"
+                            >
+                              <span
+                                className=""
+                              >
+                                Edit Photo
+                              </span>
+                            </span>
+                          </button>
+                        </Button>
                       </div>
                     </div>
                   </PopupMenuUser>

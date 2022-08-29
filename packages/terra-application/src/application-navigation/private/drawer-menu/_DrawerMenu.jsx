@@ -12,10 +12,10 @@ import DrawerMenuListItem from './_DrawerMenuListItem';
 import DrawerMenuUser from './_DrawerMenuUser';
 import DrawerMenuFooterButton from './_DrawerMenuFooterButton';
 import {
-  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType,
+  titleConfigPropType, userConfigPropType, navigationItemsPropType, utilityItemsPropType, userActionConfigPropType,
 } from '../utils/propTypes';
 import {
-  navigationItemId, utilityItemId, settingsUtilityItemId, helpUtilityItemId, logoutUtilityItemId,
+  navigationItemId, utilityItemId, settingsUtilityItemId, helpUtilityItemId, logoutUtilityItemId, userActionItemId,
 } from '../utils/helpers';
 
 import styles from './DrawerMenu.module.scss';
@@ -89,6 +89,10 @@ const propTypes = {
    * Object containing intl APIs
    */
   intl: PropTypes.shape({ formatMessage: PropTypes.func }),
+  /**
+   * A configuration object to render an action button for user Config.
+   */
+  userActionConfig: userActionConfigPropType,
 };
 
 const defaultProps = {
@@ -111,9 +115,10 @@ const DrawerMenu = ({
   onSelectUtilityItem,
   notifications,
   intl,
+  userActionConfig,
 }) => {
   const titleComponent = titleConfig && !(titleConfig.element || titleConfig.hideTitleWithinDrawerMenu) ? <DrawerMenuTitle titleConfig={titleConfig} /> : undefined;
-  const userComponent = userConfig ? <DrawerMenuUser userConfig={userConfig} variant={hero ? 'small' : 'large'} /> : undefined;
+  const userComponent = userConfig ? <DrawerMenuUser id={id && userActionItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} variant={hero ? 'small' : 'large'} /> : undefined;
   const logoutButton = onSelectLogout ? (
     <div className={cx('footer')}>
       <DrawerMenuFooterButton

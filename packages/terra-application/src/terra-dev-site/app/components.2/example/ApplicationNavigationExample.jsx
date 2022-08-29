@@ -50,6 +50,13 @@ const navigationItems = [{
 const userConfig = {
   name: 'Example User',
   initials: 'EU',
+  detail: 'Is a User',
+};
+
+const userActionConfig = {
+  text: 'Edit Photo',
+  // eslint-disable-next-line no-alert
+  userActionCallback: () => alert('Edit Photo Clicked'),
 };
 
 const ApplicationNavigationTest = () => {
@@ -69,6 +76,7 @@ const ApplicationNavigationTest = () => {
             title: 'ApplicationNavigation Example',
           }}
           userConfig={userConfig}
+          userActionConfig={userActionConfig}
           navigationItems={navigationItems}
           activeNavigationItemKey={activeNavItem}
           onSelectNavigationItem={(key) => { setActiveNavItem(key); }}

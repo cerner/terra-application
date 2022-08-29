@@ -15,7 +15,7 @@ import DrawerMenu from './drawer-menu/_DrawerMenu';
 import UtilityMenu from './utility-menu/_UtilityMenu';
 import { shouldRenderCompactNavigation } from './utils/helpers';
 import {
-  titleConfigPropType, userConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType,
+  titleConfigPropType, userConfigPropType, navigationItemsPropType, extensionItemsPropType, utilityItemsPropType, userActionConfigPropType,
 } from './utils/propTypes';
 import WorkspaceLayout from './workspace-layout/WorkspaceLayout';
 
@@ -96,6 +96,10 @@ const propTypes = {
    */
   onSelectLogout: PropTypes.func,
   /**
+   * A configuration object to render an action button for user Config.
+   */
+  userActionConfig: userActionConfigPropType,
+  /**
    * An array of configuration objects with information specifying the creation of additional utility menu items.
    * These items are rendered within the popup utility menu at larger breakpoints and within the drawer menu at smaller breakpoints.
    */
@@ -140,6 +144,7 @@ const ApplicationNavigation = ({
   notifications,
   children,
   workspace,
+  userActionConfig,
 }) => {
   const drawerMenuRef = useRef();
   const contentLayoutRef = useRef();
@@ -235,6 +240,7 @@ const ApplicationNavigation = ({
           <DrawerMenu
             titleConfig={titleConfig}
             userConfig={userConfig}
+            userActionConfig={userActionConfig}
             hero={hero}
             navigationItems={navigationItems}
             activeNavigationItemKey={activeNavigationItemKey}
@@ -270,6 +276,7 @@ const ApplicationNavigation = ({
         <UtilityMenu
           hero={hero}
           userConfig={userConfig}
+          userActionConfig={userActionConfig}
           onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}

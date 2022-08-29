@@ -241,6 +241,7 @@ exports[`DrawerMenu should render with navigation and utility item ids 1`] = `
             my test hero
           </div>
           <DrawerMenuUser
+            id="test-application-UtilityItem-TerraAction"
             userConfig={
               Object {
                 "detail": "user-detail",

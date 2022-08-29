@@ -70,6 +70,12 @@ exports[`ApplicationNavigation should render with all props 1`] = `
       "title": "test-title",
     }
   }
+  userActionConfig={
+    Object {
+      "text": "Edit Photo",
+      "userActionCallback": [Function],
+    }
+  }
   userConfig={
     Object {
       "detail": "user-detail",

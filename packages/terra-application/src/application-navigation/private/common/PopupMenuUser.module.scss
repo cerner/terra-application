@@ -16,6 +16,7 @@
     }
   
     .info-container {
+      align-items: flex-start;
       display: flex;
       flex: 1 1 auto;
       flex-direction: column;
@@ -41,6 +42,10 @@
       white-space: normal;
       word-break: break-word;
       word-wrap: break-word;
-    }  
+    }
+
+    .action-button {
+      margin-top: 0.2142857143rem;
+    }
   }
 }

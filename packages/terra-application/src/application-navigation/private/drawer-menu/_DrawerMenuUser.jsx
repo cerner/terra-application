@@ -3,13 +3,22 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Avatar, { Generic } from 'terra-avatar';
 import ThemeContext from 'terra-theme-context';
-import { userConfigPropType } from '../utils/propTypes';
+import { userConfigPropType, userActionConfigPropType } from '../utils/propTypes';
+import { enableFocusStyles, disableFocusStyles } from '../utils/helpers';
 
 import styles from './DrawerMenuUser.module.scss';
 
 const cx = classNames.bind(styles);
 
 const propTypes = {
+  /**
+   *  An id for the user action button
+   */
+  id: PropTypes.string,
+  /**
+   * A configuration object to render an action button for user Config.
+   */
+  userActionConfig: userActionConfigPropType,
   /**
    * A configuration object with information pertaining to the application's user.
    */
@@ -24,7 +33,9 @@ const defaultProps = {
   variant: 'small',
 };
 
-const DrawerMenuUser = ({ userConfig, variant }) => {
+const DrawerMenuUser = ({
+  userConfig, variant, userActionConfig, id,
+}) => {
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -42,6 +53,19 @@ const DrawerMenuUser = ({ userConfig, variant }) => {
       <div className={cx('info-container')}>
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
+        { userActionConfig && (
+        <button
+          id={id || undefined}
+          className={cx('drawer-menu-action-button', theme.className)}
+          type="button"
+          onClick={userActionConfig.userActionCallback}
+          onBlur={enableFocusStyles}
+          onMouseDown={disableFocusStyles}
+          data-focus-styles-enabled
+        >
+          {userActionConfig.text}
+        </button>
+        )}
       </div>
     </div>
   );

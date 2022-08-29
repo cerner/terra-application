@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Update wdio snapshot to fix build.
+
 ## 7.6.1 - (June 22, 2022)
 
 * Changed

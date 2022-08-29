@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added user action utility button.
+
 ## 1.53.1 - (June 22, 2022)
 
 * Changed

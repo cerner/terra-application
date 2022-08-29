@@ -206,10 +206,27 @@ It is recommended that `initials` prop be provided for all cases if `userConfig`
 ```jsx
 const myUserConfig = {
   name: 'Name, User',
-  detail: 'Is a User',
+  detail: 'DomainName123',
   initials: 'UN',
   imageSrc: 'imageSrc',
 }
+```
+
+### `userActionConfig`
+#### Is Required: `false`
+
+The `userActionConfig` prop allows consumers to add an additional item to the `userConfig` section where it is displayed within the application. If a specific action related to a User's information or details, consumers can use this prop which will add a button along with the user name, detail, and avatar. Note: if the `userConfig` prop is not set, the user action button will not be displayed.
+
+|Key Name|Type|Is Required|Description|
+|---|---|---|---|
+|`text`|String|**required**|Text to be displayed on user action button.
+|`userActionCallback`|Function|**required**|A function to be executed on user action button click.|
+
+```jsx
+const userActionConfig = {
+  text: 'User Specific Action',
+  userActionCallback: () => console.log('Button Clicked'),
+};
 ```
 
 ### `hero`
@@ -292,6 +309,7 @@ The ApplicationNavigation has two rendering modes: `standard` and `compact`.
 |`utilityItems`|Content is rendered within ApplicationNavigation's utility popup (as provided by `terra-popup`).|Content is rendered within ApplicationNavigation's navigation drawer.|
 |`navigationItems`|Content is rendered within the ApplicationNavigation's header as tabs.|Content is rendered within ApplicationNavigation's navigation drawer.|
 |`extensionItems`|Content is rendered within ApplicationNavigation's header.|Same as `standard`.|
+|`userActionConfig`|Content is rendered within ApplicationNavigation's utility popup (as provided by `terra-popup`).|Content is rendered within ApplicationNavigation's navigation drawer.|
 
 ## Example
 

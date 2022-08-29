@@ -14,6 +14,12 @@ const userConfig = {
   initials: 'TN',
 };
 
+const userActionConfig = {
+  text: 'Edit Photo',
+  // eslint-disable-next-line no-console
+  userActionCallback: () => console.log('Button Clicked'),
+};
+
 const extensionItems = [
   {
     icon: <IconSearch />,
@@ -149,6 +155,7 @@ function ApplicationNavigationTest() {
     <ApplicationNavigation
       titleConfig={titleConfig}
       userConfig={userConfig}
+      userActionConfig={userActionConfig}
       extensionItems={extensionItems}
       onSelectExtensionItem={handleItemSelection}
       navigationItems={navigationItems}

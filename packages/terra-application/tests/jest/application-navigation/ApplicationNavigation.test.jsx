@@ -29,6 +29,10 @@ describe('ApplicationNavigation', () => {
           initials: 'user-initials',
           imageSrc: 'user-src',
         }}
+        userActionConfig={{
+          text: 'Edit Photo',
+          userActionCallback: () => jest.fn(),
+        }}
         navigationItems={[{ text: 'test-text', key: 'my-test-key' }]}
         extensionItems={[{ text: 'test-text-1', key: 'my-test-key-1', icon: <span>my icon</span> }]}
         utilityItems={[{ text: 'test-text-2', key: 'my-test-key-2', icon: <span>my icon</span> }]}

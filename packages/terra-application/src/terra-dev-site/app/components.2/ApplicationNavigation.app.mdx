@@ -206,10 +206,27 @@ It is recommended that `initials` prop be provided for all cases if `userConfig`
 ```jsx
 const myUserConfig = {
   name: 'Name, User',
-  detail: 'Is a User',
+  detail: 'DomainName123',
   initials: 'UN',
   imageSrc: 'imageSrc',
 }
+```
+
+### `userActionConfig`
+#### Is Required: `false`
+
+The `userActionConfig` prop allows consumers to add an additional item to the `userConfig` section where it is displayed within the application. If a specific action related to a User's information or details, consumers can use this prop which will add a button along with the user name, detail, and avatar. Note: if the `userConfig` prop is not set, the user action button will not be displayed.
+
+|Key Name|Type|Is Required|Description|
+|---|---|---|---|
+|`text`|String|**required**|Text to be displayed on user action button.
+|`userActionCallback`|Function|**required**|A function to be executed on user action button click.|
+
+```jsx
+const userActionConfig = {
+  text: 'User Specific Action',
+  userActionCallback: () => console.log('Button Clicked'),
+};
 ```
 
 ### `hero`
@@ -254,24 +271,6 @@ If a workspace is rendered by the ApplicationNavigation component, children of t
 to render the action controls necessary for its usage. Failure to do so will lead to a lack of user control over the workspace and an inconsistent user experience.
 
 </Notice>
-
-### `userActionConfig`
-#### Is Required: `false`
-
-The `userActionConfig` prop allows consumers have first class support for a action utility button.
-If the `userActionConfig` prop is not set a action utility button will not be displayed.
-
-|Key Name|Type|Is Required|Description|
-|---|---|---|---|
-|`text`|String|**required**|Text to be displayed on user action button..
-|`userActionCallback`|Function|**required**|A function to be executed on user action button click.|
-
-```jsx
-const userActionConfig = {
-  text: 'Edit Photo',
-  userActionCallback: () => console.log('Button Clicked'),
-};
-```
 
 ## Subcomponents
 

@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "terra-application monorepo",
   "engines": {
-    "node": "^10.0.0 || ^12.0.0 || ^14.0.0"
+    "node": "^10.0.0 || ^12.0.0 || ^14.0.0 || ^16.0.0"
   },
   "repository": {
     "type": "git",
@@ -85,6 +85,11 @@
     "wdio-fusion": "terra wdio --themes orion-fusion-theme",
     "wdio": "terra wdio --themes terra-default-theme clinical-lowlight-theme orion-fusion-theme"
   },
+  "peerDependencies":{
+    "react": "^16.8.5",
+    "react-dom": "^16.8.5",
+    "react-intl": "^5.8.2"
+  },
   "devDependencies": {
     "@babel/cli": "^7.13.14",
     "@babel/core": "^7.13.14",
@@ -106,7 +111,7 @@
     "@cerner/terra-enzyme-intl": "^4.0.0",
     "@cerner/terra-functional-testing": "^3.0.0",
     "@cerner/terra-open-source-scripts": "^1.1.0",
-    "@cerner/webpack-config-terra": "^3.0.0",
+    "@cerner/webpack-config-terra": "file:./cerner-webpack-config-terra-1.3.1.tgz",
     "@octokit/core": "^3.4.0",
     "@testing-library/jest-dom": "^5.11.6",
     "@testing-library/react": "^10.0.4",
@@ -126,16 +131,14 @@
     "lerna": "^3.16.4",
     "link-parent-bin": "^1.0.0",
     "loader-runner": "^4.1.0",
-    "postcss": "8.3.11",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-intl": "^5.8.2",
+    "node-sass": "^6.0",
+    "postcss": "^8.1",
     "regenerator-runtime": "^0.13.9",
     "stylelint": "^13.0.0",
     "terra-collapsible-menu-view": "^6.29.0",
     "webpack": "^5.28.0",
     "webpack-cli": "^4.6.0",
-    "webpack-dev-server": "^4.0.0",
+    "webpack-dev-server": "^3.3.1",
     "webpack-merge": "^5.7.3"
   }
 }

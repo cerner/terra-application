@@ -83,6 +83,9 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
   ],
   resolve: {
     extensions: ['.jst'],
+    alias: {
+      react: path.resolve('./node_modules/react'),
+    },
   },
 });
 

@@ -17,6 +17,7 @@
     min-height: calc(100% - 30px);
     overflow: hidden;
     padding: 0 10px 10px;
+    height: 100%;
 
     @include terra-mq-medium-up {
       min-width: 682px;

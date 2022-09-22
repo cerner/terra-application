@@ -2,8 +2,10 @@
 
 ## Unreleased
 
+* Fixed
+  * Fixed clipping issue of test pages in dev-site v7.
+
 * Changed
-  * Update dev-site v7. 
   * Update wdio snapshot to fix build.
 
 ## 8.1.0 - (June 22, 2022)

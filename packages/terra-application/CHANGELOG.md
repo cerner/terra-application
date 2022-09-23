@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated documentation for terra-application-ModelManager.
+
 * Added
   * Added user action utility button.
 

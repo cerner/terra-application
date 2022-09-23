@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Changed
-  * Updated documentation for terra-application-ModelManager.
+  * Updated size explanations for ModalManager managed by DisclosureManagerContext.
 
 * Added
   * Added user action utility button.

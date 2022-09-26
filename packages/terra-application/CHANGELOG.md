@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated size explanations for ModalManager managed by DisclosureManagerContext.
+
 * Added
   * Added user action utility button.
 

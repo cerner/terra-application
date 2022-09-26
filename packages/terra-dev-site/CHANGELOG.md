@@ -3,7 +3,7 @@
 ## Unreleased
 
 * Fixed
-  * Fixed clipping issue of test pages in dev-site v7.
+  * Fixed clipping issue of test pages in dev-site.
 
 * Changed
   * Update wdio snapshot to fix build.

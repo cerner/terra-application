@@ -2,8 +2,11 @@
 @import './orion-fusion-theme/ContentLoaded.module';
 
 :local {
-  .scroll {
+  .dev-site-content {
     height: 100%;
+  }
+
+  .scroll {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     position: relative;

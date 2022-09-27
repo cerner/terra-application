@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.7.0 - (September 27, 2022)
+
 * Fixed
   * Fixed clipping issue of test pages in dev-site.
 

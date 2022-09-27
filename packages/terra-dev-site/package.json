@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-dev-site",
-  "version": "8.1.0",
+  "version": "8.2.0",
   "description": "Dynamically builds a react-hash-routed site based on site configuration, navigation configuration and component configuration.",
   "engines": {
     "node": ">=10"
@@ -92,6 +92,6 @@
     "webpack": "^4.44.2 || ^5.0.0"
   },
   "devDependencies": {
-    "terra-application": "^2.1.0"
+    "terra-application": "^2.2.0"
   }
 }

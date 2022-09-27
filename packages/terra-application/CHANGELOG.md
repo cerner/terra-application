@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.2.0 - (September 27, 2022)
+
 * Changed
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
 

@@ -35,7 +35,7 @@
     "precompile": "rm -rf lib"
   },
   "dependencies": {
-    "@cerner/terra-dev-site": "^7.7.0",
+    "@cerner/terra-dev-site": "^7.6.1",
     "@cerner/terra-docs": "^1.0.0",
     "classnames": "^2.2.5",
     "prop-types": "^15.5.8",

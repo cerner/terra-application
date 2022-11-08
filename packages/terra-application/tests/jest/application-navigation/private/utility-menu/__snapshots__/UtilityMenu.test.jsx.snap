@@ -519,7 +519,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                       </div>
                       <Button
                         className="action-button"
-                        data-navigation-utility-item-logout={true}
+                        data-navigation-utility-item-userAction={true}
                         isBlock={false}
                         isCompact={true}
                         isDisabled={false}
@@ -533,7 +533,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         <button
                           aria-disabled={false}
                           className="button ghost compact action-button"
-                          data-navigation-utility-item-logout={true}
+                          data-navigation-utility-item-userAction={true}
                           disabled={false}
                           onBlur={[Function]}
                           onClick={[Function]}

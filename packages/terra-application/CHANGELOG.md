@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+* Fixed
+  * Fixed utility menu to close on userAction button click.
 
 ## 1.54.0 - (November 2, 2022)
 

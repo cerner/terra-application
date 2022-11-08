@@ -47,7 +47,7 @@ const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
           id={id || undefined}
           text={userActionConfig.text}
           onClick={userActionConfig.userActionCallback}
-          data-navigation-utility-item-logout
+          data-navigation-utility-item-userAction
           className={cx('action-button')}
           variant="ghost"
           isCompact

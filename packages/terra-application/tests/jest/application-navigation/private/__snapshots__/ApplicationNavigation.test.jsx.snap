@@ -75,6 +75,12 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               >
                 <InjectIntl(DrawerMenu)
                   notifications={Object {}}
+                  userActionConfig={
+                    Object {
+                      "text": undefined,
+                      "userActionCallback": undefined,
+                    }
+                  }
                   utilityItems={Array []}
                 >
                   <DrawerMenu
@@ -107,6 +113,12 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                     }
                     navigationItems={Array []}
                     notifications={Object {}}
+                    userActionConfig={
+                      Object {
+                        "text": undefined,
+                        "userActionCallback": undefined,
+                      }
+                    }
                     utilityItems={Array []}
                   >
                     <div
@@ -355,6 +367,12 @@ exports[`ApplicationNavigation should render default element 1`] = `
     targetRef={[Function]}
   >
     <InjectIntl(UtilityMenu)
+      userActionConfig={
+        Object {
+          "text": undefined,
+          "userActionCallback": undefined,
+        }
+      }
       utilityItems={Array []}
     />
   </Popup>
@@ -505,6 +523,12 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
       onSelectLogout={[Function]}
       onSelectSettings={[Function]}
       onSelectUtilityItem={[Function]}
+      userActionConfig={
+        Object {
+          "text": undefined,
+          "userActionCallback": undefined,
+        }
+      }
       userConfig={
         Object {
           "detail": "user-detail",
@@ -586,6 +610,12 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
           titleConfig={
             Object {
               "title": "test-title",
+            }
+          }
+          userActionConfig={
+            Object {
+              "text": undefined,
+              "userActionCallback": undefined,
             }
           }
           userConfig={
@@ -738,6 +768,12 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       onSelectLogout={[Function]}
       onSelectSettings={[Function]}
       onSelectUtilityItem={[Function]}
+      userActionConfig={
+        Object {
+          "text": undefined,
+          "userActionCallback": undefined,
+        }
+      }
       userConfig={
         Object {
           "detail": "user-detail",

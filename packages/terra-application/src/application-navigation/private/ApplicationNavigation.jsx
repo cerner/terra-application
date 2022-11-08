@@ -162,6 +162,8 @@ const ApplicationNavigation = ({
   const [popupMenuIsOpen, setPopupMenuIsOpen] = useState(false);
   const [renderSkipToWorkspace, setRenderSkipToWorkspace] = useState(false);
 
+  const { text, userActionCallback } = userActionConfig || { text: undefined, userActionCallback: undefined };
+
   const closeMenuEvent = 'terra-application-navigation.dismiss-menu';
 
   // Use dot notation temporarily until hooks + enzyme support for userContext
@@ -240,7 +242,7 @@ const ApplicationNavigation = ({
           <DrawerMenu
             titleConfig={titleConfig}
             userConfig={userConfig}
-            userActionConfig={userActionConfig}
+            userActionConfig={{ text, userActionCallback: userActionCallback ? generateMenuClosingCallback(userActionCallback) : undefined }}
             hero={hero}
             navigationItems={navigationItems}
             activeNavigationItemKey={activeNavigationItemKey}
@@ -276,7 +278,7 @@ const ApplicationNavigation = ({
         <UtilityMenu
           hero={hero}
           userConfig={userConfig}
-          userActionConfig={userActionConfig}
+          userActionConfig={{ text, userActionCallback: userActionCallback ? generateMenuClosingCallback(userActionCallback) : undefined }}
           onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}

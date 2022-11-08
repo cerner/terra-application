@@ -121,6 +121,20 @@ Terra.describeViewports('ApplicationNavigation - Large', ['large'], () => {
       Terra.validates.element('2. Popup Closed');
     });
   });
+
+  describe('Should close open popup when userActionCallback is called', () => {
+    it('launch popup menu', () => {
+      browser.url('/raw/tests/terra-application/application-navigation/private/application-navigation/application-navigation');
+      $('[data-application-header-utility="true"]').click();
+      $('[data-terra-popup-content="true"]').waitForDisplayed();
+      Terra.validates.element('Popup Menu Open');
+    });
+
+    it('close popup menu', () => {
+      $('[data-navigation-utility-item-userAction="true"]').click();
+      Terra.validates.element('Popup menu Closed');
+    });
+  });
 });
 
 Terra.describeViewports('ApplicationNavigation - Small', ['small'], () => {

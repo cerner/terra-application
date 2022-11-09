@@ -43,15 +43,15 @@ const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
         { userActionConfig && (
-        <Button
-          id={id || undefined}
-          text={userActionConfig.text}
-          onClick={userActionConfig.userActionCallback}
-          data-navigation-utility-item-userAction
-          className={cx('action-button')}
-          variant="ghost"
-          isCompact
-        />
+          <Button
+            id={id || undefined}
+            text={userActionConfig.text}
+            onClick={userActionConfig.userActionCallback}
+            data-navigation-popupmenu-item-user-action
+            className={cx('action-button')}
+            variant="ghost"
+            isCompact
+          />
         )}
       </div>
     </div>

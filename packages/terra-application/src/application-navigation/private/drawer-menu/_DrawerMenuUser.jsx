@@ -54,17 +54,18 @@ const DrawerMenuUser = ({
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
         { userActionConfig && (
-        <button
-          id={id || undefined}
-          className={cx('drawer-menu-action-button', theme.className)}
-          type="button"
-          onClick={userActionConfig.userActionCallback}
-          onBlur={enableFocusStyles}
-          onMouseDown={disableFocusStyles}
-          data-focus-styles-enabled
-        >
-          {userActionConfig.text}
-        </button>
+          <button
+            id={id || undefined}
+            className={cx('drawer-menu-action-button', theme.className)}
+            type="button"
+            onClick={userActionConfig.userActionCallback}
+            onBlur={enableFocusStyles}
+            onMouseDown={disableFocusStyles}
+            data-focus-styles-enabled
+            data-navigation-drawermenu-item-user-action
+          >
+            {userActionConfig.text}
+          </button>
         )}
       </div>
     </div>

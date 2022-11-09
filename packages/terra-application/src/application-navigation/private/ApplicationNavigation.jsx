@@ -162,8 +162,6 @@ const ApplicationNavigation = ({
   const [popupMenuIsOpen, setPopupMenuIsOpen] = useState(false);
   const [renderSkipToWorkspace, setRenderSkipToWorkspace] = useState(false);
 
-  const { text, userActionCallback } = userActionConfig || { text: undefined, userActionCallback: undefined };
-
   const closeMenuEvent = 'terra-application-navigation.dismiss-menu';
 
   // Use dot notation temporarily until hooks + enzyme support for userContext
@@ -216,6 +214,14 @@ const ApplicationNavigation = ({
     };
   }
 
+  const addMenuClosingCallback = useCallback(() => {
+    if (userActionConfig) {
+      const { text, userActionCallback } = userActionConfig;
+      return { text, userActionCallback: generateMenuClosingCallback(userActionCallback) };
+    }
+    return userActionConfig;
+  }, [userActionConfig]);
+
   function renderDrawerMenu() {
     if (!shouldRenderCompactNavigation(activeBreakpoint)) {
       return null;
@@ -242,7 +248,7 @@ const ApplicationNavigation = ({
           <DrawerMenu
             titleConfig={titleConfig}
             userConfig={userConfig}
-            userActionConfig={{ text, userActionCallback: userActionCallback ? generateMenuClosingCallback(userActionCallback) : undefined }}
+            userActionConfig={addMenuClosingCallback()}
             hero={hero}
             navigationItems={navigationItems}
             activeNavigationItemKey={activeNavigationItemKey}
@@ -278,7 +284,7 @@ const ApplicationNavigation = ({
         <UtilityMenu
           hero={hero}
           userConfig={userConfig}
-          userActionConfig={{ text, userActionCallback: userActionCallback ? generateMenuClosingCallback(userActionCallback) : undefined }}
+          userActionConfig={addMenuClosingCallback()}
           onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}

@@ -131,7 +131,7 @@ Terra.describeViewports('ApplicationNavigation - Large', ['large'], () => {
     });
 
     it('close popup menu', () => {
-      $('[data-navigation-utility-item-userAction="true"]').click();
+      $('[data-navigation-popupmenu-item-user-action="true"]').click();
       Terra.validates.element('Popup menu Closed');
     });
   });

@@ -27,6 +27,13 @@ const propTypes = {
    * Size variant of the user. One of values [`small`, `large`].
    */
   variant: PropTypes.oneOf(['small', 'large']),
+  /**
+   * @private
+   * Given a callback function, generateMenuClosingCallback will return a new function
+   * that will ensure that the various menu states are reset before the callback function
+   * is executed.
+   */
+  generateMenuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -34,7 +41,7 @@ const defaultProps = {
 };
 
 const DrawerMenuUser = ({
-  userConfig, variant, userActionConfig, id,
+  userConfig, variant, userActionConfig, id, generateMenuClosingCallback,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -58,7 +65,7 @@ const DrawerMenuUser = ({
             id={id || undefined}
             className={cx('drawer-menu-action-button', theme.className)}
             type="button"
-            onClick={userActionConfig.userActionCallback}
+            onClick={generateMenuClosingCallback(userActionConfig.userActionCallback)}
             onBlur={enableFocusStyles}
             onMouseDown={disableFocusStyles}
             data-focus-styles-enabled

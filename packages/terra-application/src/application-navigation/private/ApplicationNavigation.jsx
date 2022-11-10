@@ -214,14 +214,6 @@ const ApplicationNavigation = ({
     };
   }
 
-  const addMenuClosingCallback = useCallback(() => {
-    if (userActionConfig) {
-      const { text, userActionCallback } = userActionConfig;
-      return { text, userActionCallback: generateMenuClosingCallback(userActionCallback) };
-    }
-    return userActionConfig;
-  }, [userActionConfig]);
-
   function renderDrawerMenu() {
     if (!shouldRenderCompactNavigation(activeBreakpoint)) {
       return null;
@@ -246,9 +238,10 @@ const ApplicationNavigation = ({
           className={cx('drawer-menu-focus-trap-container')}
         >
           <DrawerMenu
+            generateMenuClosingCallback={generateMenuClosingCallback}
             titleConfig={titleConfig}
             userConfig={userConfig}
-            userActionConfig={addMenuClosingCallback()}
+            userActionConfig={userActionConfig}
             hero={hero}
             navigationItems={navigationItems}
             activeNavigationItemKey={activeNavigationItemKey}
@@ -282,9 +275,10 @@ const ApplicationNavigation = ({
         isContentFocusDisabled
       >
         <UtilityMenu
+          generateMenuClosingCallback={generateMenuClosingCallback}
           hero={hero}
           userConfig={userConfig}
-          userActionConfig={addMenuClosingCallback()}
+          userActionConfig={userActionConfig}
           onSelectSettings={onSelectSettings ? generateMenuClosingCallback(onSelectSettings) : undefined}
           onSelectHelp={onSelectHelp ? generateMenuClosingCallback(onSelectHelp) : undefined}
           onSelectLogout={onSelectLogout ? generateMenuClosingCallback(onSelectLogout) : undefined}

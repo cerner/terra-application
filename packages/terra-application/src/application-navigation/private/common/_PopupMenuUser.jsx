@@ -24,9 +24,18 @@ const propTypes = {
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType.isRequired,
+  /**
+   * @private
+   * Given a callback function, generateMenuClosingCallback will return a new function
+   * that will ensure that the various menu states are reset before the callback function
+   * is executed.
+   */
+  generateMenuClosingCallback: PropTypes.func,
 };
 
-const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
+const PopupMenuUser = ({
+  userConfig, userActionConfig, id, generateMenuClosingCallback,
+}) => {
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -46,7 +55,7 @@ const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
           <Button
             id={id || undefined}
             text={userActionConfig.text}
-            onClick={userActionConfig.userActionCallback}
+            onClick={generateMenuClosingCallback(userActionConfig.userActionCallback)}
             data-navigation-popupmenu-item-user-action
             className={cx('action-button')}
             variant="ghost"

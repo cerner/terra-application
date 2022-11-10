@@ -109,11 +109,11 @@ const propTypes = {
   userActionConfig: userActionConfigPropType,
   /**
    * @private
-   * Given a callback function, generateMenuClosingCallback will return a new function
+   * Given a callback function, menuClosingCallback will return a new function
    * that will ensure that the various menu states are reset before the callback function
    * is executed.
    */
-  generateMenuClosingCallback: PropTypes.func,
+  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -128,7 +128,7 @@ const PopupMenu = ({
   footerText,
   id,
   onSelectFooterItem,
-  generateMenuClosingCallback,
+  menuClosingCallback,
   onSelectMenuItem,
   customContent,
   userConfig,
@@ -228,7 +228,7 @@ const PopupMenu = ({
             {customContent}
           </div>
         ) : undefined}
-        {userConfig ? <PopupMenuUser id={id && userActionItemId(id)} generateMenuClosingCallback={generateMenuClosingCallback} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
+        {userConfig ? <PopupMenuUser id={id && userActionItemId(id)} menuClosingCallback={menuClosingCallback} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
         <ul className={cx('utility-list')} aria-label={title} ref={listRef} role={role} tabIndex="0" onKeyDown={handleKeyDown}>
           {menuItems.map(item => (
             <PopupMenuListItem

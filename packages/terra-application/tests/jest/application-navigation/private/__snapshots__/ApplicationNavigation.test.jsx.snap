@@ -74,6 +74,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                 className="drawer-menu-focus-trap-container"
               >
                 <InjectIntl(DrawerMenu)
+                  menuClosingCallback={[Function]}
                   notifications={Object {}}
                   utilityItems={Array []}
                 >
@@ -105,6 +106,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                         "timeZone": null,
                       }
                     }
+                    menuClosingCallback={[Function]}
                     navigationItems={Array []}
                     notifications={Object {}}
                     utilityItems={Array []}
@@ -355,6 +357,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
     targetRef={[Function]}
   >
     <InjectIntl(UtilityMenu)
+      menuClosingCallback={[Function]}
       utilityItems={Array []}
     />
   </Popup>
@@ -501,6 +504,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
           my test hero
         </div>
       }
+      menuClosingCallback={[Function]}
       onSelectHelp={[Function]}
       onSelectLogout={[Function]}
       onSelectSettings={[Function]}
@@ -565,6 +569,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
               my test hero
             </div>
           }
+          menuClosingCallback={[Function]}
           navigationItems={
             Array [
               Object {
@@ -734,6 +739,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
           my test hero
         </div>
       }
+      menuClosingCallback={[Function]}
       onSelectHelp={[Function]}
       onSelectLogout={[Function]}
       onSelectSettings={[Function]}

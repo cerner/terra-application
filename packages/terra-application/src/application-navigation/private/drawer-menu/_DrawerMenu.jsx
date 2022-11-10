@@ -95,11 +95,11 @@ const propTypes = {
   userActionConfig: userActionConfigPropType,
   /**
    * @private
-   * Given a callback function, generateMenuClosingCallback will return a new function
+   * Given a callback function, menuClosingCallback will return a new function
    * that will ensure that the various menu states are reset before the callback function
    * is executed.
    */
-  generateMenuClosingCallback: PropTypes.func,
+  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -123,13 +123,13 @@ const DrawerMenu = ({
   notifications,
   intl,
   userActionConfig,
-  generateMenuClosingCallback,
+  menuClosingCallback,
 }) => {
   const titleComponent = titleConfig && !(titleConfig.element || titleConfig.hideTitleWithinDrawerMenu) ? <DrawerMenuTitle titleConfig={titleConfig} /> : undefined;
   const userComponent = userConfig ? (
     <DrawerMenuUser
       id={id && userActionItemId(id)}
-      generateMenuClosingCallback={generateMenuClosingCallback}
+      menuClosingCallback={menuClosingCallback}
       userActionConfig={userActionConfig}
       userConfig={userConfig}
       variant={hero ? 'small' : 'large'}

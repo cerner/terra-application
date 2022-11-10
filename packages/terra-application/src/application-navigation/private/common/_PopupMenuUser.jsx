@@ -26,15 +26,15 @@ const propTypes = {
   userConfig: userConfigPropType.isRequired,
   /**
    * @private
-   * Given a callback function, generateMenuClosingCallback will return a new function
+   * Given a callback function, menuClosingCallback will return a new function
    * that will ensure that the various menu states are reset before the callback function
    * is executed.
    */
-  generateMenuClosingCallback: PropTypes.func,
+  menuClosingCallback: PropTypes.func,
 };
 
 const PopupMenuUser = ({
-  userConfig, userActionConfig, id, generateMenuClosingCallback,
+  userConfig, userActionConfig, id, menuClosingCallback,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -55,7 +55,7 @@ const PopupMenuUser = ({
           <Button
             id={id || undefined}
             text={userActionConfig.text}
-            onClick={generateMenuClosingCallback(userActionConfig.userActionCallback)}
+            onClick={menuClosingCallback(userActionConfig.userActionCallback)}
             data-navigation-popupmenu-item-user-action
             className={cx('action-button')}
             variant="ghost"

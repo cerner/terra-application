@@ -42,7 +42,7 @@ exports[`DrawerMenuUser should render default element 1`] = `
       data-focus-styles-enabled={true}
       data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[Function]}
+      onClick={[MockFunction]}
       onMouseDown={[Function]}
       type="button"
     >
@@ -94,7 +94,7 @@ exports[`DrawerMenuUser should render with large variant 1`] = `
       data-focus-styles-enabled={true}
       data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[Function]}
+      onClick={[MockFunction]}
       onMouseDown={[Function]}
       type="button"
     >
@@ -146,7 +146,7 @@ exports[`DrawerMenuUser should render with small variant 1`] = `
       data-focus-styles-enabled={true}
       data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[Function]}
+      onClick={[MockFunction]}
       onMouseDown={[Function]}
       type="button"
     >

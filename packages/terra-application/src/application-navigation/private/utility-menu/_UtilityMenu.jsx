@@ -63,11 +63,11 @@ const propTypes = {
   userActionConfig: userActionConfigPropType,
   /**
    * @private
-   * Given a callback function, generateMenuClosingCallback will return a new function
+   * Given a callback function, menuClosingCallback will return a new function
    * that will ensure that the various menu states are reset before the callback function
    * is executed.
    */
-  generateMenuClosingCallback: PropTypes.func,
+  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -78,7 +78,7 @@ const utilityMenuSettingsKey = 'terra-application-navigation.utility-menu.settin
 const utilityMenuHelpKey = 'terra-application-navigation.utility-menu.help';
 
 const UtilityMenu = ({
-  userConfig, hero, onSelectSettings, onSelectHelp, generateMenuClosingCallback, onSelectLogout, utilityItems, id, onSelectUtilityItem, isHeightBounded, intl, userActionConfig,
+  userConfig, hero, onSelectSettings, onSelectHelp, menuClosingCallback, onSelectLogout, utilityItems, id, onSelectUtilityItem, isHeightBounded, intl, userActionConfig,
 }) => {
   let menuItems = [];
   menuItems = utilityItems.map(item => ({
@@ -116,7 +116,7 @@ const UtilityMenu = ({
       title={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.headerTitle' })}
       footerText={intl.formatMessage({ id: 'terraApplication.navigation.utilityMenu.logout' })}
       onSelectFooterItem={onSelectLogout}
-      generateMenuClosingCallback={generateMenuClosingCallback}
+      menuClosingCallback={menuClosingCallback}
       userConfig={userConfig}
       userActionConfig={userActionConfig}
       customContent={hero}

@@ -238,7 +238,7 @@ const ApplicationNavigation = ({
           className={cx('drawer-menu-focus-trap-container')}
         >
           <DrawerMenu
-            generateMenuClosingCallback={generateMenuClosingCallback}
+            menuClosingCallback={generateMenuClosingCallback}
             titleConfig={titleConfig}
             userConfig={userConfig}
             userActionConfig={userActionConfig}
@@ -275,7 +275,7 @@ const ApplicationNavigation = ({
         isContentFocusDisabled
       >
         <UtilityMenu
-          generateMenuClosingCallback={generateMenuClosingCallback}
+          menuClosingCallback={generateMenuClosingCallback}
           hero={hero}
           userConfig={userConfig}
           userActionConfig={userActionConfig}

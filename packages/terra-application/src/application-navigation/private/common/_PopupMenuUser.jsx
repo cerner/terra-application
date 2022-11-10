@@ -24,9 +24,18 @@ const propTypes = {
    * A configuration object with information pertaining to the application's user.
    */
   userConfig: userConfigPropType.isRequired,
+  /**
+   * @private
+   * Given a callback function, menuClosingCallback will return a new function
+   * that will ensure that the various menu states are reset before the callback function
+   * is executed.
+   */
+  menuClosingCallback: PropTypes.func,
 };
 
-const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
+const PopupMenuUser = ({
+  userConfig, userActionConfig, id, menuClosingCallback,
+}) => {
   const theme = React.useContext(ThemeContext);
 
   return (
@@ -43,15 +52,15 @@ const PopupMenuUser = ({ userConfig, userActionConfig, id }) => {
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
         { userActionConfig && (
-        <Button
-          id={id || undefined}
-          text={userActionConfig.text}
-          onClick={userActionConfig.userActionCallback}
-          data-navigation-utility-item-logout
-          className={cx('action-button')}
-          variant="ghost"
-          isCompact
-        />
+          <Button
+            id={id || undefined}
+            text={userActionConfig.text}
+            onClick={menuClosingCallback(userActionConfig.userActionCallback)}
+            data-navigation-popupmenu-item-user-action
+            className={cx('action-button')}
+            variant="ghost"
+            isCompact
+          />
         )}
       </div>
     </div>

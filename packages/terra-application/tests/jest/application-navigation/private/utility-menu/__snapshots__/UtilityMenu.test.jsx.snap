@@ -198,6 +198,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
       "timeZone": null,
     }
   }
+  menuClosingCallback={[Function]}
   onSelectHelp={[MockFunction]}
   onSelectLogout={[MockFunction]}
   onSelectSettings={[MockFunction]}
@@ -240,6 +241,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
     }
     footerText="terraApplication.navigation.utilityMenu.logout"
     isHeightBounded={false}
+    menuClosingCallback={[Function]}
     menuItems={
       Array [
         Object {
@@ -422,6 +424,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                   </div>
                 </div>
                 <PopupMenuUser
+                  menuClosingCallback={[Function]}
                   userActionConfig={
                     Object {
                       "text": "Edit Photo",
@@ -519,13 +522,13 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                       </div>
                       <Button
                         className="action-button"
-                        data-navigation-utility-item-logout={true}
+                        data-navigation-popupmenu-item-user-action={true}
                         isBlock={false}
                         isCompact={true}
                         isDisabled={false}
                         isIconOnly={false}
                         isReversed={false}
-                        onClick={[Function]}
+                        onClick={[MockFunction]}
                         text="Edit Photo"
                         type="button"
                         variant="ghost"
@@ -533,7 +536,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         <button
                           aria-disabled={false}
                           className="button ghost compact action-button"
-                          data-navigation-utility-item-logout={true}
+                          data-navigation-popupmenu-item-user-action={true}
                           disabled={false}
                           onBlur={[Function]}
                           onClick={[Function]}

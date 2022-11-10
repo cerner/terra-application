@@ -93,6 +93,13 @@ const propTypes = {
    * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
+  /**
+   * @private
+   * Given a callback function, menuClosingCallback will return a new function
+   * that will ensure that the various menu states are reset before the callback function
+   * is executed.
+   */
+  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -116,9 +123,18 @@ const DrawerMenu = ({
   notifications,
   intl,
   userActionConfig,
+  menuClosingCallback,
 }) => {
   const titleComponent = titleConfig && !(titleConfig.element || titleConfig.hideTitleWithinDrawerMenu) ? <DrawerMenuTitle titleConfig={titleConfig} /> : undefined;
-  const userComponent = userConfig ? <DrawerMenuUser id={id && userActionItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} variant={hero ? 'small' : 'large'} /> : undefined;
+  const userComponent = userConfig ? (
+    <DrawerMenuUser
+      id={id && userActionItemId(id)}
+      menuClosingCallback={menuClosingCallback}
+      userActionConfig={userActionConfig}
+      userConfig={userConfig}
+      variant={hero ? 'small' : 'large'}
+    />
+  ) : undefined;
   const logoutButton = onSelectLogout ? (
     <div className={cx('footer')}>
       <DrawerMenuFooterButton

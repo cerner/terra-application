@@ -10,6 +10,7 @@ describe('DrawerMenuUser', () => {
   it('should render default element', () => {
     const shallowComponent = shallow(
       <DrawerMenuUser
+        menuClosingCallback={() => jest.fn()}
         userConfig={{
           name: 'user-name',
           detail: 'user-detail',
@@ -26,6 +27,7 @@ describe('DrawerMenuUser', () => {
   it('should render with small variant', () => {
     const shallowComponent = shallow(
       <DrawerMenuUser
+        menuClosingCallback={() => jest.fn()}
         userConfig={{
           name: 'user-name',
           detail: 'user-detail',
@@ -43,6 +45,7 @@ describe('DrawerMenuUser', () => {
   it('should render with large variant', () => {
     const shallowComponent = shallow(
       <DrawerMenuUser
+        menuClosingCallback={() => jest.fn()}
         userConfig={{
           name: 'user-name',
           detail: 'user-detail',

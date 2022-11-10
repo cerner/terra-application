@@ -15,6 +15,7 @@ describe('UtilityMenu', () => {
   it('should render with function callbacks', () => {
     const mountComponent = mountWithIntl(
       <UtilityMenu.WrappedComponent
+        menuClosingCallback={() => jest.fn()}
         hero={<div>my test hero</div>}
         userConfig={{
           name: 'user-name',

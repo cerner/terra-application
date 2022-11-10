@@ -107,6 +107,13 @@ const propTypes = {
    * A configuration object to render an action button for user Config.
    */
   userActionConfig: userActionConfigPropType,
+  /**
+   * @private
+   * Given a callback function, menuClosingCallback will return a new function
+   * that will ensure that the various menu states are reset before the callback function
+   * is executed.
+   */
+  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -117,7 +124,19 @@ const defaultProps = {
 };
 
 const PopupMenu = ({
-  title, footerText, id, onSelectFooterItem, onSelectMenuItem, customContent, userConfig, menuItems, isHeightBounded, showSelections, role, userActionConfig,
+  title,
+  footerText,
+  id,
+  onSelectFooterItem,
+  menuClosingCallback,
+  onSelectMenuItem,
+  customContent,
+  userConfig,
+  menuItems,
+  isHeightBounded,
+  showSelections,
+  role,
+  userActionConfig,
 }) => {
   const listRef = useRef();
   const buttonRef = useRef();
@@ -209,7 +228,7 @@ const PopupMenu = ({
             {customContent}
           </div>
         ) : undefined}
-        {userConfig ? <PopupMenuUser id={id && userActionItemId(id)} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
+        {userConfig ? <PopupMenuUser id={id && userActionItemId(id)} menuClosingCallback={menuClosingCallback} userActionConfig={userActionConfig} userConfig={userConfig} /> : null}
         <ul className={cx('utility-list')} aria-label={title} ref={listRef} role={role} tabIndex="0" onKeyDown={handleKeyDown}>
           {menuItems.map(item => (
             <PopupMenuListItem

@@ -14,12 +14,6 @@ const userConfig = {
   initials: 'TN',
 };
 
-const userActionConfig = {
-  text: 'Edit Photo',
-  // eslint-disable-next-line no-console
-  userActionCallback: () => console.log('Button Clicked'),
-};
-
 const extensionItems = [
   {
     icon: <IconSearch />,
@@ -140,6 +134,12 @@ const utilityItems = [
 function ApplicationNavigationTest() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [functionType, setFunctionType] = useState('');
+
+  const userActionConfig = {
+    text: 'Edit Photo',
+    // eslint-disable-next-line no-alert
+    userActionCallback: () => setFunctionType('userActionButton was clicked'),
+  };
 
   /* eslint-disable no-alert */
   const handleItemSelection = (key, metaData) => {

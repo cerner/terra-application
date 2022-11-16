@@ -14,9 +14,9 @@
     box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
-    height: calc(100% - 30px);
-    min-height: calc(100% - 30px);
-    overflow: hidden;
+    flex: 1 1 auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
     padding: 0 10px 10px;
 
     @include terra-mq-medium-up {

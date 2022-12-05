@@ -3,14 +3,15 @@
 
 :local {
   .dev-site-content {
+    flex: 1 1 auto;
     height: 100%;
+    overflow: hidden;
+    width: 100%;
   }
 
   .scroll {
     overflow: auto;
     -webkit-overflow-scrolling: touch;
-    position: relative;
-    width: 100%;
   }
 }
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.7.0 - (December 6, 2022)
+
 * Fixed
   * Fixed clipping issue of test pages on dev-site.
   * Fixed scroll issue of doc pages with longer content.

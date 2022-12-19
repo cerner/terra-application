@@ -16,7 +16,7 @@
     flex-direction: column;
     height: calc(100% - 30px);
     min-height: calc(100% - 30px);
-    overflow: hidden;
+    overflow: auto;
     padding: 0 10px 10px;
 
     @include terra-mq-medium-up {

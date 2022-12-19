@@ -4,6 +4,7 @@
 
 * Fixed
   * Fixed clipping issue of test pages in dev-site.
+  * Fixed scrolling on dev-site
 
 * Changed
   * Update wdio snapshot to fix build.

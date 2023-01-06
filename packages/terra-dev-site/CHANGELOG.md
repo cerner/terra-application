@@ -3,13 +3,8 @@
 ## Unreleased
 
 * Fixed
-<<<<<<< HEAD
-  * Fixed clipping issue of test pages in dev-site.
-  * Fixed scrolling on dev-site
-=======
   * Fixed clipping issue of test pages on dev-site.
   * Fixed scroll issue of doc pages with longer content.
->>>>>>> dbcb3573 (Fixes Scroll and Cliping issues of dev-site v7 (#316))
 
 * Changed
   * Update wdio snapshot to fix build.

@@ -15,14 +15,8 @@
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;
-<<<<<<< HEAD
-    height: calc(100% - 30px);
-    min-height: calc(100% - 30px);
-    overflow: auto;
-=======
     margin-bottom: 15px;
     margin-top: 15px;
->>>>>>> dbcb3573 (Fixes Scroll and Cliping issues of dev-site v7 (#316))
     padding: 0 10px 10px;
 
     @include terra-mq-medium-up {

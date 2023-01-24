@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Updated error boundary jest snapshots.
+
 ## 1.54.1 - (November 11, 2022)
 
 * Fixed

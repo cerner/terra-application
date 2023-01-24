@@ -4,6 +4,7 @@
 
 * Changed
   * Updated error boundary jest snapshots.
+  * Updated props table WDIO screenshots
 
 ## 1.54.1 - (November 11, 2022)
 

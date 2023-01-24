@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added `aria-selected` for menu-item to fix build.
+
 ## 7.7.0 - (December 6, 2022)
 
 * Fixed

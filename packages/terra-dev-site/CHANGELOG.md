@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixes
+  * Updated `@mdx-js/loader` and `@mdx-js/mdx` to fix CVE
+
 * Added
   * Added `aria-selected` for menu-item to fix build.
 

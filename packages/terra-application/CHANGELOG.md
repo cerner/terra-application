@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Removed `< >` braces used for links and comments in doc(mdx) pages.
   * Updated error boundary jest snapshots.
   * Updated props table WDIO screenshots
 

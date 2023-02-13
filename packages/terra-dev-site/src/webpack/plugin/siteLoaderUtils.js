@@ -28,6 +28,7 @@ const getMdxLoader = ({ publicPath, urlInspectCallback }) => ({
         inspectEach: urlInspectCallback,
       }],
     ],
+    providerImportSource: '@mdx-js/react',
   },
 });
 

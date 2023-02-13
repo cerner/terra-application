@@ -7,7 +7,7 @@
   * Updated error boundary jest snapshots.
   * Updated WDIO screenshots due to `webpack-config-terra` and
     `terra-functional-testing upgrade`.
-  * Updated Jest snapshots
+  * Updated Jest snapshots.
 
 ## 1.54.1 - (November 11, 2022)
 

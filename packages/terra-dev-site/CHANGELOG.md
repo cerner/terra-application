@@ -6,6 +6,7 @@
   * Updated `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` to fix CVE
   * Updated WDIO screenshots due to `webpack-config-terra` and
     `terra-functional-testing upgrade`.
+  * Fix test by updating jest snapshots
 
 * Added
   * Added `aria-selected` for menu-item to fix build.

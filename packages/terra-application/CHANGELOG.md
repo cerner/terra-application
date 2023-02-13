@@ -6,7 +6,8 @@
   * Removed `< >` braces used for links and comments in doc(mdx) pages.
   * Updated error boundary jest snapshots.
   * Updated WDIO screenshots due to `webpack-config-terra` and
-    `terra-functional-testing upgrade`. 
+    `terra-functional-testing upgrade`.
+  * Updated Jest snapshots
 
 ## 1.54.1 - (November 11, 2022)
 

@@ -741,7 +741,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <IconBase
-                              ariaLabel={null}
                               data-name="Layer 1"
                               focusable="false"
                               height="1em"
@@ -752,11 +751,11 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <svg
-                                aria-hidden="true"
                                 className="tui-Icon icon"
                                 data-name="Layer 1"
                                 focusable="false"
                                 height="1em"
+                                role="presentation"
                                 viewBox="0 0 48 48"
                                 width="1em"
                                 xmlns="http://www.w3.org/2000/svg"
@@ -823,7 +822,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                             xmlns="http://www.w3.org/2000/svg"
                           >
                             <IconBase
-                              ariaLabel={null}
                               focusable="false"
                               height="1em"
                               isBidi={false}
@@ -833,10 +831,10 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                               xmlns="http://www.w3.org/2000/svg"
                             >
                               <svg
-                                aria-hidden="true"
                                 className="tui-Icon icon"
                                 focusable="false"
                                 height="1em"
+                                role="presentation"
                                 viewBox="0 0 48 48"
                                 width="1em"
                                 xmlns="http://www.w3.org/2000/svg"

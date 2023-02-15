@@ -6,7 +6,8 @@
   * Fixed clipping issue of test pages in dev-site.
 
 * Changed
-  * Update wdio snapshot to fix build.
+  * Updated jest snapshot for terra-icon and terra-button changes.
+  * Updated wdio snapshot to fix build.
 
 ## 8.1.0 - (June 22, 2022)
 

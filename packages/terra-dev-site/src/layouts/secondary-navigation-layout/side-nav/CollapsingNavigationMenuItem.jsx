@@ -100,6 +100,7 @@ const CollapsingNavigationMenuItem = React.forwardRef(({
         <div
           className={menuItemClassNames}
           tabIndex="-1"
+          aria-selected={isSelected}
           role="treeitem"
           id={id}
           onKeyDown={event => handleKeyDown(event, item)}

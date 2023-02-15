@@ -132,7 +132,6 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
           >
             <Divider>
               <hr
-                aria-hidden="true"
                 className="divider"
               />
             </Divider>

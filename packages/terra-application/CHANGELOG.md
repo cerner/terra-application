@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Updated jest snapshots for terra-icon and terra-button changes.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
 
 * Added

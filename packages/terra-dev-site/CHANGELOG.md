@@ -4,6 +4,7 @@
 
 * Fixed
   * Fixed clipping issue of test pages in dev-site.
+  * Updated `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` to fix CVE
 
 * Changed
   * Updated jest snapshot for terra-icon and terra-button changes.

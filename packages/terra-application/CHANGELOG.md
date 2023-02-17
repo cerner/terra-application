@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changes
+  * Escaped `< >` braces used for links and comments in doc(mdx) pages.
+
 * Changed
   * Updated jest snapshots for terra-icon and terra-button changes.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.

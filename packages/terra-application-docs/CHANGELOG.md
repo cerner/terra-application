@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.9.0 - (February 17, 2023)
+
 * Changed
   * Removed `< >` braces used for links and comments in doc(mdx) pages.
 

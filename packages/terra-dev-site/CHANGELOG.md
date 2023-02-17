@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.8.0 - (February 17, 2023)
+
 * Fixes
   * Updated `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` to fix CVE
   * Updated WDIO screenshots due to `webpack-config-terra` and

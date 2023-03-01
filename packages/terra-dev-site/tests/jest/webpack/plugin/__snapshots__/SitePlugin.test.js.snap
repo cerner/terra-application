@@ -30,6 +30,9 @@ Array [
                   },
                 ],
               ],
+              "remarkPlugins": Array [
+                [Function],
+              ],
             },
           },
         ],
@@ -64,6 +67,9 @@ Array [
                         "inspectEach": [Function],
                       },
                     ],
+                  ],
+                  "remarkPlugins": Array [
+                    [Function],
                   ],
                 },
               },
@@ -101,6 +107,9 @@ Array [
                     "inspectEach": [Function],
                   },
                 ],
+              ],
+              "remarkPlugins": Array [
+                [Function],
               ],
             },
           },
@@ -163,6 +172,9 @@ Array [
                     "inspectEach": [Function],
                   },
                 ],
+              ],
+              "remarkPlugins": Array [
+                [Function],
               ],
             },
           },

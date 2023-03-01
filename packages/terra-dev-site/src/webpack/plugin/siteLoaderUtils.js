@@ -30,6 +30,7 @@ const getMdxLoader = ({ publicPath, urlInspectCallback }) => ({
       }],
     ],
     providerImportSource: '@mdx-js/react',
+    // Using generated remarkGfm plugin for mdx autolink literals, footnotes, strikethrough, tables, task-lists
     remarkPlugins: [remarkGfm.default],
   },
 });

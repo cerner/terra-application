@@ -10,6 +10,9 @@
   * Updated jest snapshot for terra-icon and terra-button changes.
   * Updated wdio snapshot to fix build.
 
+* Added
+  * Added `remarkGfm.js` plugin to support mdx autolink literals, footnotes, strikethrough, tables, task-lists
+
 ## 8.1.0 - (June 22, 2022)
 
 * Changed

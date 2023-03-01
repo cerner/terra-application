@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added `remarkGfm.js` plugin to support mdx autolink literals, footnotes, strikethrough, tables, task-lists
+
 ## 7.8.0 - (February 17, 2023)
 
 * Fixes

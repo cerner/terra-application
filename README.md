@@ -3,7 +3,7 @@
 
 [![Cerner OSS](https://badgen.net/badge/Cerner/OSS/blue)](http://engineering.cerner.com/2014/01/cerner-and-open-source/)
 [![License](https://badgen.net/github/license/cerner/terra-application)](https://github.com/cerner/terra-application/blob/main/LICENSE)
-[![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)
+[![Build Status](https://github.com/cerner/terra-application/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/cerner/terra-application/actions/workflows/ci-cd.yml)
 [![devDependencies status](https://badgen.net/david/dev/cerner/terra-application)](https://david-dm.org/cerner/terra-application?type=dev)
 [![lerna](https://badgen.net/badge/maintained%20with/lerna/cc00ff)](https://lerna.js.org/)
 

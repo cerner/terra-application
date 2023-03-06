@@ -32,7 +32,8 @@
     "translations"
   ],
   "scripts": {
-    "compile": "babel --root-mode upward src --out-dir lib --copy-files",
+    "compile": "npm run build && babel --root-mode upward src --out-dir lib --copy-files",
+    "build": "npx esbuild remark-gfm --bundle --platform=node --outfile=src/webpack/plugin/remarkGfm.js",
     "lint": "npm run lint:js && npm run lint:scss",
     "lint:js": "eslint --ext .js,.jsx . --ignore-path ../../.eslintignore",
     "lint:scss": "stylelint src/**/*.scss",
@@ -48,9 +49,9 @@
     "@cerner/terra-cli": "^1.1.0",
     "@cerner/terra-polyfill": "^1.4.0",
     "@jsdevtools/rehype-url-inspector": "^2.0.2",
-    "@mdx-js/loader": "^1.4.5",
-    "@mdx-js/mdx": "^1.5.0",
-    "@mdx-js/react": "^1.4.5",
+    "@mdx-js/loader": "^2.3.0",
+    "@mdx-js/mdx": "^2.3.0",
+    "@mdx-js/react": "^2.3.0",
     "chalk": "^4.1.0",
     "classnames": "^2.2.5",
     "enhanced-resolve": "^4.1.0 || ^5.4.0",

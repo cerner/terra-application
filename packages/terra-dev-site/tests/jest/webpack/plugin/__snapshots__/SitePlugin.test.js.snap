@@ -16,6 +16,7 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
+              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [
@@ -28,6 +29,9 @@ Array [
                     "inspectEach": [Function],
                   },
                 ],
+              ],
+              "remarkPlugins": Array [
+                [Function],
               ],
             },
           },
@@ -50,6 +54,7 @@ Array [
               Object {
                 "loader": "@mdx-js/loader",
                 "options": Object {
+                  "providerImportSource": "@mdx-js/react",
                   "rehypePlugins": Array [
                     [Function],
                     Array [
@@ -62,6 +67,9 @@ Array [
                         "inspectEach": [Function],
                       },
                     ],
+                  ],
+                  "remarkPlugins": Array [
+                    [Function],
                   ],
                 },
               },
@@ -86,6 +94,7 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
+              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [
@@ -98,6 +107,9 @@ Array [
                     "inspectEach": [Function],
                   },
                 ],
+              ],
+              "remarkPlugins": Array [
+                [Function],
               ],
             },
           },
@@ -147,6 +159,7 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
+              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [
@@ -159,6 +172,9 @@ Array [
                     "inspectEach": [Function],
                   },
                 ],
+              ],
+              "remarkPlugins": Array [
+                [Function],
               ],
             },
           },

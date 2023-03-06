@@ -4,10 +4,14 @@
 
 * Fixed
   * Fixed clipping issue of test pages in dev-site.
+  * Updated `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` to fix CVE
 
 * Changed
   * Updated jest snapshot for terra-icon and terra-button changes.
   * Updated wdio snapshot to fix build.
+
+* Added
+  * Added `remarkGfm.js` plugin to support mdx autolink literals, footnotes, strikethrough, tables, task-lists
 
 ## 8.1.0 - (June 22, 2022)
 

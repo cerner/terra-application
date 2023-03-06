@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changes
+  * Escaped `< >` braces used for links and comments in doc(mdx) pages. 
+
 ## 3.1.0 - (June 22, 2022)
 
 * Changed

@@ -1,6 +1,7 @@
 const rehypeSlug = require('rehype-slug');
 const rehypeUrl = require('rehype-urls');
 const rehypeUrlInspector = require('@jsdevtools/rehype-url-inspector');
+const remarkGfm = require('./remarkGfm');
 
 const babelLoader = {
   loader: 'babel-loader',
@@ -28,6 +29,9 @@ const getMdxLoader = ({ publicPath, urlInspectCallback }) => ({
         inspectEach: urlInspectCallback,
       }],
     ],
+    providerImportSource: '@mdx-js/react',
+    // Using generated remarkGfm plugin for mdx autolink literals, footnotes, strikethrough, tables, task-lists
+    remarkPlugins: [remarkGfm.default],
   },
 });
 

@@ -5,9 +5,6 @@
 <!--- Example: Closes #45 -->
 Closes #
 
-### Deployment Link
-<!---Include the deployment link, if applicable. -->
-https://terra-applic-.herokuapp.com/
 
 ### Testing
 <!-- Demonstrate that these changes are stable. How have these changes been verified? -->

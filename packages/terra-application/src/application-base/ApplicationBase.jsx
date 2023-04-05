@@ -1,7 +1,5 @@
 /* global TERRA_THEME_CONFIG */
 
-// test changes
-
 import React, {
   useRef, useEffect, Suspense, useMemo, useState,
 } from 'react';

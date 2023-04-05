@@ -1,7 +1,5 @@
 # Terra Polyfill
 
-test changes
-
 [![NPM version](https://badgen.net/npm/v/@cerner/terra-polyfill)](https://www.npmjs.org/package/@cerner/terra-polyfill)
 [![Build Status](https://badgen.net/travis/cerner/terra-application)](https://travis-ci.com/cerner/terra-application)
 

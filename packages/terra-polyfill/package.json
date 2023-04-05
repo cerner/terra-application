@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/cerner/terra-application",
   "scripts": {
+    "compile": "babel --root-mode upward src --out-dir lib --copy-files --ignore src/index.js",
     "lint": "eslint --ext .js,.jsx .",
     "precompile": "rm -rf lib"
   },

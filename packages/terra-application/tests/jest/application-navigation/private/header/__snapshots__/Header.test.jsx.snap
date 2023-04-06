@@ -1017,25 +1017,91 @@ exports[`Header should render with function callbacks 1`] = `
               <div
                 className="image"
               >
-                <Avatar
+                <injectIntl(Avatar)
                   alt="user-name"
                   className="avatar"
-                  color="auto"
                   image="user-src"
                   initials="user-initials"
                   isAriaHidden={true}
-                  isDeceased={false}
                 >
-                  <div
-                    className="avatar three image avatar"
+                  <Avatar
+                    alt="user-name"
+                    className="avatar"
+                    color="auto"
+                    image="user-src"
+                    initials="user-initials"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    isAriaHidden={true}
+                    isDeceased={false}
                   >
-                    <Image
-                      alt="user-name"
-                      className="image"
-                      fit="cover"
-                      isFluid={false}
-                      onError={[Function]}
-                      placeholder={
+                    <div
+                      className="avatar three image avatar"
+                    >
+                      <Image
+                        alt="user-name"
+                        className="image"
+                        fit="cover"
+                        isFluid={false}
+                        onError={[Function]}
+                        placeholder={
+                          <span
+                            alt="user-name"
+                            aria-hidden={true}
+                            aria-label="user-name"
+                            className="initials"
+                            role="img"
+                          >
+                            US
+                          </span>
+                        }
+                        src="user-src"
+                        variant="default"
+                      >
+                        <img
+                          alt="user-name"
+                          className="image cover default hidden image"
+                          onError={[Function]}
+                          onLoad={[Function]}
+                          src="user-src"
+                        />
                         <span
                           alt="user-name"
                           aria-hidden={true}
@@ -1045,29 +1111,10 @@ exports[`Header should render with function callbacks 1`] = `
                         >
                           US
                         </span>
-                      }
-                      src="user-src"
-                      variant="default"
-                    >
-                      <img
-                        alt="user-name"
-                        className="image cover default hidden image"
-                        onError={[Function]}
-                        onLoad={[Function]}
-                        src="user-src"
-                      />
-                      <span
-                        alt="user-name"
-                        aria-hidden={true}
-                        aria-label="user-name"
-                        className="initials"
-                        role="img"
-                      >
-                        US
-                      </span>
-                    </Image>
-                  </div>
-                </Avatar>
+                      </Image>
+                    </div>
+                  </Avatar>
+                </injectIntl(Avatar)>
               </div>
               <div
                 className="title"
@@ -1824,25 +1871,91 @@ exports[`Header should render with navigation and extension item ids 1`] = `
               <div
                 className="image"
               >
-                <Avatar
+                <injectIntl(Avatar)
                   alt="user-name"
                   className="avatar"
-                  color="auto"
                   image="user-src"
                   initials="user-initials"
                   isAriaHidden={true}
-                  isDeceased={false}
                 >
-                  <div
-                    className="avatar three image avatar"
+                  <Avatar
+                    alt="user-name"
+                    className="avatar"
+                    color="auto"
+                    image="user-src"
+                    initials="user-initials"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    isAriaHidden={true}
+                    isDeceased={false}
                   >
-                    <Image
-                      alt="user-name"
-                      className="image"
-                      fit="cover"
-                      isFluid={false}
-                      onError={[Function]}
-                      placeholder={
+                    <div
+                      className="avatar three image avatar"
+                    >
+                      <Image
+                        alt="user-name"
+                        className="image"
+                        fit="cover"
+                        isFluid={false}
+                        onError={[Function]}
+                        placeholder={
+                          <span
+                            alt="user-name"
+                            aria-hidden={true}
+                            aria-label="user-name"
+                            className="initials"
+                            role="img"
+                          >
+                            US
+                          </span>
+                        }
+                        src="user-src"
+                        variant="default"
+                      >
+                        <img
+                          alt="user-name"
+                          className="image cover default hidden image"
+                          onError={[Function]}
+                          onLoad={[Function]}
+                          src="user-src"
+                        />
                         <span
                           alt="user-name"
                           aria-hidden={true}
@@ -1852,29 +1965,10 @@ exports[`Header should render with navigation and extension item ids 1`] = `
                         >
                           US
                         </span>
-                      }
-                      src="user-src"
-                      variant="default"
-                    >
-                      <img
-                        alt="user-name"
-                        className="image cover default hidden image"
-                        onError={[Function]}
-                        onLoad={[Function]}
-                        src="user-src"
-                      />
-                      <span
-                        alt="user-name"
-                        aria-hidden={true}
-                        aria-label="user-name"
-                        className="initials"
-                        role="img"
-                      >
-                        US
-                      </span>
-                    </Image>
-                  </div>
-                </Avatar>
+                      </Image>
+                    </div>
+                  </Avatar>
+                </injectIntl(Avatar)>
               </div>
               <div
                 className="title"

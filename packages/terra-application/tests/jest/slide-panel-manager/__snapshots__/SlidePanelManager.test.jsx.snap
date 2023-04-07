@@ -7,6 +7,7 @@ exports[`SlidePanelManger Snapshots should render with optional props 1`] = `
       Test Accessory
     </div>
   }
+  level={2}
   panelBehavior="overlay"
   withDisclosureContainer={[Function]}
 >
@@ -16,6 +17,7 @@ exports[`SlidePanelManger Snapshots should render with optional props 1`] = `
 
 exports[`SlidePanelManger Snapshots should render with required props 1`] = `
 <SlidePanelManager
+  level={2}
   panelBehavior="overlay"
   withDisclosureContainer={[Function]}
 >

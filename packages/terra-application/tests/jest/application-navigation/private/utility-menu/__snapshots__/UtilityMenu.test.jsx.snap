@@ -115,35 +115,127 @@ exports[`UtilityMenu should render default element 1`] = `
                     "wrapRichTextChunksInFragment": undefined,
                   }
                 }
-                level={1}
                 title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
+                  id="1"
                   level={1}
                   startContent={null}
-                  title="terraApplication.navigation.utilityMenu.headerTitle"
+                  text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
+                    id="1"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="1"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-1"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-1"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-1"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-1"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-1"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-1"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                  </div>
-                </ActionHeaderContainer>
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
               </ActionHeader>
             </injectIntl(ActionHeader)>
           </div>
@@ -387,7 +479,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
             end={
               <Button
                 data-navigation-utility-item-logout={true}
-                iconType="decorative"
                 isBlock={false}
                 isCompact={false}
                 isDisabled={false}
@@ -461,35 +552,127 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                     "wrapRichTextChunksInFragment": undefined,
                   }
                 }
-                level={1}
                 title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
+                  id="2"
                   level={1}
                   startContent={null}
-                  title="terraApplication.navigation.utilityMenu.headerTitle"
+                  text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
+                    id="2"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="2"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-2"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-2"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-2"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-2"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-2"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-2"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                  </div>
-                </ActionHeaderContainer>
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
               </ActionHeader>
             </injectIntl(ActionHeader)>
           </div>
@@ -537,30 +720,96 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         <div
                           className="avatar-outline"
                         />
-                        <Avatar
+                        <injectIntl(Avatar)
                           alt="user-name"
-                          color="auto"
                           image="user-src"
                           initials="user-initials"
                           isAriaHidden={true}
-                          isDeceased={false}
                           size="1.174rem"
                         >
-                          <div
-                            className="avatar three image"
-                            style={
+                          <Avatar
+                            alt="user-name"
+                            color="auto"
+                            image="user-src"
+                            initials="user-initials"
+                            intl={
                               Object {
-                                "fontSize": "1.174rem",
+                                "$t": [Function],
+                                "defaultFormats": Object {},
+                                "defaultLocale": "en",
+                                "defaultRichTextElements": undefined,
+                                "fallbackOnEmptyString": true,
+                                "formatDate": [Function],
+                                "formatDateTimeRange": [Function],
+                                "formatDateToParts": [Function],
+                                "formatDisplayName": [Function],
+                                "formatList": [Function],
+                                "formatListToParts": [Function],
+                                "formatMessage": [Function],
+                                "formatNumber": [Function],
+                                "formatNumberToParts": [Function],
+                                "formatPlural": [Function],
+                                "formatRelativeTime": [Function],
+                                "formatTime": [Function],
+                                "formatTimeToParts": [Function],
+                                "formats": Object {},
+                                "formatters": Object {
+                                  "getDateTimeFormat": [Function],
+                                  "getDisplayNames": [Function],
+                                  "getListFormat": [Function],
+                                  "getMessageFormat": [Function],
+                                  "getNumberFormat": [Function],
+                                  "getPluralRules": [Function],
+                                  "getRelativeTimeFormat": [Function],
+                                },
+                                "locale": "en",
+                                "messages": null,
+                                "onError": [Function],
+                                "onWarn": [Function],
+                                "textComponent": Symbol(react.fragment),
+                                "timeZone": undefined,
+                                "wrapRichTextChunksInFragment": undefined,
                               }
                             }
+                            isAriaHidden={true}
+                            isDeceased={false}
+                            size="1.174rem"
                           >
-                            <Image
-                              alt="user-name"
-                              className="image"
-                              fit="cover"
-                              isFluid={false}
-                              onError={[Function]}
-                              placeholder={
+                            <div
+                              className="avatar three image"
+                              style={
+                                Object {
+                                  "fontSize": "1.174rem",
+                                }
+                              }
+                            >
+                              <Image
+                                alt="user-name"
+                                className="image"
+                                fit="cover"
+                                isFluid={false}
+                                onError={[Function]}
+                                placeholder={
+                                  <span
+                                    alt="user-name"
+                                    aria-hidden={true}
+                                    aria-label="user-name"
+                                    className="initials"
+                                    role="img"
+                                  >
+                                    US
+                                  </span>
+                                }
+                                src="user-src"
+                                variant="default"
+                              >
+                                <img
+                                  alt="user-name"
+                                  className="image cover default hidden image"
+                                  onError={[Function]}
+                                  onLoad={[Function]}
+                                  src="user-src"
+                                />
                                 <span
                                   alt="user-name"
                                   aria-hidden={true}
@@ -570,29 +819,10 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                                 >
                                   US
                                 </span>
-                              }
-                              src="user-src"
-                              variant="default"
-                            >
-                              <img
-                                alt="user-name"
-                                className="image cover default hidden image"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="user-src"
-                              />
-                              <span
-                                alt="user-name"
-                                aria-hidden={true}
-                                aria-label="user-name"
-                                className="initials"
-                                role="img"
-                              >
-                                US
-                              </span>
-                            </Image>
-                          </div>
-                        </Avatar>
+                              </Image>
+                            </div>
+                          </Avatar>
+                        </injectIntl(Avatar)>
                       </div>
                       <div
                         className="info-container"
@@ -611,7 +841,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                         <Button
                           className="action-button"
                           data-navigation-utility-item-logout={true}
-                          iconType="decorative"
                           isBlock={false}
                           isCompact={true}
                           isDisabled={false}
@@ -881,7 +1110,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
               end={
                 <Button
                   data-navigation-utility-item-logout={true}
-                  iconType="decorative"
                   isBlock={false}
                   isCompact={false}
                   isDisabled={false}
@@ -907,7 +1135,6 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                   >
                     <Button
                       data-navigation-utility-item-logout={true}
-                      iconType="decorative"
                       isBlock={false}
                       isCompact={false}
                       isDisabled={false}
@@ -1021,7 +1248,6 @@ exports[`UtilityMenu should render with skip callback 1`] = `
             end={
               <Button
                 data-navigation-utility-item-logout={true}
-                iconType="decorative"
                 isBlock={false}
                 isCompact={false}
                 isDisabled={false}
@@ -1095,35 +1321,127 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                     "wrapRichTextChunksInFragment": undefined,
                   }
                 }
-                level={1}
                 title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
+                  id="3"
                   level={1}
                   startContent={null}
-                  title="terraApplication.navigation.utilityMenu.headerTitle"
+                  text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
+                    id="3"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="3"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-3"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-3"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-3"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-3"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-3"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-3"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                  </div>
-                </ActionHeaderContainer>
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
               </ActionHeader>
             </injectIntl(ActionHeader)>
           </div>
@@ -1157,7 +1475,6 @@ exports[`UtilityMenu should render with skip callback 1`] = `
               end={
                 <Button
                   data-navigation-utility-item-logout={true}
-                  iconType="decorative"
                   isBlock={false}
                   isCompact={false}
                   isDisabled={false}
@@ -1183,7 +1500,6 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                   >
                     <Button
                       data-navigation-utility-item-logout={true}
-                      iconType="decorative"
                       isBlock={false}
                       isCompact={false}
                       isDisabled={false}

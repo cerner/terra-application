@@ -3,7 +3,8 @@
 ## Unreleased
 
 * Fixed
-  * Fixed clipping issue of test pages in dev-site.
+  * Fixed clipping issue of test pages on dev-site.
+  * Fixed scroll issue of doc pages with longer content.
 
 * Changed
   * Updated jest snapshot for terra-icon and terra-button changes.

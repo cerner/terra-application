@@ -1,5 +1,5 @@
 import React from 'react';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationStatusOverlay from '../../../src/application-status-overlay/ApplicationStatusOverlay';
 import ApplicationStatusOverlayContext from '../../../src/application-status-overlay/ApplicationStatusOverlayContext';

@@ -1,6 +1,6 @@
 import * as ScrollPersistence from '../../../../src/utils/scroll-persistence/scroll-persistence';
 
-jest.mock('uuid/v4', () => () => 'test-uuid');
+jest.mock('uuid', () => ({ v4: () => 'test-uuid' }));
 
 describe('getOverflowDataForElement', () => {
   test('should apply overflow-id if none exists on element', () => {

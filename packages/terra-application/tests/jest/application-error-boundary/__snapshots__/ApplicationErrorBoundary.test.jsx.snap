@@ -102,6 +102,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
       variant="error"
     >
       <div
+        aria-live="polite"
         className="outer-view"
         role="alert"
       >

@@ -74,12 +74,12 @@
     "terra-popup": "^6.48.0",
     "terra-scroll": "^2.18.0",
     "terra-slide-panel-manager": "^5.19.0",
-    "terra-status-view": "^4.10.0",
+    "terra-status-view": "^4.55.0",
     "terra-theme-context": "^1.0.0",
     "terra-theme-provider": "^4.0.0",
     "terra-toolbar": "^1.22.0",
     "terra-visually-hidden-text": "^2.31.0",
-    "uuid": "^3.0.0",
+    "uuid": "^8.3.2",
     "wicg-inert": "3.1.2"
   },
   "devDependencies": {

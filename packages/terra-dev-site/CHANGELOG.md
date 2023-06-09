@@ -9,7 +9,7 @@
 * Changed
   * Updated jest snapshot for terra-icon and terra-button changes.
   * Updated wdio snapshot to fix build.
-  * Updated `uuid` to `v8.2.0` for consistency with other components.
+  * Updated `uuid` to `8.2.0` for consistency with other components.
 
 ## 8.1.0 - (June 22, 2022)
 

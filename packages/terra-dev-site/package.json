@@ -83,7 +83,7 @@
     "terra-mixins": "^1.33.0",
     "terra-search-field": "^3.13.0",
     "terra-status-view": "^4.10.0",
-    "uuid": "^8.3.2"
+    "uuid": "8.2.0"
   },
   "peerDependencies": {
     "react": "^16.8.5",

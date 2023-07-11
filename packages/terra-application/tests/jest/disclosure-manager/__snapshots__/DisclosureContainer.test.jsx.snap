@@ -14,6 +14,7 @@ exports[`DisclosureContainer should render the provided children 1`] = `
         <ContentContainer
           fill={true}
           header={<injectIntl(NotificationBanners) />}
+          setFocusOnContainer={false}
         >
           <NotificationBannerProvider>
             <div>

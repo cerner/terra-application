@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkterra_application_mono=self.webpackChunkterra_application_mono||[]).push([[7896],{27896:(e,t,a)=>{var r=a(64836);Object.defineProperty(t,"__esModule",{value:!0}),t.default=void 0;var n=r(a(67294));t.default=function(){return n.default.createElement("h1",{className:"terra-dev-site-extended"},"extended")}}}]);

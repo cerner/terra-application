@@ -28,7 +28,6 @@ import styles from './ApplicationBase.module.scss';
 const cx = classNames.bind(styles);
 
 const browserLocale = getBrowserLocale();
-console.log('browserLocale: ', browserLocale);
 
 // We only need to retrieve the root theme and root theme name once for the life of the application.
 const themeConfig = (typeof (TERRA_THEME_CONFIG) !== 'undefined') ? TERRA_THEME_CONFIG : undefined;

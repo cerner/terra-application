@@ -46,6 +46,12 @@ const filterLanguages = () => {
 const getBrowserLocale = () => {
   const preferredLocale = filterLanguages();
 
+  alert(`preferredLocale: ${preferredLocale}`);
+  alert(`navigator.language: ${navigator?.language}`);
+  alert(`navigator.userLanguage: ${navigator?.userLanguage}`);
+  alert(`navigator.browserLanguage: ${navigator?.browserLanguage}`);
+  alert(`navigator.Systemlanguage: ${navigator?.Systemlanguage}`);
+
   if (preferredLocale) {
     return preferredLocale;
   }

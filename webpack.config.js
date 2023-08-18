@@ -1,7 +1,7 @@
 const path = require('path');
+const fs = require('fs');
 const { merge } = require('webpack-merge');
 const WebpackConfigTerra = require('@cerner/webpack-config-terra');
-const fs = require('fs');
 const TerraDevSite = require('./packages/terra-dev-site/src/webpack/plugin/TerraDevSite');
 
 const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html'), 'utf8');

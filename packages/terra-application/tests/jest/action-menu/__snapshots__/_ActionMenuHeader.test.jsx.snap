@@ -21,7 +21,6 @@ exports[`ActionMenuHeader should render with all props 1`] = `
           xmlns="http://www.w3.org/2000/svg"
         />
       }
-      iconType="decorative"
       isBlock={false}
       isCompact={false}
       isDisabled={false}

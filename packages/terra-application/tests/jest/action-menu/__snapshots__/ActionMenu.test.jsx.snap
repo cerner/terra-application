@@ -13,6 +13,7 @@ exports[`ActionMenu should render with all props 1`] = `
   }
   onKeyDown={[Function]}
   role="dialog"
+  setFocusOnContainer={false}
   tabIndex="0"
 >
   <ul

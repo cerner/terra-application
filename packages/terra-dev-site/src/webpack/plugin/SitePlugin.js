@@ -1,8 +1,8 @@
 /* eslint-disable no-param-reassign */
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-const { DefinePlugin } = require('webpack');
 const fs = require('fs');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { DefinePlugin } = require('webpack');
 const logging = require('webpack/lib/logging/runtime');
 const chalk = require('chalk');
 // const https = require('https');

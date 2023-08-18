@@ -1,8 +1,8 @@
 // eslint-disable-next-line no-unused-vars
 jest.mock('webpack', () => ({ DefinePlugin: jest.fn(() => ({ apply: _compiler => ({}) })) }));
 jest.mock('html-webpack-plugin');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const SitePlugin = require('../../../../src/webpack/plugin/SitePlugin');
 

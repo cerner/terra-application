@@ -22,9 +22,9 @@ on:
         type: environment
         required: true
   push:
-    branches: ['main']
+    branches: ['terra-application-v1']
   pull_request:
-    branches: ['main']
+    branches: ['terra-application-v1']
   schedule:
     - cron: '0 1 * * SUN'
 
@@ -84,7 +84,7 @@ jobs:
     runs-on: ubuntu-latest
 
     needs: [build, wdio]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/terra-application-v1'
     steps:
       - name: Checkout Project
         uses: actions/checkout@v2

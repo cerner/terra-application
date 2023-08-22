@@ -13,13 +13,11 @@ exports[`DrawerMenuUser should render default element 1`] = `
     <div
       className="avatar-inner"
     >
-      <Avatar
+      <InjectIntl(Avatar)
         alt="user-name"
-        color="auto"
         image="user-src"
         initials="user-initials"
         isAriaHidden={true}
-        isDeceased={false}
       />
     </div>
   </div>
@@ -65,13 +63,11 @@ exports[`DrawerMenuUser should render with large variant 1`] = `
     <div
       className="avatar-inner"
     >
-      <Avatar
+      <InjectIntl(Avatar)
         alt="user-name"
-        color="auto"
         image="user-src"
         initials="user-initials"
         isAriaHidden={true}
-        isDeceased={false}
       />
     </div>
   </div>
@@ -117,13 +113,11 @@ exports[`DrawerMenuUser should render with small variant 1`] = `
     <div
       className="avatar-inner"
     >
-      <Avatar
+      <InjectIntl(Avatar)
         alt="user-name"
-        color="auto"
         image="user-src"
         initials="user-initials"
         isAriaHidden={true}
-        isDeceased={false}
       />
     </div>
   </div>

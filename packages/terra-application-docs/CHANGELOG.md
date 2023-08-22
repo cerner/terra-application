@@ -4,8 +4,8 @@
 
 ## 2.10.0 - (August 22, 2023)
 
-* Changed
-  * Minor dependency version bump
+* Added
+  * Added `< >` braces used for links and comments in doc(mdx) pages.
 
 ## 2.9.0 - (February 17, 2023)
 

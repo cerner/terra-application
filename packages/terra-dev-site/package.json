@@ -91,6 +91,6 @@
     "webpack": "^4.44.2 || ^5.0.0"
   },
   "devDependencies": {
-    "terra-application": "^1.56.0"
+    "terra-application": "^1.55.1"
   }
 }

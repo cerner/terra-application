@@ -16,7 +16,6 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
-              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [
@@ -51,7 +50,6 @@ Array [
               Object {
                 "loader": "@mdx-js/loader",
                 "options": Object {
-                  "providerImportSource": "@mdx-js/react",
                   "rehypePlugins": Array [
                     [Function],
                     Array [
@@ -88,7 +86,6 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
-              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [
@@ -150,7 +147,6 @@ Array [
           Object {
             "loader": "@mdx-js/loader",
             "options": Object {
-              "providerImportSource": "@mdx-js/react",
               "rehypePlugins": Array [
                 [Function],
                 Array [

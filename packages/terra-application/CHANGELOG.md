@@ -2,8 +2,8 @@
 
 ## Unreleased
 
-* Added
-  * Added `< >` braces used for links and comments in doc(mdx) pages.
+* Updated
+  * Updated `ApplicationBase` documentaion.
 
 ## 1.55.0 - (February 17, 2023)
 

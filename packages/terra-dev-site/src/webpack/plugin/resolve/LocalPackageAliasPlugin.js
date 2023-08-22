@@ -1,6 +1,6 @@
 const path = require('path');
-const glob = require('glob');
 const fs = require('fs');
+const glob = require('glob');
 const AliasPlugin = require('enhanced-resolve/lib/AliasPlugin');
 /**
  * Setup aliases for any packages found in the root directory globs.

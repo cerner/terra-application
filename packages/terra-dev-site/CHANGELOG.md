@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.9.0 - (August 22, 2023)
+
 * Changed
   * Reverted `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` version to ^1.
 

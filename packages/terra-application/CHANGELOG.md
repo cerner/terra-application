@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-* Updated
+## 1.55.1 - (August 22, 2023)
+
+* Changed
   * Updated `ApplicationBase` documentaion.
 
 ## 1.55.0 - (February 17, 2023)

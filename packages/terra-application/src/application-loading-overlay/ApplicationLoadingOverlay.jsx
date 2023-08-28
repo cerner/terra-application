@@ -20,7 +20,8 @@ const defaultProps = {
 };
 
 const ApplicationLoadingOverlay = ({ isOpen, backgroundStyle }) => {
-  const idRef = useRef(uuidv4());
+  const uuid = uuidv4();
+  const idRef = useRef(uuid);
   const applicationLoadingOverlay = useContext(ApplicationLoadingOverlayContext);
 
   useLayoutEffect(() => {

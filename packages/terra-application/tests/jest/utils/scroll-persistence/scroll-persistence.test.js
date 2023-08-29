@@ -1,11 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import * as ScrollPersistence from '../../../../src/utils/scroll-persistence/scroll-persistence';
 
+const testUuid = '00000000-0000-0000-0000-000000000000';
+
 describe('getOverflowDataForElement', () => {
   let mockSpyUuid;
-  const testUuid = '00000000-0000-0000-0000-000000000000';
   beforeAll(() => {
-    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockImplementation(() => testUuid);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(testUuid);
   });
 
   afterAll(() => {

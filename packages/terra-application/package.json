@@ -77,7 +77,7 @@
     "terra-theme-provider": "^4.0.0",
     "terra-toolbar": "^1.22.0",
     "terra-visually-hidden-text": "^2.31.0",
-    "uuid": "^3.0.0",
+    "uuid": "3.4.0",
     "wicg-inert": "3.1.2"
   },
   "peerDependencies": {

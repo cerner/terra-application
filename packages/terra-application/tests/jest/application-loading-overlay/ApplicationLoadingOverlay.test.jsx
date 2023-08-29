@@ -3,10 +3,11 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationLoadingOverlay from '../../../src/application-loading-overlay/ApplicationLoadingOverlay';
 
+const mockUuid = '00000000-0000-0000-0000-000000000000';
+
 describe('ApplicationLoadingOverlay', () => {
   let mockSpyUuid;
   let mockSpyContext;
-  const mockUuid = '00000000-0000-0000-0000-000000000000';
   const loadingOverlayContextValue = {
     show: jest.fn(),
     hide: jest.fn(),
@@ -14,7 +15,7 @@ describe('ApplicationLoadingOverlay', () => {
 
   beforeAll(() => {
     mockSpyContext = jest.spyOn(React, 'useContext').mockReturnValue(loadingOverlayContextValue);
-    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockImplementation(() => mockUuid);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(mockUuid);
   });
 
   afterAll(() => {

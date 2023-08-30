@@ -6,6 +6,7 @@
 
 * Changed
   * Reverted `@mdx-js/loader`,`@mdx-js/mdx` and `@mdx-js/react` version to ^1.
+  * Locked `uuid` dependency to `3.4.0`.
 
 ## 7.8.0 - (February 17, 2023)
 

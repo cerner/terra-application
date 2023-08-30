@@ -1,40 +1,26 @@
 import React from 'react';
-import uuidv4 from 'uuid/v4';
+import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationStatusOverlay from '../../../src/application-status-overlay/ApplicationStatusOverlay';
-import ApplicationStatusOverlayContext from '../../../src/application-status-overlay/ApplicationStatusOverlayContext';
 
-jest.mock('uuid/v4');
+const mockUuid = '00000000-0000-0000-0000-000000000000';
+const statusOverlayContextValue = {
+  show: jest.fn(),
+  hide: jest.fn(),
+};
 
 describe('ApplicationStatusOverlay', () => {
-  let reactUseContext;
-  let statusOverlayContextValue;
+  let mockSpyUuid;
+  let mockSpyContext;
 
   beforeAll(() => {
-    uuidv4.mockReturnValue('test-id');
-
-    /**
-     * Until Enzyme is updated with full support for hooks, we need to
-     * mock out the useContext implementation.
-     */
-    reactUseContext = React.useContext;
-    React.useContext = (contextValue) => {
-      if (contextValue === ApplicationStatusOverlayContext) {
-        return statusOverlayContextValue;
-      }
-      return reactUseContext(contextValue);
-    };
+    mockSpyContext = jest.spyOn(React, 'useContext').mockReturnValue(statusOverlayContextValue);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(mockUuid);
   });
 
   afterAll(() => {
-    React.useContext = reactUseContext;
-  });
-
-  beforeEach(() => {
-    statusOverlayContextValue = {
-      show: jest.fn(),
-      hide: jest.fn(),
-    };
+    mockSpyContext.mockRestore();
+    mockSpyUuid.mockRestore();
   });
 
   it('should render status view without any data', () => {
@@ -45,14 +31,14 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
   });
 
   it('should render status view with the specified data', () => {
@@ -77,14 +63,14 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
   });
 
   it('should redisplay status view with new props', () => {
@@ -95,20 +81,20 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.setProps({ message: 'No data status view', variant: 'no-data' });
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
-    expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe('test-id');
+    expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe(mockUuid);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('test-id');
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
   });
 
   it('should honor buttonAttrs prop', () => {

@@ -6,6 +6,7 @@
 
 * Changed
   * Updated `ApplicationBase` documentaion.
+  * Locked `uuid` dependency to `3.4.0`.
 
 ## 1.55.0 - (February 17, 2023)
 

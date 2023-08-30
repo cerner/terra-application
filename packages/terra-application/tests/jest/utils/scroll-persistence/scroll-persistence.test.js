@@ -1,12 +1,10 @@
 import { v4 as uuidv4 } from 'uuid';
 import * as ScrollPersistence from '../../../../src/utils/scroll-persistence/scroll-persistence';
 
-const testUuid = '00000000-0000-0000-0000-000000000000';
-
 describe('getOverflowDataForElement', () => {
   let mockSpyUuid;
   beforeAll(() => {
-    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(testUuid);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue('00000000-0000-0000-0000-000000000000');
   });
 
   afterAll(() => {
@@ -23,9 +21,9 @@ describe('getOverflowDataForElement', () => {
 
     const result = ScrollPersistence.getOverflowDataForElement(mockElement);
 
-    expect(mockElement.setAttribute).toHaveBeenCalledWith('data-persistent-overflow-id', testUuid);
-    expect(result[testUuid].scrollTop).toBe(15);
-    expect(result[testUuid].scrollLeft).toBe(20);
+    expect(mockElement.setAttribute).toHaveBeenCalledWith('data-persistent-overflow-id', '00000000-0000-0000-0000-000000000000');
+    expect(result['00000000-0000-0000-0000-000000000000'].scrollTop).toBe(15);
+    expect(result['00000000-0000-0000-0000-000000000000'].scrollLeft).toBe(20);
   });
 
   test('should not apply overflow-id if one  exists on element', () => {

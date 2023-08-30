@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationLoadingOverlay from '../../../src/application-loading-overlay/ApplicationLoadingOverlay';
 
-const mockUuid = '00000000-0000-0000-0000-000000000000';
-
 describe('ApplicationLoadingOverlay', () => {
   let mockSpyUuid;
   let mockSpyContext;
@@ -15,7 +13,7 @@ describe('ApplicationLoadingOverlay', () => {
 
   beforeAll(() => {
     mockSpyContext = jest.spyOn(React, 'useContext').mockReturnValue(loadingOverlayContextValue);
-    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(mockUuid);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue('00000000-0000-0000-0000-000000000000');
   });
 
   afterAll(() => {
@@ -46,13 +44,13 @@ describe('ApplicationLoadingOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should transition from open to closed', () => {
@@ -63,14 +61,14 @@ describe('ApplicationLoadingOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.setProps({ isOpen: false });
 
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(2);
-    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should redisplay loading overlay with new props', () => {
@@ -81,15 +79,15 @@ describe('ApplicationLoadingOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.setProps({ backgroundStyle: 'dark' });
 
     expect(loadingOverlayContextValue.show.mock.calls.length).toBe(2);
-    expect(loadingOverlayContextValue.show.mock.calls[1][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.show.mock.calls[1][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(loadingOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(loadingOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should honor backgroundStyle prop', () => {

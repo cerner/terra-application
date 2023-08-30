@@ -3,8 +3,6 @@ import { v4 as uuidv4 } from 'uuid';
 
 import ApplicationStatusOverlay from '../../../src/application-status-overlay/ApplicationStatusOverlay';
 
-const mockUuid = '00000000-0000-0000-0000-000000000000';
-
 describe('ApplicationStatusOverlay', () => {
   let mockSpyUuid;
   let mockSpyContext;
@@ -15,7 +13,7 @@ describe('ApplicationStatusOverlay', () => {
 
   beforeAll(() => {
     mockSpyContext = jest.spyOn(React, 'useContext').mockReturnValue(statusOverlayContextValue);
-    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue(mockUuid);
+    mockSpyUuid = jest.spyOn(uuidv4, 'v4').mockReturnValue('00000000-0000-0000-0000-000000000000');
   });
 
   afterAll(() => {
@@ -31,14 +29,14 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should render status view with the specified data', () => {
@@ -63,14 +61,14 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should redisplay status view with new props', () => {
@@ -81,20 +79,20 @@ describe('ApplicationStatusOverlay', () => {
     expect(wrapper).toMatchSnapshot();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.show.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.setProps({ message: 'No data status view', variant: 'no-data' });
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
-    expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.show.mock.calls[1][0]).toBe('00000000-0000-0000-0000-000000000000');
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(0);
 
     wrapper.unmount();
 
     expect(statusOverlayContextValue.show.mock.calls.length).toBe(2);
     expect(statusOverlayContextValue.hide.mock.calls.length).toBe(1);
-    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe(mockUuid);
+    expect(statusOverlayContextValue.hide.mock.calls[0][0]).toBe('00000000-0000-0000-0000-000000000000');
   });
 
   it('should honor buttonAttrs prop', () => {

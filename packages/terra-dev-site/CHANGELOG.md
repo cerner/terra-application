@@ -2,9 +2,6 @@
 
 ## Unreleased
 
-* Changed
-  * Updated `getBrowserLocale` method for IE.
-
 ## 7.9.0 - (August 22, 2023)
 
 * Changed

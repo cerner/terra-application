@@ -1,6 +1,6 @@
-const startCase = require('lodash.startcase');
 const fs = require('fs');
 const path = require('path');
+const startCase = require('lodash.startcase');
 
 const npmPackage = JSON.parse(fs.readFileSync(path.join(process.cwd(), 'package.json')));
 

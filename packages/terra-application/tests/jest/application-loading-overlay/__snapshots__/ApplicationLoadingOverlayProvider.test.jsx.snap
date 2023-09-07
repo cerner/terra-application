@@ -173,3 +173,31 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with optional
   </Scroll>
 </OverlayContainer>
 `;
+
+exports[`ApplicationLoadingOverlayProvider Snapshots should render without scroll 1`] = `
+<OverlayContainer
+  className="container"
+  overlay={
+    <LoadingOverlay
+      backgroundStyle="clear"
+      isAnimated={true}
+      isOpen={false}
+      isRelativeToContainer={true}
+      rootSelector="#root"
+    />
+  }
+>
+  <Scroll
+    className="removeScroll"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    />
+  </Scroll>
+</OverlayContainer>
+`;

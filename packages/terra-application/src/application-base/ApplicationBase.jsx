@@ -5,6 +5,7 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
+// eslint-disable-next-line import/no-extraneous-dependencies
 import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
@@ -76,10 +77,16 @@ const propTypes = {
    * before continuing with the unload event, even if NavigationPrompts are present.
    */
   unloadPromptIsDisabled: PropTypes.bool,
+  /**
+   * @private
+   * Prop to not render scroll in  Powerchart.
+   */
+  noScroll: PropTypes.bool,
+
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
 }) => {
   const registeredPromptsRef = useRef();
 
@@ -135,8 +142,8 @@ const ApplicationBase = ({
                       registeredPromptsRef.current = registeredPrompts;
                     }}
                   >
-                    <ApplicationLoadingOverlayProvider>
-                      <ApplicationStatusOverlayProvider>
+                    <ApplicationLoadingOverlayProvider noScroll={noScroll}>
+                      <ApplicationStatusOverlayProvider noScroll={noScroll}>
                         <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                           {children}
                         </Suspense>

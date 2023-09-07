@@ -166,3 +166,59 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
   </ThemeProvider>
 </div>
 `;
+
+exports[`ApplicationBase should render without scroll 1`] = `
+<div
+  className="application-base fill"
+  data-terra-application-base={true}
+>
+  <ThemeProvider>
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": undefined,
+          "name": "terra-default-theme",
+        }
+      }
+    >
+      <Base
+        customMessages={Object {}}
+        locale="en"
+        strictMode={false}
+        throwOnI18nLoadError={true}
+      >
+        <InjectIntl(ApplicationErrorBoundary)>
+          <InjectIntl(Component)>
+            <ActiveBreakpointProvider>
+              <withPromptRegistration(NavigationPromptCheckpoint)
+                onPromptChange={[Function]}
+              >
+                <ApplicationLoadingOverlayProvider
+                  noScroll={true}
+                >
+                  <ApplicationStatusOverlayProvider
+                    noScroll={true}
+                  >
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
+                    >
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
+                  </ApplicationStatusOverlayProvider>
+                </ApplicationLoadingOverlayProvider>
+              </withPromptRegistration(NavigationPromptCheckpoint)>
+            </ActiveBreakpointProvider>
+          </InjectIntl(Component)>
+        </InjectIntl(ApplicationErrorBoundary)>
+      </Base>
+    </ThemeContextProvider>
+  </ThemeProvider>
+</div>
+`;

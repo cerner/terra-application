@@ -255,3 +255,27 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
   </div>
 </div>
 `;
+
+exports[`ApplicationStatusOverlayProvider Snapshots should render without scroll 1`] = `
+<div
+  className="container"
+>
+  <div
+    className="container-content"
+    data-status-overlay-container-content={true}
+  >
+    <Scroll
+      className="removeScroll"
+    >
+      <ContextProvider
+        value={
+          Object {
+            "hide": [Function],
+            "show": [Function],
+          }
+        }
+      />
+    </Scroll>
+  </div>
+</div>
+`;

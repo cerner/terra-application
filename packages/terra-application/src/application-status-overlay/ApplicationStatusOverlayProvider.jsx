@@ -21,9 +21,16 @@ const propTypes = {
    * ApplicationStatusOverlayProvider.
    */
   scrollRefCallback: PropTypes.func,
+  /**
+   * @private
+   * Prop to not render scroll in  Powerchart.
+   */
+  noScroll: PropTypes.bool,
 };
 
-const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...customProps }) => {
+const ApplicationStatusOverlayProvider = ({
+  children, scrollRefCallback, noScroll, ...customProps
+}) => {
   const [registeredStatusOverlay, setRegisteredStatusOverlay] = React.useState({});
 
   const containerRef = React.useRef();
@@ -86,6 +93,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
   }, [registeredStatusOverlayKeys]);
 
   let className = cx('container');
+  const scrollClass = noScroll && cx('removeScroll');
   if (customProps.className) {
     className = [className, customProps.className].join(' ');
   }
@@ -105,7 +113,7 @@ const ApplicationStatusOverlayProvider = ({ children, scrollRefCallback, ...cust
     <div {...customProps} className={className}>
       {statusView}
       <div data-status-overlay-container-content ref={containerRef} className={cx('container-content')}>
-        <Scroll refCallback={scrollRefCallback}>
+        <Scroll className={scrollClass} refCallback={scrollRefCallback}>
           <ApplicationStatusOverlayContext.Provider value={contextValue}>
             {children}
           </ApplicationStatusOverlayContext.Provider>

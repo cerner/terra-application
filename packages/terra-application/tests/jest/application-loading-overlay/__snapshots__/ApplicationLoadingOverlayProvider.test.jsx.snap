@@ -13,7 +13,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render dark ove
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -43,7 +45,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render light ov
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -73,7 +77,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render the loading o
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -103,7 +109,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with custom p
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -129,7 +137,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with minimal 
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -156,6 +166,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with optional
   }
 >
   <Scroll
+    className=""
     refCallback={[MockFunction]}
   >
     <ContextProvider
@@ -188,7 +199,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render without scrol
   }
 >
   <Scroll
-    className="removeScroll"
+    className="remove-scroll"
   >
     <ContextProvider
       value={

@@ -16,7 +16,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -61,7 +63,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -100,7 +104,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -133,7 +139,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -166,7 +174,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -192,7 +202,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with custom pr
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -214,7 +226,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal p
     className="container-content"
     data-status-overlay-container-content={true}
   >
-    <Scroll>
+    <Scroll
+      className=""
+    >
       <ContextProvider
         value={
           Object {
@@ -237,6 +251,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
     data-status-overlay-container-content={true}
   >
     <Scroll
+      className=""
       refCallback={[MockFunction]}
     >
       <ContextProvider
@@ -265,7 +280,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render without scroll
     data-status-overlay-container-content={true}
   >
     <Scroll
-      className="removeScroll"
+      className="remove-scroll"
     >
       <ContextProvider
         value={

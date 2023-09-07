@@ -76,7 +76,7 @@ const ApplicationLoadingOverlayProvider = ({
   );
 
   let className = cx('container');
-  const scrollClass = noScroll && cx('removeScroll');
+  const scrollClass = cx({ 'remove-scroll': noScroll });
   if (customProps.className) {
     className = [className, customProps.className].join(' ');
   }

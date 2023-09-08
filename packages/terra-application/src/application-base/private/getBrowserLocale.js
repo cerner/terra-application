@@ -50,6 +50,11 @@ const getBrowserLocale = () => {
     return preferredLocale;
   }
 
+  /* for IE support, as languages and language in IE return undefined, and userLanguage and browserLanguage return "en-US" */
+  if (isSupported(navigator.systemLanguage)) {
+    return navigator.systemLanguage;
+  }
+
   if (isSupported(navigator.language)) {
     return navigator.language;
   }

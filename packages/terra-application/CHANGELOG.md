@@ -5,6 +5,11 @@
 * Changed
  * Added `noScroll` prop to remove scroll in powerchart.
 
+## 1.56.0-alpha.0 - (September 8, 2023)
+
+* Changed
+  * Updated `getBrowserLocale` method for IE.
+
 ## 1.55.1 - (August 22, 2023)
 
 * Changed

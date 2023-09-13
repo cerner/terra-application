@@ -79,7 +79,7 @@ const propTypes = {
   unloadPromptIsDisabled: PropTypes.bool,
   /**
    * @private
-   * Prop to not render scroll in  Powerchart.
+   * When set to true scroll will be disabled. internal prop to be used by Mpages for terra-tabs in  Powerchart.
    */
   noScroll: PropTypes.bool,
 

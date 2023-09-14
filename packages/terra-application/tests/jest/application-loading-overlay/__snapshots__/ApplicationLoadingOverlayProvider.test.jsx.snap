@@ -13,7 +13,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render dark ove
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -43,7 +45,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render light ov
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -73,7 +77,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render the loading o
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -103,7 +109,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with custom p
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -129,7 +137,9 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with minimal 
     />
   }
 >
-  <Scroll>
+  <Scroll
+    className=""
+  >
     <ContextProvider
       value={
         Object {
@@ -156,6 +166,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with optional
   }
 >
   <Scroll
+    className=""
     refCallback={[MockFunction]}
   >
     <ContextProvider
@@ -170,6 +181,34 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with optional
         Test child
       </div>
     </ContextProvider>
+  </Scroll>
+</OverlayContainer>
+`;
+
+exports[`ApplicationLoadingOverlayProvider Snapshots should render without scroll 1`] = `
+<OverlayContainer
+  className="container"
+  overlay={
+    <LoadingOverlay
+      backgroundStyle="clear"
+      isAnimated={true}
+      isOpen={false}
+      isRelativeToContainer={true}
+      rootSelector="#root"
+    />
+  }
+>
+  <Scroll
+    className="remove-scroll"
+  >
+    <ContextProvider
+      value={
+        Object {
+          "hide": [Function],
+          "show": [Function],
+        }
+      }
+    />
   </Scroll>
 </OverlayContainer>
 `;

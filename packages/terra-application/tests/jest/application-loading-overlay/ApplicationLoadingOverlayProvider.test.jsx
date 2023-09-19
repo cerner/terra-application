@@ -88,5 +88,13 @@ describe('ApplicationLoadingOverlayProvider', () => {
 
       React.useState = reactUseState;
     });
+
+    it('should render without scroll', () => {
+      const wrapper = shallow((
+        <ApplicationLoadingOverlayProvider noScroll />
+      ));
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

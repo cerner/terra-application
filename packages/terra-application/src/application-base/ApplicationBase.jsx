@@ -59,10 +59,15 @@ const propTypes = {
    * before continuing with the unload event, even if NavigationPrompts are present.
    */
   unloadPromptIsDisabled: PropTypes.bool,
+  /**
+   * @private
+   * When set to true scroll will be disabled. internal prop to be used by Mpages for terra-tabs in  Powerchart.
+   */
+  noScroll: PropTypes.bool,
 };
 
 const ApplicationBase = ({
-  locale, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled,
+  locale, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
 }) => {
   const registeredPromptsRef = useRef();
   const [messages, setMessages] = useState();
@@ -132,8 +137,8 @@ const ApplicationBase = ({
                       registeredPromptsRef.current = registeredPrompts;
                     }}
                   >
-                    <ApplicationLoadingOverlayProvider>
-                      <ApplicationStatusOverlayProvider>
+                    <ApplicationLoadingOverlayProvider noScroll={noScroll}>
+                      <ApplicationStatusOverlayProvider noScroll={noScroll}>
                         <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                           {children}
                         </Suspense>

@@ -15,3 +15,9 @@ exports[`ApplicationBase should render with minimal props 1`] = `
 `;
 
 exports[`ApplicationBase should render with the preferred browser locale 1`] = `<ApplicationBase />`;
+
+exports[`ApplicationBase should render without scroll 1`] = `
+<ApplicationBase
+  noScroll={true}
+/>
+`;

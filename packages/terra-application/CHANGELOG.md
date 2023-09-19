@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.56.0 - (September 19, 2023)
+
 * Changed
  * Added `noScroll` prop to remove scroll in powerchart.
 

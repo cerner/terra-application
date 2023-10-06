@@ -130,7 +130,7 @@
     "lerna": "^3.16.4",
     "link-parent-bin": "^1.0.0",
     "loader-runner": "^4.1.0",
-    "postcss": "8.3.11",
+    "postcss": "8.4.31",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-intl": "^5.8.2",

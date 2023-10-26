@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixes
+  * Locked acorn to v8.10.0 to fix compile error
+  
 ## 7.11.0 - (September 19, 2023)
 
 * Changed

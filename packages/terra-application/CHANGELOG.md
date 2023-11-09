@@ -10,6 +10,7 @@
 
 * Added
   * Added user action utility button.
+  * Added `noScroll` prop to remove scroll in powerchart.
 
 ## 2.1.0 - (June 22, 2022)
 

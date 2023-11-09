@@ -33,4 +33,13 @@ describe('ApplicationBase', () => {
     ));
     expect(wrapper).toMatchSnapshot();
   });
+
+  it('should render without scroll', () => {
+    const wrapper = mountWithIntl((
+      <ApplicationBase noScroll>
+        <div>content</div>
+      </ApplicationBase>
+    ));
+    expect(wrapper).toMatchSnapshot();
+  });
 });

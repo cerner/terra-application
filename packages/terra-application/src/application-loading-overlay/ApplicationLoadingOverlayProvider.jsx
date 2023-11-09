@@ -22,9 +22,16 @@ const propTypes = {
    * ApplicationLoadingOverlayProvider.
    */
   scrollRefCallback: PropTypes.func,
+  /**
+   * @private
+   * Prop to not render scroll in  Powerchart.
+   */
+  noScroll: PropTypes.bool,
 };
 
-const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...customProps }) => {
+const ApplicationLoadingOverlayProvider = ({
+  children, scrollRefCallback, noScroll, ...customProps
+}) => {
   const [registeredLoadingOverlays, setRegisteredLoadingOverlays] = React.useState({});
 
   const contextValue = useMemo(() => ({
@@ -73,13 +80,15 @@ const ApplicationLoadingOverlayProvider = ({ children, scrollRefCallback, ...cus
     className = [className, customProps.className].join(' ');
   }
 
+  const scrollClass = cx({ 'remove-scroll': noScroll });
+
   return (
     <OverlayContainer
       {...customProps}
       className={className}
       overlay={overlay}
     >
-      <Scroll refCallback={scrollRefCallback}>
+      <Scroll className={scrollClass} refCallback={scrollRefCallback}>
         <ApplicationLoadingOverlayContext.Provider value={contextValue}>
           {children}
         </ApplicationLoadingOverlayContext.Provider>

@@ -3,6 +3,7 @@
 ## Unreleased
 
 * Changed
+  * Updated `getBrowserLocale` method for IE.
   * Updated jest snapshots for terra-icon and terra-button changes.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
   * Locked `uuid` dependency to `3.4.0`.

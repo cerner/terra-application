@@ -4,6 +4,7 @@ exports[`ThemeContextProvider Snapshots should render with default config specif
 <ContextProvider
   value={
     Object {
+      "currentDensity": "compact",
       "currentDirection": "rtl",
       "currentLocale": "es",
       "currentTheme": "my theme",
@@ -30,6 +31,7 @@ exports[`ThemeContextProvider Snapshots should render with no config 1`] = `
 <ContextProvider
   value={
     Object {
+      "currentDensity": undefined,
       "currentDirection": "ltr",
       "currentLocale": "en",
       "currentTheme": "terra-default-theme",

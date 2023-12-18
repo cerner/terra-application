@@ -18,6 +18,7 @@ describe('ThemeContextProvider', () => {
       const config = {
         defaultLocale: 'es',
         defaultTheme: 'my theme',
+        defaultDensity: 'compact',
         defaultDirection: 'rtl',
       };
       const wrapper = shallow((

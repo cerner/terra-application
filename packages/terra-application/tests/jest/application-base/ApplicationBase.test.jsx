@@ -1,5 +1,4 @@
 import React from 'react';
-
 import ApplicationBase from '../../../src/application-base/ApplicationBase';
 
 describe('ApplicationBase', () => {
@@ -43,5 +42,35 @@ describe('ApplicationBase', () => {
       </ApplicationBase>
     ));
     expect(wrapper).toMatchSnapshot();
+  });
+
+  it('should render with theme and density', () => {
+    const wrapper = shallow((
+      <ApplicationBase themeName="test-theme" themeDensity="compact">
+        <div>content</div>
+      </ApplicationBase>
+    ));
+
+    const themeProvider = wrapper.find('ThemeProvider');
+    expect(themeProvider.props().themeName).toBe('test-theme');
+    expect(themeProvider.props().density).toBe('compact');
+
+    const themeContext = wrapper.find('ThemeContextProvider');
+    expect(themeContext.props().theme).toStrictEqual({ name: 'test-theme', className: 'test-theme', density: 'compact' });
+  });
+
+  it('should render with density', () => {
+    const wrapper = shallow((
+      <ApplicationBase themeDensity="compact">
+        <div>content</div>
+      </ApplicationBase>
+    ));
+
+    const themeProvider = wrapper.find('ThemeProvider');
+    expect(themeProvider.props().themeName).toBeUndefined();
+    expect(themeProvider.props().density).toBe('compact');
+
+    const themeContext = wrapper.find('ThemeContextProvider');
+    expect(themeContext.props().theme).toStrictEqual({ name: 'terra-default-theme', className: undefined, density: 'compact' });
   });
 });

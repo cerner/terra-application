@@ -12,6 +12,7 @@ exports[`ApplicationBase should render with all props 1`] = `
       theme={
         Object {
           "className": "test-theme",
+          "density": undefined,
           "name": "test-theme",
         }
       }
@@ -63,6 +64,61 @@ exports[`ApplicationBase should render with all props 1`] = `
 </div>
 `;
 
+exports[`ApplicationBase should render with density 1`] = `
+<div
+  className="application-base fill"
+  data-terra-application-base={true}
+>
+  <ThemeProvider
+    density="compact"
+  >
+    <ThemeContextProvider
+      theme={
+        Object {
+          "className": undefined,
+          "density": "compact",
+          "name": "terra-default-theme",
+        }
+      }
+    >
+      <Base
+        customMessages={Object {}}
+        locale="en"
+        strictMode={false}
+        throwOnI18nLoadError={true}
+      >
+        <InjectIntl(ApplicationErrorBoundary)>
+          <InjectIntl(Component)>
+            <ActiveBreakpointProvider>
+              <withPromptRegistration(NavigationPromptCheckpoint)
+                onPromptChange={[Function]}
+              >
+                <ApplicationLoadingOverlayProvider>
+                  <ApplicationStatusOverlayProvider>
+                    <Suspense
+                      fallback={
+                        <ApplicationLoadingOverlay
+                          backgroundStyle="clear"
+                          isOpen={true}
+                        />
+                      }
+                    >
+                      <div>
+                        content
+                      </div>
+                    </Suspense>
+                  </ApplicationStatusOverlayProvider>
+                </ApplicationLoadingOverlayProvider>
+              </withPromptRegistration(NavigationPromptCheckpoint)>
+            </ActiveBreakpointProvider>
+          </InjectIntl(Component)>
+        </InjectIntl(ApplicationErrorBoundary)>
+      </Base>
+    </ThemeContextProvider>
+  </ThemeProvider>
+</div>
+`;
+
 exports[`ApplicationBase should render with minimal props 1`] = `
 <div
   className="application-base fill"
@@ -73,6 +129,7 @@ exports[`ApplicationBase should render with minimal props 1`] = `
       theme={
         Object {
           "className": undefined,
+          "density": undefined,
           "name": "terra-default-theme",
         }
       }
@@ -125,6 +182,7 @@ exports[`ApplicationBase should render with the preferred browser local 1`] = `
       theme={
         Object {
           "className": undefined,
+          "density": undefined,
           "name": "terra-default-theme",
         }
       }
@@ -177,6 +235,7 @@ exports[`ApplicationBase should render without scroll 1`] = `
       theme={
         Object {
           "className": undefined,
+          "density": undefined,
           "name": "terra-default-theme",
         }
       }

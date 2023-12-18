@@ -66,6 +66,10 @@ const propTypes = {
    */
   themeName: PropTypes.string,
   /**
+   * The name of the theme to apply to the application using terra-theme-provider.
+   */
+  themeDensity: PropTypes.string,
+  /**
    * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
    * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
    * potentially overflow its parent.
@@ -86,7 +90,7 @@ const propTypes = {
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
+  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, themeDensity, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
 }) => {
   const registeredPromptsRef = useRef();
 
@@ -122,11 +126,12 @@ const ApplicationBase = ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
     name: themeOverride || themeName || rootThemeName,
     className: themeOverride || themeName,
-  }), [themeOverride, themeName]);
+    density: themeDensity || themeConfig?.density,
+  }), [themeOverride, themeName, themeDensity]);
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider themeName={themeName}>
+      <ThemeProvider themeName={theme.className} density={theme.density}>
         <ThemeContextProvider theme={theme}>
           <Base
             customMessages={customTranslatedMessages}

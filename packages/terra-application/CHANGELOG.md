@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Added support for theme data density.
+
 ## 1.56.0 - (September 19, 2023)
 
 * Changed

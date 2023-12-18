@@ -76,7 +76,9 @@ const AppSettingsProvider = ({ settingsConfig, children }) => {
      * Handle setting update and store new settings in state.
      * @param {*} newSettings
      */
-    const onUpdate = ({ locale, theme, density, direction }) => {
+    const onUpdate = ({
+      locale, theme, density, direction,
+    }) => {
       if (locale) {
         setCurrentLocale(locale);
       }

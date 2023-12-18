@@ -744,7 +744,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                           type="button"
                         >
                           <span
-                            className="button-label text-only"
+                            className="button-label-win text-only"
                           >
                             <span
                               className=""
@@ -1040,7 +1040,7 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                       type="button"
                     >
                       <span
-                        className="button-label text-only"
+                        className="button-label-win text-only"
                       >
                         <span
                           className=""
@@ -1366,7 +1366,7 @@ exports[`UtilityMenu should render with skip callback 1`] = `
                       type="button"
                     >
                       <span
-                        className="button-label text-only"
+                        className="button-label-win text-only"
                       >
                         <span
                           className=""

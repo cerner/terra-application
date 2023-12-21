@@ -66,7 +66,7 @@ const propTypes = {
    */
   themeName: PropTypes.string,
   /**
-   * The name of the theme to apply to the application using terra-theme-provider.
+   * The density of the theme to apply to the application using terra-theme-provider.
    */
   themeDensity: PropTypes.string,
   /**

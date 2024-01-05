@@ -15,9 +15,11 @@ const cx = classNamesBind.bind(styles);
 
 const SettingsModal = () => {
   const appSettings = React.useContext(AppSettingsContext);
-  const [state, setState] = useState({ locale: appSettings.currentLocale, theme: appSettings.currentTheme, direction: appSettings.currentDirection });
+  const [state, setState] = useState({
+    locale: appSettings.currentLocale, theme: appSettings.currentTheme, density: appSettings.currentDensity, direction: appSettings.currentDirection,
+  });
   const {
-    locale, theme, direction,
+    locale, theme, density, direction,
   } = state;
   const { locales, themes, directions } = appSettings;
   const disclosureManager = React.useContext(DisclosureManagerContext);
@@ -41,6 +43,7 @@ const SettingsModal = () => {
                   appSettings.onUpdate({
                     locale,
                     theme,
+                    density,
                     direction,
                   });
                   disclosureManager.dismiss();
@@ -74,6 +77,7 @@ const SettingsModal = () => {
                 setState({
                   locale: event.currentTarget.value,
                   theme,
+                  density,
                   direction,
                 });
               }}
@@ -95,6 +99,7 @@ const SettingsModal = () => {
                 setState({
                   locale,
                   theme: event.currentTarget.value,
+                  density,
                   direction,
                 });
               }}
@@ -102,6 +107,26 @@ const SettingsModal = () => {
             />
           </Field>
         ) : undefined}
+        <Field
+          label="Density"
+          htmlFor="terra-dev-site-density-select"
+        >
+          <NativeSelect
+            isFilterStyle
+            ariaLabel="Density"
+            id="terra-dev-site-density-select"
+            value={density}
+            onChange={event => {
+              setState({
+                locale,
+                theme,
+                density: event.currentTarget.value,
+                direction,
+              });
+            }}
+            options={[{ value: 'compact', display: 'compact' }, { value: 'comfortable', display: 'comfortable' }, { value: 'spacious', display: 'spacious' }]}
+          />
+        </Field>
         {directions.length > 1 ? (
           <Field
             label="Direction"

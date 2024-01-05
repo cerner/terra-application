@@ -47,12 +47,14 @@ const AppSettingsProvider = ({ settingsConfig, children }) => {
   const {
     defaultLocale = 'en',
     defaultTheme = defaultThemeName,
+    defaultDensity = themesConfig.density,
     defaultDirection = 'ltr',
   } = settingsConfig;
 
   const [currentLocale, setCurrentLocale] = useState(defaultLocale);
   const [currentDirection, setCurrentDirection] = useState(defaultDirection);
   const [currentTheme, setCurrentTheme] = useState(defaultTheme);
+  const [currentDensity, setCurrentDensity] = useState(defaultDensity);
 
   /**
    * Place settings on dom
@@ -74,13 +76,19 @@ const AppSettingsProvider = ({ settingsConfig, children }) => {
      * Handle setting update and store new settings in state.
      * @param {*} newSettings
      */
-    const onUpdate = ({ locale, theme, direction }) => {
+    const onUpdate = ({
+      locale, theme, density, direction,
+    }) => {
       if (locale) {
         setCurrentLocale(locale);
       }
 
       if (theme) {
         setCurrentTheme(theme);
+      }
+
+      if (density) {
+        setCurrentDensity(density);
       }
 
       if (direction) {
@@ -92,13 +100,14 @@ const AppSettingsProvider = ({ settingsConfig, children }) => {
       locales,
       currentLocale,
       currentTheme,
+      currentDensity,
       currentDirection,
       directions: ['ltr', 'rtl'],
       themes,
       currentThemeClassName: themesMap[currentTheme],
       onUpdate,
     });
-  }, [currentLocale, currentTheme, currentDirection]);
+  }, [currentLocale, currentTheme, currentDensity, currentDirection]);
 
   return (
     <AppSettingsContext.Provider value={appSettings}>

@@ -18,12 +18,13 @@ const propTypes = {
 
 const DevSiteApplicationContainer = ({ children, ApplicationBase }) => {
   const isRaw = useRouteMatch('/raw');
-  const { currentLocale, currentThemeClassName } = React.useContext(AppSettingsContext);
+  const { currentLocale, currentThemeClassName, currentDensity } = React.useContext(AppSettingsContext);
   const AppBase = ApplicationBase || TerraApplicationBase;
   return (
     <AppBase
       locale={currentLocale}
       themeName={currentThemeClassName}
+      themeDensity={currentDensity}
       themeIsGlobal
       unloadPromptIsDisabled={!!isRaw}
     >

@@ -1,9 +1,11 @@
 # Changelog
 
+## Unreleased
+
+## 7.12.0 - (January 17, 2024)
+
 * Changed
   * Added support for theme data density.
-
-## Unreleased
 
 ## 7.11.0 - (September 19, 2023)
 

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 1.57.0 - (January 17, 2024)
+
 * Changed
   * Added support for theme data density.
 

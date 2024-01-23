@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added the default density of the redwood theme to be 'comfortable'.
+
 ## 1.57.0 - (January 17, 2024)
 
 * Changed

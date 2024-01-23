@@ -125,6 +125,7 @@ const SettingsModal = () => {
               });
             }}
             options={[{ value: 'compact', display: 'compact' }, { value: 'comfortable', display: 'comfortable' }, { value: 'spacious', display: 'spacious' }]}
+            defaultValue="comfortable"
           />
         </Field>
         {directions.length > 1 ? (

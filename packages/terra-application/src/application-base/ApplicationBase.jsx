@@ -123,7 +123,7 @@ const ApplicationBase = ({
   const { localeOverride, themeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
   let density = themeDensity || themeConfig?.density;
-  if (!density && themeName === 'redwood-theme') {
+  if (themeName === 'redwood-theme' && !density) {
     density = 'comfortable';
   }
 

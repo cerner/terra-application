@@ -122,12 +122,17 @@ const ApplicationBase = ({
 
   const { localeOverride, themeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
+  let density = themeDensity || themeConfig?.density;
+  if (themeName === 'redwood-theme' && !density) {
+    density = 'comfortable';
+  }
+
   const theme = useMemo(() => ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
     name: themeOverride || themeName || rootThemeName,
     className: themeOverride || themeName,
-    density: themeDensity || themeConfig?.density,
-  }), [themeOverride, themeName, themeDensity]);
+    density,
+  }), [themeOverride, themeName, density]);
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>

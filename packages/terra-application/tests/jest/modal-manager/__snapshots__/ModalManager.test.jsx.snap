@@ -2,13 +2,11 @@
 
 exports[`ModalManager Snapshots should render with optional props 1`] = `
 <ModalManager
-  closeOnOutsideClick={false}
   disclosureAccessory={
     <div>
       Test Accessory
     </div>
   }
-  shouldTrapFocus={false}
   withDisclosureContainer={[Function]}
 >
   <TestChild />
@@ -17,8 +15,6 @@ exports[`ModalManager Snapshots should render with optional props 1`] = `
 
 exports[`ModalManager Snapshots should render with required props 1`] = `
 <ModalManager
-  closeOnOutsideClick={false}
-  shouldTrapFocus={false}
   withDisclosureContainer={[Function]}
 >
   <TestChild />

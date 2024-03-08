@@ -15,6 +15,7 @@ Cerner Corporation
 - Pranav Agarwal [@pranav300]
 - Mackenzie Revoyr [@revoyrm]
 - Sam Bao [@sambao21]
+- Avijit Das [@adavijit]
 
 [@mjhenkes]: https://github.com/mjhenkes
 [@tbiethman]: https://github.com/tbiethman
@@ -31,3 +32,4 @@ Cerner Corporation
 [@pranav300]: https://github.com/pranav300
 [@revoyrm]: https://github.com/revoyrm
 [@sambao21]: https://github.com/sambao21
+[@adavijit]: https://github.com/adavijit

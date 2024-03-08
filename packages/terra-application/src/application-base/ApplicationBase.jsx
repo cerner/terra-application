@@ -64,10 +64,21 @@ const propTypes = {
    * When set to true scroll will be disabled. internal prop to be used by Mpages for terra-tabs in  Powerchart.
    */
   noScroll: PropTypes.bool,
+  /**
+   * @private
+   * @type {number}
+   * @default 0
+   * Prop to control the z-index of overlay provider.
+   */
+  zIndex: PropTypes.number,
+};
+
+const defaultProps = {
+  zIndex: 0,
 };
 
 const ApplicationBase = ({
-  locale, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
+  locale, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll, zIndex,
 }) => {
   const registeredPromptsRef = useRef();
   const [messages, setMessages] = useState();
@@ -138,7 +149,7 @@ const ApplicationBase = ({
                     }}
                   >
                     <ApplicationLoadingOverlayProvider noScroll={noScroll}>
-                      <ApplicationStatusOverlayProvider noScroll={noScroll}>
+                      <ApplicationStatusOverlayProvider noScroll={noScroll} zIndex={zIndex}>
                         <Suspense fallback={<ApplicationLoadingOverlay isOpen />}>
                           {children}
                         </Suspense>
@@ -156,5 +167,5 @@ const ApplicationBase = ({
 };
 
 ApplicationBase.propTypes = propTypes;
-
+ApplicationBase.defaultProps = defaultProps;
 export default ApplicationBase;

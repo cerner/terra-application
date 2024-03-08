@@ -157,5 +157,13 @@ describe('ApplicationStatusOverlayProvider', () => {
 
       expect(wrapper).toMatchSnapshot();
     });
+
+    it('should render with zIndex prop', () => {
+      const wrapper = shallow((
+        <ApplicationStatusOverlayProvider zIndex={5000} />
+      ));
+
+      expect(wrapper).toMatchSnapshot();
+    });
   });
 });

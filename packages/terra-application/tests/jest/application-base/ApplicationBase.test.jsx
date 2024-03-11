@@ -42,13 +42,4 @@ describe('ApplicationBase', () => {
     ));
     expect(wrapper).toMatchSnapshot();
   });
-
-  it('should render with zIndex prop', () => {
-    const wrapper = mountWithIntl((
-      <ApplicationBase zIndex={5000}>
-        <div>content</div>
-      </ApplicationBase>
-    ));
-    expect(wrapper).toMatchSnapshot();
-  });
 });

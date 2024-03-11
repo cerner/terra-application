@@ -11,7 +11,6 @@
 * Added
   * Added user action utility button.
   * Added `noScroll` prop to remove scroll in powerchart.
-  * Added `zIndex` prop to control z-index of ApplicationStatusOverlayContext
 
 ## 2.1.0 - (June 22, 2022)
 

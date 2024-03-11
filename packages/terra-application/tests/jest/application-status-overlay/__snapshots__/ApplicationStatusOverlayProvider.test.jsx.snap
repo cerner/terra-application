@@ -3,11 +3,6 @@
 exports[`ApplicationStatusOverlayProvider Snapshots should render a single status view with the configuration from the last rendered ApplicationStatusOverlay when more than one are specified 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <StatusView
     buttonAttrs={Array []}
@@ -44,11 +39,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
 exports[`ApplicationStatusOverlayProvider Snapshots should render the status view based on the current state 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <StatusView
     buttonAttrs={
@@ -96,11 +86,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only buttonAttrs is specified 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <StatusView
     buttonAttrs={
@@ -142,11 +127,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only message is specified 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <StatusView
     buttonAttrs={Array []}
@@ -182,11 +162,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 exports[`ApplicationStatusOverlayProvider Snapshots should render the status view when only variant is specified 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <StatusView
     buttonAttrs={Array []}
@@ -222,11 +197,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 exports[`ApplicationStatusOverlayProvider Snapshots should render with custom props 1`] = `
 <div
   className="container testClassName"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <div
     className="container-content"
@@ -251,11 +221,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with custom pr
 exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal props 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <div
     className="container-content"
@@ -280,11 +245,6 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal p
 exports[`ApplicationStatusOverlayProvider Snapshots should render with optional props 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <div
     className="container-content"
@@ -311,43 +271,9 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
 </div>
 `;
 
-exports[`ApplicationStatusOverlayProvider Snapshots should render with zIndex prop 1`] = `
-<div
-  className="container"
-  style={
-    Object {
-      "zIndex": 5000,
-    }
-  }
->
-  <div
-    className="container-content"
-    data-status-overlay-container-content={true}
-  >
-    <Scroll
-      className=""
-    >
-      <ContextProvider
-        value={
-          Object {
-            "hide": [Function],
-            "show": [Function],
-          }
-        }
-      />
-    </Scroll>
-  </div>
-</div>
-`;
-
 exports[`ApplicationStatusOverlayProvider Snapshots should render without scroll 1`] = `
 <div
   className="container"
-  style={
-    Object {
-      "zIndex": 0,
-    }
-  }
 >
   <div
     className="container-content"

@@ -26,21 +26,10 @@ const propTypes = {
    * Prop to not render scroll in  Powerchart.
    */
   noScroll: PropTypes.bool,
-  /**
-   * @private
-   * @type {number}
-   * @default 0
-   * Prop to control the z-index of overlay provider.
-   */
-  zIndex: PropTypes.number,
-};
-
-const defaultProps = {
-  zIndex: 0,
 };
 
 const ApplicationStatusOverlayProvider = ({
-  children, scrollRefCallback, noScroll, zIndex, ...customProps
+  children, scrollRefCallback, noScroll, ...customProps
 }) => {
   const [registeredStatusOverlay, setRegisteredStatusOverlay] = React.useState({});
 
@@ -104,7 +93,6 @@ const ApplicationStatusOverlayProvider = ({
   }, [registeredStatusOverlayKeys]);
 
   let className = cx('container');
-
   if (customProps.className) {
     className = [className, customProps.className].join(' ');
   }
@@ -123,8 +111,7 @@ const ApplicationStatusOverlayProvider = ({
   const scrollClass = cx({ 'remove-scroll': noScroll });
 
   return (
-    // eslint-disable-next-line react/forbid-dom-props
-    <div {...customProps} className={className} style={{ zIndex }}>
+    <div {...customProps} className={className}>
       {statusView}
       <div data-status-overlay-container-content ref={containerRef} className={cx('container-content')}>
         <Scroll className={scrollClass} refCallback={scrollRefCallback}>
@@ -138,6 +125,5 @@ const ApplicationStatusOverlayProvider = ({
 };
 
 ApplicationStatusOverlayProvider.propTypes = propTypes;
-ApplicationStatusOverlayProvider.defaultProps = defaultProps;
 
 export default ApplicationStatusOverlayProvider;

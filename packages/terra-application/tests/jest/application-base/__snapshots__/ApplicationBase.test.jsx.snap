@@ -5,32 +5,19 @@ exports[`ApplicationBase should render with all props 1`] = `
   locale="en"
   themeName="test-theme"
   unloadPromptIsDisabled={true}
-  zIndex={0}
 />
 `;
 
 exports[`ApplicationBase should render with minimal props 1`] = `
 <ApplicationBase
   locale="en"
-  zIndex={0}
 />
 `;
 
-exports[`ApplicationBase should render with the preferred browser locale 1`] = `
-<ApplicationBase
-  zIndex={0}
-/>
-`;
-
-exports[`ApplicationBase should render with zIndex prop 1`] = `
-<ApplicationBase
-  zIndex={5000}
-/>
-`;
+exports[`ApplicationBase should render with the preferred browser locale 1`] = `<ApplicationBase />`;
 
 exports[`ApplicationBase should render without scroll 1`] = `
 <ApplicationBase
   noScroll={true}
-  zIndex={0}
 />
 `;

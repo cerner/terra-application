@@ -2,46 +2,46 @@
   "name": "@cerner/terra-polyfill",
   "version": "1.2.0",
   "description": "This package contains polyfills to support the minimum requirements and commonly used features of terra-application and its consumers.",
-  "author": "Cerner Corporation",
+  "main": "lib/index.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-application.git",
     "directory": "packages/terra-polyfill"
   },
+  "keywords": [
+    "Cerner",
+    "Terra",
+    "polyfill",
+    "terra-application"
+  ],
+  "author": "Cerner Corporation",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/cerner/terra-application/issues"
   },
-  "homepage": "https://github.com/cerner/terra-application",
-  "license": "Apache-2.0",
-  "keywords": [
-    "Cerner",
-    "polyfill",
-    "Terra",
-    "terra-application"
-  ],
-  "publishConfig": {
-    "access": "public"
-  },
-  "engines": {
-    "node": "10 || 12 || 14"
-  },
-  "main": "lib/index.js",
   "files": [
     "lib"
   ],
-  "dependencies": {
-    "@formatjs/intl-relativetimeformat": "8",
-    "abortcontroller-polyfill": "1",
-    "core-js": "3",
-    "intl": "1",
-    "mutationobserver-shim": "<=0.3.3",
-    "regenerator-runtime": "^0.13.9",
-    "whatwg-fetch": "3",
-    "wicg-inert": "3"
+  "engines": {
+    "node": ">=10.13.0"
   },
+  "homepage": "https://github.com/cerner/terra-application",
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files --ignore src/index.js",
     "lint": "eslint --ext .js,.jsx .",
     "precompile": "rm -rf lib"
+  },
+  "dependencies": {
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
+    "abortcontroller-polyfill": "^1.7.3",
+    "core-js": "^3.15.2",
+    "intl": "^1.2.5",
+    "mutationobserver-shim": "<=0.3.3",
+    "regenerator-runtime": "^0.13.9",
+    "whatwg-fetch": "^3.6.2",
+    "wicg-inert": "^3.0.2"
   }
 }

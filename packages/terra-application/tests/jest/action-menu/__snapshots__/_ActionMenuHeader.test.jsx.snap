@@ -25,6 +25,7 @@ exports[`ActionMenuHeader should render with all props 1`] = `
       isCompact={false}
       isDisabled={false}
       isIconOnly={false}
+      isLeftAligned={false}
       isReversed={false}
       onClick={[MockFunction]}
       text="terraApplication.actionMenu.headerCloseButtonLabel"

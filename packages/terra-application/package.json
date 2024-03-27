@@ -1,28 +1,28 @@
 {
   "name": "terra-application",
-  "main": "lib/application-base/ApplicationBase.js",
   "version": "1.57.0",
   "description": "A framework to support application development with Terra components",
-  "engines": {
-    "node": "^8.9.2 || ^10.13.0 || ^12.0.0 || ^14.0.0"
-  },
+  "author": "Cerner Corporation",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/cerner/terra-application",
     "directory": "packages/terra-application"
   },
-  "keywords": [
-    "Cerner",
-    "Terra",
-    "terra-application",
-    "Application",
-    "UI"
-  ],
-  "author": "Cerner Corporation",
-  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/cerner/terra-application/issues"
   },
+  "license": "Apache-2.0",
+  "keywords": [
+    "Application",
+    "Cerner",
+    "Terra",
+    "terra-application",
+    "UI"
+  ],
+  "engines": {
+    "node": "^8.9.2 || ^10.13.0 || ^12.0.0 || ^14.0.0"
+  },
+  "main": "lib/application-base/ApplicationBase.js",
   "files": [
     "lib",
     "src",
@@ -30,19 +30,6 @@
     "tests/wdio/*-spec.js",
     "tests/wdio/**/*-spec.js"
   ],
-  "scripts": {
-    "compile": "babel --root-mode upward src --out-dir lib --copy-files",
-    "lint": "npm run lint:js && npm run lint:scss",
-    "lint:js": "eslint --ext .js,.jsx . --ignore-path ../../.eslintignore",
-    "lint:scss": "stylelint src/**/*.scss",
-    "precompile": "rm -rf lib",
-    "test": "npm run lint && npm run jest && npm run wdio",
-    "jest": "jest --config ../../jest.config.js",
-    "wdio-default": "cd ../.. && terra wdio",
-    "wdio-lowlight": "cd ../.. && terra wdio --themes clinical-lowlight-theme",
-    "wdio-fusion": "cd ../.. && terra wdio --themes orion-fusion-theme",
-    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
-  },
   "dependencies": {
     "@cerner/terra-docs": "^1.0.0",
     "classnames": "^2.2.5",
@@ -84,5 +71,18 @@
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
     "react-intl": "^2.9.0"
+  },
+  "scripts": {
+    "compile": "babel --root-mode upward src --out-dir lib --copy-files",
+    "lint": "npm run lint:js && npm run lint:scss",
+    "lint:js": "eslint --ext .js,.jsx . --ignore-path ../../.eslintignore",
+    "lint:scss": "stylelint src/**/*.scss",
+    "precompile": "rm -rf lib",
+    "test": "npm run lint && npm run jest && npm run wdio",
+    "jest": "jest --config ../../jest.config.js",
+    "wdio-default": "cd ../.. && terra wdio",
+    "wdio-lowlight": "cd ../.. && terra wdio --themes clinical-lowlight-theme",
+    "wdio-fusion": "cd ../.. && terra wdio --themes orion-fusion-theme",
+    "wdio": "npm run wdio-default && npm run wdio-lowlight && npm run wdio-fusion"
   }
 }

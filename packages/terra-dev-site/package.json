@@ -23,7 +23,7 @@
     "access": "public"
   },
   "engines": {
-    "node": ">=10"
+    "node": "10 || 12 || 14"
   },
   "main": "index.js",
   "files": [
@@ -39,7 +39,7 @@
     "@mdx-js/react": "1",
     "chalk": "4",
     "classnames": "2",
-    "enhanced-resolve": "^4.1.0 || ^5.4.0",
+    "enhanced-resolve": "4 || 5",
     "fuse.js": "6",
     "glob": "7",
     "html-webpack-plugin": "4",
@@ -57,13 +57,13 @@
     "terra-action-footer": "2",
     "terra-action-header": "2",
     "terra-button": "3",
-    "terra-content-container": " ^3.34.0",
+    "terra-content-container": "3",
     "terra-form-field": "4",
     "terra-form-select": "6",
     "terra-html-table": "1",
     "terra-hyperlink": "2",
     "terra-icon": "3",
-    "terra-image": " ^3.34.0",
+    "terra-image": "3",
     "terra-list": "4",
     "terra-menu": "6",
     "terra-mixins": "1",
@@ -75,7 +75,7 @@
     "react": "16",
     "react-dom": "16",
     "terra-application": "1",
-    "webpack": "^4.44.2 || ^5.0.0"
+    "webpack": "4 || 5"
   },
   "devDependencies": {
     "terra-application": "1"

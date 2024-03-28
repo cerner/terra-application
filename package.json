@@ -20,7 +20,7 @@
   "private": true,
   "engines": {
     "node": "10 || 12 || 14",
-    "npm": "9"
+    "npm": "6 || 9"
   },
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
@@ -72,6 +72,7 @@
     "postcss": "8.4.31",
     "react": "16",
     "react-dom": "16",
+    "react-intl": "2",
     "stylelint": "15",
     "terra-enzyme-intl": "3",
     "webpack": "5",
@@ -85,7 +86,6 @@
     "clean:install": "npm run clean && time npm install",
     "clean:lib": "rm -rf packages/**/lib",
     "clean:root": "$(lerna clean --yes || true) && echo 'removing ./node_modules' && rm -rf node_modules && echo 'removed ./node_modules'",
-    "clean:obsolete-snapshots": "npm test -- -u",
     "compile": "npm run clean:lib && npm run compile:build",
     "compile:build": "lerna ls -a | sed 's/@cerner\\///g' | cut -d ' ' -f1 | xargs -I {} babel packages/{}/src --out-dir packages/{}/lib --copy-files",
     "compile:src": "lerna run compile",
@@ -96,23 +96,23 @@
     "deploy": "npm run compile:prod && gh-pages -d build",
     "heroku-postbuild": "npm install --only=dev && npm run compile:prod",
     "jest": "jest",
-    "jest:coverage": "jest --coverage",
+    "jest:no-coverage": "jest --no-coverage",
     "lint": "npm run lint:js && npm run lint:scss && npm run lint:package-json",
     "lint:js": "eslint --ext .js,.jsx . --max-warnings 0",
     "lint:js:fix": "eslint --fix --ext .js,.jsx .",
     "lint:scss": "stylelint 'packages/**/src/**/*.scss'",
+    "lint:scss:no-warnings": "stylelint 'packages/**/src/**/*.scss' --quiet",
     "lint:package-json": "terra package-json-lint",
     "prepare-for-release": "terra prepare-for-release",
-    "pretest": "npm run lint",
     "postinstall": "npm run compile && npm run bootstrap:hoist",
     "start": "webpack serve",
     "start-prod": "webpack serve --mode=production",
     "start-heroku": "terra express-server --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio-default": "terra wdio",
-    "wdio-lowlight": "terra wdio --themes clinical-lowlight-theme",
-    "wdio-fusion": "terra wdio --themes orion-fusion-theme",
+    "wdio:default": "terra wdio",
+    "wdio:lowlight": "terra wdio --themes clinical-lowlight-theme",
+    "wdio:fusion": "terra wdio --themes orion-fusion-theme",
     "wdio": "terra wdio --themes terra-default-theme clinical-lowlight-theme orion-fusion-theme"
   }
 }

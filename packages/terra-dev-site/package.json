@@ -77,9 +77,6 @@
     "terra-application": "1",
     "webpack": "4 || 5"
   },
-  "devDependencies": {
-    "terra-application": "1"
-  },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",
     "lint": "npm run lint:js && npm run lint:scss",

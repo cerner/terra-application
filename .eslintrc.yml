@@ -1,4 +1,4 @@
-extends: @cerner/terra
+extends: "@cerner/terra"
 rules:
   react/forbid-prop-types: off
 overrides:

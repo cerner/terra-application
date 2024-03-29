@@ -78,7 +78,7 @@ jobs:
       - name: Run WDIO Tests for theme ${{ matrix.theme }}
         env:
           SITE: build/${{ matrix.theme }}
-        run: npm run wdio-${{ matrix.theme }}
+        run: npm run wdio:${{ matrix.theme }}
 
   release-and-deploy:
     runs-on: ubuntu-latest

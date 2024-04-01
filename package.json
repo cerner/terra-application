@@ -25,22 +25,6 @@
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
   ],
-  "eslintConfig": {
-    "extends": "@cerner/terra",
-    "rules": {
-      "react/forbid-prop-types": "off"
-    },
-    "overrides": [
-      {
-        "files": [
-          "packages/**/jest/**/*"
-        ],
-        "rules": {
-          "import/no-extraneous-dependencies": "off"
-        }
-      }
-    ]
-  },
   "package-json-lint": {
     "extends": "@cerner/package-json-lint-config-terra/package-json-lint.config.js",
     "projectType": "module"
@@ -51,52 +35,45 @@
       "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
     }
   },
+  "peerDependencies": {
+    "react": "16",
+    "react-dom": "16",
+    "react-intl": "2"
+  },
   "devDependencies": {
     "@babel/cli": "7",
     "@babel/core": "7",
-    "@babel/plugin-proposal-class-properties": "7",
-    "@babel/plugin-proposal-object-rest-spread": "7",
-    "@babel/plugin-transform-async-to-generator": "7",
     "@babel/plugin-transform-object-assign": "7",
-    "@babel/plugin-transform-regenerator": "7",
     "@babel/plugin-transform-runtime": "7",
     "@babel/preset-env": "7",
     "@babel/preset-react": "7",
     "@cerner/browserslist-config-terra": "4",
     "@cerner/eslint-config-terra": "5",
     "@cerner/jest-config-terra": "2",
-    "@cerner/package-json-lint": "1",
-    "@cerner/package-json-lint-config-terra": "1",
+    "@cerner/package-json-lint": "2",
+    "@cerner/package-json-lint-config-terra": "2",
     "@cerner/stylelint-config-terra": "5",
     "@cerner/terra-cli": "1",
     "@cerner/terra-functional-testing": "4",
     "@cerner/terra-open-source-scripts": "1",
     "@cerner/webpack-config-terra": "3",
-    "@octokit/core": "3",
     "@testing-library/jest-dom": "5",
     "@testing-library/react": "10",
     "@testing-library/react-hooks": "5",
     "@testing-library/user-event": "12",
-    "core-js": "3",
     "danger": "11",
     "enzyme": "3",
     "enzyme-adapter-react-16": "1",
     "enzyme-to-json": "3",
     "eslint": "7",
     "gh-pages": "3",
-    "html-webpack-plugin": "4",
-    "intl": "1",
     "jest": "27",
-    "ky": "^0.12.0",
     "lerna": "6",
-    "loader-runner": "4",
     "postcss": "8.4.31",
     "react": "16",
     "react-dom": "16",
     "react-intl": "2",
-    "regenerator-runtime": "^0.13.9",
     "stylelint": "15",
-    "terra-collapsible-menu-view": "6",
     "terra-enzyme-intl": "3",
     "webpack": "5",
     "webpack-cli": "4",
@@ -109,7 +86,6 @@
     "clean:install": "npm run clean && time npm install",
     "clean:lib": "rm -rf packages/**/lib",
     "clean:root": "$(lerna clean --yes || true) && echo 'removing ./node_modules' && rm -rf node_modules && echo 'removed ./node_modules'",
-    "clean:obsolete-snapshots": "npm test -- -u",
     "compile": "npm run clean:lib && npm run compile:build",
     "compile:build": "lerna ls -a | sed 's/@cerner\\///g' | cut -d ' ' -f1 | xargs -I {} babel packages/{}/src --out-dir packages/{}/lib --copy-files",
     "compile:src": "lerna run compile",
@@ -120,23 +96,23 @@
     "deploy": "npm run compile:prod && gh-pages -d build",
     "heroku-postbuild": "npm install --only=dev && npm run compile:prod",
     "jest": "jest",
-    "jest:coverage": "jest --coverage",
+    "jest:no-coverage": "jest --no-coverage",
     "lint": "npm run lint:js && npm run lint:scss && npm run lint:package-json",
     "lint:js": "eslint --ext .js,.jsx . --max-warnings 0",
     "lint:js:fix": "eslint --fix --ext .js,.jsx .",
     "lint:scss": "stylelint 'packages/**/src/**/*.scss'",
+    "lint:scss:no-warnings": "stylelint 'packages/**/src/**/*.scss' --quiet",
     "lint:package-json": "terra package-json-lint",
     "prepare-for-release": "terra prepare-for-release",
-    "pretest": "npm run lint",
     "postinstall": "npm run compile && npm run bootstrap:hoist",
     "start": "webpack serve",
     "start-prod": "webpack serve --mode=production",
     "start-heroku": "terra express-server --port $PORT --site './build' ",
     "start-static": "npm run compile:prod && terra express-server --site ./build",
     "test": "npm run lint && npm run jest && npm run wdio",
-    "wdio-default": "terra wdio",
-    "wdio-lowlight": "terra wdio --themes clinical-lowlight-theme",
-    "wdio-fusion": "terra wdio --themes orion-fusion-theme",
+    "wdio:default": "terra wdio",
+    "wdio:lowlight": "terra wdio --themes clinical-lowlight-theme",
+    "wdio:fusion": "terra wdio --themes orion-fusion-theme",
     "wdio": "terra wdio --themes terra-default-theme clinical-lowlight-theme orion-fusion-theme"
   }
 }

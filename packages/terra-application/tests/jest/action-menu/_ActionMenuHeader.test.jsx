@@ -1,5 +1,4 @@
 import React from 'react';
-import { shallowWithIntl } from 'terra-enzyme-intl';
 import ActionMenuHeader from '../../../src/action-menu/_ActionMenuHeader';
 
 describe('ActionMenuHeader', () => {

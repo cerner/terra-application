@@ -1,6 +1,5 @@
 import React from 'react';
 /* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl } from 'terra-enzyme-intl';
 import UtilityMenuHeaderButton from '../../../../../src/application-navigation/private/utility-menu/_UtilityMenuHeaderButton';
 
 describe('UtilityMenuHeaderButton', () => {

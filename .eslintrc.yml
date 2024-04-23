@@ -1,6 +1,9 @@
 extends: "@cerner/terra"
 rules:
   react/forbid-prop-types: off
+globals:
+  enzyme: readonly
+  enzymeIntl: readonly
 overrides:
   - files:
       - "packages/**/jest/**/*"

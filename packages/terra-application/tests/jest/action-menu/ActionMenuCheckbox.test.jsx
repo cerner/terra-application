@@ -4,7 +4,7 @@ import ActionMenuCheckbox from '../../../src/action-menu/ActionMenuCheckbox';
 
 describe('ActionMenuCheckbox', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuCheckbox
         actionKey="test key"
         label="test label"
@@ -14,7 +14,7 @@ describe('ActionMenuCheckbox', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuCheckbox
         actionKey="test key"
         label="test label"

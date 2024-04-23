@@ -4,7 +4,7 @@ import ApplicationStatusOverlayProvider from '../../../src/application-status-ov
 describe('ApplicationStatusOverlayProvider', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider />
       ));
 
@@ -12,7 +12,7 @@ describe('ApplicationStatusOverlayProvider', () => {
     });
 
     it('should render with custom props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider className="testClassName" />
       ));
 
@@ -21,7 +21,7 @@ describe('ApplicationStatusOverlayProvider', () => {
 
     it('should render with optional props', () => {
       const scrollRefCallback = jest.fn();
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider
           scrollRefCallback={scrollRefCallback}
         >
@@ -54,7 +54,7 @@ describe('ApplicationStatusOverlayProvider', () => {
         },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider>
           <div>Test child</div>
         </ApplicationStatusOverlayProvider>
@@ -80,7 +80,7 @@ describe('ApplicationStatusOverlayProvider', () => {
         1: { buttonAttrs: StatusViewButtons },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider>
           <div>Test child</div>
         </ApplicationStatusOverlayProvider>
@@ -99,7 +99,7 @@ describe('ApplicationStatusOverlayProvider', () => {
         1: { message: 'Status View with only message specified' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider>
           <div>Test child</div>
         </ApplicationStatusOverlayProvider>
@@ -118,7 +118,7 @@ describe('ApplicationStatusOverlayProvider', () => {
         1: { variant: 'error' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider>
           <div>Test child</div>
         </ApplicationStatusOverlayProvider>
@@ -139,7 +139,7 @@ describe('ApplicationStatusOverlayProvider', () => {
         3: { message: 'Third message', variant: 'no-data' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider>
           <div>Test child</div>
         </ApplicationStatusOverlayProvider>
@@ -151,7 +151,7 @@ describe('ApplicationStatusOverlayProvider', () => {
     });
 
     it('should render without scroll', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationStatusOverlayProvider noScroll />
       ));
 

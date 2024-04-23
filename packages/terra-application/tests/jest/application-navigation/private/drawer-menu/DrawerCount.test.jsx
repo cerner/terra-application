@@ -3,7 +3,7 @@ import DrawerCount from '../../../../../src/application-navigation/private/drawe
 
 describe('DrawerCount', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerCount />,
     );
 
@@ -11,7 +11,7 @@ describe('DrawerCount', () => {
   });
 
   it('should render prop data', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerCount
         value={1}
       />,

@@ -6,7 +6,7 @@ import ApplicationIntlProvider from '../../../src/application-intl/ApplicationIn
 describe('ApplicationIntlProvider', () => {
   describe('Snapshots', () => {
     it('should render an ApplicationIntlContext.Provider', () => {
-      const wrapper = mountWithIntl((
+      const wrapper = enzymeIntl.mountWithIntl((
         <ApplicationIntlProvider>
           <ApplicationIntlContext.Consumer>
             {(intl) => {

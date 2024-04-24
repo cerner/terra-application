@@ -70,7 +70,7 @@
     "enzyme-adapter-react-16": "1",
     "enzyme-to-json": "3",
     "eslint": "7",
-    "gh-pages": "3",
+    "gh-pages": "5",
     "jest": "27",
     "lerna": "6",
     "postcss": "8",

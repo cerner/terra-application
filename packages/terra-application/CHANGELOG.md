@@ -2,8 +2,13 @@
 
 ## Unreleased
 
+## 1.58.0 - (April 23, 2024)
+
 * Added
   * Added the default density of the redwood theme to be 'comfortable'.
+ 
+* Changed
+  * Optimized published package by excluding unnecessary files.
 
 ## 1.57.0 - (January 17, 2024)
 

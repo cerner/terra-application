@@ -6,7 +6,7 @@ const TestChild = () => <div />;
 describe('SlidePanelManger', () => {
   describe('Snapshots', () => {
     it('should render with required props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <SlidePanelManger>
           <TestChild />
         </SlidePanelManger>
@@ -16,7 +16,7 @@ describe('SlidePanelManger', () => {
     });
 
     it('should render with optional props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <SlidePanelManger
           disclosureAccessory={<div>Test Accessory</div>}
           navigationPromptResolutionOptions={{
@@ -35,7 +35,7 @@ describe('SlidePanelManger', () => {
     it('should wrap disclosed content in a DisclosureContainer with default prompt options', () => {
       const promptOptions = { test: 'options' };
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <SlidePanelManger
           navigationPromptResolutionOptions={promptOptions}
         >

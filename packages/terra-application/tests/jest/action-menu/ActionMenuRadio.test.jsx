@@ -4,7 +4,7 @@ import ActionMenuRadio from '../../../src/action-menu/ActionMenuRadio';
 
 describe('ActionMenuRadio', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuRadio
         actionKey="test key"
         label="test label"
@@ -14,7 +14,7 @@ describe('ActionMenuRadio', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuRadio
         actionKey="test key"
         label="test label"

@@ -8,7 +8,7 @@ const userActionConfig = {
 
 describe('DrawerMenuUser', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerMenuUser
         menuClosingCallback={() => jest.fn()}
         userConfig={{
@@ -25,7 +25,7 @@ describe('DrawerMenuUser', () => {
   });
 
   it('should render with small variant', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerMenuUser
         menuClosingCallback={() => jest.fn()}
         userConfig={{
@@ -43,7 +43,7 @@ describe('DrawerMenuUser', () => {
   });
 
   it('should render with large variant', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerMenuUser
         menuClosingCallback={() => jest.fn()}
         userConfig={{

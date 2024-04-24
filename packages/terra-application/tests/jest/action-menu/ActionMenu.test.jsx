@@ -7,14 +7,14 @@ MockComponent.interactiveType = false;
 
 describe('ActionMenu', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenu label="test menu" />
     ));
     expect(wrapper).toMatchSnapshot();
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenu
         label="test menu"
         isHeaderDisplayed

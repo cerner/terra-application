@@ -3,7 +3,7 @@ import DrawerMenuTitle from '../../../../../src/application-navigation/private/d
 
 describe('DrawerMenuTitle', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <DrawerMenuTitle
         titleConfig={{
           title: 'test-title',

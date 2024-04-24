@@ -5,7 +5,7 @@ describe('ThemeContextProvider', () => {
   describe('Snapshots', () => {
     it('should render with no config', () => {
       const config = {};
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <AppSettingsProvider settingsConfig={config}>
           <div />
         </AppSettingsProvider>
@@ -21,7 +21,7 @@ describe('ThemeContextProvider', () => {
         defaultDensity: 'compact',
         defaultDirection: 'rtl',
       };
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <AppSettingsProvider settingsConfig={config}>
           <div />
         </AppSettingsProvider>

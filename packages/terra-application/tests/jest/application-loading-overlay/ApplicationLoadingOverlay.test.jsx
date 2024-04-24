@@ -24,7 +24,7 @@ describe('ApplicationLoadingOverlay', () => {
   });
 
   it('should render loading overlay as closed', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationLoadingOverlay />,
     );
 
@@ -39,7 +39,7 @@ describe('ApplicationLoadingOverlay', () => {
   });
 
   it('should render loading overlay as open', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationLoadingOverlay isOpen />,
     );
 
@@ -56,7 +56,7 @@ describe('ApplicationLoadingOverlay', () => {
   });
 
   it('should transition from open to closed', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationLoadingOverlay isOpen />,
     );
 
@@ -74,7 +74,7 @@ describe('ApplicationLoadingOverlay', () => {
   });
 
   it('should redisplay loading overlay with new props', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationLoadingOverlay isOpen />,
     );
 
@@ -93,7 +93,7 @@ describe('ApplicationLoadingOverlay', () => {
   });
 
   it('should honor backgroundStyle prop', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationLoadingOverlay isOpen backgroundStyle="clear" />,
     );
 

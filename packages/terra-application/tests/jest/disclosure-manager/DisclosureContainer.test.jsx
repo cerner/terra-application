@@ -14,7 +14,7 @@ describe('DisclosureContainer', () => {
       </DisclosureContainer.WrappedComponent>
     );
 
-    const wrapper = shallow(disclosureContainer);
+    const wrapper = enzyme.shallow(disclosureContainer);
     expect(wrapper).toMatchSnapshot();
   });
 });

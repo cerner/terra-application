@@ -1,10 +1,9 @@
 import React from 'react';
-import { shallowWithIntl } from 'terra-enzyme-intl';
 import ActionMenuHeader from '../../../src/action-menu/_ActionMenuHeader';
 
 describe('ActionMenuHeader', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallowWithIntl((
+    const wrapper = enzymeIntl.shallowWithIntl((
       <ActionMenuHeader
         label="test label"
       />
@@ -13,7 +12,7 @@ describe('ActionMenuHeader', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallowWithIntl((
+    const wrapper = enzymeIntl.shallowWithIntl((
       <ActionMenuHeader
         label="test label"
         onClose={jest.fn()}

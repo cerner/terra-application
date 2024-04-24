@@ -1,15 +1,15 @@
 /* global TERRA_THEME_CONFIG */
 
 import React, {
-  useRef, useEffect, Suspense, useMemo,
+  useRef, useEffect, Suspense, useMemo, useState,
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-// eslint-disable-next-line import/no-extraneous-dependencies
-import Base from 'terra-base';
 import ThemeProvider from 'terra-theme-provider';
 import { ActiveBreakpointProvider } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
+import { IntlProvider } from 'react-intl';
+import i18nLoader from './private/i18nLoader';
 
 import ApplicationErrorBoundary from '../application-error-boundary';
 import { ApplicationIntlProvider } from '../application-intl';
@@ -18,8 +18,10 @@ import { ApplicationStatusOverlayProvider } from '../application-status-overlay'
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
+import Logger from '../utils/logger';
 
 import './private/initializeInert';
+import './baseStyles';
 
 import styles from './ApplicationBase.module.scss';
 
@@ -42,33 +44,9 @@ const propTypes = {
    */
   locale: PropTypes.string,
   /**
-   * Custom translations for the current locale.
-   */
-  customTranslatedMessages: (props, propName, componentName) => {
-    if (!props[propName]) {
-      return null;
-    }
-
-    if (Object.keys(props[propName]).length !== 0 && props.locale === undefined) {
-      return new Error(`Missing locale prop for ${propName} in ${componentName} props`);
-    }
-
-    return null;
-  },
-  /**
-   * The component to render while the translation files are being retrieved.
-   * NOTE: Absolutely no locale-dependent logic should be
-   * utilized in this placeholder.
-   */
-  translationsLoadingPlaceholder: PropTypes.node,
-  /**
    * The name of the theme to apply to the application using terra-theme-provider.
    */
   themeName: PropTypes.string,
-  /**
-   * The density of the theme to apply to the application using terra-theme-provider.
-   */
-  themeDensity: PropTypes.string,
   /**
    * By default, the elements rendered by ApplicationBase are fit to the Application's parent using 100% height.
    * If `fitToParentIsDisabled` is provided, the Application will render at its intrinsic content height and
@@ -86,13 +64,13 @@ const propTypes = {
    * When set to true scroll will be disabled. internal prop to be used by Mpages for terra-tabs in  Powerchart.
    */
   noScroll: PropTypes.bool,
-
 };
 
 const ApplicationBase = ({
-  locale, customTranslatedMessages, translationsLoadingPlaceholder, themeName, themeDensity, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
+  locale, themeName, fitToParentIsDisabled, children, unloadPromptIsDisabled, noScroll,
 }) => {
   const registeredPromptsRef = useRef();
+  const [messages, setMessages] = useState();
 
   useEffect(() => {
     if (unloadPromptIsDisabled) {
@@ -122,27 +100,34 @@ const ApplicationBase = ({
 
   const { localeOverride, themeOverride } = useTestOverrides(); // Allows us to test deployed applications in different locales.
 
-  let density = themeDensity || themeConfig?.density;
-  if (themeName === 'redwood-theme' && !density) {
-    density = 'comfortable';
-  }
+  const finalLocale = localeOverride || locale || browserLocale;
+
+  useEffect(() => {
+    if (finalLocale !== undefined) {
+      i18nLoader(finalLocale).then(translationsModule => setMessages(translationsModule.default)).catch((error) => {
+        // eslint-disable-next-line no-console
+        Logger.error(error);
+        throw error;
+      });
+    }
+  }, [finalLocale]);
 
   const theme = useMemo(() => ({
     // If the theme class name is undefined or an empty string, that indicates we have the root theme and should apply the root theme name.
     name: themeOverride || themeName || rootThemeName,
     className: themeOverride || themeName,
-    density,
-  }), [themeOverride, themeName, density]);
+  }), [themeOverride, themeName]);
+
+  if (messages === undefined) return null;
 
   return (
     <div data-terra-application-base className={cx('application-base', { fill: !fitToParentIsDisabled })}>
-      <ThemeProvider themeName={theme.className} density={theme.density}>
+      <ThemeProvider themeName={themeName}>
         <ThemeContextProvider theme={theme}>
-          <Base
-            customMessages={customTranslatedMessages}
-            throwOnI18nLoadError
-            translationsLoadingPlaceholder={translationsLoadingPlaceholder}
-            locale={localeOverride || locale || browserLocale}
+          <IntlProvider
+            key={finalLocale}
+            locale={finalLocale}
+            messages={messages}
           >
             <ApplicationErrorBoundary>
               <ApplicationIntlProvider>
@@ -163,7 +148,7 @@ const ApplicationBase = ({
                 </ActiveBreakpointProvider>
               </ApplicationIntlProvider>
             </ApplicationErrorBoundary>
-          </Base>
+          </IntlProvider>
         </ThemeContextProvider>
       </ThemeProvider>
     </div>

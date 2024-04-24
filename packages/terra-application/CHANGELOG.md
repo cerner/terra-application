@@ -6,6 +6,9 @@
 
 * Added
   * Added the default density of the redwood theme to be 'comfortable'.
+ 
+* Changed
+  * Optimized published package by excluding unnecessary files.
 
 ## 1.57.0 - (January 17, 2024)
 

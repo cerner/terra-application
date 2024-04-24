@@ -27,13 +27,6 @@ const propTypes = {
    * Size variant of the user. One of values [`small`, `large`].
    */
   variant: PropTypes.oneOf(['small', 'large']),
-  /**
-   * @private
-   * Given a callback function, menuClosingCallback will return a new function
-   * that will ensure that the various menu states are reset before the callback function
-   * is executed.
-   */
-  menuClosingCallback: PropTypes.func,
 };
 
 const defaultProps = {
@@ -41,7 +34,7 @@ const defaultProps = {
 };
 
 const DrawerMenuUser = ({
-  userConfig, variant, userActionConfig, id, menuClosingCallback,
+  userConfig, variant, userActionConfig, id,
 }) => {
   const theme = React.useContext(ThemeContext);
 
@@ -61,18 +54,17 @@ const DrawerMenuUser = ({
         <div aria-hidden className={cx('name')}>{userConfig.name}</div>
         {userConfig.detail ? <div className={cx('detail')}>{userConfig.detail}</div> : null}
         { userActionConfig && (
-          <button
-            id={id || undefined}
-            className={cx('drawer-menu-action-button', theme.className)}
-            type="button"
-            onClick={menuClosingCallback(userActionConfig.userActionCallback)}
-            onBlur={enableFocusStyles}
-            onMouseDown={disableFocusStyles}
-            data-focus-styles-enabled
-            data-navigation-drawermenu-item-user-action
-          >
-            {userActionConfig.text}
-          </button>
+        <button
+          id={id || undefined}
+          className={cx('drawer-menu-action-button', theme.className)}
+          type="button"
+          onClick={userActionConfig.userActionCallback}
+          onBlur={enableFocusStyles}
+          onMouseDown={disableFocusStyles}
+          data-focus-styles-enabled
+        >
+          {userActionConfig.text}
+        </button>
         )}
       </div>
     </div>

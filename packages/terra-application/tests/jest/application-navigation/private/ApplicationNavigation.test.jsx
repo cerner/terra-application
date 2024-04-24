@@ -2,8 +2,6 @@ import React from 'react';
 import { ActiveBreakpointContext } from 'terra-breakpoints';
 import ThemeContextProvider from 'terra-theme-context/lib/ThemeContextProvider';
 import { IntlProvider } from 'react-intl';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mountWithIntl, mockIntl } from 'terra-enzyme-intl';
 import { ApplicationIntlContext } from '../../../../src/application-intl';
 import ApplicationNavigation from '../../../../src/application-navigation/private/ApplicationNavigation';
 
@@ -17,7 +15,7 @@ const MockApplication = ({ children }) => (
       getOwnPropertyDescriptor: () => ({ configurable: true, enumerable: true }), // important for new checks in react-intl v5
     })}
   >
-    <ApplicationIntlContext.Provider value={mockIntl}>
+    <ApplicationIntlContext.Provider value={enzymeIntl.mockIntl}>
       {children}
     </ApplicationIntlContext.Provider>
   </IntlProvider>

@@ -26,9 +26,7 @@
   "files": [
     "lib",
     "src",
-    "translations",
-    "tests/wdio/*-spec.js",
-    "tests/wdio/**/*-spec.js"
+    "translations"
   ],
   "dependencies": {
     "@cerner/terra-docs": "1",

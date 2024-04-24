@@ -83,6 +83,9 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
   ],
   resolve: {
     extensions: ['.jst'],
+    alias: {
+      locales: path.resolve(__dirname, 'aggregated-translations')
+    }
   },
 });
 

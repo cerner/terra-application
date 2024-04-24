@@ -1,5 +1,4 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
 import DrawerMenu from '../../../../../src/application-navigation/private/drawer-menu/_DrawerMenu';
 
 describe('DrawerMenu', () => {

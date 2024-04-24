@@ -1,4 +1,3 @@
-
 import getUnsavedChangesPromptOptions from '../../../src/navigation-prompt/getUnsavedChangesPromptOptions';
 
 describe('getUnsavedChangesPromptOptions', () => {

@@ -1,6 +1,4 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-
 import TabRollup from '../../../../../src/application-navigation/private/tabs/_TabRollup';
 
 describe('TabRollup', () => {

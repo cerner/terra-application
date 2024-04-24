@@ -1,5 +1,4 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
 import Extensions from '../../../../../src/application-navigation/private/extensions/_Extensions';
 
 describe('Extensions', () => {

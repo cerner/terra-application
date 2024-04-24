@@ -1,5 +1,4 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
 import TabCount from '../../../../../src/application-navigation/private/tabs/_TabCount';
 
 describe('TabCount', () => {

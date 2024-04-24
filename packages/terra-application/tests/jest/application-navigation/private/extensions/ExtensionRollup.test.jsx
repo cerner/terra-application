@@ -1,5 +1,4 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
 import ExtensionRollup from '../../../../../src/application-navigation/private/extensions/_ExtensionRollup';
 
 describe('ExtensionRollup', () => {

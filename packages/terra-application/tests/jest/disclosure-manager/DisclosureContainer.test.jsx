@@ -1,5 +1,4 @@
 import React from 'react';
-import { mockIntl } from 'terra-enzyme-intl';
 
 import DisclosureContainer from '../../../src/disclosure-manager/_DisclosureContainer';
 
@@ -8,7 +7,7 @@ describe('DisclosureContainer', () => {
   it('should render the provided children', () => {
     const disclosureContainer = (
       <DisclosureContainer.WrappedComponent
-        intl={mockIntl}
+        intl={enzymeIntl.mockIntl}
       >
         <div>Test Child</div>
       </DisclosureContainer.WrappedComponent>

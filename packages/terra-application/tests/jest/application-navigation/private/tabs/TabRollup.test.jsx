@@ -1,13 +1,10 @@
 import React from 'react';
-/* eslint-disable-next-line import/no-extraneous-dependencies */
-import { mockIntl } from 'terra-enzyme-intl';
-
 import TabRollup from '../../../../../src/application-navigation/private/tabs/_TabRollup';
 
 describe('TabRollup', () => {
   it('should render default element', () => {
     const shallowComponent = enzyme.shallow(
-      <TabRollup.WrappedComponent intl={mockIntl} />,
+      <TabRollup.WrappedComponent intl={enzymeIntl.mockIntl} />,
     );
 
     expect(shallowComponent).toMatchSnapshot();
@@ -22,7 +19,7 @@ describe('TabRollup', () => {
         isPulsed
         isSelected
         hasCount
-        intl={mockIntl}
+        intl={enzymeIntl.mockIntl}
       />,
     );
 
@@ -33,7 +30,7 @@ describe('TabRollup', () => {
     const shallowComponent = enzyme.shallow(
       <TabRollup.WrappedComponent
         tabRef={React.createRef()}
-        intl={mockIntl}
+        intl={enzymeIntl.mockIntl}
       />,
     );
 
@@ -47,7 +44,7 @@ describe('TabRollup', () => {
     const shallowComponent = enzyme.shallow(
       <TabRollup.WrappedComponent
         onTabSelect={mockCallBack}
-        intl={mockIntl}
+        intl={enzymeIntl.mockIntl}
       />,
     );
 

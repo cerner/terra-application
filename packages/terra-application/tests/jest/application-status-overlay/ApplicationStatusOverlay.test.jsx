@@ -24,7 +24,7 @@ describe('ApplicationStatusOverlay', () => {
   });
 
   it('should render status view without any data', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay />,
     );
 
@@ -52,7 +52,7 @@ describe('ApplicationStatusOverlay', () => {
       },
     ];
 
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay
         buttonAttrs={StatusViewButtons}
         message="Status View with all props specified"
@@ -74,7 +74,7 @@ describe('ApplicationStatusOverlay', () => {
   });
 
   it('should redisplay status view with new props', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay message="Error status view" variant="error" />,
     );
 
@@ -115,7 +115,7 @@ describe('ApplicationStatusOverlay', () => {
       },
     ];
 
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay buttonAttrs={StatusViewButtons1} />,
     );
     expect(wrapper).toMatchSnapshot();
@@ -125,7 +125,7 @@ describe('ApplicationStatusOverlay', () => {
   });
 
   it('should honor message prop', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay message="First message" />,
     );
     expect(wrapper).toMatchSnapshot();
@@ -135,7 +135,7 @@ describe('ApplicationStatusOverlay', () => {
   });
 
   it('should honor variant prop', () => {
-    const wrapper = mount(
+    const wrapper = enzyme.mount(
       <ApplicationStatusOverlay variant="no-data" />,
     );
     expect(wrapper).toMatchSnapshot();

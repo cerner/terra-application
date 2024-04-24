@@ -4,7 +4,7 @@ import ApplicationNavigation from '../../../src/application-navigation/Applicati
 
 describe('ApplicationNavigation', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <ApplicationNavigation
         id="test-application-id"
       />,
@@ -14,7 +14,7 @@ describe('ApplicationNavigation', () => {
   });
 
   it('should render with all props', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <ApplicationNavigation
         id="test-application-id"
         activeBreakpoint="large"

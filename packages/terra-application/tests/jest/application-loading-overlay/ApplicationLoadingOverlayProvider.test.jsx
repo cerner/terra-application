@@ -4,7 +4,7 @@ import ApplicationLoadingOverlayProvider from '../../../src/application-loading-
 describe('ApplicationLoadingOverlayProvider', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider />
       ));
 
@@ -12,7 +12,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
     });
 
     it('should render with custom props', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider className="testClassName" />
       ));
 
@@ -21,7 +21,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
 
     it('should render with optional props', () => {
       const scrollRefCallback = jest.fn();
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider
           scrollRefCallback={scrollRefCallback}
         >
@@ -40,7 +40,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
         2: { backgroundStyle: 'clear' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider>
           <div>Test child</div>
         </ApplicationLoadingOverlayProvider>
@@ -59,7 +59,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
         2: { backgroundStyle: 'light' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider>
           <div>Test child</div>
         </ApplicationLoadingOverlayProvider>
@@ -78,7 +78,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
         2: { backgroundStyle: 'clear' },
       }, mockSetState]);
 
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider>
           <div>Test child</div>
         </ApplicationLoadingOverlayProvider>
@@ -90,7 +90,7 @@ describe('ApplicationLoadingOverlayProvider', () => {
     });
 
     it('should render without scroll', () => {
-      const wrapper = shallow((
+      const wrapper = enzyme.shallow((
         <ApplicationLoadingOverlayProvider noScroll />
       ));
 

@@ -3,7 +3,7 @@ import PopupMenuUser from '../../../../../src/application-navigation/private/com
 
 describe('PopupMenuUser', () => {
   it('should render default element', () => {
-    const shallowComponent = shallow(
+    const shallowComponent = enzyme.shallow(
       <PopupMenuUser userConfig={{
         name: 'user-name',
         detail: 'user-detail',

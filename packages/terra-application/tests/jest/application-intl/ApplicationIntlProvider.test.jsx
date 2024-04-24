@@ -1,12 +1,11 @@
 import React from 'react';
-import { mountWithIntl } from 'terra-enzyme-intl';
 import ApplicationIntlContext from '../../../src/application-intl/ApplicationIntlContext';
 import ApplicationIntlProvider from '../../../src/application-intl/ApplicationIntlProvider';
 
 describe('ApplicationIntlProvider', () => {
   describe('Snapshots', () => {
     it('should render an ApplicationIntlContext.Provider', () => {
-      const wrapper = mountWithIntl((
+      const wrapper = enzymeIntl.mountWithIntl((
         <ApplicationIntlProvider>
           <ApplicationIntlContext.Consumer>
             {(intl) => {

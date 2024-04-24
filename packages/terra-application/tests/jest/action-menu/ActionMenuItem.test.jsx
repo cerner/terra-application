@@ -4,7 +4,7 @@ import ActionMenuItem from '../../../src/action-menu/ActionMenuItem';
 
 describe('ActionMenuItem', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuItem
         actionKey="test key"
         label="test label"
@@ -14,7 +14,7 @@ describe('ActionMenuItem', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuItem
         actionKey="test key"
         label="test label"

@@ -4,7 +4,7 @@ import ActionMenuGroup from '../../../src/action-menu/ActionMenuGroup';
 
 describe('ActionMenuGroup', () => {
   it('should render with minimal props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuGroup
         actionKey="test key"
         label="test label"
@@ -14,7 +14,7 @@ describe('ActionMenuGroup', () => {
   });
 
   it('should render with all props', () => {
-    const wrapper = shallow((
+    const wrapper = enzyme.shallow((
       <ActionMenuGroup
         onArrow={jest.fn()}
         onClose={jest.fn()}

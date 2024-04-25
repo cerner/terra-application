@@ -1,6 +1,5 @@
 import React from 'react';
 import { IntlProvider } from 'react-intl';
-import { mockIntl } from 'terra-enzyme-intl';
 import { ApplicationIntlContext } from '../../src/application-intl';
 
 /* eslint-disable react/prop-types */

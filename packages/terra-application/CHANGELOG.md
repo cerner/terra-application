@@ -3,14 +3,8 @@
 ## Unreleased
 
 * Changed
-  * Updated `getBrowserLocale` method for IE.
-  * Updated jest snapshots for terra-icon and terra-button changes.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
   * Locked `uuid` dependency to `3.4.0`.
-
-* Added
-  * Added user action utility button.
-  * Added `noScroll` prop to remove scroll in powerchart.
 
 ## 2.1.0 - (June 22, 2022)
 
@@ -47,7 +41,7 @@
 
 ## 1.56.0 - (September 19, 2023)
 
-* Changed
+* Added
  * Added `noScroll` prop to remove scroll in powerchart.
 
 ## 1.56.0-alpha.0 - (September 8, 2023)

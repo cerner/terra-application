@@ -4,7 +4,7 @@ import ApplicationLoadingOverlay from 'terra-application/lib/application-loading
 import ApplicationStatusOverlay from 'terra-application/lib/application-status-overlay';
 import ApplicationBase from 'terra-application/lib/application-base';
 import NavigationPrompt from 'terra-application/lib/navigation-prompt';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 
 const ApplicationContentTest = () => {
@@ -14,7 +14,7 @@ const ApplicationContentTest = () => {
   const [showStatusOverlay, setShowStatusOverlay] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = useContext(ThemeContext);
 
   if (throwError) {

@@ -1,23 +1,24 @@
 import React from 'react';
+import { shallowWithIntl, mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
 import Logger from '../../../src/utils/logger';
 
 describe('ApplicationErrorBoundary', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
-      const wrapper = enzymeIntl.shallowWithIntl((
+      const wrapper = shallowWithIntl((
         <ApplicationErrorBoundary />
-      ));
+      )).dive();
 
       expect(wrapper).toMatchSnapshot();
     });
 
     it('should render with children', () => {
-      const wrapper = enzymeIntl.shallowWithIntl((
+      const wrapper = shallowWithIntl((
         <ApplicationErrorBoundary>
           <div>Test child</div>
         </ApplicationErrorBoundary>
-      ));
+      )).dive();
 
       expect(wrapper).toMatchSnapshot();
     });
@@ -26,7 +27,7 @@ describe('ApplicationErrorBoundary', () => {
       const spy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
       const ErrorComponent = () => <div />;
 
-      const wrapper = enzymeIntl.mountWithIntl((
+      const wrapper = mountWithIntl((
         <ApplicationErrorBoundary>
           <ErrorComponent />
         </ApplicationErrorBoundary>
@@ -42,7 +43,7 @@ describe('ApplicationErrorBoundary', () => {
       /**
        * After rendering the component again, the error view should no longer be rendered.
        */
-      wrapper.instance().forceUpdate();
+      wrapper.setProps({});
       expect(wrapper).toMatchSnapshot();
       expect(spy).toHaveBeenCalledTimes(1);
       spy.mockRestore();

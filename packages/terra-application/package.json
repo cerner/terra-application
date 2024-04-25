@@ -22,7 +22,7 @@
   "engines": {
     "node": "8 || 10 || 12 || 14"
   },
-  "main": "lib/application-base/ApplicationBase.js",
+  "main": "lib/index.js",
   "files": [
     "lib",
     "src",

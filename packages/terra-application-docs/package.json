@@ -22,7 +22,7 @@
     "access": "public"
   },
   "engines": {
-    "node": "14"
+    "node": ">=10.13.0"
   },
   "main": "index.js",
   "files": [

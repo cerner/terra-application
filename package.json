@@ -18,6 +18,9 @@
     "terra-application"
   ],
   "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "engines": {
     "node": "10 || 12 || 14",
     "npm": "6 || 9"
@@ -58,6 +61,7 @@
     "@cerner/terra-functional-testing": "4",
     "@cerner/terra-open-source-scripts": "1",
     "@cerner/webpack-config-terra": "3",
+    "@testing-library/dom": "7",
     "@testing-library/jest-dom": "5",
     "@testing-library/react": "10",
     "@testing-library/react-hooks": "5",
@@ -70,10 +74,7 @@
     "gh-pages": "3",
     "jest": "27",
     "lerna": "6",
-    "postcss": "8.4.31",
-    "react": "16",
-    "react-dom": "16",
-    "react-intl": "2",
+    "postcss": "8",
     "stylelint": "15",
     "webpack": "5",
     "webpack-cli": "4",
@@ -81,7 +82,6 @@
     "webpack-merge": "5"
   },
   "scripts": {
-    "bootstrap:hoist": "lerna bootstrap --hoist",
     "clean": "npm run clean:root && npm run clean:lib",
     "clean:install": "npm run clean && time npm install",
     "clean:lib": "rm -rf packages/**/lib",
@@ -104,7 +104,7 @@
     "lint:scss:no-warnings": "stylelint 'packages/**/src/**/*.scss' --quiet",
     "lint:package-json": "terra package-json-lint",
     "prepare-for-release": "terra prepare-for-release",
-    "postinstall": "npm run compile && npm run bootstrap:hoist",
+    "postinstall": "npm run compile",
     "start": "webpack serve",
     "start-prod": "webpack serve --mode=production",
     "start-heroku": "terra express-server --port $PORT --site './build' ",

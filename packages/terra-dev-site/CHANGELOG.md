@@ -2,6 +2,32 @@
 
 ## Unreleased
 
+* Fixed
+  * Fixed clipping issue of test pages on dev-site.
+  * Fixed scroll issue of doc pages with longer content.
+
+* Changed
+  * Updated jest snapshot for terra-icon and terra-button changes.
+  * Updated wdio snapshot to fix build.
+  * Locked `uuid` dependency to `3.4.0`.
+
+## 8.1.0 - (June 22, 2022)
+
+* Changed
+  * Minor dependency version bump
+
+## 8.0.1 - (June 7, 2022)
+
+* Changed
+  * updated `terra-application` version in peer dependency.
+
+## 8.0.0 - (May 31, 2022)
+
+* Breaking
+  * Dropped v2-v4 react-intl support
+
+---
+
 ## 7.13.0 - (April 23, 2024)
 
 * Added

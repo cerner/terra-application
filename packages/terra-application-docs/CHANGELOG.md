@@ -2,6 +2,23 @@
 
 ## Unreleased
 
+## 3.1.0 - (June 22, 2022)
+
+* Changed
+  * Minor dependency version bump
+
+## 3.0.1 - (June 8, 2022)
+
+* Changed
+  * Minor dependency bump.
+
+## 3.0.0 - (May 31, 2022)
+
+* Breaking
+  * Dropped v2-v4 react-intl support
+
+---
+
 ## 2.14.0 - (April 23, 2024)
 
 * Changed

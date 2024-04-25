@@ -1,12 +1,11 @@
 import React from 'react';
-import { shallowWithIntl, mountWithIntl } from '@cerner/terra-enzyme-intl';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
 import Logger from '../../../src/utils/logger';
 
 describe('ApplicationErrorBoundary', () => {
   describe('Snapshots', () => {
     it('should render with minimal props', () => {
-      const wrapper = shallowWithIntl((
+      const wrapper = enzymeIntl.shallowWithIntl((
         <ApplicationErrorBoundary />
       )).dive();
 
@@ -14,7 +13,7 @@ describe('ApplicationErrorBoundary', () => {
     });
 
     it('should render with children', () => {
-      const wrapper = shallowWithIntl((
+      const wrapper = enzymeIntl.shallowWithIntl((
         <ApplicationErrorBoundary>
           <div>Test child</div>
         </ApplicationErrorBoundary>
@@ -27,7 +26,7 @@ describe('ApplicationErrorBoundary', () => {
       const spy = jest.spyOn(Logger, 'error').mockImplementation(() => {});
       const ErrorComponent = () => <div />;
 
-      const wrapper = mountWithIntl((
+      const wrapper = enzymeIntl.mountWithIntl((
         <ApplicationErrorBoundary>
           <ErrorComponent />
         </ApplicationErrorBoundary>

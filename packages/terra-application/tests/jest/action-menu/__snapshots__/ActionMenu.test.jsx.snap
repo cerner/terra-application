@@ -6,7 +6,7 @@ exports[`ActionMenu should render with all props 1`] = `
   className="action-container"
   fill={true}
   header={
-    <InjectIntl(ActionMenuHeader)
+    <injectIntl(ActionMenuHeader)
       label="test menu"
       onClose={[MockFunction]}
     />

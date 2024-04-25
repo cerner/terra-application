@@ -13,7 +13,7 @@ exports[`DrawerMenuUser should render default element 1`] = `
     <div
       className="avatar-inner"
     >
-      <InjectIntl(Avatar)
+      <injectIntl(Avatar)
         alt="user-name"
         image="user-src"
         initials="user-initials"
@@ -38,9 +38,8 @@ exports[`DrawerMenuUser should render default element 1`] = `
     <button
       className="drawer-menu-action-button"
       data-focus-styles-enabled={true}
-      data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[MockFunction]}
+      onClick={[Function]}
       onMouseDown={[Function]}
       type="button"
     >
@@ -63,7 +62,7 @@ exports[`DrawerMenuUser should render with large variant 1`] = `
     <div
       className="avatar-inner"
     >
-      <InjectIntl(Avatar)
+      <injectIntl(Avatar)
         alt="user-name"
         image="user-src"
         initials="user-initials"
@@ -88,9 +87,8 @@ exports[`DrawerMenuUser should render with large variant 1`] = `
     <button
       className="drawer-menu-action-button"
       data-focus-styles-enabled={true}
-      data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[MockFunction]}
+      onClick={[Function]}
       onMouseDown={[Function]}
       type="button"
     >
@@ -113,7 +111,7 @@ exports[`DrawerMenuUser should render with small variant 1`] = `
     <div
       className="avatar-inner"
     >
-      <InjectIntl(Avatar)
+      <injectIntl(Avatar)
         alt="user-name"
         image="user-src"
         initials="user-initials"
@@ -138,9 +136,8 @@ exports[`DrawerMenuUser should render with small variant 1`] = `
     <button
       className="drawer-menu-action-button"
       data-focus-styles-enabled={true}
-      data-navigation-drawermenu-item-user-action={true}
       onBlur={[Function]}
-      onClick={[MockFunction]}
+      onClick={[Function]}
       onMouseDown={[Function]}
       type="button"
     >

@@ -6,7 +6,7 @@ import { ApplicationIntlContext } from '../../src/application-intl';
 const MockApplication = ({ children }) => (
   // eslint-disable-next-line compat/compat
   <IntlProvider locale="en" messages={new Proxy({}, { get: (_, property) => property })}>
-    <ApplicationIntlContext.Provider value={mockIntl}>
+    <ApplicationIntlContext.Provider value={enzymeIntl.mockIntl}>
       {children}
     </ApplicationIntlContext.Provider>
   </IntlProvider>

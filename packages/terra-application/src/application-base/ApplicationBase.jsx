@@ -1,8 +1,6 @@
 /* global TERRA_THEME_CONFIG */
 
-import React, {
-  useRef, useEffect, Suspense, useMemo, useState,
-} from 'react';
+import React, { useRef, useEffect, Suspense, useMemo, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeProvider from 'terra-theme-provider';

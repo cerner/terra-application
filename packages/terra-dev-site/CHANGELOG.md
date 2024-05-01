@@ -2,9 +2,6 @@
 
 ## Unreleased
 
-* Changed
-  * Locked `uuid` dependency to `3.4.0`.
-
 * The following changes from v7 are added:
     * Fixed clipping issue of test pages on dev-site.
     * Fixed scroll issue of doc pages with longer content.

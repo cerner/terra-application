@@ -29,6 +29,11 @@
 
 ---
 
+## 7.14.0 - (May 1, 2024)
+
+* Changed
+  * Updated loader-utils dependency to v2 to resolve a critical CVE.
+
 ## 7.13.0 - (April 23, 2024)
 
 * Added

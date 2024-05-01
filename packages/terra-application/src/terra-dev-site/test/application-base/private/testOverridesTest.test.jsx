@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 
 const TestOverrideTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = useContext(ThemeContext);
   return (
     <div>

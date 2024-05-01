@@ -1,4 +1,4 @@
-import ApplicationIntlContext, { contextShape } from './ApplicationIntlContext';
+import ApplicationIntlContext from './ApplicationIntlContext';
 import ApplicationIntlProvider from './ApplicationIntlProvider';
 
-export { ApplicationIntlContext, contextShape, ApplicationIntlProvider };
+export { ApplicationIntlContext, ApplicationIntlProvider };

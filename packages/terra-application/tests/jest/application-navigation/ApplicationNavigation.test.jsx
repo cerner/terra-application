@@ -1,6 +1,17 @@
 import React from 'react';
-
 import ApplicationNavigation from '../../../src/application-navigation/ApplicationNavigation';
+
+jest.mock('react-intl', () => {
+  const reactIntl = jest.requireActual('react-intl');
+  const intl = reactIntl.createIntl({
+    locale: 'en',
+  });
+
+  return {
+    ...reactIntl,
+    useIntl: () => intl,
+  };
+});
 
 describe('ApplicationNavigation', () => {
   it('should render default element', () => {

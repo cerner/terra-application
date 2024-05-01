@@ -1,285 +1,295 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`UtilityMenu should render default element 1`] = `
-<UtilityMenu
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
-  utilityItems={Array []}
->
-  <PopupMenu
-    footerText="terraApplication.navigation.utilityMenu.logout"
-    isHeightBounded={false}
-    menuItems={Array []}
-    onSelectMenuItem={[Function]}
-    role="listbox"
-    showSelections={false}
-    title="terraApplication.navigation.utilityMenu.headerTitle"
-  >
-    <ContentContainer
-      className="container"
-      fill={false}
-      footer={<ActionFooter />}
-      header={
-        <InjectIntl(ActionHeader)
-          aria-hidden={true}
-          title="terraApplication.navigation.utilityMenu.headerTitle"
-        />
+<injectIntl(UtilityMenu)>
+  <UtilityMenu
+    intl={
+      Object {
+        "$t": [Function],
+        "defaultFormats": Object {},
+        "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
+        "formatDate": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
+        "formatMessage": [Function],
+        "formatNumber": [Function],
+        "formatNumberToParts": [Function],
+        "formatPlural": [Function],
+        "formatRelativeTime": [Function],
+        "formatTime": [Function],
+        "formatTimeToParts": [Function],
+        "formats": Object {},
+        "formatters": Object {
+          "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
+          "getMessageFormat": [Function],
+          "getNumberFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
+        },
+        "locale": "en",
+        "messages": null,
+        "onError": [Function],
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
-      setFocusOnContainer={false}
+    }
+    utilityItems={Array []}
+  >
+    <PopupMenu
+      footerText="terraApplication.navigation.utilityMenu.logout"
+      isHeightBounded={false}
+      menuItems={Array []}
+      onSelectMenuItem={[Function]}
+      role="listbox"
+      showSelections={false}
+      title="terraApplication.navigation.utilityMenu.headerTitle"
     >
-      <div
-        className="content-container-static container"
-      >
-        <div
-          className="header"
-        >
-          <InjectIntl(ActionHeader)
+      <ContentContainer
+        className="container"
+        fill={false}
+        footer={<ActionFooter />}
+        header={
+          <injectIntl(ActionHeader)
             aria-hidden={true}
             title="terraApplication.navigation.utilityMenu.headerTitle"
+          />
+        }
+        setFocusOnContainer={false}
+      >
+        <div
+          className="content-container-static container"
+        >
+          <div
+            className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              intl={
-                Object {
-                  "defaultFormats": Object {},
-                  "defaultLocale": "en",
-                  "formatDate": [Function],
-                  "formatHTMLMessage": [Function],
-                  "formatMessage": [Function],
-                  "formatNumber": [Function],
-                  "formatPlural": [Function],
-                  "formatRelative": [Function],
-                  "formatTime": [Function],
-                  "formats": Object {},
-                  "formatters": Object {
-                    "getDateTimeFormat": [Function],
-                    "getMessageFormat": [Function],
-                    "getNumberFormat": [Function],
-                    "getPluralFormat": [Function],
-                    "getRelativeFormat": [Function],
-                  },
-                  "locale": "en",
-                  "messages": null,
-                  "now": [Function],
-                  "onError": [Function],
-                  "textComponent": "span",
-                  "timeZone": null,
-                }
-              }
               title="terraApplication.navigation.utilityMenu.headerTitle"
             >
-              <InjectIntl(ActionHeaderContainer)
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
-                id="1"
-                level={1}
-                startContent={null}
-                text="terraApplication.navigation.utilityMenu.headerTitle"
+                intl={
+                  Object {
+                    "$t": [Function],
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "fallbackOnEmptyString": true,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatListToParts": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "onWarn": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
+                title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
                   id="1"
-                  intl={
-                    Object {
-                      "defaultFormats": Object {},
-                      "defaultLocale": "en",
-                      "formatDate": [Function],
-                      "formatHTMLMessage": [Function],
-                      "formatMessage": [Function],
-                      "formatNumber": [Function],
-                      "formatPlural": [Function],
-                      "formatRelative": [Function],
-                      "formatTime": [Function],
-                      "formats": Object {},
-                      "formatters": Object {
-                        "getDateTimeFormat": [Function],
-                        "getMessageFormat": [Function],
-                        "getNumberFormat": [Function],
-                        "getPluralFormat": [Function],
-                        "getRelativeFormat": [Function],
-                      },
-                      "locale": "en",
-                      "messages": null,
-                      "now": [Function],
-                      "onError": [Function],
-                      "textComponent": "span",
-                      "timeZone": null,
-                    }
-                  }
                   level={1}
                   startContent={null}
                   text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
                     id="1"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="1"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-1"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-1"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-1"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-1"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-1"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-1"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                    <div
-                      className="hidden-label"
-                    >
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-close-button-1"
-                        text="Terra.actionHeader.close.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-close-button-1"
-                        >
-                          Terra.actionHeader.close.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-maximize-button-1"
-                        text="Terra.actionHeader.maximize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-maximize-button-1"
-                        >
-                          Terra.actionHeader.maximize.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-minimize-button-1"
-                        text="Terra.actionHeader.minimize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-minimize-button-1"
-                        >
-                          Terra.actionHeader.minimize.description
-                        </span>
-                      </VisuallyHiddenText>
-                    </div>
-                  </div>
-                </ActionHeaderContainer>
-              </InjectIntl(ActionHeaderContainer)>
-            </ActionHeader>
-          </InjectIntl(ActionHeader)>
-        </div>
-        <div
-          className="main"
-        >
-          <Scroll
-            className="normalizer"
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
+          </div>
+          <div
+            className="main"
           >
-            <div
-              className="scroll normalizer"
+            <Scroll
+              className="normalizer"
             >
               <div
-                className="content"
+                className="scroll normalizer"
               >
-                <ul
-                  aria-label="terraApplication.navigation.utilityMenu.headerTitle"
-                  className="utility-list"
-                  onKeyDown={[Function]}
-                  role="listbox"
-                  tabIndex="0"
-                />
+                <div
+                  className="content"
+                >
+                  <ul
+                    aria-label="terraApplication.navigation.utilityMenu.headerTitle"
+                    className="utility-list"
+                    onKeyDown={[Function]}
+                    role="listbox"
+                    tabIndex="0"
+                  />
+                </div>
               </div>
-            </div>
-          </Scroll>
+            </Scroll>
+          </div>
+          <div
+            className="footer"
+          >
+            <ActionFooter>
+              <BlockActionFooter
+                className="action-footer-end"
+              >
+                <div
+                  className="block-action-footer action-footer-end"
+                />
+              </BlockActionFooter>
+            </ActionFooter>
+          </div>
         </div>
-        <div
-          className="footer"
-        >
-          <ActionFooter>
-            <BlockActionFooter
-              className="action-footer-end"
-            >
-              <div
-                className="block-action-footer action-footer-end"
-              />
-            </BlockActionFooter>
-          </ActionFooter>
-        </div>
-      </div>
-    </ContentContainer>
-  </PopupMenu>
-</UtilityMenu>
+      </ContentContainer>
+    </PopupMenu>
+  </UtilityMenu>
+</injectIntl(UtilityMenu)>
 `;
 
 exports[`UtilityMenu should render with function callbacks 1`] = `
-<UtilityMenu
+<injectIntl(UtilityMenu)
   hero={
     <div>
       my test hero
     </div>
   }
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
-  menuClosingCallback={[Function]}
   onSelectHelp={[MockFunction]}
   onSelectLogout={[MockFunction]}
   onSelectSettings={[MockFunction]}
@@ -314,61 +324,55 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
     ]
   }
 >
-  <PopupMenu
-    customContent={
+  <UtilityMenu
+    hero={
       <div>
         my test hero
       </div>
     }
-    footerText="terraApplication.navigation.utilityMenu.logout"
-    isHeightBounded={false}
-    menuClosingCallback={[Function]}
-    menuItems={
-      Array [
-        Object {
-          "dataAttrs": undefined,
-          "icon": <span>
-            my icon
-          </span>,
-          "id": undefined,
-          "key": "my-test-key-2",
-          "metaData": Object {
-            "meta": "metaData",
-          },
-          "text": "test-text-2",
+    intl={
+      Object {
+        "$t": [Function],
+        "defaultFormats": Object {},
+        "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
+        "formatDate": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
+        "formatMessage": [Function],
+        "formatNumber": [Function],
+        "formatNumberToParts": [Function],
+        "formatPlural": [Function],
+        "formatRelativeTime": [Function],
+        "formatTime": [Function],
+        "formatTimeToParts": [Function],
+        "formats": Object {},
+        "formatters": Object {
+          "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
+          "getMessageFormat": [Function],
+          "getNumberFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
-        Object {
-          "dataAttrs": Object {
-            "data-navigation-utility-item-settings": "true",
-          },
-          "icon": <IconSettings
-            data-name="Layer 1"
-            viewBox="0 0 48 48"
-            xmlns="http://www.w3.org/2000/svg"
-          />,
-          "id": undefined,
-          "key": "terra-application-navigation.utility-menu.settings",
-          "text": "terraApplication.navigation.utilityMenu.settings",
-        },
-        Object {
-          "dataAttrs": Object {
-            "data-navigation-utility-item-help": "true",
-          },
-          "icon": <IconQuestionOutline
-            viewBox="0 0 48 48"
-            xmlns="http://www.w3.org/2000/svg"
-          />,
-          "id": undefined,
-          "key": "terra-application-navigation.utility-menu.help",
-          "text": "terraApplication.navigation.utilityMenu.help",
-        },
-      ]
+        "locale": "en",
+        "messages": null,
+        "onError": [Function],
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
+      }
     }
-    onSelectFooterItem={[MockFunction]}
-    onSelectMenuItem={[Function]}
-    role="listbox"
-    showSelections={false}
-    title="terraApplication.navigation.utilityMenu.headerTitle"
+    onSelectHelp={[MockFunction]}
+    onSelectLogout={[MockFunction]}
+    onSelectSettings={[MockFunction]}
+    onSelectUtilityItem={[MockFunction]}
     userActionConfig={
       Object {
         "text": "Edit Photo",
@@ -383,293 +387,432 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
         "name": "user-name",
       }
     }
+    utilityItems={
+      Array [
+        Object {
+          "icon": <span>
+            my icon
+          </span>,
+          "id": "test-utility-2-id",
+          "key": "my-test-key-2",
+          "metaData": Object {
+            "meta": "metaData",
+          },
+          "text": "test-text-2",
+        },
+      ]
+    }
   >
-    <ContentContainer
-      className="container"
-      fill={false}
-      footer={
-        <ActionFooter
-          end={
-            <Button
-              data-navigation-utility-item-logout={true}
-              isBlock={false}
-              isCompact={false}
-              isDisabled={false}
-              isIconOnly={false}
-              isLeftAligned={false}
-              isReversed={false}
-              onClick={[MockFunction]}
-              onKeyDown={[Function]}
-              refCallback={[Function]}
-              text="terraApplication.navigation.utilityMenu.logout"
-              type="button"
-              variant="neutral"
-            />
-          }
-        />
+    <PopupMenu
+      customContent={
+        <div>
+          my test hero
+        </div>
       }
-      header={
-        <InjectIntl(ActionHeader)
-          aria-hidden={true}
-          title="terraApplication.navigation.utilityMenu.headerTitle"
-        />
+      footerText="terraApplication.navigation.utilityMenu.logout"
+      isHeightBounded={false}
+      menuItems={
+        Array [
+          Object {
+            "dataAttrs": undefined,
+            "icon": <span>
+              my icon
+            </span>,
+            "id": undefined,
+            "key": "my-test-key-2",
+            "metaData": Object {
+              "meta": "metaData",
+            },
+            "text": "test-text-2",
+          },
+          Object {
+            "dataAttrs": Object {
+              "data-navigation-utility-item-settings": "true",
+            },
+            "icon": <IconSettings
+              data-name="Layer 1"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            />,
+            "id": undefined,
+            "key": "terra-application-navigation.utility-menu.settings",
+            "text": "terraApplication.navigation.utilityMenu.settings",
+          },
+          Object {
+            "dataAttrs": Object {
+              "data-navigation-utility-item-help": "true",
+            },
+            "icon": <IconQuestionOutline
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            />,
+            "id": undefined,
+            "key": "terra-application-navigation.utility-menu.help",
+            "text": "terraApplication.navigation.utilityMenu.help",
+          },
+        ]
       }
-      setFocusOnContainer={false}
+      onSelectFooterItem={[MockFunction]}
+      onSelectMenuItem={[Function]}
+      role="listbox"
+      showSelections={false}
+      title="terraApplication.navigation.utilityMenu.headerTitle"
+      userActionConfig={
+        Object {
+          "text": "Edit Photo",
+          "userActionCallback": [Function],
+        }
+      }
+      userConfig={
+        Object {
+          "detail": "user-detail",
+          "imageSrc": "user-src",
+          "initials": "user-initials",
+          "name": "user-name",
+        }
+      }
     >
-      <div
-        className="content-container-static container"
-      >
-        <div
-          className="header"
-        >
-          <InjectIntl(ActionHeader)
+      <ContentContainer
+        className="container"
+        fill={false}
+        footer={
+          <ActionFooter
+            end={
+              <Button
+                data-navigation-utility-item-logout={true}
+                isBlock={false}
+                isCompact={false}
+                isDisabled={false}
+                isIconOnly={false}
+                isLeftAligned={false}
+                isReversed={false}
+                onClick={[MockFunction]}
+                onKeyDown={[Function]}
+                refCallback={[Function]}
+                text="terraApplication.navigation.utilityMenu.logout"
+                type="button"
+                variant="neutral"
+              />
+            }
+          />
+        }
+        header={
+          <injectIntl(ActionHeader)
             aria-hidden={true}
             title="terraApplication.navigation.utilityMenu.headerTitle"
+          />
+        }
+        setFocusOnContainer={false}
+      >
+        <div
+          className="content-container-static container"
+        >
+          <div
+            className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              intl={
-                Object {
-                  "defaultFormats": Object {},
-                  "defaultLocale": "en",
-                  "formatDate": [Function],
-                  "formatHTMLMessage": [Function],
-                  "formatMessage": [Function],
-                  "formatNumber": [Function],
-                  "formatPlural": [Function],
-                  "formatRelative": [Function],
-                  "formatTime": [Function],
-                  "formats": Object {},
-                  "formatters": Object {
-                    "getDateTimeFormat": [Function],
-                    "getMessageFormat": [Function],
-                    "getNumberFormat": [Function],
-                    "getPluralFormat": [Function],
-                    "getRelativeFormat": [Function],
-                  },
-                  "locale": "en",
-                  "messages": null,
-                  "now": [Function],
-                  "onError": [Function],
-                  "textComponent": "span",
-                  "timeZone": null,
-                }
-              }
               title="terraApplication.navigation.utilityMenu.headerTitle"
             >
-              <InjectIntl(ActionHeaderContainer)
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
-                id="2"
-                level={1}
-                startContent={null}
-                text="terraApplication.navigation.utilityMenu.headerTitle"
+                intl={
+                  Object {
+                    "$t": [Function],
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "fallbackOnEmptyString": true,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatListToParts": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "onWarn": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
+                title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
                   id="2"
-                  intl={
-                    Object {
-                      "defaultFormats": Object {},
-                      "defaultLocale": "en",
-                      "formatDate": [Function],
-                      "formatHTMLMessage": [Function],
-                      "formatMessage": [Function],
-                      "formatNumber": [Function],
-                      "formatPlural": [Function],
-                      "formatRelative": [Function],
-                      "formatTime": [Function],
-                      "formats": Object {},
-                      "formatters": Object {
-                        "getDateTimeFormat": [Function],
-                        "getMessageFormat": [Function],
-                        "getNumberFormat": [Function],
-                        "getPluralFormat": [Function],
-                        "getRelativeFormat": [Function],
-                      },
-                      "locale": "en",
-                      "messages": null,
-                      "now": [Function],
-                      "onError": [Function],
-                      "textComponent": "span",
-                      "timeZone": null,
-                    }
-                  }
                   level={1}
                   startContent={null}
                   text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
                     id="2"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="2"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-2"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-2"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-2"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-2"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-2"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-2"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                    <div
-                      className="hidden-label"
-                    >
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-close-button-2"
-                        text="Terra.actionHeader.close.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-close-button-2"
-                        >
-                          Terra.actionHeader.close.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-maximize-button-2"
-                        text="Terra.actionHeader.maximize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-maximize-button-2"
-                        >
-                          Terra.actionHeader.maximize.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-minimize-button-2"
-                        text="Terra.actionHeader.minimize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-minimize-button-2"
-                        >
-                          Terra.actionHeader.minimize.description
-                        </span>
-                      </VisuallyHiddenText>
-                    </div>
-                  </div>
-                </ActionHeaderContainer>
-              </InjectIntl(ActionHeaderContainer)>
-            </ActionHeader>
-          </InjectIntl(ActionHeader)>
-        </div>
-        <div
-          className="main"
-        >
-          <Scroll
-            className="normalizer"
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
+          </div>
+          <div
+            className="main"
           >
-            <div
-              className="scroll normalizer"
+            <Scroll
+              className="normalizer"
             >
               <div
-                className="content"
+                className="scroll normalizer"
               >
                 <div
-                  className="custom-content-container"
-                >
-                  <div>
-                    my test hero
-                  </div>
-                </div>
-                <PopupMenuUser
-                  menuClosingCallback={[Function]}
-                  userActionConfig={
-                    Object {
-                      "text": "Edit Photo",
-                      "userActionCallback": [Function],
-                    }
-                  }
-                  userConfig={
-                    Object {
-                      "detail": "user-detail",
-                      "imageSrc": "user-src",
-                      "initials": "user-initials",
-                      "name": "user-name",
-                    }
-                  }
+                  className="content"
                 >
                   <div
-                    className="utility-user-layout"
+                    className="custom-content-container"
+                  >
+                    <div>
+                      my test hero
+                    </div>
+                  </div>
+                  <PopupMenuUser
+                    userActionConfig={
+                      Object {
+                        "text": "Edit Photo",
+                        "userActionCallback": [Function],
+                      }
+                    }
+                    userConfig={
+                      Object {
+                        "detail": "user-detail",
+                        "imageSrc": "user-src",
+                        "initials": "user-initials",
+                        "name": "user-name",
+                      }
+                    }
                   >
                     <div
-                      className="avatar-container"
+                      className="utility-user-layout"
                     >
                       <div
-                        className="avatar-outline"
-                      />
-                      <InjectIntl(Avatar)
-                        alt="user-name"
-                        image="user-src"
-                        initials="user-initials"
-                        isAriaHidden={true}
-                        size="1.174rem"
+                        className="avatar-container"
                       >
-                        <Avatar
+                        <div
+                          className="avatar-outline"
+                        />
+                        <injectIntl(Avatar)
                           alt="user-name"
-                          color="auto"
                           image="user-src"
                           initials="user-initials"
-                          intl={
-                            Object {
-                              "defaultFormats": Object {},
-                              "defaultLocale": "en",
-                              "formatDate": [Function],
-                              "formatHTMLMessage": [Function],
-                              "formatMessage": [Function],
-                              "formatNumber": [Function],
-                              "formatPlural": [Function],
-                              "formatRelative": [Function],
-                              "formatTime": [Function],
-                              "formats": Object {},
-                              "formatters": Object {
-                                "getDateTimeFormat": [Function],
-                                "getMessageFormat": [Function],
-                                "getNumberFormat": [Function],
-                                "getPluralFormat": [Function],
-                                "getRelativeFormat": [Function],
-                              },
-                              "locale": "en",
-                              "messages": null,
-                              "now": [Function],
-                              "onError": [Function],
-                              "textComponent": "span",
-                              "timeZone": null,
-                            }
-                          }
                           isAriaHidden={true}
-                          isDeceased={false}
                           size="1.174rem"
                         >
-                          <div
-                            className="avatar three image"
-                            style={
+                          <Avatar
+                            alt="user-name"
+                            color="auto"
+                            image="user-src"
+                            initials="user-initials"
+                            intl={
                               Object {
-                                "fontSize": "1.174rem",
+                                "$t": [Function],
+                                "defaultFormats": Object {},
+                                "defaultLocale": "en",
+                                "defaultRichTextElements": undefined,
+                                "fallbackOnEmptyString": true,
+                                "formatDate": [Function],
+                                "formatDateTimeRange": [Function],
+                                "formatDateToParts": [Function],
+                                "formatDisplayName": [Function],
+                                "formatList": [Function],
+                                "formatListToParts": [Function],
+                                "formatMessage": [Function],
+                                "formatNumber": [Function],
+                                "formatNumberToParts": [Function],
+                                "formatPlural": [Function],
+                                "formatRelativeTime": [Function],
+                                "formatTime": [Function],
+                                "formatTimeToParts": [Function],
+                                "formats": Object {},
+                                "formatters": Object {
+                                  "getDateTimeFormat": [Function],
+                                  "getDisplayNames": [Function],
+                                  "getListFormat": [Function],
+                                  "getMessageFormat": [Function],
+                                  "getNumberFormat": [Function],
+                                  "getPluralRules": [Function],
+                                  "getRelativeTimeFormat": [Function],
+                                },
+                                "locale": "en",
+                                "messages": null,
+                                "onError": [Function],
+                                "onWarn": [Function],
+                                "textComponent": Symbol(react.fragment),
+                                "timeZone": undefined,
+                                "wrapRichTextChunksInFragment": undefined,
                               }
                             }
+                            isAriaHidden={true}
+                            isDeceased={false}
+                            size="1.174rem"
                           >
-                            <Image
-                              alt="user-name"
-                              className="image"
-                              fit="cover"
-                              isFluid={false}
-                              onError={[Function]}
-                              placeholder={
+                            <div
+                              className="avatar three image"
+                              style={
+                                Object {
+                                  "fontSize": "1.174rem",
+                                }
+                              }
+                            >
+                              <Image
+                                alt="user-name"
+                                className="image"
+                                fit="cover"
+                                isFluid={false}
+                                onError={[Function]}
+                                placeholder={
+                                  <span
+                                    alt="user-name"
+                                    aria-hidden={true}
+                                    aria-label="user-name"
+                                    className="initials"
+                                    role="img"
+                                  >
+                                    US
+                                  </span>
+                                }
+                                src="user-src"
+                                variant="default"
+                              >
+                                <img
+                                  alt="user-name"
+                                  className="image cover default hidden image"
+                                  onError={[Function]}
+                                  onLoad={[Function]}
+                                  src="user-src"
+                                />
                                 <span
                                   alt="user-name"
                                   aria-hidden={true}
@@ -679,314 +822,434 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                                 >
                                   US
                                 </span>
-                              }
-                              src="user-src"
-                              variant="default"
-                            >
-                              <img
-                                alt="user-name"
-                                className="image cover default hidden image"
-                                onError={[Function]}
-                                onLoad={[Function]}
-                                src="user-src"
-                              />
-                              <span
-                                alt="user-name"
-                                aria-hidden={true}
-                                aria-label="user-name"
-                                className="initials"
-                                role="img"
-                              >
-                                US
-                              </span>
-                            </Image>
-                          </div>
-                        </Avatar>
-                      </InjectIntl(Avatar)>
-                    </div>
-                    <div
-                      className="info-container"
-                    >
-                      <div
-                        aria-hidden={true}
-                        className="name"
-                      >
-                        user-name
+                              </Image>
+                            </div>
+                          </Avatar>
+                        </injectIntl(Avatar)>
                       </div>
                       <div
-                        className="detail"
-                      >
-                        user-detail
-                      </div>
-                      <Button
-                        className="action-button"
-                        data-navigation-popupmenu-item-user-action={true}
-                        isBlock={false}
-                        isCompact={true}
-                        isDisabled={false}
-                        isIconOnly={false}
-                        isLeftAligned={false}
-                        isReversed={false}
-                        onClick={[MockFunction]}
-                        text="Edit Photo"
-                        type="button"
-                        variant="ghost"
-                      >
-                        <button
-                          aria-disabled={false}
-                          className="button ghost compact action-button"
-                          data-navigation-popupmenu-item-user-action={true}
-                          disabled={false}
-                          onBlur={[Function]}
-                          onClick={[Function]}
-                          onFocus={[Function]}
-                          onKeyDown={[Function]}
-                          onKeyUp={[Function]}
-                          onMouseDown={[Function]}
-                          type="button"
-                        >
-                          <span
-                            className="button-label-win text-only"
-                          >
-                            <span
-                              className=""
-                            >
-                              Edit Photo
-                            </span>
-                          </span>
-                        </button>
-                      </Button>
-                    </div>
-                  </div>
-                </PopupMenuUser>
-                <ul
-                  aria-label="terraApplication.navigation.utilityMenu.headerTitle"
-                  className="utility-list"
-                  onKeyDown={[Function]}
-                  role="listbox"
-                  tabIndex="0"
-                >
-                  <PopupMenuListItem
-                    icon={
-                      <span>
-                        my icon
-                      </span>
-                    }
-                    key="my-test-key-2"
-                    loopFocus={[Function]}
-                    onSelect={[Function]}
-                    parentRole="listbox"
-                    showSelections={false}
-                    text="test-text-2"
-                  >
-                    <li
-                      className="item"
-                      data-focus-styles-enabled={true}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      role="option"
-                      tabIndex="0"
-                    >
-                      <div
-                        className="icon"
-                      >
-                        <span>
-                          my icon
-                        </span>
-                      </div>
-                      <div
-                        className="text"
-                        role="link"
-                      >
-                        test-text-2
-                      </div>
-                      <PopupCount
-                        className="extension-row-count"
-                        isHidden={true}
-                        isInline={true}
-                        value={0}
+                        className="info-container"
                       >
                         <div
                           aria-hidden={true}
-                          className="popup-count is-hidden"
+                          className="name"
                         >
-                          0
+                          user-name
                         </div>
-                      </PopupCount>
-                    </li>
-                  </PopupMenuListItem>
-                  <PopupMenuListItem
-                    data-navigation-utility-item-settings="true"
-                    icon={
-                      <IconSettings
-                        data-name="Layer 1"
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                      />
-                    }
-                    key="terra-application-navigation.utility-menu.settings"
-                    loopFocus={[Function]}
-                    onSelect={[Function]}
-                    parentRole="listbox"
-                    showSelections={false}
-                    text="terraApplication.navigation.utilityMenu.settings"
+                        <div
+                          className="detail"
+                        >
+                          user-detail
+                        </div>
+                        <Button
+                          className="action-button"
+                          data-navigation-utility-item-logout={true}
+                          isBlock={false}
+                          isCompact={true}
+                          isDisabled={false}
+                          isIconOnly={false}
+                          isLeftAligned={false}
+                          isReversed={false}
+                          onClick={[Function]}
+                          text="Edit Photo"
+                          type="button"
+                          variant="ghost"
+                        >
+                          <button
+                            aria-disabled={false}
+                            className="button ghost compact action-button"
+                            data-navigation-utility-item-logout={true}
+                            disabled={false}
+                            onBlur={[Function]}
+                            onClick={[Function]}
+                            onFocus={[Function]}
+                            onKeyDown={[Function]}
+                            onKeyUp={[Function]}
+                            onMouseDown={[Function]}
+                            type="button"
+                          >
+                            <span
+                              className="button-label-win text-only"
+                            >
+                              <span
+                                className=""
+                              >
+                                Edit Photo
+                              </span>
+                            </span>
+                          </button>
+                        </Button>
+                      </div>
+                    </div>
+                  </PopupMenuUser>
+                  <ul
+                    aria-label="terraApplication.navigation.utilityMenu.headerTitle"
+                    className="utility-list"
+                    onKeyDown={[Function]}
+                    role="listbox"
+                    tabIndex="0"
                   >
-                    <li
-                      className="item"
-                      data-focus-styles-enabled={true}
-                      data-navigation-utility-item-settings="true"
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      role="option"
-                      tabIndex="0"
+                    <PopupMenuListItem
+                      icon={
+                        <span>
+                          my icon
+                        </span>
+                      }
+                      key="my-test-key-2"
+                      loopFocus={[Function]}
+                      onSelect={[Function]}
+                      parentRole="listbox"
+                      showSelections={false}
+                      text="test-text-2"
                     >
-                      <div
-                        className="icon"
+                      <li
+                        className="item"
+                        data-focus-styles-enabled={true}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        role="option"
+                        tabIndex="0"
                       >
+                        <div
+                          className="icon"
+                        >
+                          <span>
+                            my icon
+                          </span>
+                        </div>
+                        <div
+                          className="text"
+                          role="link"
+                        >
+                          test-text-2
+                        </div>
+                        <PopupCount
+                          className="extension-row-count"
+                          isHidden={true}
+                          isInline={true}
+                          value={0}
+                        >
+                          <div
+                            aria-hidden={true}
+                            className="popup-count is-hidden"
+                          >
+                            0
+                          </div>
+                        </PopupCount>
+                      </li>
+                    </PopupMenuListItem>
+                    <PopupMenuListItem
+                      data-navigation-utility-item-settings="true"
+                      icon={
                         <IconSettings
                           data-name="Layer 1"
                           viewBox="0 0 48 48"
                           xmlns="http://www.w3.org/2000/svg"
+                        />
+                      }
+                      key="terra-application-navigation.utility-menu.settings"
+                      loopFocus={[Function]}
+                      onSelect={[Function]}
+                      parentRole="listbox"
+                      showSelections={false}
+                      text="terraApplication.navigation.utilityMenu.settings"
+                    >
+                      <li
+                        className="item"
+                        data-focus-styles-enabled={true}
+                        data-navigation-utility-item-settings="true"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        role="option"
+                        tabIndex="0"
+                      >
+                        <div
+                          className="icon"
                         >
-                          <IconBase
+                          <IconSettings
                             data-name="Layer 1"
-                            focusable="false"
-                            height="1em"
-                            isBidi={false}
-                            isSpin={false}
                             viewBox="0 0 48 48"
-                            width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <svg
-                              className="tui-Icon icon"
+                            <IconBase
                               data-name="Layer 1"
                               focusable="false"
                               height="1em"
-                              role="presentation"
+                              isBidi={false}
+                              isSpin={false}
                               viewBox="0 0 48 48"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
                             >
-                              <path
-                                d="M48 27v-6h-7.2a16.37 16.37 0 0 0-2.8-6.8l5-5L38.8 5l-5 5A18 18 0 0 0 27 7.1V0h-6v7.1a16.37 16.37 0 0 0-6.8 2.8l-5-5-4.3 4.3 5 5A17.82 17.82 0 0 0 7.1 21H0v6h7.2a16.37 16.37 0 0 0 2.8 6.8l-5.1 5.1 4.2 4.2 5.1-5.1a17.82 17.82 0 0 0 6.8 2.8V48h6v-7.2a16.37 16.37 0 0 0 6.8-2.8l5.1 5.1 4.2-4.2-5.1-5.1a16.37 16.37 0 0 0 2.8-6.8zm-35.1-3.1A11.1 11.1 0 1 1 24 35a11.14 11.14 0 0 1-11.1-11.1z"
-                              />
-                            </svg>
-                          </IconBase>
-                        </IconSettings>
-                      </div>
-                      <div
-                        className="text"
-                        role="link"
-                      >
-                        terraApplication.navigation.utilityMenu.settings
-                      </div>
-                      <PopupCount
-                        className="extension-row-count"
-                        isHidden={true}
-                        isInline={true}
-                        value={0}
-                      >
-                        <div
-                          aria-hidden={true}
-                          className="popup-count is-hidden"
-                        >
-                          0
+                              <svg
+                                className="tui-Icon icon"
+                                data-name="Layer 1"
+                                focusable="false"
+                                height="1em"
+                                role="presentation"
+                                viewBox="0 0 48 48"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M48 27v-6h-7.2a16.37 16.37 0 0 0-2.8-6.8l5-5L38.8 5l-5 5A18 18 0 0 0 27 7.1V0h-6v7.1a16.37 16.37 0 0 0-6.8 2.8l-5-5-4.3 4.3 5 5A17.82 17.82 0 0 0 7.1 21H0v6h7.2a16.37 16.37 0 0 0 2.8 6.8l-5.1 5.1 4.2 4.2 5.1-5.1a17.82 17.82 0 0 0 6.8 2.8V48h6v-7.2a16.37 16.37 0 0 0 6.8-2.8l5.1 5.1 4.2-4.2-5.1-5.1a16.37 16.37 0 0 0 2.8-6.8zm-35.1-3.1A11.1 11.1 0 1 1 24 35a11.14 11.14 0 0 1-11.1-11.1z"
+                                />
+                              </svg>
+                            </IconBase>
+                          </IconSettings>
                         </div>
-                      </PopupCount>
-                    </li>
-                  </PopupMenuListItem>
-                  <PopupMenuListItem
-                    data-navigation-utility-item-help="true"
-                    icon={
-                      <IconQuestionOutline
-                        viewBox="0 0 48 48"
-                        xmlns="http://www.w3.org/2000/svg"
-                      />
-                    }
-                    key="terra-application-navigation.utility-menu.help"
-                    loopFocus={[Function]}
-                    onSelect={[Function]}
-                    parentRole="listbox"
-                    showSelections={false}
-                    text="terraApplication.navigation.utilityMenu.help"
-                  >
-                    <li
-                      className="item"
-                      data-focus-styles-enabled={true}
+                        <div
+                          className="text"
+                          role="link"
+                        >
+                          terraApplication.navigation.utilityMenu.settings
+                        </div>
+                        <PopupCount
+                          className="extension-row-count"
+                          isHidden={true}
+                          isInline={true}
+                          value={0}
+                        >
+                          <div
+                            aria-hidden={true}
+                            className="popup-count is-hidden"
+                          >
+                            0
+                          </div>
+                        </PopupCount>
+                      </li>
+                    </PopupMenuListItem>
+                    <PopupMenuListItem
                       data-navigation-utility-item-help="true"
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onKeyDown={[Function]}
-                      onMouseDown={[Function]}
-                      role="option"
-                      tabIndex="0"
-                    >
-                      <div
-                        className="icon"
-                      >
+                      icon={
                         <IconQuestionOutline
                           viewBox="0 0 48 48"
                           xmlns="http://www.w3.org/2000/svg"
+                        />
+                      }
+                      key="terra-application-navigation.utility-menu.help"
+                      loopFocus={[Function]}
+                      onSelect={[Function]}
+                      parentRole="listbox"
+                      showSelections={false}
+                      text="terraApplication.navigation.utilityMenu.help"
+                    >
+                      <li
+                        className="item"
+                        data-focus-styles-enabled={true}
+                        data-navigation-utility-item-help="true"
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onKeyDown={[Function]}
+                        onMouseDown={[Function]}
+                        role="option"
+                        tabIndex="0"
+                      >
+                        <div
+                          className="icon"
                         >
-                          <IconBase
-                            focusable="false"
-                            height="1em"
-                            isBidi={false}
-                            isSpin={false}
+                          <IconQuestionOutline
                             viewBox="0 0 48 48"
-                            width="1em"
                             xmlns="http://www.w3.org/2000/svg"
                           >
-                            <svg
-                              className="tui-Icon icon"
+                            <IconBase
                               focusable="false"
                               height="1em"
-                              role="presentation"
+                              isBidi={false}
+                              isSpin={false}
                               viewBox="0 0 48 48"
                               width="1em"
                               xmlns="http://www.w3.org/2000/svg"
                             >
-                              <path
-                                d="M26 36h-4v-4h4v4zm4.6-12.8c-.6.7-1.4 1.4-2.2 1.9-1.2.8-2.4 1-2.4 1.8V28h-4v-.8c0-1.8.9-3.5 2.4-4.5.6-.3 1.1-.6 1.6-.9 1.6-.8 2.2-2.7 1.4-4.3-.6-1.1-1.7-1.7-2.9-1.7H24c-1.6 0-3 1.3-3.2 2.9v.3h-4c-.1-3.1 2.1-5.9 5.1-6.6.9-.3 1.9-.4 2.8-.4h.2c3.8-.2 7 2.8 7.2 6.6.1 1.7-.5 3.3-1.5 4.6zM24 2c12.1 0 22 9.9 22 22s-9.9 22-22 22S2 36.1 2 24 11.9 2 24 2m0-2C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0z"
-                              />
-                            </svg>
-                          </IconBase>
-                        </IconQuestionOutline>
-                      </div>
-                      <div
-                        className="text"
-                        role="link"
-                      >
-                        terraApplication.navigation.utilityMenu.help
-                      </div>
-                      <PopupCount
-                        className="extension-row-count"
-                        isHidden={true}
-                        isInline={true}
-                        value={0}
-                      >
-                        <div
-                          aria-hidden={true}
-                          className="popup-count is-hidden"
-                        >
-                          0
+                              <svg
+                                className="tui-Icon icon"
+                                focusable="false"
+                                height="1em"
+                                role="presentation"
+                                viewBox="0 0 48 48"
+                                width="1em"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M26 36h-4v-4h4v4zm4.6-12.8c-.6.7-1.4 1.4-2.2 1.9-1.2.8-2.4 1-2.4 1.8V28h-4v-.8c0-1.8.9-3.5 2.4-4.5.6-.3 1.1-.6 1.6-.9 1.6-.8 2.2-2.7 1.4-4.3-.6-1.1-1.7-1.7-2.9-1.7H24c-1.6 0-3 1.3-3.2 2.9v.3h-4c-.1-3.1 2.1-5.9 5.1-6.6.9-.3 1.9-.4 2.8-.4h.2c3.8-.2 7 2.8 7.2 6.6.1 1.7-.5 3.3-1.5 4.6zM24 2c12.1 0 22 9.9 22 22s-9.9 22-22 22S2 36.1 2 24 11.9 2 24 2m0-2C10.7 0 0 10.7 0 24s10.7 24 24 24 24-10.7 24-24S37.3 0 24 0z"
+                                />
+                              </svg>
+                            </IconBase>
+                          </IconQuestionOutline>
                         </div>
-                      </PopupCount>
-                    </li>
-                  </PopupMenuListItem>
-                </ul>
+                        <div
+                          className="text"
+                          role="link"
+                        >
+                          terraApplication.navigation.utilityMenu.help
+                        </div>
+                        <PopupCount
+                          className="extension-row-count"
+                          isHidden={true}
+                          isInline={true}
+                          value={0}
+                        >
+                          <div
+                            aria-hidden={true}
+                            className="popup-count is-hidden"
+                          >
+                            0
+                          </div>
+                        </PopupCount>
+                      </li>
+                    </PopupMenuListItem>
+                  </ul>
+                </div>
               </div>
-            </div>
-          </Scroll>
+            </Scroll>
+          </div>
+          <div
+            className="footer"
+          >
+            <ActionFooter
+              end={
+                <Button
+                  data-navigation-utility-item-logout={true}
+                  isBlock={false}
+                  isCompact={false}
+                  isDisabled={false}
+                  isIconOnly={false}
+                  isLeftAligned={false}
+                  isReversed={false}
+                  onClick={[MockFunction]}
+                  onKeyDown={[Function]}
+                  refCallback={[Function]}
+                  text="terraApplication.navigation.utilityMenu.logout"
+                  type="button"
+                  variant="neutral"
+                />
+              }
+            >
+              <BlockActionFooter
+                className="action-footer-end"
+              >
+                <div
+                  className="block-action-footer with-actions action-footer-end"
+                >
+                  <div
+                    className="end-actions"
+                  >
+                    <Button
+                      data-navigation-utility-item-logout={true}
+                      isBlock={false}
+                      isCompact={false}
+                      isDisabled={false}
+                      isIconOnly={false}
+                      isLeftAligned={false}
+                      isReversed={false}
+                      onClick={[MockFunction]}
+                      onKeyDown={[Function]}
+                      refCallback={[Function]}
+                      text="terraApplication.navigation.utilityMenu.logout"
+                      type="button"
+                      variant="neutral"
+                    >
+                      <button
+                        aria-disabled={false}
+                        className="button neutral"
+                        data-navigation-utility-item-logout={true}
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        type="button"
+                      >
+                        <span
+                          className="button-label-win text-only"
+                        >
+                          <span
+                            className=""
+                          >
+                            terraApplication.navigation.utilityMenu.logout
+                          </span>
+                        </span>
+                      </button>
+                    </Button>
+                  </div>
+                </div>
+              </BlockActionFooter>
+            </ActionFooter>
+          </div>
         </div>
-        <div
-          className="footer"
-        >
+      </ContentContainer>
+    </PopupMenu>
+  </UtilityMenu>
+</injectIntl(UtilityMenu)>
+`;
+
+exports[`UtilityMenu should render with skip callback 1`] = `
+<injectIntl(UtilityMenu)
+  onSelectLogout={[MockFunction]}
+>
+  <UtilityMenu
+    intl={
+      Object {
+        "$t": [Function],
+        "defaultFormats": Object {},
+        "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
+        "formatDate": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
+        "formatMessage": [Function],
+        "formatNumber": [Function],
+        "formatNumberToParts": [Function],
+        "formatPlural": [Function],
+        "formatRelativeTime": [Function],
+        "formatTime": [Function],
+        "formatTimeToParts": [Function],
+        "formats": Object {},
+        "formatters": Object {
+          "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
+          "getMessageFormat": [Function],
+          "getNumberFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
+        },
+        "locale": "en",
+        "messages": null,
+        "onError": [Function],
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
+      }
+    }
+    onSelectLogout={[MockFunction]}
+    utilityItems={Array []}
+  >
+    <PopupMenu
+      footerText="terraApplication.navigation.utilityMenu.logout"
+      isHeightBounded={false}
+      menuItems={Array []}
+      onSelectFooterItem={[MockFunction]}
+      onSelectMenuItem={[Function]}
+      role="listbox"
+      showSelections={false}
+      title="terraApplication.navigation.utilityMenu.headerTitle"
+    >
+      <ContentContainer
+        className="container"
+        fill={false}
+        footer={
           <ActionFooter
             end={
               <Button
@@ -1005,391 +1268,292 @@ exports[`UtilityMenu should render with function callbacks 1`] = `
                 variant="neutral"
               />
             }
-          >
-            <BlockActionFooter
-              className="action-footer-end"
-            >
-              <div
-                className="block-action-footer with-actions action-footer-end"
-              >
-                <div
-                  className="end-actions"
-                >
-                  <Button
-                    data-navigation-utility-item-logout={true}
-                    isBlock={false}
-                    isCompact={false}
-                    isDisabled={false}
-                    isIconOnly={false}
-                    isLeftAligned={false}
-                    isReversed={false}
-                    onClick={[MockFunction]}
-                    onKeyDown={[Function]}
-                    refCallback={[Function]}
-                    text="terraApplication.navigation.utilityMenu.logout"
-                    type="button"
-                    variant="neutral"
-                  >
-                    <button
-                      aria-disabled={false}
-                      className="button neutral"
-                      data-navigation-utility-item-logout={true}
-                      disabled={false}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyUp={[Function]}
-                      onMouseDown={[Function]}
-                      type="button"
-                    >
-                      <span
-                        className="button-label-win text-only"
-                      >
-                        <span
-                          className=""
-                        >
-                          terraApplication.navigation.utilityMenu.logout
-                        </span>
-                      </span>
-                    </button>
-                  </Button>
-                </div>
-              </div>
-            </BlockActionFooter>
-          </ActionFooter>
-        </div>
-      </div>
-    </ContentContainer>
-  </PopupMenu>
-</UtilityMenu>
-`;
-
-exports[`UtilityMenu should render with skip callback 1`] = `
-<UtilityMenu
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
-  onSelectLogout={[MockFunction]}
-  utilityItems={Array []}
->
-  <PopupMenu
-    footerText="terraApplication.navigation.utilityMenu.logout"
-    isHeightBounded={false}
-    menuItems={Array []}
-    onSelectFooterItem={[MockFunction]}
-    onSelectMenuItem={[Function]}
-    role="listbox"
-    showSelections={false}
-    title="terraApplication.navigation.utilityMenu.headerTitle"
-  >
-    <ContentContainer
-      className="container"
-      fill={false}
-      footer={
-        <ActionFooter
-          end={
-            <Button
-              data-navigation-utility-item-logout={true}
-              isBlock={false}
-              isCompact={false}
-              isDisabled={false}
-              isIconOnly={false}
-              isLeftAligned={false}
-              isReversed={false}
-              onClick={[MockFunction]}
-              onKeyDown={[Function]}
-              refCallback={[Function]}
-              text="terraApplication.navigation.utilityMenu.logout"
-              type="button"
-              variant="neutral"
-            />
-          }
-        />
-      }
-      header={
-        <InjectIntl(ActionHeader)
-          aria-hidden={true}
-          title="terraApplication.navigation.utilityMenu.headerTitle"
-        />
-      }
-      setFocusOnContainer={false}
-    >
-      <div
-        className="content-container-static container"
-      >
-        <div
-          className="header"
-        >
-          <InjectIntl(ActionHeader)
+          />
+        }
+        header={
+          <injectIntl(ActionHeader)
             aria-hidden={true}
             title="terraApplication.navigation.utilityMenu.headerTitle"
+          />
+        }
+        setFocusOnContainer={false}
+      >
+        <div
+          className="content-container-static container"
+        >
+          <div
+            className="header"
           >
-            <ActionHeader
+            <injectIntl(ActionHeader)
               aria-hidden={true}
-              intl={
-                Object {
-                  "defaultFormats": Object {},
-                  "defaultLocale": "en",
-                  "formatDate": [Function],
-                  "formatHTMLMessage": [Function],
-                  "formatMessage": [Function],
-                  "formatNumber": [Function],
-                  "formatPlural": [Function],
-                  "formatRelative": [Function],
-                  "formatTime": [Function],
-                  "formats": Object {},
-                  "formatters": Object {
-                    "getDateTimeFormat": [Function],
-                    "getMessageFormat": [Function],
-                    "getNumberFormat": [Function],
-                    "getPluralFormat": [Function],
-                    "getRelativeFormat": [Function],
-                  },
-                  "locale": "en",
-                  "messages": null,
-                  "now": [Function],
-                  "onError": [Function],
-                  "textComponent": "span",
-                  "timeZone": null,
-                }
-              }
               title="terraApplication.navigation.utilityMenu.headerTitle"
             >
-              <InjectIntl(ActionHeaderContainer)
+              <ActionHeader
                 aria-hidden={true}
-                endContent={null}
-                id="3"
-                level={1}
-                startContent={null}
-                text="terraApplication.navigation.utilityMenu.headerTitle"
+                intl={
+                  Object {
+                    "$t": [Function],
+                    "defaultFormats": Object {},
+                    "defaultLocale": "en",
+                    "defaultRichTextElements": undefined,
+                    "fallbackOnEmptyString": true,
+                    "formatDate": [Function],
+                    "formatDateTimeRange": [Function],
+                    "formatDateToParts": [Function],
+                    "formatDisplayName": [Function],
+                    "formatList": [Function],
+                    "formatListToParts": [Function],
+                    "formatMessage": [Function],
+                    "formatNumber": [Function],
+                    "formatNumberToParts": [Function],
+                    "formatPlural": [Function],
+                    "formatRelativeTime": [Function],
+                    "formatTime": [Function],
+                    "formatTimeToParts": [Function],
+                    "formats": Object {},
+                    "formatters": Object {
+                      "getDateTimeFormat": [Function],
+                      "getDisplayNames": [Function],
+                      "getListFormat": [Function],
+                      "getMessageFormat": [Function],
+                      "getNumberFormat": [Function],
+                      "getPluralRules": [Function],
+                      "getRelativeTimeFormat": [Function],
+                    },
+                    "locale": "en",
+                    "messages": null,
+                    "onError": [Function],
+                    "onWarn": [Function],
+                    "textComponent": Symbol(react.fragment),
+                    "timeZone": undefined,
+                    "wrapRichTextChunksInFragment": undefined,
+                  }
+                }
+                title="terraApplication.navigation.utilityMenu.headerTitle"
               >
-                <ActionHeaderContainer
+                <injectIntl(ActionHeaderContainer)
                   aria-hidden={true}
                   endContent={null}
                   id="3"
-                  intl={
-                    Object {
-                      "defaultFormats": Object {},
-                      "defaultLocale": "en",
-                      "formatDate": [Function],
-                      "formatHTMLMessage": [Function],
-                      "formatMessage": [Function],
-                      "formatNumber": [Function],
-                      "formatPlural": [Function],
-                      "formatRelative": [Function],
-                      "formatTime": [Function],
-                      "formats": Object {},
-                      "formatters": Object {
-                        "getDateTimeFormat": [Function],
-                        "getMessageFormat": [Function],
-                        "getNumberFormat": [Function],
-                        "getPluralFormat": [Function],
-                        "getRelativeFormat": [Function],
-                      },
-                      "locale": "en",
-                      "messages": null,
-                      "now": [Function],
-                      "onError": [Function],
-                      "textComponent": "span",
-                      "timeZone": null,
-                    }
-                  }
                   level={1}
                   startContent={null}
                   text="terraApplication.navigation.utilityMenu.headerTitle"
                 >
-                  <div
+                  <ActionHeaderContainer
                     aria-hidden={true}
-                    className="flex-header"
+                    endContent={null}
                     id="3"
+                    intl={
+                      Object {
+                        "$t": [Function],
+                        "defaultFormats": Object {},
+                        "defaultLocale": "en",
+                        "defaultRichTextElements": undefined,
+                        "fallbackOnEmptyString": true,
+                        "formatDate": [Function],
+                        "formatDateTimeRange": [Function],
+                        "formatDateToParts": [Function],
+                        "formatDisplayName": [Function],
+                        "formatList": [Function],
+                        "formatListToParts": [Function],
+                        "formatMessage": [Function],
+                        "formatNumber": [Function],
+                        "formatNumberToParts": [Function],
+                        "formatPlural": [Function],
+                        "formatRelativeTime": [Function],
+                        "formatTime": [Function],
+                        "formatTimeToParts": [Function],
+                        "formats": Object {},
+                        "formatters": Object {
+                          "getDateTimeFormat": [Function],
+                          "getDisplayNames": [Function],
+                          "getListFormat": [Function],
+                          "getMessageFormat": [Function],
+                          "getNumberFormat": [Function],
+                          "getPluralRules": [Function],
+                          "getRelativeTimeFormat": [Function],
+                        },
+                        "locale": "en",
+                        "messages": null,
+                        "onError": [Function],
+                        "onWarn": [Function],
+                        "textComponent": Symbol(react.fragment),
+                        "timeZone": undefined,
+                        "wrapRichTextChunksInFragment": undefined,
+                      }
+                    }
+                    level={1}
+                    startContent={null}
+                    text="terraApplication.navigation.utilityMenu.headerTitle"
                   >
                     <div
-                      className="flex-fill"
+                      aria-hidden={true}
+                      className="flex-header"
+                      id="3"
                     >
                       <div
-                        className="title-container"
+                        className="flex-fill"
                       >
-                        <h1
-                          className="title"
+                        <div
+                          className="title-container"
                         >
-                          terraApplication.navigation.utilityMenu.headerTitle
-                        </h1>
+                          <h1
+                            className="title"
+                          >
+                            terraApplication.navigation.utilityMenu.headerTitle
+                          </h1>
+                        </div>
+                      </div>
+                      <div
+                        className="hidden-label"
+                      >
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-close-button-3"
+                          text="Terra.actionHeader.close.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-close-button-3"
+                          >
+                            Terra.actionHeader.close.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-maximize-button-3"
+                          text="Terra.actionHeader.maximize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-maximize-button-3"
+                          >
+                            Terra.actionHeader.maximize.description
+                          </span>
+                        </VisuallyHiddenText>
+                        <VisuallyHiddenText
+                          aria-hidden={true}
+                          id="terra-action-header-minimize-button-3"
+                          text="Terra.actionHeader.minimize.description"
+                        >
+                          <span
+                            aria-hidden={true}
+                            className="visually-hidden-text"
+                            id="terra-action-header-minimize-button-3"
+                          >
+                            Terra.actionHeader.minimize.description
+                          </span>
+                        </VisuallyHiddenText>
                       </div>
                     </div>
-                    <div
-                      className="hidden-label"
-                    >
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-close-button-3"
-                        text="Terra.actionHeader.close.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-close-button-3"
-                        >
-                          Terra.actionHeader.close.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-maximize-button-3"
-                        text="Terra.actionHeader.maximize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-maximize-button-3"
-                        >
-                          Terra.actionHeader.maximize.description
-                        </span>
-                      </VisuallyHiddenText>
-                      <VisuallyHiddenText
-                        aria-hidden={true}
-                        id="terra-action-header-minimize-button-3"
-                        text="Terra.actionHeader.minimize.description"
-                      >
-                        <span
-                          aria-hidden={true}
-                          className="visually-hidden-text"
-                          id="terra-action-header-minimize-button-3"
-                        >
-                          Terra.actionHeader.minimize.description
-                        </span>
-                      </VisuallyHiddenText>
-                    </div>
-                  </div>
-                </ActionHeaderContainer>
-              </InjectIntl(ActionHeaderContainer)>
-            </ActionHeader>
-          </InjectIntl(ActionHeader)>
-        </div>
-        <div
-          className="main"
-        >
-          <Scroll
-            className="normalizer"
+                  </ActionHeaderContainer>
+                </injectIntl(ActionHeaderContainer)>
+              </ActionHeader>
+            </injectIntl(ActionHeader)>
+          </div>
+          <div
+            className="main"
           >
-            <div
-              className="scroll normalizer"
+            <Scroll
+              className="normalizer"
             >
               <div
-                className="content"
-              >
-                <ul
-                  aria-label="terraApplication.navigation.utilityMenu.headerTitle"
-                  className="utility-list"
-                  onKeyDown={[Function]}
-                  role="listbox"
-                  tabIndex="0"
-                />
-              </div>
-            </div>
-          </Scroll>
-        </div>
-        <div
-          className="footer"
-        >
-          <ActionFooter
-            end={
-              <Button
-                data-navigation-utility-item-logout={true}
-                isBlock={false}
-                isCompact={false}
-                isDisabled={false}
-                isIconOnly={false}
-                isLeftAligned={false}
-                isReversed={false}
-                onClick={[MockFunction]}
-                onKeyDown={[Function]}
-                refCallback={[Function]}
-                text="terraApplication.navigation.utilityMenu.logout"
-                type="button"
-                variant="neutral"
-              />
-            }
-          >
-            <BlockActionFooter
-              className="action-footer-end"
-            >
-              <div
-                className="block-action-footer with-actions action-footer-end"
+                className="scroll normalizer"
               >
                 <div
-                  className="end-actions"
+                  className="content"
                 >
-                  <Button
-                    data-navigation-utility-item-logout={true}
-                    isBlock={false}
-                    isCompact={false}
-                    isDisabled={false}
-                    isIconOnly={false}
-                    isLeftAligned={false}
-                    isReversed={false}
-                    onClick={[MockFunction]}
+                  <ul
+                    aria-label="terraApplication.navigation.utilityMenu.headerTitle"
+                    className="utility-list"
                     onKeyDown={[Function]}
-                    refCallback={[Function]}
-                    text="terraApplication.navigation.utilityMenu.logout"
-                    type="button"
-                    variant="neutral"
-                  >
-                    <button
-                      aria-disabled={false}
-                      className="button neutral"
-                      data-navigation-utility-item-logout={true}
-                      disabled={false}
-                      onBlur={[Function]}
-                      onClick={[Function]}
-                      onFocus={[Function]}
-                      onKeyDown={[Function]}
-                      onKeyUp={[Function]}
-                      onMouseDown={[Function]}
-                      type="button"
-                    >
-                      <span
-                        className="button-label-win text-only"
-                      >
-                        <span
-                          className=""
-                        >
-                          terraApplication.navigation.utilityMenu.logout
-                        </span>
-                      </span>
-                    </button>
-                  </Button>
+                    role="listbox"
+                    tabIndex="0"
+                  />
                 </div>
               </div>
-            </BlockActionFooter>
-          </ActionFooter>
+            </Scroll>
+          </div>
+          <div
+            className="footer"
+          >
+            <ActionFooter
+              end={
+                <Button
+                  data-navigation-utility-item-logout={true}
+                  isBlock={false}
+                  isCompact={false}
+                  isDisabled={false}
+                  isIconOnly={false}
+                  isLeftAligned={false}
+                  isReversed={false}
+                  onClick={[MockFunction]}
+                  onKeyDown={[Function]}
+                  refCallback={[Function]}
+                  text="terraApplication.navigation.utilityMenu.logout"
+                  type="button"
+                  variant="neutral"
+                />
+              }
+            >
+              <BlockActionFooter
+                className="action-footer-end"
+              >
+                <div
+                  className="block-action-footer with-actions action-footer-end"
+                >
+                  <div
+                    className="end-actions"
+                  >
+                    <Button
+                      data-navigation-utility-item-logout={true}
+                      isBlock={false}
+                      isCompact={false}
+                      isDisabled={false}
+                      isIconOnly={false}
+                      isLeftAligned={false}
+                      isReversed={false}
+                      onClick={[MockFunction]}
+                      onKeyDown={[Function]}
+                      refCallback={[Function]}
+                      text="terraApplication.navigation.utilityMenu.logout"
+                      type="button"
+                      variant="neutral"
+                    >
+                      <button
+                        aria-disabled={false}
+                        className="button neutral"
+                        data-navigation-utility-item-logout={true}
+                        disabled={false}
+                        onBlur={[Function]}
+                        onClick={[Function]}
+                        onFocus={[Function]}
+                        onKeyDown={[Function]}
+                        onKeyUp={[Function]}
+                        onMouseDown={[Function]}
+                        type="button"
+                      >
+                        <span
+                          className="button-label-win text-only"
+                        >
+                          <span
+                            className=""
+                          >
+                            terraApplication.navigation.utilityMenu.logout
+                          </span>
+                        </span>
+                      </button>
+                    </Button>
+                  </div>
+                </div>
+              </BlockActionFooter>
+            </ActionFooter>
+          </div>
         </div>
-      </div>
-    </ContentContainer>
-  </PopupMenu>
-</UtilityMenu>
+      </ContentContainer>
+    </PopupMenu>
+  </UtilityMenu>
+</injectIntl(UtilityMenu)>
 `;

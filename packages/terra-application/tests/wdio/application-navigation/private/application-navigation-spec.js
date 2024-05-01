@@ -97,7 +97,7 @@ Terra.describeViewports('ApplicationNavigation - Large', ['large'], () => {
       browser.url('/raw/tests/terra-application/application-navigation/private/application-navigation/application-navigation');
       $('[data-application-header-utility="true"]').click();
       $('[data-terra-popup-content="true"]').waitForDisplayed();
-      $('[data-navigation-utility-item-logout="true"]').click();
+      $('/html/body/div[3]/div/div/div[2]/div/div[3]/div/div/button').click();
       browser.pause(50);
       Terra.validates.element('utilities display properly and onSelectLogout called on clicking logout');
     });
@@ -130,8 +130,9 @@ Terra.describeViewports('ApplicationNavigation - Large', ['large'], () => {
       Terra.validates.element('Popup Menu Open');
     });
 
+    // TODO: investigate validity of this test
     it('close popup menu', () => {
-      $('[data-navigation-popupmenu-item-user-action="true"]').click();
+      $('/html/body/div[3]/div/div/div[2]/div/div[2]/div/div/div/div[2]/button').click();
       Terra.validates.element('Popup menu Closed');
     });
   });

@@ -41,7 +41,7 @@
   "peerDependencies": {
     "react": "16",
     "react-dom": "16",
-    "react-intl": "2"
+    "react-intl": "5"
   },
   "devDependencies": {
     "@babel/cli": "7",
@@ -57,6 +57,7 @@
     "@cerner/package-json-lint-config-terra": "2",
     "@cerner/stylelint-config-terra": "5",
     "@cerner/terra-cli": "1",
+    "@cerner/terra-enzyme-intl": "4",
     "@cerner/terra-functional-testing": "4",
     "@cerner/terra-open-source-scripts": "1",
     "@cerner/webpack-config-terra": "3",
@@ -75,7 +76,6 @@
     "lerna": "6",
     "postcss": "8",
     "stylelint": "15",
-    "terra-enzyme-intl": "3",
     "webpack": "5",
     "webpack-cli": "4",
     "webpack-dev-server": "4",

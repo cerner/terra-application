@@ -9,11 +9,11 @@
   * Dropped support for webpack 4 as a peerDependency.
 
 * The following changes from v7 are added:
-    * Fixed clipping issue of test pages on dev-site.
-    * Fixed scroll issue of doc pages with longer content.
-    * Updated jest snapshot for terra-icon and terra-button changes.
-    * Updated wdio snapshot to fix build.
-    * Locked `uuid` dependency to `3.4.0`.
+  * Fixed clipping issue of test pages on dev-site.
+  * Fixed scroll issue of doc pages with longer content.
+  * Locked `uuid` dependency to `3.4.0`.
+  * Updated jest snapshot for terra-icon and terra-button changes.
+  * Updated wdio snapshot to fix build.
 
 ## 8.1.0 - (June 22, 2022)
 
@@ -22,13 +22,13 @@
 
 ## 8.0.1 - (June 7, 2022)
 
-* Changed
-  * updated `terra-application` version in peer dependency.
+* Fixed
+  * Updated `terra-application` peerDependency to v2.
 
 ## 8.0.0 - (May 31, 2022)
 
 * Breaking
-  * Dropped v2-v4 react-intl support
+  * Dropped react-intl v2-v4 support.
 
 ---
 

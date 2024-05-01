@@ -3,6 +3,8 @@
 ## Unreleased
 
 * Changed
+  * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.
+  * Locked `intl-locales-supported` to `1.8.11`.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
 
 * The following changes from v1 are added:

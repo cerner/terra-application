@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 2.15.0 - (May 1, 2024)
+
+* Changed
+  * Minor dependency version bump.
+
 ## 2.14.0 - (April 23, 2024)
 
 * Changed

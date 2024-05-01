@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-application-docs",
-  "version": "2.14.0",
+  "version": "2.15.0",
   "description": "Contains documentation for packages in the terra-application monorepo",
   "author": "Cerner Corporation",
   "repository": {
@@ -30,7 +30,7 @@
     "src"
   ],
   "dependencies": {
-    "@cerner/terra-dev-site": "^7.13.0",
+    "@cerner/terra-dev-site": "^7.14.0",
     "@cerner/terra-docs": "1",
     "classnames": "2",
     "prop-types": "15",

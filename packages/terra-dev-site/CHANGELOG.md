@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.14.0 - (May 1, 2024)
+
 * Changed
   * Updated loader-utils dependency to v2 to resolve a critical CVE.
 

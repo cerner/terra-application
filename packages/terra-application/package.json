@@ -20,7 +20,7 @@
     "UI"
   ],
   "engines": {
-    "node": "8 || 10 || 12 || 14"
+    "node": "14"
   },
   "main": "lib/application-base/ApplicationBase.js",
   "files": [

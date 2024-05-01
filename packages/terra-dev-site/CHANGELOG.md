@@ -3,7 +3,10 @@
 ## Unreleased
 
 * Changed
-  * Locked `uuid` dependency to `3.4.0`.
+  * Updated loader-utils dependency to v3.
+  * Dropped support for Node 10 & 12. Node 14 is now the minimum required version.
+  * Dropped support for enhanced-resolve v4 as a dependency. 
+  * Dropped support for webpack 4 as a peerDependency.
 
 * The following changes from v7 are added:
     * Fixed clipping issue of test pages on dev-site.

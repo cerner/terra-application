@@ -3,6 +3,9 @@
 ## Unreleased
 
 * Changed
+  * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.
+
+* Changed
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
   * Locked `uuid` dependency to `3.4.0`.
 

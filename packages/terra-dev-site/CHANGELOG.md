@@ -5,6 +5,13 @@
 * Changed
   * Locked `uuid` dependency to `3.4.0`.
 
+* The following changes from v7 are added:
+    * Fixed clipping issue of test pages on dev-site.
+    * Fixed scroll issue of doc pages with longer content.
+    * Updated jest snapshot for terra-icon and terra-button changes.
+    * Updated wdio snapshot to fix build.
+    * Locked `uuid` dependency to `3.4.0`.
+
 ## 8.1.0 - (June 22, 2022)
 
 * Changed

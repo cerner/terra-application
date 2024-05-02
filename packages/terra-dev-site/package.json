@@ -44,7 +44,7 @@
     "glob": "7",
     "html-webpack-plugin": "4",
     "keycode-js": "3",
-    "loader-utils": "3",
+    "loader-utils": "2",
     "lodash.kebabcase": "4",
     "lodash.startcase": "4",
     "lodash.template": "4",

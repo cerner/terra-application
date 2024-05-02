@@ -2,6 +2,17 @@
 
 ## Unreleased
 
+## 1.4.0 - (June 22, 2022)
+
+* Changed
+  * updated condition statement added to check `inert` polyfill is required.
+  * updated `wicg-inert` to latest version.
+
+## 1.3.0 - (June 7, 2022)
+
+* Added
+  * Added `@formatjs/intl-datetimeformat` polyfill to support date-time functions in ie 10.
+
 ## 1.2.0 - (February 14, 2022)
 
 * Changed

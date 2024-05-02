@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-dev-site",
-  "version": "7.13.0",
+  "version": "8.1.0",
   "description": "Dynamically builds a react-hash-routed site based on site configuration, navigation configuration and component configuration.",
   "author": "Cerner Corporation",
   "repository": {
@@ -44,7 +44,7 @@
     "glob": "7",
     "html-webpack-plugin": "4",
     "keycode-js": "3",
-    "loader-utils": "1",
+    "loader-utils": "2",
     "lodash.kebabcase": "4",
     "lodash.startcase": "4",
     "lodash.template": "4",
@@ -74,7 +74,7 @@
   "peerDependencies": {
     "react": "16",
     "react-dom": "16",
-    "terra-application": "1",
+    "terra-application": "2",
     "webpack": "4 || 5"
   },
   "scripts": {

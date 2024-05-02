@@ -2,6 +2,37 @@
 
 ## Unreleased
 
+* Changed
+  * Updated size explanations for ModalManager managed by DisclosureManagerContext.
+
+* The following changes from v1 are added:
+  * Added `noScroll` prop to remove scroll in powerchart.
+  * Added user action utility button.
+  * Locked `uuid` dependency to `3.4.0`.
+  * Updated `getBrowserLocale` method for IE.
+  * Updated jest snapshots for terra-icon and terra-button changes.
+  * Updated size explanations for ModalManager managed by DisclosureManagerContext.
+
+## 2.1.0 - (June 22, 2022)
+
+* Changed
+  * Updated condition statement added to check `inert` polyfill is required.
+  * Updated `wicg-inert` to latest version.
+
+## 2.0.1 - (June 8, 2022)
+
+* Minor dependency bump.
+
+## 2.0.0 - (May 31, 2022)
+
+* Breaking Changes
+  * Dropped react-intl v2-v4 support.
+  * `customTranslatedMessages` prop removed, thus dropping support for the ability of consumers to provide translations for an unsupported locale.
+  * `contextShape` will not be provided by `ApplicationIntlContext` anymore since `intlShape` is no longer exported by `react-intl`.
+  * `translationsLoadingPlaceholder` prop removed.
+
+---
+
 ## 1.58.0 - (April 23, 2024)
 
 * Added
@@ -17,7 +48,7 @@
 
 ## 1.56.0 - (September 19, 2023)
 
-* Changed
+* Added
  * Added `noScroll` prop to remove scroll in powerchart.
 
 ## 1.56.0-alpha.0 - (September 8, 2023)

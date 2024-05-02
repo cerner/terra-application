@@ -6,9 +6,9 @@ import IconPanelRight from 'terra-icon/lib/icon/IconPanelRight';
 import IconPanelLeft from 'terra-icon/lib/icon/IconPanelLeft';
 import ThemeContext from 'terra-theme-context';
 
+import { useIntl } from 'react-intl';
 import { ActiveBreakpointContext } from '../../../breakpoints';
 import ResizeHandle from './ResizeHandle';
-import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationNavigationActionsContext from '../../ApplicationNavigationActionsContext';
 
 import styles from './WorkspaceLayout.module.scss';
@@ -111,7 +111,7 @@ const WorkspaceLayout = ({
   skipToCallback,
 }) => {
   const activeBreakpoint = React.useContext(ActiveBreakpointContext);
-  const applicationIntl = React.useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = React.useContext(ThemeContext);
 
   const layoutContainerRef = React.useRef();

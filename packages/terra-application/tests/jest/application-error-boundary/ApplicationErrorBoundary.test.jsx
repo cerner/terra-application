@@ -7,7 +7,7 @@ describe('ApplicationErrorBoundary', () => {
     it('should render with minimal props', () => {
       const wrapper = enzymeIntl.shallowWithIntl((
         <ApplicationErrorBoundary />
-      ));
+      )).dive();
 
       expect(wrapper).toMatchSnapshot();
     });
@@ -17,7 +17,7 @@ describe('ApplicationErrorBoundary', () => {
         <ApplicationErrorBoundary>
           <div>Test child</div>
         </ApplicationErrorBoundary>
-      ));
+      )).dive();
 
       expect(wrapper).toMatchSnapshot();
     });
@@ -42,7 +42,7 @@ describe('ApplicationErrorBoundary', () => {
       /**
        * After rendering the component again, the error view should no longer be rendered.
        */
-      wrapper.instance().forceUpdate();
+      wrapper.setProps({});
       expect(wrapper).toMatchSnapshot();
       expect(spy).toHaveBeenCalledTimes(1);
       spy.mockRestore();

@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { ApplicationIntlContext } from 'terra-application/lib/application-intl';
+import { useIntl } from 'react-intl';
 import { ThemeContext } from 'terra-application/lib/theme';
 import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
 import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
@@ -12,7 +12,7 @@ const ApplicationContentExample = () => {
   const [blockUnload, setBlockUnload] = useState(false);
 
   const activeBreakpoint = useContext(ActiveBreakpointContext);
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
 
   if (throwError) {
     throw new Error("Testing ApplicationBase's error boundary...");
@@ -82,7 +82,7 @@ const ApplicationContentExample = () => {
 };
 
 const ApplicationBaseExample = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = React.useContext(ThemeContext);
 
   return (

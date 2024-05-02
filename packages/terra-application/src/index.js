@@ -1,13 +1,24 @@
 import TerraApplicationBase from './application-base';
 
-import * as ApplicationNavigation from './application-navigation';
+import * as ApplicationContainerModule from './application-container';
+import * as ApplicationErrorBoundaryModule from './application-error-boundary';
+import * as ApplicationIntlModule from './application-intl';
+import * as ApplicationLoadingOverlayModule from './application-loading-overlay';
+
+import * as ApplicationNavigationModule from './application-navigation';
+import * as ApplicationStatusOverlayModule from './application-status-overlay';
 
 export {
-  ApplicationNavigation
+  ApplicationContainerModule,
+  ApplicationErrorBoundaryModule,
+  ApplicationIntlModule,
+  ApplicationLoadingOverlayModule,
+  ApplicationNavigationModule,
+  ApplicationStatusOverlayModule
 }
 
-
 export default TerraApplicationBase;
+
 // export * from './application-base';
 // export * from './application-error-boundary';
 // export * from './application-intl';

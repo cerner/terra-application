@@ -10,6 +10,7 @@ import ApplicationNavigation from './ApplicationNavigation';
 
 export default ApplicationNavigation;
 export {
+  ApplicationNavigation,
   ApplicationNavigationActionsContext,
   extensionItemsPropType,
   navigationItemsPropType,

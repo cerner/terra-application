@@ -23,7 +23,7 @@
     "access": "public"
   },
   "engines": {
-    "node": "10 || 12 || 14"
+    "node": "14"
   },
   "main": "index.js",
   "files": [
@@ -39,7 +39,7 @@
     "@mdx-js/react": "1",
     "chalk": "4",
     "classnames": "2",
-    "enhanced-resolve": "4 || 5",
+    "enhanced-resolve": "5",
     "fuse.js": "6",
     "glob": "7",
     "html-webpack-plugin": "4",
@@ -75,7 +75,7 @@
     "react": "16",
     "react-dom": "16",
     "terra-application": "2",
-    "webpack": "4 || 5"
+    "webpack": "5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

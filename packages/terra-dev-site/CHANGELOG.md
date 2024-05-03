@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+* Changed
+  * Dropped support for Node 10 & 12. Node 14 is now the minimum required version.
+  * Dropped support for `enhanced-resolve v4` as a dependency.
+  * Dropped support for `webpack v4` as a peerDependency.
+
 * The following changes from v7 are added:
   * Fixed clipping issue of test pages on dev-site.
   * Fixed scroll issue of doc pages with longer content.

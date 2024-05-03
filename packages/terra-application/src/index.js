@@ -4,9 +4,13 @@ import * as ApplicationContainerModule from './application-container';
 import * as ApplicationErrorBoundaryModule from './application-error-boundary';
 import * as ApplicationIntlModule from './application-intl';
 import * as ApplicationLoadingOverlayModule from './application-loading-overlay';
-
 import * as ApplicationNavigationModule from './application-navigation';
 import * as ApplicationStatusOverlayModule from './application-status-overlay';
+import * as DisclosureManagerModule from './disclosure-manager';
+
+import ModalManager from './modal-manager';
+
+import * as NavigationPromptModule from './navigation-prompt';
 
 export {
   ApplicationContainerModule,
@@ -14,8 +18,11 @@ export {
   ApplicationIntlModule,
   ApplicationLoadingOverlayModule,
   ApplicationNavigationModule,
-  ApplicationStatusOverlayModule
-}
+  ApplicationStatusOverlayModule,
+  DisclosureManagerModule,
+  ModalManager,
+  NavigationPromptModule
+};
 
 export default TerraApplicationBase;
 

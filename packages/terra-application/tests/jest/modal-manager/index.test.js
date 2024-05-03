@@ -1,4 +1,4 @@
-import ModalManager from '../../../src/modal-manager';
+import {ModalManager} from '../../../src';
 
 describe('modal-manager/index', () => {
   it('should export ModalManager', () => {

@@ -20,7 +20,7 @@
     "UI"
   ],
   "engines": {
-    "node": "8 || 10 || 12 || 14"
+    "node": "14"
   },
   "main": "lib/application-base/ApplicationBase.js",
   "exports": {
@@ -45,7 +45,7 @@
     "eventemitter3": "4",
     "focus-trap-react": "6",
     "intl": "1",
-    "intl-locales-supported": ">=1.8.4 <1.8.12 || ^1.8.13",
+    "intl-locales-supported": "1.8.11",
     "keycode-js": "3",
     "lodash.debounce": "4",
     "mutationobserver-shim": "<=0.3.3",

@@ -1,6 +1,7 @@
-node_modules
-coverage
+aggregated-translations
 build
+coverage
+generated-themes
 lib
-**/aggregated-translations/*.*
+
 packages/terra-polyfill/src/index.js

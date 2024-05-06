@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Set minimum Node version to 14.
+
 ## 3.1.0 - (June 22, 2022)
 
 * Changed

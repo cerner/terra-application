@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+
+
+* Breaking Changes:
+  * Removed default import. `ApplicationBase` will now need to be imported from `terra-application/application-base`.
+
+* Added
+  * Added subpath exports for terra-application submodules.
+
 * Changed
   * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.
   * Locked `intl-locales-supported` to `1.8.11`.

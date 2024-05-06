@@ -1,10 +1,4 @@
-import TerraBreakPoints from 'terra-breakpoints';
-
+export { default } from 'terra-breakpoints';
 export {
-  ActiveBreakpointContext,
-  ActiveBreakpointProvider,
-  TerraBreakPoints,
-  activeBreakpointForSize,
-  breakpointIsActiveForSize,
-  withActiveBreakpoint,
+  ActiveBreakpointContext, ActiveBreakpointProvider, activeBreakpointForSize, breakpointIsActiveForSize, withActiveBreakpoint,
 } from 'terra-breakpoints';

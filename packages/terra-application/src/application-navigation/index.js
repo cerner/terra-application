@@ -1,20 +1,19 @@
 import {
-  extensionItemsPropType,
-  navigationItemsPropType,
   titleConfigPropType,
-  userConfigPropType,
+  navigationItemsPropType,
+  extensionItemsPropType,
   utilityItemsPropType,
+  userConfigPropType,
 } from './private/utils/propTypes';
 import ApplicationNavigationActionsContext from './ApplicationNavigationActionsContext';
 import ApplicationNavigation from './ApplicationNavigation';
 
 export default ApplicationNavigation;
 export {
-  ApplicationNavigation,
-  ApplicationNavigationActionsContext,
-  extensionItemsPropType,
-  navigationItemsPropType,
   titleConfigPropType,
-  userConfigPropType,
+  navigationItemsPropType,
+  extensionItemsPropType,
   utilityItemsPropType,
+  userConfigPropType,
+  ApplicationNavigationActionsContext,
 };

@@ -22,7 +22,17 @@
   "engines": {
     "node": "8 || 10 || 12 || 14"
   },
-  "main": "lib/index.js",
+  "main": "lib/application-base/ApplicationBase.js",
+  "exports": {
+    "./application-base": "./lib/application-base/index.js",
+    "./application-navigation": "./lib/application-navigation/index.js",
+    "./application-intl": "./lib/application-intl/index.js",
+    "./application-loading-overlay": "./lib/application-loading-overlay/index.js",
+    "./disclosure-manager": "./lib/disclosure-manager/index.js",
+    "./modal-manager": "./lib/modal-manager/index.js",
+    "./utils/logger": "./lib/utils/logger/index.js",
+    "./breakpoints": "./lib/breakpoints/index.js"
+  },
   "files": [
     "lib",
     "src",

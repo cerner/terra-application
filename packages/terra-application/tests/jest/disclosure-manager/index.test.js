@@ -1,14 +1,11 @@
-import {DisclosureManagerModule} from '../../../src';
-
-const {
-  DisclosureManager,
+import DisclosureManager, {
+  withDisclosureManager,
+  disclosureManagerShape,
   DisclosureManagerContext,
   DisclosureManagerDelegate,
-  closeMostRecentDisclosure,
-  disclosureManagerShape,
   getActiveDisclosureCount,
-  withDisclosureManager,
-} = DisclosureManagerModule;
+  closeMostRecentDisclosure,
+} from '../../../src/disclosure-manager';
 
 describe('disclosure-manager/index', () => {
   it('should export DisclosureManager', () => {

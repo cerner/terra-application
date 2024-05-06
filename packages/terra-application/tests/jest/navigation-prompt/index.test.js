@@ -1,9 +1,4 @@
-// import NavigationPrompt, { NavigationPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/navigation-prompt';
-import { NavigationPromptModule} from '../../../src';
-
-console.log(NavigationPromptModule);
-
-const  { NavigationPrompt,  NavigationPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } = NavigationPromptModule;
+import NavigationPrompt, { NavigationPromptCheckpoint, PromptRegistrationContext, getUnsavedChangesPromptOptions } from '../../../src/navigation-prompt';
 
 describe('navigation-prompt/index', () => {
   it('should export NavigationPrompt', () => {

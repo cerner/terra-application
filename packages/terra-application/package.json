@@ -22,7 +22,6 @@
   "engines": {
     "node": "14"
   },
-  "main": "lib/application-base/ApplicationBase.js",
   "exports": {
     "./action-menu:": "./lib/action-menu/index.js",
     "./application-base:": "./lib/application-base/index.js",

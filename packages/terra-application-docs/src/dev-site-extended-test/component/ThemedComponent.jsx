@@ -1,3 +1,5 @@
+/* eslint-disable import/no-unresolved */
+
 import React from 'react';
 import classNames from 'classnames/bind';
 import { ApplicationIntlContext } from 'terra-application/application-intl';

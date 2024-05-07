@@ -1,4 +1,4 @@
-/* eslint-ignore no-restricted-syntax, no-continue */
+/* eslint-disable no-restricted-syntax, no-continue */
 
 const path = require('path');
 const glob = require('glob');

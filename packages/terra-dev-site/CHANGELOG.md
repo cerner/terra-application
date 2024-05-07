@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added new config option `useDefaultWebpackResolver` to utilize the built-in webpack path resolver instead of the custom resolver. 
+
 * Changed
   * Dropped support for Node 10 & 12. Node 14 is now the minimum required version.
   * Dropped support for `enhanced-resolve v4` as a dependency.

@@ -6,8 +6,6 @@ const TerraDevSite = require('./packages/terra-dev-site/src/webpack/plugin/Terra
 
 const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html'), 'utf8');
 
-// WebpackConfigTerra.plugins;
-
 const devSiteConfig = (env = {}, argv = { p: false }) => ({
   // temporary fix to enable live reloading.
   target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',

@@ -93,7 +93,6 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
 });
 
 const mergedConfig = (env, argv) => (
-  // merge(WebpackConfigTerra(env, argv), devSiteConfig())
   merge(WebpackConfigTerra(env, argv), devSiteConfig())
 );
 

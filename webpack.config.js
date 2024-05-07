@@ -82,11 +82,18 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
     }),
   ],
   resolve: {
-    extensions: ['.jst'],
+    alias: {
+      'terra-application/package.json': path.resolve(__dirname, 'packages', 'terra-application', 'package.json')
+    },
+    modules: [path.resolve(__dirname, 'packages'), 'node_modules'],
+    exportsFields: ['exports'],
+    mainFiles: ['index'],
+    extensions: ['.jst', '.jsx', '.js'],
   },
 });
 
 const mergedConfig = (env, argv) => (
+  // merge(WebpackConfigTerra(env, argv), devSiteConfig())
   merge(WebpackConfigTerra(env, argv), devSiteConfig())
 );
 

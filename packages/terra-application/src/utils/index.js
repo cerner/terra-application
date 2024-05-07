@@ -1,8 +1,8 @@
-import Logger, {initializeLogger} from './logger';
+import Logger, { initializeLogger } from './logger';
 import EventEmitter from './event-emitter';
 
 export {
-  Logger, 
+  Logger,
   EventEmitter,
   initializeLogger,
-}
+};

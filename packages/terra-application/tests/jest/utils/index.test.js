@@ -1,4 +1,4 @@
-import {Logger, initializeLogger, EventEmitter} from '../../../src/utils';
+import { Logger, initializeLogger, EventEmitter } from '../../../src/utils';
 
 describe('utils/index', () => {
   it('should export Logger', () => {

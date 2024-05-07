@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { Logger } from '../../utils/';
+import { Logger } from '../../utils';
 
 const loadTranslationsFile = (locale) => {
   switch (locale) {

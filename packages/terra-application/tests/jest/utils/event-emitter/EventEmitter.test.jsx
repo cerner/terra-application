@@ -1,5 +1,5 @@
-import {EventEmitter} from '../../../../src/utils'; // eslint-disable-line import/no-duplicates
-import {EventEmitter as EventEmitter2} from '../../../../src/utils'; // eslint-disable-line import/no-duplicates
+import { EventEmitter } from '../../../../src/utils'; // eslint-disable-line import/no-duplicates
+import { EventEmitter as EventEmitter2 } from '../../../../src/utils'; // eslint-disable-line import/no-duplicates
 
 describe('EventEmitter', () => {
   let listenCount = 0;

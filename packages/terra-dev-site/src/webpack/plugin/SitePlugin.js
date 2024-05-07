@@ -28,12 +28,9 @@ const urlQueue = [];
  * Updates the webpack options with defaults that terra-dev-site requires.
  */
 class SitePlugin {
-  static siteConfig2 = {};
 
   constructor({ entry, config }) {
     // Apply defaults to the config.
-
-    this.siteConfig2 = config;
     this.siteConfig = config;
 
     const { pathPrefix, titleConfig } = this.siteConfig;

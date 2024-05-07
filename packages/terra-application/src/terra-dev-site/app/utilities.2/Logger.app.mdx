@@ -7,11 +7,11 @@
 The logger works like the `console` for the `warn`, `error`, and `info` methods. By default the logger will send the messages to the corresponding console methods. In production, info and warning messages will be suppressed.
 
 ```js
-import logger from 'terra-application/utils/logger';
+import { Logger } from 'terra-application/utils';
 
-logger.error('error');
-logger.warn('warning');
-logger.info('info');
+Logger.error('error');
+Logger.warn('warning');
+Logger.info('info');
 ```
 
 ## Overriding

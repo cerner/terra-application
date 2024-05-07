@@ -18,7 +18,7 @@ import { ApplicationStatusOverlayProvider } from '../application-status-overlay'
 import { NavigationPromptCheckpoint } from '../navigation-prompt';
 import getBrowserLocale from './private/getBrowserLocale';
 import useTestOverrides from './private/useTestOverrides';
-import Logger from '../utils/logger';
+import { Logger } from '../utils';
 
 import './private/initializeInert';
 import './baseStyles';

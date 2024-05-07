@@ -1,5 +1,5 @@
 import loadTranslations from '../../../../src/application-base/private/translationsLoaders';
-import Logger from '../../../../src/utils/logger';
+import { Logger } from '../../../../src/utils';
 
 describe('translationsLoaders', () => {
   beforeEach(() => {

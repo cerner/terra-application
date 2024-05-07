@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import logger from '../../utils/logger';
+import { Logger } from '../../utils/';
 
 const loadTranslationsFile = (locale) => {
   switch (locale) {
@@ -44,7 +44,7 @@ const loadTranslations = (locale) => {
   const fallbackLocale = locale.split('-').length > 1 ? locale.split('-')[0] : false;
 
   return loadTranslationsFile(locale).catch((error) => {
-    logger.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
+    Logger.warn(`${error.message} Using ${fallbackLocale} data as the fallback locale.`);
 
     if (fallbackLocale) {
       return loadTranslationsFile(fallbackLocale);
@@ -52,7 +52,7 @@ const loadTranslations = (locale) => {
 
     return Promise.reject(error);
   }).catch((error) => {
-    logger.warn(`${error.message} Using en as the fallback locale.`);
+    Logger.warn(`${error.message} Using en as the fallback locale.`);
 
     return loadTranslationsFile('en');
   });

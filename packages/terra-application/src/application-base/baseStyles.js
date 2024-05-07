@@ -1,5 +1,5 @@
 import './Base.scss';
-import Logger from '../utils/logger';
+import { Logger } from '../utils';
 
 // Checks to run when not in production
 if (process.env.NODE_ENV !== 'production') {

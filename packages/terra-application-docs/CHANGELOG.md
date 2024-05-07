@@ -4,7 +4,7 @@
 
 * Changed
   * Set minimum Node version to 14.
-  * Updated docs to utilize the new terra-application imports
+  * Updated docs to utilize the new terra-application imports.
 
 ## 3.1.0 - (June 22, 2022)
 

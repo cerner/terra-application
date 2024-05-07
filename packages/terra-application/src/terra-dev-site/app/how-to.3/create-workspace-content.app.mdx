@@ -13,7 +13,7 @@ Consumers of the [ApplicationNavigation](/application/terra-application/componen
 
 ```jsx
 import React from 'react';
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
+import ApplicationNavigation from 'terra-application/application-navigation';
 
 const MyContent1 = () => {...};
 const MyContent2 = () => {...};
@@ -65,7 +65,7 @@ For MyContent1, we will start with a basic implementation of the WorkspaceConten
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
+import { WorkspaceContent } from 'terra-application/workspace';
 
 const MyContent1 = () => {
   return (
@@ -107,7 +107,7 @@ Below is an example using hooks to retrieve the `isActive` value.
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent, WorkspaceContext } from 'terra-application/lib/workspace';
+import { WorkspaceContent, WorkspaceContext } from 'terra-application/workspace';
 
 const MyContent1 = () => {
   const { isActive } = React.useContext(WorkspaceContext);
@@ -148,7 +148,7 @@ The Toolbar and Button components, provided by the terra-toolbar and terra-butto
 import React from 'react';
 import Toolbar from 'terra-toolbar';
 import Button from 'terra-button';
-import { WorkspaceContent, WorkspaceContext } from 'terra-application/lib/workspace';
+import { WorkspaceContent, WorkspaceContext } from 'terra-application/workspace';
 
 const MyContent1 = () => {
   const { isActive } = React.useContext(WorkspaceContext);
@@ -188,7 +188,7 @@ We will create MyContent2 with the same basic implementation we started with for
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
+import { WorkspaceContent } from 'terra-application/workspace';
 
 const MyContent2 = () => {
   return (
@@ -213,8 +213,8 @@ The banners are rendered within the component's fixed header region and will not
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import { WorkspaceContent } from 'terra-application/workspace';
+import NotificationBanner from 'terra-application/notification-banner';
 
 const MyContent2 = () => {
   const [showAlertBanner, setShowAlertBanner] = useState(false);
@@ -249,8 +249,8 @@ The provided `WorkspaceContent.ActivityOverlay` is the only supported component 
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import { WorkspaceContent } from 'terra-application/workspace';
+import NotificationBanner from 'terra-application/notification-banner';
 
 const MyContent2 = () => {
   const [showAlertBanner, setShowAlertBanner] = React.useState(false);
@@ -297,8 +297,8 @@ Note that this can be combined with and presented alongside the activity overlay
 
 ```jsx
 import React from 'react';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import { WorkspaceContent } from 'terra-application/workspace';
+import NotificationBanner from 'terra-application/notification-banner';
 
 const MyContent2 = () => {
   const [showAlertBanner, setShowAlertBanner] = React.useState(false);

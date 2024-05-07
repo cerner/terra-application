@@ -7,7 +7,7 @@
 EventEmitter is a singleton that is shared throughout your application. It is important to unsubscribe by removing all listeners to all events when your application is unmounted.
 
 ```js
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import EventEmitter from 'terra-application/utils/event-emitter';
 ```
 
 ## API
@@ -31,7 +31,7 @@ import EventEmitter from 'terra-application/lib/utils/event-emitter';
 ### `once`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
@@ -44,7 +44,7 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 1
 ### `on`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
@@ -57,7 +57,7 @@ eventEmitter.emit('event-name');  // listenCount == 2
 ### `off`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
@@ -70,7 +70,7 @@ eventEmitter.emit('event-name');  // Ignored: listenCount == 0
 ### `removeAllListeners`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 let listenCount = 0;
 const listener = () => {listenCount += 1;}
@@ -87,7 +87,7 @@ eventEmitter.emit('event-name3');  // Ignored: listenCount == 0
 ### `emit`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 let listenCount = 0;
 const listener = (count) => {
@@ -105,7 +105,7 @@ eventEmitter.emit('event-name', 50);  // listenCount == 51
 ### `eventNames`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 const eventNames = ['event-name1', 'event-name2', 'event-name3']
 
@@ -119,7 +119,7 @@ eventEmitter.eventNames();  // ['event-name1', 'event-name2', 'event-name3']
 ### `listenerCount`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 eventEmitter.on('event-name1', () => {});
 eventEmitter.on('event-name2', () => {});
@@ -132,7 +132,7 @@ eventEmitter.listenerCount('event-name2');  // 2
 ### `listeners`
 
 ```js
-import eventEmitter from 'terra-application/lib/utils/event-emitter';
+import eventEmitter from 'terra-application/utils/event-emitter';
 
 const listener1 = () => {};
 const listener2 = () => {};

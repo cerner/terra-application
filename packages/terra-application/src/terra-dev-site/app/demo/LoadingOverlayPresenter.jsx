@@ -2,7 +2,7 @@ import React, {
   useState, useRef, useEffect,
 } from 'react';
 
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import ApplicationLoadingOverlay from 'terra-application/application-loading-overlay';
 
 const LoadingOverlayPresenter = () => {
   const [showLoadingOverlay, setShowLoadingOverlay] = useState(false);

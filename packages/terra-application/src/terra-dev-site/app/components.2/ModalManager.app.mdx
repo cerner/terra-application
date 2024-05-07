@@ -1,4 +1,4 @@
-import PropsTable from 'terra-application/lib/modal-manager/ModalManager?dev-site-props-table';
+import PropsTable from 'terra-application/modal-manager/ModalManager?dev-site-props-table';
 
 # ModalManager
 
@@ -8,7 +8,7 @@ The ModalManager exposes its children to modal presentation APIs through the
 ## Usage
 
 ```jsx
-import ModalManager from 'terra-application/lib/modal-manager';
+import ModalManager from 'terra-application/modal-manager';
 ```
 
 ## Props
@@ -145,8 +145,8 @@ For application content that needs more specific dimensional control of modal si
 ```jsx
 import React from 'react';
 import Button from 'terra-button';
-import ModalManager, { disclosureType } from 'terra-application/lib/modal-manager';
-import { withDisclosureManager, DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
+import ModalManager, { disclosureType } from 'terra-application/modal-manager';
+import { withDisclosureManager, DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/disclosure-manager';
 import CollapsibleMenuView from 'terra-collapsible-menu-view';
 
 const ModalComponentB = () => (

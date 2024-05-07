@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useIntl } from 'react-intl';
-import { ThemeContext } from 'terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/theme';
 
 const TestOverrideTest = () => {
   const applicationIntl = useIntl();

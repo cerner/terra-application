@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
-import ApplicationErrorBoundary from 'terra-application/lib/application-error-boundary/ApplicationErrorBoundary';
+import ApplicationErrorBoundary from 'terra-application/application-error-boundary';
 import styles from './ApplicationErrorBoundaryExample.module.scss';
 
 const cx = classNames.bind(styles);

@@ -3,11 +3,11 @@ import React, {
 } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import { ActiveBreakpointContext } from 'terra-application/breakpoints';
+import ApplicationLoadingOverlay from 'terra-application/application-loading-overlay';
 import { useIntl } from 'react-intl';
-import { ThemeContext } from 'terra-application/lib/theme';
-import { ApplicationNavigationActionsContext } from 'terra-application/lib/application-navigation';
+import { ThemeContext } from 'terra-application/theme';
+import { ApplicationNavigationActionsContext } from 'terra-application/application-navigation';
 
 import LoadingOverlayPresenter from './LoadingOverlayPresenter';
 import ModalPresenter from './ModalPresenter';

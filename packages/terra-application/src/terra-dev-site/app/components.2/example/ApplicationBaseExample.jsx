@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 import { useIntl } from 'react-intl';
-import { ThemeContext } from 'terra-application/lib/theme';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
-import ApplicationBase from 'terra-application/lib/application-base';
-import NavigationPrompt from 'terra-application/lib/navigation-prompt';
+import { ThemeContext } from 'terra-application/theme';
+import { ActiveBreakpointContext } from 'terra-application/breakpoints';
+import ApplicationLoadingOverlay from 'terra-application/application-loading-overlay';
+import ApplicationBase from 'terra-application/application-base';
+import NavigationPrompt from 'terra-application/navigation-prompt';
 
 const ApplicationContentExample = () => {
   const [isLoading, setIsLoading] = useState(false);

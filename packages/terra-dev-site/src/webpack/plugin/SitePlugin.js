@@ -10,7 +10,7 @@ const chalk = require('chalk');
 
 const DirectorySwitcherPlugin = require('./resolve/DirectorySwitcherPlugin');
 const LocalPackageAliasPlugin = require('./resolve/LocalPackageAliasPlugin');
-// const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
+const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
 const { babelLoader, getMdxLoader } = require('./siteLoaderUtils');
 const getNewRelicJS = require('../new-relic/getNewRelicJS');
 
@@ -190,7 +190,7 @@ class SitePlugin {
             // ...(this.siteConfig2.disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories})]),
             
             // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
-            ...(disableDefaultResolver? [] : [new LocalPackageAliasPlugin({rootDirectories})]),
+            ...(disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories}), new LocalPackageAliasPlugin({rootDirectories})]),
         ],
       },
       // add the path to search for dev site loaders

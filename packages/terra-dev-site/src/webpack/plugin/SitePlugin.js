@@ -29,7 +29,6 @@ const urlQueue = [];
  * Updates the webpack options with defaults that terra-dev-site requires.
  */
 class SitePlugin {
-
   static siteConfig2 = {};
 
   constructor({ entry, config }) {
@@ -73,7 +72,7 @@ class SitePlugin {
     distributionFolder,
     basename,
     isWebpack5,
-    disableDefaultResolver
+    disableDefaultResolver,
   }) {
     if (oneTimeSetupComplete) {
       return;
@@ -92,7 +91,7 @@ class SitePlugin {
       ...isLernaMonoRepo ? [path.resolve(processPath, 'packages', '*')] : [processPath],
     ];
 
-    console.log("static", disableDefaultResolver);
+    console.log('static', disableDefaultResolver);
 
     let webpackConfig = {
       entry: {
@@ -105,7 +104,7 @@ class SitePlugin {
           // Only the first loader will apply and no others.
           oneOf: [{
             test: /\.mdx$/,
-            use: [ babelLoader, mdxLoader ],
+            use: [babelLoader, mdxLoader],
           }, {
             test: /\.md$/,
             oneOf: [
@@ -140,13 +139,13 @@ class SitePlugin {
             ],
           }, {
             resourceQuery: '?dev-site-example',
-            use: [ babelLoader, 'devSiteExample' ],
+            use: [babelLoader, 'devSiteExample'],
           }, {
             test: /\.json$/,
             // this bypasses the default json loader
             type: 'javascript/auto',
             resourceQuery: '?dev-site-package',
-            use: [ babelLoader, 'devSitePackage' ],
+            use: [babelLoader, 'devSitePackage'],
           }, {
             resourceQuery: '?dev-site-props-table',
             use: [
@@ -187,10 +186,10 @@ class SitePlugin {
               }),
             ]
             : [],
-            // ...(this.siteConfig2.disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories})]),
-            
-            // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
-            ...(disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories}), new LocalPackageAliasPlugin({rootDirectories})]),
+          // ...(this.siteConfig2.disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories})]),
+
+          // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
+          ...(disableDefaultResolver ? [] : [new LocalSubpathExportsResolverPlugin({ rootDirectories }), new LocalPackageAliasPlugin({ rootDirectories })]),
         ],
       },
       // add the path to search for dev site loaders
@@ -278,7 +277,7 @@ class SitePlugin {
       distributionFolder,
       basename,
       isWebpack5,
-      disableDefaultResolver
+      disableDefaultResolver,
     });
 
     // Get the list of apps excluding this current app.

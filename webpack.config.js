@@ -6,7 +6,6 @@ const TerraDevSite = require('./packages/terra-dev-site/src/webpack/plugin/Terra
 
 const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html'), 'utf8');
 
-
 // WebpackConfigTerra.plugins;
 
 const devSiteConfig = (env = {}, argv = { p: false }) => ({
@@ -87,7 +86,7 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
   ],
   resolve: {
     alias: {
-      'terra-application/package.json': path.resolve(__dirname, 'packages', 'terra-application', 'package.json')
+      'terra-application/package.json': path.resolve(__dirname, 'packages', 'terra-application', 'package.json'),
     },
     extensions: ['.jst', '.jsx', '.js'],
   },

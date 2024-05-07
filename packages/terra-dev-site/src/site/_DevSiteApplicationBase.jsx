@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import TerraApplicationBase from 'terra-application';
+import TerraApplicationBase from 'terra-application/application-base';
 
 import AppSettingsContext from './_AppSettingsContext';
 

@@ -6,7 +6,7 @@ import IconRollup from 'terra-icon/lib/icon/IconRollup';
 import Popup from 'terra-popup';
 import ThemeContext from 'terra-theme-context';
 
-import ActionMenu, { ActionMenuItem } from 'terra-application/lib/action-menu';
+import ActionMenu, { ActionMenuItem } from 'terra-application/action-menu';
 import { useIntl } from 'react-intl';
 import useElementSize, { breakpointFilter } from '../../shared/useElementSize';
 import PageContainerContext from '../../layouts/page-container/PageContainerContext';

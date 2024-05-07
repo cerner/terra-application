@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import { useLocation, useHistory, useRouteMatch } from 'react-router-dom';
 import IconSearch from 'terra-icon/lib/icon/IconSearch';
 import IconTile from 'terra-icon/lib/icon/IconTile';
-import TerraApplicationNavigation from 'terra-application/lib/application-navigation';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import TerraApplicationNavigation from 'terra-application/application-navigation';
+import { DisclosureManagerContext } from 'terra-application/disclosure-manager';
 
 import DevSitePage from '../pages/_DevSitePage';
 import PageContainer from './page-container';

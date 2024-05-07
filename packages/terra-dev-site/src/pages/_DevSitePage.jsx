@@ -3,7 +3,7 @@ import IconStartPresenting from 'terra-icon/lib/icon/IconStartPresenting';
 import IconSettings from 'terra-icon/lib/icon/IconSettings';
 import { useLocation, useHistory } from 'react-router-dom';
 import Button from 'terra-button';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext } from 'terra-application/disclosure-manager';
 
 import Page, {
   CardLayout,

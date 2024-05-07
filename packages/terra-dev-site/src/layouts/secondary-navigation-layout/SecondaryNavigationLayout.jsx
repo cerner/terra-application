@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import { KEY_ESCAPE } from 'keycode-js';
 import IconLeftPane from 'terra-icon/lib/icon/IconLeftPane';
-import { ThemeContext } from 'terra-application/lib/theme';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
+import { ThemeContext } from 'terra-application/theme';
+import { ActiveBreakpointContext } from 'terra-application/breakpoints';
 
 import usePortalManager from '../../shared/usePortalManager';
 import NavigationItem from './navigation-item';

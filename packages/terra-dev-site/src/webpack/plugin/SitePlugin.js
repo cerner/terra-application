@@ -9,8 +9,7 @@ const chalk = require('chalk');
 // const http = require('http');
 
 const DirectorySwitcherPlugin = require('./resolve/DirectorySwitcherPlugin');
-const LocalPackageAliasPlugin = require('./resolve/LocalPackageAliasPlugin');
-const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
+// const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
 const { babelLoader, getMdxLoader } = require('./siteLoaderUtils');
 const getNewRelicJS = require('../new-relic/getNewRelicJS');
 
@@ -37,7 +36,6 @@ class SitePlugin {
     this.siteConfig2 = config;
     this.siteConfig = config;
 
-    console.log(this.siteConfig2.disableDefaultResolver);
 
     const { pathPrefix, titleConfig } = this.siteConfig;
     this.entry = entry;
@@ -72,7 +70,7 @@ class SitePlugin {
     distributionFolder,
     basename,
     isWebpack5,
-    disableDefaultResolver,
+    useDefaultWebpackResolver,
   }) {
     if (oneTimeSetupComplete) {
       return;
@@ -90,8 +88,6 @@ class SitePlugin {
     const rootDirectories = [
       ...isLernaMonoRepo ? [path.resolve(processPath, 'packages', '*')] : [processPath],
     ];
-
-    console.log('static', disableDefaultResolver);
 
     let webpackConfig = {
       entry: {
@@ -186,10 +182,8 @@ class SitePlugin {
               }),
             ]
             : [],
-          // ...(this.siteConfig2.disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories})]),
-
           // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
-          ...(disableDefaultResolver ? [] : [new LocalSubpathExportsResolverPlugin({ rootDirectories }), new LocalPackageAliasPlugin({ rootDirectories })]),
+          ...(useDefaultWebpackResolver ? [] : [new LocalPackageAliasPlugin({ rootDirectories })]),
         ],
       },
       // add the path to search for dev site loaders
@@ -268,7 +262,7 @@ class SitePlugin {
     // Strip the trailing / from the public path.
     let basename = publicPath.slice(0, -1);
 
-    const { sourceFolder, distributionFolder, disableDefaultResolver } = this.siteConfig;
+    const { sourceFolder, distributionFolder, useDefaultWebpackResolver } = this.siteConfig;
 
     // Since there can be multiple dev site plugins this config we only want to do once for all of them.
     SitePlugin.applyOneTimeSetup({
@@ -277,7 +271,7 @@ class SitePlugin {
       distributionFolder,
       basename,
       isWebpack5,
-      disableDefaultResolver,
+      useDefaultWebpackResolver,
     });
 
     // Get the list of apps excluding this current app.

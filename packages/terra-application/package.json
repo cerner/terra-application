@@ -41,6 +41,7 @@
     "./application-status-overlay/*": "./lib/application-status-overlay",
     "./breakpoints": "./lib/breakpoints/index.js",
     "./breakpoints/*": "./lib/breakpoints",
+    "./breakpoints/media-queries": "./lib/breakpoints/_media-queries.scss",
     "./disclosure-manager": "./lib/disclosure-manager/index.js",
     "./disclosure-manager/*": "./lib/disclosure-manager",
     "./modal-manager": "./lib/modal-manager/index.js",
@@ -57,6 +58,8 @@
     "./theme/*": "./lib/theme",
     "./utils": "./lib/utils/index.js",
     "./utils/*": "./lib/utils",
+    "./utils/logger": "./lib/utils/logger/index.js",
+    "./utils/event-emitter": "./lib/utils/event-emitter/index.js",
     "./workspace": "./lib/workspace/index.js",
     "./workspace/*": "./lib/workspace",
     "./package.json": "./package.json"

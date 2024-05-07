@@ -177,4 +177,49 @@ describe('SitePlugin', () => {
     // This is not called because one time setup has already been executed.
     expect(webpack.DefinePlugin).not.toHaveBeenCalled();
   });
+
+  it.only('does not use the internal resolver plugin if useDefaultWebpackResolver is true', () => {
+    const config = {
+      pathPrefix: 'pathPrefix',
+      titleConfig: { title: 'title' },
+      sourceFolder: 'src',
+      distributionFolder: 'lib',
+      defaultDirection: 'rtl',
+      faviconFilePath: 'favicon',
+      headHtml: [],
+      excludeChunks: [],
+      contentConfig: 'content',
+      useDefaultWebpackResolver: true,
+    };
+    const siteConfig = {
+      config,
+      entry: 'entry',
+    };
+    const plug = new SitePlugin(siteConfig);
+
+    const compiler = {
+      options: {
+        output: {},
+        module: {
+          rules: [],
+        },
+        resolve: {},
+        resolveLoader: {},
+        devServer: {},
+        entry: {},
+      },
+      hooks: {
+        afterPlugins: {
+          tap: jest.fn(),
+        },
+        done: {
+          tap: jest.fn(),
+        },
+      },
+    };
+
+    plug.apply(compiler);
+
+    expect(compiler.options.resolve.plugins[1]).not.toBeDefined();
+  });
 });

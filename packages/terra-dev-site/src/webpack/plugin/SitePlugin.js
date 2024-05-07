@@ -9,7 +9,7 @@ const chalk = require('chalk');
 // const http = require('http');
 
 const DirectorySwitcherPlugin = require('./resolve/DirectorySwitcherPlugin');
-// const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
+const LocalPackageAliasPlugin = require('./resolve/LocalPackageAliasPlugin');
 const { babelLoader, getMdxLoader } = require('./siteLoaderUtils');
 const getNewRelicJS = require('../new-relic/getNewRelicJS');
 
@@ -35,7 +35,6 @@ class SitePlugin {
 
     this.siteConfig2 = config;
     this.siteConfig = config;
-
 
     const { pathPrefix, titleConfig } = this.siteConfig;
     this.entry = entry;

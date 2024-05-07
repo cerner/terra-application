@@ -9,7 +9,7 @@ const chalk = require('chalk');
 // const http = require('http');
 
 const DirectorySwitcherPlugin = require('./resolve/DirectorySwitcherPlugin');
-// const LocalPackageAliasPlugin = require('./resolve/LocalPackageAliasPlugin');
+const LocalPackageAliasPlugin = require('./resolve/LocalPackageAliasPlugin');
 // const LocalSubpathExportsResolverPlugin = require('./resolve/LocalSubpathExportsResolverPlugin');
 const { babelLoader, getMdxLoader } = require('./siteLoaderUtils');
 const getNewRelicJS = require('../new-relic/getNewRelicJS');
@@ -29,12 +29,17 @@ const urlQueue = [];
  * Updates the webpack options with defaults that terra-dev-site requires.
  */
 class SitePlugin {
-  constructor({
-    entry,
-    config,
-  }) {
+
+  static siteConfig2 = {};
+
+  constructor({ entry, config }) {
     // Apply defaults to the config.
+
+    this.siteConfig2 = config;
     this.siteConfig = config;
+
+    console.log(this.siteConfig2.disableDefaultResolver);
+
     const { pathPrefix, titleConfig } = this.siteConfig;
     this.entry = entry;
 
@@ -68,6 +73,7 @@ class SitePlugin {
     distributionFolder,
     basename,
     isWebpack5,
+    disableDefaultResolver
   }) {
     if (oneTimeSetupComplete) {
       return;
@@ -86,6 +92,8 @@ class SitePlugin {
       ...isLernaMonoRepo ? [path.resolve(processPath, 'packages', '*')] : [processPath],
     ];
 
+    console.log("static", disableDefaultResolver);
+
     let webpackConfig = {
       entry: {
         rewriteHistory: '@cerner/terra-dev-site/lib/browser-router-redirect/rewriteHistory',
@@ -97,10 +105,7 @@ class SitePlugin {
           // Only the first loader will apply and no others.
           oneOf: [{
             test: /\.mdx$/,
-            use: [
-              babelLoader,
-              mdxLoader,
-            ],
+            use: [ babelLoader, mdxLoader ],
           }, {
             test: /\.md$/,
             oneOf: [
@@ -135,19 +140,13 @@ class SitePlugin {
             ],
           }, {
             resourceQuery: '?dev-site-example',
-            use: [
-              babelLoader,
-              'devSiteExample',
-            ],
+            use: [ babelLoader, 'devSiteExample' ],
           }, {
             test: /\.json$/,
             // this bypasses the default json loader
             type: 'javascript/auto',
             resourceQuery: '?dev-site-package',
-            use: [
-              babelLoader,
-              'devSitePackage',
-            ],
+            use: [ babelLoader, 'devSitePackage' ],
           }, {
             resourceQuery: '?dev-site-props-table',
             use: [
@@ -188,9 +187,10 @@ class SitePlugin {
               }),
             ]
             : [],
-          //   new LocalSubpathExportsResolverPlugin({rootDirectories}),
-          // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
-          // new LocalPackageAliasPlugin({rootDirectories}),
+            // ...(this.siteConfig2.disableDefaultResolver? [] : [new LocalSubpathExportsResolverPlugin({rootDirectories})]),
+            
+            // // Alias the local package to allow imports to reference the file as if it was imported from node modules.
+            ...(disableDefaultResolver? [] : [new LocalPackageAliasPlugin({rootDirectories})]),
         ],
       },
       // add the path to search for dev site loaders
@@ -269,7 +269,7 @@ class SitePlugin {
     // Strip the trailing / from the public path.
     let basename = publicPath.slice(0, -1);
 
-    const { sourceFolder, distributionFolder } = this.siteConfig;
+    const { sourceFolder, distributionFolder, disableDefaultResolver } = this.siteConfig;
 
     // Since there can be multiple dev site plugins this config we only want to do once for all of them.
     SitePlugin.applyOneTimeSetup({
@@ -278,6 +278,7 @@ class SitePlugin {
       distributionFolder,
       basename,
       isWebpack5,
+      disableDefaultResolver
     });
 
     // Get the list of apps excluding this current app.

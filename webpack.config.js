@@ -6,15 +6,20 @@ const TerraDevSite = require('./packages/terra-dev-site/src/webpack/plugin/Terra
 
 const html = fs.readFileSync(require.resolve('./tests/terra-dev-site/head.html'), 'utf8');
 
+
+// WebpackConfigTerra.plugins;
+
 const devSiteConfig = (env = {}, argv = { p: false }) => ({
   // temporary fix to enable live reloading.
   target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',
   plugins: [
     new TerraDevSite({
+      disableDefaultResolver: true,
       defaultLocale: env.defaultLocale,
       excludeChunks: ['terra-application-test/index'],
     }),
     new TerraDevSite({
+      disableDefaultResolver: true,
       pathPrefix: 'extended',
       contentDirectory: 'dev-site-extended-test',
       primaryNavigationItems: [{
@@ -85,9 +90,6 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
     alias: {
       'terra-application/package.json': path.resolve(__dirname, 'packages', 'terra-application', 'package.json')
     },
-    modules: [path.resolve(__dirname, 'packages'), 'node_modules'],
-    exportsFields: ['exports'],
-    mainFiles: ['index'],
     extensions: ['.jst', '.jsx', '.js'],
   },
 });

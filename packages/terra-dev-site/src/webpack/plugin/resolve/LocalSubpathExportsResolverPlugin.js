@@ -5,10 +5,9 @@ const glob = require('glob');
 const fs = require('fs');
 const AliasPlugin = require('enhanced-resolve/lib/AliasPlugin');
 /**
- * Setup aliases for any packages found in the root directory globs.
- * This aliases the package name for the folder the package name resides in.
- * This allows for importing the package as if it was in the node modules folder.
- * {packageName: pathToFolder}
+ * Setup aliases for any subpaths found in a package.json exports field for a package.
+ * This aliases the subpath to the folder defined in the exports field.
+ * {subPath: pathToFolder}
  */
 class LocalSubpathExportsResolverPlugin {
   constructor({ rootDirectories = [process.cwd()] } = {}) {

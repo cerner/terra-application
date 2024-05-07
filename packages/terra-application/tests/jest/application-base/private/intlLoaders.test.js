@@ -5,7 +5,7 @@ import { Logger } from '../../../../src/utils';
 
 jest.mock('intl-locales-supported');
 jest.mock('../../../../src/application-base/private/loadLocaleData');
-jest.mock('../../../../src/utils/Logger', () => ({
+jest.mock('../../../../src/utils/logger', () => ({
   warn: jest.fn(),
 }));
 

@@ -1,1 +1,1 @@
-export { default as ThemeContext, themeContextShape } from 'terra-theme-context';
+export { ThemeContext, themeContextShape } from 'terra-theme-context';

@@ -4,7 +4,7 @@
 
 * Breaking Changes:
   * Added subpath exports for terra-application submodules. This replaces the old exports that utilize the exact path.
-  * Removed default import. `ApplicationBase` will now need to be imported from `terra-application/application-base`.
+  * Removed default `ApplicationBase` import. `ApplicationBase` will now need to be imported from `terra-application/application-base`.
 
 * Changed
   * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.

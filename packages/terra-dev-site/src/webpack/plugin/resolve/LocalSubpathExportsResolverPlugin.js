@@ -1,5 +1,9 @@
 /* eslint-disable no-restricted-syntax, no-continue */
 
+// Note: This is a work-in-progress experimental plugin to resolve entries in the "exports" field
+// in the "exports" field of a package.json. However, it may not be needed with the "useDefaultWebpackResolver" config option.
+// This plugin may be deleted in the future if it's no longer needed.
+
 const path = require('path');
 const glob = require('glob');
 const fs = require('fs');

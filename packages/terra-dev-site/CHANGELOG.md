@@ -2,20 +2,22 @@
 
 ## Unreleased
 
-* Added
-  * Added new config option `useDefaultWebpackResolver` to utilize the built-in webpack path resolver instead of the custom resolver. 
+## 8.2.0 - (May 8, 2024)
 
-* Changed
+* Breaking Changes
   * Dropped support for Node 10 & 12. Node 14 is now the minimum required version.
   * Dropped support for `enhanced-resolve v4` as a dependency.
   * Dropped support for `webpack v4` as a peerDependency.
+
+* Added
+  * Added new config option `useDefaultWebpackResolver` to utilize the built-in webpack path resolver instead of the custom resolver. 
 
 * The following changes from v7 are added:
   * Fixed clipping issue of test pages on dev-site.
   * Fixed scroll issue of doc pages with longer content.
   * Locked `uuid` dependency to `3.4.0`.
-  * Updated jest snapshot for terra-icon and terra-button changes.
-  * Updated wdio snapshot to fix build.
+
+*Note: Some of the changes in this release are considered breaking changes. However, these changes are passive in nature as terra-dev-site v8.x has not been deployed to production yet.*
 
 ## 8.1.0 - (June 22, 2022)
 

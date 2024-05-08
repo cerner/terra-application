@@ -2,12 +2,14 @@
 
 ## Unreleased
 
+## 2.2.0 - (May 8, 2024)
+
 * Breaking Changes:
   * Added subpath exports for terra-application submodules. This replaces the old exports that utilize the exact path.
   * Removed default `ApplicationBase` import. `ApplicationBase` will now need to be imported from `terra-application/application-base`.
+  * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.
 
 * Changed
-  * Dropped support for Node 8, 10 & 12. Node 14 is now the minimum required version.
   * Locked `intl-locales-supported` to `1.8.11`.
   * Updated size explanations for ModalManager managed by DisclosureManagerContext.
 
@@ -16,8 +18,8 @@
   * Added user action utility button.
   * Locked `uuid` dependency to `3.4.0`.
   * Updated `getBrowserLocale` method for IE.
-  * Updated jest snapshots for terra-icon and terra-button changes.
-  * Updated size explanations for ModalManager managed by DisclosureManagerContext.
+
+*Note: Some of the changes in this release are considered breaking changes. However, these changes are passive in nature as terra-application v2.x has not been deployed to production yet.*
 
 ## 2.1.0 - (June 22, 2022)
 

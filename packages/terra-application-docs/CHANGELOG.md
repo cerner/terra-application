@@ -2,9 +2,13 @@
 
 ## Unreleased
 
+## 3.2.0 - (May 8, 2024)
+
 * Changed
   * Set minimum Node version to 14.
   * Updated docs to utilize the new terra-application imports.
+
+*Note: Some of the changes in this release are considered breaking changes. However, these changes are passive in nature as terra-application-docs v3.x has not been deployed to production yet.*
 
 ## 3.1.0 - (June 22, 2022)
 

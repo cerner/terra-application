@@ -6,7 +6,7 @@ that can be used to detect and respond to breakpoint changes.
 ## Usage
 
 ```jsx
-import breakpoints, { activeBreakpointForSize, breakpointIsActiveForSize } from 'terra-application/lib/breakpoints';
+import breakpoints, { activeBreakpointForSize, breakpointIsActiveForSize } from 'terra-application/breakpoints';
 ```
 
 ### `breakpoints`
@@ -64,7 +64,7 @@ console.log(breakpointIsActiveForSize('enormous', 1500)); // true
 `terra-application` also provides a set of Sass mix-ins that define media queries for the supported breakpoints.
 
 ```scss
-@import '~terra-application/lib/breakpoints/media-queries';
+@import '~terra-application/breakpoints/media-queries';
 
 .example {
   color: blue;

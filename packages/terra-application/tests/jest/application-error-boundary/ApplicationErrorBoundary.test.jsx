@@ -1,6 +1,6 @@
 import React from 'react';
 import ApplicationErrorBoundary from '../../../src/application-error-boundary/ApplicationErrorBoundary';
-import Logger from '../../../src/utils/logger';
+import { Logger } from '../../../src/utils';
 
 describe('ApplicationErrorBoundary', () => {
   describe('Snapshots', () => {

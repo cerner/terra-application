@@ -11,10 +11,12 @@ const devSiteConfig = (env = {}, argv = { p: false }) => ({
   target: argv.p || argv.mode === 'production' ? 'browserslist' : 'web',
   plugins: [
     new TerraDevSite({
+      useDefaultWebpackResolver: true,
       defaultLocale: env.defaultLocale,
       excludeChunks: ['terra-application-test/index'],
     }),
     new TerraDevSite({
+      useDefaultWebpackResolver: true,
       pathPrefix: 'extended',
       contentDirectory: 'dev-site-extended-test',
       primaryNavigationItems: [{

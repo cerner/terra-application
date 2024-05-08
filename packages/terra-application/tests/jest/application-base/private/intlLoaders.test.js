@@ -1,7 +1,7 @@
 import hasIntlData from 'intl-locales-supported';
 import * as loadLocaleData from '../../../../src/application-base/private/loadLocaleData';
 import loadIntl from '../../../../src/application-base/private/intlLoaders';
-import logger from '../../../../src/utils/logger';
+import { Logger } from '../../../../src/utils';
 
 jest.mock('intl-locales-supported');
 jest.mock('../../../../src/application-base/private/loadLocaleData');
@@ -26,7 +26,7 @@ describe('intlLoaders', () => {
 
   describe('dev environment', () => {
     beforeEach(() => {
-      logger.warn.mockClear();
+      Logger.warn.mockClear();
     });
 
     it('logs a warning when the regional locale is not provided and locale fallback is used', () => {
@@ -38,7 +38,7 @@ describe('intlLoaders', () => {
       });
       expect.assertions(4);
       return loadIntl('es-US', 'intl').then(() => {
-        expect(logger.warn).toBeCalledWith('Locale data was not supplied for the es-US locale. Using es data as the fallback locale data.');
+        expect(Logger.warn).toBeCalledWith('Locale data was not supplied for the es-US locale. Using es data as the fallback locale data.');
         expect(loadLocaleData.default).toHaveBeenCalledTimes(2);
         expect(loadLocaleData.default).toHaveBeenNthCalledWith(2, 'es', 'intl');
         expect(loadLocaleData.default).not.toHaveBeenCalledWith('en', 'intl');
@@ -54,7 +54,7 @@ describe('intlLoaders', () => {
       });
       expect.assertions(3);
       return loadIntl('es', 'intl').then(() => {
-        expect(logger.warn).toBeCalledWith('Locale data was not supplied for the es locale. Using en data as the fallback locale data.');
+        expect(Logger.warn).toBeCalledWith('Locale data was not supplied for the es locale. Using en data as the fallback locale data.');
         expect(loadLocaleData.default).toHaveBeenCalledTimes(2);
         expect(loadLocaleData.default).toHaveBeenNthCalledWith(2, 'en', 'intl');
       });
@@ -72,8 +72,8 @@ describe('intlLoaders', () => {
       });
       expect.assertions(4);
       return loadIntl('es-US', 'intl').then(() => {
-        expect(logger.warn).toBeCalledWith('Locale data was not supplied for the es-US locale. Using es data as the fallback locale data.');
-        expect(logger.warn).toBeCalledWith('Locale data was not supplied for the es locale. Using en data as the fallback locale data.');
+        expect(Logger.warn).toBeCalledWith('Locale data was not supplied for the es-US locale. Using es data as the fallback locale data.');
+        expect(Logger.warn).toBeCalledWith('Locale data was not supplied for the es locale. Using en data as the fallback locale data.');
         expect(loadLocaleData.default).toHaveBeenCalledTimes(3);
         expect(loadLocaleData.default).toHaveBeenNthCalledWith(3, 'en', 'intl');
       });
@@ -93,7 +93,7 @@ describe('intlLoaders', () => {
   describe('production environment', () => {
     beforeEach(() => {
       process.env.NODE_ENV = 'production';
-      logger.warn.mockClear();
+      Logger.warn.mockClear();
     });
 
     afterEach(() => {

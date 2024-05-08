@@ -8,10 +8,10 @@ import IconAdd from 'terra-icon/lib/icon/IconAdd';
 import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
 import Toolbar from 'terra-toolbar';
 
-import ApplicationNavigation from 'terra-application/lib/application-navigation';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+import ApplicationNavigation from 'terra-application/application-navigation';
+import { DisclosureManagerContext } from 'terra-application/disclosure-manager';
+import { WorkspaceContent } from 'terra-application/workspace';
+import NotificationBanner from 'terra-application/notification-banner';
 
 import { ModalContent } from './ModalPresenter';
 

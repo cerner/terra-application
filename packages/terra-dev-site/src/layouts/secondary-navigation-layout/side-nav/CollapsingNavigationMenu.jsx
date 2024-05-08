@@ -4,7 +4,7 @@ import React, {
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import * as KeyCode from 'keycode-js';
-import { ThemeContext } from 'terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/theme';
 
 import CollapsingNavigationMenuItem from './CollapsingNavigationMenuItem';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-import { activeBreakpointForSize } from 'terra-application/lib/breakpoints';
+import { activeBreakpointForSize } from 'terra-application/breakpoints';
 
 /**
  * Takes the given rect value and translates it into the shape desired by the useElementSize hook.

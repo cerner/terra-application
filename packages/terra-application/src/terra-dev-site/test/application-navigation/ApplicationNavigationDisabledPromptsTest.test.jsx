@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/theme';
 import { useIntl } from 'react-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';

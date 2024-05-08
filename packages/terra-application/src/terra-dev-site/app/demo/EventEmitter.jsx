@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import EventEmitter from 'terra-application/lib/utils/event-emitter';
+import { EventEmitter } from 'terra-application/utils';
 
 const EventEmitterExample = () => {
   const [counter, setCounter] = useState(0);

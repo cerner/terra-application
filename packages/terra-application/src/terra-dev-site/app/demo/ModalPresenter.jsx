@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 
 import Scroll from 'terra-scroll';
-import { ActiveBreakpointContext } from 'terra-application/lib/breakpoints';
-import ApplicationLoadingOverlay from 'terra-application/lib/application-loading-overlay';
+import { ActiveBreakpointContext } from 'terra-application/breakpoints';
+import ApplicationLoadingOverlay from 'terra-application/application-loading-overlay';
 import { useIntl } from 'react-intl';
-import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext, DisclosureManagerHeaderAdapter } from 'terra-application/disclosure-manager';
 
 import PendingActionToggle from './PendingActionToggle';
 import styles from './ModalPresenter.module.scss';

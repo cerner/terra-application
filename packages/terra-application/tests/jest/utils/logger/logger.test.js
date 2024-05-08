@@ -1,4 +1,4 @@
-import Logger, { initializeLogger } from '../../../../src/utils/logger';
+import { Logger, initializeLogger } from '../../../../src/utils';
 
 /* eslint-disable no-console */
 describe('Logger', () => {

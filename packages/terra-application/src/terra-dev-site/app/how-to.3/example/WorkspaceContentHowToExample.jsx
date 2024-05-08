@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import classNames from 'classnames/bind';
 import ApplicationNavigation, {
   ApplicationNavigationActionsContext,
-} from 'terra-application/lib/application-navigation';
-import { WorkspaceContent, WorkspaceContext } from 'terra-application/lib/workspace';
-import NotificationBanner from 'terra-application/lib/notification-banner';
+} from 'terra-application/application-navigation';
+import { WorkspaceContent, WorkspaceContext } from 'terra-application/workspace';
+import NotificationBanner from 'terra-application/notification-banner';
 import Button from 'terra-button';
 import Toolbar from 'terra-toolbar';
 

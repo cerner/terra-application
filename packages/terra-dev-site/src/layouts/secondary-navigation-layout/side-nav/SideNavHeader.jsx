@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import Button, { ButtonVariants } from 'terra-button';
 import IconLeft from 'terra-icon/lib/icon/IconLeft';
-import { ThemeContext } from 'terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/theme';
 import { useIntl } from 'react-intl';
 
 import styles from './SideNavHeader.module.scss';

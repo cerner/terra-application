@@ -1,7 +1,8 @@
 /* eslint-disable */
 import React from 'react';
-import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 import { Placeholder } from '@cerner/terra-docs';
+
+import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 
 const hero = <Placeholder title="Test Hero" />;
 

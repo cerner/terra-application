@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ApplicationErrorBoundary from '../../../../lib/application-error-boundary/ApplicationErrorBoundary';
+import ApplicationErrorBoundary from '../../../application-error-boundary';
 
 const ErrorComponent = () => {
   const [throwError, setThrowError] = useState(false);

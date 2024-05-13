@@ -1,14 +1,15 @@
-import React, {
-  useState,
-} from 'react';
-import IconSearch from 'terra-icon/lib/icon/IconSearch';
-import IconManufacturer from 'terra-icon/lib/icon/IconManufacturer';
-import IconVisualization from 'terra-icon/lib/icon/IconVisualization';
-import IconScratchPad from 'terra-icon/lib/icon/IconScratchPad';
-import IconSave from 'terra-icon/lib/icon/IconSave';
-import IconPrinter from 'terra-icon/lib/icon/IconPrinter';
-import IconBookmark from 'terra-icon/lib/icon/IconBookmark';
-import IconAttachment from 'terra-icon/lib/icon/IconAttachment';
+import React, { useState } from 'react';
+import {
+IconSearch,
+IconManufacturer,
+IconVisualization,
+IconScratchPad,
+IconSave,
+IconPrinter,
+IconBookmark,
+IconAttachment,
+} from 'terra-icon';
+
 import PageContent from '../common/PageContent';
 import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 

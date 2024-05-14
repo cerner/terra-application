@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationStatusOverlay, {ApplicationStatusOverlayProvider} from '../../../application-status-overlay';
+import ApplicationStatusOverlay, { ApplicationStatusOverlayProvider } from '../../../application-status-overlay';
 
 const ApplicationStatusOverlayAllProps = () => {
   const StatusViewButtons = [

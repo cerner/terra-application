@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ApplicationStatusOverlay, {ApplicationStatusOverlayProvider} from '../../../../lib/application-status-overlay';
+import ApplicationStatusOverlay, { ApplicationStatusOverlayProvider } from '../../../../lib/application-status-overlay';
 
 const ApplicationStatusOverlayVariant = () => {
   const [variantType1, setVariantType1] = useState('error');

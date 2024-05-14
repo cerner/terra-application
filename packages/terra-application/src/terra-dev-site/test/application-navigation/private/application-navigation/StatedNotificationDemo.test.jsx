@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import {
-IconSearch,
-IconManufacturer,
-IconVisualization,
-IconScratchPad,
-IconSave,
-IconPrinter,
-IconBookmark,
-IconAttachment,
+  IconSearch,
+  IconManufacturer,
+  IconVisualization,
+  IconScratchPad,
+  IconSave,
+  IconPrinter,
+  IconBookmark,
+  IconAttachment,
 } from 'terra-icon';
 
 import PageContent from '../common/PageContent';

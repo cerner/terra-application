@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classNames from 'classnames/bind';
-import ApplicationLoadingOverlay, {ApplicationLoadingOverlayProvider} from 'terra-application/application-loading-overlay';
+import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from 'terra-application/application-loading-overlay';
 
 import styles from './ApplicationErrorBoundaryExample.module.scss';
 

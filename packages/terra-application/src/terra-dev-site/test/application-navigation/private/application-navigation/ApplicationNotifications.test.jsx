@@ -1,5 +1,7 @@
 import React from 'react';
-import {IconSearch, IconPill, IconVisualization, IconLightbulb} from 'terra-icon';
+import {
+  IconSearch, IconPill, IconVisualization, IconLightbulb,
+} from 'terra-icon';
 import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 
 const titleConfig = {

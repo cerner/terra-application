@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { IconLightbulb, IconPill, IconSearch, IconVisualization } from 'terra-icon';
+import {
+  IconLightbulb, IconPill, IconSearch, IconVisualization,
+} from 'terra-icon';
 
 import ApplicationNavigation from '../../../../../application-navigation/private/ApplicationNavigation';
 

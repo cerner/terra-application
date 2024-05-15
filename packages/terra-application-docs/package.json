@@ -29,6 +29,12 @@
     "lib",
     "src"
   ],
+  "peerDependencies": {
+    "react": "16",
+    "react-dom": "16",
+    "react-intl": "5",
+    "terra-application": "2"
+  },
   "dependencies": {
     "@cerner/terra-dev-site": "^8.2.0",
     "@cerner/terra-docs": "1",
@@ -40,12 +46,6 @@
     "terra-icon": "3",
     "terra-mixins": "1",
     "terra-toolbar": "1"
-  },
-  "peerDependencies": {
-    "react": "16",
-    "react-dom": "16",
-    "react-intl": "5",
-    "terra-application": "2"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

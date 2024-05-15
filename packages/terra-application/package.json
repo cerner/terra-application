@@ -60,6 +60,11 @@
     "src",
     "translations"
   ],
+  "peerDependencies": {
+    "react": "16",
+    "react-dom": "16",
+    "react-intl": "5"
+  },
   "dependencies": {
     "@cerner/terra-docs": "1",
     "@formatjs/intl-relativetimeformat": "8",
@@ -99,11 +104,6 @@
     "terra-visually-hidden-text": "2",
     "uuid": "3.4.0",
     "wicg-inert": "3.1.2"
-  },
-  "peerDependencies": {
-    "react": "16",
-    "react-dom": "16",
-    "react-intl": "5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

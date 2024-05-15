@@ -31,6 +31,12 @@
     "src",
     "translations"
   ],
+  "peerDependencies": {
+    "react": "16",
+    "react-dom": "16",
+    "terra-application": "2",
+    "webpack": "5"
+  },
   "dependencies": {
     "@cerner/terra-polyfill": "^1.4.0",
     "@jsdevtools/rehype-url-inspector": "2",
@@ -70,12 +76,6 @@
     "terra-search-field": "3",
     "terra-status-view": "4",
     "uuid": "3.4.0"
-  },
-  "peerDependencies": {
-    "react": "16",
-    "react-dom": "16",
-    "terra-application": "2",
-    "webpack": "5"
   },
   "scripts": {
     "compile": "babel --root-mode upward src --out-dir lib --copy-files",

@@ -22,8 +22,8 @@
     "packages/*"
   ],
   "engines": {
-    "node": "10 || 12 || 14",
-    "npm": "6 || 9"
+    "node": "14",
+    "npm": "9"
   },
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
@@ -31,12 +31,6 @@
   "package-json-lint": {
     "extends": "@cerner/package-json-lint-config-terra/package-json-lint.config.js",
     "projectType": "module"
-  },
-  "stylelint": {
-    "extends": "@cerner/stylelint-config-terra",
-    "rules": {
-      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
-    }
   },
   "peerDependencies": {
     "react": "16",

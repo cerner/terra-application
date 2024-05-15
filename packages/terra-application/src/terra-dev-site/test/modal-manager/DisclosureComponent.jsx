@@ -4,13 +4,13 @@ import classNames from 'classnames/bind';
 import CollapsibleMenuView from 'terra-collapsible-menu-view';
 import ContentContainer from 'terra-content-container';
 import {
+  DisclosureManagerHeaderAdapter,
   availableDisclosureHeights,
   availableDisclosureWidths,
-  withDisclosureManager,
-  disclosureManagerShape,
-  DisclosureManagerHeaderAdapter,
   closeMostRecentDisclosure,
+  disclosureManagerShape,
   getActiveDisclosureCount,
+  withDisclosureManager,
 } from '../../../disclosure-manager';
 import NavigationPrompt from '../../../navigation-prompt';
 import ApplicationLoadingOverlay from '../../../application-loading-overlay';

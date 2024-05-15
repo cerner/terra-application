@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Changed
+  * Moved docs from the `terra-application` package.
+
 ## 3.2.0 - (May 8, 2024)
 
 * Changed

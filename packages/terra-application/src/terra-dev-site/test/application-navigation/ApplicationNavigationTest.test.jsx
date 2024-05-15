@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from 'terra-application/theme';
-import ApplicationNavigation, {
-  ApplicationNavigationActionsContext,
-} from 'terra-application/application-navigation';
+import ApplicationNavigation, { ApplicationNavigationActionsContext } from 'terra-application/application-navigation';
 import { useIntl } from 'react-intl';
 import { WorkspaceContent } from '../../../workspace';
 import ApplicationBase from '../../../application-base';

@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import ApplicationLoadingOverlay from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlay';
-import ApplicationLoadingOverlayProvider from '../../../../lib/application-loading-overlay/ApplicationLoadingOverlayProvider';
+import ApplicationLoadingOverlay, { ApplicationLoadingOverlayProvider } from '../../../application-loading-overlay';
 
 const ApplicationLoadingOverlayTest = () => {
   const [showClearOverlay, setShowClearOverlay] = useState(false);

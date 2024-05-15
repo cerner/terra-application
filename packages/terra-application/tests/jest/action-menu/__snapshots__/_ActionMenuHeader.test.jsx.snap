@@ -3,9 +3,9 @@
 exports[`ActionMenuHeader should render with all props 1`] = `
 <ActionMenuHeader
   intl={
-    Object {
+    {
       "$t": [Function],
-      "defaultFormats": Object {},
+      "defaultFormats": {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
       "fallbackOnEmptyString": true,
@@ -22,8 +22,8 @@ exports[`ActionMenuHeader should render with all props 1`] = `
       "formatRelativeTime": [Function],
       "formatTime": [Function],
       "formatTimeToParts": [Function],
-      "formats": Object {},
-      "formatters": Object {
+      "formats": {},
+      "formatters": {
         "getDateTimeFormat": [Function],
         "getDisplayNames": [Function],
         "getListFormat": [Function],
@@ -49,9 +49,9 @@ exports[`ActionMenuHeader should render with all props 1`] = `
 exports[`ActionMenuHeader should render with minimal props 1`] = `
 <ActionMenuHeader
   intl={
-    Object {
+    {
       "$t": [Function],
-      "defaultFormats": Object {},
+      "defaultFormats": {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
       "fallbackOnEmptyString": true,
@@ -68,8 +68,8 @@ exports[`ActionMenuHeader should render with minimal props 1`] = `
       "formatRelativeTime": [Function],
       "formatTime": [Function],
       "formatTimeToParts": [Function],
-      "formats": Object {},
-      "formatters": Object {
+      "formats": {},
+      "formatters": {
         "getDateTimeFormat": [Function],
         "getDisplayNames": [Function],
         "getListFormat": [Function],

@@ -3,12 +3,12 @@
 exports[`ApplicationStatusOverlay should honor buttonAttrs prop 1`] = `
 <ApplicationStatusOverlay
   buttonAttrs={
-    Array [
-      Object {
+    [
+      {
         "key": 1,
         "text": "Action 1",
       },
-      Object {
+      {
         "key": 2,
         "text": "Action 2",
       },
@@ -20,8 +20,8 @@ exports[`ApplicationStatusOverlay should honor buttonAttrs prop 1`] = `
 exports[`ApplicationStatusOverlay should honor buttonAttrs prop 2`] = `
 <ApplicationStatusOverlay
   buttonAttrs={
-    Array [
-      Object {
+    [
+      {
         "key": 3,
         "text": "Action 3",
       },
@@ -32,49 +32,49 @@ exports[`ApplicationStatusOverlay should honor buttonAttrs prop 2`] = `
 
 exports[`ApplicationStatusOverlay should honor message prop 1`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   message="First message"
 />
 `;
 
 exports[`ApplicationStatusOverlay should honor message prop 2`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   message="Second message"
 />
 `;
 
 exports[`ApplicationStatusOverlay should honor variant prop 1`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   variant="no-data"
 />
 `;
 
 exports[`ApplicationStatusOverlay should honor variant prop 2`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   variant="no-matching-results"
 />
 `;
 
 exports[`ApplicationStatusOverlay should honor variant prop 3`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   variant="not-authorized"
 />
 `;
 
 exports[`ApplicationStatusOverlay should honor variant prop 4`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   variant="error"
 />
 `;
 
 exports[`ApplicationStatusOverlay should redisplay status view with new props 1`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
   message="Error status view"
   variant="error"
 />
@@ -83,12 +83,12 @@ exports[`ApplicationStatusOverlay should redisplay status view with new props 1`
 exports[`ApplicationStatusOverlay should render status view with the specified data 1`] = `
 <ApplicationStatusOverlay
   buttonAttrs={
-    Array [
-      Object {
+    [
+      {
         "key": 1,
         "text": "Action 1",
       },
-      Object {
+      {
         "key": 2,
         "text": "Action 2",
       },
@@ -101,6 +101,6 @@ exports[`ApplicationStatusOverlay should render status view with the specified d
 
 exports[`ApplicationStatusOverlay should render status view without any data 1`] = `
 <ApplicationStatusOverlay
-  buttonAttrs={Array []}
+  buttonAttrs={[]}
 />
 `;

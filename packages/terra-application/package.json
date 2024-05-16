@@ -41,10 +41,6 @@
     "./theme": "./lib/theme/index.js",
     "./utils": "./lib/utils/index.js",
     "./workspace": "./lib/workspace/index.js",
-    "./utils/event-emitter": "./lib/utils/event-emitter/index.js",
-    "./utils/logger": "./lib/utils/logger/index.js",
-    "./package.json": "./package.json",
-    "./*": "./*",
     "./application-base/*": "./lib/application-base/*",
     "./application-error-boundary/*": "./lib/application-error-boundary/*",
     "./application-loading-overlay/*": "./lib/application-loading-overlay/*",
@@ -53,7 +49,8 @@
     "./breakpoints/*": "./lib/breakpoints/*",
     "./modal-manager/*": "./lib/modal-manager/*",
     "./slide-panel-manager/*": "./lib/slide-panel-manager/*",
-    "./workspace/*": "./lib/workspace/*"
+    "./workspace/*": "./lib/workspace/*",
+    "./*": "./*"
   },
   "files": [
     "lib",

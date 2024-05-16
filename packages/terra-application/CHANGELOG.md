@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Fixed
+  * Fixed import error.
+
 ## 2.2.0 - (May 8, 2024)
 
 * Breaking Changes:

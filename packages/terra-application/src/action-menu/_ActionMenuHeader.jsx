@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
-import { injectIntl, intlShape } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import ThemeContext from 'terra-theme-context';
 import Button from 'terra-button';
-import IconClose from 'terra-icon/lib/icon/IconClose';
+import { IconClose } from 'terra-icon';
 
 import styles from './ActionMenuHeader.module.scss';
 
@@ -23,7 +23,7 @@ const propTypes = {
   /**
    * @private
    */
-  intl: intlShape,
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 const ActionMenuHeader = ({

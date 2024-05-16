@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+* Added
+  * Added upgrade guide for terra-application v2.
+
 * Changed
   * Moved docs from the `terra-application` package.
 

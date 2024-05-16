@@ -3,10 +3,10 @@
 exports[`ApplicationNavigation correctly applies the theme context className 1`] = `
 <MockApplication>
   <IntlProvider
-    defaultFormats={Object {}}
+    defaultFormats={{}}
     defaultLocale="en"
     fallbackOnEmptyString={true}
-    formats={Object {}}
+    formats={{}}
     locale="en"
     messages={null}
     onError={[Function]}
@@ -15,14 +15,14 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
   >
     <ThemeContextProvider
       theme={
-        Object {
+        {
           "className": "clinical-lowlight-theme",
         }
       }
     >
       <ApplicationNavigation
-        notifications={Object {}}
-        utilityItems={Array []}
+        notifications={{}}
+        utilityItems={[]}
       >
         <div
           className="application-navigation clinical-lowlight-theme"
@@ -31,7 +31,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
             aria-hidden={true}
             className="drawer-menu-container"
             style={
-              Object {
+              {
                 "display": "none",
               }
             }
@@ -41,7 +41,7 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               active={false}
               className="drawer-menu-focus-trap-container"
               focusTrapOptions={
-                Object {
+                {
                   "clickOutsideDeactivates": true,
                   "escapeDeactivates": true,
                   "returnFocusOnDeactivate": false,
@@ -54,14 +54,14 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
               >
                 <injectIntl(DrawerMenu)
                   menuClosingCallback={[Function]}
-                  notifications={Object {}}
-                  utilityItems={Array []}
+                  notifications={{}}
+                  utilityItems={[]}
                 >
                   <DrawerMenu
                     intl={
-                      Object {
+                      {
                         "$t": [Function],
-                        "defaultFormats": Object {},
+                        "defaultFormats": {},
                         "defaultLocale": "en",
                         "defaultRichTextElements": undefined,
                         "fallbackOnEmptyString": true,
@@ -78,8 +78,8 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                         "formatRelativeTime": [Function],
                         "formatTime": [Function],
                         "formatTimeToParts": [Function],
-                        "formats": Object {},
-                        "formatters": Object {
+                        "formats": {},
+                        "formatters": {
                           "getDateTimeFormat": [Function],
                           "getDisplayNames": [Function],
                           "getListFormat": [Function],
@@ -98,9 +98,9 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                       }
                     }
                     menuClosingCallback={[Function]}
-                    navigationItems={Array []}
-                    notifications={Object {}}
-                    utilityItems={Array []}
+                    navigationItems={[]}
+                    notifications={{}}
+                    utilityItems={[]}
                   >
                     <div
                       className="drawer-container clinical-lowlight-theme"
@@ -135,18 +135,18 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
             <injectIntl(CompactHeader)
               activeBreakpoint="medium"
               isDrawerMenuOpen={false}
-              notifications={Object {}}
+              notifications={{}}
               onSelectMenuButton={[Function]}
               onSelectSkipToContent={[Function]}
-              utilityItems={Array []}
+              utilityItems={[]}
             >
               <CompactHeader
                 activeBreakpoint="medium"
-                extensionItems={Array []}
+                extensionItems={[]}
                 intl={
-                  Object {
+                  {
                     "$t": [Function],
-                    "defaultFormats": Object {},
+                    "defaultFormats": {},
                     "defaultLocale": "en",
                     "defaultRichTextElements": undefined,
                     "fallbackOnEmptyString": true,
@@ -163,8 +163,8 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                     "formatRelativeTime": [Function],
                     "formatTime": [Function],
                     "formatTimeToParts": [Function],
-                    "formats": Object {},
-                    "formatters": Object {
+                    "formats": {},
+                    "formatters": {
                       "getDateTimeFormat": [Function],
                       "getDisplayNames": [Function],
                       "getListFormat": [Function],
@@ -183,11 +183,11 @@ exports[`ApplicationNavigation correctly applies the theme context className 1`]
                   }
                 }
                 isDrawerMenuOpen={false}
-                navigationItems={Array []}
-                notifications={Object {}}
+                navigationItems={[]}
+                notifications={{}}
                 onSelectMenuButton={[Function]}
                 onSelectSkipToContent={[Function]}
-                utilityItems={Array []}
+                utilityItems={[]}
               >
                 <header
                   className="compact-header clinical-lowlight-theme"
@@ -301,7 +301,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
     aria-hidden={true}
     className="drawer-menu-container"
     style={
-      Object {
+      {
         "display": "none",
       }
     }
@@ -310,15 +310,15 @@ exports[`ApplicationNavigation should render default element 1`] = `
     className="content-layout"
   >
     <injectIntl(Header)
-      notifications={Object {}}
+      notifications={{}}
       onSelectSkipToContent={[Function]}
       onSelectUtilityButton={[Function]}
       utilityButtonPopupAnchorRef={
-        Object {
+        {
           "current": undefined,
         }
       }
-      utilityItems={Array []}
+      utilityItems={[]}
     />
     <WorkspaceLayout
       id="undefined-workspace-layout"
@@ -361,7 +361,7 @@ exports[`ApplicationNavigation should render default element 1`] = `
   >
     <injectIntl(UtilityMenu)
       menuClosingCallback={[Function]}
-      utilityItems={Array []}
+      utilityItems={[]}
     />
   </Popup>
 </div>
@@ -375,7 +375,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
     aria-hidden={true}
     className="drawer-menu-container"
     style={
-      Object {
+      {
         "display": "none",
       }
     }
@@ -387,8 +387,8 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
       activeBreakpoint="large"
       activeNavigationItemKey="my-test-key"
       extensionItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,
@@ -403,8 +403,8 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
         </div>
       }
       navigationItems={
-        Array [
-          Object {
+        [
+          {
             "key": "my-test-key",
             "text": "test-text",
           },
@@ -412,7 +412,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
       }
       navigationRenderFunction={[MockFunction]}
       notifications={
-        Object {
+        {
           "my-test-key-1": 3,
         }
       }
@@ -424,12 +424,12 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
       onSelectSkipToContent={[Function]}
       onSelectUtilityButton={[Function]}
       titleConfig={
-        Object {
+        {
           "title": "test-title",
         }
       }
       userConfig={
-        Object {
+        {
           "detail": "user-detail",
           "imageSrc": "user-src",
           "initials": "user-initials",
@@ -437,13 +437,13 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
         }
       }
       utilityButtonPopupAnchorRef={
-        Object {
+        {
           "current": undefined,
         }
       }
       utilityItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,
@@ -513,7 +513,7 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
       onSelectSettings={[Function]}
       onSelectUtilityItem={[Function]}
       userConfig={
-        Object {
+        {
           "detail": "user-detail",
           "imageSrc": "user-src",
           "initials": "user-initials",
@@ -521,8 +521,8 @@ exports[`ApplicationNavigation should render with prop data at large breakpoint 
         }
       }
       utilityItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,
@@ -544,7 +544,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
     aria-hidden={true}
     className="drawer-menu-container"
     style={
-      Object {
+      {
         "display": "none",
       }
     }
@@ -554,7 +554,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       active={false}
       className="drawer-menu-focus-trap-container"
       focusTrapOptions={
-        Object {
+        {
           "clickOutsideDeactivates": true,
           "escapeDeactivates": true,
           "returnFocusOnDeactivate": false,
@@ -574,15 +574,15 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
           }
           menuClosingCallback={[Function]}
           navigationItems={
-            Array [
-              Object {
+            [
+              {
                 "key": "my-test-key",
                 "text": "test-text",
               },
             ]
           }
           notifications={
-            Object {
+            {
               "my-test-key-1": 3,
             }
           }
@@ -592,12 +592,12 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
           onSelectSettings={[Function]}
           onSelectUtilityItem={[Function]}
           titleConfig={
-            Object {
+            {
               "title": "test-title",
             }
           }
           userConfig={
-            Object {
+            {
               "detail": "user-detail",
               "imageSrc": "user-src",
               "initials": "user-initials",
@@ -605,8 +605,8 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
             }
           }
           utilityItems={
-            Array [
-              Object {
+            [
+              {
                 "icon": <span>
                   my icon
                 </span>,
@@ -626,8 +626,8 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       activeBreakpoint="medium"
       activeNavigationItemKey="my-test-key"
       extensionItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,
@@ -643,15 +643,15 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       }
       isDrawerMenuOpen={false}
       navigationItems={
-        Array [
-          Object {
+        [
+          {
             "key": "my-test-key",
             "text": "test-text",
           },
         ]
       }
       notifications={
-        Object {
+        {
           "my-test-key-1": 3,
         }
       }
@@ -664,12 +664,12 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       onSelectSkipToContent={[Function]}
       onSelectUtilityItem={[MockFunction]}
       titleConfig={
-        Object {
+        {
           "title": "test-title",
         }
       }
       userConfig={
-        Object {
+        {
           "detail": "user-detail",
           "imageSrc": "user-src",
           "initials": "user-initials",
@@ -677,8 +677,8 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
         }
       }
       utilityItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,
@@ -748,7 +748,7 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
       onSelectSettings={[Function]}
       onSelectUtilityItem={[Function]}
       userConfig={
-        Object {
+        {
           "detail": "user-detail",
           "imageSrc": "user-src",
           "initials": "user-initials",
@@ -756,8 +756,8 @@ exports[`ApplicationNavigation should render with prop data at medium breakpoint
         }
       }
       utilityItems={
-        Array [
-          Object {
+        [
+          {
             "icon": <span>
               my icon
             </span>,

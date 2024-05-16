@@ -4,9 +4,9 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
 <injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
-      Object {
+      {
         "$t": [Function],
-        "defaultFormats": Object {},
+        "defaultFormats": {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
         "fallbackOnEmptyString": true,
@@ -23,8 +23,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
         "formatRelativeTime": [Function],
         "formatTime": [Function],
         "formatTimeToParts": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
           "getDisplayNames": [Function],
           "getListFormat": [Function],
@@ -54,9 +54,9 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
 <injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
-      Object {
+      {
         "$t": [Function],
-        "defaultFormats": Object {},
+        "defaultFormats": {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
         "fallbackOnEmptyString": true,
@@ -73,8 +73,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
         "formatRelativeTime": [Function],
         "formatTime": [Function],
         "formatTimeToParts": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
           "getDisplayNames": [Function],
           "getListFormat": [Function],
@@ -94,7 +94,7 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
     }
   >
     <StatusView
-      buttonAttrs={Array []}
+      buttonAttrs={[]}
       isAlignedTop={false}
       isGlyphHidden={false}
       message="terraApplication.errorBoundary.defaultErrorMessage"
@@ -156,9 +156,9 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
 <injectIntl(ApplicationErrorBoundary)>
   <ApplicationErrorBoundary
     intl={
-      Object {
+      {
         "$t": [Function],
-        "defaultFormats": Object {},
+        "defaultFormats": {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
         "fallbackOnEmptyString": true,
@@ -175,8 +175,8 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
         "formatRelativeTime": [Function],
         "formatTime": [Function],
         "formatTimeToParts": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
           "getDisplayNames": [Function],
           "getListFormat": [Function],
@@ -205,9 +205,9 @@ exports[`ApplicationErrorBoundary Snapshots should render error view when an err
 exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
 <ApplicationErrorBoundary
   intl={
-    Object {
+    {
       "$t": [Function],
-      "defaultFormats": Object {},
+      "defaultFormats": {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
       "fallbackOnEmptyString": true,
@@ -224,8 +224,8 @@ exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
       "formatRelativeTime": [Function],
       "formatTime": [Function],
       "formatTimeToParts": [Function],
-      "formats": Object {},
-      "formatters": Object {
+      "formats": {},
+      "formatters": {
         "getDateTimeFormat": [Function],
         "getDisplayNames": [Function],
         "getListFormat": [Function],
@@ -253,9 +253,9 @@ exports[`ApplicationErrorBoundary Snapshots should render with children 1`] = `
 exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`] = `
 <ApplicationErrorBoundary
   intl={
-    Object {
+    {
       "$t": [Function],
-      "defaultFormats": Object {},
+      "defaultFormats": {},
       "defaultLocale": "en",
       "defaultRichTextElements": undefined,
       "fallbackOnEmptyString": true,
@@ -272,8 +272,8 @@ exports[`ApplicationErrorBoundary Snapshots should render with minimal props 1`]
       "formatRelativeTime": [Function],
       "formatTime": [Function],
       "formatTimeToParts": [Function],
-      "formats": Object {},
-      "formatters": Object {
+      "formats": {},
+      "formatters": {
         "getDateTimeFormat": [Function],
         "getDisplayNames": [Function],
         "getListFormat": [Function],

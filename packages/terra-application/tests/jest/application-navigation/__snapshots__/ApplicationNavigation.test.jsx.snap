@@ -3,8 +3,8 @@
 exports[`ApplicationNavigation should render default element 1`] = `
 <ApplicationNavigation
   id="test-application-id"
-  notifications={Object {}}
-  utilityItems={Array []}
+  notifications={{}}
+  utilityItems={[]}
 >
   <ApplicationLoadingOverlayProvider>
     <ApplicationStatusOverlayProvider>
@@ -29,8 +29,8 @@ exports[`ApplicationNavigation should render with all props 1`] = `
 <ApplicationNavigation
   activeNavigationItemKey="my-test-key"
   extensionItems={
-    Array [
-      Object {
+    [
+      {
         "icon": <span>
           my icon
         </span>,
@@ -46,15 +46,15 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   }
   id="test-application-id"
   navigationItems={
-    Array [
-      Object {
+    [
+      {
         "key": "my-test-key",
         "text": "test-text",
       },
     ]
   }
   notifications={
-    Object {
+    {
       "my-test-key-1": 3,
     }
   }
@@ -66,18 +66,18 @@ exports[`ApplicationNavigation should render with all props 1`] = `
   onSelectSettings={[MockFunction]}
   onSelectUtilityItem={[MockFunction]}
   titleConfig={
-    Object {
+    {
       "title": "test-title",
     }
   }
   userActionConfig={
-    Object {
+    {
       "text": "Edit Photo",
       "userActionCallback": [Function],
     }
   }
   userConfig={
-    Object {
+    {
       "detail": "user-detail",
       "imageSrc": "user-src",
       "initials": "user-initials",
@@ -85,8 +85,8 @@ exports[`ApplicationNavigation should render with all props 1`] = `
     }
   }
   utilityItems={
-    Array [
-      Object {
+    [
+      {
         "icon": <span>
           my icon
         </span>,

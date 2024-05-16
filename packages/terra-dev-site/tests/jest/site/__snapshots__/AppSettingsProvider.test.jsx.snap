@@ -3,21 +3,21 @@
 exports[`ThemeContextProvider Snapshots should render with default config specified 1`] = `
 <ContextProvider
   value={
-    Object {
+    {
       "currentDensity": "compact",
       "currentDirection": "rtl",
       "currentLocale": "es",
       "currentTheme": "my theme",
       "currentThemeClassName": undefined,
-      "directions": Array [
+      "directions": [
         "ltr",
         "rtl",
       ],
-      "locales": Array [
+      "locales": [
         "en",
       ],
       "onUpdate": [Function],
-      "themes": Array [
+      "themes": [
         "terra-default-theme",
       ],
     }
@@ -30,21 +30,21 @@ exports[`ThemeContextProvider Snapshots should render with default config specif
 exports[`ThemeContextProvider Snapshots should render with no config 1`] = `
 <ContextProvider
   value={
-    Object {
+    {
       "currentDensity": undefined,
       "currentDirection": "ltr",
       "currentLocale": "en",
       "currentTheme": "terra-default-theme",
       "currentThemeClassName": undefined,
-      "directions": Array [
+      "directions": [
         "ltr",
         "rtl",
       ],
-      "locales": Array [
+      "locales": [
         "en",
       ],
       "onUpdate": [Function],
-      "themes": Array [
+      "themes": [
         "terra-default-theme",
       ],
     }

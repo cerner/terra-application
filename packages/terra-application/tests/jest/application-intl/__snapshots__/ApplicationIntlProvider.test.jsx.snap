@@ -4,9 +4,9 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
 <injectIntl(Component)>
   <Component
     intl={
-      Object {
+      {
         "$t": [Function],
-        "defaultFormats": Object {},
+        "defaultFormats": {},
         "defaultLocale": "en",
         "defaultRichTextElements": undefined,
         "fallbackOnEmptyString": true,
@@ -23,8 +23,8 @@ exports[`ApplicationIntlProvider Snapshots should render an ApplicationIntlConte
         "formatRelativeTime": [Function],
         "formatTime": [Function],
         "formatTimeToParts": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
           "getDisplayNames": [Function],
           "getListFormat": [Function],

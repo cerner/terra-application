@@ -1,0 +1,54 @@
+# Upgrade Guide
+
+## Upgrading from terra-application v1 to terra-application v2
+
+## Breaking Changes
+
+- custom translations
+- imports
+
+
+## Prerequisites
+Upgrading to terra-application v2 has the following prerequisites:
+
+- Upgrading the project to Node 14. Terra-application v2 requires a minimum of Node 14, therefore the project must be up
+- Upgrading the project to Jest 29. If `jest-config-terra` is used, then it should be upgraded to v3.
+- Custom locales are removed as they are no longer supported due to react-intl v5 & webpack limitations. Terra supports the following locales:
+        * en
+        * en-AU
+        * en-CA
+        * en-US
+        * en-GB
+        * es
+        * es-US
+        * es-ES
+        * de
+        * fr
+        * fr-FR
+        * nl
+        * nl-BE
+        * pt
+        * pt-BR
+        * sv
+        * sv-SE
+
+
+If there are requirements for locales not included in this list, then reach out to the Terra team.
+
+## Code changes
+
+It is recommended to complete these prerequisites before upgrading to terra-application v2 to make the upgrade easier.
+
+
+Once the prerequisites listed above are complete, the project can be upgraded to terra-application v2.
+terra-application v2 requires the following dependences versions to be updated as part of the upgrade process:
+* terra-aggregate-translations must be updated to v3.
+* webpack-config-terra must be updated to v4. 
+* terra-dev-site must be updated to v8.
+
+The above dependences and terra-application v2 all require react-intl v5 as a peerDependency, so that must be updated to v5.
+Once the versions above are installed, the following code changes will need to be done:
+
+react-intl v5 no longer exports intlShape. All usage of intlShape must be updated to xyz.
+For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.
+

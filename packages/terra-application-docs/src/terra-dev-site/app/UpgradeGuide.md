@@ -1,0 +1,85 @@
+# Upgrade Guide
+
+## Upgrading from terra-application v1 to terra-application v2
+
+### Unsupported functionality from V1
+
+The following features are no longer supported with terra-application-v2
+
+- **Custom locales**
+Custom locales are no longer are supported due to react-intl v5 & webpack limitations.
+Terra currently supports the following locales:
+
+  * en
+  * en-AU
+  * en-CA
+  * en-US
+  * en-GB
+  * es
+  * es-US
+  * es-ES
+  * de
+  * fr
+  * fr-FR
+  * nl
+  * nl-BE
+  * pt
+  * pt-BR
+  * sv
+  * sv-SE
+  
+- `terra-base` and `terra-i18n` are deprecated and not supported alongside terra-application v2.
+  If these dependencies are installed , then they must be removed.
+  If there are custom implementations utilizing these dependencies then they must be rewritten to utilize `terra-application/application-base`.
+
+### Prerequisites
+Upgrading to terra-application v2 has the following requirements:
+
+- Upgrading the project to Node 14. Terra-application v2 requires a minimum of Node 14, therefore the project must be up
+- Upgrading the project to Jest 29. If `jest-config-terra` is used, then it should be upgraded to v3.
+  Refer to the upgrade guide for `jest-config-terra` on how to upgrade to v3.
+        
+It is recommended to complete these prerequisites before upgrading to terra-application v2 to make the upgrade easier.
+
+### Code changes
+
+Once the prerequisites listed above are complete, the project can be upgraded to terra-application v2.
+terra-application v2 requires the following dependences versions to be updated as part of the upgrade process:
+* terra-aggregate-translations must be updated to v3.
+* webpack-config-terra must be updated to v4. 
+* terra-dev-site must be updated to v8.
+* rect-intl must be updated to 
+
+The above dependences and terra-application v2 all require react-intl v5 as a peerDependency.
+Once the versions above are installed, the following code changes will need to be done:
+
+react-intl v5 no longer exports intlShape. All usage of intlShape must be updated to xyz.
+For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.
+
+
+#### import updates
+
+Terra-application now uses proper submodule export partterns.
+The table below maps the old imports to the new imports.
+
+| old import                                                           | new import                                                       |
+|----------------------------------------------------------------------|------------------------------------------------------------------|
+| import ApplicationBase from 'terra-application'                      | import ApplicationBase from 'terra-application/application-base' |
+| import ApplicationBase from 'terra-application/lib/application-base' | import ApplicationBase from 'terra-application/application-base' |
+| import * from 'terra-application/lib/action-menu'                    | import * from 'terra-application/action-menu'                    |
+| import * from 'terra-application/lib/application-container'          | import * from 'terra-application/application-container'          |
+| import * from 'terra-application/lib/application-error-boundary'     | import * from 'terra-application/application-error-boundary'     |
+| import * from 'terra-application/lib/application-intl'               | import * from 'terra-application/application-intl'               |
+| import * from 'terra-application/lib/application-loading-overlay'    | import * from 'terra-application/application-loading-overlay'    |
+| import * from 'terra-application/lib/application-navigation'         | import * from 'terra-application/application-navigation'         |
+| import * from 'terra-application/lib/application-status-overlay'     | import * from 'terra-application/application-status-overlay'     |
+| import * from 'terra-application/lib/breakpoints'                    | import * from 'terra-application/breakpoints'                    |
+| import * from 'terra-application/lib/disclosure-manager'             | import * from 'terra-application/disclosure-manager'             |
+| import * from 'terra-application/lib/modal-manager'                  | import * from 'terra-application/modal-manager'                  |
+| import * from 'terra-application/lib/navigation-prompt'              | import * from 'terra-application/navigation-prompt'              |
+| import * from 'terra-application/lib/notification-banner'            | import * from 'terra-application/notification-banner'            |
+| import * from 'terra-application/lib/slide-panel-manager'            | import * from 'terra-application/slide-panel-manager'            |
+| import * from 'terra-application/lib/theme'                          | import * from 'terra-application/theme'                          |
+| import Logger from 'terra-application/lib/utils/logger'              | import { Logger } from 'terra-application/utils'                 |
+| import EventEmitter from 'terra-application/lib/utils/event-emitter'            | import { EventEmitter } from 'terra-application/utils'           |
+| import * from 'terra-application/lib/workspace'                      | import * from 'terra-application/workspace'                      |

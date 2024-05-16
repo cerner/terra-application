@@ -6,7 +6,7 @@
 
 The following features are no longer supported with terra-application-v2
 
-- **Custom locales**
+- **Custom locales**:
 Custom locales are no longer are supported due to react-intl v5 & webpack limitations.
 Terra currently supports the following locales:
 
@@ -27,9 +27,10 @@ Terra currently supports the following locales:
   * pt-BR
   * sv
   * sv-SE
-  
-- `terra-base` and `terra-i18n` are deprecated and not supported alongside terra-application v2.
-  If these dependencies are installed , then they must be removed.
+
+- **Custom terra-base implementation**:
+  `terra-base` and `terra-i18n` are deprecated and not supported alongside terra-application v2.
+  If these dependencies are installed, then they must be removed.
   If there are custom implementations utilizing these dependencies then they must be rewritten to utilize `terra-application/application-base`.
 
 ### Prerequisites
@@ -43,21 +44,16 @@ It is recommended to complete these prerequisites before upgrading to terra-appl
 
 ### Code changes
 
+#### Dependency updates
+
 Once the prerequisites listed above are complete, the project can be upgraded to terra-application v2.
 terra-application v2 requires the following dependences versions to be updated as part of the upgrade process:
 * terra-aggregate-translations must be updated to v3.
 * webpack-config-terra must be updated to v4. 
 * terra-dev-site must be updated to v8.
-* rect-intl must be updated to 
+* rect-intl must be updated to v5 as the above dependences and terra-application v2 all require v5 as a peerDependency.
 
-The above dependences and terra-application v2 all require react-intl v5 as a peerDependency.
-Once the versions above are installed, the following code changes will need to be done:
-
-react-intl v5 no longer exports intlShape. All usage of intlShape must be updated to xyz.
-For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.
-
-
-#### import updates
+#### Import updates
 
 Terra-application now uses proper submodule export partterns.
 The table below maps the old imports to the new imports.
@@ -81,5 +77,26 @@ The table below maps the old imports to the new imports.
 | import * from 'terra-application/lib/slide-panel-manager'            | import * from 'terra-application/slide-panel-manager'            |
 | import * from 'terra-application/lib/theme'                          | import * from 'terra-application/theme'                          |
 | import Logger from 'terra-application/lib/utils/logger'              | import { Logger } from 'terra-application/utils'                 |
-| import EventEmitter from 'terra-application/lib/utils/event-emitter'            | import { EventEmitter } from 'terra-application/utils'           |
+| import EventEmitter from 'terra-application/lib/utils/event-emitter' | import { EventEmitter } from 'terra-application/utils'           |
 | import * from 'terra-application/lib/workspace'                      | import * from 'terra-application/workspace'                      |
+
+
+#### `react-intl` updates
+
+react-intl v5 no longer exports `intlShape`. All usage of `intlShape` would need to be updated as follows:
+
+```js
+// before
+intl: intlShape.isRequired,
+
+// after
+intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
+```
+
+For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.
+
+https://formatjs.io/docs/react-intl/upgrade-guide-5x
+
+https://formatjs.io/docs/react-intl/upgrade-guide-4x
+
+https://formatjs.io/docs/react-intl/upgrade-guide-3x

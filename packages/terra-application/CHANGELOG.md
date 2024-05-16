@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 2.2.1 - (May 16, 2024)
+
+* Fixed
+  * Subpath exports corrections.
+
 ## 2.2.0 - (May 8, 2024)
 
 * Breaking Changes:

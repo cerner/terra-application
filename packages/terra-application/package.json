@@ -37,7 +37,6 @@
     "./navigation-prompt": "./lib/navigation-prompt/index.js",
     "./notification-banner": "./lib/notification-banner/index.js",
     "./slide-panel-manager": "./lib/slide-panel-manager/index.js",
-    "./terra-dev-site": "./lib/terra-dev-site/index.js",
     "./theme": "./lib/theme/index.js",
     "./utils": "./lib/utils/index.js",
     "./workspace": "./lib/workspace/index.js",

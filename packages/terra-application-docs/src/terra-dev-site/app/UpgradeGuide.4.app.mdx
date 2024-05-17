@@ -93,8 +93,8 @@ The table below maps the old imports to the new imports.
 | `import * from 'terra-application/lib/notification-banner'`            | `import * from 'terra-application/notification-banner'`            |
 | `import * from 'terra-application/lib/slide-panel-manager'`            | `import * from 'terra-application/slide-panel-manager'`            |
 | `import * from 'terra-application/lib/theme'`                          | `import * from 'terra-application/theme'`                          |
-| `import Logger from 'terra-application/lib/utils/logger'`              | import { Logger } from 'terra-application/utils'`                  |
-| `import EventEmitter from 'terra-application/lib/utils/event-emitter'` | import { EventEmitter } from 'terra-application/utils'`            |
+| `import Logger from 'terra-application/lib/utils/logger'`              | `import { Logger } from 'terra-application/utils'`                 |
+| `import EventEmitter from 'terra-application/lib/utils/event-emitter'` | `import { EventEmitter } from 'terra-application/utils'`           |
 | `import * from 'terra-application/lib/workspace'`                      | `import * from 'terra-application/workspace'`                      |
 
 
@@ -102,12 +102,9 @@ The table below maps the old imports to the new imports.
 
 react-intl v5 no longer exports `intlShape`. All usage of `intlShape` would need to be updated as follows:
 
-```js
-// before
-intl: intlShape.isRequired,
-
-// after
-intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
+```diff
+- intl: intlShape.isRequired,
++ intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
 ```
 
 For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.

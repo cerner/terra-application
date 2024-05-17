@@ -1,7 +1,5 @@
 export { default } from 'terra-disclosure-manager';
 export {
-  withDisclosureManager,
-  disclosureManagerShape,
   DisclosureManagerContext,
   DisclosureManagerDelegate,
   DisclosureManagerHeaderAdapterContext,
@@ -9,6 +7,8 @@ export {
   availableDisclosureSizes,
   availableDisclosureHeights,
   availableDisclosureWidths,
+  disclosureManagerShape,
+  withDisclosureManager,
 } from 'terra-disclosure-manager';
 
 export {

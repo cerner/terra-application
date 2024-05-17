@@ -102,12 +102,9 @@ The table below maps the old imports to the new imports.
 
 react-intl v5 no longer exports `intlShape`. All usage of `intlShape` would need to be updated as follows:
 
-```js
-// before
-intl: intlShape.isRequired,
-
-// after
-intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
+```diff
+- intl: intlShape.isRequired,
++ intl: PropTypes.shape({ formatMessage: PropTypes.func }).isRequired,
 ```
 
 For more information, refer to the react-intl upgrade guides. You may need to refer to the v3 & v4 upgrade guides in addition to v5.

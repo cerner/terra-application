@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`getUnsavedChangesPromptOptions generates a function that provides appropriate messaging for a single prompt 1`] = `
-Object {
+{
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
   "content": undefined,
@@ -14,12 +14,12 @@ Object {
 `;
 
 exports[`getUnsavedChangesPromptOptions generates a function that provides appropriate messaging for multiple prompts 1`] = `
-Object {
+{
   "acceptButtonText": "terraApplication.unsavedChangesPrompt.acceptButtonText",
   "buttonOrder": "rejectFirst",
   "content": <ContentLayoutAsList
     items={
-      Array [
+      [
         "Test Prompt",
         "Another Test Prompt",
       ]

@@ -5,7 +5,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
   className="container"
 >
   <StatusView
-    buttonAttrs={Array []}
+    buttonAttrs={[]}
     className="status-view"
     isAlignedTop={false}
     isGlyphHidden={false}
@@ -21,7 +21,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render a single statu
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -42,12 +42,12 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 >
   <StatusView
     buttonAttrs={
-      Array [
-        Object {
+      [
+        {
           "key": 1,
           "text": "Action 1",
         },
-        Object {
+        {
           "key": 2,
           "text": "Action 2",
         },
@@ -68,7 +68,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -89,8 +89,8 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
 >
   <StatusView
     buttonAttrs={
-      Array [
-        Object {
+      [
+        {
           "key": 1,
           "text": "Action 1",
         },
@@ -109,7 +109,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -129,7 +129,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
   className="container"
 >
   <StatusView
-    buttonAttrs={Array []}
+    buttonAttrs={[]}
     className="status-view"
     isAlignedTop={false}
     isGlyphHidden={false}
@@ -144,7 +144,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -164,7 +164,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
   className="container"
 >
   <StatusView
-    buttonAttrs={Array []}
+    buttonAttrs={[]}
     className="status-view"
     isAlignedTop={false}
     isGlyphHidden={false}
@@ -179,7 +179,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render the status vie
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -207,7 +207,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with custom pr
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -231,7 +231,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with minimal p
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -256,7 +256,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render with optional 
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }
@@ -284,7 +284,7 @@ exports[`ApplicationStatusOverlayProvider Snapshots should render without scroll
     >
       <ContextProvider
         value={
-          Object {
+          {
             "hide": [Function],
             "show": [Function],
           }

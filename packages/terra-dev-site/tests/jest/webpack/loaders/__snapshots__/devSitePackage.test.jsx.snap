@@ -6,9 +6,9 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        src=\\"https://github.com/cerner/terra-dev-site/tree/main/src/loader-components\\"
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        src="https://github.com/cerner/terra-dev-site/tree/main/src/loader-components"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"
@@ -20,8 +20,8 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"
@@ -33,9 +33,9 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        src=\\"https://github.com/cerner/terra-dev-site\\"
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        src="https://github.com/cerner/terra-dev-site"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"
@@ -47,8 +47,8 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"
@@ -60,9 +60,9 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        src=\\"https://v8.googlecode.com/svn/trunk/\\"
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        src="https://v8.googlecode.com/svn/trunk/"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"
@@ -74,9 +74,9 @@ import Badges from '@cerner/terra-dev-site/lib/loader-components/_Badges';
 
 export const Badge = ({ url }) => (
       <Badges
-        src=\\"https://github.com/cerner/terra-dev-site/tree/main/src/loader-components\\"
-        name=\\"terra-dev-site\\"
-        version=\\"6.2.0\\"
+        src="https://github.com/cerner/terra-dev-site/tree/main/src/loader-components"
+        name="terra-dev-site"
+        version="6.2.0"
         url={url}
       />
     );"

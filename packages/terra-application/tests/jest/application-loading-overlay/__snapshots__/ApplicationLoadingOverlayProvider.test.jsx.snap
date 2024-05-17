@@ -18,7 +18,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render dark ove
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -50,7 +50,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should give render light ov
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -82,7 +82,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render the loading o
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -114,7 +114,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with custom p
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -142,7 +142,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with minimal 
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -171,7 +171,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render with optional
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }
@@ -203,7 +203,7 @@ exports[`ApplicationLoadingOverlayProvider Snapshots should render without scrol
   >
     <ContextProvider
       value={
-        Object {
+        {
           "hide": [Function],
           "show": [Function],
         }

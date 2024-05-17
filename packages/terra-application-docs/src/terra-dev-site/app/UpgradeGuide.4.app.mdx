@@ -53,6 +53,24 @@ terra-application v2 requires the following dependences versions to be updated a
 * terra-dev-site must be updated to v8.
 * rect-intl must be updated to v5 as the above dependences and terra-application v2 all require v5 as a peerDependency.
 
+```diff
+"peerDependencies": {
+-  "react-intl": "2",
++  "react-intl": "5",
+-  "terra-application": "1",
++  "terra-application": "2",
+},
+"devDependencies": {
+-  "@cerner/terra-aggregate-translations": "2",
+-  "@cerner/terra-dev-site": "7",
+-  "@cerner/webpack-config-terra": "3",
++  "@cerner/terra-aggregate-translations": "3",
++  "@cerner/terra-dev-site": "8",
++  "@cerner/webpack-config-terra": "4",
+}
+
+```
+
 #### Import updates
 
 Terra-application now uses proper submodule export partterns.

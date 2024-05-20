@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 3.3.0 - (May 17, 2024)
+## 3.3.0 - (May 20, 2024)
 
 * Added
   * Added upgrade guide for terra-application v2.

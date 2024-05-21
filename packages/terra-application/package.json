@@ -1,6 +1,6 @@
 {
   "name": "terra-application",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A framework to support application development with Terra components",
   "author": "Cerner Corporation",
   "repository": {

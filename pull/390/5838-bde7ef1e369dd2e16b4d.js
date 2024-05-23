@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkterra_application_mono=self.webpackChunkterra_application_mono||[]).push([[5838],{45838:(e,n,t)=>{t.r(n),t.d(n,{default:()=>o});var a=t(96540);const o=function(){return a.createElement("h1",null,"Custom File Extension")}}}]);

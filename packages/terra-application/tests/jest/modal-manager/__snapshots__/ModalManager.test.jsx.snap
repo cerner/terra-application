@@ -10,6 +10,7 @@ exports[`ModalManager Snapshots should render with optional props 1`] = `
   }
   shouldTrapFocus={false}
   withDisclosureContainer={[Function]}
+  zIndex="6000"
 >
   <TestChild />
 </ModalManager>
@@ -20,6 +21,7 @@ exports[`ModalManager Snapshots should render with required props 1`] = `
   closeOnOutsideClick={false}
   shouldTrapFocus={false}
   withDisclosureContainer={[Function]}
+  zIndex="6000"
 >
   <TestChild />
 </ModalManager>

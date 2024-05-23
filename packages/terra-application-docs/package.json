@@ -29,6 +29,12 @@
     "lib",
     "src"
   ],
+  "peerDependencies": {
+    "react": "16",
+    "react-dom": "16",
+    "react-intl": "2 || 3 || 4 || 5",
+    "terra-application": "1"
+  },
   "dependencies": {
     "@cerner/terra-dev-site": "^7.14.0",
     "@cerner/terra-docs": "1",
@@ -40,12 +46,6 @@
     "terra-icon": "3",
     "terra-mixins": "1",
     "terra-toolbar": "1"
-  },
-  "peerDependencies": {
-    "react": "16",
-    "react-dom": "16",
-    "react-intl": "2 || 3 || 4 || 5",
-    "terra-application": "1"
   },
   "devDependencies": {
     "terra-application": "^1.58.0"

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 1.58.1 - (May 23, 2024)
+
+* Fixed
+  * Fixed dependencies pulling in older versions.
+
 ## 1.58.0 - (April 23, 2024)
 
 * Added

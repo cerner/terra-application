@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 7.14.1 - (May 23, 2024)
+
+* Fixed
+  * Fixed dependencies pulling in older versions.
+
 ## 7.14.0 - (May 1, 2024)
 
 * Changed

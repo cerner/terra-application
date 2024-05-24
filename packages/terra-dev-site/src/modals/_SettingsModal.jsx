@@ -6,7 +6,7 @@ import ActionHeader from 'terra-action-header';
 import NativeSelect from 'terra-form-select/lib/native-select/NativeSelect';
 import Field from 'terra-form-field';
 import classNamesBind from 'classnames/bind';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext } from 'terra-application/disclosure-manager';
 import AppSettingsContext from '../site/_AppSettingsContext';
 
 import styles from './SettingsModal.module.scss';

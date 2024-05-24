@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import logger from 'terra-application/lib/utils/logger';
+import { Logger } from 'terra-application/utils';
 
 const propTypes = {
   /**
@@ -27,7 +27,7 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error) {
-    logger.error(error);
+    Logger.error(error);
 
     if (this.props.onCatchError) {
       this.props.onCatchError(error);

@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import StatusView from 'terra-status-view';
-import { injectIntl, intlShape } from 'react-intl';
-import logger from '../utils/logger';
+import { injectIntl } from 'react-intl';
+import { Logger } from '../utils';
 
 const propTypes = {
   /**
@@ -15,7 +15,7 @@ const propTypes = {
    * @private
    * Intl object for translations.
    */
-  intl: intlShape,
+  intl: PropTypes.shape({ formatMessage: PropTypes.func }),
 };
 
 /**
@@ -79,7 +79,7 @@ class ApplicationErrorBoundary extends React.Component {
      * the ApplicationErrorBoundary to update again to ensure that the StatusView remains presented until the
      * next update occurs.
      */
-    logger.error(error);
+    Logger.error(error);
     this.errorRef.current = error;
     this.setState({ error: undefined });
   }
@@ -89,8 +89,7 @@ class ApplicationErrorBoundary extends React.Component {
     const activeError = this.state.error || this.errorRef.current;
 
     if (activeError) {
-      const errorDetails = activeError.message.toString();
-      const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails });
+      const errorText = intl.formatMessage({ id: 'terraApplication.errorBoundary.defaultErrorMessage' }, { errorDetails: activeError.message.toString() });
       return (
         <StatusView
           variant="error"

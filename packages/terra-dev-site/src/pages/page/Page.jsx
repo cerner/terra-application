@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames/bind';
 import ThemeContext from 'terra-theme-context';
-import DynamicOverlayContainer from 'terra-application/lib/workspace/shared/DynamicOverlayContainer';
+import DynamicOverlayContainer from 'terra-application/workspace/shared/DynamicOverlayContainer';
 
 import PageHeader from './PageHeader';
 import PageActions from './PageActions';

@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useHistory } from 'react-router-dom';
-import { DisclosureManagerContext } from 'terra-application/lib/disclosure-manager';
+import { DisclosureManagerContext } from 'terra-application/disclosure-manager';
 import ContentContainer from 'terra-content-container';
 import ActionHeader from 'terra-action-header';
 import classNamesBind from 'classnames/bind';
 import List, { Item } from 'terra-list';
 import SearchField from 'terra-search-field';
-import { ThemeContext } from 'terra-application/lib/theme';
+import { ThemeContext } from 'terra-application/theme';
 import Fuse from 'fuse.js';
 import StatusView from 'terra-status-view';
 

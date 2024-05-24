@@ -1,6 +1,6 @@
 {
   "name": "@cerner/terra-polyfill",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "This package contains polyfills to support the minimum requirements and commonly used features of terra-application and its consumers.",
   "author": "Cerner Corporation",
   "repository": {

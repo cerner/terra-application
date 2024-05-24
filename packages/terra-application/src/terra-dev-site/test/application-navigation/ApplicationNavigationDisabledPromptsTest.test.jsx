@@ -1,7 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'terra-application/lib/theme';
-import { ApplicationIntlContext } from '../../../application-intl';
+import { ThemeContext } from 'terra-application/theme';
+import { useIntl } from 'react-intl';
 import ApplicationBase from '../../../application-base';
 import ApplicationNavigation from '../../../application-navigation';
 import NavigationPrompt from '../../../navigation-prompt';
@@ -35,7 +35,7 @@ PageContent.propTypes = {
 };
 
 const ApplicationNavigationDisabledPromptsTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = React.useContext(ThemeContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);

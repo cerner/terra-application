@@ -1,11 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from 'terra-application/lib/theme';
-import ApplicationNavigation, {
-  ApplicationNavigationActionsContext,
-} from 'terra-application/lib/application-navigation';
+import { ThemeContext } from 'terra-application/theme';
+import ApplicationNavigation, { ApplicationNavigationActionsContext } from 'terra-application/application-navigation';
+import { useIntl } from 'react-intl';
 import { WorkspaceContent } from '../../../workspace';
-import { ApplicationIntlContext } from '../../../application-intl';
 import ApplicationBase from '../../../application-base';
 import NavigationPrompt from '../../../navigation-prompt';
 
@@ -119,7 +117,7 @@ const workspace = (
 );
 
 const ApplicationNavigationTest = () => {
-  const applicationIntl = useContext(ApplicationIntlContext);
+  const applicationIntl = useIntl();
   const theme = React.useContext(ThemeContext);
   const [activeNavItem, setActiveNavItem] = useState('page_1');
   const [loggedOut, setLoggedOut] = useState(false);

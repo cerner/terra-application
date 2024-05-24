@@ -1,10 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import ApplicationNavigation, {
-  ApplicationNavigationActionsContext,
-} from 'terra-application/lib/application-navigation';
-import { WorkspaceContent } from 'terra-application/lib/workspace';
-import WorkspaceLayout from 'terra-application/lib/application-navigation/private/workspace-layout/WorkspaceLayout';
+import ApplicationNavigation, { ApplicationNavigationActionsContext } from 'terra-application/application-navigation';
+import { WorkspaceContent } from 'terra-application/workspace';
+import WorkspaceLayout from 'terra-application/application-navigation/private/workspace-layout/WorkspaceLayout';
 
 const PageContent = ({ title }) => {
   const actionsContext = React.useContext(ApplicationNavigationActionsContext);

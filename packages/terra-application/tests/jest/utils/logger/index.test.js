@@ -1,6 +1,4 @@
-import Logger, {
-  initializeLogger,
-} from '../../../../src/utils/logger';
+import Logger, { initializeLogger } from '../../../../src/utils/logger';
 
 describe('logger/index', () => {
   it('should export Logger', () => {

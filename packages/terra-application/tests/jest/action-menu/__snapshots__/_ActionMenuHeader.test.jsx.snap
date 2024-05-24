@@ -1,53 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ActionMenuHeader should render with all props 1`] = `
-<div
-  className="action-menu-header"
->
-  <div
-    aria-hidden={true}
-    className="title"
-  >
-    test label
-  </div>
-  <div
-    className="close-button"
-  >
-    <Button
-      icon={
-        <IconClose
-          data-name="Layer 1"
-          viewBox="0 0 48 48"
-          xmlns="http://www.w3.org/2000/svg"
-        />
-      }
-      isBlock={false}
-      isCompact={false}
-      isDisabled={false}
-      isIconOnly={false}
-      isLeftAligned={false}
-      isReversed={false}
-      onClick={[MockFunction]}
-      text="terraApplication.actionMenu.headerCloseButtonLabel"
-      type="button"
-      variant="utility"
-    />
-  </div>
-</div>
+<ActionMenuHeader
+  intl={
+    {
+      "$t": [Function],
+      "defaultFormats": {},
+      "defaultLocale": "en",
+      "defaultRichTextElements": undefined,
+      "fallbackOnEmptyString": true,
+      "formatDate": [Function],
+      "formatDateTimeRange": [Function],
+      "formatDateToParts": [Function],
+      "formatDisplayName": [Function],
+      "formatList": [Function],
+      "formatListToParts": [Function],
+      "formatMessage": [Function],
+      "formatNumber": [Function],
+      "formatNumberToParts": [Function],
+      "formatPlural": [Function],
+      "formatRelativeTime": [Function],
+      "formatTime": [Function],
+      "formatTimeToParts": [Function],
+      "formats": {},
+      "formatters": {
+        "getDateTimeFormat": [Function],
+        "getDisplayNames": [Function],
+        "getListFormat": [Function],
+        "getMessageFormat": [Function],
+        "getNumberFormat": [Function],
+        "getPluralRules": [Function],
+        "getRelativeTimeFormat": [Function],
+      },
+      "locale": "en",
+      "messages": null,
+      "onError": [Function],
+      "onWarn": [Function],
+      "textComponent": Symbol(react.fragment),
+      "timeZone": undefined,
+      "wrapRichTextChunksInFragment": undefined,
+    }
+  }
+  label="test label"
+  onClose={[MockFunction]}
+/>
 `;
 
 exports[`ActionMenuHeader should render with minimal props 1`] = `
-<div
-  className="action-menu-header"
->
-  <div
-    aria-hidden={true}
-    className="title"
-  >
-    test label
-  </div>
-  <div
-    className="close-button"
-  />
-</div>
+<ActionMenuHeader
+  intl={
+    {
+      "$t": [Function],
+      "defaultFormats": {},
+      "defaultLocale": "en",
+      "defaultRichTextElements": undefined,
+      "fallbackOnEmptyString": true,
+      "formatDate": [Function],
+      "formatDateTimeRange": [Function],
+      "formatDateToParts": [Function],
+      "formatDisplayName": [Function],
+      "formatList": [Function],
+      "formatListToParts": [Function],
+      "formatMessage": [Function],
+      "formatNumber": [Function],
+      "formatNumberToParts": [Function],
+      "formatPlural": [Function],
+      "formatRelativeTime": [Function],
+      "formatTime": [Function],
+      "formatTimeToParts": [Function],
+      "formats": {},
+      "formatters": {
+        "getDateTimeFormat": [Function],
+        "getDisplayNames": [Function],
+        "getListFormat": [Function],
+        "getMessageFormat": [Function],
+        "getNumberFormat": [Function],
+        "getPluralRules": [Function],
+        "getRelativeTimeFormat": [Function],
+      },
+      "locale": "en",
+      "messages": null,
+      "onError": [Function],
+      "onWarn": [Function],
+      "textComponent": Symbol(react.fragment),
+      "timeZone": undefined,
+      "wrapRichTextChunksInFragment": undefined,
+    }
+  }
+  label="test label"
+/>
 `;

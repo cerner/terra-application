@@ -22,8 +22,8 @@
     "packages/*"
   ],
   "engines": {
-    "node": "10 || 12 || 14",
-    "npm": "6 || 9"
+    "node": "14",
+    "npm": "9"
   },
   "browserslist": [
     "extends @cerner/browserslist-config-terra"
@@ -32,16 +32,10 @@
     "extends": "@cerner/package-json-lint-config-terra/package-json-lint.config.js",
     "projectType": "module"
   },
-  "stylelint": {
-    "extends": "@cerner/stylelint-config-terra",
-    "rules": {
-      "scss/at-mixin-pattern": "^(terra-)[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
-    }
-  },
   "peerDependencies": {
     "react": "16",
     "react-dom": "16",
-    "react-intl": "2"
+    "react-intl": "5"
   },
   "devDependencies": {
     "@babel/cli": "7",
@@ -52,11 +46,12 @@
     "@babel/preset-react": "7",
     "@cerner/browserslist-config-terra": "4",
     "@cerner/eslint-config-terra": "5",
-    "@cerner/jest-config-terra": "2",
+    "@cerner/jest-config-terra": "3",
     "@cerner/package-json-lint": "2",
     "@cerner/package-json-lint-config-terra": "2",
     "@cerner/stylelint-config-terra": "5",
     "@cerner/terra-cli": "1",
+    "@cerner/terra-enzyme-intl": "4",
     "@cerner/terra-functional-testing": "4",
     "@cerner/terra-open-source-scripts": "1",
     "@cerner/webpack-config-terra": "3",
@@ -71,11 +66,10 @@
     "enzyme-to-json": "3",
     "eslint": "7",
     "gh-pages": "5",
-    "jest": "27",
+    "jest": "29",
     "lerna": "6",
     "postcss": "8",
     "stylelint": "15",
-    "terra-enzyme-intl": "3",
     "webpack": "5",
     "webpack-cli": "4",
     "webpack-dev-server": "4",

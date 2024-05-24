@@ -2,6 +2,39 @@
 
 ## Unreleased
 
+## 3.3.0 - (May 20, 2024)
+
+* Added
+  * Added upgrade guide for terra-application v2.
+
+* Changed
+  * Moved docs from the `terra-application` package.
+
+## 3.2.0 - (May 8, 2024)
+
+* Changed
+  * Set minimum Node version to 14.
+  * Updated docs to utilize the new terra-application imports.
+
+*Note: Some of the changes in this release are considered breaking changes. However, these changes are passive in nature as terra-application-docs v3.x has not been deployed to production yet.*
+
+## 3.1.0 - (June 22, 2022)
+
+* Changed
+  * Minor dependency version bump
+
+## 3.0.1 - (June 8, 2022)
+
+* Changed
+  * Minor dependency bump.
+
+## 3.0.0 - (May 31, 2022)
+
+* Breaking Changes
+  * Dropped react-intl v2-v4 support.
+
+---
+
 ## 2.15.0 - (May 1, 2024)
 
 * Changed

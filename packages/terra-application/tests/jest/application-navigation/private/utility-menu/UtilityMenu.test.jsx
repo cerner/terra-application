@@ -5,7 +5,7 @@ import UtilityMenu from '../../../../../src/application-navigation/private/utili
 describe('UtilityMenu', () => {
   it('should render default element', () => {
     const mountComponent = enzymeIntl.mountWithIntl(
-      <UtilityMenu.WrappedComponent />,
+      <UtilityMenu />,
     );
 
     expect(mountComponent).toMatchSnapshot();
@@ -13,8 +13,7 @@ describe('UtilityMenu', () => {
 
   it('should render with function callbacks', () => {
     const mountComponent = enzymeIntl.mountWithIntl(
-      <UtilityMenu.WrappedComponent
-        menuClosingCallback={() => jest.fn()}
+      <UtilityMenu
         hero={<div>my test hero</div>}
         userConfig={{
           name: 'user-name',
@@ -43,7 +42,7 @@ describe('UtilityMenu', () => {
     const mockCallBack = jest.fn();
 
     const mountComponent = enzymeIntl.mountWithIntl(
-      <UtilityMenu.WrappedComponent
+      <UtilityMenu
         onSelectLogout={mockCallBack}
       />,
     );

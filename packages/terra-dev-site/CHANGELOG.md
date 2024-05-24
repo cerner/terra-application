@@ -2,6 +2,40 @@
 
 ## Unreleased
 
+## 8.2.0 - (May 8, 2024)
+
+* Breaking Changes
+  * Dropped support for Node 10 & 12. Node 14 is now the minimum required version.
+  * Dropped support for `enhanced-resolve v4` as a dependency.
+  * Dropped support for `webpack v4` as a peerDependency.
+
+* Added
+  * Added new config option `useDefaultWebpackResolver` to utilize the built-in webpack path resolver instead of the custom resolver. 
+
+* The following changes from v7 are added:
+  * Fixed clipping issue of test pages on dev-site.
+  * Fixed scroll issue of doc pages with longer content.
+  * Locked `uuid` dependency to `3.4.0`.
+
+*Note: Some of the changes in this release are considered breaking changes. However, these changes are passive in nature as terra-dev-site v8.x has not been deployed to production yet.*
+
+## 8.1.0 - (June 22, 2022)
+
+* Changed
+  * Minor dependency version bump
+
+## 8.0.1 - (June 7, 2022)
+
+* Fixed
+  * Updated `terra-application` peerDependency to v2.
+
+## 8.0.0 - (May 31, 2022)
+
+* Breaking
+  * Dropped react-intl v2-v4 support.
+
+---
+
 ## 7.14.1 - (May 23, 2024)
 
 * Fixed

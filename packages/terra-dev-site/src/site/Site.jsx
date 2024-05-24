@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import ModalManager from 'terra-application/lib/modal-manager';
+import ModalManager from 'terra-application/modal-manager';
 
 import DevSiteLayout from '../layouts/_DevSiteLayout';
 import AppSettingsProvider from './_AppSettingsProvider';

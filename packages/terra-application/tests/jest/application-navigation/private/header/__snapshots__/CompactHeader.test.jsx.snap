@@ -1,68 +1,52 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CompactHeader should render default element 1`] = `
-<InjectIntl(CompactHeader)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
->
+<injectIntl(CompactHeader)>
   <CompactHeader
-    extensionItems={Array []}
+    extensionItems={[]}
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
-    navigationItems={Array []}
-    notifications={Object {}}
-    utilityItems={Array []}
+    navigationItems={[]}
+    notifications={{}}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -101,40 +85,13 @@ exports[`CompactHeader should render default element 1`] = `
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
 
 exports[`CompactHeader should render title element 1`] = `
-<InjectIntl(CompactHeader)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
+<injectIntl(CompactHeader)
   titleConfig={
-    Object {
+    {
       "element": <img
         alt="test"
         id="test-image"
@@ -144,39 +101,51 @@ exports[`CompactHeader should render title element 1`] = `
   }
 >
   <CompactHeader
-    extensionItems={Array []}
+    extensionItems={[]}
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
-    navigationItems={Array []}
-    notifications={Object {}}
+    navigationItems={[]}
+    notifications={{}}
     titleConfig={
-      Object {
+      {
         "element": <img
           alt="test"
           id="test-image"
@@ -184,7 +153,7 @@ exports[`CompactHeader should render title element 1`] = `
         "title": "test-title",
       }
     }
-    utilityItems={Array []}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -276,14 +245,14 @@ exports[`CompactHeader should render title element 1`] = `
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
 
 exports[`CompactHeader should render with function callbacks 1`] = `
-<InjectIntl(CompactHeader)
+<injectIntl(CompactHeader)
   extensionItems={
-    Array [
-      Object {
+    [
+      {
         "icon": <span>
           my icon
         </span>,
@@ -292,54 +261,27 @@ exports[`CompactHeader should render with function callbacks 1`] = `
       },
     ]
   }
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
   navigationItems={
-    Array [
-      Object {
+    [
+      {
         "key": "my-test-key",
         "text": "test-text",
       },
     ]
   }
   notifications={
-    Object {
+    {
       "my-test-key-1": 3,
     }
   }
   onSelectExtensionItem={[MockFunction]}
   titleConfig={
-    Object {
+    {
       "title": "test-title",
     }
   }
   userConfig={
-    Object {
+    {
       "detail": "user-detail",
       "imageSrc": "user-src",
       "initials": "user-initials",
@@ -349,8 +291,8 @@ exports[`CompactHeader should render with function callbacks 1`] = `
 >
   <CompactHeader
     extensionItems={
-      Array [
-        Object {
+      [
+        {
           "icon": <span>
             my icon
           </span>,
@@ -360,61 +302,73 @@ exports[`CompactHeader should render with function callbacks 1`] = `
       ]
     }
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
     navigationItems={
-      Array [
-        Object {
+      [
+        {
           "key": "my-test-key",
           "text": "test-text",
         },
       ]
     }
     notifications={
-      Object {
+      {
         "my-test-key-1": 3,
       }
     }
     onSelectExtensionItem={[MockFunction]}
     titleConfig={
-      Object {
+      {
         "title": "test-title",
       }
     }
     userConfig={
-      Object {
+      {
         "detail": "user-detail",
         "imageSrc": "user-src",
         "initials": "user-initials",
         "name": "user-name",
       }
     }
-    utilityItems={Array []}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -511,10 +465,10 @@ exports[`CompactHeader should render with function callbacks 1`] = `
       <div
         className="extensions-container"
       >
-        <InjectIntl(Extensions)
+        <injectIntl(Extensions)
           extensionItems={
-            Array [
-              Object {
+            [
+              {
                 "icon": <span>
                   my icon
                 </span>,
@@ -524,7 +478,7 @@ exports[`CompactHeader should render with function callbacks 1`] = `
             ]
           }
           notifications={
-            Object {
+            {
               "my-test-key-1": 3,
             }
           }
@@ -533,8 +487,8 @@ exports[`CompactHeader should render with function callbacks 1`] = `
           <Extensions
             activeBreakpoint=""
             extensionItems={
-              Array [
-                Object {
+              [
+                {
                   "icon": <span>
                     my icon
                   </span>,
@@ -544,34 +498,46 @@ exports[`CompactHeader should render with function callbacks 1`] = `
               ]
             }
             intl={
-              Object {
-                "defaultFormats": Object {},
+              {
+                "$t": [Function],
+                "defaultFormats": {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
+                "fallbackOnEmptyString": true,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
+                "formatListToParts": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
-                "formats": Object {},
-                "formatters": Object {
+                "formatTimeToParts": [Function],
+                "formats": {},
+                "formatters": {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "onWarn": [Function],
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             notifications={
-              Object {
+              {
                 "my-test-key-1": 3,
               }
             }
@@ -648,7 +614,7 @@ exports[`CompactHeader should render with function callbacks 1`] = `
               targetRef={[Function]}
             />
           </Extensions>
-        </InjectIntl(Extensions)>
+        </injectIntl(Extensions)>
       </div>
       <ul
         aria-label="terraApplication.navigation.drawerMenu.utilities"
@@ -660,14 +626,14 @@ exports[`CompactHeader should render with function callbacks 1`] = `
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
 
 exports[`CompactHeader should render with ids for navigation and extension items 1`] = `
-<InjectIntl(CompactHeader)
+<injectIntl(CompactHeader)
   extensionItems={
-    Array [
-      Object {
+    [
+      {
         "icon": <span>
           my icon
         </span>,
@@ -677,54 +643,27 @@ exports[`CompactHeader should render with ids for navigation and extension items
     ]
   }
   id="example-application"
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
   navigationItems={
-    Array [
-      Object {
+    [
+      {
         "key": "my-test-key",
         "text": "test-text",
       },
     ]
   }
   notifications={
-    Object {
+    {
       "my-test-key-1": 3,
     }
   }
   onSelectExtensionItem={[MockFunction]}
   titleConfig={
-    Object {
+    {
       "title": "test-title",
     }
   }
   userConfig={
-    Object {
+    {
       "detail": "user-detail",
       "imageSrc": "user-src",
       "initials": "user-initials",
@@ -734,8 +673,8 @@ exports[`CompactHeader should render with ids for navigation and extension items
 >
   <CompactHeader
     extensionItems={
-      Array [
-        Object {
+      [
+        {
           "icon": <span>
             my icon
           </span>,
@@ -746,61 +685,73 @@ exports[`CompactHeader should render with ids for navigation and extension items
     }
     id="example-application"
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
     navigationItems={
-      Array [
-        Object {
+      [
+        {
           "key": "my-test-key",
           "text": "test-text",
         },
       ]
     }
     notifications={
-      Object {
+      {
         "my-test-key-1": 3,
       }
     }
     onSelectExtensionItem={[MockFunction]}
     titleConfig={
-      Object {
+      {
         "title": "test-title",
       }
     }
     userConfig={
-      Object {
+      {
         "detail": "user-detail",
         "imageSrc": "user-src",
         "initials": "user-initials",
         "name": "user-name",
       }
     }
-    utilityItems={Array []}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -898,10 +849,10 @@ exports[`CompactHeader should render with ids for navigation and extension items
       <div
         className="extensions-container"
       >
-        <InjectIntl(Extensions)
+        <injectIntl(Extensions)
           extensionItems={
-            Array [
-              Object {
+            [
+              {
                 "icon": <span>
                   my icon
                 </span>,
@@ -912,7 +863,7 @@ exports[`CompactHeader should render with ids for navigation and extension items
           }
           id="example-application"
           notifications={
-            Object {
+            {
               "my-test-key-1": 3,
             }
           }
@@ -921,8 +872,8 @@ exports[`CompactHeader should render with ids for navigation and extension items
           <Extensions
             activeBreakpoint=""
             extensionItems={
-              Array [
-                Object {
+              [
+                {
                   "icon": <span>
                     my icon
                   </span>,
@@ -933,34 +884,46 @@ exports[`CompactHeader should render with ids for navigation and extension items
             }
             id="example-application"
             intl={
-              Object {
-                "defaultFormats": Object {},
+              {
+                "$t": [Function],
+                "defaultFormats": {},
                 "defaultLocale": "en",
+                "defaultRichTextElements": undefined,
+                "fallbackOnEmptyString": true,
                 "formatDate": [Function],
-                "formatHTMLMessage": [Function],
+                "formatDateTimeRange": [Function],
+                "formatDateToParts": [Function],
+                "formatDisplayName": [Function],
+                "formatList": [Function],
+                "formatListToParts": [Function],
                 "formatMessage": [Function],
                 "formatNumber": [Function],
+                "formatNumberToParts": [Function],
                 "formatPlural": [Function],
-                "formatRelative": [Function],
+                "formatRelativeTime": [Function],
                 "formatTime": [Function],
-                "formats": Object {},
-                "formatters": Object {
+                "formatTimeToParts": [Function],
+                "formats": {},
+                "formatters": {
                   "getDateTimeFormat": [Function],
+                  "getDisplayNames": [Function],
+                  "getListFormat": [Function],
                   "getMessageFormat": [Function],
                   "getNumberFormat": [Function],
-                  "getPluralFormat": [Function],
-                  "getRelativeFormat": [Function],
+                  "getPluralRules": [Function],
+                  "getRelativeTimeFormat": [Function],
                 },
                 "locale": "en",
                 "messages": null,
-                "now": [Function],
                 "onError": [Function],
-                "textComponent": "span",
-                "timeZone": null,
+                "onWarn": [Function],
+                "textComponent": Symbol(react.fragment),
+                "timeZone": undefined,
+                "wrapRichTextChunksInFragment": undefined,
               }
             }
             notifications={
-              Object {
+              {
                 "my-test-key-1": 3,
               }
             }
@@ -1039,7 +1002,7 @@ exports[`CompactHeader should render with ids for navigation and extension items
               targetRef={[Function]}
             />
           </Extensions>
-        </InjectIntl(Extensions)>
+        </injectIntl(Extensions)>
       </div>
       <ul
         aria-label="terraApplication.navigation.drawerMenu.utilities"
@@ -1051,84 +1014,69 @@ exports[`CompactHeader should render with ids for navigation and extension items
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
 
 exports[`CompactHeader should render with menu callback 1`] = `
-<InjectIntl(CompactHeader)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
+<injectIntl(CompactHeader)
   onSelectMenuButton={[MockFunction]}
   titleConfig={
-    Object {
+    {
       "title": "test-title",
     }
   }
 >
   <CompactHeader
-    extensionItems={Array []}
+    extensionItems={[]}
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
-    navigationItems={Array []}
-    notifications={Object {}}
+    navigationItems={[]}
+    notifications={{}}
     onSelectMenuButton={[MockFunction]}
     titleConfig={
-      Object {
+      {
         "title": "test-title",
       }
     }
-    utilityItems={Array []}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -1219,74 +1167,59 @@ exports[`CompactHeader should render with menu callback 1`] = `
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
 
 exports[`CompactHeader should render with skip callback 1`] = `
-<InjectIntl(CompactHeader)
-  intl={
-    Object {
-      "defaultFormats": Object {},
-      "defaultLocale": "en",
-      "formatDate": [Function],
-      "formatHTMLMessage": [Function],
-      "formatMessage": [Function],
-      "formatNumber": [Function],
-      "formatPlural": [Function],
-      "formatRelative": [Function],
-      "formatTime": [Function],
-      "formats": Object {},
-      "formatters": Object {
-        "getDateTimeFormat": [Function],
-        "getMessageFormat": [Function],
-        "getNumberFormat": [Function],
-        "getPluralFormat": [Function],
-        "getRelativeFormat": [Function],
-      },
-      "locale": "en",
-      "messages": null,
-      "now": [Function],
-      "onError": [Function],
-      "textComponent": "span",
-      "timeZone": null,
-    }
-  }
+<injectIntl(CompactHeader)
   onSelectSkipToContent={[MockFunction]}
 >
   <CompactHeader
-    extensionItems={Array []}
+    extensionItems={[]}
     intl={
-      Object {
-        "defaultFormats": Object {},
+      {
+        "$t": [Function],
+        "defaultFormats": {},
         "defaultLocale": "en",
+        "defaultRichTextElements": undefined,
+        "fallbackOnEmptyString": true,
         "formatDate": [Function],
-        "formatHTMLMessage": [Function],
+        "formatDateTimeRange": [Function],
+        "formatDateToParts": [Function],
+        "formatDisplayName": [Function],
+        "formatList": [Function],
+        "formatListToParts": [Function],
         "formatMessage": [Function],
         "formatNumber": [Function],
+        "formatNumberToParts": [Function],
         "formatPlural": [Function],
-        "formatRelative": [Function],
+        "formatRelativeTime": [Function],
         "formatTime": [Function],
-        "formats": Object {},
-        "formatters": Object {
+        "formatTimeToParts": [Function],
+        "formats": {},
+        "formatters": {
           "getDateTimeFormat": [Function],
+          "getDisplayNames": [Function],
+          "getListFormat": [Function],
           "getMessageFormat": [Function],
           "getNumberFormat": [Function],
-          "getPluralFormat": [Function],
-          "getRelativeFormat": [Function],
+          "getPluralRules": [Function],
+          "getRelativeTimeFormat": [Function],
         },
         "locale": "en",
         "messages": null,
-        "now": [Function],
         "onError": [Function],
-        "textComponent": "span",
-        "timeZone": null,
+        "onWarn": [Function],
+        "textComponent": Symbol(react.fragment),
+        "timeZone": undefined,
+        "wrapRichTextChunksInFragment": undefined,
       }
     }
     isDrawerMenuOpen={false}
-    navigationItems={Array []}
-    notifications={Object {}}
+    navigationItems={[]}
+    notifications={{}}
     onSelectSkipToContent={[MockFunction]}
-    utilityItems={Array []}
+    utilityItems={[]}
   >
     <header
       className="compact-header"
@@ -1326,5 +1259,5 @@ exports[`CompactHeader should render with skip callback 1`] = `
       />
     </header>
   </CompactHeader>
-</InjectIntl(CompactHeader)>
+</injectIntl(CompactHeader)>
 `;
